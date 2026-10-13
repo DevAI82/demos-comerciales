@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <base href="./">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Dental Sonrisastar — Propuesta de Innovación & Recepción 24/7 | Altera</title>
+  <meta name="description" content="Propuesta de transformación digital para Clínica Dental Sonrisastar (Albacete): Recepcionista de voz IA 24/7 (ElevenLabs), WhatsApp & Instagram con Zernio, rediseño web de alta conversión y CRM clínico con el 80% de subvención de Castilla-La Mancha.">
+
+  <!-- Open Graph / WhatsApp / Redes Sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Altera · Inteligencia REAL aplicada a tu negocio">
+  <meta property="og:title" content="Clínica Dental Sonrisastar — Propuesta de Transformación Digital & Recepción 24/7">
+  <meta property="og:url" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.html">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.htmlog-dental-sonrisastar.png">
+  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.htmlog-dental-sonrisastar.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Clínica Dental Sonrisastar — Recepción Telefónica IA 24/7 & Web Clínica">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Syne, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              magenta: '#e20077',
+              magentadark: '#b80061',
+              cyan: '#0284c7',
+              cyandark: '#0369a1',
+              teal: '#0d9488',
+              navy: '#0f172a'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Syne"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, .font-display { font-family: 'Syne', sans-serif; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+    }
+    .badge-subvencion {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border: 1px solid #6ee7b7;
+    }
+    .badge-magenta {
+      background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+      border: 1px solid #f472b6;
+    }
+    .gradient-hero {
+      background: radial-gradient(circle at 10% 20%, rgba(2, 132, 199, 0.08) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(226, 0, 119, 0.08) 0%, transparent 40%);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8 gradient-hero">
+
+  <div class="max-w-5xl mx-auto space-y-12">
+    
+    <!-- ========================================================================= -->
+    <!-- PORTADA EJECUTIVA                                                        -->
+    <!-- ========================================================================= -->
+    <header class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl shadow-slate-200/70 border border-slate-200 text-center space-y-6 relative overflow-hidden">
+      <!-- Glow decorativo -->
+      <div class="absolute -top-24 -right-24 w-72 h-72 bg-sky-200/40 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-pink-200/30 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Badge de Financiación Oficial JCCM -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-subvencion text-emerald-900 text-xs font-bold uppercase tracking-wider shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+        <span>🛡️ Bono Crecimiento Pyme · Orden 116/2026 JCCM · Subvencionado al 80%</span>
+      </div>
+
+      <!-- Logos Oficiales -->
+      <div class="flex items-center justify-center gap-6 sm:gap-8 my-2">
+        <img src="logo-sonrisa.png" onerror="this.onerror=null; this.src='/logo-sonrisa.png'; if(!this.complete || this.naturalWidth===0) this.src='https://sonrisastar.com/wp-content/uploads/2015/10/logo-sonrisa.png';" alt="Clínica Dental Sonrisastar" class="h-12 sm:h-16 w-auto object-contain">
+        <span class="text-slate-300 text-2xl font-light">×</span>
+        <img src="logo-altera-clean.png" onerror="this.onerror=null; this.src='/logo-altera-clean.png';" alt="Altera Soluciones Tecnológicas" class="h-8 sm:h-11 w-auto object-contain">
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 leading-tight font-display">
+        Transformación Digital & Recepción 24/7
+      </h1>
+      <p class="text-slate-500 text-base sm:text-lg font-medium max-w-2xl mx-auto">
+        Propuesta técnica y comercial exclusiva para la dirección de <strong class="text-slate-800">Clínica Dental Sonrisastar</strong> (Calle Dionisio Guardiola, 2, Albacete).
+      </p>
+
+      <!-- Resumen de impacto económico de la subvención -->
+      <div class="max-w-2xl mx-auto p-4 rounded-2xl bg-emerald-50/80 border border-emerald-300 text-slate-700 text-sm leading-relaxed flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+        <div class="text-left space-y-0.5">
+          <span class="text-xs uppercase font-bold text-emerald-800 tracking-wider">Inversión Oficial Subvencionada</span>
+          <div class="text-lg font-bold text-slate-900">
+            Total Proyecto: <span class="line-through text-slate-400">3.000 €</span> 
+            <span class="text-emerald-700 font-extrabold text-xl ml-2">600 € netos</span>
+          </div>
+          <p class="text-xs text-slate-600">La Junta de Comunidades de Castilla-La Mancha abona el 80% (2.400 € a fondo perdido).</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="openFormularioModal()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 whitespace-nowrap cursor-pointer">
+            <span>👁️</span> <span>Ver Formulario III Oficial</span>
+          </button>
+          <a href="Formulario_III_Sonrisastar.pdf" download="Formulario_III_Sonrisastar.pdf" target="_blank" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-emerald-800 font-bold text-xs border border-emerald-300 shadow-xs transition flex items-center gap-1.5 whitespace-nowrap">
+            <span>📥</span> <span>PDF</span>
+          </a>
+          <a href="Formulario_III_Sonrisastar.docx" download="Formulario_III_Sonrisastar.docx" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-emerald-800 font-bold text-xs border border-emerald-300 shadow-xs transition flex items-center gap-1.5 whitespace-nowrap">
+            <span>📝</span> <span>Word</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- BOTONES DE ACCIÓN PRINCIPALES (SIN EXCALIDRAW) -->
+      <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-center gap-3">
+        <a href="/dental/mockup_interactivo" target="_blank" class="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-xl hover:shadow-2xl transition flex items-center gap-2 border border-slate-700">
+          <span class="text-base">🚀</span> <span>Probar Prototipo Interactivo en Vivo</span>
+        </a>
+        <a href="Dossier%20Presentacion%20Sonrisastar.md" download class="px-5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-300 transition flex items-center gap-2">
+          <span>📋</span> <span>Descargar Dossier Completo</span>
+        </a>
+        <button onclick="openFormularioModal()" class="px-5 py-3.5 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-900 font-bold text-xs border border-emerald-300 transition flex items-center gap-2 cursor-pointer">
+          <span>📄</span> <span>Consultar Memoria Oficial JCCM</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 1: DIAGNÓSTICO DE SITUACIÓN & LOS 5 FRENOS                        -->
+    <!-- ========================================================================= -->
+    <section class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-200 space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs font-bold text-brand-magenta uppercase tracking-widest block">01. Diagnóstico Operativo</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 font-display">Los 5 Cuellos de Botella Detectados en Sonrisastar</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          Auditoría de los canales de atención y presencia online de la clínica (Calle Dionisio Guardiola, 2, Albacete):
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Freno 1 -->
+        <div class="p-5 rounded-2xl bg-rose-50/70 border border-rose-200 space-y-2">
+          <div class="flex items-center gap-2 text-rose-900 font-bold text-sm">
+            <span>☎️</span> <span>Dependencia Exclusiva del Fijo</span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Solo disponen del fijo <strong>967 116 136</strong>. Los pacientes jóvenes o menores de 50 años rara vez llaman: buscan un WhatsApp para resolver dudas rápidas, pedir cita a cualquier hora o enviar una foto de urgencia.
+          </p>
+        </div>
+
+        <!-- Freno 2 -->
+        <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 space-y-2">
+          <div class="flex items-center gap-2 text-amber-900 font-bold text-sm">
+            <span>🌙</span> <span>Llamadas Perdidas Fuera de Horario</span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            El horario presencial es L–V (10:00-14:00 y 17:00-21:00). A mediodía, noches y fines de semana la clínica está cerrada. Cualquier urgencia dental con dolor o persona que busca dentista fuera de horas <strong>se pierde y va a la competencia</strong>.
+          </p>
+        </div>
+
+        <!-- Freno 3 -->
+        <div class="p-5 rounded-2xl bg-indigo-50/70 border border-indigo-200 space-y-2">
+          <div class="flex items-center gap-2 text-indigo-900 font-bold text-sm">
+            <span>📸</span> <span>Ausencia Total en Instagram</span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            La clínica <strong>no tiene perfil de Instagram activo</strong>. En odontología estética (blanqueamientos, carillas, ortodoncia invisible), el paciente compra por impacto visual. No estar en Instagram regala el 100% de esta demanda a otras clínicas de Albacete.
+          </p>
+        </div>
+
+        <!-- Freno 4 -->
+        <div class="p-5 rounded-2xl bg-sky-50/70 border border-sky-200 space-y-2">
+          <div class="flex items-center gap-2 text-sky-900 font-bold text-sm">
+            <span>🕸️</span> <span>Web Anticuada de 2015</span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Su web actual (WordPress 2015 con Visual Composer) tiene más de 10 años de desfase: carga pesada en móvil, sin botón directo a WhatsApp, sin sistema de agendamiento y con formularios estáticos con captcha que ahuyentan contactos.
+          </p>
+        </div>
+
+        <!-- Freno 5 -->
+        <div class="p-5 rounded-2xl bg-purple-50/70 border border-purple-200 space-y-2 md:col-span-2">
+          <div class="flex items-center gap-2 text-purple-900 font-bold text-sm">
+            <span>🚫</span> <span>No-Shows y Falta de Reactivación Activa</span>
+          </div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Cada cita fallida sin previo aviso representa entre 45 y 60 minutos de gabinete dental y doctor desocupados. Además, carecen de un sistema automático de re-calling que recuerde por WhatsApp a los pacientes acudir a su limpieza o revisión periódica a los 6 meses.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 2: LA SOLUCIÓN INTEGRAL EN 6 PILARES                              -->
+    <!-- ========================================================================= -->
+    <section class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-200 space-y-8">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs font-bold text-brand-cyan uppercase tracking-widest block">02. Propuesta Tecnológica</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 font-display">La Solución Integral Altera_Dental (6 Pilares)</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          Una suite completa diseñada a medida para erradicar llamadas perdidas, multiplicar las primeras citas y maximizar la ocupación de los gabinetes:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pilar 1 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-magenta transition space-y-3 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-md bg-brand-magenta/10 text-brand-magenta font-bold text-xs uppercase tracking-wider">Pilar 1</span>
+            <span class="text-xs font-semibold text-slate-400">Atención Telefónica</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span>🎙️</span> <span>Recepcionista de Voz IA 24/7 (ElevenLabs)</span>
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Desvío inteligente de las llamadas al <strong>967 116 136</strong> fuera de horario y en picos de saturación. La IA responde al primer tono con voz ultra-realista española, realiza <strong>triaje de urgencias dentales con dolor</strong>, agenda citas y envía de inmediato confirmación por WhatsApp con enlace en Google Maps.
+          </p>
+        </div>
+
+        <!-- Pilar 2 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-emerald-500 transition space-y-3 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 font-bold text-xs uppercase tracking-wider">Pilar 2</span>
+            <span class="text-xs font-semibold text-slate-400">Mensajería Inteligente</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span>💬</span> <span>Agente Omnicanal WhatsApp + Instagram (Zernio)</span>
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Habilitación de una línea móvil oficial de WhatsApp Business y apertura del canal de Instagram de Sonrisastar. El bot de IA cualifica las necesidades del paciente, resuelve dudas sobre <strong>ortodoncia invisible, implantes o blanqueamiento</strong> y formaliza la reserva en tiempo real.
+          </p>
+        </div>
+
+        <!-- Pilar 3 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-500 transition space-y-3 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-md bg-amber-100 text-amber-800 font-bold text-xs uppercase tracking-wider">Pilar 3</span>
+            <span class="text-xs font-semibold text-slate-400">Fidelización & Eficiencia</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span>⚡</span> <span>Automatizaciones Anti-No-Show & Re-Calling</span>
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Envío de WhatsApp 24h antes con botón interactivo de confirmación. Si el paciente cancela con antelación, el hueco se libera automáticamente para la lista de espera. Incluye <strong>seguimiento post-cirugía</strong> y recordatorio automático a los 6 meses para limpiezas y revisiones.
+          </p>
+        </div>
+
+        <!-- Pilar 4 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-sky-500 transition space-y-3 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-md bg-sky-100 text-sky-800 font-bold text-xs uppercase tracking-wider">Pilar 4</span>
+            <span class="text-xs font-semibold text-slate-400">Diseño & Conversión</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span>🌐</span> <span>Rediseño Web UX de Alta Conversión</span>
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Sustitución de la web de 2015 por una plataforma moderna construida sobre Tailwind CSS / HTML5. Carga instantánea (< 1 segundo), optimizada para móvil, con oferta gancho visible (<strong>Revisión, Diagnóstico y Radiografía GRATIS</strong>), testimonios y botón flotante de WhatsApp.
+          </p>
+        </div>
+
+        <!-- Pilar 5 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-indigo-500 transition space-y-3 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-md bg-indigo-100 text-indigo-800 font-bold text-xs uppercase tracking-wider">Pilar 5</span>
+            <span class="text-xs font-semibold text-slate-400">Visibilidad & IA</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span>📍</span> <span>SEO Local Albacete & Optimización AEO</span>
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Posicionamiento prioritario en Google Maps / Google Business Profile para búsquedas como <em>"dentista albacete"</em> o <em>"implantes dentales albacete"</em>. Marcado semántico Schema.org para que los nuevos motores de IA (ChatGPT, Gemini, Perplexity) recomienden a Sonrisastar.
+          </p>
+        </div>
+
+        <!-- Pilar 6 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-500 transition space-y-3 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-md bg-teal-100 text-teal-800 font-bold text-xs uppercase tracking-wider">Pilar 6</span>
+            <span class="text-xs font-semibold text-slate-400">Gestión & Datos</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span>📊</span> <span>CRM Dental a Medida en Servidor Privado</span>
+          </h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Panel Kanban omnicanal alojado en un servidor propio en la Unión Europea (Contabo + Coolify + Supabase). Sin cuotas mensuales de suscripciones cloud. Estricto cumplimiento del RGPD sanitario (Art. 9) y conservación clínica obligatoria de 5 años (Ley 41/2002).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 3: COMPARATIVA WEB 2015 VS NUEVA WEB                              -->
+    <!-- ========================================================================= -->
+    <section class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-200 space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs font-bold text-brand-magenta uppercase tracking-widest block">03. Renovación Digital</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 font-display">Comparativa: Web Actual (2015) vs. Nueva Web Altera Dental</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          Por qué el cambio de plataforma transformará la captación de pacientes en Albacete:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Web Actual -->
+        <div class="p-6 rounded-2xl bg-rose-50/50 border border-rose-200 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-rose-200 text-rose-900 uppercase">Situación Actual (sonrisastar.com)</span>
+            <span class="text-xs text-rose-700 font-semibold">Tecnología 2015</span>
+          </div>
+          <ul class="text-xs sm:text-sm text-slate-700 space-y-3">
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">✕</span>
+              <span><strong>Velocidad lenta:</strong> WordPress 4.3 antiguo con Visual Composer y plugins pesados que penalizan en móviles.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">✕</span>
+              <span><strong>Sin WhatsApp directo:</strong> Ningún botón interactivo de mensajería para contactar al instante.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">✕</span>
+              <span><strong>Sin agendamiento online:</strong> Solo un formulario estático de contacto que requiere captcha y respuesta por email.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-rose-500 font-bold">✕</span>
+              <span><strong>Invisibilidad en redes:</strong> Sin integración ni enlaces a perfiles sociales como Instagram.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Nueva Web -->
+        <div class="p-6 rounded-2xl bg-emerald-50/60 border-2 border-emerald-400 space-y-4 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-200 text-emerald-950 uppercase">Nueva Web Altera Dental</span>
+            <span class="text-xs text-emerald-800 font-bold">Stack 2026</span>
+          </div>
+          <ul class="text-xs sm:text-sm text-slate-700 space-y-3">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span><strong>Carga ultrarrápida (< 1 seg):</strong> Arquitectura moderna sobre Tailwind CSS / HTML5 limpio con máxima puntuación en Google Core Web Vitals.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span><strong>WhatsApp Flotante Inteligente:</strong> Acceso directo con un solo clic a la conversación con el bot de IA 24/7.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span><strong>Reserva directa en 3 pasos:</strong> Selector de tratamiento y día con confirmación instantánea.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span><strong>Conexión con Instagram & CRM:</strong> Todos los contactos ingresan directamente al pipeline visual del equipo.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 4: PROPUESTA ECONÓMICA & SUBVENCIÓN JCCM                          -->
+    <!-- ========================================================================= -->
+    <section class="bg-gradient-to-br from-slate-900 to-slate-950 text-white p-8 sm:p-12 rounded-3xl shadow-2xl border border-slate-800 space-y-8 relative overflow-hidden">
+      <!-- Glow -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="border-b border-slate-800 pb-4 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block">04. Financiación Oficial</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-1 font-display">Subvención Bono Crecimiento Pyme (80%)</h2>
+        </div>
+        <div class="px-4 py-1.5 rounded-full bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-bold">
+          Orden 116/2026 · DOCM 03/08/2026 · Trámite 1023976
+        </div>
+      </div>
+
+      <!-- TARJETAS DE NÚMEROS -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-1">
+          <span class="text-xs uppercase font-semibold text-slate-400 block">Inversión Total Proyecto</span>
+          <div class="text-3xl font-extrabold text-white font-display">3.000,00 €</div>
+          <span class="text-[11px] text-slate-400">2 Actuaciones oficiales (Modalidad 4)</span>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-1">
+          <span class="text-xs uppercase font-bold text-emerald-400 block">Subvención Junta CLM (80%)</span>
+          <div class="text-3xl font-extrabold text-emerald-400 font-display">-2.400,00 €</div>
+          <span class="text-[11px] text-emerald-200">A fondo perdido por transferencia directa</span>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-brand-magenta/15 border border-brand-magenta/40 space-y-1">
+          <span class="text-xs uppercase font-bold text-pink-300 block">Coste Real Sonrisastar</span>
+          <div class="text-4xl font-black text-white font-display">600,00 €</div>
+          <span class="text-[11px] text-pink-200 font-medium">¡Solo el 20% de la inversión real!</span>
+        </div>
+      </div>
+
+      <!-- DESGLOSE DE ACTUACIONES Y VENTAJAS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-emerald-300 uppercase tracking-wider">Actuaciones en la Memoria Técnica Oficial (Formulario III):</h4>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2 text-xs text-slate-300">
+            <div class="flex justify-between items-center font-semibold text-white">
+              <span>1. Agente Omnicanal (WhatsApp/IG) & Voz IA 24/7</span>
+              <span class="text-emerald-400">1.500,00 €</span>
+            </div>
+            <p class="text-slate-400">Implantación de IA conversacional para recepción telefónica y canales sociales con agendamiento automático.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2 text-xs text-slate-300">
+            <div class="flex justify-between items-center font-semibold text-white">
+              <span>2. Rediseño Web UX, CRM & Anti-No-Show</span>
+              <span class="text-emerald-400">1.500,00 €</span>
+            </div>
+            <p class="text-slate-400">Nueva web de alta velocidad, panel CRM clínico con base de datos propia y flujos automáticos de confirmación.</p>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-emerald-300 uppercase tracking-wider">Garantías Legales del Bono Pyme con Altera:</h4>
+          <ul class="text-xs text-slate-300 space-y-2.5">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Concesión directa no competitiva:</strong> Se aprueban por orden de llegada hasta agotar los 9.000.000 € presupuestados.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Sin necesidad de 3 presupuestos:</strong> Al ser un contrato menor (< 15.000 €), el art. 9.4 exime de aportar ofertas de competidores.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Inicio inmediato:</strong> Con el resguardo telemático de entrada ya se puede arrancar legalmente el proyecto.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-400 font-bold">✓</span>
+              <span><strong>Llave en mano por Altera:</strong> Entregamos el Formulario III totalmente redactado y la justificación técnica final.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BOTONES DE VISUALIZACIÓN Y DESCARGA FORMULARIO III -->
+      <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-3">
+        <button onclick="openFormularioModal()" class="px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm shadow-lg transition flex items-center gap-2 cursor-pointer">
+          <span>👁️</span> <span>Ver Memoria Oficial en Pantalla</span>
+        </button>
+        <a href="Formulario_III_Sonrisastar.pdf" download="Formulario_III_Sonrisastar.pdf" target="_blank" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition flex items-center gap-1.5">
+          <span>📥</span> <span>Descargar PDF Oficial</span>
+        </a>
+        <a href="Formulario_III_Sonrisastar.docx" download="Formulario_III_Sonrisastar.docx" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition flex items-center gap-1.5">
+          <span>📝</span> <span>Descargar Word .DOCX</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 5: CRONOGRAMA DE IMPLANTACIÓN (3 MESES)                           -->
+    <!-- ========================================================================= -->
+    <section class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-slate-200 space-y-6">
+      <div class="border-b border-slate-100 pb-4">
+        <span class="text-xs font-bold text-brand-magenta uppercase tracking-widest block">05. Plan de Trabajo</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 font-display">Cronograma de Ejecución Ágil (3 Meses)</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          Plan estructurado para completar la digitalización y asegurar el reembolso del 80%:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+          <span class="text-xs font-bold text-brand-cyan uppercase tracking-wider block">Mes 1 · Semanas 1–3</span>
+          <h4 class="font-bold text-slate-900 text-base">Infraestructura & Solicitud</h4>
+          <ul class="text-xs text-slate-600 space-y-1.5">
+            <li>• Presentación telemática del Formulario III en JCCM.</li>
+            <li>• Aprovisionamiento de VPS propio en la UE (Contabo + Coolify).</li>
+            <li>• Despliegue de Supabase autoalojado y diseño UX de la nueva web.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+          <span class="text-xs font-bold text-brand-magenta uppercase tracking-wider block">Mes 2 · Semanas 4–8</span>
+          <h4 class="font-bold text-slate-900 text-base">Voz IA, Canales & Web</h4>
+          <ul class="text-xs text-slate-600 space-y-1.5">
+            <li>• Entrenamiento del recepcionista de voz (ElevenLabs) para el 967.</li>
+            <li>• Conexión de WhatsApp Business Oficial e Instagram con Zernio.</li>
+            <li>• Programación de la nueva web ultrarrápida y flujos anti-no-show.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+          <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider block">Mes 3 · Semanas 9–12</span>
+          <h4 class="font-bold text-slate-900 text-base">Puesta en Marcha & Ayuda</h4>
+          <ul class="text-xs text-slate-600 space-y-1.5">
+            <li>• Integración del CRM clínico Kanban con agenda médica.</li>
+            <li>• Pruebas reales, formación al personal de recepción.</li>
+            <li>• Elaboración de la memoria final (Formulario V) para reembolso.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- LLAMADA A LA ACCIÓN FINAL                                                 -->
+    <!-- ========================================================================= -->
+    <footer class="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-slate-200 text-center space-y-6">
+      <div class="max-w-xl mx-auto space-y-2">
+        <span class="text-xs font-bold text-brand-magenta uppercase tracking-widest block">Siguiente Paso</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">¿Comprobamos el Prototipo en Vivo?</h3>
+        <p class="text-xs sm:text-sm text-slate-600">
+          Hemos preparado un entorno interactivo completo para que puedas simular una llamada de voz con la recepcionista IA, chatear por WhatsApp e interactuar con la nueva web y el CRM.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <a href="/dental/mockup_interactivo" target="_blank" class="px-8 py-4 rounded-xl bg-brand-magenta hover:bg-brand-magentadark text-white font-extrabold text-sm shadow-xl transition flex items-center gap-2">
+          <span>🚀</span> <span>Abrir Prototipo Interactivo de Sonrisastar</span>
+        </a>
+      </div>
+
+      <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+        <div>
+          <strong>Altera Soluciones Tecnológicas</strong> · José Miguel Olmeda Pascual
+        </div>
+        <div>
+          contacto@altera-es.com · Tel.: +34 624 93 90 23 · Albacete
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL OFICIAL: VISOR DE FORMULARIO III (MEMORIA TÉCNICA JCCM)            -->
+  <!-- ========================================================================= -->
+  <div id="formularioModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-300 overflow-hidden my-auto">
+      
+      <!-- Modal Header -->
+      <div class="bg-slate-900 text-white p-4 sm:p-6 flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-xl text-emerald-400">
+            🏛️
+          </div>
+          <div>
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-emerald-400 block">Junta de Comunidades de Castilla-La Mancha</span>
+            <h3 class="text-sm sm:text-lg font-bold font-display">Formulario III · Memoria Técnica Oficial (Orden 116/2026)</h3>
+            <span class="text-[11px] text-slate-400">Código Trámite Sede JCCM: 1023976 · Bono Crecimiento Pyme</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="Formulario_III_Sonrisastar.pdf" download="Formulario_III_Sonrisastar.pdf" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+            <span>📥</span> <span class="hidden sm:inline">Descargar</span> <span>PDF</span>
+          </a>
+          <a href="Formulario_III_Sonrisastar.docx" download="Formulario_III_Sonrisastar.docx" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 flex items-center gap-1.5 transition">
+            <span>📝</span> <span class="hidden sm:inline">Descargar</span> <span>Word</span>
+          </a>
+          <button onclick="closeFormularioModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-base flex items-center justify-center transition">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Contenido Oficial Cumplimentado) -->
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-700">
+        
+        <!-- Banner Resumen Económico -->
+        <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-400 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-900 block">Presupuesto Oficial Presentado en la JCCM</span>
+            <div class="text-xl sm:text-2xl font-black text-slate-900 font-display mt-0.5">
+              Inversión: 3.000,00 € · <span class="text-emerald-700">Subvención 80%: 2.400,00 €</span>
+            </div>
+            <p class="text-xs text-slate-600">Aportación neta definitiva asumida por Clínica Dental Sonrisastar: <strong>600,00 €</strong></p>
+          </div>
+          <span class="px-3 py-1.5 rounded-full bg-emerald-200 text-emerald-950 font-extrabold text-xs whitespace-nowrap">
+            ✓ 100% Subvencionable
+          </span>
+        </div>
+
+        <!-- 1. Identificación -->
+        <div class="space-y-2 border-b border-slate-200 pb-4">
+          <h4 class="font-bold text-slate-900 uppercase text-xs tracking-wider text-brand-magenta">1. Entidad Solicitante</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <p><strong>Razón Social / Nombre:</strong> CLÍNICA DENTAL SONRISA STAR</p>
+            <p><strong>Centro de Trabajo:</strong> Calle Dionisio Guardiola, 2, 02002 Albacete</p>
+            <p><strong>Sector / CNAE:</strong> Actividades Odontológicas (CNAE Q8623)</p>
+            <p><strong>Proveedor Tecnológico:</strong> Altera Soluciones Tecnológicas (www.altera-es.com)</p>
+          </div>
+        </div>
+
+        <!-- 2. Tabla Oficial de Actuaciones -->
+        <div class="space-y-3 border-b border-slate-200 pb-4">
+          <h4 class="font-bold text-slate-900 uppercase text-xs tracking-wider text-brand-magenta">2. Relación de Actuaciones Subvencionables (Modalidad 4)</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left text-slate-700 border border-slate-200 rounded-xl overflow-hidden">
+              <thead class="bg-slate-100 text-slate-900 font-bold border-b border-slate-200 uppercase">
+                <tr>
+                  <th class="p-2.5">Nº</th>
+                  <th class="p-2.5">Actuación Técnica Solicitada</th>
+                  <th class="p-2.5">Proveedor</th>
+                  <th class="p-2.5 text-right">Importe Sin IVA</th>
+                  <th class="p-2.5 text-right">Subvención (80%)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr>
+                  <td class="p-2.5 font-bold">1</td>
+                  <td class="p-2.5">
+                    <strong>Agente Omnicanal (WhatsApp/IG) & Recepcionista de Voz IA 24/7</strong><br>
+                    <span class="text-[11px] text-slate-500">Implantación de IA conversacional (ElevenLabs + Zernio) en teléfono 967 116 136 y redes sociales para triaje y reservas 24/7.</span>
+                  </td>
+                  <td class="p-2.5 text-slate-500">Altera Soluciones Tecnológicas</td>
+                  <td class="p-2.5 text-right font-semibold">1.500,00 €</td>
+                  <td class="p-2.5 text-right text-emerald-600 font-bold">1.200,00 €</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-bold">2</td>
+                  <td class="p-2.5">
+                    <strong>Rediseño Web UX de Alta Conversión, CRM Clínico & Anti-No-Show</strong><br>
+                    <span class="text-[11px] text-slate-500">Nueva web ultra-rápida, panel CRM clínico con base de datos en servidor propio de la UE y flujos automáticos de confirmación y re-calling.</span>
+                  </td>
+                  <td class="p-2.5 text-slate-500">Altera Soluciones Tecnológicas</td>
+                  <td class="p-2.5 text-right font-semibold">1.500,00 €</td>
+                  <td class="p-2.5 text-right text-emerald-600 font-bold">1.200,00 €</td>
+                </tr>
+                <tr class="bg-slate-50 font-bold text-xs sm:text-sm">
+                  <td colspan="3" class="p-2.5 uppercase">Total Proyecto</td>
+                  <td class="p-2.5 text-right">3.000,00 €</td>
+                  <td class="p-2.5 text-right text-emerald-700">2.400,00 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3. Justificación Legal de Contrato Menor (Art. 9.4) -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 text-xs text-slate-700">
+          <strong class="text-slate-900 block font-bold">⚖️ Justificación Legal de Contrato Menor (Exención de 3 presupuestos):</strong>
+          <p>
+            Conforme al artículo 9.4 de la Orden 116/2026 de la JCCM y al artículo 118 de la Ley 9/2017 de Contratos del Sector Público, al ser el importe del contrato de servicios de <strong>3.000,00 €</strong> (muy inferior al límite legal de 15.000 €), <strong>no resulta preceptiva la aportación de tres ofertas de diferentes proveedores</strong>, bastando con el presupuesto pro-forma aportado por Altera Soluciones Tecnológicas.
+          </p>
+        </div>
+
+        <!-- 4. Objetivos y Carácter Innovador -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+            <strong class="text-slate-900 block font-bold">🎯 Objetivos de Crecimiento:</strong>
+            <ul class="space-y-1 text-slate-600">
+              <li>• Erradicar la pérdida de citas fuera de horario gracias a la IA 24/7.</li>
+              <li>• Reducir los no-shows por debajo del 4% con confirmación interactiva.</li>
+              <li>• Incrementar un 40% las citas en ortodoncia e implantes dentales.</li>
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+            <strong class="text-slate-900 block font-bold">💡 Carácter Innovador:</strong>
+            <p class="text-slate-600">
+              Integración pionera en el sector odontológico de Albacete de modelos de voz ultra-realista (ElevenLabs) y mensajería omnicanal conectados a una base de datos relacional PostgreSQL/Supabase en servidor europeo propio con políticas RLS sanitarias.
+            </p>
+          </div>
+        </div>
+
+        <!-- 5. Procedimiento de Tramitación Llave en Mano -->
+        <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-300 space-y-2 text-xs">
+          <strong class="text-emerald-950 font-bold block text-sm">📋 Tramitación Llave en Mano por Altera (Coste 0 €):</strong>
+          <ol class="list-decimal list-inside space-y-1 text-slate-700">
+            <li><strong>Presentación telemática oficial:</strong> Altera registra la solicitud en la sede de la JCCM con el Formulario III. Queda fijado el número de registro y reservada la subvención.</li>
+            <li><strong>Inicio inmediato:</strong> Por el art. 10.2, una vez obtenido el resguardo telemático de entrada ya se puede arrancar la ejecución de los trabajos sin esperar 6 meses.</li>
+            <li><strong>Ejecución y facturación:</strong> Altera despliega las herramientas y emite factura por 3.000 € + IVA (el IVA es deducible al 100%).</li>
+            <li><strong>Justificación y reembolso:</strong> Altera presenta la memoria final (Formulario V) y la Junta abona los 2.400 € directamente por transferencia a la cuenta de Sonrisastar.</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="bg-slate-100 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 shrink-0">
+        <span class="text-xs text-slate-500 font-medium">
+          Documento oficial listo para firma electrónica del representante legal.
+        </span>
+        <div class="flex items-center gap-2">
+          <a href="Formulario_III_Sonrisastar.pdf" download="Formulario_III_Sonrisastar.pdf" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
+            <span>📥</span> <span>Descargar PDF Oficial</span>
+          </a>
+          <a href="Formulario_III_Sonrisastar.docx" download="Formulario_III_Sonrisastar.docx" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
+            <span>📝</span> <span>Descargar Word (.docx)</span>
+          </a>
+          <button onclick="closeFormularioModal()" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition">
+            Cerrar
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function openFormularioModal() {
+      document.getElementById('formularioModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeFormularioModal() {
+      document.getElementById('formularioModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeFormularioModal();
+    });
+  </script>
+
+</body>
+</html>
+

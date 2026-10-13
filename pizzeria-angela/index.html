@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizzería Ángela Imaginalia — Prototipo Interactivo Altera_FOOD | Sistema Propio de Pedidos & KDS</title>
+  <meta name="description" content="Prototipo interactivo exclusivo para Pizzería Ángela (Albacete): Bot de WhatsApp para pedir pizzas, pago integrado con Stripe, Recepcionista de Voz IA 24/7, Pantalla KDS e impresora térmica, y estrategia de ahorro frente a Uber con el 80% de subvención JCCM.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Pizzería Ángela Imaginalia">
+  <meta property="og:title" content="Pizzería Ángela Imaginalia — Sistema Propio de Pedidos & Voz IA">
+  <meta property="og:url" content="https://devai82.github.io/demos-comerciales/pizzeria-angela/">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/pizzeria-angela/og-pizzeria-angela.png">
+  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/pizzeria-angela/og-pizzeria-angela.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pizzería Ángela — Sistema Propio de Pedidos WhatsApp & Voz IA">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Syne, Plus Jakarta Sans, Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pizzeria: {
+              red: '#dc2626',
+              darkred: '#991b1b',
+              amber: '#d97706',
+              crust: '#ea580c',
+              basil: '#16a34a',
+              darkgreen: '#15803d',
+              dough: '#fef3c7',
+              charcoal: '#1c1917',
+              surface: '#292524'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Syne"', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, .font-display { font-family: 'Syne', sans-serif; }
+    .font-mono { font-family: 'Fira Code', monospace; }
+    
+    .wave-bar {
+      height: 18%;
+      transition: height 0.25s ease, background-color 0.25s ease;
+    }
+    .wave-speaking .wave-bar {
+      animation: wave 0.8s ease-in-out infinite alternate;
+    }
+    @keyframes wave {
+      0% { height: 15%; }
+      50% { height: 95%; }
+      100% { height: 35%; }
+    }
+    .transcript-bubble {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .transcript-active {
+      border-color: #f59e0b !important;
+      background-color: rgba(245, 158, 11, 0.12) !important;
+      transform: translateX(4px) scale(1.01);
+      box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.2);
+    }
+    .transcript-client-active {
+      border-color: #38bdf8 !important;
+      background-color: rgba(56, 189, 248, 0.12) !important;
+      transform: translateX(4px) scale(1.01);
+      box-shadow: 0 4px 20px -2px rgba(56, 189, 248, 0.2);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .thermal-receipt {
+      background: #fdfbf7;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      background-image: radial-gradient(#000000 0.5px, transparent 0.5px);
+      background-size: 8px 8px;
+      background-color: #faf8f5;
+    }
+  </style>
+</head>
+<body class="bg-stone-900 text-stone-100 antialiased min-h-screen flex flex-col selection:bg-pizzeria-red selection:text-white">
+
+  <!-- TOP BAR CONTROL MOCKUP (Selector de Vistas Global) -->
+  <header class="sticky top-0 z-50 bg-stone-950/95 backdrop-blur-md text-white px-4 py-3 shadow-2xl border-b border-stone-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Identidad Pizzería Ángela & Altera -->
+      <div class="flex items-center space-x-3">
+        <span class="inline-block w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+        <div class="flex items-center gap-2">
+          <img src="logo-angela.jpg" alt="Pizzería Ángela" class="h-8 w-8 rounded-full object-cover border border-amber-500/50 shadow-md">
+          <div class="bg-gradient-to-r from-red-600 to-amber-600 text-white font-black px-2 py-0.5 rounded text-xs tracking-wider uppercase font-display">
+            PIZZERÍA ÁNGELA
+          </div>
+          <span class="text-xs font-bold text-stone-300 font-display">· IL GUSTO DELL'ITALIA (ALBACETE)</span>
+        </div>
+        <span class="hidden md:inline-block text-[11px] bg-stone-800 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-500/30">
+          📍 Imaginalia
+        </span>
+      </div>
+
+      <!-- VIEW SELECTOR BUTTONS -->
+      <nav class="flex items-center flex-wrap gap-1.5 text-xs font-medium" id="viewNav">
+        <button onclick="switchView('kds')" id="btn-kds" class="view-btn px-3 py-1.5 rounded-lg bg-red-600 text-white font-bold transition flex items-center gap-1.5 shadow-md shadow-red-900/40">
+          <span>🍳</span> <span>1. Comandera KDS & Impresora</span>
+        </button>
+        <button onclick="switchView('whatsapp')" id="btn-whatsapp" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
+          <span>💬</span> <span>2. Bot WhatsApp & Stripe</span>
+        </button>
+        <button onclick="switchView('voice')" id="btn-voice" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
+          <span>🎙️</span> <span>3. Recepcionista Voz IA (967 60 12 66)</span>
+        </button>
+        <button onclick="switchView('web')" id="btn-web" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
+          <span>🌐</span> <span>4. Nueva Web vs Tappens</span>
+        </button>
+        <button onclick="switchView('qr')" id="btn-qr" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
+          <span>📦</span> <span>5. Estrategia QR Recogida</span>
+        </button>
+        <button onclick="switchView('jccm')" id="btn-jccm" class="view-btn px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-900 transition flex items-center gap-1.5 font-bold">
+          <span>🛡️</span> <span>6. Ayuda JCCM 80% (600€)</span>
+        </button>
+      </nav>
+
+      <!-- Badge de Financiación -->
+      <div class="hidden xl:flex items-center gap-2 text-xs text-stone-400">
+        <span class="text-amber-400 font-bold">Altera_FOOD</span>
+        <span class="text-stone-600">|</span>
+        <span class="text-emerald-400 font-semibold">Subvención 2.400€</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER CONTEXTUAL -->
+  <div class="bg-gradient-to-r from-red-950 via-stone-900 to-amber-950 text-stone-300 text-xs py-2 px-4 border-b border-stone-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-red-500/20 text-red-300 px-2 py-0.5 rounded text-[11px] font-bold border border-red-500/30">Caso Real</span>
+        <span>Demostración de la solución completa para <strong>Pizzería Ángela (C. Simone de Beauvoir, 3, Albacete)</strong>. Prueba cada herramienta interactiva.</span>
+      </div>
+      <div class="text-[11px] text-amber-300 font-medium">
+        🔥 <em>Horno de piedra · Recogida en local sin comisiones de Uber</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENEDOR PRINCIPAL DE VISTAS INTERACTIVAS                              -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+    <!-- ======================================================================= -->
+    <!-- VISTA 1: COMANDERA KDS EN COCINA + IMPRESORA TÉRMICA                   -->
+    <!-- ======================================================================= -->
+    <section id="view-kds" class="view-content space-y-6">
+      
+      <!-- PANEL DE CONTROL DE CAPACIDAD DE HORNO & ESTIMADOR DINÁMICO -->
+      <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 space-y-5">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 text-red-300 text-xs font-semibold mb-2 border border-red-800/40">
+              <span>🍕 KDS Tablet Cocina + Algoritmo de Capacidad de Horno</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Comandera de Cocina & Control de Horno</h2>
+            <p class="text-stone-400 text-sm mt-1 max-w-2xl">
+              Flujo completo de <strong>4 fases</strong> para evitar saturación de cocina. Fija límites máximos de pizzas en horno y calcula automáticamente el tiempo de recogida que promete el Bot de WhatsApp.
+            </p>
+          </div>
+          
+          <!-- Botón de Simulación Rápida -->
+          <div class="flex items-center gap-3">
+            <button onclick="simularNuevoPedido()" class="bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs px-4 py-3 rounded-xl shadow-lg transition transform active:scale-95 flex items-center gap-2">
+              <span>➕ Simular Pedido Entrante</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- WIDGETS DE CAPACIDAD Y TIEMPO DINÁMICO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-stone-800/80">
+          
+          <!-- Capacidad de Horno -->
+          <div class="bg-stone-900/90 p-4 rounded-xl border border-stone-800">
+            <div class="flex items-center justify-between text-xs text-stone-400 mb-1.5">
+              <span>Capacidad Horno de Piedra:</span>
+              <span class="font-bold text-white font-mono" id="kds-cap-display">6 / 8 pizzas</span>
+            </div>
+            <!-- Barra de progreso -->
+            <div class="w-full bg-stone-800 h-2.5 rounded-full overflow-hidden">
+              <div id="kds-cap-bar" class="bg-gradient-to-r from-amber-500 to-red-500 h-full rounded-full transition-all duration-500" style="width: 75%"></div>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-stone-500 mt-2">
+              <span>Límite simultáneo:</span>
+              <select id="kds-cap-max" onchange="cambiarCapacidadMaxima(this.value)" class="bg-stone-800 text-amber-300 font-bold px-1.5 py-0.5 rounded border border-stone-700 text-[11px] focus:outline-none">
+                <option value="6">6 pizzas</option>
+                <option value="8" selected>8 pizzas (Estándar)</option>
+                <option value="10">10 pizzas (Doble boca)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Tiempo Estimado Dinámico -->
+          <div class="bg-stone-900/90 p-4 rounded-xl border border-stone-800">
+            <span class="text-xs text-stone-400 block mb-1">⏱️ Tiempo Estimado de Recogida:</span>
+            <div class="flex items-baseline gap-2">
+              <span class="text-2xl font-black text-amber-400 font-mono" id="kds-est-time">25 min</span>
+              <span class="text-[10px] text-stone-500">calculado en tiempo real</span>
+            </div>
+            <span class="text-[11px] text-emerald-400 block mt-1">✓ Sincronizado con Bot WhatsApp</span>
+          </div>
+
+          <!-- Franja Horaria Activa -->
+          <div class="bg-stone-900/90 p-4 rounded-xl border border-stone-800">
+            <span class="text-xs text-stone-400 block mb-1">📍 Próximo Slot de Horno:</span>
+            <div class="flex items-baseline gap-2">
+              <span class="text-lg font-bold text-white font-mono" id="kds-next-slot">21:30h - 21:45h</span>
+            </div>
+            <span class="text-[11px] text-amber-300 block mt-1" id="kds-slot-status">⚠️ Franja 21:15h completa (8/8)</span>
+          </div>
+
+          <!-- Total Comandas Activas -->
+          <div class="bg-stone-900/90 p-4 rounded-xl border border-stone-800">
+            <span class="text-xs text-stone-400 block mb-1">📊 Comandas en Proceso:</span>
+            <div class="flex items-baseline gap-2">
+              <span class="text-2xl font-black text-white font-mono" id="kds-total-active">4 pedidos</span>
+            </div>
+            <span class="text-[11px] text-stone-400 block mt-1">🟢 2 WhatsApp · 🔵 1 Voz · 🟠 1 Mostrador</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- KDS KANBAN: 4 COLUMNAS (RECEPCIÓN -> PENDIENTE HORNEAR -> HORNO -> PENDIENTE RECOGER) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        
+        <!-- FASE 1: RECEPCIÓN / NUEVOS PEDIDOS -->
+        <div class="bg-stone-950/80 rounded-2xl border border-stone-800 p-3.5 flex flex-col min-h-[500px]" ondragover="allowDrop(event)" ondrop="drop(event, 'reception')">
+          <div class="flex items-center justify-between pb-3 border-b border-stone-800 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
+              <h3 class="font-bold text-xs uppercase tracking-wider text-sky-300 font-display">1. Recepción Pedido</h3>
+            </div>
+            <span class="text-xs bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded font-mono font-bold" id="badge-col-1">1</span>
+          </div>
+
+          <div class="space-y-3 flex-1" id="kds-col-reception">
+            <!-- Ticket 110 (Recién entrado por WhatsApp) -->
+            <div id="ticket-110" draggable="true" ondragstart="drag(event)" class="bg-stone-900 border border-sky-900/60 rounded-xl p-3.5 shadow-lg cursor-grab active:cursor-grabbing hover:border-sky-500/50 transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-sm text-white">#110</span>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-bold">PAGADO (Stripe)</span>
+                  </div>
+                  <span class="text-xs text-stone-400 block mt-0.5">Cliente: <strong>Carmen R.</strong></span>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800/40">Recogida: 21:45h</span>
+              </div>
+
+              <div class="mt-2 flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
+                <span>🟢</span> <span>WhatsApp Oficial</span>
+              </div>
+
+              <div class="mt-2.5 pt-2 border-t border-stone-800 space-y-1 text-xs">
+                <div class="flex justify-between font-semibold text-white">
+                  <span>1x Pizza Cuatro Quesos</span>
+                  <span class="text-stone-400">13,50€</span>
+                </div>
+                <div class="text-[11px] text-amber-300 pl-2">Masa fina · Extra de gorgonzola</div>
+                <div class="flex justify-between text-stone-300">
+                  <span>1x Lambrusco tinto</span>
+                  <span class="text-stone-400">10,00€</span>
+                </div>
+              </div>
+
+              <div class="mt-3 pt-2.5 border-t border-stone-800 flex items-center justify-between gap-1.5">
+                <button onclick="verTicketTermico(110, 'Carmen R.', '21:45', ['1x Cuatro Quesos (Extra gorgonzola)', '1x Lambrusco tinto'], '23.50€', 'WhatsApp', 'PAGADO STRIPE')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">
+                  🖨️ 80mm
+                </button>
+                <button onclick="avanzarTicket(110, 'prep')" class="text-[11px] font-bold text-white bg-sky-600 hover:bg-sky-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow">
+                  <span>👉 Aceptar a Preparación &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FASE 2: PENDIENTE DE HORNEAR (MESA DE ELABORACIÓN) -->
+        <div class="bg-stone-950/80 rounded-2xl border border-stone-800 p-3.5 flex flex-col min-h-[500px]" ondragover="allowDrop(event)" ondrop="drop(event, 'prep')">
+          <div class="flex items-center justify-between pb-3 border-b border-stone-800 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+              <h3 class="font-bold text-xs uppercase tracking-wider text-amber-300 font-display">2. Pendiente Hornear</h3>
+            </div>
+            <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono font-bold" id="badge-col-2">2</span>
+          </div>
+
+          <div class="space-y-3 flex-1" id="kds-col-prep">
+            <!-- Ticket 108 -->
+            <div id="ticket-108" draggable="true" ondragstart="drag(event)" class="bg-stone-900 border border-stone-700/80 rounded-xl p-3.5 shadow-lg cursor-grab active:cursor-grabbing hover:border-amber-500/50 transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-sm text-white">#108</span>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-bold">PAGADO (Stripe)</span>
+                  </div>
+                  <span class="text-xs text-stone-400 block mt-0.5">Cliente: <strong>David R.</strong></span>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800/40">Recogida: 21:30h</span>
+              </div>
+
+              <div class="mt-2 flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
+                <span>🟢</span> <span>WhatsApp Oficial</span>
+              </div>
+
+              <div class="mt-2.5 pt-2 border-t border-stone-800 space-y-1 text-xs">
+                <div class="flex justify-between font-semibold text-white">
+                  <span>1x Pizza Carbonara</span>
+                  <span class="text-stone-400">13,00€</span>
+                </div>
+                <div class="text-[11px] text-amber-300 pl-2">⚠️ Sin cebolla · Extra champiñón</div>
+                <div class="flex justify-between font-semibold text-white">
+                  <span>1x Pizza Innamorata</span>
+                  <span class="text-stone-400">13,50€</span>
+                </div>
+                <div class="flex justify-between text-stone-300">
+                  <span>1x Tiramisú casero</span>
+                  <span class="text-stone-400">5,00€</span>
+                </div>
+              </div>
+
+              <div class="mt-3 pt-2.5 border-t border-stone-800 flex items-center justify-between gap-1.5">
+                <button onclick="retrocederTicket(108, 'reception')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">
+                  &larr;
+                </button>
+                <button onclick="verTicketTermico(108, 'David R.', '21:30', ['1x Pizza Carbonara (Sin cebolla)', '1x Pizza Innamorata', '1x Tiramisú'], '31.50€', 'WhatsApp', 'PAGADO STRIPE')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">
+                  🖨️ 80mm
+                </button>
+                <button onclick="avanzarTicket(108, 'baking')" class="text-[11px] font-bold text-white bg-amber-600 hover:bg-amber-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow">
+                  <span>🔥 Meter al Horno &rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Ticket 109 (Voz IA) -->
+            <div id="ticket-109" draggable="true" ondragstart="drag(event)" class="bg-stone-900 border border-stone-700/80 rounded-xl p-3.5 shadow-lg cursor-grab active:cursor-grabbing hover:border-amber-500/50 transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-sm text-white">#109</span>
+                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-bold">PAGO EN TIENDA</span>
+                  </div>
+                  <span class="text-xs text-stone-400 block mt-0.5">Cliente: <strong>Laura M. (Teléfono)</strong></span>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800/40">Recogida: 21:45h</span>
+              </div>
+
+              <div class="mt-2 flex items-center gap-1.5 text-[11px] text-sky-400 font-medium">
+                <span>🔵</span> <span>Voz IA (967 60 12 66)</span>
+              </div>
+
+              <div class="mt-2.5 pt-2 border-t border-stone-800 space-y-1 text-xs">
+                <div class="flex justify-between font-semibold text-white">
+                  <span>1x Pizza Barbacoa artesanal</span>
+                  <span class="text-stone-400">13,00€</span>
+                </div>
+                <div class="flex justify-between text-stone-300">
+                  <span>2x Cerveza Moretti</span>
+                  <span class="text-stone-400">5,00€</span>
+                </div>
+              </div>
+
+              <div class="mt-3 pt-2.5 border-t border-stone-800 flex items-center justify-between gap-1.5">
+                <button onclick="retrocederTicket(109, 'reception')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">
+                  &larr;
+                </button>
+                <button onclick="verTicketTermico(109, 'Laura M.', '21:45', ['1x Pizza Barbacoa', '2x Cerveza Moretti'], '18.00€', 'Teléfono Voz IA', 'PAGO EN TIENDA')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">
+                  🖨️ 80mm
+                </button>
+                <button onclick="avanzarTicket(109, 'baking')" class="text-[11px] font-bold text-white bg-amber-600 hover:bg-amber-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow">
+                  <span>🔥 Meter al Horno &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FASE 3: EN EL HORNO DE PIEDRA -->
+        <div class="bg-stone-950/80 rounded-2xl border border-stone-800 p-3.5 flex flex-col min-h-[500px]" ondragover="allowDrop(event)" ondrop="drop(event, 'baking')">
+          <div class="flex items-center justify-between pb-3 border-b border-stone-800 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+              <h3 class="font-bold text-xs uppercase tracking-wider text-red-400 font-display">3. Horno de Piedra</h3>
+            </div>
+            <span class="text-xs bg-red-500/20 text-red-300 px-2 py-0.5 rounded font-mono font-bold" id="badge-col-3">1</span>
+          </div>
+
+          <div class="space-y-3 flex-1" id="kds-col-baking">
+            <!-- Ticket 107 -->
+            <div id="ticket-107" draggable="true" ondragstart="drag(event)" class="bg-stone-900 border border-red-900/60 rounded-xl p-3.5 shadow-lg cursor-grab active:cursor-grabbing hover:border-red-500/50 transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-sm text-white">#107</span>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-bold">PAGADO (Stripe)</span>
+                  </div>
+                  <span class="text-xs text-stone-400 block mt-0.5">Cliente: <strong>Carlos G.</strong></span>
+                </div>
+                <div class="text-right">
+                  <span class="text-[11px] font-mono font-bold text-red-400 bg-red-950 px-2 py-0.5 rounded border border-red-800/60 block">Recogida: 21:15h</span>
+                  <span class="text-[10px] text-amber-300 font-mono mt-1 block">⏱️ 3 min restantes</span>
+                </div>
+              </div>
+
+              <div class="mt-2 flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
+                <span>🟢</span> <span>WhatsApp · Recoger en local</span>
+              </div>
+
+              <div class="mt-2.5 pt-2 border-t border-stone-800 space-y-1 text-xs">
+                <div class="flex justify-between font-semibold text-white">
+                  <span>2x Pizza Ángela Especial</span>
+                  <span class="text-stone-400">27,00€</span>
+                </div>
+                <div class="text-[11px] text-amber-300 pl-2">Jamón ibérico, rúcula y parmesano</div>
+              </div>
+
+              <div class="mt-3 pt-2.5 border-t border-stone-800 flex items-center justify-between gap-1.5">
+                <button onclick="retrocederTicket(107, 'prep')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">
+                  &larr;
+                </button>
+                <button onclick="verTicketTermico(107, 'Carlos G.', '21:15', ['2x Pizza Ángela Especial'], '27.00€', 'WhatsApp', 'PAGADO STRIPE')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">
+                  🖨️ 80mm
+                </button>
+                <button onclick="avanzarTicket(107, 'ready')" class="text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow">
+                  <span>✅ Sacar y Cortar &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FASE 4: PENDIENTE DE RECOGER (MOSTRADOR / LISTO) -->
+        <div class="bg-stone-950/80 rounded-2xl border border-stone-800 p-3.5 flex flex-col min-h-[500px]" ondragover="allowDrop(event)" ondrop="drop(event, 'ready')">
+          <div class="flex items-center justify-between pb-3 border-b border-stone-800 mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <h3 class="font-bold text-xs uppercase tracking-wider text-emerald-400 font-display">4. Pendiente de Recoger</h3>
+            </div>
+            <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono font-bold" id="badge-col-4">1</span>
+          </div>
+
+          <div class="space-y-3 flex-1" id="kds-col-ready">
+            <!-- Ticket 106 -->
+            <div id="ticket-106" draggable="true" ondragstart="drag(event)" class="bg-stone-900 border border-emerald-900/60 rounded-xl p-3.5 shadow-lg cursor-grab active:cursor-grabbing hover:border-emerald-500/50 transition">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-sm text-white">#106</span>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-bold">PAGADO (Stripe)</span>
+                  </div>
+                  <span class="text-xs text-stone-400 block mt-0.5">Cliente: <strong>Marta V.</strong></span>
+                </div>
+                <span class="text-[11px] font-mono font-bold text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800/40">Listo Mostrador</span>
+              </div>
+
+              <div class="mt-2 text-[11px] text-stone-300">
+                1x Lasagna Bolognese + 1x Calzone Tradicional
+              </div>
+
+              <!-- BOTÓN NOTIFICACIÓN WHATSAPP AL CLIENTE -->
+              <div class="mt-3 p-2 bg-emerald-950/50 rounded-lg border border-emerald-800/40 flex items-center justify-between gap-1.5">
+                <span class="text-[11px] text-emerald-300 flex items-center gap-1">📲 Aviso:</span>
+                <button onclick="enviarAvisoRecogida('Marta V.', '#106')" id="btn-aviso-106" class="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">
+                  Enviar WhatsApp "¡Ya está lista!"
+                </button>
+              </div>
+
+              <div class="mt-3 pt-2.5 border-t border-stone-800 flex items-center justify-between gap-2">
+                <button onclick="retrocederTicket(106, 'baking')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">
+                  &larr;
+                </button>
+                <button onclick="entregarTicket(106)" class="text-xs font-bold text-white bg-stone-800 hover:bg-stone-700 px-3 py-1.5 rounded-lg transition flex-1 text-center border border-stone-700">
+                  📦 Entregado al Cliente ✓
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- VISTA 2: BOT DE WHATSAPP CONVERSACIONAL & STRIPE PAY                    -->
+    <!-- ======================================================================= -->
+    <section id="view-whatsapp" class="view-content hidden space-y-6">
+      <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-semibold mb-2 border border-emerald-800/40">
+            <span>🟢 WhatsApp Business API Oficial + Zernio + Stripe</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Asistente de Pedidos y Cobro por WhatsApp</h2>
+          <p class="text-stone-400 text-sm mt-1 max-w-2xl">
+            El cliente pide con total naturalidad por texto o nota de voz. El bot sugiere extras, confirma alérgenos, asigna turno de horno y genera el link de pago seguro de Stripe.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="reiniciarChat()" class="text-xs bg-stone-800 hover:bg-stone-700 text-stone-200 px-3 py-2 rounded-xl transition border border-stone-700">
+            🔄 Reiniciar Conversación
+          </button>
+        </div>
+      </div>
+
+      <!-- SIMULADOR WHATSAPP IPHONE -->
+      <div class="max-w-md mx-auto bg-stone-950 rounded-[40px] p-3 shadow-2xl border-4 border-stone-800">
+        <!-- Speaker / Notch -->
+        <div class="w-32 h-4 bg-stone-800 rounded-full mx-auto mb-2"></div>
+
+        <!-- Pantalla WhatsApp -->
+        <div class="bg-[#efeae2] rounded-[32px] overflow-hidden flex flex-col h-[650px] shadow-inner text-stone-900">
+          
+          <!-- Cabecera WhatsApp -->
+          <div class="bg-[#075e54] text-white p-3 flex items-center justify-between shadow-md">
+            <div class="flex items-center gap-2.5">
+              <span class="text-lg">&larr;</span>
+              <div class="w-10 h-10 rounded-full bg-red-700 flex items-center justify-center font-bold text-white border border-amber-300 text-sm">
+                PÁ
+              </div>
+              <div>
+                <h4 class="font-bold text-sm leading-tight">Pizzería Ángela Imaginalia</h4>
+                <span class="text-[11px] text-emerald-200 flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Cuenta Oficial · En línea
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span>📞</span>
+              <span>⋮</span>
+            </div>
+          </div>
+
+          <!-- Área de Mensajes -->
+          <div class="flex-1 p-3 overflow-y-auto space-y-3 custom-scroll text-xs" id="chat-messages" style="background-image: radial-gradient(#d1d5db 0.7px, transparent 0.7px); background-size: 12px 12px;">
+            
+            <div class="text-center my-1">
+              <span class="bg-white/80 text-stone-500 text-[10px] px-2.5 py-0.5 rounded-full shadow-sm">Hoy · C. Simone de Beauvoir, 3</span>
+            </div>
+
+            <!-- Msg 1 Bot -->
+            <div class="flex items-start gap-1">
+              <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-stone-800 space-y-1">
+                <p>¡Buenas noches! 🍕 Bienvenido a <strong>Pizzería Ángela</strong> en Imaginalia.</p>
+                <p>¿Te apetece pedir pizzas para <strong>recoger en nuestro horno de piedra</strong> o prefieres reservar una mesa en nuestra terraza/salón?</p>
+                <span class="text-[9px] text-stone-400 block text-right mt-1">20:14</span>
+              </div>
+            </div>
+
+            <!-- Msg 2 Cliente -->
+            <div class="flex items-end justify-end gap-1">
+              <div class="bg-[#dcf8c6] p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-stone-900 space-y-1">
+                <p>¡Hola! Quiero encargar para recoger a las 21:30: una Carbonara (sin cebolla) y una Innamorata. ¿Tenéis tiramisú casero?</p>
+                <span class="text-[9px] text-stone-400 block text-right mt-1">20:15 ✓✓</span>
+              </div>
+            </div>
+
+            <!-- Msg 3 Bot -->
+            <div class="flex items-start gap-1">
+              <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-stone-800 space-y-1.5">
+                <p>¡Marchando! Tomo nota perfecta: <strong>Carbonara sin cebolla</strong> (13€) e <strong>Innamorata</strong> (13.50€). 👨‍🍳🔥</p>
+                <p>Y sí, nos queda tiramisú casero recién hecho esta tarde (5,00€). Te va a encantar.</p>
+                <div class="bg-stone-50 p-2 rounded-lg border border-stone-200 mt-1">
+                  <span class="font-bold text-[11px] text-stone-900 block">Resumen de tu Comanda:</span>
+                  <div class="text-[11px] text-stone-600 space-y-0.5 mt-1">
+                    <div>• 1x Pizza Carbonara (Sin cebolla) = 13,00€</div>
+                    <div>• 1x Pizza Innamorata = 13,50€</div>
+                    <div>• 1x Tiramisú casero = 5,00€</div>
+                    <div class="font-bold text-stone-900 pt-1 border-t border-stone-200 flex justify-between">
+                      <span>Total:</span> <span>31,50 €</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-[11px] text-amber-800 font-medium">📍 Recogida programada: <strong>Hoy a las 21:30h</strong> en C. Simone de Beauvoir, 3.</p>
+                <span class="text-[9px] text-stone-400 block text-right mt-1">20:15</span>
+              </div>
+            </div>
+
+            <!-- Msg 4 Bot (Stripe Link) -->
+            <div class="flex items-start gap-1" id="chat-stripe-card">
+              <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[88%] text-stone-800 space-y-2 border border-emerald-500/40">
+                <div class="flex items-center justify-between text-[11px] font-bold text-emerald-800">
+                  <span>💳 Pago Seguro Stripe / Apple Pay</span>
+                  <span class="text-[9px] bg-emerald-100 px-1.5 py-0.5 rounded text-emerald-800">Cero Esperas</span>
+                </div>
+                <p class="text-[11px] text-stone-600">Para que entre directa a la cola de nuestro horno y la tengas caliente a las 21:30h, confírmala con 1 clic:</p>
+                
+                <button onclick="simularPagoStripe()" id="btn-pay-stripe" class="w-full bg-[#635bff] hover:bg-[#5349e0] text-white font-bold py-2 px-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md">
+                  <span>Pagar 31,50 €</span>
+                  <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded">Apple Pay / Bizum</span>
+                </button>
+                <span class="text-[9px] text-stone-400 block text-center">Protegido con cifrado TLS 256 bits</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Message Container -->
+            <div id="dynamic-chat-msgs" class="space-y-3"></div>
+
+          </div>
+
+          <!-- Barra Inferior de Entrada -->
+          <div class="bg-[#f0f2f5] p-2 flex items-center gap-2 border-t border-stone-200">
+            <span class="text-stone-500 text-base">😊</span>
+            <input type="text" id="chat-input" placeholder="Escribe un mensaje o pide una pizza..." class="flex-1 bg-white text-stone-800 text-xs px-3 py-2 rounded-full border border-stone-300 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+            <button onclick="enviarMensajeUsuario()" class="w-8 h-8 rounded-full bg-[#075e54] text-white flex items-center justify-center text-sm shadow hover:bg-[#128c7e] transition">
+              ➤
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- VISTA 3: RECEPCIONISTA TELEFÓNICA VOZ IA (ELEVENLABS)                  -->
+    <!-- ======================================================================= -->
+    <section id="view-voice" class="view-content hidden space-y-6">
+      <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-semibold mb-2 border border-sky-800/40">
+            <span>🎙️ Teléfono Fijo 967 60 12 66 + ElevenLabs Conversational AI</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Recepcionista de Voz IA para Horas Punta</h2>
+          <p class="text-stone-400 text-sm mt-1 max-w-2xl">
+            Cuando la pizzería está llena y el personal no puede responder al fijo, la IA atiende con voz natural española, toma comandas y reservas de mesa, y envía el resumen por WhatsApp.
+          </p>
+        </div>
+        <div class="bg-stone-900 px-4 py-2 rounded-xl border border-stone-800 text-center">
+          <span class="text-xs text-stone-400 block">Número Fijo</span>
+          <span class="text-base font-bold text-amber-400 font-mono">967 60 12 66</span>
+        </div>
+      </div>
+
+      <!-- SIMULADOR DE LLAMADA CON VOZ REAL -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Tarjeta de Llamada Activa & Reproductor de Voz Real -->
+        <div class="lg:col-span-5 bg-gradient-to-b from-stone-900 to-stone-950 rounded-3xl p-6 border border-stone-800 shadow-2xl text-center space-y-5">
+          
+          <div class="relative w-20 h-20 mx-auto">
+            <div id="avatar-pulse" class="absolute inset-0 rounded-full bg-red-600/20 animate-ping hidden"></div>
+            <div class="relative w-20 h-20 rounded-full bg-gradient-to-br from-red-900 to-stone-950 border-2 border-red-500/50 flex items-center justify-center text-3xl shadow-inner shadow-red-900/50">
+              🍕
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold text-white font-display">Ángela · Asistente Virtual Pizzería Ángela</h3>
+            <span class="text-xs text-stone-400 block mt-1">Llamada entrante al <strong>967 60 12 66</strong> (Imaginalia)</span>
+            <span class="inline-block mt-2 text-xs bg-stone-800 text-stone-300 border border-stone-700 px-3 py-1 rounded-full font-mono transition" id="call-status">
+              ● En espera · Pulsa un botón para escuchar
+            </span>
+          </div>
+
+          <!-- ONDAS DE VOZ ANIMADAS (Sincronizadas con Audio Real) -->
+          <div id="voice-wave-container" class="h-16 flex items-center justify-center gap-1.5 px-6 bg-stone-950/60 rounded-2xl border border-stone-800/80">
+            <div class="w-1.5 bg-red-500 rounded-full wave-bar" style="animation-delay: 0.1s"></div>
+            <div class="w-1.5 bg-amber-500 rounded-full wave-bar" style="animation-delay: 0.3s"></div>
+            <div class="w-1.5 bg-red-400 rounded-full wave-bar" style="animation-delay: 0.2s"></div>
+            <div class="w-1.5 bg-amber-400 rounded-full wave-bar" style="animation-delay: 0.4s"></div>
+            <div class="w-1.5 bg-red-500 rounded-full wave-bar" style="animation-delay: 0.15s"></div>
+            <div class="w-1.5 bg-amber-500 rounded-full wave-bar" style="animation-delay: 0.35s"></div>
+            <div class="w-1.5 bg-red-400 rounded-full wave-bar" style="animation-delay: 0.25s"></div>
+            <div class="w-1.5 bg-amber-400 rounded-full wave-bar" style="animation-delay: 0.05s"></div>
+          </div>
+
+          <!-- SUBTÍTULO / FRASE HABLADA EN DIRECTO -->
+          <div class="bg-stone-900/90 rounded-xl p-3 border border-stone-800 text-left text-xs space-y-1">
+            <span class="text-stone-400 text-[10px] block font-semibold uppercase tracking-wider flex items-center justify-between">
+              <span>🔊 Audio en reproducción:</span>
+              <span id="call-timer" class="font-mono text-amber-400">00:00</span>
+            </span>
+            <p id="current-speaking-text" class="text-stone-300 italic min-h-[32px] flex items-center">
+              "Haz clic en el botón inferior para escuchar a Ángela hablar en tiempo real..."
+            </p>
+          </div>
+
+          <!-- BOTONES PRINCIPALES DE AUDIO -->
+          <div class="space-y-2.5">
+            <button onclick="reproducirLlamadaCompleta()" id="btn-play-call" class="w-full bg-gradient-to-r from-red-600 via-red-500 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition shadow-lg shadow-red-950/60 flex items-center justify-center gap-2 transform active:scale-[0.98]">
+              <span class="text-base">▶️</span>
+              <span>Reproducir Conversación Completa con Voz Real</span>
+            </button>
+
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="probarMicrofonoUsuario()" id="btn-mic-test" class="bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 font-semibold py-2.5 px-3 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                <span id="mic-icon">🎙️</span>
+                <span>Hablar por Micro</span>
+              </button>
+              <button onclick="detenerAudioLlamada()" class="bg-stone-900 hover:bg-red-950/50 text-stone-300 hover:text-red-300 border border-stone-800 font-semibold py-2.5 px-3 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                <span>⏹️</span>
+                <span>Detener Audio</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- PREGUNTAS RÁPIDAS DIRECTAS (Respuestas instantáneas de Ángela) -->
+          <div class="pt-3 border-t border-stone-800/80 text-left space-y-2">
+            <span class="text-[11px] font-bold text-amber-400 flex items-center gap-1">
+              <span>⚡ O pulsa para escuchar respuestas directas de Ángela:</span>
+            </span>
+            <div class="grid grid-cols-2 gap-1.5">
+              <button onclick="preguntarAngelaDirecto('gluten')" class="text-left bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white p-2 rounded-lg text-[11px] border border-stone-800 transition truncate">
+                🍕 ¿Pizzas sin gluten?
+              </button>
+              <button onclick="preguntarAngelaDirecto('tiempo')" class="text-left bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white p-2 rounded-lg text-[11px] border border-stone-800 transition truncate">
+                ⏰ ¿Cuánto tardan 3 pizzas?
+              </button>
+              <button onclick="preguntarAngelaDirecto('donde')" class="text-left bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white p-2 rounded-lg text-[11px] border border-stone-800 transition truncate">
+                📍 ¿Dónde estáis ubicados?
+              </button>
+              <button onclick="preguntarAngelaDirecto('terraza')" class="text-left bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white p-2 rounded-lg text-[11px] border border-stone-800 transition truncate">
+                🍷 ¿Tenéis mesa en terraza?
+              </button>
+            </div>
+          </div>
+
+          <!-- INTEGRACIÓN ELEVENLABS & SELECTOR DE VOZ -->
+          <div class="pt-2 text-left space-y-2 border-t border-stone-800/80">
+            <div class="flex items-center justify-between">
+              <label class="text-[10px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
+                <span>✨ Motor de Audio: ElevenLabs</span>
+              </label>
+              <button onclick="toggleElevenConfig()" class="text-[10px] text-stone-400 hover:text-white underline">
+                Configurar API Key
+              </button>
+            </div>
+
+            <!-- PANEL CONFIGURAR ELEVENLABS (AUDIO DE ESTUDIO REAL) -->
+            <div id="eleven-config-panel" class="hidden bg-stone-900 p-3 rounded-xl border border-amber-600/40 space-y-2.5 shadow-lg">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold text-amber-400">Paso 1: API Key de ElevenLabs</span>
+                <span class="text-[9px] text-stone-400">10.000 caracteres gratis</span>
+              </div>
+              <div class="flex gap-1.5 items-center">
+                <div class="relative flex-1">
+                  <input type="password" id="eleven-api-key" placeholder="Pega tu clave (32 caracteres o sk_...)" class="w-full bg-stone-950 text-white border border-stone-700 rounded-lg px-2.5 py-1.5 pr-8 text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none font-mono">
+                  <button type="button" onclick="toggleVerClave('eleven-api-key', this)" title="Ver / Ocultar clave" class="absolute right-2 top-1/2 -translate-y-1/2 text-stone-400 hover:text-white text-xs">
+                    👁️
+                  </button>
+                </div>
+                <button onclick="guardarYDetectarVoces()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-3 py-1.5 rounded-lg transition whitespace-nowrap">
+                  Conectar API
+                </button>
+              </div>
+
+              <!-- PASO 2: SELECTOR DE VOZ DE TU BIBLIOTECA ELEVENLABS -->
+              <div class="space-y-1 pt-1">
+                <label class="text-[10px] text-stone-300 block font-semibold">Paso 2: Voz de tu cuenta ElevenLabs:</label>
+                <div class="flex gap-1.5">
+                  <select id="eleven-voice-select" onchange="seleccionarVozEleven(this.value)" class="flex-1 bg-stone-950 text-stone-200 border border-stone-700 rounded-lg p-1.5 text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
+                    <option value="">Pulsa "Conectar API" para cargar tus voces...</option>
+                  </select>
+                  <button onclick="probarVozElevenTest()" id="btn-test-eleven" class="bg-stone-800 hover:bg-stone-700 text-amber-300 border border-amber-500/30 text-xs px-2.5 py-1.5 rounded-lg transition font-semibold">
+                    🔊 Probar Voz
+                  </button>
+                </div>
+              </div>
+
+              <div id="eleven-status-msg" class="text-[10px] text-stone-400 p-2 rounded bg-stone-950 border border-stone-800 break-words">
+                Introduce tu API Key y pulsa Conectar para verificar la voz.
+              </div>
+            </div>
+
+            <div class="bg-amber-950/30 border border-amber-800/40 p-2 rounded-lg text-[10px] text-amber-200/90 leading-relaxed">
+              💡 <strong>Nota para la venta al cliente:</strong> Este prototipo local usa el sintetizador de tu navegador como maqueta previa. En la instalación final de Altera se conecta **ElevenLabs Conversational AI**, con voz humana ultra-natural, respiración y acento español, indistinguible de una llamada real.
+            </div>
+
+            <div class="pt-1">
+              <label class="text-[10px] text-stone-400 block mb-1">Voz del Navegador (Test Local):</label>
+              <select id="select-voice-angela" class="w-full bg-stone-900 text-stone-300 border border-stone-800 rounded-lg p-1.5 text-xs focus:ring-1 focus:ring-red-500 focus:outline-none">
+                <option value="">Cargando voces del sistema...</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Transcripción en Directo & Automatización Posterior -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="bg-stone-950 rounded-2xl border border-stone-800 p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-stone-800 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <h4 class="font-bold text-sm text-white font-display">
+                  Transcripción en Tiempo Real (ElevenLabs + Web Speech API)
+                </h4>
+              </div>
+              <span class="text-[11px] bg-emerald-950 text-emerald-300 border border-emerald-800/40 px-2 py-0.5 rounded font-mono">
+                Latencia: 380ms
+              </span>
+            </div>
+
+            <!-- CHAT BUBBLES RESALTADOS DINÁMICAMENTE -->
+            <div id="transcript-list" class="space-y-3 text-xs max-h-[380px] overflow-y-auto custom-scroll pr-2">
+              
+              <div id="bubble-elena-1" class="transcript-bubble bg-stone-900/80 p-3 rounded-xl border border-stone-800">
+                <span class="text-amber-400 font-bold block mb-1 flex items-center justify-between">
+                  <span>🤖 Ángela (Voz IA Pizzería Ángela):</span>
+                  <span class="text-[10px] text-stone-500 font-normal">Fijo 967 60 12 66</span>
+                </span>
+                <p class="text-stone-200">"¡Hola, buenas noches! Te atiende Ángela, de Pizzería Ángela en Imaginalia. Ahora mismo todos nuestros pizzeros están en sala. ¿Deseas encargar una comanda para recoger o reservar una mesa?"</p>
+              </div>
+
+              <div id="bubble-client-1" class="transcript-bubble bg-stone-900/40 p-3 rounded-xl border border-stone-800/60 ml-4">
+                <span class="text-sky-400 font-bold block mb-1">👤 Cliente:</span>
+                <p class="text-stone-300">"Hola, queríamos reservar una mesa para cuatro personas este sábado a las nueve y media de la noche. ¿Tenéis sitio en terraza o dentro?"</p>
+              </div>
+
+              <div id="bubble-elena-2" class="transcript-bubble bg-stone-900/80 p-3 rounded-xl border border-stone-800">
+                <span class="text-amber-400 font-bold block mb-1">🤖 Ángela (Voz IA):</span>
+                <p class="text-stone-200">"¡Perfecto! Para este sábado a las 21:30h tenemos mesa disponible en nuestro salón interior climatizado. ¿A nombre de quién realizo la reserva y qué teléfono móvil nos dejas para enviarte la confirmación por WhatsApp?"</p>
+              </div>
+
+              <div id="bubble-client-2" class="transcript-bubble bg-stone-900/40 p-3 rounded-xl border border-stone-800/60 ml-4">
+                <span class="text-sky-400 font-bold block mb-1">👤 Cliente:</span>
+                <p class="text-stone-300">"A nombre de Carlos Gómez, móvil seis cuatro cuatro doce treinta y cuatro cincuenta y seis."</p>
+              </div>
+
+              <div id="bubble-elena-3" class="transcript-bubble bg-stone-900/80 p-3 rounded-xl border border-stone-800">
+                <span class="text-amber-400 font-bold block mb-1">🤖 Ángela (Voz IA):</span>
+                <p class="text-stone-200">"¡Queda confirmada tu mesa para 4 personas este sábado a las 21:30h! Te acabo de enviar la confirmación con la ubicación en Google Maps por WhatsApp. ¡Muchas gracias Carlos, nos vemos el sábado!"</p>
+              </div>
+
+            </div>
+
+            <!-- ACCIÓN AUTOMÁTICA AL COLGAR -->
+            <div id="automation-summary-box" class="bg-stone-900/60 border border-stone-800 p-4 rounded-xl space-y-2.5 transition">
+              <span class="text-[11px] font-bold text-stone-400 uppercase tracking-wider block flex items-center justify-between">
+                <span class="flex items-center gap-1.5">⚡ Automatización Instantánea Post-Llamada</span>
+                <span id="badge-auto-status" class="text-[10px] bg-stone-800 text-stone-400 px-2 py-0.5 rounded">En espera de fin de llamada</span>
+              </span>
+              <div class="space-y-1.5 text-xs text-stone-300">
+                <div class="flex items-center gap-2" id="check-step-1">
+                  <span class="text-stone-500">○</span>
+                  <span>Registro en <strong>Supabase</strong>: Mesa 4 pax · Sábado 21:30h · Salón Interior</span>
+                </div>
+                <div class="flex items-center gap-2" id="check-step-2">
+                  <span class="text-stone-500">○</span>
+                  <span>WhatsApp automático enviado a <strong>+34 644 12 34 56</strong> con ficha de Google Maps</span>
+                </div>
+                <div class="flex items-center gap-2" id="check-step-3">
+                  <span class="text-stone-500">○</span>
+                  <span>Recordatorio programado para el Sábado a las 19:30h (reduce ausencias un 92%)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- VISTA 4: COMPARATIVA NUEVA WEB VS WEB TAPPENS                          -->
+    <!-- ======================================================================= -->
+    <section id="view-web" class="view-content hidden space-y-6">
+      <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950 text-amber-300 text-xs font-semibold mb-2 border border-amber-800/40">
+            <span>🌐 Skill Frontend Altera · Tailwind CSS Mobile-First</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Nueva Web de Captación vs Web Actual Tappens</h2>
+          <p class="text-stone-400 text-sm mt-1 max-w-2xl">
+            Eliminamos la plantilla antigua de Bootstrap del Kit Digital que expulsaba a los clientes a subdominios de Tappens, sustituyéndola por una experiencia ultrarrápida con carta visual y botón de pedido directo.
+          </p>
+        </div>
+      </div>
+
+      <!-- COMPARATIVA FRENTE A FRENTE -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- WEB ACTUAL (TAPPENS / KIT DIGITAL) -->
+        <div class="bg-stone-950 rounded-2xl border border-red-900/40 p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-stone-800 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-red-500 font-bold text-base">❌</span>
+              <h3 class="font-bold text-white text-base font-display">Web Actual (Tappens · Kit Digital)</h3>
+            </div>
+            <span class="text-[11px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-mono">pizzeriaangelaimaginalia.com</span>
+          </div>
+
+          <div class="space-y-2.5 text-xs text-stone-300">
+            <div class="flex items-start gap-2 bg-stone-900 p-2.5 rounded-lg border border-stone-800">
+              <span class="text-red-400 font-bold">1.</span>
+              <p><strong>Redirección externa obligada:</strong> Al hacer clic en "Ver carta" o "Reservar", la web expulsa al cliente a <code class="text-amber-400">carta-digital.tappens.com</code> y <code class="text-amber-400">restaurante.tappens.com</code>.</p>
+            </div>
+            <div class="flex items-start gap-2 bg-stone-900 p-2.5 rounded-lg border border-stone-800">
+              <span class="text-red-400 font-bold">2.</span>
+              <p><strong>Sin botón de WhatsApp:</strong> No disponen de enlace directo ni chat para encargar pizza desde el móvil.</p>
+            </div>
+            <div class="flex items-start gap-2 bg-stone-900 p-2.5 rounded-lg border border-stone-800">
+              <span class="text-red-400 font-bold">3.</span>
+              <p><strong>Solo delivery por Uber Eats:</strong> Pierden entre el 25% y el 35% del ticket por no tener canal de venta propio.</p>
+            </div>
+            <div class="flex items-start gap-2 bg-stone-900 p-2.5 rounded-lg border border-stone-800">
+              <span class="text-red-400 font-bold">4.</span>
+              <p><strong>Plantilla estática desfasada:</strong> Utiliza el tema gratuito <em>TemplateMo Klassy Cafe</em> con CSS monolítico.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NUEVA WEB ALTERA_FOOD -->
+        <div class="bg-gradient-to-b from-stone-950 to-stone-900 rounded-2xl border border-emerald-500/40 p-6 space-y-4 shadow-xl">
+          <div class="flex items-center justify-between border-b border-stone-800 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400 font-bold text-base">✅</span>
+              <h3 class="font-bold text-white text-base font-display">Nueva Web Altera_FOOD (Propia)</h3>
+            </div>
+            <span class="text-[11px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded font-mono font-bold">Carga < 0.7s</span>
+          </div>
+
+          <div class="space-y-2.5 text-xs text-stone-300">
+            <div class="flex items-start gap-2 bg-stone-900/90 p-2.5 rounded-lg border border-emerald-900/40">
+              <span class="text-emerald-400 font-bold">1.</span>
+              <p><strong>Carta integrada en el propio dominio:</strong> Fotos en alta resolución de las pizzas, pastas y postres con selector de alérgenos sin salir de la página.</p>
+            </div>
+            <div class="flex items-start gap-2 bg-stone-900/90 p-2.5 rounded-lg border border-emerald-900/40">
+              <span class="text-emerald-400 font-bold">2.</span>
+              <p><strong>Botón Flotante "Pedir por WhatsApp en 1 Clic":</strong> Convierte visitas en comandas directas para recoger en local.</p>
+            </div>
+            <div class="flex items-start gap-2 bg-stone-900/90 p-2.5 rounded-lg border border-emerald-900/40">
+              <span class="text-emerald-400 font-bold">3.</span>
+              <p><strong>Pasarela Stripe integrada:</strong> Cobro por tarjeta, Bizum y Apple Pay en el acto.</p>
+            </div>
+            <div class="flex items-start gap-2 bg-stone-900/90 p-2.5 rounded-lg border border-emerald-900/40">
+              <span class="text-emerald-400 font-bold">4.</span>
+              <p><strong>SEO Local & AEO Albacete:</strong> Posicionamiento destacado para búsquedas como <em>"pizzería imaginalia albacete"</em> y <em>"pizzas horno de piedra albacete"</em>.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- VISTA 5: ESTRATEGIA QR CAJAS DE PIZZA (RECOGIDA EN LOCAL)              -->
+    <!-- ======================================================================= -->
+    <section id="view-qr" class="view-content hidden space-y-6">
+      <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950 text-amber-300 text-xs font-semibold mb-2 border border-amber-800/40">
+            <span>📦 Estrategia de Migración de Clientes de Uber a Recogida Propia</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">La Pegatina QR en la Caja de Pizza</h2>
+          <p class="text-stone-400 text-sm mt-1 max-w-2xl">
+            Como Pizzería Ángela no dispone de repartidores propios, anunciamos en cada caja el servicio de <strong>RECOGIDA EN LOCAL por WhatsApp</strong>. Sáltate el sobrecoste y disfruta de la pizza recién salida del horno de piedra.
+          </p>
+        </div>
+      </div>
+
+      <!-- VISUALIZADOR DE LA PEGATINA & CALCULADORA DE BENEFICIO -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        
+        <!-- MOCKUP PEGATINA FÍSICA PARA LA CAJA -->
+        <div class="lg:col-span-6 bg-[#d97706]/10 p-8 rounded-3xl border-2 border-dashed border-amber-500/50 flex flex-col items-center justify-center text-center space-y-4">
+          <div class="bg-white text-stone-900 p-6 rounded-2xl shadow-2xl max-w-sm border-2 border-stone-900 space-y-4 transform -rotate-1 hover:rotate-0 transition">
+            <div class="flex items-center justify-between border-b-2 border-red-600 pb-2">
+              <span class="font-black text-red-600 font-display text-sm tracking-wider">PIZZERÍA ÁNGELA</span>
+              <span class="text-[10px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-bold font-mono">IMAGINALIA</span>
+            </div>
+
+            <div class="space-y-1">
+              <h4 class="font-black text-lg text-stone-900 font-display leading-tight">
+                ¿TE GUSTA RECIÉN SALIDA DEL HORNO? 🍕🔥
+              </h4>
+              <p class="text-xs text-stone-600 font-medium">
+                Pide tu próxima pizza para <strong>RECOGER EN LOCAL</strong> usando nuestro WhatsApp oficial y ahorra en cada pedido.
+              </p>
+            </div>
+
+            <!-- QR SIMULADO -->
+            <div class="bg-stone-100 p-4 rounded-xl border border-stone-300 w-36 h-36 mx-auto flex flex-col items-center justify-center space-y-1 shadow-inner">
+              <div class="text-4xl">📱</div>
+              <span class="text-[10px] font-mono font-bold text-stone-800">ESCANEA Y PIDE</span>
+              <span class="text-[9px] text-emerald-700 font-bold">WHATSAPP OFICIAL</span>
+            </div>
+
+            <div class="bg-amber-50 p-2 rounded-lg border border-amber-300 text-stone-800 text-[11px] font-bold">
+              🎁 10% Dto. directo + Bebida de regalo en tu recogida
+            </div>
+
+            <span class="text-[9px] text-stone-400 block font-mono">C. Simone de Beauvoir, 3 · Albacete</span>
+          </div>
+        </div>
+
+        <!-- CALCULADORA DE RETORNO ECONÓMICO -->
+        <div class="lg:col-span-6 bg-stone-950 p-6 rounded-2xl border border-stone-800 space-y-5">
+          <h3 class="text-xl font-bold text-white font-display">Calculadora de Ahorro: Canal Propio vs Uber</h3>
+          <p class="text-xs text-stone-400">
+            Uber Eats retiene hasta el 30% del importe. Por cada vecino de Imaginalia que pasa a recoger la pizza directamente por el local:
+          </p>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs font-semibold mb-1">
+                <span>Pizzas al mes migradas a Recogida Directa:</span>
+                <span class="text-amber-400 font-mono font-bold text-sm" id="calc-pizzas-val">250 pizzas</span>
+              </div>
+              <input type="range" min="50" max="800" step="25" value="250" id="calc-range" oninput="actualizarCalculadora(this.value)" class="w-full accent-amber-500 bg-stone-800 rounded-lg cursor-pointer">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-2">
+              <div class="bg-stone-900 p-3.5 rounded-xl border border-stone-800">
+                <span class="text-[11px] text-stone-400 block">Comisión que se queda Uber:</span>
+                <span class="text-lg font-bold text-red-400 font-mono" id="calc-uber-lost">-975 € / mes</span>
+                <span class="text-[10px] text-stone-500 block mt-0.5">a 3,90€ por pizza media</span>
+              </div>
+              <div class="bg-emerald-950/40 p-3.5 rounded-xl border border-emerald-800/40">
+                <span class="text-[11px] text-emerald-300 block">Beneficio Neto Recuperado:</span>
+                <span class="text-lg font-bold text-emerald-400 font-mono" id="calc-savings">+11.700 € / año</span>
+                <span class="text-[10px] text-emerald-500/80 block mt-0.5">100% margen para la pizzería</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-stone-900 rounded-xl border border-stone-800 text-xs text-stone-300">
+              💡 <strong>El vecino vive a 300 metros:</strong> En Imaginalia la gran mayoría de familias prefieren recoger la pizza recién horneada y crujiente en 15 minutos en vez de esperar 45 minutos a que un repartidor dé vueltas en moto.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- VISTA 6: SUBVENCIÓN JCCM 80% (BONO CRECIMIENTO PYME)                  -->
+    <!-- ======================================================================= -->
+    <section id="jccm" class="view-content hidden space-y-6">
+      <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-semibold mb-2 border border-emerald-800/40">
+            <span>🛡️ Financiación Oficial Junta de Castilla-La Mancha</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Bono Crecimiento Pyme · Orden 116/2026</h2>
+          <p class="text-stone-400 text-sm mt-1 max-w-2xl">
+            La Junta de Comunidades de Castilla-La Mancha subvenciona el <strong>80% a fondo perdido</strong> de toda la implantación tecnológica de Altera_FOOD.
+          </p>
+        </div>
+      </div>
+
+      <!-- DESGLOSE ECONÓMICO -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 text-center space-y-2">
+          <span class="text-xs text-stone-400 font-medium">Inversión Total del Proyecto</span>
+          <span class="text-3xl font-black text-white font-mono block">3.000 €</span>
+          <span class="text-[11px] text-stone-500 block">+ IVA deducible</span>
+          <p class="text-xs text-stone-400 pt-2 border-t border-stone-800">
+            Bot WhatsApp, Pasarela Stripe, Recepcionista ElevenLabs, KDS Cocina y Rediseño Web.
+          </p>
+        </div>
+
+        <div class="bg-emerald-950/60 p-6 rounded-2xl border border-emerald-600/40 text-center space-y-2 relative overflow-hidden">
+          <span class="text-xs text-emerald-300 font-bold uppercase tracking-wider">Subvención Concedida JCCM</span>
+          <span class="text-4xl font-black text-emerald-400 font-mono block">2.400 €</span>
+          <span class="text-xs bg-emerald-500/20 text-emerald-200 px-3 py-0.5 rounded-full inline-block font-bold">80% A Fondo Perdido</span>
+          <p class="text-xs text-emerald-200/80 pt-2 border-t border-emerald-800/60">
+            Concesión directa simplificada por orden de entrada en Sede Electrónica (Trámite 1023976).
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-b from-stone-950 to-stone-900 p-6 rounded-2xl border-2 border-amber-500 text-center space-y-2 shadow-xl shadow-amber-950/30">
+          <span class="text-xs text-amber-300 font-bold uppercase tracking-wider">Coste Real Inicial para Pizzería Ángela</span>
+          <span class="text-4xl font-black text-amber-400 font-mono block">600 €</span>
+          <span class="text-xs text-amber-200 block">Amortizado en el primer mes</span>
+          <p class="text-xs text-stone-300 pt-2 border-t border-stone-800">
+            Altera entrega la <strong>Memoria Técnica Formulario III</strong> redactada y lista para firmar. Cero burocracia.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- CUOTA DE MANTENIMIENTO MENSUAL (TARIFA PLANA 99€) & COMPARATIVA DE MERCADO -->
+      <div class="bg-stone-950 rounded-2xl border border-stone-800 p-6 space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-800 pb-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-semibold mb-1 border border-emerald-800/40">
+              <span>💼 Oferta Irresistible Altera: Menos de 100 € al mes</span>
+            </div>
+            <h3 class="text-xl font-bold text-white font-display">Tarifa Plana Base: 99 € / mes</h3>
+            <p class="text-stone-400 text-xs mt-1">
+              Infraestructura cloud dedicada (VPS propio en Coolify), base de datos Supabase, KDS de cocina, bot de WhatsApp ilimitado y soporte técnico prioritario en Albacete.
+            </p>
+          </div>
+          <div class="bg-stone-900 p-3 rounded-xl border border-stone-800 text-center min-w-[190px]">
+            <span class="text-[11px] text-stone-400 block">Cuota mensual fija</span>
+            <span class="text-3xl font-black text-emerald-400 font-mono">99 € <span class="text-sm font-normal text-stone-400">/ mes</span></span>
+            <span class="text-[10px] text-emerald-300 block font-semibold mt-0.5">100% Gasto Deducible</span>
+          </div>
+        </div>
+
+        <!-- CONSUMOS VARIABLES TRANSPARENTES (PAGO DIRECTO A PROVEEDOR) -->
+        <div class="bg-stone-900/60 p-4 rounded-xl border border-stone-800 text-xs space-y-2">
+          <span class="font-bold text-amber-400 uppercase tracking-wider text-[11px] block">
+            ⚖️ Consumos Variables Transparentes (A coste real directo de proveedor, sin márgenes ocultos de Altera):
+          </span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-stone-300">
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800">
+              <span class="font-bold text-white block mb-0.5">📲 Campañas Salientes de WhatsApp (Meta):</span>
+              <p class="text-[11px] text-stone-400">
+                La atención entrante al cliente es <strong>0,00 € (GRATIS)</strong>. Las campañas masivas de marketing las factura Meta directamente a la tarjeta del cliente a ~<strong>0,055 € por mensaje</strong> (ej. 400 clientes = ~22 € de coste para llenar el local un jueves).
+              </p>
+            </div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800">
+              <span class="font-bold text-white block mb-0.5">🎙️ Recepcionista Telefónica Voz IA (ElevenLabs + Twilio):</span>
+              <p class="text-[11px] text-stone-400">
+                Facturado por consumo real de minutos hablados a coste de proveedor (~<strong>0,10 € / minuto atendido</strong>). Si un día no hay llamadas, coste 0 €. Si el sábado atiende 40 llamadas en pleno pico de pedidos, el coste es de solo ~4 € y salva más de 500 € en comandas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPARATIVA FRENTE A GASTOS ACTUALES -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          
+          <!-- Uber Eats -->
+          <div class="bg-red-950/20 border border-red-900/40 p-4 rounded-xl space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-red-400 text-sm">Uber Eats / Plataformas</span>
+              <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-mono">30% Comisión</span>
+            </div>
+            <p class="text-stone-300 text-[11px]">
+              Una pizzería que facture 3.000€ en delivery entrega unos <strong>900 € / mes a Uber</strong> en comisiones. No es dueña de los datos ni de los teléfonos de sus clientes.
+            </p>
+            <div class="pt-2 border-t border-red-900/40 font-mono text-red-400 font-bold">
+              Coste real: 600 € a 1.200 € / mes
+            </div>
+          </div>
+
+          <!-- Last.app / Software TPV -->
+          <div class="bg-stone-900 border border-stone-800 p-4 rounded-xl space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-stone-200 text-sm">Last.app / SaaS Hostelería</span>
+              <span class="text-[10px] bg-stone-800 text-stone-400 px-2 py-0.5 rounded font-mono">Cuota + Módulos</span>
+            </div>
+            <p class="text-stone-300 text-[11px]">
+              Plan Pro (99€) + Pantalla KDS cocina (+29€) + Integraciones (+19€) + Comisiones pasarela = <strong>140 € - 180 € / mes</strong> por un sistema cerrado de terceros.
+            </p>
+            <div class="pt-2 border-t border-stone-800 font-mono text-stone-300 font-bold">
+              Coste habitual: 140 € a 180 € / mes
+            </div>
+          </div>
+
+          <!-- Altera_FOOD -->
+          <div class="bg-emerald-950/30 border-2 border-emerald-500 p-4 rounded-xl space-y-2 relative shadow-lg shadow-emerald-950/50">
+            <div class="absolute -top-2.5 right-3 bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+              Ahorro Directo Inmediato
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-emerald-300 text-sm">Altera_FOOD Base</span>
+              <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded font-mono font-bold">0% Comisiones</span>
+            </div>
+            <p class="text-stone-300 text-[11px]">
+              VPS propio Coolify + Supabase + Bot WhatsApp ilimitado + KDS cocina + soporte local Albacete. Consumos IA a coste real.
+            </p>
+            <div class="pt-2 border-t border-emerald-900/50 font-mono text-emerald-400 font-bold text-sm">
+              Cuota fija: 99 € / mes
+            </div>
+          </div>
+
+        </div>
+
+        <div class="bg-stone-900 p-3.5 rounded-xl border border-stone-800 text-xs text-stone-300 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">💡</span>
+            <span><strong>Ahorro brutal para el cliente:</strong> Frente a los 150€/mes habituales de Last.app, con Altera pagan solo <strong>99 € / mes</strong> y se ahorran más de <strong>600 € al año en software</strong>, teniendo la propiedad absoluta de su servidor y su base de datos de clientes.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL FLOTANTE: VISTA PREVIA TICKET TÉRMICO (80MM)                       -->
+  <!-- ========================================================================= -->
+  <div id="modal-ticket" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-stone-900 rounded-3xl p-6 max-w-sm w-full border border-stone-700 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-stone-800 pb-3">
+        <h4 class="font-bold text-white text-sm font-display flex items-center gap-2">
+          <span>🖨️ Impresora Térmica de Cocina (80mm)</span>
+        </h4>
+        <button onclick="cerrarTicketTermico()" class="text-stone-400 hover:text-white text-lg">&times;</button>
+      </div>
+
+      <!-- TICKET TÉRMICO REALISTA -->
+      <div class="thermal-receipt p-4 rounded-lg font-mono text-[11px] text-stone-900 space-y-2 border border-stone-300 shadow-inner">
+        <div class="text-center space-y-0.5 border-b border-stone-400 pb-2">
+          <div class="font-bold text-xs">PIZZERIA ANGELA - IMAGINALIA</div>
+          <div>C. Simone de Beauvoir, 3</div>
+          <div>Albacete · Tel: 967 60 12 66</div>
+        </div>
+
+        <div class="flex justify-between font-bold pt-1">
+          <span id="ticket-modal-num">COMANDA #108</span>
+          <span id="ticket-modal-time">21:30h</span>
+        </div>
+
+        <div class="text-[10px] text-stone-600">
+          <div>Canal: <strong id="ticket-modal-channel">WhatsApp Bot</strong></div>
+          <div>Cliente: <strong id="ticket-modal-client">David R.</strong></div>
+          <div>Estado: <strong class="text-emerald-800" id="ticket-modal-status">PAGADO CON STRIPE</strong></div>
+        </div>
+
+        <div class="border-t border-dashed border-stone-400 my-2"></div>
+
+        <div class="space-y-1 font-bold" id="ticket-modal-items">
+          <div>1x Pizza Carbonara (Sin cebolla)</div>
+          <div>1x Pizza Innamorata</div>
+          <div>1x Tiramisú casero</div>
+        </div>
+
+        <div class="border-t border-dashed border-stone-400 my-2"></div>
+
+        <div class="flex justify-between font-bold text-xs">
+          <span>TOTAL:</span>
+          <span id="ticket-modal-total">31,50 €</span>
+        </div>
+
+        <div class="text-center text-[9px] text-stone-500 pt-2 border-t border-stone-300">
+          Horno de piedra artesanal · www.altera-es.com
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button onclick="cerrarTicketTermico()" class="text-xs text-stone-300 hover:text-white bg-stone-800 px-4 py-2 rounded-xl">
+          Cerrar
+        </button>
+        <button onclick="window.print()" class="text-xs font-bold text-white bg-red-600 hover:bg-red-500 px-4 py-2 rounded-xl flex items-center gap-1.5 shadow">
+          <span>🖨️ Mandar a Imprimir</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT DE INTERACTIVIDAD -->
+  <script>
+    // Cambio de Vistas
+    function switchView(viewName) {
+      document.querySelectorAll('.view-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.classList.remove('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-900/40');
+        btn.classList.add('bg-stone-800', 'text-stone-200');
+      });
+
+      const target = document.getElementById('view-' + viewName);
+      if (target) target.classList.remove('hidden');
+
+      const activeBtn = document.getElementById('btn-' + viewName);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-stone-800', 'text-stone-200');
+        activeBtn.classList.add('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-900/40');
+      }
+    }
+
+    // =========================================================================
+    // KDS: GESTIÓN DE 4 FASES, DRAG & DROP Y CAPACIDAD DE HORNO
+    // =========================================================================
+    let capacidadMaximaHorno = 8;
+
+    function cambiarCapacidadMaxima(val) {
+      capacidadMaximaHorno = parseInt(val) || 8;
+      actualizarContadoresKDS();
+    }
+
+    // Drag & Drop HTML5 nativo
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev, colName) {
+      ev.preventDefault();
+      const ticketIdStr = ev.dataTransfer.getData("text");
+      const numMatch = ticketIdStr.match(/\d+/);
+      if (numMatch) {
+        const id = parseInt(numMatch[0]);
+        moverAColumna(id, colName);
+      }
+    }
+
+    function avanzarTicket(id, targetCol) {
+      moverAColumna(id, targetCol);
+    }
+
+    function retrocederTicket(id, targetCol) {
+      moverAColumna(id, targetCol);
+    }
+
+    function moverAColumna(id, targetCol) {
+      const ticket = document.getElementById('ticket-' + id);
+      if (!ticket) return;
+
+      const colTarget = document.getElementById('kds-col-' + targetCol);
+      if (!colTarget) return;
+
+      colTarget.appendChild(ticket);
+
+      // Reconfigurar borde y botones según la columna destino
+      const btnArea = ticket.querySelector('.mt-3') || ticket.querySelector('.pt-2.5') || ticket.querySelector('.border-t:last-of-type');
+      
+      // Limpiar clases de estado
+      ticket.classList.remove('border-sky-900/60', 'border-amber-500/50', 'border-red-900/60', 'border-emerald-900/60');
+
+      if (targetCol === 'reception') {
+        ticket.classList.add('border-sky-900/60');
+        if (btnArea) {
+          btnArea.innerHTML = `
+            <button onclick="verTicketTermico(${id}, 'Cliente', '21:30', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="avanzarTicket(${id}, 'prep')" class="text-[11px] font-bold text-white bg-sky-600 hover:bg-sky-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>👉 Aceptar a Preparación &rarr;</span></button>
+          `;
+        }
+      } else if (targetCol === 'prep') {
+        ticket.classList.add('border-amber-500/50');
+        if (btnArea) {
+          btnArea.innerHTML = `
+            <button onclick="retrocederTicket(${id}, 'reception')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
+            <button onclick="verTicketTermico(${id}, 'Cliente', '21:30', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="avanzarTicket(${id}, 'baking')" class="text-[11px] font-bold text-white bg-amber-600 hover:bg-amber-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>🔥 Meter al Horno &rarr;</span></button>
+          `;
+        }
+      } else if (targetCol === 'baking') {
+        ticket.classList.add('border-red-900/60');
+        if (btnArea) {
+          btnArea.innerHTML = `
+            <button onclick="retrocederTicket(${id}, 'prep')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
+            <button onclick="verTicketTermico(${id}, 'Cliente', '21:30', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="avanzarTicket(${id}, 'ready')" class="text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>✅ Sacar y Cortar &rarr;</span></button>
+          `;
+        }
+      } else if (targetCol === 'ready') {
+        ticket.classList.add('border-emerald-900/60');
+        if (btnArea) {
+          btnArea.innerHTML = `
+            <div class="w-full space-y-2">
+              <div class="p-2 bg-emerald-950/50 rounded-lg border border-emerald-800/40 flex items-center justify-between gap-1.5">
+                <span class="text-[11px] text-emerald-300 flex items-center gap-1">📲 Aviso:</span>
+                <button onclick="enviarAvisoRecogida('Cliente #${id}', '#${id}')" class="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">Enviar WhatsApp "¡Ya está lista!"</button>
+              </div>
+              <div class="flex items-center justify-between gap-2">
+                <button onclick="retrocederTicket(${id}, 'baking')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
+                <button onclick="entregarTicket(${id})" class="text-xs font-bold text-white bg-stone-800 hover:bg-stone-700 px-3 py-1.5 rounded-lg transition flex-1 text-center border border-stone-700">📦 Entregado al Cliente ✓</button>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      actualizarContadoresKDS();
+    }
+
+    function entregarTicket(id) {
+      const ticket = document.getElementById('ticket-' + id);
+      if (ticket) {
+        ticket.style.opacity = '0';
+        ticket.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          ticket.remove();
+          actualizarContadoresKDS();
+        }, 300);
+      }
+    }
+
+    function actualizarContadoresKDS() {
+      const col1 = document.getElementById('kds-col-reception') ? document.getElementById('kds-col-reception').children.length : 0;
+      const col2 = document.getElementById('kds-col-prep') ? document.getElementById('kds-col-prep').children.length : 0;
+      const col3 = document.getElementById('kds-col-baking') ? document.getElementById('kds-col-baking').children.length : 0;
+      const col4 = document.getElementById('kds-col-ready') ? document.getElementById('kds-col-ready').children.length : 0;
+
+      if (document.getElementById('badge-col-1')) document.getElementById('badge-col-1').innerText = col1;
+      if (document.getElementById('badge-col-2')) document.getElementById('badge-col-2').innerText = col2;
+      if (document.getElementById('badge-col-3')) document.getElementById('badge-col-3').innerText = col3;
+      if (document.getElementById('badge-col-4')) document.getElementById('badge-col-4').innerText = col4;
+
+      const totalActivas = col1 + col2 + col3 + col4;
+      if (document.getElementById('kds-total-active')) document.getElementById('kds-total-active').innerText = totalActivas + ' pedidos';
+
+      // Estimación de pizzas en horno y mesa (aprox 1.8 pizzas por comanda)
+      const pizzasEnHorno = Math.min(capacidadMaximaHorno, (col3 * 2) + Math.max(0, col2));
+      const porcentajeCarga = Math.min(100, Math.round((pizzasEnHorno / capacidadMaximaHorno) * 100));
+
+      if (document.getElementById('kds-cap-display')) {
+        document.getElementById('kds-cap-display').innerText = `${pizzasEnHorno} / ${capacidadMaximaHorno} pizzas`;
+      }
+      if (document.getElementById('kds-cap-bar')) {
+        const bar = document.getElementById('kds-cap-bar');
+        bar.style.width = porcentajeCarga + '%';
+        if (porcentajeCarga > 85) {
+          bar.className = 'bg-red-500 h-full rounded-full transition-all duration-500';
+        } else if (porcentajeCarga > 60) {
+          bar.className = 'bg-amber-500 h-full rounded-full transition-all duration-500';
+        } else {
+          bar.className = 'bg-emerald-500 h-full rounded-full transition-all duration-500';
+        }
+      }
+
+      // Tiempo dinámico estimado
+      const tiempoMinutos = 12 + (col1 * 3) + (col2 * 4) + (col3 * 2);
+      if (document.getElementById('kds-est-time')) {
+        document.getElementById('kds-est-time').innerText = tiempoMinutos + ' min';
+      }
+
+      // Alerta de Franjas
+      if (document.getElementById('kds-slot-status')) {
+        if (col1 + col2 + col3 >= 5) {
+          document.getElementById('kds-slot-status').innerText = '🔴 Franja actual SATURADA. Asignando siguiente slot';
+          document.getElementById('kds-slot-status').className = 'text-[11px] text-red-400 font-bold block mt-1';
+        } else {
+          document.getElementById('kds-slot-status').innerText = '🟢 Horno con capacidad fluida';
+          document.getElementById('kds-slot-status').className = 'text-[11px] text-emerald-400 block mt-1';
+        }
+      }
+    }
+
+    function simularNuevoPedido() {
+      const nextId = Math.floor(Math.random() * 80) + 115;
+      const colReception = document.getElementById('kds-col-reception');
+      if (!colReception) return;
+
+      const div = document.createElement('div');
+      div.id = 'ticket-' + nextId;
+      div.draggable = true;
+      div.ondragstart = drag;
+      div.className = 'bg-stone-900 border border-sky-500/80 rounded-xl p-3.5 shadow-lg animate-pulse cursor-grab active:cursor-grabbing';
+      div.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono font-bold text-sm text-white">#${nextId}</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-bold">PAGADO (Stripe)</span>
+            </div>
+            <span class="text-xs text-stone-400 block mt-0.5">Cliente: <strong>Alejandro M.</strong></span>
+          </div>
+          <span class="text-[11px] font-mono font-bold text-amber-400 bg-amber-950 px-2 py-0.5 rounded">Recogida: 22:00h</span>
+        </div>
+        <div class="mt-2 text-[11px] text-emerald-400 font-semibold">🟢 WhatsApp Oficial</div>
+        <div class="mt-2 text-xs text-stone-200">1x Calzone Especial + 1x Brusheta</div>
+        <div class="mt-3 pt-2.5 border-t border-stone-800 flex justify-between gap-1.5">
+          <button onclick="verTicketTermico(${nextId}, 'Alejandro M.', '22:00', ['1x Calzone Especial', '1x Brusheta'], '16.00€', 'WhatsApp', 'PAGADO')" class="text-[11px] bg-stone-800 px-2 py-1 rounded">🖨️ 80mm</button>
+          <button onclick="avanzarTicket(${nextId}, 'prep')" class="text-[11px] font-bold bg-sky-600 text-white px-3 py-1.5 rounded-lg shadow">👉 Aceptar &rarr;</button>
+        </div>
+      `;
+      colReception.prepend(div);
+      setTimeout(() => div.classList.remove('animate-pulse'), 1000);
+      actualizarContadoresKDS();
+    }
+
+    function enviarAvisoRecogida(cliente, pedido) {
+      alert(`📲 WhatsApp enviado automáticamente a ${cliente}: \n\n"¡Hola! Tu comanda ${pedido} acaba de salir de nuestro horno de piedra. Ya puedes pasar a recogerla por C. Simone de Beauvoir 3 sin colas. ¡Buen provecho! 🍕✨"`);
+    }
+
+    // Modal Ticket Térmico
+    function verTicketTermico(num, cliente, hora, items, total, canal, status) {
+      document.getElementById('ticket-modal-num').innerText = 'COMANDA #' + num;
+      document.getElementById('ticket-modal-time').innerText = hora + 'h';
+      document.getElementById('ticket-modal-client').innerText = cliente;
+      document.getElementById('ticket-modal-channel').innerText = canal;
+      document.getElementById('ticket-modal-status').innerText = status;
+      document.getElementById('ticket-modal-total').innerText = total;
+
+      const itemsContainer = document.getElementById('ticket-modal-items');
+      itemsContainer.innerHTML = '';
+      items.forEach(it => {
+        const d = document.createElement('div');
+        d.innerText = it;
+        itemsContainer.appendChild(d);
+      });
+
+      document.getElementById('modal-ticket').classList.remove('hidden');
+    }
+
+    function cerrarTicketTermico() {
+      document.getElementById('modal-ticket').classList.add('hidden');
+    }
+
+    // Chat Simulator
+    function simularPagoStripe() {
+      const btn = document.getElementById('btn-pay-stripe');
+      btn.innerHTML = '🔄 Procesando con Stripe...';
+      btn.classList.add('opacity-75');
+
+      setTimeout(() => {
+        btn.innerHTML = '✅ Pagado (Apple Pay / Stripe)';
+        btn.classList.remove('bg-[#635bff]', 'opacity-75');
+        btn.classList.add('bg-emerald-600');
+
+        const dyn = document.getElementById('dynamic-chat-msgs');
+        dyn.innerHTML += `
+          <div class="flex items-start gap-1">
+            <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-stone-800 space-y-1">
+              <p>¡Pago recibido correctamente! 🎉 Tu pedido <strong>#108</strong> está registrado.</p>
+              <p>Acabamos de meter la comanda a la tablet de la cocina. Te enviaremos un WhatsApp automático en cuanto las pizzas salgan del horno de piedra para que las recojas sin esperar ni 1 minuto.</p>
+              <span class="text-[9px] text-stone-400 block text-right mt-1">20:16</span>
+            </div>
+          </div>
+        `;
+      }, 1000);
+    }
+
+    function enviarMensajeUsuario() {
+      const input = document.getElementById('chat-input');
+      const val = input.value.trim();
+      if (!val) return;
+
+      const dyn = document.getElementById('dynamic-chat-msgs');
+      dyn.innerHTML += `
+        <div class="flex items-end justify-end gap-1">
+          <div class="bg-[#dcf8c6] p-2.5 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-stone-900">
+            <p>${val}</p>
+            <span class="text-[9px] text-stone-400 block text-right mt-0.5">Ahora ✓✓</span>
+          </div>
+        </div>
+      `;
+      input.value = '';
+
+      setTimeout(() => {
+        dyn.innerHTML += `
+          <div class="flex items-start gap-1">
+            <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-stone-800">
+              <p>¡Oído cocina! 👨‍🍳 Nuestro pizzero ya lo tiene anotado en su pantalla de horno de piedra.</p>
+              <span class="text-[9px] text-stone-400 block text-right mt-1">Ahora</span>
+            </div>
+          </div>
+        `;
+      }, 800);
+    }
+
+    function reiniciarChat() {
+      document.getElementById('dynamic-chat-msgs').innerHTML = '';
+      const btn = document.getElementById('btn-pay-stripe');
+      btn.innerHTML = '<span>Pagar 31,50 €</span> <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded">Apple Pay / Bizum</span>';
+      btn.className = 'w-full bg-[#635bff] hover:bg-[#5349e0] text-white font-bold py-2 px-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md';
+    }
+
+    // Calculadora Ahorro Uber
+    function actualizarCalculadora(pizzas) {
+      document.getElementById('calc-pizzas-val').innerText = pizzas + ' pizzas';
+      const uberLost = Math.round(pizzas * 3.90);
+      const savingsYear = Math.round(uberLost * 12);
+
+      document.getElementById('calc-uber-lost').innerText = `-${uberLost} € / mes`;
+      document.getElementById('calc-savings').innerText = `+${savingsYear.toLocaleString()} € / año`;
+    }
+
+    // =======================================================================
+    // MOTOR DE VOZ IA REAL (Web Speech API + Web Audio API)
+    // =======================================================================
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+    let callTimerInterval = null;
+    let callSeconds = 0;
+    let isCallActive = false;
+    let speechRecognitionInstance = null;
+
+    // Inicializar Audio Context
+    function getAudioContext() {
+      if (!audioCtx && AudioContextClass) {
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Efectos de sonido telefónicos sintéticos
+    function playTone(freq, duration, type = 'sine', gainVal = 0.12) {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn("Audio tone error:", e);
+      }
+    }
+
+    function playTelephoneRing(callback) {
+      playTone(425, 0.35, 'sine', 0.15);
+      setTimeout(() => {
+        playTone(425, 0.35, 'sine', 0.15);
+        if (callback) setTimeout(callback, 500);
+      }, 450);
+    }
+
+    function playTelephoneClick() {
+      playTone(950, 0.05, 'triangle', 0.15);
+    }
+
+    function playTelephoneHangup() {
+      playTone(600, 0.12, 'sine', 0.1);
+      setTimeout(() => playTone(600, 0.12, 'sine', 0.1), 180);
+      setTimeout(() => playTone(600, 0.12, 'sine', 0.1), 360);
+    }
+
+    // Carga y selector de voces del navegador
+    function cargarVocesAngela() {
+      if (!('speechSynthesis' in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      const select = document.getElementById('select-voice-angela');
+      if (!select) return;
+
+      const spanishVoices = voices.filter(v => v.lang.startsWith('es') || v.lang.includes('ES'));
+      select.innerHTML = '';
+
+      if (spanishVoices.length === 0) {
+        const opt = document.createElement('option');
+        opt.value = '';
+        opt.innerText = 'Voz predeterminada del navegador (Español)';
+        select.appendChild(opt);
+        return;
+      }
+
+      spanishVoices.forEach((v, idx) => {
+        const opt = document.createElement('option');
+        opt.value = v.name;
+        opt.innerText = `${v.name} (${v.lang})${v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('online') ? ' ⭐️ Alta Calidad' : ''}`;
+        
+        // Priorizar voces naturales o femeninas de España para Elena
+        if (v.name.toLowerCase().includes('helena') || v.name.toLowerCase().includes('laura') || v.name.toLowerCase().includes('monica') || (v.lang === 'es-ES' && idx === 0)) {
+          opt.selected = true;
+        }
+        select.appendChild(opt);
+      });
+    }
+
+    if ('speechSynthesis' in window) {
+      cargarVocesAngela();
+      window.speechSynthesis.onvoiceschanged = cargarVocesAngela;
+    }
+
+    let currentElevenAudio = null;
+
+    function toggleElevenConfig() {
+      const panel = document.getElementById('eleven-config-panel');
+      if (!panel) return;
+      panel.classList.toggle('hidden');
+      const savedKey = localStorage.getItem('elevenlabs_api_key') || '';
+      const inputEl = document.getElementById('eleven-api-key');
+      if (inputEl) inputEl.value = savedKey;
+      if (savedKey) {
+        guardarYDetectarVoces(false);
+      }
+    }
+
+    function toggleVerClave(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerText = '🙈';
+      } else {
+        input.type = 'password';
+        btn.innerText = '👁️';
+      }
+    }
+
+    async function guardarYDetectarVoces(showFeedback = true) {
+      const input = document.getElementById('eleven-api-key');
+      let val = (input ? input.value : '').trim();
+      const msg = document.getElementById('eleven-status-msg');
+      const voiceSelect = document.getElementById('eleven-voice-select');
+
+      // Sanitización: eliminar prefijos o comillas que puedan haberse copiado por error
+      val = val.replace(/^xi-api-key[:\s=]+/i, '')
+               .replace(/^bearer\s+/i, '')
+               .replace(/^api[_-]?key[:\s=]+/i, '')
+               .replace(/^["'`]|["'`]$/g, '')
+               .trim();
+
+      if (input) input.value = val;
+
+      if (!val) {
+        localStorage.removeItem('elevenlabs_api_key');
+        if (msg) {
+          msg.innerHTML = '⚠️ Por favor, introduce tu API Key (ej: sk_... o xi-api-key). Si no tienes una, consíguela gratis en <a href="https://elevenlabs.io" target="_blank" class="text-amber-400 underline font-bold">elevenlabs.io</a>.';
+          msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-stone-950 border border-amber-800/40 block';
+        }
+        return;
+      }
+
+      localStorage.setItem('elevenlabs_api_key', val);
+      if (msg) {
+        msg.innerHTML = '⏳ Conectando con ElevenLabs y sincronizando las voces de tu cuenta...';
+        msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-stone-950 border border-stone-800 block';
+      }
+
+      try {
+        const res = await fetch('https://api.elevenlabs.io/v1/voices', {
+          method: 'GET',
+          headers: {
+            'xi-api-key': val
+          }
+        });
+
+        if (res.status === 401 || res.status === 400) {
+          const charCount = val.length;
+          const errData = await res.json().catch(() => null);
+          const serverMsg = errData?.detail?.message || res.statusText || '';
+          const preview = val.length > 8 ? `${val.substring(0, 4)}...${val.substring(val.length - 4)}` : val;
+
+          // Si el servidor indica que falta el permiso 'voices_read', significa que la API Key es 100% REAL Y VÁLIDA
+          // pero tiene permisos restringidos. ¡Aun así puede generar voz (Text-to-Speech)!
+          if (serverMsg.includes('voices_read')) {
+            if (voiceSelect) {
+              voiceSelect.innerHTML = `
+                <option value="uQw4jpKzMLrZuo0RLPS9" selected>Laura - Customer Service (Spanish Peninsular) ⭐</option>
+                <option value="mGlMpcOq63YZLdidTVyo">Dino - Urbano y Enérgico (Spanish Peninsular)</option>
+                <option value="21m00Tcm4TlvDq8ikWAM">Rachel - Voz Cálida</option>
+              `;
+              localStorage.setItem('elevenlabs_voice_id', 'uQw4jpKzMLrZuo0RLPS9');
+            }
+            if (msg) {
+              msg.innerHTML = `✅ <strong>¡API Key válida y confirmada por ElevenLabs!</strong> (Clave de 51 caracteres).<br>
+              <div class="mt-1 text-stone-200">Tu clave está conectada. Hemos asignado la voz de <strong>Laura (Customer Service)</strong> para Ángela. ¡Pulsa abajo <strong>"🔊 Probar Voz"</strong> para escuchar el audio de estudio real!</div>`;
+              msg.className = 'text-[10px] text-emerald-300 p-2.5 rounded bg-emerald-950/60 border border-emerald-700/80 block leading-relaxed';
+            }
+            return;
+          }
+
+          let tip = '';
+          if (val.startsWith('key_') || val.startsWith('api_key_') || charCount === 37 || (charCount < 40 && !val.startsWith('sk_') && charCount !== 32)) {
+            tip = `<div class="mt-2 p-2 bg-amber-900/40 border border-amber-700/60 rounded text-stone-200">
+              <strong class="text-amber-300">🚨 ¡DETECTADO! Has copiado el "Key ID" (${preview}, ${charCount} caracteres) en vez del "Secret Token".</strong><br>
+              En ElevenLabs, la tabla de tu panel muestra el <em>Key ID</em> (identificador de registro). La <strong>Secret API Key real</strong> sólo se muestra <strong>una única vez</strong> dentro de la ventana flotante que aparece justo al pulsar <em>"+ Create Key"</em>.<br>
+              👉 <strong>Cómo resolverlo en 15 segundos:</strong> Ve a <a href="https://elevenlabs.io/app/developers/api-keys" target="_blank" class="text-amber-400 underline font-bold">API Keys</a>, pulsa <strong>"+ Create Key"</strong>, ponle nombre "Altera" y haz clic en el botón <strong>"Copy"</strong> que aparece dentro de esa ventanita antes de cerrarla.
+            </div>`;
+          } else {
+            tip = `<div class="mt-1.5 text-stone-300 space-y-1">
+              <div>Respuesta de ElevenLabs: <em>"${serverMsg}"</em> (Longitud clave: ${charCount} caracteres)</div>
+              <div>1. Ve a <a href="https://elevenlabs.io/app/developers/api-keys" target="_blank" class="text-amber-400 underline font-bold">elevenlabs.io/app/developers/api-keys</a> y pulsa <strong>"+ Create Key"</strong>.</div>
+              <div>2. En la ventana emergente, haz clic en el botón <strong>"Copy"</strong> de la clave secreta antes de cerrarla.</div>
+            </div>`;
+          }
+
+          if (msg) {
+            msg.innerHTML = `❌ <strong>Error ${res.status}:</strong> Clave rechazada por ElevenLabs.${tip}`;
+            msg.className = 'text-[10px] text-red-300 p-2.5 rounded bg-red-950/60 border border-red-800/80 block leading-relaxed';
+          }
+          return;
+        }
+
+        if (!res.ok) {
+          const errText = await res.text();
+          if (msg) {
+            msg.innerHTML = `❌ <strong>Error ${res.status}:</strong> No se pudo conectar a ElevenLabs (${errText.substring(0, 90)}).`;
+            msg.className = 'text-[10px] text-red-400 p-2 rounded bg-red-950/50 border border-red-800/70 block';
+          }
+          return;
+        }
+
+        const data = await res.json();
+        const voices = data.voices || [];
+
+        if (voices.length === 0) {
+          if (msg) {
+            msg.innerHTML = '⚠️ Conectado a tu cuenta, pero no tienes voces en tu VoiceLab. Entra en <a href="https://elevenlabs.io" target="_blank" class="text-amber-400 underline">elevenlabs.io &rarr; Voices &rarr; Explore</a> y añade "Laura" o "Elena" a tu VoiceLab.';
+            msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-stone-950 border border-amber-800/40 block';
+          }
+          return;
+        }
+
+        if (voiceSelect) {
+          voiceSelect.innerHTML = '';
+          const savedVoiceId = localStorage.getItem('elevenlabs_voice_id');
+          let foundSaved = false;
+
+          // Priorizar voces con acento español o nombres frecuentes en español
+          const sortedVoices = [...voices].sort((a, b) => {
+            const aStr = `${a.name} ${a.labels?.language || ''} ${a.labels?.accent || ''}`.toLowerCase();
+            const bStr = `${b.name} ${b.labels?.language || ''} ${b.labels?.accent || ''}`.toLowerCase();
+            const aIsEs = aStr.includes('spanish') || aStr.includes('español') || aStr.includes('spain') || aStr.includes('laura') || aStr.includes('sofia') || aStr.includes('elena');
+            const bIsEs = bStr.includes('spanish') || bStr.includes('español') || bStr.includes('spain') || bStr.includes('laura') || bStr.includes('sofia') || bStr.includes('elena');
+            if (aIsEs && !bIsEs) return -1;
+            if (!aIsEs && bIsEs) return 1;
+            return a.name.localeCompare(b.name);
+          });
+
+          sortedVoices.forEach((v) => {
+            const opt = document.createElement('option');
+            opt.value = v.voice_id;
+            const langLabel = v.labels?.language || v.labels?.accent || v.category || 'Multilingual';
+            opt.innerText = `${v.name} (${langLabel})`;
+            if (savedVoiceId && v.voice_id === savedVoiceId) {
+              opt.selected = true;
+              foundSaved = true;
+            }
+            voiceSelect.appendChild(opt);
+          });
+
+          if (!foundSaved && sortedVoices.length > 0) {
+            sortedVoices[0].selected = true;
+            localStorage.setItem('elevenlabs_voice_id', sortedVoices[0].voice_id);
+          }
+        }
+
+        const activeVoiceName = voiceSelect && voiceSelect.selectedOptions[0] ? voiceSelect.selectedOptions[0].innerText : 'Voz activa';
+        if (msg) {
+          msg.innerHTML = `✅ <strong>¡Conectado con Éxito a ElevenLabs!</strong> Sincronizadas ${voices.length} voces. Voz activa: <strong>${activeVoiceName}</strong>. ¡Pulsa el botón de abajo <strong>"🔊 Probar Voz"</strong> para escuchar la calidad HD!`;
+          msg.className = 'text-[10px] text-emerald-300 p-2 rounded bg-emerald-950/40 border border-emerald-800/60 block';
+        }
+      } catch (err) {
+        if (msg) {
+          msg.innerHTML = `❌ Error de red al conectar con ElevenLabs: ${err.message}`;
+          msg.className = 'text-[10px] text-red-400 p-2 rounded bg-red-950/50 border border-red-800/70 block';
+        }
+      }
+    }
+
+    function seleccionarVozEleven(voiceId) {
+      if (!voiceId) return;
+      localStorage.setItem('elevenlabs_voice_id', voiceId);
+      const voiceSelect = document.getElementById('eleven-voice-select');
+      const voiceName = voiceSelect && voiceSelect.selectedOptions[0] ? voiceSelect.selectedOptions[0].innerText : voiceId;
+      const msg = document.getElementById('eleven-status-msg');
+      if (msg) {
+        msg.innerHTML = `✅ Voz seleccionada: <strong>${voiceName}</strong>. Pulsa "🔊 Probar Voz" para escucharla.`;
+        msg.className = 'text-[10px] text-emerald-300 p-2 rounded bg-emerald-950/40 border border-emerald-800/60 block';
+      }
+    }
+
+    async function probarVozElevenTest() {
+      const btn = document.getElementById('btn-test-eleven');
+      const originalText = btn ? btn.innerHTML : '🔊 Probar Voz';
+      const msg = document.getElementById('eleven-status-msg');
+      
+      const apiKey = localStorage.getItem('elevenlabs_api_key');
+      if (!apiKey) {
+        if (msg) {
+          msg.innerHTML = '⚠️ Primero introduce tu API Key en el Paso 1 y pulsa "Conectar API".';
+          msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-stone-950 border border-amber-800/40 block';
+        }
+        return;
+      }
+
+      if (btn) {
+        btn.innerHTML = '⏳ Conectando...';
+        btn.disabled = true;
+      }
+      if (msg) {
+        msg.innerHTML = '🔊 <em>Generando audio con ElevenLabs AI en alta definición...</em>';
+        msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-stone-950 border border-amber-800/40 block';
+      }
+
+      const frasePrueba = "¡Hola! Soy Ángela, la recepcionista virtual de Pizzería Ángela. ¿En qué puedo ayudarte hoy?";
+      const ok = await speakWithElevenLabs(frasePrueba, true, () => {
+        if (btn) {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+        if (msg) {
+          msg.innerHTML = '✅ <strong>¡Audio de ElevenLabs reproducido con éxito!</strong> Voz humana con timbre hiperrealista.';
+          msg.className = 'text-[10px] text-emerald-300 p-2 rounded bg-emerald-950/40 border border-emerald-800/60 block';
+        }
+      });
+
+      if (!ok) {
+        if (btn) {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+      }
+    }
+
+    async function speakWithElevenLabs(text, isElena, onEndCallback) {
+      const apiKey = localStorage.getItem('elevenlabs_api_key');
+      if (!apiKey) return false;
+
+      let voiceId = localStorage.getItem('elevenlabs_voice_id');
+      const voiceSelect = document.getElementById('eleven-voice-select');
+      if (voiceSelect && voiceSelect.value) {
+        voiceId = voiceSelect.value;
+      }
+
+      // Si no hay voz configurada en localStorage, fallback
+      if (!voiceId) {
+        voiceId = isElena ? '21m00Tcm4TlvDq8ikWAM' : 'ErXwobaYiN019PkySvjV';
+      }
+
+      const msg = document.getElementById('eleven-status-msg');
+
+      try {
+        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'audio/mpeg',
+            'Content-Type': 'application/json',
+            'xi-api-key': apiKey
+          },
+          body: JSON.stringify({
+            text: text,
+            model_id: 'eleven_multilingual_v2',
+            voice_settings: { stability: 0.5, similarity_boost: 0.8 }
+          })
+        });
+
+        if (!res.ok) {
+          const errDetail = await res.text();
+          console.warn("ElevenLabs API responded with error:", res.status, errDetail);
+          if (msg) {
+            msg.innerHTML = `⚠️ <strong>ElevenLabs Error (${res.status}):</strong> ${errDetail.substring(0, 110)}... Revisa que la voz esté disponible en tu cuenta. Usando voz del navegador temporalmente.`;
+            msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-amber-950/50 border border-amber-800/70 block';
+          }
+          return false;
+        }
+
+        const blob = await res.blob();
+        const audioUrl = URL.createObjectURL(blob);
+        const audio = new Audio(audioUrl);
+        currentElevenAudio = audio;
+
+        const waveContainer = document.getElementById('voice-wave-container');
+        const pulse = document.getElementById('avatar-pulse');
+        const subtitle = document.getElementById('current-speaking-text');
+
+        if (waveContainer) waveContainer.classList.add('wave-speaking');
+        if (pulse) pulse.classList.remove('hidden');
+        if (subtitle) subtitle.innerHTML = `<strong>${isElena ? '🤖 Ángela (ElevenLabs HD):' : '👤 Cliente:'}</strong> "${text}"`;
+
+        audio.onended = () => {
+          if (waveContainer) waveContainer.classList.remove('wave-speaking');
+          if (pulse) pulse.classList.add('hidden');
+          if (onEndCallback) onEndCallback();
+        };
+
+        audio.onerror = (e) => {
+          console.error("Audio playback error:", e);
+          if (waveContainer) waveContainer.classList.remove('wave-speaking');
+          if (pulse) pulse.classList.add('hidden');
+          if (onEndCallback) onEndCallback();
+        };
+
+        await audio.play();
+        return true;
+      } catch (e) {
+        console.warn("ElevenLabs notice:", e);
+        if (msg) {
+          msg.innerHTML = `⚠️ Error al contactar con ElevenLabs: ${e.message}. Usando navegador de respaldo.`;
+          msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-amber-950/50 border border-amber-800/70 block';
+        }
+        return false;
+      }
+    }
+
+    // Hablar texto con Web Speech API o ElevenLabs
+    async function speakText(text, isElena = true, onEndCallback = null) {
+      if (currentElevenAudio) {
+        try { currentElevenAudio.pause(); } catch(e){}
+        currentElevenAudio = null;
+      }
+
+      // Probar ElevenLabs primero si el usuario introdujo API Key
+      const usedEleven = await speakWithElevenLabs(text, isElena, onEndCallback);
+      if (usedEleven) return;
+
+      if (!('speechSynthesis' in window)) {
+        alert("Tu navegador no soporta síntesis de voz Web Speech API. Te recomendamos Google Chrome o Microsoft Edge.");
+        if (onEndCallback) onEndCallback();
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'es-ES';
+
+      const voices = window.speechSynthesis.getVoices();
+      const spanishVoices = voices.filter(v => v.lang.startsWith('es') || v.lang.includes('ES'));
+      const select = document.getElementById('select-voice-angela');
+      const selectedVoiceName = select ? select.value : '';
+
+      let chosenVoice = spanishVoices.find(v => v.name === selectedVoiceName);
+
+      if (!chosenVoice || !isElena) {
+        if (isElena) {
+          chosenVoice = spanishVoices.find(v => 
+            v.name.toLowerCase().includes('helena') || 
+            v.name.toLowerCase().includes('laura') || 
+            v.name.toLowerCase().includes('monica') || 
+            v.name.toLowerCase().includes('google')
+          ) || spanishVoices[0];
+        } else {
+          // Voz diferente para cliente
+          chosenVoice = spanishVoices.find(v => 
+            v.name.toLowerCase().includes('jorge') || 
+            v.name.toLowerCase().includes('alvaro') || 
+            v.name.toLowerCase().includes('pablo') ||
+            v.name.toLowerCase().includes('male')
+          ) || spanishVoices[1] || spanishVoices[0];
+        }
+      }
+
+      if (chosenVoice) utter.voice = chosenVoice;
+
+      utter.rate = isElena ? 1.05 : 0.98;
+      utter.pitch = isElena ? 1.08 : 0.88;
+
+      const waveContainer = document.getElementById('voice-wave-container');
+      const pulse = document.getElementById('avatar-pulse');
+      const subtitle = document.getElementById('current-speaking-text');
+
+      utter.onstart = () => {
+        if (waveContainer) waveContainer.classList.add('wave-speaking');
+        if (pulse) pulse.classList.remove('hidden');
+        if (subtitle) subtitle.innerHTML = `<strong>${isElena ? '🤖 Ángela:' : '👤 Cliente:'}</strong> "${text}"`;
+      };
+
+      utter.onend = () => {
+        if (waveContainer) waveContainer.classList.remove('wave-speaking');
+        if (pulse) pulse.classList.add('hidden');
+        if (onEndCallback) onEndCallback();
+      };
+
+      utter.onerror = (e) => {
+        console.warn("Speech synthesis notice:", e);
+        if (waveContainer) waveContainer.classList.remove('wave-speaking');
+        if (pulse) pulse.classList.add('hidden');
+        if (onEndCallback) onEndCallback();
+      };
+
+      window.speechSynthesis.speak(utter);
+    }
+
+    // Cronómetro de llamada
+    function startCallTimer() {
+      callSeconds = 0;
+      clearInterval(callTimerInterval);
+      callTimerInterval = setInterval(() => {
+        callSeconds++;
+        const mins = String(Math.floor(callSeconds / 60)).padStart(2, '0');
+        const secs = String(callSeconds % 60).padStart(2, '0');
+        const timerEl = document.getElementById('call-timer');
+        if (timerEl) timerEl.innerText = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function stopCallTimer() {
+      clearInterval(callTimerInterval);
+    }
+
+    function limpiarResaltadosTranscripcion() {
+      ['bubble-elena-1', 'bubble-client-1', 'bubble-elena-2', 'bubble-client-2', 'bubble-elena-3'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('transcript-active', 'transcript-client-active');
+      });
+    }
+
+    // REPRODUCIR LLAMADA COMPLETA EN SECUENCIA
+    function reproducirLlamadaCompleta() {
+      detenerAudioLlamada();
+      isCallActive = true;
+      const st = document.getElementById('call-status');
+      const btn = document.getElementById('btn-play-call');
+      if (btn) btn.innerHTML = '<span>⏸️ Reproduciendo llamada en vivo...</span>';
+
+      st.innerHTML = '📞 Marcando al 967 60 12 66...';
+      st.className = 'inline-block mt-2 text-xs bg-amber-950 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-full font-mono';
+
+      // Timbre telefónico
+      playTelephoneRing(() => {
+        if (!isCallActive) return;
+        playTelephoneClick();
+        startCallTimer();
+
+        st.innerHTML = '● En llamada activa con Ángela (IA)';
+        st.className = 'inline-block mt-2 text-xs bg-emerald-950 text-emerald-300 border border-emerald-500/40 px-3 py-1 rounded-full font-mono animate-pulse';
+
+        // Paso 1: Ángela
+        limpiarResaltadosTranscripcion();
+        document.getElementById('bubble-elena-1')?.classList.add('transcript-active');
+        
+        const texto1 = "¡Hola, buenas noches! Te atiende Ángela, la asistente inteligente de Pizzería Ángela en Imaginalia. Ahora mismo todos nuestros pizzeros están en sala. ¿Deseas encargar una comanda para recoger o reservar una mesa?";
+        
+        speakText(texto1, true, () => {
+          if (!isCallActive) return;
+
+          // Paso 2: Cliente (tras pausa realista)
+          setTimeout(() => {
+            if (!isCallActive) return;
+            limpiarResaltadosTranscripcion();
+            document.getElementById('bubble-client-1')?.classList.add('transcript-client-active');
+
+            const texto2 = "Hola, queríamos reservar una mesa para cuatro personas este sábado a las nueve y media de la noche. ¿Tenéis sitio en terraza o dentro?";
+            
+            speakText(texto2, false, () => {
+              if (!isCallActive) return;
+
+              // Paso 3: Elena
+              setTimeout(() => {
+                if (!isCallActive) return;
+                limpiarResaltadosTranscripcion();
+                document.getElementById('bubble-elena-2')?.classList.add('transcript-active');
+
+                const texto3 = "¡Perfecto! Para este sábado a las 21:30h tenemos mesa disponible en nuestro salón interior climatizado. ¿A nombre de quién realizo la reserva y qué teléfono móvil nos dejas para enviarte la confirmación por WhatsApp?";
+                
+                speakText(texto3, true, () => {
+                  if (!isCallActive) return;
+
+                  // Paso 4: Cliente
+                  setTimeout(() => {
+                    if (!isCallActive) return;
+                    limpiarResaltadosTranscripcion();
+                    document.getElementById('bubble-client-2')?.classList.add('transcript-client-active');
+
+                    const texto4 = "A nombre de Carlos Gómez, móvil seis cuatro cuatro doce treinta y cuatro cincuenta y seis.";
+                    
+                    speakText(texto4, false, () => {
+                      if (!isCallActive) return;
+
+                      // Paso 5: Elena confirmación
+                      setTimeout(() => {
+                        if (!isCallActive) return;
+                        limpiarResaltadosTranscripcion();
+                        document.getElementById('bubble-elena-3')?.classList.add('transcript-active');
+
+                        const texto5 = "¡Queda confirmada tu mesa para cuatro personas este sábado a las nueve y media! Te acabo de enviar la confirmación con la ubicación en Google Maps por WhatsApp. ¡Muchas gracias Carlos, nos vemos el sábado!";
+                        
+                        speakText(texto5, true, () => {
+                          finalizarLlamadaExitosa();
+                        });
+                      }, 700);
+                    });
+                  }, 700);
+                });
+              }, 700);
+            });
+          }, 700);
+        });
+      });
+    }
+
+    function finalizarLlamadaExitosa() {
+      stopCallTimer();
+      playTelephoneHangup();
+      isCallActive = false;
+
+      const st = document.getElementById('call-status');
+      st.innerHTML = '● Llamada finalizada con éxito · WhatsApp enviado';
+      st.className = 'inline-block mt-2 text-xs bg-stone-800 text-emerald-400 border border-emerald-800/40 px-3 py-1 rounded-full font-mono';
+
+      const btn = document.getElementById('btn-play-call');
+      if (btn) btn.innerHTML = '<span>▶️ Volver a Reproducir Conversación Completa</span>';
+
+      const sub = document.getElementById('current-speaking-text');
+      if (sub) sub.innerText = 'Llamada concluida. Supabase ha recibido los datos y se ha disparado el webhook de WhatsApp.';
+
+      // Animar checklist de automatización
+      const badge = document.getElementById('badge-auto-status');
+      if (badge) {
+        badge.innerText = '✅ Ejecutado en 0.8s';
+        badge.className = 'text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800/40 px-2 py-0.5 rounded font-bold';
+      }
+
+      const c1 = document.getElementById('check-step-1');
+      const c2 = document.getElementById('check-step-2');
+      const c3 = document.getElementById('check-step-3');
+
+      if (c1) c1.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">Registro en <strong>Supabase</strong> completado: Mesa 4 pax · Sábado 21:30h (#RES-892)</span>';
+      setTimeout(() => {
+        if (c2) c2.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">WhatsApp automático enviado a <strong>+34 644 12 34 56</strong> con ficha de Google Maps</span>';
+      }, 400);
+      setTimeout(() => {
+        if (c3) c3.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">Recordatorio programado para el Sábado a las 19:30h (reduce no-shows un 92%)</span>';
+      }, 800);
+    }
+
+    // PREGUNTAS DIRECTAS RÁPIDAS
+    function preguntarAngelaDirecto(tipo) {
+      detenerAudioLlamada();
+      isCallActive = true;
+
+      const respuestas = {
+        'gluten': "¡Por supuesto! En Pizzería Ángela disponemos de bases especiales sin gluten certificadas y horneadas en área aislada con estricto protocolo para evitar contaminación cruzada.",
+        'tiempo': "Ahora mismo nuestro horno de piedra tiene una carga óptima. Tres pizzas familiares estarían listas para recoger en nuestro local de Imaginalia en exactamente veinticinco minutos.",
+        'donde': "Estamos en Albacete, en Calle Simone de Beauvoir número 3, justo frente a Imaginalia, con facilísimo aparcamiento en la misma puerta.",
+        'terraza': "Sí, contamos con una terraza exterior muy acogedora para las noches de buen tiempo y también con un salón interior completamente climatizado."
+      };
+
+      const texto = respuestas[tipo] || "¡Hola! Dime qué necesitas y te ayudo al momento.";
+      
+      const st = document.getElementById('call-status');
+      st.innerHTML = '● Ángela respondiendo consulta rápida...';
+      st.className = 'inline-block mt-2 text-xs bg-amber-950 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-full font-mono';
+
+      playTelephoneClick();
+      speakText(texto, true, () => {
+        st.innerHTML = '● Respuesta completada · Pulsa otra pregunta o reproduce la llamada';
+        st.className = 'inline-block mt-2 text-xs bg-stone-800 text-stone-300 px-3 py-1 rounded-full font-mono';
+        isCallActive = false;
+      });
+    }
+
+    // PRUEBA CON MICRÓFONO EN VIVO (SpeechRecognition)
+    function probarMicrofonoUsuario() {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRec) {
+        alert("Tu navegador no soporta reconocimiento de voz por micrófono (Web Speech API). Puedes usar las 'Preguntas Rápidas' o reproducir la llamada completa para escuchar la voz de Ángela.");
+        preguntarAngelaDirecto('tiempo');
+        return;
+      }
+
+      detenerAudioLlamada();
+
+      try {
+        const recognition = new SpeechRec();
+        speechRecognitionInstance = recognition;
+        recognition.lang = 'es-ES';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        const micBtn = document.getElementById('btn-mic-test');
+        const st = document.getElementById('call-status');
+
+        recognition.onstart = () => {
+          st.innerHTML = '🎙️ Escuchando tu voz... ¡Habla ahora!';
+          st.className = 'inline-block mt-2 text-xs bg-red-950 text-red-300 border border-red-500/40 px-3 py-1 rounded-full font-mono animate-pulse';
+          if (micBtn) {
+            micBtn.classList.add('bg-red-800', 'text-white');
+            document.getElementById('mic-icon').innerText = '🔴';
+          }
+        };
+
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          if (micBtn) {
+            micBtn.classList.remove('bg-red-800', 'text-white');
+            document.getElementById('mic-icon').innerText = '🎙️';
+          }
+
+          // Añadir transcripción hablada por el usuario
+          const list = document.getElementById('transcript-list');
+          if (list) {
+            const userDiv = document.createElement('div');
+            userDiv.className = 'transcript-bubble bg-sky-950/40 p-3 rounded-xl border border-sky-800/60 ml-4 animate-pulse';
+            userDiv.innerHTML = `
+              <span class="text-sky-400 font-bold block mb-1">👤 Tú (por micrófono):</span>
+              <p class="text-stone-200">"${transcript}"</p>
+            `;
+            list.appendChild(userDiv);
+            list.scrollTop = list.scrollHeight;
+          }
+
+          // Generar respuesta inteligente de Ángela
+          const tLower = transcript.toLowerCase();
+          let respuestaAngela = "¡Te he entendido perfectamente! Anoto tu comanda para nuestro horno de piedra y te confirmamos por WhatsApp.";
+
+          if (tLower.includes('mesa') || tLower.includes('reserva') || tLower.includes('persona')) {
+            respuestaAngela = "¡Por supuesto! Disponemos de mesas en salón y terraza en Imaginalia. ¿Para qué día y cuántos comensales sería la reserva?";
+          } else if (tLower.includes('pizza') || tLower.includes('pedir') || tLower.includes('comanda')) {
+            respuestaAngela = "¡Oído cocina! Tenemos nuestras pizzas en horno de piedra listas para recoger en unos 20 minutos. ¿Qué especialidad te apetece?";
+          } else if (tLower.includes('gluten') || tLower.includes('celíac')) {
+            respuestaAngela = "Sí, contamos con masa especial sin gluten certificada y elaborada en bandeja protegida para evitar trazas.";
+          } else if (tLower.includes('precio') || tLower.includes('carta') || tLower.includes('cuánto')) {
+            respuestaAngela = "Nuestras pizzas artesanales parten desde 9 euros la Margarita hasta 14,50 euros la Especial Ángela con trufa y rúcula. Te mando la carta en PDF a tu WhatsApp.";
+          } else if (tLower.includes('hola') || tLower.includes('buenas')) {
+            respuestaAngela = "¡Hola, muy buenas! Te atiende Ángela de Pizzería Ángela en Albacete. ¿Quieres encargar comida para recoger o reservar mesa?";
+          }
+
+          // Ángela responde con voz
+          st.innerHTML = '● Ángela respondiendo a tu voz...';
+          st.className = 'inline-block mt-2 text-xs bg-amber-950 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-full font-mono';
+
+          setTimeout(() => {
+            speakText(respuestaAngela, true, () => {
+              st.innerHTML = '● Conversación completada · Pulsa de nuevo para hablar';
+              st.className = 'inline-block mt-2 text-xs bg-stone-800 text-stone-300 px-3 py-1 rounded-full font-mono';
+            });
+          }, 400);
+        };
+
+        recognition.onerror = (event) => {
+          console.warn("Speech recognition notice:", event.error);
+          if (micBtn) {
+            micBtn.classList.remove('bg-red-800', 'text-white');
+            document.getElementById('mic-icon').innerText = '🎙️';
+          }
+          st.innerHTML = '● Micrófono no detectado o cancelado. Pulsa un botón de audio.';
+          st.className = 'inline-block mt-2 text-xs bg-stone-800 text-stone-400 px-3 py-1 rounded-full font-mono';
+        };
+
+        recognition.start();
+      } catch (err) {
+        console.warn("Recognition err:", err);
+      }
+    }
+
+    // DETENER AUDIO Y RESETEAR ESTADOS
+    function detenerAudioLlamada() {
+      isCallActive = false;
+      stopCallTimer();
+
+      if (currentElevenAudio) {
+        try { currentElevenAudio.pause(); } catch(e){}
+        currentElevenAudio = null;
+      }
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+
+      if (speechRecognitionInstance) {
+        try { speechRecognitionInstance.stop(); } catch(e){}
+      }
+
+      const wave = document.getElementById('voice-wave-container');
+      if (wave) wave.classList.remove('wave-speaking');
+
+      const pulse = document.getElementById('avatar-pulse');
+      if (pulse) pulse.classList.add('hidden');
+
+      limpiarResaltadosTranscripcion();
+
+      const st = document.getElementById('call-status');
+      if (st) {
+        st.innerHTML = '● Audio detenido · Listo para nueva prueba';
+        st.className = 'inline-block mt-2 text-xs bg-stone-800 text-stone-400 px-3 py-1 rounded-full font-mono';
+      }
+
+      const btn = document.getElementById('btn-play-call');
+      if (btn) btn.innerHTML = '<span class="text-base">▶️</span> <span>Reproducir Conversación Completa con Voz Real</span>';
+
+      const micBtn = document.getElementById('btn-mic-test');
+      if (micBtn) {
+        micBtn.classList.remove('bg-red-800', 'text-white');
+        const icon = document.getElementById('mic-icon');
+        if (icon) icon.innerText = '🎙️';
+      }
+    }
+
+    // Legacy compatibility stubs
+    function toggleCallAudio() {
+      detenerAudioLlamada();
+    }
+    function finalizarLlamadaDemo() {
+      finalizarLlamadaExitosa();
+    }
+  </script>
+</body>
+</html>
