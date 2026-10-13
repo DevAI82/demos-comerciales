@@ -1,0 +1,70 @@
+[
+  {
+    "text": "Buenos días, Clínica Dental Sonrisastar. Le atiende Sofía, asistente virtual de la clínica. ¿Desea pedir una cita o tiene alguna urgencia dental?",
+    "role": "agent"
+  },
+  {
+    "text": "Hola Sofía, mira, tengo un dolor terrible en una muela del lado izquierdo y se me está hinchando la cara. ¿Tenéis algún hueco hoy o mañana a primera hora?",
+    "role": "client"
+  },
+  {
+    "text": "Lamento mucho el dolor, Carlos. Al tratarse de una inflamación aguda le doy prioridad inmediata de urgencia. Tenemos hueco mañana a las 10:00 con el doctor Martínez en nuestra clínica de calle Dionisio Guardiola, 2. ¿Le reservo esa hora?",
+    "role": "agent"
+  },
+  {
+    "text": "Sí, por favor, a las 10:00 me viene perfecto. Muchas gracias.",
+    "role": "client"
+  },
+  {
+    "text": "Queda reservado Carlos: mañana a las 10:00 en Gabinete 1. Le acabo de enviar un WhatsApp de confirmación con la ubicación en Google Maps y pautas para el dolor. Si empeora antes, no dude en volver a llamarnos. ¡Hasta mañana!",
+    "role": "agent"
+  },
+  {
+    "text": "Buenos días, Clínica Dental Sonrisastar. Le atiende Sofía, asistente virtual de la clínica. ¿En qué puedo ayudarle?",
+    "role": "agent"
+  },
+  {
+    "text": "Hola, he visto en vuestra web que la primera revisión y la radiografía son gratuitas, ¿es así?",
+    "role": "client"
+  },
+  {
+    "text": "¡Exactamente, Elena! Nuestra primera consulta incluye diagnóstico completo por especialista y radiografía digital 100% gratuita y sin compromiso. ¿Prefiere venir por la mañana o por la tarde?",
+    "role": "agent"
+  },
+  {
+    "text": "Prefiero por la tarde, a partir de las cinco.",
+    "role": "client"
+  },
+  {
+    "text": "Perfecto. Le puedo agendar este jueves a las 17:30 con la doctora Sánchez. ¿Le viene bien?",
+    "role": "agent"
+  },
+  {
+    "text": "Genial, anótame el jueves a las cinco y media.",
+    "role": "client"
+  },
+  {
+    "text": "¡Estupendo! Cita confirmada para este jueves a las 17:30. Le envío los detalles por WhatsApp ahora mismo. ¡Que tenga un buen día!",
+    "role": "agent"
+  },
+  {
+    "text": "Buenos días, Clínica Dental Sonrisastar. Le atiende Sofía. ¿Desea información sobre algún tratamiento o agendar visita?",
+    "role": "agent"
+  },
+  {
+    "text": "Hola, quería saber si hacéis ortodoncia invisible y cómo funciona el tema del pago a plazos.",
+    "role": "client"
+  },
+  {
+    "text": "Sí, Laura. Somos especialistas en ortodoncia invisible con alineadores transparentes. Además disponemos de financiación a medida hasta 36 meses sin intereses. El primer paso es un estudio 3D gratuito para valorar tu caso. ¿Te gustaría venir a informarte este viernes a las 12:00?",
+    "role": "agent"
+  },
+  {
+    "text": "Sí, me parece estupendo, apúntame.",
+    "role": "client"
+  },
+  {
+    "text": "Hecho, Laura. Cita para estudio de ortodoncia el viernes a las 12:00. Te mando la confirmación y guía por WhatsApp. ¡Te esperamos en calle Dionisio Guardiola!",
+    "role": "agent"
+  }
+]

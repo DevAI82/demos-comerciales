@@ -1,0 +1,78 @@
+[
+  {
+    "text": "¡Hola! Gracias por llamar a la consulta de Adela Alventosa Fisioterapia. En este momento Adela se encuentra en sesión clínica con un paciente y no puede atender el teléfono. Soy Sofía, su asistente virtual. Puedo resolver tus dudas sobre tarifas o agendar tu cita de inmediato. ¿En qué puedo ayudarte?",
+    "role": "agent"
+  },
+  {
+    "text": "Hola buenas, llamaba para preguntar cuánto cuesta una sesión de fisioterapia y si tenéis algún bono.",
+    "role": "client"
+  },
+  {
+    "text": "¡Con mucho gusto! La primera sesión de valoración clínica y diagnóstico funcional tiene un precio de 45 euros y dura 45 minutos. Si necesitas tratamiento continuado, tenemos el Plan Mensual con rutinas guiadas en vídeo y seguimiento diario por 59 euros al mes, o el Plan Premium Híbrido con dos videoconsultas al mes por 89 euros. ¿Tienes dolor en alguna zona concreta ahora mismo?",
+    "role": "agent"
+  },
+  {
+    "text": "Sí, llevo una semana con dolor en las lumbares que me baja hacia la pierna, no puedo estar sentado trabajando.",
+    "role": "client"
+  },
+  {
+    "text": "Entendido, parece una sobrecarga lumbar con posible compromiso ciático. Para no retrasar el alivio, Adela tiene un hueco disponible mañana a las cuatro de la tarde o el jueves a las once de la mañana. ¿Cuál te viene mejor?",
+    "role": "agent"
+  },
+  {
+    "text": "Mañana a las cuatro me viene genial, muchas gracias.",
+    "role": "client"
+  },
+  {
+    "text": "Perfecto. Te reservo para mañana a las cuatro de la tarde. Dime por favor tu nombre y un número de teléfono móvil para enviarte por WhatsApp el enlace de acceso y unas recomendaciones posturales previas.",
+    "role": "agent"
+  },
+  {
+    "text": "Soy Marcos García, mi móvil es el 622 33 44 55.",
+    "role": "client"
+  },
+  {
+    "text": "Anotado, Marcos. Cita confirmada con Adela para mañana a las cuatro. En unos segundos recibirás la confirmación por WhatsApp. ¡Que mejores y nos vemos mañana!",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola! Gracias por llamar a Adela Alventosa Fisioterapia. Adela está en este momento tratando a un paciente en camilla. Soy Sofía, su asistente virtual, y puedo gestionar tu cita de inmediato. ¿Para qué día te vendría bien tu próxima sesión?",
+    "role": "agent"
+  },
+  {
+    "text": "Hola, quería reservar para continuar con mi rehabilitación de hombro este viernes por la mañana si hay hueco.",
+    "role": "client"
+  },
+  {
+    "text": "¡Hola Elena! Sí, para este viernes Adela tiene disponible a las diez de la mañana o a las doce y cuarto. ¿Cuál prefieres?",
+    "role": "agent"
+  },
+  {
+    "text": "A las diez me viene perfecto.",
+    "role": "client"
+  },
+  {
+    "text": "Excelente, te he agendado para este viernes a las diez de la mañana para el seguimiento de hombro. Te envío los detalles por WhatsApp ahora mismo.",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola! Estás llamando a Adela Alventosa Fisioterapia Online. Adela está en consulta ahora mismo. Soy Sofía, su asistente virtual. ¿En qué puedo ayudarte?",
+    "role": "agent"
+  },
+  {
+    "text": "Hola, quería saber si de verdad la fisioterapia online funciona sin que me toques físicamente la espalda.",
+    "role": "client"
+  },
+  {
+    "text": "¡Es una pregunta muy habitual! La evidencia científica demuestra que el 80% de la recuperación depende de la educación sobre el dolor, la corrección biomecánica y el ejercicio terapéutico progresivo. Adela realiza un test de movimiento en directo por videoconsulta, identifica la causa exacta y te pauta ejercicios guiados con seguimiento diario. Una sesión de valoración de 45 minutos son 45 euros. ¿Te gustaría que busquemos un hueco para probar?",
+    "role": "agent"
+  },
+  {
+    "text": "Vale, pues me parece interesante, vamos a probar.",
+    "role": "client"
+  },
+  {
+    "text": "¡Fantástico! Tenemos disponibilidad mañana a las once y media o a las seis de la tarde. ¿Cuál te encaja mejor?",
+    "role": "agent"
+  }
+]

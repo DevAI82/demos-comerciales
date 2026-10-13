@@ -1,0 +1,78 @@
+{
+  "_info": "Cada nicho apunta a una demo de referencia (su 'plantilla' de estilo y flujos). 'reemplazar' lista los textos propios del cliente de referencia que hay que sustituir al crear una demo nueva. El orden no importa: el script reemplaza primero los más largos.",
+
+  "hosteleria": {
+    "nombre": "Hostelería & Delivery",
+    "emoji": "🍕",
+    "referencia": "pizzeria-angela",
+    "otras_demos": ["vibra"],
+    "competencia": "Uber Eats / Glovo / Last.app / Tappens",
+    "vistas": ["KDS cocina + ticket 80mm", "Bot WhatsApp + pago", "Recepcionista de voz IA", "Nueva web", "Estrategia QR recogida", "Subvención JCCM 80%"],
+    "reemplazar": [
+      "Pizzería Ángela", "PIZZERÍA ÁNGELA", "PIZZERIA ANGELA", "Pizzería Ángela Imaginalia",
+      "IL GUSTO DELL'ITALIA (ALBACETE)", "PIZZERIA ANGELA - IMAGINALIA",
+      "C. Simone de Beauvoir, 3", "C. Simone de Beauvoir 3", "Calle Simone de Beauvoir número 3",
+      "967 60 12 66", "pizzeriaangelaimaginalia.com",
+      "Imaginalia", "IMAGINALIA",
+      "Ángela", "Angela",
+      "logo-angela.jpg", "og-pizzeria-angela.png", "pizzeria-angela"
+    ]
+  },
+
+  "salud": {
+    "nombre": "Clínicas & Salud",
+    "emoji": "🦷",
+    "referencia": "sonrisastar",
+    "otras_demos": ["adela-fisio"],
+    "competencia": "Recepción saturada / llamadas perdidas / web antigua",
+    "vistas": ["Nueva web con cita online", "Recepcionista de voz IA 24/7", "WhatsApp + Instagram", "CRM Kanban", "Subvención JCCM 80%"],
+    "reemplazar": [
+      "Clínica Dental Sonrisastar", "Sonrisastar Albacete", "Sonrisastar", "SONRISA STAR",
+      "c/ Dionisio Guardiola, 2", "Calle Dionisio Guardiola, 2", "Dionisio Guardiola, 2", "calle Dionisio Guardiola", "Dionisio Guardiola",
+      "967 116 136", "967116136", "sonrisastar.com", "@sonrisastar.albacete",
+      "logo-sonrisa.png", "og-dental-sonrisastar.png", "sonrisastar"
+    ]
+  },
+
+  "motor": {
+    "nombre": "Concesionarios, Talleres & Motos",
+    "emoji": "🚗",
+    "referencia": "ruautos",
+    "otras_demos": ["motos"],
+    "competencia": "Coches.net / Wallapop / llamadas perdidas en exposición",
+    "vistas": ["Recepcionista de voz IA", "WhatsApp con stock", "Bandeja omnicanal", "CRM de leads", "Campañas Ads + ROI"],
+    "reemplazar": [
+      "RUAUTOS Albacete", "Ruautos Albacete", "RUAUTOS", "Ruautos",
+      "og-ruautos.jpg", "ruautos"
+    ]
+  },
+
+  "inmobiliaria": {
+    "nombre": "Inmobiliarias",
+    "emoji": "🏠",
+    "referencia": "realestate",
+    "otras_demos": [],
+    "competencia": "Idealista / Fotocasa (leads compartidos con otras agencias)",
+    "vistas": ["Radar €/m² Idealista", "Chatbot WhatsApp 24/7", "Voz IA", "Cartera y cualificación de compradores"],
+    "reemplazar": [
+      "Izon Consulting", "IZON CONSULTING", "IZON", "Izon",
+      "https://www.izonconsulting.es/wp-content/uploads/2019/03/logo-izon-consulting.png",
+      "www.izonconsulting.es", "izonconsulting.es", "izonconsulting",
+      "967 66 00 05", "Calle Rosario", "C/ Rosario"
+    ]
+  },
+
+  "belleza": {
+    "nombre": "Peluquerías, Estética & Barberías",
+    "emoji": "✂️",
+    "referencia": "salon224",
+    "otras_demos": [],
+    "competencia": "Fresha / Booksy / Treatwell (cuotas por estilista y comisiones)",
+    "vistas": ["Recepcionista de voz IA", "WhatsApp con agenda", "Multi-salón", "CRM de recordatorios", "Ahorro vs Fresha"],
+    "reemplazar": [
+      "Salón 224", "SALÓN 224",
+      "C/ Torres Quevedo 8", "Calle Torres Quevedo 8", "Torres Quevedo",
+      "967 105 930"
+    ]
+  }
+}

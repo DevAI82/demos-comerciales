@@ -1,0 +1,30 @@
+[
+  {
+    "text": "¡Gasss! Gracias por llamar a Motor Gas Bike Albacete, concesionario oficial KTM y taller multimarca. Te atiende Álex, tu asistente virtual. ¿Quieres pedir cita para el taller o información sobre alguna moto?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Perfecto! Para la KTM 790 Adventure tenemos en stock el kit de aceite Motorex oficial, filtros originales y pastillas Brembo. El importe estimado de la revisión completa con mano de obra incluida es de aproximadamente 195€. En nuestro taller de Calle Casas Ibáñez tenemos un elevador disponible para este martes a las nueve y media de la mañana. ¿Te viene bien ese día?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Estupendo! Te dejamos el hueco reservado para el martes a las nueve y media. La tenemos lista en unas tres horas. Te acabo de enviar un WhatsApp al móvil con la confirmación de la cita y la ubicación exacta de nuestro taller en Albacete. ¡Nos vemos el martes!",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola! Bienvenido a Motor Gas Bike Albacete. Te atiende Álex. ¿En qué modelo de moto estás interesado?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Sí, la tenemos en exposición en tienda en color Zephyr Blue! Su precio es de 5.990€ y ahora mismo tenemos promoción con la matriculación de regalo y primera revisión incluida. ¿Quieres pasarte esta tarde o el sábado a verla y subirte para comprobar la altura?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Buenas! Motor Gas Bike Albacete. ¿Buscas equipamiento de boutique o recambios para tu moto?",
+    "role": "agent"
+  },
+  {
+    "text": "Tenemos amplia variedad de cascos Airoh, Shoei y Scorpion, además de chaquetas Alpinestars y Revit con forro térmico impermeable. Si te pasas por nuestra boutique en Calle Casas Ibáñez te ayudamos a probarte la talla correcta. Abrimos de diez a dos y de cuatro y media a ocho y media.",
+    "role": "agent"
+  }
+]

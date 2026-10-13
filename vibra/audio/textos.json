@@ -1,0 +1,50 @@
+[
+  {
+    "text": "¡Hey! Qué pasa, soy el asistente de Vibra Burger Albacete. ¿Te marcho una Doble Trufada o qué te apetece hoy?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hey! Qué pasa, bienvenido a Vibra Burger Albacete. Estamos a tope con las planchas de smash, pero te tomo nota al vuelo. ¿Para qué hora quieres tu pedido para recoger en Av. de la Mancha?",
+    "role": "agent"
+  },
+  {
+    "text": "Hola, quería dos smash dobles con queso y patatas para las diez menos veinte, ¿puede ser?",
+    "role": "client"
+  },
+  {
+    "text": "¡Hecho! Dos smash dobles con patatas para las 21:40h en punto. Te acabo de mandar por WhatsApp el link para pagarlas por Bizum o tarjeta y que solo tengas que llegar y recoger sin cola. ¡Nos vemos ahora!",
+    "role": "agent"
+  },
+  {
+    "text": "Usamos carne cien por cien vaca rubia gallega madurada cuarenta días, aplastada al milímetro sobre plancha de cromo duro para caramelizar la costra crujiente perfecta.",
+    "role": "agent"
+  },
+  {
+    "text": "¡Sí! Tenemos la Vibra Plant Smash con doble medallón vegetal, queso cheddar fundido y nuestra salsa secreta Vibra en pan brioche artesano tostado con mantequilla.",
+    "role": "agent"
+  },
+  {
+    "text": "Nuestro tiempo medio en plancha es de doce a quince minutos. Te mandamos aviso al WhatsApp en cuanto esté embolsado en la barra de recogida.",
+    "role": "agent"
+  },
+  {
+    "text": "Estamos en Avenida de la Mancha número 2, en Albacete. Llegas, dices tu nombre o enseñas el WhatsApp, y te llevas tus burgers calentitas sin esperar cola.",
+    "role": "agent"
+  },
+  {
+    "text": "¡Oído cocina! Dos minutos y te lo marcho a plancha de cromo.",
+    "role": "agent"
+  },
+  {
+    "text": "¡Buena elección! Te recomiendo la Bacon Cheese Doble con cebolla caramelizada. ¿La quieres sola o en menú con patatas y bebida?",
+    "role": "agent"
+  },
+  {
+    "text": "Ahora mismo tenemos las planchas listas, en 15 minutos exactos lo tienes listo para recoger en Avenida de la Mancha número 2.",
+    "role": "agent"
+  },
+  {
+    "text": "Tenemos opción cien por cien vegetal y nuestra carne de vaca rubia gallega madurada cuarenta días.",
+    "role": "agent"
+  }
+]

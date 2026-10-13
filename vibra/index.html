@@ -100,7 +100,17 @@
       background-image: radial-gradient(#000000 0.5px, transparent 0.5px);
       background-size: 8px 8px;
     }
+    /* Imprimir solo el ticket térmico de 80mm */
+    @media print {
+      body * { visibility: hidden !important; }
+      .thermal-receipt, .thermal-receipt * { visibility: visible !important; }
+      .thermal-receipt { position: absolute; left: 0; top: 0; width: 80mm; box-shadow: none; background-image: none; }
+    }
   </style>
+  <!-- Motor de voz Altera: audios pregenerados + desbloqueo móvil + modo dev (.env) -->
+  <script src="../shared/altera-voice.js"></script>
+  <script src="../shared/altera-config.js"></script>
+  <script src="../shared/altera-cta.js" defer></script>
 </head>
 <body class="bg-vibra-dark text-stone-100 antialiased min-h-screen flex flex-col selection:bg-vibra-neonpink selection:text-white">
 
@@ -237,7 +247,7 @@
                   <tr class="hover:bg-stone-900/50">
                     <td class="p-3 font-semibold text-white">Costes de Software</td>
                     <td class="p-3 text-red-400">Cuota SaaS recurrente + comisiones</td>
-                    <td class="p-3 font-bold text-emerald-400 bg-pink-950/20">0 € en cuotas (VPS propio en Coolify)</td>
+                    <td class="p-3 font-bold text-emerald-400 bg-pink-950/20">99 €/mes fijos · 0% comisión por pedido</td>
                   </tr>
                   <tr class="hover:bg-stone-900/50">
                     <td class="p-3 font-semibold text-white">Pedidos por Notas de Voz</td>
@@ -577,7 +587,7 @@
               </div>
 
               <!-- BOTÓN NOTIFICACIÓN WHATSAPP -->
-              <div class="mt-3 p-2 bg-emerald-950/50 rounded-lg border border-emerald-800/40 flex items-center justify-between gap-1.5">
+              <div data-aviso class="mt-3 p-2 bg-emerald-950/50 rounded-lg border border-emerald-800/40 flex items-center justify-between gap-1.5">
                 <span class="text-[11px] text-emerald-300 flex items-center gap-1">📲 Aviso:</span>
                 <button onclick="enviarAvisoVibra('Marcos T.', '#202')" class="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">
                   Avisar por WhatsApp
@@ -793,7 +803,7 @@
               <label class="text-[10px] font-bold text-pink-400 uppercase tracking-wider flex items-center gap-1">
                 <span>✨ Motor de Audio: ElevenLabs</span>
               </label>
-              <button onclick="toggleElevenConfigVibra()" class="text-[10px] text-stone-400 hover:text-white underline">
+              <button data-altera-dev onclick="toggleElevenConfigVibra()" class="text-[10px] text-stone-400 hover:text-white underline">
                 Configurar API Key
               </button>
             </div>
@@ -834,11 +844,11 @@
               </div>
             </div>
 
-            <div class="bg-pink-950/30 border border-pink-800/40 p-2 rounded-lg text-[10px] text-pink-200/90 leading-relaxed">
+            <div data-altera-dev class="bg-pink-950/30 border border-pink-800/40 p-2 rounded-lg text-[10px] text-pink-200/90 leading-relaxed">
               💡 <strong>Nota para la venta a Vibra:</strong> Este prototipo local utiliza el sintetizador de tu navegador como maqueta previa. En la instalación final de Altera se conecta **ElevenLabs Conversational AI**, con voz joven, urbana y dinámica, indistinguible de un dependiente real.
             </div>
 
-            <div class="pt-1">
+            <div data-altera-dev class="pt-1">
               <label class="text-[10px] text-stone-400 block mb-1">Voz del Navegador (Test Local):</label>
               <select id="select-voice-vibra" class="w-full bg-stone-900 text-stone-300 border border-stone-800 rounded-lg p-1.5 text-xs focus:ring-1 focus:ring-pink-500 focus:outline-none">
                 <option value="">Cargando voces del sistema...</option>
@@ -953,7 +963,7 @@
               <span>📲 Coste de Envíos WhatsApp Business API (Meta Platforms)</span>
             </h3>
             <p class="text-xs text-stone-400 mt-0.5">
-              Altera cobra su cuota fija de mantenimiento (120-150€/mes). Los consumos por plantilla de WhatsApp los factura <strong>Meta directamente a la tarjeta del cliente</strong> al coste oficial sin sobrecostes.
+              Altera cobra su cuota fija de mantenimiento (99 €/mes). Los consumos por plantilla de WhatsApp los factura <strong>Meta directamente a la tarjeta del cliente</strong> al coste oficial sin sobrecostes.
             </p>
           </div>
           <span class="text-[11px] bg-emerald-950 text-emerald-300 border border-emerald-800/40 px-3 py-1 rounded-full font-mono font-bold whitespace-nowrap">
@@ -1016,7 +1026,7 @@
     <!-- ======================================================================= -->
     <!-- VISTA 6: SUBVENCIÓN JCCM 80% (BONO CRECIMIENTO PYME)                  -->
     <!-- ======================================================================= -->
-    <section id="jccm" class="view-content hidden space-y-6">
+    <section id="view-jccm" class="view-content hidden space-y-6">
       <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-semibold mb-2 border border-emerald-800/40">
@@ -1285,14 +1295,21 @@
 
       colTarget.appendChild(ticket);
 
-      const btnArea = ticket.querySelector('.mt-3') || ticket.querySelector('.pt-2.5') || ticket.querySelector('.border-t:last-of-type');
+      // La barra de acciones es siempre el último bloque del ticket. Guardamos la llamada
+      // original al ticket 80mm para no perder cliente/importe al mover entre columnas.
+      ticket.querySelectorAll(':scope > [data-aviso]').forEach(el => el.remove());
+      const btnArea = ticket.lastElementChild;
+      const printBtn = btnArea ? btnArea.querySelector('[onclick^="verTicketTermicoVibra"]') : null;
+      if (printBtn && !ticket.dataset.print) ticket.dataset.print = printBtn.getAttribute('onclick');
+      const printCall = ticket.dataset.print || `verTicketTermicoVibra(${id}, 'Cliente', '21:15', ['Comanda #${id}'], '—', 'KDS', 'PAGADO')`;
+      const clienteNombre = (ticket.querySelector('strong') || {}).textContent || ('Cliente #' + id);
       ticket.classList.remove('border-sky-900/60', 'border-amber-500/50', 'border-pink-900/60', 'border-emerald-900/60');
 
       if (targetCol === 'reception') {
         ticket.classList.add('border-sky-900/60');
         if (btnArea) {
           btnArea.innerHTML = `
-            <button onclick="verTicketTermicoVibra(${id}, 'Cliente', '21:15', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="${printCall}" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
             <button onclick="avanzarTicketVibra(${id}, 'prep')" class="text-[11px] font-bold text-white bg-sky-600 hover:bg-sky-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>👉 Aceptar a Montaje &rarr;</span></button>
           `;
         }
@@ -1301,7 +1318,7 @@
         if (btnArea) {
           btnArea.innerHTML = `
             <button onclick="retrocederTicketVibra(${id}, 'reception')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
-            <button onclick="verTicketTermicoVibra(${id}, 'Cliente', '21:15', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="${printCall}" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
             <button onclick="avanzarTicketVibra(${id}, 'grill')" class="text-[11px] font-bold text-white bg-pink-600 hover:bg-pink-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>🔥 A Plancha Smash &rarr;</span></button>
           `;
         }
@@ -1310,7 +1327,7 @@
         if (btnArea) {
           btnArea.innerHTML = `
             <button onclick="retrocederTicketVibra(${id}, 'prep')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
-            <button onclick="verTicketTermicoVibra(${id}, 'Cliente', '21:15', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="${printCall}" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
             <button onclick="avanzarTicketVibra(${id}, 'ready')" class="text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>✅ Embolsar con Papas &rarr;</span></button>
           `;
         }
@@ -1321,7 +1338,7 @@
             <div class="w-full space-y-2">
               <div class="p-2 bg-emerald-950/50 rounded-lg border border-emerald-800/40 flex items-center justify-between gap-1.5">
                 <span class="text-[11px] text-emerald-300 flex items-center gap-1">📲 Aviso:</span>
-                <button onclick="enviarAvisoVibra('Cliente #${id}', '#${id}')" class="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">Avisar por WhatsApp</button>
+                <button onclick="enviarAvisoVibra('${clienteNombre}', '#${id}')" class="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">Avisar por WhatsApp</button>
               </div>
               <div class="flex items-center justify-between gap-2">
                 <button onclick="retrocederTicketVibra(${id}, 'grill')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
@@ -1397,8 +1414,9 @@
       }
     }
 
+    let siguienteIdVibra = 215;
     function simularPedidoVibra() {
-      const nextId = Math.floor(Math.random() * 80) + 215;
+      const nextId = siguienteIdVibra++;
       const colReception = document.getElementById('vibra-col-reception');
       if (!colReception) return;
 
@@ -1427,6 +1445,7 @@
       `;
       colReception.prepend(div);
       setTimeout(() => div.classList.remove('animate-pulse'), 1000);
+      actualizarContadoresVibra();
     }
 
     function enviarAvisoVibra(cliente, id) {
@@ -1455,9 +1474,24 @@
     function cerrarTicketVibra() {
       document.getElementById('modal-ticket-vibra').classList.add('hidden');
     }
+    document.getElementById('modal-ticket-vibra').addEventListener('click', e => {
+      if (e.target.id === 'modal-ticket-vibra') cerrarTicketVibra();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarTicketVibra(); });
 
     // Chat
+    function scrollChatVibra() {
+      const box = document.getElementById('chat-messages-vibra');
+      if (box) requestAnimationFrame(() => { box.scrollTop = box.scrollHeight; });
+    }
+    function escapeHtmlVibra(t) {
+      return t.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
     function repetirPedidoVibra() {
+      const btnReorder = document.getElementById('btn-reorder');
+      if (btnReorder && btnReorder.disabled) return;
+      if (btnReorder) { btnReorder.disabled = true; btnReorder.classList.add('opacity-60'); }
       const dyn = document.getElementById('dynamic-chat-vibra');
       dyn.innerHTML += `
         <div class="flex items-end justify-end gap-1">
@@ -1478,9 +1512,12 @@
           </div>
         </div>
       `;
+      scrollChatVibra();
     }
 
     function pagarStripeVibra(btn) {
+      if (btn.disabled) return;
+      btn.disabled = true;
       btn.innerHTML = '🔄 Procesando...';
       setTimeout(() => {
         btn.innerHTML = '✅ Pagado con Stripe / Apple Pay';
@@ -1494,6 +1531,7 @@
             </div>
           </div>
         `;
+        scrollChatVibra();
       }, 900);
     }
 
@@ -1506,12 +1544,13 @@
       dyn.innerHTML += `
         <div class="flex items-end justify-end gap-1">
           <div class="bg-[#dcf8c6] p-2.5 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-stone-900">
-            <p>${val}</p>
+            <p>${escapeHtmlVibra(val)}</p>
             <span class="text-[9px] text-stone-400 block text-right mt-0.5">Ahora ✓✓</span>
           </div>
         </div>
       `;
       input.value = '';
+      scrollChatVibra();
 
       setTimeout(() => {
         dyn.innerHTML += `
@@ -1522,12 +1561,19 @@
             </div>
           </div>
         `;
+        scrollChatVibra();
       }, 700);
     }
 
     function reiniciarChatVibra() {
       document.getElementById('dynamic-chat-vibra').innerHTML = '';
+      const btnReorder = document.getElementById('btn-reorder');
+      if (btnReorder) { btnReorder.disabled = false; btnReorder.classList.remove('opacity-60'); }
     }
+    document.getElementById('chat-input-vibra').addEventListener('keydown', e => {
+      if (e.key === 'Enter') enviarMensajeVibra();
+    });
+    actualizarContadoresVibra();
 
     // =======================================================================
     // MOTOR DE VOZ IA REAL VIBRA BURGER (Web Speech API + Web Audio API)
@@ -1537,6 +1583,7 @@
     let callTimerIntervalVibra = null;
     let callSecondsVibra = 0;
     let isCallActiveVibra = false;
+    let callSessionVibra = 0;
     let speechRecVibra = null;
 
     function getAudioContextVibra() {
@@ -1852,7 +1899,8 @@
 
     async function speakWithElevenLabsVibra(text, isBot, onEndCallback) {
       const apiKey = localStorage.getItem('elevenlabs_api_key');
-      if (!apiKey) return false;
+      const cachedUrl = window.AlteraVoice ? await window.AlteraVoice.cachedUrl(text) : null;
+      if (!apiKey && !cachedUrl) return false;
 
       let voiceId = localStorage.getItem('elevenlabs_voice_id');
       const voiceSelect = document.getElementById('eleven-voice-select-vibra');
@@ -1867,33 +1915,36 @@
       const msg = document.getElementById('eleven-status-msg-vibra');
 
       try {
-        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'audio/mpeg',
-            'Content-Type': 'application/json',
-            'xi-api-key': apiKey
-          },
-          body: JSON.stringify({
-            text: text,
-            model_id: 'eleven_multilingual_v2',
-            voice_settings: { stability: 0.45, similarity_boost: 0.85 }
-          })
-        });
+        let audioUrl = cachedUrl;
+        if (!audioUrl) {
+          const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'audio/mpeg',
+              'Content-Type': 'application/json',
+              'xi-api-key': apiKey
+            },
+            body: JSON.stringify({
+              text: text,
+              model_id: 'eleven_multilingual_v2',
+              voice_settings: { stability: 0.45, similarity_boost: 0.85 }
+            })
+          });
 
-        if (!res.ok) {
-          const errDetail = await res.text();
-          console.warn("ElevenLabs API error:", res.status, errDetail);
-          if (msg) {
-            msg.innerHTML = `⚠️ <strong>ElevenLabs Error (${res.status}):</strong> ${errDetail.substring(0, 110)}... Usando voz del navegador de respaldo.`;
-            msg.className = 'text-[10px] text-pink-300 p-2 rounded bg-pink-950/50 border border-pink-800/70 block';
+          if (!res.ok) {
+            const errDetail = await res.text();
+            console.warn("ElevenLabs API error:", res.status, errDetail);
+            if (msg) {
+              msg.innerHTML = `⚠️ <strong>ElevenLabs Error (${res.status}):</strong> ${errDetail.substring(0, 110)}... Usando voz del navegador de respaldo.`;
+              msg.className = 'text-[10px] text-pink-300 p-2 rounded bg-pink-950/50 border border-pink-800/70 block';
+            }
+            return false;
           }
-          return false;
-        }
 
-        const blob = await res.blob();
-        const audioUrl = URL.createObjectURL(blob);
-        const audio = new Audio(audioUrl);
+          const blob = await res.blob();
+          audioUrl = URL.createObjectURL(blob);
+        }
+        const audio = (window.AlteraVoice ? window.AlteraVoice.getPlayer(audioUrl) : new Audio(audioUrl));
         currentElevenAudioVibra = audio;
 
         const wave = document.getElementById('voice-wave-container-vibra');
@@ -2030,6 +2081,8 @@
     function reproducirLlamadaVibra() {
       detenerAudioVibra();
       isCallActiveVibra = true;
+      const session = callSessionVibra;
+      const sigue = () => isCallActiveVibra && session === callSessionVibra;
 
       const st = document.getElementById('call-status-vibra');
       const btn = document.getElementById('btn-play-call-vibra');
@@ -2039,7 +2092,7 @@
       st.className = 'inline-block mt-2 text-xs bg-pink-950 text-pink-300 border border-pink-500/40 px-3 py-1 rounded-full font-mono';
 
       playRingVibra(() => {
-        if (!isCallActiveVibra) return;
+        if (!sigue()) return;
         playClickVibra();
         startTimerVibra();
 
@@ -2053,28 +2106,29 @@
         const texto1 = "¡Hey! Qué pasa, bienvenido a Vibra Burger Albacete. Estamos a tope con las planchas de smash, pero te tomo nota al vuelo. ¿Para qué hora quieres tu pedido para recoger en Av. de la Mancha?";
 
         speakTextVibra(texto1, true, () => {
-          if (!isCallActiveVibra) return;
+          if (!sigue()) return;
 
           // Paso 2: Cliente
           setTimeout(() => {
-            if (!isCallActiveVibra) return;
+            if (!sigue()) return;
             limpiarBubblesVibra();
             document.getElementById('bubble-vibra-client-1')?.classList.add('transcript-client-active');
 
             const texto2 = "Hola, quería dos smash dobles con queso y patatas para las diez menos veinte, ¿puede ser?";
 
             speakTextVibra(texto2, false, () => {
-              if (!isCallActiveVibra) return;
+              if (!sigue()) return;
 
               // Paso 3: Bot Vibra confirmación
               setTimeout(() => {
-                if (!isCallActiveVibra) return;
+                if (!sigue()) return;
                 limpiarBubblesVibra();
                 document.getElementById('bubble-vibra-2')?.classList.add('transcript-active');
 
                 const texto3 = "¡Hecho! Dos smash dobles con patatas para las 21:40h en punto. Te acabo de mandar por WhatsApp el link para pagarlas por Bizum o tarjeta y que solo tengas que llegar y recoger sin cola. ¡Nos vemos ahora!";
 
                 speakTextVibra(texto3, true, () => {
+                  if (!sigue()) return;
                   finalizarLlamadaVibraExitosa();
                 });
               }, 700);
@@ -2137,7 +2191,9 @@
       st.className = 'inline-block mt-2 text-xs bg-pink-950 text-pink-300 border border-pink-500/40 px-3 py-1 rounded-full font-mono';
 
       playClickVibra();
+      const session = callSessionVibra;
       speakTextVibra(texto, true, () => {
+        if (session !== callSessionVibra) return;
         st.innerHTML = '● Respuesta completada · Pulsa otra pregunta o reproduce la llamada';
         st.className = 'inline-block mt-2 text-xs bg-stone-800 text-stone-300 px-3 py-1 rounded-full font-mono';
         isCallActiveVibra = false;
@@ -2233,6 +2289,7 @@
 
     function detenerAudioVibra() {
       isCallActiveVibra = false;
+      callSessionVibra++;
       stopTimerVibra();
 
       if (currentElevenAudioVibra) {

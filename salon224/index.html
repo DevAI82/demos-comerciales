@@ -103,6 +103,10 @@
       border-radius: 4px;
     }
   </style>
+  <!-- Motor de voz Altera: audios pregenerados + desbloqueo móvil + modo dev (.env) -->
+  <script src="../shared/altera-voice.js"></script>
+  <script src="../shared/altera-config.js"></script>
+  <script src="../shared/altera-cta.js" defer></script>
 </head>
 <body class="bg-[#FAF8F5] text-stone-900 font-sans antialiased min-h-screen flex flex-col">
 
@@ -135,7 +139,7 @@
       </nav>
 
       <!-- PRESENTATION LINK -->
-      <a href="VER%20PRESENTACION.html" class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold text-gold-300 hover:text-white transition">
+      <a href="propuesta.html" class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold text-gold-300 hover:text-white transition">
         <span>📄 Ver Dossier Comercial &rarr;</span>
       </a>
     </div>
@@ -1247,7 +1251,9 @@
       resetCallTranscript();
     }
 
+    let salonCallId = 0;
     function startCallSimulation() {
+      salonCallId++;
       document.getElementById('btnStartCall').classList.add('hidden');
       document.getElementById('btnEndCall').classList.remove('hidden');
       document.getElementById('callStatusText').textContent = "Llamada en Curso (Conectado)";
@@ -1280,6 +1286,10 @@
       document.getElementById('callAvatarRing').classList.remove('scale-125', 'bg-gold-400/30');
       document.getElementById('interactiveCallPrompt').classList.add('hidden');
       if (window.speechSynthesis) window.speechSynthesis.cancel();
+      if (currentElevenAudioSalon) {
+        try { currentElevenAudioSalon.pause(); } catch(e) {}
+        currentElevenAudioSalon = null;
+      }
     }
 
     function resetCallTranscript() {
@@ -1322,6 +1332,8 @@
           document.getElementById('freshaConfirmationCard').classList.remove('hidden');
           tBox.scrollTop = tBox.scrollHeight;
         }, 1200);
+        const idLlamada = salonCallId;
+        setTimeout(() => { if (idLlamada === salonCallId) endCallSimulation(); }, Math.max(6000, stepData.ai.length * 80));
         return;
       }
 
@@ -1364,33 +1376,37 @@
 
     async function speakWithElevenLabsSalon(text, onEndCallback = null) {
       const apiKey = localStorage.getItem('elevenlabs_api_key');
-      if (!apiKey) return false;
+      const cachedUrl = window.AlteraVoice ? await window.AlteraVoice.cachedUrl(text) : null;
+      if (!apiKey && !cachedUrl) return false;
 
       const voiceId = localStorage.getItem('elevenlabs_voice_id_salon') || 'uQw4jpKzMLrZuo0RLPS9'; // Laura (Customer Service)
 
       try {
-        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'audio/mpeg',
-            'Content-Type': 'application/json',
-            'xi-api-key': apiKey
-          },
-          body: JSON.stringify({
-            text: text,
-            model_id: 'eleven_multilingual_v2',
-            voice_settings: { stability: 0.5, similarity_boost: 0.8 }
-          })
-        });
+        let audioUrl = cachedUrl;
+        if (!audioUrl) {
+          const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'audio/mpeg',
+              'Content-Type': 'application/json',
+              'xi-api-key': apiKey
+            },
+            body: JSON.stringify({
+              text: text,
+              model_id: 'eleven_multilingual_v2',
+              voice_settings: { stability: 0.5, similarity_boost: 0.8 }
+            })
+          });
 
-        if (!res.ok) {
-          console.warn("ElevenLabs Salon notice:", res.status);
-          return false;
+          if (!res.ok) {
+            console.warn("ElevenLabs Salon notice:", res.status);
+            return false;
+          }
+
+          const blob = await res.blob();
+          audioUrl = URL.createObjectURL(blob);
         }
-
-        const blob = await res.blob();
-        const audioUrl = URL.createObjectURL(blob);
-        const audio = new Audio(audioUrl);
+        const audio = (window.AlteraVoice ? window.AlteraVoice.getPlayer(audioUrl) : new Audio(audioUrl));
         currentElevenAudioSalon = audio;
 
         audio.onended = () => {

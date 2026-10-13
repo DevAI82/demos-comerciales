@@ -916,8 +916,9 @@
 
   <!-- ================= SCRIPTS INTERACTIVOS ================= -->
   <script>
-    const RAPIDAPI_KEY = "350e9fe98cmshffb3d841c773c02p1f94b9jsnb998be962c89";
-    const RAPIDAPI_HOST = "idealista17.p.rapidapi.com";
+    // La clave de RapidAPI NO va en el código (repo y web son públicos). En local se carga
+    // desde .env con `node scripts/dev-server.mjs`; en la web pública se muestran los testigos.
+    const RAPIDAPI_HOST = localStorage.getItem('rapidapi_host') || "idealista17.p.rapidapi.com";
 
     // --- BASE DE DATOS REAL DE INMUEBLES DE IZON CONSULTING (SCRAPED DIRECTAMENTE DE SU WEB) ---
     const CARTERA_IZON = [
@@ -1571,8 +1572,10 @@
       const t0 = performance.now();
 
       try {
+        const rapidApiKey = localStorage.getItem('rapidapi_key') || '';
+        if (!rapidApiKey) throw new Error('RAPIDAPI_KEY no configurada (solo en local con .env)');
         const headers = {
-          "x-rapidapi-key": RAPIDAPI_KEY,
+          "x-rapidapi-key": rapidApiKey,
           "x-rapidapi-host": RAPIDAPI_HOST
         };
 
