@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SALÓN 224 — Prototipo Interactivo | Asistente Telefónico, WhatsApp Bot & CRM Propio</title>
+  <meta name="description" content="Prototipo interactivo de alta fidelidad para Salón 224: Asistente de llamadas con IA (ElevenLabs), Chatbot de WhatsApp (Zernio), integración con Fresha y CRM propio.">
+
+  <!-- Open Graph / WhatsApp / Redes Sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="SALÓN 224 · Plataforma Digital">
+  <meta property="og:title" content="SALÓN 224 — Prototipo Interactivo de Automatización & CRM">
+  <meta property="og:description" content="Demostración interactiva: Asistente telefónico con ElevenLabs, bot de WhatsApp con Zernio, conexión a Fresha y CRM propio.">
+  <meta property="og:image" content="og-salon-224.jpg">
+  <meta property="og:image:secure_url" content="og-salon-224.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logotipo Oficial Salón 224 y Prototipo Interactivo">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SALÓN 224 — Prototipo Interactivo">
+  <meta name="twitter:description" content="Demostración en vivo: Asistente de llamadas, WhatsApp bot, CRM y calculadora de ahorro.">
+  <meta name="twitter:image" content="og-salon-224.jpg">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond (Elegance/Luxury Hair), Plus Jakarta Sans (Clean UI), Caveat (Notes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50: '#faf7f2',
+              100: '#f3ece0',
+              200: '#e7d8c0',
+              300: '#d7be98',
+              400: '#c5a880',
+              500: '#b89569',
+              600: '#a37e54',
+              700: '#856342',
+              800: '#6d5138',
+              900: '#5a4330',
+              950: '#322419',
+            },
+            noir: {
+              800: '#222220',
+              850: '#1a1a19',
+              900: '#141413',
+              950: '#0c0c0b',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Cormorant Garamond"', 'serif'],
+            hand: ['"Caveat"', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(197, 168, 128, 0.25);
+    }
+    .glass-dark {
+      background: rgba(20, 20, 19, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(197, 168, 128, 0.2);
+    }
+    .spring-hover {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    }
+    .spring-hover:hover {
+      transform: translateY(-3px);
+    }
+    /* Waveform animation */
+    .wave-bar {
+      animation: wave 1.2s ease-in-out infinite alternate;
+    }
+    @keyframes wave {
+      0% { height: 15%; }
+      50% { height: 95%; }
+      100% { height: 35%; }
+    }
+    /* Chat scroll styling */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #c5a880;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[#FAF8F5] text-stone-900 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- TOP BAR CONTROL MOCKUP (Selector de Vistas Global) -->
+  <header class="sticky top-0 z-50 bg-noir-950 text-white px-4 py-2.5 shadow-xl border-b border-gold-400/20">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <span class="text-xs font-bold tracking-widest uppercase text-gold-300">SALÓN 224 — PROTOTIPO INTERACTIVO</span>
+        <span class="hidden sm:inline-block text-xs bg-gold-950 text-gold-300 px-2.5 py-0.5 rounded border border-gold-500/30">Albacete & Alicante</span>
+      </div>
+
+      <!-- VIEW SELECTOR BUTTONS -->
+      <nav class="flex items-center flex-wrap gap-1.5 text-xs font-medium" id="viewNav">
+        <button onclick="switchView('phone')" id="btn-phone" class="view-btn px-3 py-1.5 rounded-lg bg-gold-400 text-noir-950 font-bold transition flex items-center gap-1.5">
+          <span>🎙️</span> <span>1. Asistente Voz (ElevenLabs)</span>
+        </button>
+        <button onclick="switchView('whatsapp')" id="btn-whatsapp" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
+          <span>💬</span> <span>2. WhatsApp Bot (Zernio)</span>
+        </button>
+        <button onclick="switchView('crm')" id="btn-crm" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
+          <span>💈</span> <span>3. CRM Salón 224</span>
+        </button>
+        <button onclick="switchView('inbox')" id="btn-inbox" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
+          <span>📥</span> <span>4. Bandeja Omnicanal</span>
+        </button>
+        <button onclick="switchView('calculator')" id="btn-calculator" class="view-btn px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-900 transition flex items-center gap-1.5 font-semibold">
+          <span>💰</span> <span>5. Calculadora Ahorro Fresha</span>
+        </button>
+      </nav>
+
+      <!-- PRESENTATION LINK -->
+      <a href="VER%20PRESENTACION.html" class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold text-gold-300 hover:text-white transition">
+        <span>📄 Ver Dossier Comercial &rarr;</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- BANNER EXPLICATIVO SUPERIOR -->
+  <div class="bg-gradient-to-r from-noir-900 via-stone-900 to-noir-900 text-stone-300 text-xs py-2 px-4 border-b border-gold-400/20">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="bg-gold-500/20 text-gold-300 px-2 py-0.5 rounded text-[11px] font-bold">Fase 1 + Fase 2</span>
+        <span>Demostración de cómo la IA atiende el teléfono fijo y WhatsApp conectándose a Fresha, y cómo el CRM propio ahorra las suscripciones.</span>
+      </div>
+      <div class="text-[11px] text-stone-400">
+        💡 <em>Haz clic en los botones interactivos para probar cada flujo</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+    <!-- ========================================================================= -->
+    <!-- VISTA 1: ASISTENTE DE VOZ TELEFÓNICO (ELEVENLABS)                          -->
+    <!-- ========================================================================= -->
+    <section id="view-phone" class="view-content space-y-6">
+      
+      <!-- HEADER VISTA 1 -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
+        <div>
+          <span class="text-xs font-bold text-gold-600 uppercase tracking-widest">Fase 1 · Voz Ultra-Realista en Español</span>
+          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">
+            Asistente Telefónico 24/7 para Salón 224
+          </h1>
+          <p class="text-sm text-stone-600 max-w-3xl mt-1">
+            Atiende las llamadas al teléfono del salón (967 105 930) sin esperas. Desarrollado con <strong>ElevenLabs Conversational AI</strong>, entiende peticiones en lenguaje natural, consulta huecos libres en <strong>Fresha</strong> y agenda citas automáticamente sin que el equipo interrumpa un peinado o color.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Línea 967 105 930 Conectada
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
+            API Fresha Sincronizada
+          </span>
+        </div>
+      </div>
+
+      <!-- SIMULADOR TELEFÓNICO GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- COLUMNA IZQUIERDA: TELÉFONO INTERACTIVO (5 COLS) -->
+        <div class="lg:col-span-5 bg-noir-900 rounded-3xl p-6 text-white shadow-2xl border border-gold-400/30 flex flex-col justify-between min-h-[580px]">
+          
+          <!-- TOP STATUS BAR -->
+          <div class="flex items-center justify-between text-xs text-stone-400 border-b border-stone-800 pb-3">
+            <div class="flex items-center gap-1.5">
+              <span>📶 5G</span>
+              <span>HD Voice</span>
+            </div>
+            <span class="font-mono text-gold-300">09:41 AM</span>
+            <div class="flex items-center gap-1">
+              <span>98%</span>
+              <span>🔋</span>
+            </div>
+          </div>
+
+          <!-- CALL SCREEN CENTER -->
+          <div class="text-center py-6 space-y-4">
+            <div class="relative w-28 h-28 mx-auto">
+              <div id="callAvatarRing" class="absolute inset-0 rounded-full bg-gold-400/20 scale-100 transition-transform duration-500"></div>
+              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="relative z-10 w-28 h-28 rounded-full object-cover border-2 border-gold-400 shadow-xl bg-noir-950 p-2">
+            </div>
+
+            <div>
+              <h2 class="text-xl font-bold font-display text-white tracking-wide">SALÓN 224 — Recepción IA</h2>
+              <p class="text-xs text-gold-300 font-medium">Llamada a: 967 105 930</p>
+              <p id="callStatusText" class="text-xs font-semibold text-emerald-400 mt-1 uppercase tracking-wider">Listo para llamar</p>
+            </div>
+
+            <!-- WAVEFORM ANIMATION (Active during call) -->
+            <div id="waveformHolder" class="h-12 flex items-center justify-center gap-1.5 opacity-30 transition-opacity">
+              <span class="w-1.5 bg-gold-400 rounded-full wave-bar" style="animation-delay: 0.1s; height: 30%"></span>
+              <span class="w-1.5 bg-gold-400 rounded-full wave-bar" style="animation-delay: 0.3s; height: 60%"></span>
+              <span class="w-1.5 bg-gold-300 rounded-full wave-bar" style="animation-delay: 0.2s; height: 90%"></span>
+              <span class="w-1.5 bg-gold-400 rounded-full wave-bar" style="animation-delay: 0.4s; height: 40%"></span>
+              <span class="w-1.5 bg-gold-300 rounded-full wave-bar" style="animation-delay: 0.15s; height: 80%"></span>
+              <span class="w-1.5 bg-gold-400 rounded-full wave-bar" style="animation-delay: 0.25s; height: 50%"></span>
+              <span class="w-1.5 bg-gold-300 rounded-full wave-bar" style="animation-delay: 0.35s; height: 70%"></span>
+            </div>
+
+            <p id="callTimer" class="font-mono text-sm text-stone-400">00:00</p>
+          </div>
+
+          <!-- BOTONES DE ACCIÓN DE LLAMADA -->
+          <div class="space-y-4 pt-4 border-t border-stone-800">
+            <div class="flex items-center justify-center gap-4">
+              <button id="btnStartCall" onclick="startCallSimulation()" class="w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/40 transition flex items-center justify-center gap-2">
+                <span>📞</span> <span>Simular Llamada Entrante</span>
+              </button>
+              <button id="btnEndCall" onclick="endCallSimulation()" class="hidden w-full py-3.5 px-6 rounded-2xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm shadow-lg shadow-red-900/40 transition flex items-center justify-center gap-2">
+                <span>📵</span> <span>Colgar Llamada</span>
+              </button>
+            </div>
+
+            <!-- AUDIO TTS TOGGLE (ElevenLabs + Web Speech API) -->
+            <div class="flex items-center justify-between text-xs text-stone-400 px-2 pt-1 border-t border-stone-800">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="toggleSpeech" checked class="rounded accent-gold-400">
+                <span>Voz hablada activa</span>
+              </label>
+              <div class="flex items-center gap-1.5">
+                <span class="text-[11px] text-amber-300 font-semibold bg-amber-950/80 px-2 py-0.5 rounded border border-amber-500/30">✨ ElevenLabs HD (Laura)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: TRANSCRIPCIÓN EN VIVO & CONEXIÓN FRESHA (7 COLS) -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- SELECCIONADOR DE CASOS DE USO PRECONFIGURADOS -->
+          <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm">
+            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider block mb-2">Selecciona un escenario de prueba para la llamada:</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <button onclick="selectCallScenario(0)" id="scen-0" class="scenario-btn p-2.5 rounded-xl border border-gold-400 bg-gold-50/80 text-left text-xs font-semibold text-stone-900 transition">
+                <span class="block text-gold-700 font-bold">Caso 1: Cita Balayage</span>
+                <span class="text-[11px] text-stone-600 font-normal">Torres Quevedo · Jueves</span>
+              </button>
+              <button onclick="selectCallScenario(1)" id="scen-1" class="scenario-btn p-2.5 rounded-xl border border-stone-200 hover:border-gold-300 text-left text-xs font-semibold text-stone-700 transition">
+                <span class="block text-stone-900 font-bold">Caso 2: Dudas & Precios</span>
+                <span class="text-[11px] text-stone-500 font-normal">Authentic Beauty Concept</span>
+              </button>
+              <button onclick="selectCallScenario(2)" id="scen-2" class="scenario-btn p-2.5 rounded-xl border border-stone-200 hover:border-gold-300 text-left text-xs font-semibold text-stone-700 transition">
+                <span class="block text-stone-900 font-bold">Caso 3: ECI Alicante</span>
+                <span class="text-[11px] text-stone-500 font-normal">Maisonnave · Parking</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- CAJA DE TRANSCRIPCIÓN EN TIEMPO REAL -->
+          <div class="bg-white rounded-2xl border border-stone-200 shadow-sm p-5 space-y-3">
+            <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-bold text-stone-900">Transcripción en Vivo de la Llamada</span>
+                <span id="callStepBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-stone-100 text-stone-600">En espera</span>
+              </div>
+              <button onclick="resetCallTranscript()" class="text-xs text-stone-400 hover:text-stone-700">Reiniciar</button>
+            </div>
+
+            <!-- CONTENEDOR DE MENSAJES DE VOZ -->
+            <div id="transcriptBox" class="h-64 overflow-y-auto custom-scroll space-y-3 pr-2 text-xs">
+              <div class="text-center text-stone-400 py-16">
+                <span>Pulsa "Simular Llamada Entrante" para iniciar la conversación en tiempo real con el Asistente de Voz de Salón 224.</span>
+              </div>
+            </div>
+
+            <!-- ACCIÓN MANUAL PASO A PASO EN LLAMADA -->
+            <div id="interactiveCallPrompt" class="hidden pt-3 border-t border-stone-100 flex items-center justify-between gap-2">
+              <span id="promptText" class="text-xs text-stone-600 italic">¿Qué responde la clienta?</span>
+              <div id="promptButtons" class="flex items-center gap-2">
+                <!-- Se inyectan dinámicamente -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TARJETA DE SINCRONIZACIÓN AUTOMÁTICA CON FRESHA API -->
+          <div id="freshaConfirmationCard" class="hidden bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-4 shadow-md transition-all">
+            <div class="flex items-start gap-3">
+              <span class="text-2xl">⚡</span>
+              <div class="space-y-1 flex-1">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wider">Evento Ejecutado: Fresha API v2 (POST /appointments)</h4>
+                  <span class="text-[11px] font-mono bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded font-bold">Status: 201 Created</span>
+                </div>
+                <p class="text-xs text-emerald-800">
+                  <strong>Cita creada en el calendario de Salón 224:</strong> <span id="freshaCardDetails">Balayage Rubio Iluminación con Alberto en Torres Quevedo para el jueves a las 11:30h.</span>
+                </p>
+                <div class="flex flex-wrap items-center gap-3 pt-2 text-[11px] text-emerald-700">
+                  <span>📱 SMS/WhatsApp de confirmación enviado</span>
+                  <span>📍 Enlace de Maps a C/ Torres Quevedo 8</span>
+                  <span>🔔 Recordatorio programado T-24h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VISTA 2: CHATBOT DE WHATSAPP (ZERNIO)                                      -->
+    <!-- ========================================================================= -->
+    <section id="view-whatsapp" class="view-content hidden space-y-6">
+      
+      <!-- HEADER VISTA 2 -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
+        <div>
+          <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Fase 1 · WhatsApp Business API con Zernio</span>
+          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">
+            Chatbot de WhatsApp 24/7 para Salón 224
+          </h1>
+          <p class="text-sm text-stone-600 max-w-3xl mt-1">
+            Conectado mediante <strong>Zernio</strong> a la API de WhatsApp oficial. Responde preguntas sobre servicios, horarios de los 3 centros, muestra fotografías de trabajos en rubios y balayage, y agenda la cita directamente en Fresha en menos de 60 segundos.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+            <span>✅</span> WhatsApp Verificado Salón 224
+          </span>
+        </div>
+      </div>
+
+      <!-- SIMULADOR WHATSAPP WEB -->
+      <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl border border-stone-200 overflow-hidden flex flex-col md:flex-row min-h-[620px]">
+        
+        <!-- SIDEBAR CHATS (Móvil/Web) -->
+        <div class="w-full md:w-80 bg-stone-50 border-r border-stone-200 flex flex-col">
+          <div class="p-3.5 bg-stone-100 border-b border-stone-200 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <img src="assets/logo-salon-224.webp" alt="Avatar" class="w-8 h-8 rounded-full border border-stone-300 bg-white">
+              <span class="text-xs font-bold text-stone-800">Salón 224 Oficial</span>
+            </div>
+            <span class="text-xs text-stone-400">Zernio Bot v3.4</span>
+          </div>
+
+          <div class="p-2 border-b border-stone-200 bg-white">
+            <input type="text" placeholder="Buscar conversación..." class="w-full text-xs px-3 py-1.5 rounded-lg bg-stone-100 border border-stone-200 focus:outline-none">
+          </div>
+
+          <!-- LISTA DE CHATS -->
+          <div class="flex-1 overflow-y-auto divide-y divide-stone-100 text-xs">
+            <div class="p-3 bg-emerald-50/70 border-l-4 border-emerald-500 cursor-pointer flex items-center gap-3">
+              <div class="relative">
+                <span class="w-9 h-9 rounded-full bg-emerald-200 text-emerald-800 font-bold flex items-center justify-center text-xs">CS</span>
+                <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white"></span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-stone-900 truncate">Clara Sánchez (Tú)</span>
+                  <span class="text-[10px] text-stone-400">Ahora</span>
+                </div>
+                <p class="text-[11px] text-stone-500 truncate" id="lastChatMessagePreview">¡Hola! Quiero información de cita...</p>
+              </div>
+            </div>
+
+            <div class="p-3 hover:bg-stone-100 cursor-pointer flex items-center gap-3 opacity-60">
+              <span class="w-9 h-9 rounded-full bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-xs">LM</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-stone-800 truncate">Laura Martínez</span>
+                  <span class="text-[10px] text-stone-400">10:14</span>
+                </div>
+                <p class="text-[11px] text-stone-500 truncate">Cita confirmada para viernes 16h ✅</p>
+              </div>
+            </div>
+
+            <div class="p-3 hover:bg-stone-100 cursor-pointer flex items-center gap-3 opacity-60">
+              <span class="w-9 h-9 rounded-full bg-amber-200 text-amber-900 font-bold flex items-center justify-center text-xs">PB</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-stone-800 truncate">Patricia Belmonte</span>
+                  <span class="text-[10px] text-stone-400">Ayer</span>
+                </div>
+                <p class="text-[11px] text-stone-500 truncate">Recordatorio: Mañana cita a las 11h</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOTONES DEMO RÁPIDOS EN SIDEBAR -->
+          <div class="p-3 bg-stone-100 border-t border-stone-200 space-y-1.5">
+            <span class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Disparadores Especiales:</span>
+            <button onclick="trigger24hReminder()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold transition flex items-center justify-between">
+              <span>🔔 Enviar Recordatorio 24h</span>
+              <span>&rarr;</span>
+            </button>
+            <button onclick="resetWhatsAppChat()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-stone-50 text-stone-600 border border-stone-200 transition flex items-center justify-between">
+              <span>🔄 Reiniciar Conversación</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- MAIN CHAT PANE -->
+        <div class="flex-1 flex flex-col bg-[#EFEAE2]">
+          
+          <!-- CHAT HEADER -->
+          <div class="p-3 bg-stone-100 border-b border-stone-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-10 h-10 rounded-full border border-stone-300 object-cover bg-black p-1">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs font-bold text-stone-900">SALÓN 224</span>
+                  <span class="text-emerald-600 text-xs">✓</span>
+                </div>
+                <p class="text-[11px] text-emerald-700 font-medium flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Conectado vía Zernio IA · Citas Fresha
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 text-stone-500 text-xs">
+              <span title="Salones">📍 Torres Quevedo / ECI</span>
+              <span>📞 967 105 930</span>
+            </div>
+          </div>
+
+          <!-- MESSAGES CONTAINER -->
+          <div id="waMessagesBox" class="flex-1 p-4 overflow-y-auto custom-scroll space-y-3 text-xs">
+            
+            <!-- FECHA / SEGURIDAD -->
+            <div class="text-center my-2">
+              <span class="bg-amber-100/80 text-amber-900 text-[10px] px-3 py-1 rounded-full shadow-sm">
+                🔒 Los mensajes están cifrados de extremo a extremo. Salón 224 Oficial.
+              </span>
+            </div>
+
+            <!-- BOT WELCOME -->
+            <div class="flex items-start gap-2 max-w-md">
+              <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm space-y-1.5 text-stone-800">
+                <p class="font-semibold text-gold-700 text-[11px]">SALÓN 224 · Asistente Virtual</p>
+                <p>
+                  ¡Hola! ✨ Bienvenida a <strong>SALÓN 224</strong>. ¿En qué podemos ayudarte hoy?
+                </p>
+                <p class="text-[11px] text-stone-600">
+                  Podemos darte cita al instante en cualquiera de nuestros salones en Albacete o Alicante, informarte de nuestros tratamientos estrella o asesorarte en rubios.
+                </p>
+                <span class="text-[9px] text-stone-400 block text-right">09:40</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- QUICK SUGGESTIONS CHIPS -->
+          <div class="bg-stone-50/90 px-3 py-2 border-t border-stone-200 flex flex-wrap gap-1.5" id="waQuickChips">
+            <button onclick="sendUserWAMessage('Quiero pedir cita para Balayage')" class="text-[11px] px-3 py-1 rounded-full bg-white hover:bg-gold-50 border border-stone-300 text-stone-800 font-medium transition">
+              ✨ Cita Balayage / Mechas
+            </button>
+            <button onclick="sendUserWAMessage('¿Qué horario y sedes tenéis en Albacete?')" class="text-[11px] px-3 py-1 rounded-full bg-white hover:bg-gold-50 border border-stone-300 text-stone-800 font-medium transition">
+              📍 Sedes & Horarios
+            </button>
+            <button onclick="sendUserWAMessage('Información de Tratamientos Capilares')" class="text-[11px] px-3 py-1 rounded-full bg-white hover:bg-gold-50 border border-stone-300 text-stone-800 font-medium transition">
+              🌿 Tratamientos Authentic Beauty Concept
+            </button>
+            <button onclick="sendUserWAMessage('Hablar con una estilista humana')" class="text-[11px] px-3 py-1 rounded-full bg-white hover:bg-gold-50 border border-stone-300 text-stone-800 font-medium transition">
+              👩‍🦰 Pasar con Recepción Humana
+            </button>
+          </div>
+
+          <!-- INPUT FORM -->
+          <form onsubmit="handleWASubmit(event)" class="p-2.5 bg-stone-100 border-t border-stone-200 flex items-center gap-2">
+            <input type="text" id="waInputText" placeholder="Escribe un mensaje a Salón 224..." class="flex-1 text-xs px-4 py-2.5 rounded-full bg-white border border-stone-300 focus:outline-none focus:border-gold-500">
+            <button type="submit" class="w-9 h-9 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition shadow">
+              <span>➤</span>
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VISTA 3: CRM PROPIO SALÓN 224 (EL SUSTITUTO DE FRESHA)                    -->
+    <!-- ========================================================================= -->
+    <section id="view-crm" class="view-content hidden space-y-6">
+      
+      <!-- HEADER VISTA 3 -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
+        <div>
+          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Fase 2 · El Sustituto de Fresha (Ahorro 100% Suscripciones)</span>
+          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">
+            CRM Salón 224 — Gestión Multi-Sede & Ficha Técnica
+          </h1>
+          <p class="text-sm text-stone-600 max-w-3xl mt-1">
+            Plataforma propia diseñada exclusivamente para la operativa de Salón 224. Gestiona las 3 sedes sin pagar comisiones por clientes a Fresha, con ficha técnica capilar de colorimetría para cada clienta y agenda optimizada por estilista.
+          </p>
+        </div>
+
+        <!-- SALON SELECTOR TABS -->
+        <div class="inline-flex rounded-xl bg-stone-200 p-1 text-xs font-semibold">
+          <button onclick="setSalonTab('tq')" id="tab-tq" class="salon-tab px-3 py-1.5 rounded-lg bg-white text-stone-900 shadow-sm transition">
+            📍 Torres Quevedo (Centro)
+          </button>
+          <button onclick="setSalonTab('eci-ab')" id="tab-eci-ab" class="salon-tab px-3 py-1.5 rounded-lg text-stone-600 hover:text-stone-900 transition">
+            📍 El Corte Inglés Albacete
+          </button>
+          <button onclick="setSalonTab('eci-alc')" id="tab-eci-alc" class="salon-tab px-3 py-1.5 rounded-lg text-stone-600 hover:text-stone-900 transition">
+            📍 El Corte Inglés Alicante
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI SUMMARY CARDS (ESTILO SAAS FACTORY BENTO GRID) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
+          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Citas Confirmadas Hoy</span>
+          <div class="flex items-baseline justify-between mt-2">
+            <span class="text-2xl font-bold font-display text-stone-900" id="crmKpiAppointments">18 Citas</span>
+            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">+4 vía IA</span>
+          </div>
+          <span class="text-[11px] text-stone-400 mt-1 block">Ocupación estimada: 92%</span>
+        </div>
+
+        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
+          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Facturación Estimada Hoy</span>
+          <div class="flex items-baseline justify-between mt-2">
+            <span class="text-2xl font-bold font-display text-gold-700">1.485 €</span>
+            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Ticket medio 82,5€</span>
+          </div>
+          <span class="text-[11px] text-stone-400 mt-1 block">Balayage & Color dominan</span>
+        </div>
+
+        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
+          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Ahorro Mensual vs Fresha</span>
+          <div class="flex items-baseline justify-between mt-2">
+            <span class="text-2xl font-bold font-display text-emerald-700">+1.140 €/mes</span>
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">0% Comisiones</span>
+          </div>
+          <span class="text-[11px] text-stone-400 mt-1 block">Sin comisión de marketplace</span>
+        </div>
+
+        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
+          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Tasa Retención / Retoque</span>
+          <div class="flex items-baseline justify-between mt-2">
+            <span class="text-2xl font-bold font-display text-stone-900">89,4%</span>
+            <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">Aviso auto 75 días</span>
+          </div>
+          <span class="text-[11px] text-stone-400 mt-1 block">Fórmula de color guardada</span>
+        </div>
+      </div>
+
+      <!-- KANBAN PIPELINE VIEW (ESTILO CRM FISIO ADELA ADAPTADO A SALÓN) -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-stone-800 uppercase tracking-wider">Flujo de Clientas en Directo (Pipeline)</h3>
+          <span class="text-xs text-stone-500">Haz clic en una clienta para abrir su <strong>Ficha Técnica de Color</strong></span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          
+          <!-- COL 1: PETICIONES ENTRANTE (IA) -->
+          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
+            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
+              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-amber-500"></span> 1. Petición IA (Chat/Voz)
+              </span>
+              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">2</span>
+            </div>
+
+            <!-- CARD 1 -->
+            <div onclick="openClientModal('elena')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-stone-900">Elena Navarro</span>
+                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">WhatsApp IA</span>
+              </div>
+              <p class="text-[11px] text-stone-600">Pide: Balayage Rubio Vainilla</p>
+              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
+                <span>Torres Quevedo</span>
+                <span>Jueves 11:30</span>
+              </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div onclick="openClientModal('laura')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-stone-900">Laura Gómez</span>
+                <span class="text-[10px] bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-bold">Teléfono IA</span>
+              </div>
+              <p class="text-[11px] text-stone-600">Tratamiento Reparador ABC + Corte</p>
+              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
+                <span>ECI Albacete</span>
+                <span>Viernes 17:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 2: CITAS CONFIRMADAS -->
+          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
+            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
+              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> 2. Confirmadas Fresha/CRM
+              </span>
+              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">3</span>
+            </div>
+
+            <!-- CARD 3 -->
+            <div onclick="openClientModal('carmen')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-stone-900">Carmen Rodenas</span>
+                <span class="text-[10px] text-stone-400">Estilista: Alberto</span>
+              </div>
+              <p class="text-[11px] text-stone-600">Novia 224: Prueba Recogido + Maquillaje</p>
+              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
+                <span class="text-emerald-700 font-semibold">T-24h Notificada</span>
+                <span>Hoy 10:30</span>
+              </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div onclick="openClientModal('maria')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-stone-900">María Santos</span>
+                <span class="text-[10px] text-stone-400">Estilista: Alexandra</span>
+              </div>
+              <p class="text-[11px] text-stone-600">Retoque Raíz + Matiz Glaze ABC</p>
+              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
+                <span>Fórmula archivada</span>
+                <span>Hoy 12:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 3: EN SALÓN (EN ATENCIÓN) -->
+          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
+            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
+              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 3. En Salón (Sillón)
+              </span>
+              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">2</span>
+            </div>
+
+            <!-- CARD 5 -->
+            <div onclick="openClientModal('sofia')" class="p-3 bg-white rounded-xl shadow-sm border-2 border-amber-300 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-stone-900">Sofía Valero</span>
+                <span class="text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-bold">Tiempo tinte: 18 min</span>
+              </div>
+              <p class="text-[11px] text-stone-600">Babylights Nordic Blonde + Olaplex</p>
+              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
+                <span>Puesto 3 (Color)</span>
+                <span class="text-gold-700 font-bold">Ticket: 110€</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 4: FIDELIZACIÓN & RETOQUE -->
+          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
+            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
+              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-purple-500"></span> 4. Retoque Auto (60-90d)
+              </span>
+              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">4</span>
+            </div>
+
+            <!-- CARD 6 -->
+            <div onclick="openClientModal('ana')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-stone-900">Ana Martínez</span>
+                <span class="text-[10px] bg-purple-100 text-purple-900 px-1.5 py-0.5 rounded font-bold">Día 72 de Balayage</span>
+              </div>
+              <p class="text-[11px] text-stone-600">WhatsApp automático enviado ayer: "¿Te apetece iluminar tu tono?"</p>
+              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
+                <span class="text-emerald-600 font-bold">Respondió: ¡Sí, este sábado!</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODAL FICHA TÉCNICA DE COLORIMETRÍA (OVERLAY INTERACTIVO) -->
+      <div id="clientModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-gold-300 space-y-5 animate-in fade-in duration-200">
+          
+          <div class="flex items-start justify-between border-b border-stone-100 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-gold-100 border border-gold-400 flex items-center justify-center text-lg font-bold text-gold-800" id="modalInitials">
+                EN
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-stone-900" id="modalName">Elena Navarro Alarcón</h3>
+                <p class="text-xs text-stone-500">Clienta VIP desde 2024 · Tel: 654 321 987 · Sede habitual: Torres Quevedo</p>
+              </div>
+            </div>
+            <button onclick="closeClientModal()" class="text-stone-400 hover:text-stone-800 text-xl font-bold">&times;</button>
+          </div>
+
+          <!-- FICHA COLOR TABS -->
+          <div class="space-y-4">
+            <div class="bg-gold-50/70 p-4 rounded-2xl border border-gold-200 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-gold-900 uppercase tracking-wider">🎨 Fórmula de Colorimetría Actual (Guardada)</span>
+                <span class="text-[11px] font-mono text-gold-800 bg-gold-200 px-2 py-0.5 rounded">Última aplicación: 14 Enero</span>
+              </div>
+              <p class="text-xs text-stone-800 font-mono leading-relaxed" id="modalFormula">
+                <strong>Raíz:</strong> Igora Royal 7.1 + 7.0 a 20 volúmenes (35 min).<br>
+                <strong>Medios y Puntas:</strong> Técnica Balayage mano alzada con Deco Blond Studio 9 + 30 vol.<br>
+                <strong>Matiz / Glaze:</strong> Authentic Beauty Concept Toner Vainilla Suave 9.13 (15 min en lavacabezas).<br>
+                <strong>Tratamiento:</strong> ABC Glow Cleanser & Mask selladora de cutícula.
+              </p>
+            </div>
+
+            <!-- COMPARATIVA FOTOGRÁFICA -->
+            <div class="grid grid-cols-2 gap-3 text-center">
+              <div class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100 p-2">
+                <span class="text-[10px] font-bold text-stone-500 uppercase block mb-1">Antes de la sesión</span>
+                <img src="assets/trabajos-224.webp" alt="Antes" class="w-full h-32 object-cover rounded-lg">
+              </div>
+              <div class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100 p-2">
+                <span class="text-[10px] font-bold text-gold-700 uppercase block mb-1">Resultado Salón 224</span>
+                <img src="assets/rubios-224.webp" alt="Después" class="w-full h-32 object-cover rounded-lg">
+              </div>
+            </div>
+
+            <!-- NOTAS PRIVADAS DEL ESTILISTA -->
+            <div class="bg-stone-50 p-3 rounded-xl border border-stone-200 text-xs text-stone-600">
+              <span class="font-bold text-stone-800 block mb-1">🔒 Notas Clínicas / Privadas del Estilista (Con candado):</span>
+              <p id="modalNotes">Cabello fino con tendencia a porosidad en puntas. No subir a 40 volúmenes bajo ningún concepto. Le encanta el café cortado con leche desnatada y sacarina.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end gap-3 pt-3 border-t border-stone-100 text-xs">
+            <button onclick="closeClientModal()" class="px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold transition">
+              Cerrar Ficha
+            </button>
+            <button onclick="alert('Abriendo chat de WhatsApp con Elena para confirmar retoque'); closeClientModal();" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1.5">
+              <span>💬</span> <span>Escribir WhatsApp a Elena</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VISTA 4: BANDEJA OMNICANAL (WHATSAPP + LLAMADAS)                           -->
+    <!-- ========================================================================= -->
+    <section id="view-inbox" class="view-content hidden space-y-6">
+      
+      <!-- HEADER VISTA 4 -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
+        <div>
+          <span class="text-xs font-bold text-purple-700 uppercase tracking-widest">Bandeja Unificada · Salón 224</span>
+          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">
+            Bandeja Omnicanal: Mensajes, Llamadas & Web
+          </h1>
+          <p class="text-sm text-stone-600 max-w-3xl mt-1">
+            Recepción centralizada para la recepcionista o estilistas. Observa en una sola pantalla los chats de WhatsApp atendidos por Zernio, las llamadas telefónicas de ElevenLabs con su resumen de voz y los mensajes directos de Instagram.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+            3 Canales Sincronizados
+          </span>
+        </div>
+      </div>
+
+      <!-- BANDEJA GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-white rounded-3xl border border-stone-200 shadow-xl overflow-hidden min-h-[580px]">
+        
+        <!-- LISTA LATERAL DE CONVERSACIONES (4 COLS) -->
+        <div class="md:col-span-5 border-r border-stone-200 flex flex-col bg-stone-50">
+          <div class="p-3.5 border-b border-stone-200 flex items-center justify-between">
+            <span class="text-xs font-bold text-stone-800">Mensajes Entrantes</span>
+            <div class="flex items-center gap-1 text-[11px]">
+              <span class="px-2 py-0.5 rounded-full bg-white border border-stone-300 font-semibold">Todos (14)</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">WA (8)</span>
+              <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold">Voz (6)</span>
+            </div>
+          </div>
+
+          <div class="flex-1 overflow-y-auto divide-y divide-stone-200 custom-scroll text-xs">
+            
+            <!-- ITEM 1 -->
+            <div onclick="selectInboxItem(0)" id="inbox-0" class="inbox-item p-3.5 bg-white border-l-4 border-gold-500 cursor-pointer transition">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-stone-900 flex items-center gap-1.5">
+                  <span>📞</span> <span>Llamada de Laura Gómez</span>
+                </span>
+                <span class="text-[10px] text-stone-400">Hace 4 min</span>
+              </div>
+              <p class="text-[11px] text-stone-600 line-clamp-2">
+                <strong>Resumen IA:</strong> Llamó al fijo preguntando por hueco para tratamiento hidratante y corte. Se le agendó para viernes a las 17:00h en ECI Albacete.
+              </p>
+              <div class="mt-2 flex items-center gap-2 text-[10px]">
+                <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold">Cita Creada en Fresha</span>
+                <span class="text-stone-400">Duración: 1m 24s</span>
+              </div>
+            </div>
+
+            <!-- ITEM 2 -->
+            <div onclick="selectInboxItem(1)" id="inbox-1" class="inbox-item p-3.5 hover:bg-white cursor-pointer transition border-l-4 border-transparent">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-stone-900 flex items-center gap-1.5">
+                  <span>💬</span> <span>WhatsApp de Elena Navarro</span>
+                </span>
+                <span class="text-[10px] text-stone-400">Hace 18 min</span>
+              </div>
+              <p class="text-[11px] text-stone-600 line-clamp-2">
+                Pidió presupuesto aproximado para Balayage Iluminación en cabello largo. El bot le envió dossier de fotos y cotización 110-130€.
+              </p>
+              <div class="mt-2 flex items-center gap-2 text-[10px]">
+                <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 font-bold">Esperando confirmación</span>
+              </div>
+            </div>
+
+            <!-- ITEM 3 -->
+            <div onclick="selectInboxItem(2)" id="inbox-2" class="inbox-item p-3.5 hover:bg-white cursor-pointer transition border-l-4 border-transparent">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-stone-900 flex items-center gap-1.5">
+                  <span>📸</span> <span>Instagram DM de @marta_rubio</span>
+                </span>
+                <span class="text-[10px] text-stone-400">Hace 1 hora</span>
+              </div>
+              <p class="text-[11px] text-stone-600 line-clamp-2">
+                "¿Tenéis disponibilidad en Alicante este sábado para peinado de invitada?"
+              </p>
+              <div class="mt-2 flex items-center gap-2 text-[10px]">
+                <span class="px-2 py-0.5 rounded bg-purple-50 text-purple-800 font-bold">Derivado a WhatsApp</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DETALLE DE CONVERSACIÓN SELECCIONADA (7 COLS) -->
+        <div class="md:col-span-7 p-6 flex flex-col justify-between space-y-4">
+          
+          <div class="space-y-4">
+            <div class="flex items-start justify-between border-b border-stone-200 pb-4">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xl" id="inboxDetailIcon">📞</span>
+                  <h3 class="text-base font-bold text-stone-900" id="inboxDetailTitle">Llamada Telefónica Atendida por ElevenLabs</h3>
+                </div>
+                <p class="text-xs text-stone-500 mt-0.5" id="inboxDetailMeta">Clienta: Laura Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h</p>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button onclick="alert('Tomando control manual: La IA no responderá más en esta conversación.');" class="text-xs px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold border border-stone-300 transition">
+                  Tomar Control Manual
+                </button>
+              </div>
+            </div>
+
+            <!-- DETALLE EXPANDIDO -->
+            <div class="bg-stone-50 rounded-2xl p-4 border border-stone-200 space-y-3 text-xs">
+              <span class="font-bold text-stone-800 block uppercase tracking-wider text-[11px]">Resumen Estructurado del Asistente:</span>
+              <div class="grid grid-cols-2 gap-3 text-[11px]">
+                <div>
+                  <span class="text-stone-400 block">Motivo:</span>
+                  <span class="font-semibold text-stone-800">Cita Tratamiento Reparador + Corte</span>
+                </div>
+                <div>
+                  <span class="text-stone-400 block">Sede Elegida:</span>
+                  <span class="font-semibold text-stone-800">El Corte Inglés Albacete (Av. España 30)</span>
+                </div>
+                <div>
+                  <span class="text-stone-400 block">Fecha y Hora:</span>
+                  <span class="font-semibold text-stone-800">Viernes a las 17:00h</span>
+                </div>
+                <div>
+                  <span class="text-stone-400 block">Acción Tomada:</span>
+                  <span class="font-semibold text-emerald-700">✅ Cita inyectada en Fresha API</span>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-stone-200">
+                <span class="text-stone-400 block mb-1">Transcripción íntegra del audio:</span>
+                <p class="text-stone-600 italic bg-white p-3 rounded-xl border border-stone-200 font-serif leading-relaxed" id="inboxDetailTranscript">
+                  "Hola, buenos días, llamaba para saber si tenéis hueco para un tratamiento hidratante en El Corte Inglés... Sí, para el viernes por la tarde sobre las cinco... Perfecto, ponme con quien esté disponible, me viene genial esa hora. Muchas gracias."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOTONES DE RESPUESTA RÁPIDA -->
+          <div class="pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div class="flex items-center gap-2">
+              <button onclick="alert('Enviando mensaje de cortesía predefinido por WhatsApp');" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1.5">
+                <span>💬</span> <span>Abrir WhatsApp con Clienta</span>
+              </button>
+              <button onclick="alert('Marcando número de la clienta');" class="px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold border border-stone-300 transition flex items-center gap-1.5">
+                <span>📞</span> <span>Devolver Llamada</span>
+              </button>
+            </div>
+            <span class="text-[11px] text-stone-400">ID Conversación: #224-CALL-8849</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- VISTA 5: CALCULADORA DE AHORRO FRESHA VS CRM PROPIO                       -->
+    <!-- ========================================================================= -->
+    <section id="view-calculator" class="view-content hidden space-y-6">
+      
+      <!-- HEADER VISTA 5 -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
+        <div>
+          <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Business Case & Retorno de Inversión</span>
+          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">
+            Calculadora de Ahorro: Fresha vs. CRM Propio 224
+          </h1>
+          <p class="text-sm text-stone-600 max-w-3xl mt-1">
+            Fresha cobra suscripciones mensuales por estilista, <strong>hasta un 20% de comisión por nuevos clientes</strong> captados en su marketplace y recargos por procesamiento de tarjeta y SMS. Con un CRM propio, el salón es 100% dueño de sus datos y ahorra miles de euros anuales.
+          </p>
+        </div>
+        <div class="bg-emerald-100 border border-emerald-300 text-emerald-900 px-4 py-2 rounded-2xl text-right">
+          <span class="text-[11px] uppercase tracking-wider block font-bold">Ahorro Anual Estimado</span>
+          <span class="text-2xl font-bold font-display" id="calcTotalSavingsYear">14.160 € / año</span>
+        </div>
+      </div>
+
+      <!-- CALCULADORA INTERACTIVA GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- PARÁMETROS CONFIGURABLES (5 COLS) -->
+        <div class="lg:col-span-5 bg-white p-6 rounded-3xl border border-stone-200 shadow-lg space-y-6">
+          <h3 class="text-base font-bold text-stone-900 border-b border-stone-100 pb-3">
+            Ajusta las cifras de tu Salón:
+          </h3>
+
+          <!-- SLIDER 1: ESTILISTAS -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label class="font-bold text-stone-800">Número de Estilistas / Sillones (3 sedes):</label>
+              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded" id="labelStylists">7 estilistas</span>
+            </div>
+            <input type="range" id="inputStylists" min="3" max="15" value="7" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-stone-400">
+              <span>3 estilistas</span>
+              <span>15 estilistas</span>
+            </div>
+          </div>
+
+          <!-- SLIDER 2: CITAS MENSUALES -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label class="font-bold text-stone-800">Citas mensuales totales:</label>
+              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded" id="labelAppointments">500 citas/mes</span>
+            </div>
+            <input type="range" id="inputAppointments" min="150" max="1200" step="50" value="500" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-stone-400">
+              <span>150 citas</span>
+              <span>1.200 citas</span>
+            </div>
+          </div>
+
+          <!-- SLIDER 3: TICKET MEDIO -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label class="font-bold text-stone-800">Ticket medio por servicio:</label>
+              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded" id="labelTicket">65 €</span>
+            </div>
+            <input type="range" id="inputTicket" min="30" max="120" step="5" value="65" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-stone-400">
+              <span>30 € (Corte)</span>
+              <span>120 € (Balayage)</span>
+            </div>
+          </div>
+
+          <!-- SLIDER 4: % CLIENTES NUEVOS -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label class="font-bold text-stone-800">% Nuevos clientes captados por Fresha:</label>
+              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded" id="labelNewClients">15 % (Comisión 20%)</span>
+            </div>
+            <input type="range" id="inputNewClients" min="5" max="35" step="5" value="15" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-stone-400">
+              <span>5%</span>
+              <span>35%</span>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-900 leading-relaxed">
+            ⚠️ <strong>Comisión invisible de Fresha:</strong> Cuando un cliente nuevo descubre el salón en la app de Fresha, cobran el <strong>20% del importe íntegro del primer servicio</strong>. Si una clienta se hace un Balayage de 120€, ¡Fresha se queda 24€ directos de esa cita!
+          </div>
+
+        </div>
+
+        <!-- RESULTADOS Y COMPARATIVA VISUAL (7 COLS) -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- TARJETA CON FRESHA -->
+            <div class="bg-red-50/70 p-5 rounded-3xl border-2 border-red-200 shadow-sm space-y-4">
+              <div class="flex items-center justify-between border-b border-red-200 pb-3">
+                <div>
+                  <span class="text-xs font-bold text-red-900 uppercase">Coste Actual con Fresha</span>
+                  <p class="text-[11px] text-red-700">Cuotas + comisiones marketplace</p>
+                </div>
+                <span class="text-xl">📉</span>
+              </div>
+
+              <div class="space-y-2 text-xs text-red-950 font-medium">
+                <div class="flex justify-between">
+                  <span>Cuota Fresha Plus (20€/estilista):</span>
+                  <span class="font-mono font-bold" id="costFreshaPlus">140 €/mes</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Comisión Marketplace (20% primer servicio):</span>
+                  <span class="font-mono font-bold" id="costFreshaMarketplace">975 €/mes</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>SMS recordatorios & pasarela pagos:</span>
+                  <span class="font-mono font-bold" id="costFreshaSms">125 €/mes</span>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-red-200 flex items-baseline justify-between">
+                <span class="text-xs font-bold text-red-900">Total Desembolso Fresha:</span>
+                <span class="text-2xl font-bold font-display text-red-700" id="totalCostFreshaMonth">1.240 €/mes</span>
+              </div>
+              <p class="text-[11px] text-red-600 text-right font-mono" id="totalCostFreshaYear">(14.880 € al año)</p>
+            </div>
+
+            <!-- TARJETA CON CRM PROPIO -->
+            <div class="bg-emerald-50/80 p-5 rounded-3xl border-2 border-emerald-300 shadow-md space-y-4">
+              <div class="flex items-center justify-between border-b border-emerald-200 pb-3">
+                <div>
+                  <span class="text-xs font-bold text-emerald-900 uppercase">Con CRM Propio Salón 224</span>
+                  <p class="text-[11px] text-emerald-700">Sin comisiones por reserva</p>
+                </div>
+                <span class="text-xl">🏆</span>
+              </div>
+
+              <div class="space-y-2 text-xs text-emerald-950 font-medium">
+                <div class="flex justify-between">
+                  <span>Cuota por estilista:</span>
+                  <span class="font-mono font-bold text-emerald-700">0 € (Ilimitado)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Comisión por nuevo cliente:</span>
+                  <span class="font-mono font-bold text-emerald-700">0% (Clientes tuyos)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Infraestructura VPS / Base de datos:</span>
+                  <span class="font-mono font-bold text-stone-600">~60 €/mes</span>
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-emerald-200 flex items-baseline justify-between">
+                <span class="text-xs font-bold text-emerald-900">Total Mensual CRM:</span>
+                <span class="text-2xl font-bold font-display text-emerald-700">60 €/mes</span>
+              </div>
+              <p class="text-[11px] text-emerald-800 text-right font-mono">(720 € al año)</p>
+            </div>
+
+          </div>
+
+          <!-- COMPARATIVA DE RETORNO Y BENEFICIOS ADICIONALES -->
+          <div class="bg-white p-5 rounded-3xl border border-stone-200 shadow-sm space-y-3">
+            <h4 class="text-xs font-bold text-stone-800 uppercase tracking-wider">¿Qué ganas además del ahorro en dinero?</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-stone-600">
+              <div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
+                <span class="font-bold text-stone-900 block">1. Propiedad de Datos</span>
+                <span>Los teléfonos, emails y fórmulas de tinte son 100% de Salón 224. Fresha ya no puede promocionar salones rivales a tus clientas.</span>
+              </div>
+              <div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
+                <span class="font-bold text-stone-900 block">2. Ficha Técnica Capilar</span>
+                <span>Ningún software genérico guarda las fórmulas exactas de decoloración y matiz integradas con fotos antes/después.</span>
+              </div>
+              <div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
+                <span class="font-bold text-stone-900 block">3. Sin No-Shows</span>
+                <span>El Asistente de Voz y WhatsApp reducen las cancelaciones de última hora a prácticamente cero gracias a la confirmación 24h.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-stone-200 py-6 px-4 text-center text-xs text-stone-500 space-y-2 mt-12">
+    <div class="flex items-center justify-center gap-3">
+      <img src="assets/logo-salon-224.webp" alt="Salón 224" class="h-6 w-auto opacity-75">
+      <span class="font-bold text-stone-700">SALÓN 224 — Peluquería y Estética en Albacete y Alicante</span>
+    </div>
+    <p>
+      Propuesta de Transformación Digital & Automatización con IA · Documentación y Prototipo interactivo
+    </p>
+  </footer>
+
+  <!-- SCRIPT LÓGICA DE INTERACCIÓN -->
+  <script>
+    // --- 1. VIEW SWITCHER ---
+    function switchView(viewName) {
+      document.querySelectorAll('.view-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.classList.remove('bg-gold-400', 'text-noir-950', 'font-bold');
+        btn.classList.add('bg-noir-850', 'text-stone-200');
+      });
+
+      const activeView = document.getElementById('view-' + viewName);
+      if (activeView) activeView.classList.remove('hidden');
+
+      const activeBtn = document.getElementById('btn-' + viewName);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-noir-850', 'text-stone-200');
+        activeBtn.classList.add('bg-gold-400', 'text-noir-950', 'font-bold');
+      }
+    }
+
+    // --- 2. PHONE SIMULATION (ELEVENLABS) ---
+    let callTimerInterval = null;
+    let callSeconds = 0;
+    let currentScenario = 0;
+    let callStep = 0;
+
+    const scenarios = [
+      {
+        title: "Caso 1: Cita Balayage",
+        steps: [
+          {
+            ai: "¡Buenos días! Gracias por llamar a Salón 224. Mi nombre es Clara, tu asistente virtual. ¿En qué puedo ayudarte hoy?",
+            userPrompt: "¿Qué responde la clienta?",
+            options: [
+              { text: "Quiero pedir cita para Balayage este jueves en Torres Quevedo", next: 1 }
+            ]
+          },
+          {
+            ai: "¡Por supuesto! Nuestras estilistas en Torres Quevedo son auténticas especialistas en rubios y degradados. Para este jueves tengo disponibilidad a las 11:30 de la mañana con Alberto, o por la tarde a las 16:30. ¿Cuál de los dos horarios te encaja mejor?",
+            userPrompt: "Elige la respuesta de la clienta:",
+            options: [
+              { text: "Me viene perfecto a las 11:30 con Alberto", next: 2 },
+              { text: "Prefiero por la tarde a las 16:30", next: 2 }
+            ]
+          },
+          {
+            ai: "Genial. Tomo nota: cita para Balayage Iluminación con Alberto, este jueves a las 11:30h en nuestro salón de Calle Torres Quevedo 8. ¿Me confirmas tu nombre y teléfono móvil para enviarte la confirmación por WhatsApp?",
+            userPrompt: "Facilitar datos de clienta:",
+            options: [
+              { text: "Soy María García, teléfono 654 321 000", next: 3 }
+            ]
+          },
+          {
+            ai: "¡Listo, María! Tu cita ya ha quedado agendada en nuestro sistema. En un instante recibirás la confirmación en tu WhatsApp con la ubicación de Google Maps. ¡Te esperamos el jueves para dejarte espectacular!",
+            freshaAction: true
+          }
+        ]
+      },
+      {
+        title: "Caso 2: Dudas sobre Tratamientos",
+        steps: [
+          {
+            ai: "¡Hola! Bienvenida a Salón 224. Soy Clara, asistente de recepción. ¿Te gustaría reservar una cita o tienes alguna consulta sobre nuestros tratamientos?",
+            userPrompt: "¿Qué consulta hace la clienta?",
+            options: [
+              { text: "¿Qué incluye el tratamiento de Authentic Beauty Concept y qué precio tiene?", next: 1 }
+            ]
+          },
+          {
+            ai: "Somos el único salón en Albacete con la gama completa de Authentic Beauty Concept. Nuestro tratamiento intensivo incluye diagnóstico de fibra capilar, lavado con esencia vegana sensorial, mascarilla selladora de brillo y secado styling. Su precio oscila entre 35€ y 48€ según longitud. ¿Te gustaría probarlo este viernes?",
+            userPrompt: "Decisión de la clienta:",
+            options: [
+              { text: "Sí, me gustaría reservar para el viernes por la mañana", next: 2 }
+            ]
+          },
+          {
+            ai: "Perfecto, tengo disponible el viernes a las 10:30h en Salón 224 de Torres Quevedo o en El Corte Inglés. ¿En cuál de los dos centros prefieres tu sesión?",
+            userPrompt: "Elige centro:",
+            options: [
+              { text: "En El Corte Inglés de Albacete a las 10:30h", next: 3 }
+            ]
+          },
+          {
+            ai: "¡Apuntado! Queda reservado tu tratamiento Authentic Beauty Concept para el viernes a las 10:30h en la primera planta de El Corte Inglés. ¡Muchísimas gracias por confiar en Salón 224!",
+            freshaAction: true
+          }
+        ]
+      },
+      {
+        title: "Caso 3: Sede Alicante y Parking",
+        steps: [
+          {
+            ai: "¡Hola, buenas! Salón 224, te atiende Clara. ¿En qué salón te gustaría tu servicio o qué información necesitas?",
+            userPrompt: "Pregunta sobre la nueva sede de Alicante:",
+            options: [
+              { text: "¿Tenéis salón en Alicante y se puede aparcar fácilmente?", next: 1 }
+            ]
+          },
+          {
+            ai: "¡Sí! Estamos en El Corte Inglés de Avenida Maisonnave 53 en pleno corazón de Alicante. Dispones del parking cubierto de El Corte Inglés con acceso directo en ascensor. Abrimos de lunes a sábado ininterrumpidamente de 10 a 21 horas. ¿Deseas agendar un corte o peinado?",
+            userPrompt: "Confirmación de cita:",
+            options: [
+              { text: "Sí, quiero corte y peinado para este sábado a las 12:00", next: 2 }
+            ]
+          },
+          {
+            ai: "¡Estupendo! Te confirmo cita para corte y secado styling este sábado a las 12:00h en Salón 224 Maisonnave Alicante. Te mandamos ahora mismo el código de reserva por WhatsApp.",
+            freshaAction: true
+          }
+        ]
+      }
+    ];
+
+    function selectCallScenario(idx) {
+      currentScenario = idx;
+      document.querySelectorAll('.scenario-btn').forEach((btn, i) => {
+        if (i === idx) {
+          btn.classList.add('border-gold-400', 'bg-gold-50/80');
+          btn.classList.remove('border-stone-200');
+        } else {
+          btn.classList.remove('border-gold-400', 'bg-gold-50/80');
+          btn.classList.add('border-stone-200');
+        }
+      });
+      resetCallTranscript();
+    }
+
+    function startCallSimulation() {
+      document.getElementById('btnStartCall').classList.add('hidden');
+      document.getElementById('btnEndCall').classList.remove('hidden');
+      document.getElementById('callStatusText').textContent = "Llamada en Curso (Conectado)";
+      document.getElementById('callStatusText').className = "text-xs font-semibold text-emerald-400 mt-1 uppercase tracking-wider animate-pulse";
+      document.getElementById('waveformHolder').classList.remove('opacity-30');
+      document.getElementById('callAvatarRing').classList.add('scale-125', 'bg-gold-400/30');
+
+      callSeconds = 0;
+      clearInterval(callTimerInterval);
+      callTimerInterval = setInterval(() => {
+        callSeconds++;
+        const mins = String(Math.floor(callSeconds / 60)).padStart(2, '0');
+        const secs = String(callSeconds % 60).padStart(2, '0');
+        document.getElementById('callTimer').textContent = `${mins}:${secs}`;
+      }, 1000);
+
+      callStep = 0;
+      document.getElementById('transcriptBox').innerHTML = "";
+      document.getElementById('freshaConfirmationCard').classList.add('hidden');
+      playCallStep();
+    }
+
+    function endCallSimulation() {
+      clearInterval(callTimerInterval);
+      document.getElementById('btnStartCall').classList.remove('hidden');
+      document.getElementById('btnEndCall').classList.add('hidden');
+      document.getElementById('callStatusText').textContent = "Llamada Finalizada";
+      document.getElementById('callStatusText').className = "text-xs font-semibold text-stone-400 mt-1 uppercase tracking-wider";
+      document.getElementById('waveformHolder').classList.add('opacity-30');
+      document.getElementById('callAvatarRing').classList.remove('scale-125', 'bg-gold-400/30');
+      document.getElementById('interactiveCallPrompt').classList.add('hidden');
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    function resetCallTranscript() {
+      endCallSimulation();
+      document.getElementById('transcriptBox').innerHTML = `
+        <div class="text-center text-stone-400 py-16">
+          <span>Pulsa "Simular Llamada Entrante" para iniciar la conversación en tiempo real con el Asistente de Voz de Salón 224.</span>
+        </div>
+      `;
+      document.getElementById('callStepBadge').textContent = "En espera";
+    }
+
+    function playCallStep() {
+      const stepData = scenarios[currentScenario].steps[callStep];
+      if (!stepData) return;
+
+      document.getElementById('callStepBadge').textContent = `Paso ${callStep + 1} de ${scenarios[currentScenario].steps.length}`;
+
+      // Insert AI message bubble
+      const tBox = document.getElementById('transcriptBox');
+      const aiBubble = document.createElement('div');
+      aiBubble.className = "flex items-start gap-2.5 max-w-lg";
+      aiBubble.innerHTML = `
+        <span class="w-6 h-6 rounded-full bg-gold-400 text-noir-950 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">IA</span>
+        <div class="bg-noir-900 text-stone-200 p-3 rounded-2xl rounded-tl-none shadow-sm leading-relaxed border border-gold-400/20">
+          <span class="text-[10px] font-bold text-gold-300 block mb-0.5">Clara · Salón 224</span>
+          ${stepData.ai}
+        </div>
+      `;
+      tBox.appendChild(aiBubble);
+      tBox.scrollTop = tBox.scrollHeight;
+
+      // TTS voice trigger
+      speakText(stepData.ai);
+
+      // Check if this step finishes with Fresha action
+      if (stepData.freshaAction) {
+        document.getElementById('interactiveCallPrompt').classList.add('hidden');
+        setTimeout(() => {
+          document.getElementById('freshaConfirmationCard').classList.remove('hidden');
+          tBox.scrollTop = tBox.scrollHeight;
+        }, 1200);
+        return;
+      }
+
+      // Show user options
+      const promptBox = document.getElementById('interactiveCallPrompt');
+      const pButtons = document.getElementById('promptButtons');
+      pButtons.innerHTML = '';
+      stepData.options.forEach(opt => {
+        const b = document.createElement('button');
+        b.className = "px-3 py-1.5 rounded-lg bg-gold-500 hover:bg-gold-600 text-noir-950 font-bold text-xs transition shadow-sm";
+        b.textContent = opt.text;
+        b.onclick = () => advanceCallWithUserChoice(opt.text, opt.next);
+        pButtons.appendChild(b);
+      });
+      promptBox.classList.remove('hidden');
+    }
+
+    function advanceCallWithUserChoice(userText, nextStep) {
+      document.getElementById('interactiveCallPrompt').classList.add('hidden');
+      const tBox = document.getElementById('transcriptBox');
+
+      // Add user message bubble
+      const uBubble = document.createElement('div');
+      uBubble.className = "flex items-start justify-end gap-2.5 max-w-lg ml-auto";
+      uBubble.innerHTML = `
+        <div class="bg-gold-100 text-stone-900 p-3 rounded-2xl rounded-tr-none shadow-sm leading-relaxed border border-gold-300">
+          <span class="text-[10px] font-bold text-gold-800 block mb-0.5">Clienta (Tú)</span>
+          ${userText}
+        </div>
+        <span class="w-6 h-6 rounded-full bg-stone-300 text-stone-800 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">Tú</span>
+      `;
+      tBox.appendChild(uBubble);
+      tBox.scrollTop = tBox.scrollHeight;
+
+      callStep = nextStep;
+      setTimeout(playCallStep, 800);
+    }
+
+    let currentElevenAudioSalon = null;
+
+    async function speakWithElevenLabsSalon(text, onEndCallback = null) {
+      const apiKey = localStorage.getItem('elevenlabs_api_key');
+      if (!apiKey) return false;
+
+      const voiceId = localStorage.getItem('elevenlabs_voice_id_salon') || 'uQw4jpKzMLrZuo0RLPS9'; // Laura (Customer Service)
+
+      try {
+        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'audio/mpeg',
+            'Content-Type': 'application/json',
+            'xi-api-key': apiKey
+          },
+          body: JSON.stringify({
+            text: text,
+            model_id: 'eleven_multilingual_v2',
+            voice_settings: { stability: 0.5, similarity_boost: 0.8 }
+          })
+        });
+
+        if (!res.ok) {
+          console.warn("ElevenLabs Salon notice:", res.status);
+          return false;
+        }
+
+        const blob = await res.blob();
+        const audioUrl = URL.createObjectURL(blob);
+        const audio = new Audio(audioUrl);
+        currentElevenAudioSalon = audio;
+
+        audio.onended = () => {
+          if (onEndCallback) onEndCallback();
+        };
+
+        audio.onerror = () => {
+          if (onEndCallback) onEndCallback();
+        };
+
+        await audio.play();
+        return true;
+      } catch (e) {
+        console.warn("ElevenLabs Salon fallback:", e);
+        return false;
+      }
+    }
+
+    async function speakText(text) {
+      const toggle = document.getElementById('toggleSpeech');
+      if (toggle && !toggle.checked) return;
+
+      if (currentElevenAudioSalon) {
+        try { currentElevenAudioSalon.pause(); } catch(e){}
+        currentElevenAudioSalon = null;
+      }
+
+      // Probar ElevenLabs primero con voz Laura
+      const usedEleven = await speakWithElevenLabsSalon(text);
+      if (usedEleven) return;
+
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'es-ES';
+      u.rate = 1.05;
+      window.speechSynthesis.speak(u);
+    }
+
+    // --- 3. WHATSAPP BOT (ZERNIO) ---
+    function sendUserWAMessage(text) {
+      const box = document.getElementById('waMessagesBox');
+
+      // User Bubble
+      const uDiv = document.createElement('div');
+      uDiv.className = "flex items-start justify-end gap-2 max-w-md ml-auto";
+      uDiv.innerHTML = `
+        <div class="bg-[#D9FDD3] p-3 rounded-2xl rounded-tr-none shadow-sm text-stone-800">
+          <p>${text}</p>
+          <span class="text-[9px] text-stone-500 block text-right mt-1">Ahora · ✓✓</span>
+        </div>
+      `;
+      box.appendChild(uDiv);
+      box.scrollTop = box.scrollHeight;
+
+      document.getElementById('lastChatMessagePreview').textContent = text;
+
+      // Simulated Bot Answer with typing indicator
+      setTimeout(() => {
+        let reply = "";
+        let extraCards = "";
+
+        if (text.includes("Balayage") || text.includes("Mechas")) {
+          reply = "¡Fantástico! El Balayage y los rubios de autor son el alma de Salón 224. ✨<br><br>Tenemos 3 sedes disponibles:<br>1️⃣ <strong>Torres Quevedo 8</strong> (Centro)<br>2️⃣ <strong>El Corte Inglés Albacete</strong> (Av. España)<br>3️⃣ <strong>El Corte Inglés Alicante</strong> (Maisonnave)<br><br>¿En qué salón te gustaría tu cita?";
+          extraCards = `
+            <div class="flex gap-2 pt-2">
+              <button onclick="sendUserWAMessage('Quiero en Torres Quevedo para este viernes')" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg text-[10px] font-bold">Torres Quevedo</button>
+              <button onclick="sendUserWAMessage('Quiero en El Corte Inglés Albacete')" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg text-[10px] font-bold">ECI Albacete</button>
+              <button onclick="sendUserWAMessage('Quiero en El Corte Inglés Alicante')" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg text-[10px] font-bold">ECI Alicante</button>
+            </div>
+          `;
+        } else if (text.includes("viernes") || text.includes("Torres Quevedo") || text.includes("ECI")) {
+          reply = "Consultando agenda de Fresha en tiempo real... 🔍<br><br>¡Huecos disponibles para ti este viernes!<br>• <strong>11:30h</strong> con Alberto<br>• <strong>16:00h</strong> con Alexandra<br>• <strong>17:30h</strong> con Carlos<br><br>Pulsa el botón para confirmar y reservar directamente:";
+          extraCards = `
+            <div class="space-y-1.5 pt-2">
+              <button onclick="confirmWABooking('Viernes 11:30h con Alberto')" class="w-full text-left px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl font-bold flex justify-between">
+                <span>Viernes 11:30h · Alberto</span>
+                <span>Reservar &rarr;</span>
+              </button>
+              <button onclick="confirmWABooking('Viernes 16:00h con Alexandra')" class="w-full text-left px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl font-bold flex justify-between">
+                <span>Viernes 16:00h · Alexandra</span>
+                <span>Reservar &rarr;</span>
+              </button>
+            </div>
+          `;
+        } else if (text.includes("Tratamientos") || text.includes("Authentic")) {
+          reply = "En Salón 224 somos abanderados de <strong>Authentic Beauty Concept</strong> 🌱:<br><br>• <strong>Glow Treatment</strong> (para cabellos coloreados o mechas, sella pigmento).<br>• <strong>Hydrate Treatment</strong> (máxima elasticidad y suavidad en cabello seco).<br>• <strong>Replenish Ritual</strong> (fortalecimiento de fibra con proteína vegana).<br><br>Todos incluyen masaje shiatsu en lavacabezas.";
+        } else if (text.includes("humana") || text.includes("estilista")) {
+          reply = "¡Por supuesto! Transfiriendo conversación a nuestra recepción humana. Enseguida una compañera te contestará por este mismo chat. Puedes llamarnos también al <strong>967 105 930</strong>.";
+        } else {
+          reply = "¡Recibido! Para confirmarte cita o resolver cualquier detalle al instante, indícanos si prefieres Torres Quevedo o El Corte Inglés.";
+        }
+
+        const bDiv = document.createElement('div');
+        bDiv.className = "flex items-start gap-2 max-w-md";
+        bDiv.innerHTML = `
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm space-y-1.5 text-stone-800">
+            <p class="font-semibold text-gold-700 text-[11px]">SALÓN 224</p>
+            <p>${reply}</p>
+            ${extraCards}
+            <span class="text-[9px] text-stone-400 block text-right mt-1">Ahora</span>
+          </div>
+        `;
+        box.appendChild(bDiv);
+        box.scrollTop = box.scrollHeight;
+      }, 700);
+    }
+
+    function handleWASubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('waInputText');
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = "";
+      sendUserWAMessage(val);
+    }
+
+    function confirmWABooking(details) {
+      const box = document.getElementById('waMessagesBox');
+      const confDiv = document.createElement('div');
+      confDiv.className = "flex items-start gap-2 max-w-md";
+      confDiv.innerHTML = `
+        <div class="bg-emerald-50 border-2 border-emerald-300 p-4 rounded-2xl rounded-tl-none shadow-md space-y-2 text-stone-800">
+          <div class="flex items-center gap-1.5 text-emerald-800 font-bold">
+            <span>🎉</span> <span>¡CITA CONFIRMADA EN FRESHA!</span>
+          </div>
+          <p class="text-xs text-stone-700">
+            <strong>Servicio:</strong> Balayage Iluminación 224<br>
+            <strong>Horario:</strong> ${details}<br>
+            <strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete
+          </p>
+          <div class="pt-2 border-t border-emerald-200 flex flex-wrap gap-2 text-[10px]">
+            <a href="https://maps.app.goo.gl/BNPwanZRJgcEeCvx9" target="_blank" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg font-bold">📍 Abrir en Google Maps</a>
+            <span class="px-2.5 py-1 bg-white border border-emerald-300 text-emerald-800 rounded-lg font-semibold">T-24h Recordatorio Activo</span>
+          </div>
+        </div>
+      `;
+      box.appendChild(confDiv);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function trigger24hReminder() {
+      const box = document.getElementById('waMessagesBox');
+      const remDiv = document.createElement('div');
+      remDiv.className = "flex items-start gap-2 max-w-md";
+      remDiv.innerHTML = `
+        <div class="bg-amber-50 border border-amber-300 p-3 rounded-2xl rounded-tl-none shadow-sm space-y-1.5 text-stone-800">
+          <div class="flex items-center gap-1 text-amber-900 font-bold text-[11px]">
+            <span>🔔</span> <span>RECORDATORIO AUTOMÁTICO 24H (ZERNIO)</span>
+          </div>
+          <p class="text-xs">
+            ¡Hola Clara! Te recordamos tu cita de <strong>Balayage en Salón 224</strong> mañana a las <strong>11:30h</strong> en Torres Quevedo con Alberto.
+          </p>
+          <p class="text-[11px] text-stone-600">
+            ¿Nos confirmas tu asistencia?
+          </p>
+          <div class="flex gap-2 pt-1">
+            <button onclick="sendUserWAMessage('¡Confirmadísimo, allí estaré puntual!')" class="px-3 py-1 bg-emerald-600 text-white rounded-lg font-bold text-[11px]">✅ Sí, confirmo</button>
+            <button onclick="sendUserWAMessage('Necesito cambiar la hora de mi cita por favor')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Cambiar hora</button>
+          </div>
+        </div>
+      `;
+      box.appendChild(remDiv);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function resetWhatsAppChat() {
+      const box = document.getElementById('waMessagesBox');
+      box.innerHTML = `
+        <div class="text-center my-2">
+          <span class="bg-amber-100/80 text-amber-900 text-[10px] px-3 py-1 rounded-full shadow-sm">
+            🔒 Los mensajes están cifrados de extremo a extremo. Salón 224 Oficial.
+          </span>
+        </div>
+        <div class="flex items-start gap-2 max-w-md">
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm space-y-1.5 text-stone-800">
+            <p class="font-semibold text-gold-700 text-[11px]">SALÓN 224 · Asistente Virtual</p>
+            <p>¡Hola! ✨ Bienvenida a <strong>SALÓN 224</strong>. ¿En qué podemos ayudarte hoy?</p>
+            <span class="text-[9px] text-stone-400 block text-right">09:40</span>
+          </div>
+        </div>
+      `;
+    }
+
+    // --- 4. CRM TABS & MODALS ---
+    const clientsData = {
+      elena: {
+        name: "Elena Navarro Alarcón",
+        initials: "EN",
+        notes: "Cabello fino con tendencia a porosidad en puntas. No subir a 40 volúmenes bajo ningún concepto. Le encanta el café cortado con leche desnatada y sacarina.",
+        formula: "<strong>Raíz:</strong> Igora Royal 7.1 + 7.0 a 20 volúmenes (35 min).<br><strong>Medios y Puntas:</strong> Balayage mano alzada con Deco Blond Studio 9 + 30 vol.<br><strong>Matiz:</strong> ABC Toner Vainilla 9.13 (15 min).<br><strong>Tratamiento:</strong> ABC Glow Cleanser & Mask selladora."
+      },
+      laura: {
+        name: "Laura Gómez Ibáñez",
+        initials: "LG",
+        notes: "Sensibilidad leve en cuero cabelludo. Usar siempre champú protector ABC Bare Cleanser hipoalergénico. Prefiere corte a tijera sin vaciado.",
+        formula: "<strong>Tratamiento:</strong> Ritual Hidratante Profundo ABC con toalla caliente 15 min.<br><strong>Corte:</strong> Bob texturizado desfilado en clavícula.<br><strong>Styling:</strong> Spray de sal Authentic Beauty Concept sin siliconas."
+      },
+      carmen: {
+        name: "Carmen Rodenas Montes",
+        initials: "CR",
+        notes: "Novia 2026 (Boda el 12 de Septiembre). Lleva velo clásico y tiara artesanal. Requiere fijación extra resistente al calor pero con aspecto natural sin apelmazar.",
+        formula: "<strong>Prueba Nupcial:</strong> Semirecogido trenzado con ondas románticas rotas.<br><strong>Matiz:</strong> Glaze Brillo Espejo con aceite de jojoba.<br><strong>Maquillaje:</strong> Piel glow con fijador HD."
+      },
+      maria: {
+        name: "María Santos Cuesta",
+        initials: "MS",
+        notes: "Viene religiosamente cada 5 semanas para cobertura de canas 100% en sienes. Muy puntual.",
+        formula: "<strong>Cobertura Canas:</strong> 6.0 + 6.1 a partes iguales con oxidante 20 vol.<br><strong>Emulsión final:</strong> Agua termal en lavacabezas con masaje relajante 5 min."
+      },
+      sofia: {
+        name: "Sofía Valero Peña",
+        initials: "SV",
+        notes: "Rubio nórdico muy frío. Utilizar matiz con violeta anti-amarillo. Fanática de las fotos para Instagram del salón.",
+        formula: "<strong>Mechas:</strong> Babylights micro-tricotadas plata.<br><strong>Deco:</strong> 9 tonos con Olaplex Nº1.<br><strong>Matiz:</strong> 10.21 + gota de 9.11 para neutralizar reflejo dorado."
+      },
+      ana: {
+        name: "Ana Martínez Gil",
+        initials: "AM",
+        notes: "Clienta de Balayage semestral. Se le envía aviso automático a los 75 días para retocar contorno de luz (money piece).",
+        formula: "<strong>Técnica:</strong> Contouring facial Money Piece + difuminado de raíz Shadow Root para crecimiento invisible."
+      }
+    };
+
+    function openClientModal(id) {
+      const data = clientsData[id] || clientsData.elena;
+      document.getElementById('modalName').textContent = data.name;
+      document.getElementById('modalInitials').textContent = data.initials;
+      document.getElementById('modalNotes').textContent = data.notes;
+      document.getElementById('modalFormula').innerHTML = data.formula;
+      document.getElementById('clientModal').classList.remove('hidden');
+    }
+
+    function closeClientModal() {
+      document.getElementById('clientModal').classList.add('hidden');
+    }
+
+    function setSalonTab(tabId) {
+      document.querySelectorAll('.salon-tab').forEach(btn => {
+        btn.classList.remove('bg-white', 'text-stone-900', 'shadow-sm');
+        btn.classList.add('text-stone-600');
+      });
+      const active = document.getElementById('tab-' + tabId);
+      if (active) {
+        active.classList.add('bg-white', 'text-stone-900', 'shadow-sm');
+        active.classList.remove('text-stone-600');
+      }
+
+      if (tabId === 'tq') {
+        document.getElementById('crmKpiAppointments').textContent = "18 Citas";
+      } else if (tabId === 'eci-ab') {
+        document.getElementById('crmKpiAppointments').textContent = "14 Citas";
+      } else {
+        document.getElementById('crmKpiAppointments').textContent = "11 Citas";
+      }
+    }
+
+    // --- 5. INBOX SELECTION ---
+    const inboxDetails = [
+      {
+        icon: "📞",
+        title: "Llamada Telefónica Atendida por ElevenLabs",
+        meta: "Clienta: Laura Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h",
+        transcript: "Hola, buenos días, llamaba para saber si tenéis hueco para un tratamiento hidratante en El Corte Inglés... Sí, para el viernes por la tarde sobre las cinco... Perfecto, ponme con quien esté disponible, me viene genial esa hora. Muchas gracias."
+      },
+      {
+        icon: "💬",
+        title: "Conversación de WhatsApp Atendida por Zernio",
+        meta: "Clienta: Elena Navarro · WhatsApp: +34 654 321 987 · Hoy 09:12h",
+        transcript: "Elena: Hola! Qué precio tiene el balayage en melena larga? / Bot: ¡Hola Elena! Nuestro servicio estrella de Balayage Iluminación para cabello largo oscila entre 110€ y 130€ con matiz y secado. ¿Te gustaría ver citas disponibles para esta semana?"
+      },
+      {
+        icon: "📸",
+        title: "Mensaje Directo de Instagram (@salon_224)",
+        meta: "Clienta: @marta_rubio · Alicante Maisonnave · Hoy 08:30h",
+        transcript: "Marta: Hola chicos! Tenéis hueco para peinado este sábado en el Corte Inglés de Alicante para una boda? / Bot: ¡Hola Marta! Sí, tenemos disponibilidad a las 11h o 12:30h con nuestro estilista de novias e invitadas. Pulsa aquí para reservar al instante."
+      }
+    ];
+
+    function selectInboxItem(idx) {
+      document.querySelectorAll('.inbox-item').forEach((item, i) => {
+        if (i === idx) {
+          item.classList.add('border-gold-500', 'bg-white');
+          item.classList.remove('border-transparent');
+        } else {
+          item.classList.remove('border-gold-500', 'bg-white');
+          item.classList.add('border-transparent');
+        }
+      });
+
+      const d = inboxDetails[idx];
+      document.getElementById('inboxDetailIcon').textContent = d.icon;
+      document.getElementById('inboxDetailTitle').textContent = d.title;
+      document.getElementById('inboxDetailMeta').textContent = d.meta;
+      document.getElementById('inboxDetailTranscript').textContent = `"${d.transcript}"`;
+    }
+
+    // --- 6. CALCULATOR RECALCULATION ---
+    function recalcSavings() {
+      const stylists = parseInt(document.getElementById('inputStylists').value);
+      const appts = parseInt(document.getElementById('inputAppointments').value);
+      const ticket = parseInt(document.getElementById('inputTicket').value);
+      const newClientsPct = parseInt(document.getElementById('inputNewClients').value) / 100;
+
+      document.getElementById('labelStylists').textContent = `${stylists} estilistas`;
+      document.getElementById('labelAppointments').textContent = `${appts} citas/mes`;
+      document.getElementById('labelTicket').textContent = `${ticket} €`;
+      document.getElementById('labelNewClients').textContent = `${Math.round(newClientsPct * 100)} % (Comisión 20%)`;
+
+      // Fresha calculations
+      const costPlus = stylists * 20; // 20€/estilista/mes
+      const newClientsCount = Math.round(appts * newClientsPct);
+      const costMarketplace = Math.round(newClientsCount * ticket * 0.20); // 20% first service
+      const costSmsPayment = Math.round(appts * 0.25); // ~0.25€ avg per appointment between SMS and card fees
+
+      const totalFreshaMonth = costPlus + costMarketplace + costSmsPayment;
+      const totalFreshaYear = totalFreshaMonth * 12;
+
+      // CRM Propio calculations
+      const costCrmMonth = 60; // VPS + DB hosting
+      const totalCrmYear = costCrmMonth * 12;
+
+      const netSavingsYear = totalFreshaYear - totalCrmYear;
+
+      document.getElementById('costFreshaPlus').textContent = `${costPlus.toLocaleString()} €/mes`;
+      document.getElementById('costFreshaMarketplace').textContent = `${costMarketplace.toLocaleString()} €/mes`;
+      document.getElementById('costFreshaSms').textContent = `${costSmsPayment.toLocaleString()} €/mes`;
+
+      document.getElementById('totalCostFreshaMonth').textContent = `${totalFreshaMonth.toLocaleString()} €/mes`;
+      document.getElementById('totalCostFreshaYear').textContent = `(${totalFreshaYear.toLocaleString()} € al año)`;
+
+      document.getElementById('calcTotalSavingsYear').textContent = `${netSavingsYear.toLocaleString()} € / año`;
+    }
+
+    // Init calculator on load
+    window.addEventListener('DOMContentLoaded', () => {
+      recalcSavings();
+    });
+  </script>
+
+</body>
+</html>

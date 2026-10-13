@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Altera — Suite de Demos Comerciales & Prototipos Interactivos | Castilla-La Mancha</title>
-  <meta name="description" content="Catálogo central de prototipos y demostraciones interactivas de Altera Soluciones Tecnológicas: Hostelería (Vibra Burger, Pizzería Ángela), Clínicas Dentales (Sonrisastar) y Salud (Adela Fisio). Proyectos subvencionados al 80% por la JCCM.">
+  <meta name="description" content="Portfolio central de prototipos y demostraciones interactivas de Altera Soluciones Tecnológicas: Hostelería, Motor, Inmobiliaria, Clínicas y Belleza. Proyectos subvencionados al 80% por la JCCM.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="Altera Soluciones Tecnológicas">
-  <meta property="og:title" content="Altera — Suite de Demos Comerciales Interactivas">
-  <meta property="og:description" content="Portfolio interactivo de soluciones llave en mano con IA: WhatsApp Bots, KDS Cocina, Recepcionistas de Voz 24/7 y CRM. 80% subvencionado Bono Pyme JCCM.">
+  <meta property="og:title" content="Altera — Suite de Demos Comerciales Interactivas (8 Proyectos)">
+  <meta property="og:description" content="Portfolio interactivo de soluciones llave en mano con IA: WhatsApp Bots, KDS Cocina, Recepcionistas de Voz 24/7, Radar Inmobiliario y CRM. 80% subvencionado Bono Pyme JCCM.">
   <meta property="og:url" content="https://devai82.github.io/demos-comerciales/">
   <meta property="og:image" content="https://devai82.github.io/demos-comerciales/pizzeria-angela/og-pizzeria-angela.png">
 
@@ -56,7 +56,7 @@
     <!-- HERO SECTION -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
       <div class="inline-block text-xs uppercase tracking-widest bg-stone-900 border border-stone-800 text-stone-300 px-3.5 py-1.5 rounded-full font-bold">
-        🚀 Catálogo de Demos Comerciales Activas
+        🚀 Catálogo de Demos Comerciales Activas (8 Clientes)
       </div>
       <h1 class="text-3xl sm:text-5xl font-black text-white font-display tracking-tight leading-tight">
         Inteligencia REAL aplicada a negocios locales
@@ -67,26 +67,32 @@
 
       <!-- FILTER TABS -->
       <div class="flex items-center justify-center flex-wrap gap-2 pt-2" id="filterNav">
-        <button onclick="filterSector('all')" id="btn-all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-cyan-600 text-white shadow-lg shadow-cyan-900/40 transition">
-          Todos los Sectores (4)
+        <button onclick="filterSector('all')" id="btn-all" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-cyan-600 text-white shadow-lg shadow-cyan-900/40 transition">
+          Todos (8)
         </button>
-        <button onclick="filterSector('food')" id="btn-food" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
-          🍔 Hostelería & Delivery (2)
+        <button onclick="filterSector('food')" id="btn-food" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
+          🍔 Hostelería (2)
         </button>
-        <button onclick="filterSector('dental')" id="btn-dental" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
-          🦷 Clínicas Dentales (1)
+        <button onclick="filterSector('motor')" id="btn-motor" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
+          🚗 Coches & Motos (2)
         </button>
-        <button onclick="filterSector('health')" id="btn-health" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
-          💆 Fisioterapia & Salud (1)
+        <button onclick="filterSector('realestate')" id="btn-realestate" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
+          🏠 Inmobiliaria (1)
+        </button>
+        <button onclick="filterSector('health')" id="btn-health" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
+          🦷 Dental & Salud (2)
+        </button>
+        <button onclick="filterSector('beauty')" id="btn-beauty" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
+          ✂️ Belleza & Barbería (1)
         </button>
       </div>
     </div>
 
-    <!-- DEMOS GRID -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="demosGrid">
+    <!-- DEMOS GRID (8 CARDS) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7" id="demosGrid">
 
-      <!-- CARD 1: VIBRA BURGER -->
-      <div class="demo-card food bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-pink-500/50 transition duration-300 flex flex-col justify-between space-y-6">
+      <!-- 1. VIBRA BURGER -->
+      <div class="demo-card food bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-pink-500/50 transition duration-300 flex flex-col justify-between space-y-5">
         <div class="space-y-4">
           <div class="flex items-center justify-between">
             <span class="text-xs bg-pink-950/80 text-pink-300 px-3 py-1 rounded-full font-bold border border-pink-700/40">
@@ -104,22 +110,21 @@
           </div>
 
           <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
-            Eliminación de licencias mensuales de Last.app implantando infraestructura propia en VPS Coolify + Supabase, <strong>Bot de WhatsApp</strong> con reorden en 1 clic ("Pedir lo de siempre"), <strong>pantalla KDS de planchas</strong> y <strong>recepcionista telefónica con voz Dino (ElevenLabs HD)</strong>.
+            Eliminación de licencias mensuales de Last.app implantando infraestructura propia en VPS Coolify + Supabase, <strong>Bot de WhatsApp</strong> con reorden en 1 clic ("Pedir lo de siempre"), <strong>pantalla KDS de planchas</strong> y <strong>recepcionista con voz Dino (ElevenLabs HD)</strong>.
           </p>
 
           <div class="space-y-1.5 text-xs text-stone-400 bg-stone-950/60 p-3 rounded-2xl border border-stone-800/80">
-            <div class="flex items-center gap-2"><span class="text-pink-400">✓</span> <span><strong>Sin cuotas Last.app:</strong> Base de datos propia de clientes para CRM.</span></div>
+            <div class="flex items-center gap-2"><span class="text-pink-400">✓</span> <span><strong>Sin cuotas Last.app:</strong> Base de datos propia para fidelización.</span></div>
             <div class="flex items-center gap-2"><span class="text-pink-400">✓</span> <span><strong>KDS Cocina:</strong> Comandas en vivo clasificadas por plancha y delivery.</span></div>
-            <div class="flex items-center gap-2"><span class="text-pink-400">🎙️</span> <span><strong>Voz IA Dino:</strong> Resuelve dudas de alérgenos y horarios sin descolgar.</span></div>
+            <div class="flex items-center gap-2"><span class="text-pink-400">🎙️</span> <span><strong>Voz IA Dino:</strong> Resuelve dudas de alérgenos y horarios al teléfono.</span></div>
           </div>
         </div>
 
-        <div class="pt-5 border-t border-stone-800/80 space-y-3">
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
           <div class="flex items-center justify-between text-xs">
             <span class="text-stone-400">Coste cliente (80% JCCM): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
             <span class="text-stone-400">Mantenimiento: <strong class="text-pink-400 font-mono">99 €/mes</strong></span>
           </div>
-
           <div class="grid grid-cols-2 gap-2 pt-1">
             <a href="vibra/" class="bg-gradient-to-r from-pink-600 to-fuchsia-600 hover:from-pink-500 hover:to-fuchsia-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
               <span>⚡ Abrir Demo</span>
@@ -131,8 +136,8 @@
         </div>
       </div>
 
-      <!-- CARD 2: PIZZERÍA ÁNGELA -->
-      <div class="demo-card food bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-red-500/50 transition duration-300 flex flex-col justify-between space-y-6">
+      <!-- 2. PIZZERÍA ÁNGELA -->
+      <div class="demo-card food bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-red-500/50 transition duration-300 flex flex-col justify-between space-y-5">
         <div class="space-y-4">
           <div class="flex items-center justify-between">
             <span class="text-xs bg-red-950/80 text-red-300 px-3 py-1 rounded-full font-bold border border-red-700/40">
@@ -155,17 +160,16 @@
 
           <div class="space-y-1.5 text-xs text-stone-400 bg-stone-950/60 p-3 rounded-2xl border border-stone-800/80">
             <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> <span><strong>Ahorro del 30%:</strong> Pedidos directos a su WhatsApp sin intermediarios.</span></div>
-            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> <span><strong>KDS en Horno:</strong> Tickets térmicos de 80mm y pantalla interactiva.</span></div>
+            <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> <span><strong>KDS en Horno:</strong> Tickets térmicos de 80mm y comandas en pantalla.</span></div>
             <div class="flex items-center gap-2"><span class="text-amber-400">🎙️</span> <span><strong>Voz Ángela:</strong> Simulación de llamada real con ElevenLabs HD.</span></div>
           </div>
         </div>
 
-        <div class="pt-5 border-t border-stone-800/80 space-y-3">
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
           <div class="flex items-center justify-between text-xs">
             <span class="text-stone-400">Coste cliente (80% JCCM): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
             <span class="text-stone-400">Mantenimiento: <strong class="text-red-400 font-mono">99 €/mes</strong></span>
           </div>
-
           <div class="grid grid-cols-2 gap-2 pt-1">
             <a href="pizzeria-angela/" class="bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
               <span>🍕 Abrir Demo</span>
@@ -177,8 +181,196 @@
         </div>
       </div>
 
-      <!-- CARD 3: CLÍNICA DENTAL SONRISASTAR -->
-      <div class="demo-card dental bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between space-y-6">
+      <!-- 3. RUAUTOS -->
+      <div class="demo-card motor bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-amber-500/50 transition duration-300 flex flex-col justify-between space-y-5">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs bg-amber-950/80 text-amber-300 px-3 py-1 rounded-full font-bold border border-amber-700/40">
+              🚗 Automoción & Vehículos de Ocasión
+            </span>
+            <span class="text-xs text-stone-400 font-mono">Albacete</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="bg-gradient-to-r from-amber-600 to-orange-600 text-white font-black px-3 py-1.5 rounded-xl text-lg tracking-wider font-display shadow-md">
+              RUAUTOS
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-white font-display">Ruautos Albacete</h2>
+              <span class="text-xs text-amber-400 font-semibold">Asistente de Voz 24/7, WhatsApp & CRM 82 Puntos</span>
+            </div>
+          </div>
+
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+            Recepción telefónica con <strong>ElevenLabs</strong> para resolver dudas de stock y tasación fuera de horario, <strong>WhatsApp Bot con Zernio</strong> para pre-cualificar compradores y <strong>CRM a medida con certificación digital de 82 puntos</strong> para aumentar el valor percibido de los coches.
+          </p>
+
+          <div class="space-y-1.5 text-xs text-stone-400 bg-stone-950/60 p-3 rounded-2xl border border-stone-800/80">
+            <div class="flex items-center gap-2"><span class="text-amber-400">✓</span> <span><strong>Recepción 24/7:</strong> Filtra llamadas de compradores y tasaciones de vehículos.</span></div>
+            <div class="flex items-center gap-2"><span class="text-amber-400">✓</span> <span><strong>Certificado 82 Puntos:</strong> Ficha técnica interactiva imprimible para el cliente.</span></div>
+            <div class="flex items-center gap-2"><span class="text-amber-400">📊</span> <span><strong>CRM Automoción:</strong> Pipeline de leads desde coches.net y Wallapop.</span></div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-stone-400">Coste cliente (80% JCCM): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
+            <span class="text-stone-400">Mantenimiento: <strong class="text-amber-400 font-mono">99 €/mes</strong></span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <a href="ruautos/" class="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
+              <span>🚗 Abrir Demo</span>
+            </a>
+            <button onclick="copyMsg('ruautos')" class="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs py-2.5 px-3 rounded-xl border border-stone-700 transition flex items-center justify-center gap-1.5">
+              <span>💬 Copiar WhatsApp</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. MOTOR GAS BIKE -->
+      <div class="demo-card motor bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-red-500/50 transition duration-300 flex flex-col justify-between space-y-5">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs bg-red-950/80 text-red-300 px-3 py-1 rounded-full font-bold border border-red-700/40">
+              🏍️ Motos, Boutique & Taller Especializado
+            </span>
+            <span class="text-xs text-stone-400 font-mono">Albacete</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="bg-gradient-to-r from-red-600 to-rose-600 text-white font-black px-3 py-1.5 rounded-xl text-lg tracking-wider font-display shadow-md">
+              MOTOR GAS
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-white font-display">Motor Gas Bike</h2>
+              <span class="text-xs text-red-400 font-semibold">Agendamiento de Taller IA & Catálogo de Motos</span>
+            </div>
+          </div>
+
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+            Plataforma para concesionario y taller de motocicletas: <strong>asistente telefónico con ElevenLabs</strong> que gestiona citas de mantenimiento y revisiones ITV, <strong>bot de WhatsApp multicanal</strong> para venta de motos nuevas y de ocasión, y <strong>CRM de taller</strong>.
+          </p>
+
+          <div class="space-y-1.5 text-xs text-stone-400 bg-stone-950/60 p-3 rounded-2xl border border-stone-800/80">
+            <div class="flex items-center gap-2"><span class="text-red-400">✓</span> <span><strong>Citas de Taller Automáticas:</strong> Filtro de averías y mantenimiento por voz.</span></div>
+            <div class="flex items-center gap-2"><span class="text-red-400">✓</span> <span><strong>Showroom Digital:</strong> Catálogo de motos con ficha y solicitud de prueba.</span></div>
+            <div class="flex items-center gap-2"><span class="text-red-400">📱</span> <span><strong>WhatsApp & Instagram:</strong> Respuestas instantáneas a presupuestos.</span></div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-stone-400">Coste cliente (80% JCCM): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
+            <span class="text-stone-400">Mantenimiento: <strong class="text-red-400 font-mono">99 €/mes</strong></span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <a href="motos/" class="bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
+              <span>🏍️ Abrir Demo</span>
+            </a>
+            <button onclick="copyMsg('motos')" class="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs py-2.5 px-3 rounded-xl border border-stone-700 transition flex items-center justify-center gap-1.5">
+              <span>💬 Copiar WhatsApp</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. REAL ESTATE (IZON CONSULTING) -->
+      <div class="demo-card realestate bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-blue-500/50 transition duration-300 flex flex-col justify-between space-y-5">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs bg-blue-950/80 text-blue-300 px-3 py-1 rounded-full font-bold border border-blue-700/40">
+              🏠 Inmobiliaria & Valoraciones Inmobiliarias
+            </span>
+            <span class="text-xs text-stone-400 font-mono">Albacete</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="bg-gradient-to-r from-blue-700 to-cyan-700 text-white font-black px-3 py-1.5 rounded-xl text-lg tracking-wider font-display shadow-md">
+              IZON
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-white font-display">Izon Consulting</h2>
+              <span class="text-xs text-blue-400 font-semibold">Radar de Mercado Idealista & Cualificación IA</span>
+            </div>
+          </div>
+
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+            Cartera inmobiliaria conectada al <strong>Radar de Mercado de Idealista</strong> para comparar en tiempo real el €/m² frente al barrio, <strong>Chatbot 24/7</strong> para filtrar compradores cualificados y <strong>agente de voz ElevenLabs</strong> para agendar visitas a inmuebles.
+          </p>
+
+          <div class="space-y-1.5 text-xs text-stone-400 bg-stone-950/60 p-3 rounded-2xl border border-stone-800/80">
+            <div class="flex items-center gap-2"><span class="text-blue-400">✓</span> <span><strong>Radar Idealista:</strong> Gráfica comparativa de precio/m² en Albacete.</span></div>
+            <div class="flex items-center gap-2"><span class="text-blue-400">✓</span> <span><strong>Cualificación Hipotecaria:</strong> Filtra clientes con solvencia real.</span></div>
+            <div class="flex items-center gap-2"><span class="text-blue-400">🤖</span> <span><strong>Agente de Visitas:</strong> Sincronización automática de agenda de comerciales.</span></div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-stone-400">Coste cliente (80% JCCM): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
+            <span class="text-stone-400">Mantenimiento: <strong class="text-blue-400 font-mono">99 €/mes</strong></span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <a href="realestate/" class="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
+              <span>🏠 Abrir Demo</span>
+            </a>
+            <button onclick="copyMsg('realestate')" class="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs py-2.5 px-3 rounded-xl border border-stone-700 transition flex items-center justify-center gap-1.5">
+              <span>💬 Copiar WhatsApp</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. SALÓN 224 -->
+      <div class="demo-card beauty bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-purple-500/50 transition duration-300 flex flex-col justify-between space-y-5">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs bg-purple-950/80 text-purple-300 px-3 py-1 rounded-full font-bold border border-purple-700/40">
+              ✂️ Salón de Belleza, Peluquería & Barbería
+            </span>
+            <span class="text-xs text-stone-400 font-mono">Albacete</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="bg-gradient-to-r from-purple-700 to-pink-700 text-white font-black px-3 py-1.5 rounded-xl text-lg tracking-wider font-display shadow-md">
+              224
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-white font-display">Salón 224</h2>
+              <span class="text-xs text-purple-400 font-semibold">Asistente Telefónico IA, WhatsApp & CRM Propio</span>
+            </div>
+          </div>
+
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+            Eliminación de la pérdida de citas cuando las estilistas están trabajando: <strong>recepcionista de llamadas ElevenLabs</strong> que agenda huecos libres, <strong>WhatsApp Bot con Zernio</strong> integrado con Fresha y <strong>CRM propio de clientes</strong> para recordatorios.
+          </p>
+
+          <div class="space-y-1.5 text-xs text-stone-400 bg-stone-950/60 p-3 rounded-2xl border border-stone-800/80">
+            <div class="flex items-center gap-2"><span class="text-purple-400">✓</span> <span><strong>Cero llamadas perdidas:</strong> Agenda tintes, cortes y tratamientos 24/7.</span></div>
+            <div class="flex items-center gap-2"><span class="text-purple-400">✓</span> <span><strong>Integración Fresha / Google:</strong> Sincronización de sillones sin duplicados.</span></div>
+            <div class="flex items-center gap-2"><span class="text-purple-400">💬</span> <span><strong>Recordatorios WhatsApp:</strong> Reduce las inasistencias en un 40%.</span></div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-stone-400">Coste cliente (80% JCCM): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
+            <span class="text-stone-400">Mantenimiento: <strong class="text-purple-400 font-mono">99 €/mes</strong></span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <a href="salon224/" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
+              <span>✂️ Abrir Demo</span>
+            </a>
+            <button onclick="copyMsg('salon224')" class="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs py-2.5 px-3 rounded-xl border border-stone-700 transition flex items-center justify-center gap-1.5">
+              <span>💬 Copiar WhatsApp</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. CLÍNICA DENTAL SONRISASTAR -->
+      <div class="demo-card health bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between space-y-5">
         <div class="space-y-4">
           <div class="flex items-center justify-between">
             <span class="text-xs bg-cyan-950/80 text-cyan-300 px-3 py-1 rounded-full font-bold border border-cyan-700/40">
@@ -208,12 +400,11 @@
           </div>
         </div>
 
-        <div class="pt-5 border-t border-stone-800/80 space-y-3">
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
           <div class="flex items-center justify-between text-xs">
             <span class="text-stone-400">Coste cliente (80% Bono Pyme): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
             <span class="text-stone-400">Mantenimiento: <strong class="text-cyan-400 font-mono">99 €/mes</strong></span>
           </div>
-
           <div class="grid grid-cols-2 gap-2 pt-1">
             <a href="sonrisastar/" class="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
               <span>🦷 Abrir Demo</span>
@@ -225,8 +416,8 @@
         </div>
       </div>
 
-      <!-- CARD 4: ADELA FISIOTERAPIA -->
-      <div class="demo-card health bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-emerald-500/50 transition duration-300 flex flex-col justify-between space-y-6">
+      <!-- 8. ADELA FISIOTERAPIA -->
+      <div class="demo-card health bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-emerald-500/50 transition duration-300 flex flex-col justify-between space-y-5">
         <div class="space-y-4">
           <div class="flex items-center justify-between">
             <span class="text-xs bg-emerald-950/80 text-emerald-300 px-3 py-1 rounded-full font-bold border border-emerald-700/40">
@@ -254,12 +445,11 @@
           </div>
         </div>
 
-        <div class="pt-5 border-t border-stone-800/80 space-y-3">
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
           <div class="flex items-center justify-between text-xs">
             <span class="text-stone-400">Coste cliente (80% Bono Pyme): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
             <span class="text-stone-400">Mantenimiento: <strong class="text-emerald-400 font-mono">99 €/mes</strong></span>
           </div>
-
           <div class="grid grid-cols-2 gap-2 pt-1">
             <a href="adela-fisio/" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
               <span>💆 Abrir Demo</span>
@@ -327,6 +517,70 @@ https://devai82.github.io/demos-comerciales/pizzeria-angela/
 
 Echadle un vistazo al enlace interactivo y me decís qué os parece para coordinar una pequeña prueba.`,
 
+      ruautos: `Hola equipo de RUAUTOS! 🚗⚡
+
+Os escribo desde Altera en Albacete. Hemos analizado la presencia digital del concesionario y la forma en que los compradores contactan interesándose por coches de ocasión:
+
+👉 Probar prototipo interactivo en vivo:
+https://devai82.github.io/demos-comerciales/ruautos/
+
+¿Qué incluye la solución para Ruautos?
+• Recepcionista de voz IA 24/7: atiende llamadas de compradores a cualquier hora, responde dudas de stock, kilómetros o garantías y filtra ofertas de tasación.
+• WhatsApp Bot interactivo: cualifica al cliente antes de pasarle la llamada al comercial.
+• CRM con Certificación Digital de 82 Puntos: ficha técnica transparente para generar máxima confianza y cerrar ventas más rápido.
+
+💡 Financiación: Proyecto cubierto al 80% por el Bono Crecimiento Pyme JCCM (coste real para el concesionario: 600€).
+
+¿Cuándo os viene bien que os hagamos una demo rápida de 5 minutos sobre cómo respondería la IA a vuestros clientes?`,
+
+      motos: `Hola equipo de Motor Gas Bike! 🏍️💨
+
+Os contacto desde Altera. Como apasionados de las dos ruedas en Albacete, hemos preparado un simulador interactivo para vuestro concesionario y taller:
+
+👉 Ver simulador interactivo:
+https://devai82.github.io/demos-comerciales/motos/
+
+Puntos clave para Motor Gas Bike:
+• Recepcionista de voz IA para el taller: agenda citas de mantenimiento, revisiones y cambios de neumáticos sin que el mecánico tenga que soltar las herramientas para coger el teléfono.
+• WhatsApp Bot de atención rápida: información de motos en stock, boutique y financiación.
+• CRM integral para avisos de revisiones periódicas a vuestra cartera de motoristas.
+
+💡 Subvencionado al 80% por la JCCM (inversión de 3.000€ subvencionada a 600€ de coste real).
+
+Echadle un vistazo al enlace y me decís qué os parece para concertar una breve demo.`,
+
+      realestate: `Hola equipo de Izon Consulting! 🏠📈
+
+Os escribo desde Altera Soluciones Tecnológicas en Albacete. Hemos desarrollado un prototipo exclusivo para vuestra agencia inmobiliaria:
+
+👉 Explorar simulador interactivo:
+https://devai82.github.io/demos-comerciales/realestate/
+
+Innovaciones principales:
+• Radar de Mercado con datos de Idealista: compara el €/m² de cada inmueble frente al histórico real de la zona en Albacete para convencer tanto a vendedores como a inversores.
+• Chatbot de WhatsApp 24/7: cualificación hipotecaria y financiera del comprador antes de coordinar visitas presenciales.
+• Agente de voz para concertar visitas a propiedades automáticamente.
+
+💡 Proyecto financiado al 80% por el Bono Crecimiento Pyme JCCM (coste final: 600€).
+
+¿Os parece interesante que nos reunamos 10 minutos y os enseñamos cómo funciona en directo con vuestra cartera?`,
+
+      salon224: `Hola equipo de Salón 224! ✂️✨
+
+Os escribo desde Altera. Sabemos lo difícil que es atender el teléfono mientras estáis realizando un servicio de color, corte o peinado a una clienta:
+
+👉 Probar simulador interactivo en vivo:
+https://devai82.github.io/demos-comerciales/salon224/
+
+¿Qué soluciona para Salón 224?
+• Asistente telefónico con Voz IA: atiende llamadas de clientas, informa de tarifas y busca huecos libres en vuestra agenda sin interrumpir el trabajo en el sillón.
+• Bot de WhatsApp conectado con Fresha: confirmación instantánea y recordatorio automático para evitar citas no presentadas.
+• CRM propio para fidelización y promociones personalizadas.
+
+💡 Proyecto subvencionado al 80% mediante el Bono Pyme JCCM (coste real para vosotras: 600€).
+
+¿Cuándo os viene bien que os hagamos una prueba de 5 minutos en el salón?`,
+
       dental: `Hola, buenos días. 🦷✨
 
 Os escribo desde Altera. Hemos estado analizando la presencia digital y los canales de atención al paciente de Sonrisastar en Albacete y hemos preparado un prototipo interactivo exclusivo para vuestra clínica:
@@ -366,7 +620,6 @@ https://devai82.github.io/demos-comerciales/adela-fisio/
       navigator.clipboard.writeText(text).then(() => {
         showToast('¡Mensaje de WhatsApp copiado con enlace!');
       }).catch(err => {
-        // Fallback
         const ta = document.createElement('textarea');
         ta.value = text;
         document.body.appendChild(ta);

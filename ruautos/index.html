@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RUAUTOS Albacete — Prototipo Interactivo | Asistente de Voz, WhatsApp & CRM</title>
+  <meta name="description" content="Demostración interactiva para RUAUTOS Albacete: Recepción telefónica con ElevenLabs, WhatsApp Bot con Zernio, CRM a medida con certificación de 82 puntos y Meta Ads.">
+
+  <!-- Open Graph / WhatsApp / Redes Sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="RUAUTOS Albacete — Automatización Digital">
+  <meta property="og:title" content="RUAUTOS Albacete — Prototipo Interactivo | Asistente de Voz & CRM">
+  <meta property="og:description" content="Simulador en vivo: Recepción telefónica ElevenLabs 24/7, WhatsApp & Instagram Zernio y CRM 82 Puntos.">
+  <meta property="og:url" content="https://devai82.github.io/demos-comerciales/ruautos/">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/ruautos/og-ruautos.jpg">
+  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/ruautos/og-ruautos.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="RUAUTOS Albacete — Asistente IA, WhatsApp Zernio y CRM 82 Puntos">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RUAUTOS Albacete — Prototipo Interactivo">
+  <meta name="twitter:description" content="Simulador en vivo: Recepción telefónica ElevenLabs 24/7, WhatsApp & Instagram Zernio y CRM 82 Puntos.">
+  <meta name="twitter:image" content="https://devai82.github.io/demos-comerciales/ruautos/og-ruautos.jpg">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Space Grotesk (Tech/Automotive Display), Plus Jakarta Sans (Clean UI), JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef6ff',
+              100: '#d9ebff',
+              200: '#bce0ff',
+              300: '#8eccff',
+              400: '#59adff',
+              500: '#2f8fff',
+              600: '#156fe8',
+              700: '#1056ba',
+              800: '#114796',
+              900: '#061b3a', // Ruautos official corporate blue
+              950: '#040f21',
+            },
+            accent: {
+              cyan: '#00d1ff',
+              amber: '#f59e0b',
+              emerald: '#10b981',
+              rose: '#f43f5e',
+            },
+            carbon: {
+              800: '#1c1f26',
+              850: '#15181f',
+              900: '#0e1117',
+              950: '#080a0f',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+    .custom-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+    .custom-scroll::-webkit-scrollbar-thumb { background: rgba(16, 86, 186, 0.3); border-radius: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(16, 86, 186, 0.6); }
+
+    /* Soundwave animation */
+    @keyframes wave {
+      0%, 100% { height: 6px; }
+      50% { height: 32px; }
+    }
+    .wave-bar {
+      width: 4px;
+      border-radius: 9999px;
+      background: #00d1ff;
+      animation: wave 1.2s ease-in-out infinite;
+    }
+    .wave-bar:nth-child(2) { animation-delay: 0.15s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.45s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.6s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.75s; }
+    .wave-bar:nth-child(7) { animation-delay: 0.9s; }
+    .wave-bar:nth-child(8) { animation-delay: 1.05s; }
+
+    /* Layered shadows per CLAUDE FRONTEND rules */
+    .card-shadow {
+      box-shadow: 0 4px 6px -1px rgba(6, 27, 58, 0.08), 0 2px 4px -2px rgba(6, 27, 58, 0.05), 0 12px 24px -4px rgba(6, 27, 58, 0.06);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px -5px rgba(0, 209, 255, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-[#f4f7fb] text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- TOP BAR ALERTA / INFO -->
+  <div class="bg-brand-900 text-white text-xs py-2 px-4 border-b border-brand-800">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-cyan/20 text-accent-cyan font-bold tracking-wide text-[10px] uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-pulse"></span> Demo Activa
+        </span>
+        <span class="text-slate-300">RUAUTOS Albacete — Concesionario de Vehículos de Ocasión y Seminuevos</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-300 text-[11px]">
+        <span>📞 Teléfono Oficial: <strong class="text-white">+34 613 05 05 67</strong></span>
+        <span>📍 Albacete (Castilla-La Mancha)</span>
+        <a href="VER_PRESENTACION_RUAUTOS.html" class="inline-flex items-center gap-1 text-accent-cyan hover:underline font-semibold">
+          <span>Ver Dossier Estratégico</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER & NAVIGATION -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 card-shadow">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-900 flex items-center justify-center text-accent-cyan font-display font-extrabold text-xl tracking-tighter shadow-md">
+          RU
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-display font-bold text-lg text-brand-900 tracking-tight leading-none">RUAUTOS</h1>
+            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-brand-800">IA & CRM 2.0</span>
+          </div>
+          <p class="text-xs text-slate-500">Suite Integral: ElevenLabs + Zernio WhatsApp + CRM 82 Puntos</p>
+        </div>
+      </div>
+
+      <!-- VIEW SELECTOR TABS -->
+      <nav class="flex items-center flex-wrap gap-1.5 text-xs font-semibold" id="tabNav">
+        <button onclick="switchTab('phone')" id="tab-btn-phone" class="tab-btn px-3.5 py-2 rounded-xl bg-brand-900 text-white font-bold transition flex items-center gap-2 shadow-sm">
+          <span>📞</span>
+          <span>1. Asistente Voz ElevenLabs</span>
+        </button>
+        <button onclick="switchTab('whatsapp')" id="tab-btn-whatsapp" class="tab-btn px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-2">
+          <span>💬</span>
+          <span>2. WhatsApp & Instagram Zernio</span>
+        </button>
+        <button onclick="switchTab('crm')" id="tab-btn-crm" class="tab-btn px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-2">
+          <span>📊</span>
+          <span>3. CRM & Certificado 82 Puntos</span>
+        </button>
+        <button onclick="switchTab('inbox')" id="tab-btn-inbox" class="tab-btn px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-2">
+          <span>📥</span>
+          <span>4. Bandeja Omnicanal</span>
+        </button>
+        <button onclick="switchTab('ads')" id="tab-btn-ads" class="tab-btn px-3.5 py-2 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 transition flex items-center gap-2">
+          <span>🎯</span>
+          <span>5. Meta Ads & ROI</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6">
+
+    <!-- ========================================== -->
+    <!-- TAB 1: ASISTENTE DE VOZ TELEFÓNICO ELEVENLABS -->
+    <!-- ========================================== -->
+    <section id="view-phone" class="tab-view space-y-6">
+      
+      <!-- HERO INFO -->
+      <div class="bg-gradient-to-r from-brand-900 via-brand-800 to-slate-900 rounded-3xl p-6 md:p-8 text-white relative overflow-hidden card-shadow">
+        <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-accent-cyan/10 blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 max-w-3xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-accent-cyan text-xs font-semibold backdrop-blur-md">
+            <span>🎙️ ElevenLabs Conversational Voice Agent</span>
+            <span>•</span>
+            <span>Atención 24/7 en el 613 05 05 67</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight">
+            Recepción Telefónica Inteligente: Cero Llamadas Perdidas en Ruautos
+          </h2>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Cuando los asesores de Ruautos están cerrando una venta en la campa o realizando una entrega, la IA contesta al primer tono con voz ultra-realista en castellano. Informa de los coches en stock, condiciones de garantía de 82 puntos, tasación de vehículos y agenda citas para prueba de conducción directamente.
+          </p>
+        </div>
+      </div>
+
+      <!-- PHONE SIMULATOR INTERFACE -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- LEFT: SMARTPHONE DEVICE SIMULATOR -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+          <div class="w-full max-w-[340px] bg-carbon-950 rounded-[42px] p-4 border-4 border-slate-800 shadow-2xl relative">
+            
+            <!-- Phone Notch / Speaker -->
+            <div class="w-28 h-4 bg-carbon-900 rounded-full mx-auto mb-4 flex items-center justify-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-slate-800"></div>
+              <div class="w-10 h-1 rounded-full bg-slate-800"></div>
+            </div>
+
+            <!-- Call Screen Display -->
+            <div class="bg-carbon-900 rounded-[32px] p-6 text-center text-white flex flex-col items-center justify-between min-h-[460px] border border-slate-800/80 relative overflow-hidden">
+              
+              <!-- Ambient Glow on active call -->
+              <div id="callAmbientGlow" class="absolute inset-0 bg-accent-cyan/5 opacity-0 transition-opacity duration-700 pointer-events-none"></div>
+
+              <!-- Top Status -->
+              <div class="relative z-10 w-full">
+                <span class="text-[10px] text-slate-400 font-mono tracking-widest uppercase">RUAUTOS TELECOM AI</span>
+                <p id="callStatusBadge" class="text-xs font-bold text-accent-cyan mt-1 uppercase tracking-wider">Listo para conectar</p>
+              </div>
+
+              <!-- Avatar & Pulsing Rings -->
+              <div class="relative my-4">
+                <div id="callPulseRing" class="absolute -inset-4 rounded-full bg-accent-cyan/20 scale-95 opacity-0 transition-all duration-700"></div>
+                <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-brand-900 to-brand-700 border-2 border-accent-cyan/40 flex items-center justify-center shadow-lg relative z-10">
+                  <span class="text-3xl">🚗</span>
+                </div>
+              </div>
+
+              <!-- Contact Name & Number -->
+              <div class="relative z-10 space-y-1">
+                <h3 class="font-display font-bold text-lg text-white">Recepción Ruautos Albacete</h3>
+                <p class="text-xs text-slate-400 font-mono">+34 613 05 05 67</p>
+              </div>
+
+              <!-- Soundwave Holder -->
+              <div id="soundWaveBox" class="h-10 flex items-center justify-center gap-1.5 opacity-20 transition-opacity my-2">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+              </div>
+
+              <!-- Timer -->
+              <p id="callDurationTimer" class="font-mono text-sm text-slate-400 font-bold">00:00</p>
+
+              <!-- Call Action Buttons -->
+              <div class="w-full pt-4 space-y-2 relative z-10">
+                <button id="btnStartCall" onclick="startCall()" class="w-full py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/40 transition flex items-center justify-center gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                  <span>Iniciar Llamada con IA</span>
+                </button>
+
+                <button id="btnEndCall" onclick="endCall()" class="hidden w-full py-3.5 px-4 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm shadow-lg shadow-rose-900/40 transition flex items-center justify-center gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.684A1 1 0 008.279 3H5z"/></svg>
+                  <span>Colgar Llamada</span>
+                </button>
+
+                <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-800 text-[11px] text-slate-400">
+                  <div class="flex items-center gap-1.5">
+                    <input type="checkbox" id="voiceToggleAudio" checked class="rounded accent-accent-cyan">
+                    <label for="voiceToggleAudio" class="cursor-pointer">Voz activa</label>
+                  </div>
+                  <span class="text-[10px] text-cyan-300 font-semibold bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/40">✨ ElevenLabs HD (Dino)</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: SCENARIOS, REAL-TIME TRANSCRIPT & AUTOMATED CONFIRMATION CARD -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- SCENARIO SELECTOR -->
+          <div class="bg-white rounded-2xl p-5 border border-slate-200 card-shadow space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display font-bold text-sm text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                <span>🎯</span>
+                <span>Selecciona el Escenario de Prueba</span>
+              </h3>
+              <span class="text-xs text-slate-400">Voz configurada: Agente Senior Castellano</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+              <button onclick="pickScenario(0)" id="scen-tab-0" class="scen-btn p-3 rounded-xl border-2 border-brand-600 bg-brand-50/60 text-left transition hover:border-brand-500">
+                <span class="text-xs font-bold text-brand-900 block">🚗 1. Consulta Coche Stock</span>
+                <span class="text-[11px] text-slate-500 block mt-0.5">Seat León FR 130CV + Cita prueba</span>
+              </button>
+
+              <button onclick="pickScenario(1)" id="scen-tab-1" class="scen-btn p-3 rounded-xl border border-slate-200 text-left transition hover:border-brand-300">
+                <span class="text-xs font-bold text-slate-800 block">💰 2. Tasación Vehículo Usado</span>
+                <span class="text-[11px] text-slate-500 block mt-0.5">Entrega de Ford Focus como parte</span>
+              </button>
+
+              <button onclick="pickScenario(2)" id="scen-tab-2" class="scen-btn p-3 rounded-xl border border-slate-200 text-left transition hover:border-brand-300">
+                <span class="text-xs font-bold text-slate-800 block">🛡️ 3. Garantía & 82 Puntos</span>
+                <span class="text-[11px] text-slate-500 block mt-0.5">Preguntas sobre revisión y traspaso</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TRANSCRIPTION FEED -->
+          <div class="bg-white rounded-2xl p-5 border border-slate-200 card-shadow space-y-3">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <h4 class="font-display font-bold text-sm text-slate-800">Transcripción en Directo (Speech-To-Text / Text-To-Speech)</h4>
+              </div>
+              <span id="callStepIndicator" class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">En espera de llamada</span>
+            </div>
+
+            <div id="transcriptBox" class="h-64 overflow-y-auto custom-scroll space-y-3 pr-2 text-xs">
+              <div class="text-center text-slate-400 py-16 space-y-2">
+                <span class="text-3xl">🎧</span>
+                <p>Haz clic en <strong>"Iniciar Llamada con IA"</strong> para simular la conversación.</p>
+              </div>
+            </div>
+
+            <!-- INTERACTIVE PROMPT (CLIENT RESPONSE SELECTION) -->
+            <div id="userChoiceContainer" class="hidden pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+              <span id="promptQuestionLabel" class="text-xs font-medium text-slate-600 italic">¿Qué responde el cliente?</span>
+              <div id="promptButtonChoices" class="flex flex-wrap items-center gap-2"></div>
+            </div>
+          </div>
+
+          <!-- AUTOMATED CONFIRMATION CARD (DISPATCHED DIRECTLY TO CALENDAR & WHATSAPP) -->
+          <div id="bookingResultCard" class="hidden bg-emerald-50 border-2 border-emerald-400 rounded-2xl p-5 card-shadow transition-all space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm">
+                <span>✅</span>
+                <span>Cita Registrada Automáticamente en el CRM de Ruautos</span>
+              </div>
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-200 text-emerald-900">WHATSAPP ENVIADO</span>
+            </div>
+            <p class="text-xs text-emerald-900 leading-relaxed" id="bookingResultDetails">
+              <strong>Prueba de conducción agendada:</strong> Seat León 1.5 TSI FR (2021) para el <strong>Sábado a las 11:30h</strong>. Cliente: Carlos Martínez (612 34 56 78). Se ha enviado ubicación por WhatsApp de la campa de Ruautos en Albacete.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: WHATSAPP & INSTAGRAM CHATBOT (ZERNIO) -->
+    <!-- ========================================== -->
+    <section id="view-whatsapp" class="tab-view hidden space-y-6">
+      
+      <div class="bg-gradient-to-r from-emerald-900 via-slate-900 to-brand-900 rounded-3xl p-6 md:p-8 text-white relative overflow-hidden card-shadow">
+        <div class="relative z-10 max-w-3xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold backdrop-blur-md">
+            <span>⚡ Zernio WhatsApp & Instagram DM Suite</span>
+            <span>•</span>
+            <span>Conexión Cloud API Oficial</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight">
+            Chatbot de Ocasión: Catálogo Interactivo, Filtros y Captación
+          </h2>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Los compradores en redes sociales o que pulsan el botón de WhatsApp no quieren esperar. Zernio atiende al milisegundo: filtra por presupuesto (ej. &lt; 15.000€), tipo de carrocería (SUV, Compacto, Berlina), muestra fichas con fotos de los coches y ofrece calcular la cuota de financiación o agendar prueba.
+          </p>
+        </div>
+      </div>
+
+      <!-- WHATSAPP SIMULATOR -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- LEFT: CHAT LIST PREVIEW -->
+        <div class="lg:col-span-4 bg-white rounded-3xl p-4 border border-slate-200 card-shadow space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+            <h3 class="font-display font-bold text-sm text-slate-900">Conversaciones Zernio</h3>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Conectado</span>
+          </div>
+
+          <!-- Channel Filter -->
+          <div class="flex gap-1.5 p-1 bg-slate-100 rounded-xl text-xs font-semibold">
+            <button class="flex-1 py-1 rounded-lg bg-white shadow-xs text-brand-900 text-center">Todos</button>
+            <button class="flex-1 py-1 rounded-lg text-slate-500 hover:text-slate-800 text-center">WhatsApp (3)</button>
+            <button class="flex-1 py-1 rounded-lg text-slate-500 hover:text-slate-800 text-center">Instagram DM (2)</button>
+          </div>
+
+          <!-- Chat List Items -->
+          <div class="space-y-2">
+            <div class="p-3 rounded-2xl bg-brand-50 border border-brand-200 flex items-center gap-3 cursor-pointer">
+              <div class="w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm shadow">
+                🚗
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-slate-900 truncate">Carlos Martínez</h4>
+                  <span class="text-[10px] text-slate-400">Ahora</span>
+                </div>
+                <p class="text-[11px] text-slate-600 truncate" id="waSidebarLastMsg">¿Qué compactos tenéis por menos de 18.000€?</p>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-200 flex items-center gap-3 cursor-pointer transition">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-rose-500 text-white font-bold flex items-center justify-center text-sm shadow">
+                📸
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-slate-900 truncate">@alvaro_ab (Instagram DM)</h4>
+                  <span class="text-[10px] text-slate-400">14:20</span>
+                </div>
+                <p class="text-[11px] text-slate-500 truncate">Comentó "PRECIO" en Reel Audi A3</p>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-200 flex items-center gap-3 cursor-pointer transition">
+              <div class="w-10 h-10 rounded-full bg-slate-700 text-white font-bold flex items-center justify-center text-sm shadow">
+                🚙
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-slate-900 truncate">Laura Gómez</h4>
+                  <span class="text-[10px] text-slate-400">Ayer</span>
+                </div>
+                <p class="text-[11px] text-slate-500 truncate">Confirmó cita de prueba para Nissan Qashqai</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Tag -->
+          <div class="pt-4 border-t border-slate-100 text-[11px] text-slate-500 space-y-1.5">
+            <div class="flex items-center gap-1.5 text-emerald-700 font-semibold">
+              <span>✓</span> <span>Integración con CRM Ruautos</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-emerald-700 font-semibold">
+              <span>✓</span> <span>Disparo automático desde Instagram Stories</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: INTERACTIVE WHATSAPP SCREEN -->
+        <div class="lg:col-span-8 bg-white rounded-3xl border border-slate-200 card-shadow flex flex-col h-[600px] overflow-hidden">
+          
+          <!-- WA Header -->
+          <div class="bg-brand-900 text-white p-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center font-bold text-accent-cyan border border-white/20">
+                  RU
+                </div>
+                <span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-brand-900"></span>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm">RUAUTOS Albacete (Oficial)</h4>
+                <p class="text-[11px] text-accent-cyan flex items-center gap-1">
+                  <span>● Bot Inteligente Zernio Activo</span>
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="px-2 py-0.5 rounded bg-white/10 text-[11px] font-mono">ID: #WA-ALB-82</span>
+            </div>
+          </div>
+
+          <!-- WA Message History -->
+          <div id="waChatBody" class="flex-1 p-4 overflow-y-auto custom-scroll space-y-3 bg-[#efeae2]/30 text-xs">
+            
+            <!-- Bot Welcome Message -->
+            <div class="flex items-start gap-2 max-w-[85%]">
+              <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm space-y-2 border border-slate-100 text-slate-800">
+                <p>¡Hola! 👋 Bienvenido a <strong>RUAUTOS Albacete</strong>. Con más de 7 años de experiencia y más de 80 vehículos de ocasión revisados en 82 puntos clave con 1 año de garantía incluido.</p>
+                <p>¿Qué estás buscando hoy?</p>
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  <button onclick="sendWaPreset('Ver Coches en Stock')" class="px-2.5 py-1 rounded-lg bg-brand-50 hover:bg-brand-100 text-brand-800 font-bold border border-brand-200 transition">🚗 Ver Coches en Stock</button>
+                  <button onclick="sendWaPreset('Tasar Mi Coche')" class="px-2.5 py-1 rounded-lg bg-brand-50 hover:bg-brand-100 text-brand-800 font-bold border border-brand-200 transition">💰 Tasar Mi Coche</button>
+                  <button onclick="sendWaPreset('Calcular Financiación')" class="px-2.5 py-1 rounded-lg bg-brand-50 hover:bg-brand-100 text-brand-800 font-bold border border-brand-200 transition">📑 Financiación a Medida</button>
+                </div>
+                <span class="text-[9px] text-slate-400 block text-right">10:00 • Entregado</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="bg-slate-50 p-2.5 border-t border-slate-200 flex flex-wrap gap-1.5 text-xs" id="waQuickButtons">
+            <button onclick="sendWaPreset('Quiero un SUV familiar')" class="px-2.5 py-1 rounded-full bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 transition">🚙 SUV Familiar</button>
+            <button onclick="sendWaPreset('Compacto gasolina &lt; 16.000€')" class="px-2.5 py-1 rounded-full bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 transition">🏎️ Compacto &lt; 16.000€</button>
+            <button onclick="sendWaPreset('Reservar cita de prueba para este sábado')" class="px-2.5 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 font-semibold transition">📅 Cita Prueba Sábado</button>
+          </div>
+
+          <!-- Input Bar -->
+          <div class="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
+            <input type="text" id="waInputField" placeholder="Escribe tu mensaje a RUAUTOS..." onkeypress="handleWaEnter(event)" class="flex-1 px-4 py-2.5 rounded-full bg-slate-100 border border-slate-200 focus:outline-none focus:border-brand-500 text-xs">
+            <button onclick="sendWaMessage()" class="w-10 h-10 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition shadow">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: CRM A MEDIDA & CERTIFICACIÓN 82 PUNTOS -->
+    <!-- ========================================== -->
+    <section id="view-crm" class="tab-view hidden space-y-6">
+      
+      <div class="bg-gradient-to-r from-brand-900 via-brand-950 to-carbon-900 rounded-3xl p-6 md:p-8 text-white relative overflow-hidden card-shadow">
+        <div class="relative z-10 max-w-3xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-accent-cyan text-xs font-semibold backdrop-blur-md">
+            <span>🛡️ Fase 2: CRM Automotriz a Medida</span>
+            <span>•</span>
+            <span>Desarrollo Next.js + Supabase RLS</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight">
+            Control Total: Pipeline de Leads & Certificado de 82 Puntos
+          </h2>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Inspirado en la filosofía del CRM de Salón 224: sustituimos los formularios caóticos y hojas de Excel por un pipeline Kanban sincronizado con WhatsApp, catálogo de stock con costes/márgenes y la ficha digital de inspección mecánica de 82 puntos para generar máxima confianza en el cliente.
+          </p>
+        </div>
+      </div>
+
+      <!-- KANBAN BOARD -->
+      <div class="space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 card-shadow">
+          <div class="flex items-center gap-3">
+            <h3 class="font-display font-bold text-slate-900 text-sm">Embudo de Ventas (Pipeline Ruautos)</h3>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-blue-100 text-brand-800 font-bold">14 Oportunidades Activas</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="showCarSheetModal()" class="px-3 py-1.5 rounded-xl bg-brand-900 hover:bg-brand-800 text-white font-bold text-xs transition flex items-center gap-1.5 shadow">
+              <span>📋</span> <span>Ver Ficha Técnica 82 Puntos</span>
+            </button>
+            <button class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition">
+              + Añadir Lead
+            </button>
+          </div>
+        </div>
+
+        <!-- KANBAN COLUMNS -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          
+          <!-- COL 1: NUEVO CONTACTO -->
+          <div class="bg-slate-100/80 rounded-2xl p-3 border border-slate-200 space-y-3">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> 1. Nuevo Contacto (5)
+              </span>
+              <span class="text-[10px] font-mono text-slate-400">Web / Meta</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="bg-white p-3 rounded-xl border border-slate-200 card-shadow space-y-1.5 cursor-pointer hover:border-brand-400 transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-800">Meta Ads</span>
+                  <span class="text-[10px] text-slate-400">Hace 15m</span>
+                </div>
+                <h4 class="text-xs font-bold text-slate-900">Marcos R. (Seat León FR)</h4>
+                <p class="text-[11px] text-slate-500">Presupuesto: 17.000€ • Quiere financiar a 60 meses</p>
+                <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-[10px] text-slate-400">
+                  <span>📱 614 88 99 XX</span>
+                  <span class="text-brand-600 font-bold">Ver Chat &rarr;</span>
+                </div>
+              </div>
+
+              <div class="bg-white p-3 rounded-xl border border-slate-200 card-shadow space-y-1.5 cursor-pointer hover:border-brand-400 transition">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">WhatsApp Web</span>
+                  <span class="text-[10px] text-slate-400">Hace 1h</span>
+                </div>
+                <h4 class="text-xs font-bold text-slate-900">Beatriz Soler (Peugeot 3008)</h4>
+                <p class="text-[11px] text-slate-500">Preguntó si tiene etiqueta ECO o C</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 2: PRUEBA DE CONDUCCIÓN -->
+          <div class="bg-slate-100/80 rounded-2xl p-3 border border-slate-200 space-y-3">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-amber-500"></span> 2. Cita Prueba (3)
+              </span>
+              <span class="text-[10px] font-mono text-slate-400">Agendado</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="bg-white p-3 rounded-xl border-2 border-amber-300 card-shadow space-y-1.5 cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">Sábado 11:30h</span>
+                  <span class="text-[10px] font-bold text-emerald-600">Confirmado</span>
+                </div>
+                <h4 class="text-xs font-bold text-slate-900">Carlos Martínez (Seat León FR)</h4>
+                <p class="text-[11px] text-slate-500">Agendado automáticamente por ElevenLabs</p>
+                <div class="p-1.5 rounded bg-amber-50 text-[10px] text-amber-800 font-medium">
+                  Vehículo listo y lavado en campa principal
+                </div>
+              </div>
+
+              <div class="bg-white p-3 rounded-xl border border-slate-200 card-shadow space-y-1.5 cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-800">Lunes 17:00h</span>
+                  <span class="text-[10px] text-slate-400">Pendiente</span>
+                </div>
+                <h4 class="text-xs font-bold text-slate-900">Jorge P. (Volkswagen Golf VII)</h4>
+                <p class="text-[11px] text-slate-500">Solicitó ver el historial de mantenimiento</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 3: TASACIÓN & FINANCIACIÓN -->
+          <div class="bg-slate-100/80 rounded-2xl p-3 border border-slate-200 space-y-3">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-purple-500"></span> 3. Tasación / Financiación (4)
+              </span>
+              <span class="text-[10px] font-mono text-slate-400">En estudio</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="bg-white p-3 rounded-xl border border-slate-200 card-shadow space-y-1.5 cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-800">Santander Consumer</span>
+                  <span class="text-[10px] text-emerald-600 font-bold">Pre-Aprobada</span>
+                </div>
+                <h4 class="text-xs font-bold text-slate-900">David Navarro (Audi A3 Sportback)</h4>
+                <p class="text-[11px] text-slate-500">Cuota: 215€/mes a 72 meses • Entrada 3.000€</p>
+                <div class="text-[10px] text-slate-400">Tasación coche antiguo: Ford Focus (2.800€)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COL 4: VENDIDO & ENTREGADO -->
+          <div class="bg-slate-100/80 rounded-2xl p-3 border border-slate-200 space-y-3">
+            <div class="flex items-center justify-between px-1">
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 4. Entregado / Post-Venta (2)
+              </span>
+              <span class="text-[10px] font-mono text-emerald-600 font-bold">Éxito</span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="bg-emerald-50/70 p-3 rounded-xl border border-emerald-200 card-shadow space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-200 text-emerald-900">Entregado Ayer</span>
+                  <span class="text-xs">🎉</span>
+                </div>
+                <h4 class="text-xs font-bold text-emerald-950">Ana Belén C. (BMW Serie 1)</h4>
+                <p class="text-[11px] text-emerald-800">1 año de garantía activado • Mantenimiento al día</p>
+                <div class="p-1 rounded bg-white/80 text-[10px] text-slate-600">
+                  🔔 Próxima alerta automática: Recordatorio ITV y cambio de aceite en 10 meses.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: BANDEJA UNIFICADA OMNICANAL -->
+    <!-- ========================================== -->
+    <section id="view-inbox" class="tab-view hidden space-y-6">
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 card-shadow space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <div>
+            <h3 class="font-display font-bold text-base text-slate-900">Bandeja Unificada de Conversaciones (Zernio Hub)</h3>
+            <p class="text-xs text-slate-500">Todos los canales en una sola pantalla: WhatsApp Oficial + Instagram Direct de @ruautos.albacete</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Conectores Activos
+            </span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-2xl bg-brand-50/60 border border-brand-200 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-brand-900">Canal WhatsApp Oficial</span>
+              <span class="text-emerald-600 font-bold">100% Operativo</span>
+            </div>
+            <p class="text-2xl font-display font-extrabold text-brand-900">68 Chats</p>
+            <p class="text-[11px] text-slate-500">Este mes con tasa de respuesta &lt; 15 segundos</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-gradient-to-br from-purple-50 to-pink-50 border border-pink-200 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-purple-900">Instagram DMs & Reels</span>
+              <span class="text-pink-600 font-bold">Sincronizado</span>
+            </div>
+            <p class="text-2xl font-display font-extrabold text-purple-900">42 Leads</p>
+            <p class="text-[11px] text-slate-500">Respuestas automatizadas a palabras clave en comentarios</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-emerald-900">Citas Cerradas</span>
+              <span class="text-emerald-700 font-bold">+28% vs mes previo</span>
+            </div>
+            <p class="text-2xl font-display font-extrabold text-emerald-900">19 Pruebas</p>
+            <p class="text-[11px] text-slate-500">Generadas sin intervención manual previa del equipo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: META ADS & CALCULADORA ROI -->
+    <!-- ========================================== -->
+    <section id="view-ads" class="tab-view hidden space-y-6">
+      
+      <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-brand-950 rounded-3xl p-6 md:p-8 text-white relative overflow-hidden card-shadow">
+        <div class="relative z-10 max-w-3xl space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold backdrop-blur-md">
+            <span>📈 Pilar 4: Campañas de Meta Ads de Alta Conversión</span>
+            <span>•</span>
+            <span>Albacete & Provincia</span>
+          </div>
+          <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight">
+            Estrategia de Captación: Leads Hiper-Cualificados Directos a WhatsApp
+          </h2>
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Los anuncios tradicionales que mandan a una web lenta de PrestaShop pierden el 80% del presupuesto. Nuestra estrategia dirige el tráfico de Instagram y Facebook directamente al WhatsApp Inteligente o a una landing instantánea con tasación en 30 segundos.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- LEFT: AD CREATIVE SIMULATORS -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="bg-white rounded-2xl p-5 border border-slate-200 card-shadow space-y-3">
+            <h3 class="font-display font-bold text-sm text-slate-900 uppercase tracking-wider flex items-center gap-2">
+              <span>📱</span> <span>Creatividad Anuncio 1: Campaña de Tasación Inmediata</span>
+            </h3>
+            
+            <!-- Instagram Ad Preview Box -->
+            <div class="max-w-[360px] mx-auto bg-slate-900 text-white rounded-2xl p-3 border border-slate-800 shadow-xl space-y-3 text-xs">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full bg-brand-800 flex items-center justify-center font-bold text-[10px] text-accent-cyan">RU</div>
+                  <div>
+                    <p class="font-bold leading-none">ruautos.albacete</p>
+                    <p class="text-[9px] text-slate-400">Publicidad • Albacete</p>
+                  </div>
+                </div>
+                <span class="text-slate-400">•••</span>
+              </div>
+
+              <!-- Ad Graphic -->
+              <div class="h-44 rounded-xl bg-gradient-to-tr from-brand-900 via-blue-900 to-slate-900 flex flex-col items-center justify-center p-4 text-center relative overflow-hidden border border-brand-800">
+                <span class="text-3xl mb-1">🚗 ➔ 💶</span>
+                <p class="font-display font-extrabold text-sm uppercase text-accent-cyan tracking-wide">¿Quieres vender tu coche hoy en Albacete?</p>
+                <p class="text-[11px] text-slate-200 mt-1">Tasación garantizada en 30 minutos. Pago inmediato sin esperas.</p>
+                <div class="mt-2 px-2.5 py-0.5 rounded-full bg-accent-cyan text-brand-950 font-extrabold text-[10px]">
+                  CERTIFICADO RUAUTOS 82 PUNTOS
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between pt-1">
+                <p class="text-[11px] text-slate-300">Más de 200 coches comprados este año en Castilla-La Mancha.</p>
+                <button class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 font-bold text-[11px] text-white flex items-center gap-1 shadow">
+                  <span>Tasar en WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: INTERACTIVE ROI CALCULATOR -->
+        <div class="lg:col-span-6 bg-white rounded-2xl p-5 border border-slate-200 card-shadow space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h3 class="font-display font-bold text-sm text-slate-900 uppercase tracking-wider flex items-center gap-2">
+              <span>🧮</span> <span>Calculadora de Retorno de Inversión (Meta Ads + IA)</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-1">Mueve los controles para proyectar los resultados mensuales en Ruautos.</p>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-800 mb-1">
+                <span>Inversión Mensual en Publicidad:</span>
+                <span id="labelBudget" class="text-brand-700 font-mono text-sm">450 € / mes</span>
+              </div>
+              <input type="range" id="sliderBudget" min="200" max="1500" step="50" value="450" oninput="updateRoiCalc()" class="w-full accent-brand-600 cursor-pointer">
+              <div class="flex justify-between text-[10px] text-slate-400 mt-0.5 font-mono">
+                <span>200 €</span>
+                <span>800 €</span>
+                <span>1.500 €</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-800 mb-1">
+                <span>Margen Medio Bruto por Coche Vendido:</span>
+                <span id="labelMargin" class="text-brand-700 font-mono text-sm">1.400 €</span>
+              </div>
+              <input type="range" id="sliderMargin" min="800" max="3000" step="100" value="1400" oninput="updateRoiCalc()" class="w-full accent-brand-600 cursor-pointer">
+              <div class="flex justify-between text-[10px] text-slate-400 mt-0.5 font-mono">
+                <span>800 €</span>
+                <span>1.800 €</span>
+                <span>3.000 €</span>
+              </div>
+            </div>
+
+            <!-- PROJECTION RESULTS -->
+            <div class="p-4 rounded-2xl bg-brand-50 border border-brand-200 space-y-3">
+              <h4 class="font-display font-bold text-xs text-brand-900 uppercase tracking-wider">Proyección Mensual Estimada:</h4>
+              <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="p-2.5 rounded-xl bg-white border border-brand-100">
+                  <p class="text-[10px] text-slate-500 uppercase font-semibold">Leads por WhatsApp</p>
+                  <p id="resLeads" class="text-xl font-display font-extrabold text-brand-900 mt-0.5">56 leads</p>
+                  <p class="text-[9px] text-slate-400">~8,00 € / lead cualificado</p>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-white border border-brand-100">
+                  <p class="text-[10px] text-slate-500 uppercase font-semibold">Pruebas Conducidas</p>
+                  <p id="resTests" class="text-xl font-display font-extrabold text-amber-600 mt-0.5">14 pruebas</p>
+                  <p class="text-[9px] text-slate-400">25% conversión a cita</p>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-white border border-brand-100">
+                  <p class="text-[10px] text-slate-500 uppercase font-semibold">Coches Vendidos</p>
+                  <p id="resSales" class="text-xl font-display font-extrabold text-emerald-600 mt-0.5">3 - 4 coches</p>
+                  <p class="text-[9px] text-slate-400">25% cierre tras prueba</p>
+                </div>
+
+                <div class="p-2.5 rounded-xl bg-white border border-brand-100">
+                  <p class="text-[10px] text-slate-500 uppercase font-semibold">Beneficio Bruto Generado</p>
+                  <p id="resProfit" class="text-xl font-display font-extrabold text-emerald-700 mt-0.5">+4.900 €</p>
+                  <p class="text-[9px] text-emerald-600 font-bold">ROI: ~1.080%</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL: FICHA TÉCNICA 82 PUNTOS (INSPECCIÓN RUAUTOS) -->
+  <div id="modalCarSheet" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto custom-scroll p-6 border border-slate-200 card-shadow space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🛡️</span>
+          <div>
+            <h3 class="font-display font-bold text-base text-brand-900">Certificado Digital de Inspección: 82 Puntos</h3>
+            <p class="text-xs text-slate-500">Estándar de Calidad Oficial RUAUTOS Albacete</p>
+          </div>
+        </div>
+        <button onclick="hideCarSheetModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center font-bold text-slate-600 text-sm">✕</button>
+      </div>
+
+      <div class="p-3 bg-brand-50 rounded-xl border border-brand-100 flex items-center justify-between text-xs">
+        <div>
+          <strong class="text-brand-900">Vehículo:</strong> Seat León 1.5 TSI FR 130CV (2021)
+          <span class="text-slate-500 block">Matrícula: 4892-LKR • Kilometraje: 48.200 km</span>
+        </div>
+        <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 font-bold font-mono">APTO (82/82 PUNTOS)</span>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="border border-slate-200 rounded-xl p-3 space-y-1.5">
+          <h4 class="font-bold text-slate-800 flex items-center gap-1.5"><span>⚙️</span> 1. Motor y Transmisión (22 Puntos)</h4>
+          <p class="text-slate-500 text-[11px]">Compresión de cilindros, estanqueidad de juntas, estado de correa/cadena de distribución, niveles de fluidos, prueba de embrague y caja de cambios de 6 velocidades.</p>
+          <span class="text-emerald-700 font-semibold text-[10px]">✓ Verificado conforme • Aceite y filtros recién cambiados</span>
+        </div>
+
+        <div class="border border-slate-200 rounded-xl p-3 space-y-1.5">
+          <h4 class="font-bold text-slate-800 flex items-center gap-1.5"><span>🛑</span> 2. Frenos, Dirección y Neumáticos (20 Puntos)</h4>
+          <p class="text-slate-500 text-[11px]">Espesor de pastillas (delanteras al 85%, traseras al 90%), discos sin alabeo, alineación de dirección y profundidad de dibujo de neumáticos (> 5.2 mm).</p>
+          <span class="text-emerald-700 font-semibold text-[10px]">✓ Verificado conforme</span>
+        </div>
+
+        <div class="border border-slate-200 rounded-xl p-3 space-y-1.5">
+          <h4 class="font-bold text-slate-800 flex items-center gap-1.5"><span>💻</span> 3. diagnosis Electrónica & Seguridad (24 Puntos)</h4>
+          <p class="text-slate-500 text-[11px]">Lectura OBD-II sin códigos de error de inyección, sensores ABS/ESP operativos, airbag test superado, batería con 96% de vida útil.</p>
+          <span class="text-emerald-700 font-semibold text-[10px]">✓ diagnosis limpia certificada</span>
+        </div>
+
+        <div class="border border-slate-200 rounded-xl p-3 space-y-1.5">
+          <h4 class="font-bold text-slate-800 flex items-center gap-1.5"><span>🚗</span> 4. Chapa, Pintura y Estructura (16 Puntos)</h4>
+          <p class="text-slate-500 text-[11px]">Inspección con medidor de espesor de pintura micrométrico: chasis sin golpes estructurales, pintura original de fábrica sin diferencias de tono.</p>
+          <span class="text-emerald-700 font-semibold text-[10px]">✓ Garantía estructural confirmada</span>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+        <span class="text-slate-500">Incluye 1 año de garantía nacional con libre elección de taller.</span>
+        <button onclick="hideCarSheetModal()" class="px-4 py-2 rounded-xl bg-brand-900 text-white font-bold">Cerrar Ficha</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- TAB SWITCHER ---
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      document.getElementById('view-' + tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-900', 'text-white', 'shadow-sm');
+        btn.classList.add('bg-slate-100', 'text-slate-700');
+      });
+
+      const activeBtn = document.getElementById('tab-btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-100', 'text-slate-700');
+        activeBtn.classList.add('bg-brand-900', 'text-white', 'shadow-sm');
+      }
+    }
+
+    // --- MODAL CONTROLS ---
+    function showCarSheetModal() {
+      document.getElementById('modalCarSheet').classList.remove('hidden');
+    }
+    function hideCarSheetModal() {
+      document.getElementById('modalCarSheet').classList.add('hidden');
+    }
+
+    // --- ELEVENLABS CALL SIMULATION ENGINE ---
+    let callTimerInterval = null;
+    let callSeconds = 0;
+    let isCallActive = false;
+    let currentScenarioIdx = 0;
+    let currentDialogueStep = 0;
+
+    const callScenarios = [
+      {
+        title: "Consulta Seat León FR",
+        dialogue: [
+          { speaker: "agent", text: "¡Hola! Gracias por llamar a RUAUTOS Albacete. Mi nombre es Mateo, tu asistente virtual. ¿En qué vehículo de ocasión estás interesado hoy?" },
+          { 
+            speaker: "user", 
+            options: [
+              { label: "He visto el Seat León FR blanco en la web", value: "He visto el Seat León FR blanco de 2021 en vuestra web y quería saber si sigue disponible y qué kilometraje tiene." },
+              { label: "¿Tienen algún compacto diésel?", value: "Buenas, busco un compacto diésel económico para hacer muchos kilómetros al año." }
+            ]
+          },
+          { speaker: "agent", text: "¡Sí, sigue disponible! Es un Seat León 1.5 TSI FR con 130 caballos, del año 2021, con tan solo 48.200 kilómetros certificados. Su precio al contado es de 16.490€ o desde 210€ al mes financiado. Incluye la revisión de 82 puntos y un año de garantía completa. ¿Te gustaría venir a probarlo esta semana a nuestras instalaciones de Albacete?" },
+          { 
+            speaker: "user", 
+            options: [
+              { label: "Sí, me gustaría este sábado por la mañana", value: "Sí, perfecto. ¿Podría ser este sábado sobre las 11:30 de la mañana?" },
+              { label: "¿Qué documentación necesito para financiar?", value: "¿Qué papeles os tengo que llevar para hacer el estudio de financiación?" }
+            ]
+          },
+          { speaker: "agent", text: "¡Hecho! Te he reservado la prueba del Seat León FR para este sábado a las 11:30 en nuestra campa de Albacete. Te acabo de enviar un WhatsApp con la confirmación de la cita y la ubicación exacta de Google Maps. ¡Te esperamos!" }
+        ]
+      },
+      {
+        title: "Tasación de Vehículo",
+        dialogue: [
+          { speaker: "agent", text: "¡Hola! Bienvenido a RUAUTOS Albacete. Te atiende Mateo. ¿Quieres comprar un coche o estás pensando en tasar y entregar tu vehículo actual?" },
+          { 
+            speaker: "user", 
+            options: [
+              { label: "Quiero entregar mi coche como parte de pago", value: "Hola, me interesa comprar un coche vuestro pero quiero entregar mi Ford Focus de 2017 como parte del pago." }
+            ]
+          },
+          { speaker: "agent", text: "¡Excelente! En RUAUTOS compramos vehículos todos los días con tasación en el acto. ¿Podrías indicarme qué motor tiene tu Ford Focus y aproximadamente cuántos kilómetros tiene?" },
+          { 
+            speaker: "user", 
+            options: [
+              { label: "Es el 1.5 TDCi de 120CV con 135.000 km", value: "Es el 1.5 TDCi diésel de 120 caballos, con 135.000 kilómetros y todas las revisiones al día." }
+            ]
+          },
+          { speaker: "agent", text: "Perfecto. Por ese modelo y kilometraje, nuestra valoración estimada ronda entre 6.200€ y 6.800€, a descontar directamente del coche que elijas. Si te parece, te agendo una cita de 15 minutos en nuestro taller para revisarlo y darte el importe definitivo. ¿Te viene bien mañana por la tarde?" }
+        ]
+      },
+      {
+        title: "Garantía de 82 Puntos",
+        dialogue: [
+          { speaker: "agent", text: "¡Hola! Gracias por contactar con RUAUTOS Albacete. ¿En qué podemos asesorarte hoy?" },
+          { 
+            speaker: "user", 
+            options: [
+              { label: "¿Qué cubre la garantía de vuestros coches?", value: "Hola, quería saber qué tipo de garantía ofrecéis y cómo revisáis los coches antes de venderlos." }
+            ]
+          },
+          { speaker: "agent", text: "En RUAUTOS todos los coches incluyen un año de garantía oficial con libre elección de taller en toda España y cambio de titularidad incluido. Además, antes de entregarlo, sometemos cada vehículo a una inspección de 82 puntos mecánicos y electrónicos, cambiando aceite y filtros para que no tengas que gastar ni un euro en el primer año." }
+        ]
+      }
+    ];
+
+    function pickScenario(index) {
+      if (isCallActive) return;
+      currentScenarioIdx = index;
+      document.querySelectorAll('.scen-btn').forEach((btn, idx) => {
+        if (idx === index) {
+          btn.className = "scen-btn p-3 rounded-xl border-2 border-brand-600 bg-brand-50/60 text-left transition";
+        } else {
+          btn.className = "scen-btn p-3 rounded-xl border border-slate-200 text-left transition hover:border-brand-300";
+        }
+      });
+      const transcriptBox = document.getElementById('transcriptBox');
+      transcriptBox.innerHTML = `
+        <div class="text-center text-slate-400 py-16 space-y-2">
+          <span class="text-3xl">🚗</span>
+          <p>Escenario seleccionado: <strong>${callScenarios[index].title}</strong>.<br>Haz clic en "Iniciar Llamada con IA" para comenzar.</p>
+        </div>
+      `;
+    }
+
+    function startCall() {
+      isCallActive = true;
+      currentDialogueStep = 0;
+      callSeconds = 0;
+
+      document.getElementById('btnStartCall').classList.add('hidden');
+      document.getElementById('btnEndCall').classList.remove('hidden');
+      document.getElementById('callStatusBadge').innerText = "EN LLAMADA CON ELEVENLABS";
+      document.getElementById('callStatusBadge').className = "text-xs font-bold text-emerald-400 mt-1 uppercase tracking-wider animate-pulse";
+      document.getElementById('soundWaveBox').classList.remove('opacity-20');
+      document.getElementById('callPulseRing').classList.remove('opacity-0', 'scale-95');
+      document.getElementById('callPulseRing').classList.add('opacity-100', 'scale-110');
+      document.getElementById('bookingResultCard').classList.add('hidden');
+
+      const transcriptBox = document.getElementById('transcriptBox');
+      transcriptBox.innerHTML = "";
+
+      // Timer
+      callTimerInterval = setInterval(() => {
+        callSeconds++;
+        const mins = String(Math.floor(callSeconds / 60)).padStart(2, '0');
+        const secs = String(callSeconds % 60).padStart(2, '0');
+        document.getElementById('callDurationTimer').innerText = `${mins}:${secs}`;
+      }, 1000);
+
+      // Play First Agent Step
+      playAgentStep();
+    }
+
+    function endCall() {
+      isCallActive = false;
+      clearInterval(callTimerInterval);
+
+      document.getElementById('btnStartCall').classList.remove('hidden');
+      document.getElementById('btnEndCall').classList.add('hidden');
+      document.getElementById('callStatusBadge').innerText = "LLAMADA FINALIZADA";
+      document.getElementById('callStatusBadge').className = "text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider";
+      document.getElementById('soundWaveBox').classList.add('opacity-20');
+      document.getElementById('callPulseRing').classList.remove('opacity-100', 'scale-110');
+      document.getElementById('callPulseRing').classList.add('opacity-0', 'scale-95');
+      document.getElementById('userChoiceContainer').classList.add('hidden');
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function playAgentStep() {
+      const scenario = callScenarios[currentScenarioIdx];
+      const step = scenario.dialogue[currentDialogueStep];
+      if (!step) {
+        endCall();
+        return;
+      }
+
+      document.getElementById('callStepIndicator').innerText = "Agente Hablando...";
+
+      // Render agent bubble
+      const transcriptBox = document.getElementById('transcriptBox');
+      const bubble = document.createElement('div');
+      bubble.className = "flex items-start gap-2.5";
+      bubble.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-brand-900 text-accent-cyan font-bold flex items-center justify-center text-[10px] shrink-0 shadow">IA</div>
+        <div class="bg-brand-50 border border-brand-200 p-3 rounded-2xl rounded-tl-none text-slate-800 text-xs shadow-xs leading-relaxed max-w-[90%]">
+          <strong class="text-brand-900 block text-[10px] uppercase font-mono mb-0.5">Mateo (Asistente Ruautos)</strong>
+          ${step.text}
+        </div>
+      `;
+      transcriptBox.appendChild(bubble);
+      transcriptBox.scrollTop = transcriptBox.scrollHeight;
+
+      // Speak using SpeechSynthesis if checked
+      speakSpanish(step.text, () => {
+        currentDialogueStep++;
+        checkNextStep();
+      });
+    }
+
+    function checkNextStep() {
+      const scenario = callScenarios[currentScenarioIdx];
+      const step = scenario.dialogue[currentDialogueStep];
+
+      if (!step) {
+        // Dialogue finished: trigger booking card if scenario 0
+        if (currentScenarioIdx === 0) {
+          document.getElementById('bookingResultCard').classList.remove('hidden');
+        }
+        setTimeout(() => {
+          endCall();
+        }, 1500);
+        return;
+      }
+
+      if (step.speaker === "user") {
+        document.getElementById('callStepIndicator').innerText = "Esperando respuesta del cliente...";
+        const choiceContainer = document.getElementById('userChoiceContainer');
+        const buttonsContainer = document.getElementById('promptButtonChoices');
+        buttonsContainer.innerHTML = "";
+        choiceContainer.classList.remove('hidden');
+
+        step.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = "px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-brand-800 text-white font-semibold text-xs transition shadow-sm";
+          btn.innerText = opt.label;
+          btn.onclick = () => {
+            chooseUserResponse(opt.value);
+          };
+          buttonsContainer.appendChild(btn);
+        });
+      } else {
+        setTimeout(playAgentStep, 600);
+      }
+    }
+
+    function chooseUserResponse(userText) {
+      document.getElementById('userChoiceContainer').classList.add('hidden');
+      document.getElementById('callStepIndicator').innerText = "Cliente Respondiendo...";
+
+      const transcriptBox = document.getElementById('transcriptBox');
+      const bubble = document.createElement('div');
+      bubble.className = "flex items-start justify-end gap-2.5";
+      bubble.innerHTML = `
+        <div class="bg-slate-800 text-white p-3 rounded-2xl rounded-tr-none text-xs shadow-xs leading-relaxed max-w-[90%]">
+          <strong class="text-slate-400 block text-[10px] uppercase font-mono mb-0.5">Cliente (Tú)</strong>
+          ${userText}
+        </div>
+        <div class="w-7 h-7 rounded-full bg-slate-700 text-white font-bold flex items-center justify-center text-[10px] shrink-0 shadow">TÚ</div>
+      `;
+      transcriptBox.appendChild(bubble);
+      transcriptBox.scrollTop = transcriptBox.scrollHeight;
+
+      currentDialogueStep++;
+      setTimeout(playAgentStep, 800);
+    }
+
+    let currentElevenAudioRuautos = null;
+
+    async function speakWithElevenLabsRuautos(text, onEndCallback = null) {
+      const apiKey = localStorage.getItem('elevenlabs_api_key');
+      if (!apiKey) return false;
+
+      const voiceId = localStorage.getItem('elevenlabs_voice_id_ruautos') || 'mGlMpcOq63YZLdidTVyo'; // Dino (Comercial & Enérgico)
+
+      try {
+        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'audio/mpeg',
+            'Content-Type': 'application/json',
+            'xi-api-key': apiKey
+          },
+          body: JSON.stringify({
+            text: text,
+            model_id: 'eleven_multilingual_v2',
+            voice_settings: { stability: 0.5, similarity_boost: 0.8 }
+          })
+        });
+
+        if (!res.ok) {
+          console.warn("ElevenLabs Ruautos notice:", res.status);
+          return false;
+        }
+
+        const blob = await res.blob();
+        const audioUrl = URL.createObjectURL(blob);
+        const audio = new Audio(audioUrl);
+        currentElevenAudioRuautos = audio;
+
+        audio.onended = () => {
+          if (onEndCallback) onEndCallback();
+        };
+
+        audio.onerror = () => {
+          if (onEndCallback) onEndCallback();
+        };
+
+        await audio.play();
+        return true;
+      } catch (e) {
+        console.warn("ElevenLabs Ruautos fallback:", e);
+        return false;
+      }
+    }
+
+    async function speakSpanish(text, onEndCallback) {
+      const isVoiceOn = document.getElementById('voiceToggleAudio').checked;
+      if (!isVoiceOn) {
+        setTimeout(onEndCallback, 2000);
+        return;
+      }
+
+      if (currentElevenAudioRuautos) {
+        try { currentElevenAudioRuautos.pause(); } catch(e){}
+        currentElevenAudioRuautos = null;
+      }
+
+      // Probar ElevenLabs primero con voz Dino
+      const usedEleven = await speakWithElevenLabsRuautos(text, onEndCallback);
+      if (usedEleven) return;
+
+      if (!('speechSynthesis' in window)) {
+        setTimeout(onEndCallback, 2000);
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-ES';
+      utterance.rate = 1.05;
+
+      const voices = window.speechSynthesis.getVoices();
+      const esVoice = voices.find(v => v.lang.startsWith('es') || v.lang.includes('Spanish'));
+      if (esVoice) utterance.voice = esVoice;
+
+      utterance.onend = () => {
+        if (onEndCallback) onEndCallback();
+      };
+      utterance.onerror = () => {
+        if (onEndCallback) onEndCallback();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // --- WHATSAPP SIMULATOR LOGIC ---
+    function sendWaPreset(text) {
+      appendWaMsg(text, 'user');
+      processWaResponse(text);
+    }
+
+    function handleWaEnter(e) {
+      if (e.key === 'Enter') sendWaMessage();
+    }
+
+    function sendWaMessage() {
+      const input = document.getElementById('waInputField');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = "";
+      appendWaMsg(text, 'user');
+      processWaResponse(text);
+    }
+
+    function appendWaMsg(text, sender) {
+      const chatBody = document.getElementById('waChatBody');
+      const row = document.createElement('div');
+      
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      if (sender === 'user') {
+        row.className = "flex items-start justify-end gap-2 max-w-[85%] ml-auto";
+        row.innerHTML = `
+          <div class="bg-[#dcf8c6] p-3 rounded-2xl rounded-tr-none shadow-sm text-slate-800 text-xs border border-emerald-100">
+            <p>${text}</p>
+            <span class="text-[9px] text-slate-400 block text-right mt-1">${timeStr} • Leído ✓✓</span>
+          </div>
+        `;
+        document.getElementById('waSidebarLastMsg').innerText = text;
+      } else {
+        row.className = "flex items-start gap-2 max-w-[85%]";
+        row.innerHTML = `
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm space-y-2 border border-slate-100 text-slate-800 text-xs">
+            ${text}
+            <span class="text-[9px] text-slate-400 block text-right">${timeStr} • Entregado</span>
+          </div>
+        `;
+      }
+      chatBody.appendChild(row);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function processWaResponse(userText) {
+      const lower = userText.toLowerCase();
+      setTimeout(() => {
+        if (lower.includes('stock') || lower.includes('coches') || lower.includes('compacto')) {
+          appendWaMsg(`
+            <p>🚗 <strong>¡Mira estas 2 opciones destacadas con revisión de 82 puntos!</strong></p>
+            <div class="space-y-2 pt-1">
+              <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                <p class="font-bold text-brand-900">Seat León 1.5 TSI FR 130CV (2021)</p>
+                <p class="text-[11px] text-slate-600">48.200 km • Gasolina • Etiqueta C</p>
+                <p class="font-extrabold text-brand-700 text-sm mt-1">16.490 € <span class="text-[10px] font-normal text-slate-500">(o 210€/mes)</span></p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                <p class="font-bold text-brand-900">Peugeot 308 1.2 PureTech Allure (2020)</p>
+                <p class="text-[11px] text-slate-600">59.000 km • Pantalla táctil, sensores</p>
+                <p class="font-extrabold text-brand-700 text-sm mt-1">14.890 € <span class="text-[10px] font-normal text-slate-500">(o 185€/mes)</span></p>
+              </div>
+            </div>
+            <p class="pt-1">¿Te gustaría agendar una prueba de conducción para alguno de ellos?</p>
+          `, 'bot');
+        } else if (lower.includes('tasar') || lower.includes('mi coche')) {
+          appendWaMsg(`
+            <p>💰 <strong>Tasación Inmediata Ruautos:</strong></p>
+            <p>Por favor indícame:</p>
+            <ol class="list-decimal pl-4 space-y-0.5 text-slate-600">
+              <li>Marca y Modelo (ej. Ford Focus 2017)</li>
+              <li>Kilómetros aproximados</li>
+              <li>Tipo de combustible (diésel o gasolina)</li>
+            </ol>
+            <p class="pt-1">Te responderé en menos de 5 minutos con una estimación de compra en firme.</p>
+          `, 'bot');
+        } else if (lower.includes('cita') || lower.includes('prueba') || lower.includes('sábado')) {
+          appendWaMsg(`
+            <p>📅 ¡Perfecto! Tenemos hueco disponible este <strong>Sábado a las 11:30h</strong> en nuestras instalaciones de Albacete.</p>
+            <p>Para dejarte el coche preparado y limpio, ¿a qué nombre formalizamos la reserva?</p>
+          `, 'bot');
+        } else {
+          appendWaMsg(`
+            <p>¡Recibido! Un asesor del equipo de <strong>RUAUTOS Albacete</strong> revisará tu mensaje al instante. También puedes llamarnos directamente al <strong>613 05 05 67</strong> para cualquier urgencia.</p>
+          `, 'bot');
+        }
+      }, 700);
+    }
+
+    // --- ROI CALCULATOR LOGIC ---
+    function updateRoiCalc() {
+      const budget = parseInt(document.getElementById('sliderBudget').value);
+      const margin = parseInt(document.getElementById('sliderMargin').value);
+
+      document.getElementById('labelBudget').innerText = budget + " € / mes";
+      document.getElementById('labelMargin').innerText = margin.toLocaleString('es-ES') + " €";
+
+      // Estimated CPL (Cost per Lead) on Meta Ads in Albacete automotive sector ~ 8.00 €
+      const leads = Math.round(budget / 8.0);
+      const testDrives = Math.round(leads * 0.25);
+      const sales = Math.max(1, Math.round(testDrives * 0.25));
+      const grossProfit = (sales * margin) - budget;
+      const roiPercent = Math.round((grossProfit / budget) * 100);
+
+      document.getElementById('resLeads').innerText = leads + " leads";
+      document.getElementById('resTests').innerText = testDrives + " pruebas";
+      document.getElementById('resSales').innerText = sales + " coches";
+      document.getElementById('resProfit').innerText = "+" + grossProfit.toLocaleString('es-ES') + " €";
+      document.getElementById('resProfit').nextElementSibling.innerText = "ROI: ~" + roiPercent + "%";
+    }
+
+    // Init Voices on load
+    window.addEventListener('DOMContentLoaded', () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {};
+      }
+      updateRoiCalc();
+    });
+  </script>
+
+</body>
+</html>
