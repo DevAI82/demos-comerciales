@@ -10,15 +10,26 @@
   <!-- Open Graph / WhatsApp / Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
-  <meta property="og:site_name" content="Altera · Inteligencia REAL aplicada a tu negocio">
+  <meta property="og:site_name" content="Altera · Soluciones Tecnológicas">
   <meta property="og:title" content="Clínica Dental Sonrisastar — Propuesta de Transformación Digital & Recepción 24/7">
+  <meta property="og:description" content="Propuesta técnica y comercial de digitalización integral para Clínica Dental Sonrisastar (Albacete). Recepcionista telefónico IA 24/7 (ElevenLabs), WhatsApp Zernio, Nueva Web UX y CRM Clínico con 80% de subvención JCCM (coste final: 600€).">
   <meta property="og:url" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.html">
-  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.htmlog-dental-sonrisastar.png">
-  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.htmlog-dental-sonrisastar.png">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-dental-sonrisastar.png">
+  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-dental-sonrisastar.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Clínica Dental Sonrisastar — Recepción Telefónica IA 24/7 & Web Clínica">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Clínica Dental Sonrisastar — Propuesta & Recepción IA 24/7">
+  <meta name="twitter:description" content="Propuesta exclusiva para Sonrisastar: Recepcionista IA 24/7 (ElevenLabs), WhatsApp, Nueva Web y CRM dental subvencionado al 80% (600€ neto).">
+  <meta name="twitter:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-dental-sonrisastar.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo-sonrisa.png">
+  <link rel="apple-touch-icon" href="logo-sonrisa.png">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -71,6 +82,25 @@
       background: radial-gradient(circle at 10% 20%, rgba(2, 132, 199, 0.08) 0%, transparent 40%),
                   radial-gradient(circle at 90% 80%, rgba(226, 0, 119, 0.08) 0%, transparent 40%);
     }
+    @media print {
+      body { background: white !important; padding: 0 !important; color: black !important; }
+      body > :not(#formularioModal) { display: none !important; }
+      #formularioModal {
+        position: static !important;
+        inset: auto !important;
+        background: white !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        display: block !important;
+      }
+      #formularioModal > div {
+        max-width: 100% !important;
+        max-height: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      button, a { display: none !important; }
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8 gradient-hero">
@@ -119,18 +149,15 @@
           <button onclick="openFormularioModal()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 whitespace-nowrap cursor-pointer">
             <span>👁️</span> <span>Ver Formulario III Oficial</span>
           </button>
-          <a href="Formulario_III_Sonrisastar.pdf" download="Formulario_III_Sonrisastar.pdf" target="_blank" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-emerald-800 font-bold text-xs border border-emerald-300 shadow-xs transition flex items-center gap-1.5 whitespace-nowrap">
-            <span>📥</span> <span>PDF</span>
-          </a>
-          <a href="Formulario_III_Sonrisastar.docx" download="Formulario_III_Sonrisastar.docx" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-emerald-800 font-bold text-xs border border-emerald-300 shadow-xs transition flex items-center gap-1.5 whitespace-nowrap">
-            <span>📝</span> <span>Word</span>
-          </a>
+          <button onclick="printFormularioModal()" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-emerald-800 font-bold text-xs border border-emerald-300 shadow-xs transition flex items-center gap-1.5 whitespace-nowrap cursor-pointer">
+            <span>📥</span> <span>Guardar / Imprimir PDF</span>
+          </button>
         </div>
       </div>
 
-      <!-- BOTONES DE ACCIÓN PRINCIPALES (SIN EXCALIDRAW) -->
+      <!-- BOTONES DE ACCIÓN PRINCIPALES -->
       <div class="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-center gap-3">
-        <a href="/dental/mockup_interactivo" target="_blank" class="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-xl hover:shadow-2xl transition flex items-center gap-2 border border-slate-700">
+        <a href="index.html" class="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm shadow-xl hover:shadow-2xl transition flex items-center gap-2 border border-slate-700">
           <span class="text-base">🚀</span> <span>Probar Prototipo Interactivo en Vivo</span>
         </a>
         <a href="Dossier%20Presentacion%20Sonrisastar.md" download class="px-5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-300 transition flex items-center gap-2">
@@ -459,12 +486,9 @@
         <button onclick="openFormularioModal()" class="px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm shadow-lg transition flex items-center gap-2 cursor-pointer">
           <span>👁️</span> <span>Ver Memoria Oficial en Pantalla</span>
         </button>
-        <a href="Formulario_III_Sonrisastar.pdf" download="Formulario_III_Sonrisastar.pdf" target="_blank" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition flex items-center gap-1.5">
-          <span>📥</span> <span>Descargar PDF Oficial</span>
-        </a>
-        <a href="Formulario_III_Sonrisastar.docx" download="Formulario_III_Sonrisastar.docx" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition flex items-center gap-1.5">
-          <span>📝</span> <span>Descargar Word .DOCX</span>
-        </a>
+        <button onclick="printFormularioModal()" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition flex items-center gap-1.5 cursor-pointer">
+          <span>📥</span> <span>Guardar / Imprimir Memoria PDF</span>
+        </button>
       </div>
     </section>
 
@@ -526,7 +550,7 @@
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-        <a href="/dental/mockup_interactivo" target="_blank" class="px-8 py-4 rounded-xl bg-brand-magenta hover:bg-brand-magentadark text-white font-extrabold text-sm shadow-xl transition flex items-center gap-2">
+        <a href="index.html" class="px-8 py-4 rounded-xl bg-brand-magenta hover:bg-brand-magentadark text-white font-extrabold text-sm shadow-xl transition flex items-center gap-2">
           <span>🚀</span> <span>Abrir Prototipo Interactivo de Sonrisastar</span>
         </a>
       </div>
@@ -563,13 +587,10 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <a href="Formulario_III_Sonrisastar.pdf" download="Formulario_III_Sonrisastar.pdf" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
-            <span>📥</span> <span class="hidden sm:inline">Descargar</span> <span>PDF</span>
-          </a>
-          <a href="Formulario_III_Sonrisastar.docx" download="Formulario_III_Sonrisastar.docx" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 flex items-center gap-1.5 transition">
-            <span>📝</span> <span class="hidden sm:inline">Descargar</span> <span>Word</span>
-          </a>
-          <button onclick="closeFormularioModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-base flex items-center justify-center transition">
+          <button onclick="printFormularioModal()" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition cursor-pointer shadow-sm">
+            <span>📥</span> <span>Imprimir / Guardar PDF</span>
+          </button>
+          <button onclick="closeFormularioModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-base flex items-center justify-center transition cursor-pointer">
             ✕
           </button>
         </div>
@@ -694,13 +715,10 @@
           Documento oficial listo para firma electrónica del representante legal.
         </span>
         <div class="flex items-center gap-2">
-          <a href="Formulario_III_Sonrisastar.pdf" download="Formulario_III_Sonrisastar.pdf" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
-            <span>📥</span> <span>Descargar PDF Oficial</span>
-          </a>
-          <a href="Formulario_III_Sonrisastar.docx" download="Formulario_III_Sonrisastar.docx" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
-            <span>📝</span> <span>Descargar Word (.docx)</span>
-          </a>
-          <button onclick="closeFormularioModal()" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition">
+          <button onclick="printFormularioModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition cursor-pointer">
+            <span>📥</span> <span>Imprimir / Guardar Memoria PDF Oficial</span>
+          </button>
+          <button onclick="closeFormularioModal()" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition cursor-pointer">
             Cerrar
           </button>
         </div>
@@ -718,6 +736,13 @@
     function closeFormularioModal() {
       document.getElementById('formularioModal').classList.add('hidden');
       document.body.style.overflow = 'auto';
+    }
+
+    function printFormularioModal() {
+      openFormularioModal();
+      setTimeout(() => {
+        window.print();
+      }, 250);
     }
 
     // Cerrar con Escape
