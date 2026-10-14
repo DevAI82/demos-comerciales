@@ -56,7 +56,7 @@
     <!-- HERO SECTION -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
       <div class="inline-block text-xs uppercase tracking-widest bg-stone-900 border border-stone-800 text-stone-300 px-3.5 py-1.5 rounded-full font-bold">
-        🚀 Catálogo de Demos Comerciales Activas (10 Clientes)
+        🚀 Catálogo de Demos Comerciales Activas (11 Clientes)
       </div>
       <h1 class="text-3xl sm:text-5xl font-black text-white font-display tracking-tight leading-tight">
         Inteligencia REAL aplicada a negocios locales
@@ -68,7 +68,7 @@
       <!-- FILTER TABS -->
       <div class="flex items-center justify-center flex-wrap gap-2 pt-2" id="filterNav">
         <button onclick="filterSector('all')" id="btn-all" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-cyan-600 text-white shadow-lg shadow-cyan-900/40 transition">
-          Todos (10)
+          Todos (11)
         </button>
         <button onclick="filterSector('food')" id="btn-food" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
           🍔 Hostelería (2)
@@ -91,11 +91,59 @@
         <button onclick="filterSector('fitness')" id="btn-fitness" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
           🏋️ Entrenamiento (1)
         </button>
+        <button onclick="filterSector('security')" id="btn-security" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
+          🛡️ Seguridad privada (1)
+        </button>
       </div>
     </div>
 
-    <!-- DEMOS GRID (10 CARDS) -->
+    <!-- DEMOS GRID (11 CARDS) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7" id="demosGrid">
+
+      <!-- 0. ANDOR SEGURIDAD · demo insignia -->
+      <div class="demo-card security bg-[#0f1117] rounded-3xl border border-amber-500/40 p-7 shadow-xl hover:border-amber-400/70 transition duration-300 flex flex-col justify-between space-y-5">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs bg-amber-950/80 text-amber-300 px-3 py-1 rounded-full font-bold border border-amber-700/40">
+              🛡️ Seguridad privada
+            </span>
+            <span class="text-xs text-amber-300 font-mono">⭐ Demo insignia</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="h-11 w-11 rounded-full bg-[#162c4d] text-[#dca933] flex items-center justify-center font-black border-2 border-amber-500/60 shadow-md" aria-hidden="true">A</div>
+            <div>
+              <h2 class="text-2xl font-black text-white font-display">Andor Seguridad</h2>
+              <span class="text-xs text-amber-400 font-semibold">Cuadrantes, CRM de servicios y recepción 24/7</span>
+            </div>
+          </div>
+
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+            Empresa de vigilancia: <strong>cuadrante de vigilantes</strong> que detecta huecos y propone sustitutos respetando descansos y habilitaciones, <strong>CRM</strong> de presupuestos, partes y contratos, <strong>recepción telefónica 24/7</strong> con voz y web que capta presupuestos.
+          </p>
+
+          <div class="space-y-1.5 text-xs text-stone-400 bg-stone-950/60 p-3 rounded-2xl border border-stone-800/80">
+            <div class="flex items-center gap-2"><span class="text-amber-400">✓</span> <span><strong>Cuadrantes:</strong> semana, día por franjas, informe de cobertura y fichaje con rondas.</span></div>
+            <div class="flex items-center gap-2"><span class="text-amber-400">✓</span> <span><strong>WhatsApp:</strong> presupuestos guiados para clientes y partes con foto para vigilantes.</span></div>
+            <div class="flex items-center gap-2"><span class="text-amber-400">📞</span> <span><strong>Laura 24/7:</strong> toma presupuestos y pasa las urgencias al jefe de servicio.</span></div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-stone-400">Coste cliente (80% Bono Pyme): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
+            <span class="text-stone-400">Mantenimiento: <strong class="text-emerald-400 font-mono">99 €/mes</strong></span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <a href="andor/" class="bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-400 hover:to-amber-600 text-stone-950 font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
+              <span>🛡️ Abrir Demo</span>
+            </a>
+            <button onclick="copyMsg('andor')" class="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs py-2.5 px-3 rounded-xl border border-stone-700 transition flex items-center justify-center gap-1.5">
+              <span>💬 Copiar WhatsApp</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
       <!-- 1. VIBRA BURGER -->
       <div class="demo-card food bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-pink-500/50 transition duration-300 flex flex-col justify-between space-y-5">
@@ -752,7 +800,24 @@ Qué incluye:
 
 💡 Con el Bono Crecimiento Pyme de la JCCM el coste final es de unos 600 € y 99 €/mes de mantenimiento (precios orientativos).
 
-¿Os parece que nos pasemos 10 minutos por el centro y os lo enseñamos?`
+¿Os parece que nos pasemos 10 minutos por el centro y os lo enseñamos?`,
+
+      andor: `Hola, buenas. 🛡️
+
+Os escribo desde Altera, en Albacete. Hemos preparado una demo pensada para Andor Seguridad, para que la oficina dedique menos tiempo a cuadrantes y llamadas:
+
+👉 Probar la demo:
+https://devai82.github.io/demos-comerciales/andor/
+
+Qué incluye:
+• Cuadrante de vigilantes que avisa de cada hueco y propone sustitutos respetando descansos, horas y habilitaciones.
+• Informe de cobertura semanal por email y fichaje en el puesto con rondas.
+• CRM de presupuestos, partes de incidencias con foto y contratos que vencen.
+• Recepción telefónica 24/7 con voz y WhatsApp para clientes y vigilantes.
+
+💡 Con el Bono Crecimiento Pyme de la JCCM el coste final es de unos 600 € y 99 €/mes de mantenimiento (precios orientativos).
+
+¿Os parece que nos pasemos 10 minutos por la oficina y os lo enseñamos?`
     };
 
     function copyMsg(key) {
