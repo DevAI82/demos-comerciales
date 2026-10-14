@@ -7,7 +7,7 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 
 ---
 
-## 📂 Las 8 Demos Activas y sus Enlaces
+## 📂 Las 9 Demos Activas y sus Enlaces
 
 | Cliente | Nicho | URL Directa | Puntos Fuertes |
 | :--- | :--- | :--- | :--- |
@@ -19,6 +19,7 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 | **Salón 224** | Belleza ⭐ referencia | [devai82.github.io/demos-comerciales/salon224/](https://devai82.github.io/demos-comerciales/salon224/) | Recepción telefónica ElevenLabs, WhatsApp con Fresha, CRM recordatorios |
 | **Clínica Sonrisastar** | Salud ⭐ referencia | [devai82.github.io/demos-comerciales/sonrisastar/](https://devai82.github.io/demos-comerciales/sonrisastar/) | Recepción IA 24/7 (ElevenLabs), Agendamiento citas, Nueva Web, CRM |
 | **Fisioterapia Online con Adela** | Salud | [devai82.github.io/demos-comerciales/adela-fisio/](https://devai82.github.io/demos-comerciales/adela-fisio/) | Historial clínico, rutinas en vídeo con voz en off, pagos Bizum/tarjeta y reserva |
+| **El Sueño del Quesero** | Tienda gourmet | [devai82.github.io/demos-comerciales/quesero/](https://devai82.github.io/demos-comerciales/quesero/) | Reserva y recoge, WhatsApp 24/7 con fotos, Instagram Zernio, CRM para recuperar clientes |
 
 📋 Antes de enseñar una demo, revisa [`docs/AUDITORIA.md`](docs/AUDITORIA.md) (fallos corregidos y pendientes de decisión).
 
