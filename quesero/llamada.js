@@ -71,6 +71,7 @@
   .qsl-ticket h4 span{font:600 11px/1.6 inherit;font-family:inherit;color:#2f7a4c;background:#e3f3e8;border-radius:999px;padding:0 8px}
   .qsl-ticket ul{list-style:none;margin:6px 0;padding:0}
   .qsl-ticket li{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px dashed #e6d9c2}
+  .qsl-ticket li strong{white-space:nowrap}
   .qsl-ticket p{margin:4px 0 0;color:#6b5a45}
   `;
 
