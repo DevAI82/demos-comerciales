@@ -129,7 +129,8 @@
   }
 
   const MENU = [
-    { texto: '📸 Ver la carta con fotos', accion: 'carta' },
+    { texto: '📸 Pedir para recoger (carta con fotos)', accion: 'carta' },
+    { texto: '🍽️ Reservar mesa', accion: 'reservar' },
     { texto: '🔁 Repetir mi último pedido', accion: 'repetir' },
     { texto: '🕒 Horario y dirección', accion: 'horario' },
     { texto: '🙋 Hablar con una persona', accion: 'humano' }
@@ -139,7 +140,7 @@
     if (wa.iniciado) return;
     wa.iniciado = true;
     bot([
-      '¡Hola! 🍕 Soy el asistente de <strong>Pizzería Ángela</strong>. Te enseño la carta con fotos, preparas tu pedido aquí mismo y lo recoges recién salido del horno de piedra (C. Simone de Beauvoir, 3).',
+      '¡Hola! 🍕 Soy el asistente de <strong>Pizzería Ángela</strong>. Puedes pedir para recoger viendo la carta con fotos, o reservar mesa en el restaurante (C. Simone de Beauvoir, 3).',
       '¿Qué te apetece?' + botones(MENU)
     ]);
   }
@@ -236,11 +237,63 @@
       case 'cocina':
         if (typeof window.switchView === 'function') window.switchView('kds');
         break;
+      // ---- Reserva de mesa
+      case 'reservar':
+        usuario('Reservar mesa');
+        wa.reserva = {};
+        bot(['¡Genial! ¿Para cuántas personas?' + botones([{ texto: '2 personas', accion: 'pax:2' }, { texto: '3-4 personas', accion: 'pax:4' }, { texto: '5-6 personas', accion: 'pax:6' }, { texto: 'Grupo de más de 8', accion: 'pax:grupo' }])]);
+        break;
+      case 'pax':
+        if (v1 === 'grupo') {
+          usuario('Grupo de más de 8');
+          bot(['¡Qué bien! Para grupos grandes preparamos la mesa y, si queréis, un menú cerrado. Le paso tus datos al equipo y te escriben hoy mismo para cerrarlo. 🙋']);
+          break;
+        }
+        wa.reserva = { pax: v1 === '2' ? '2 personas' : v1 === '4' ? '3-4 personas' : '5-6 personas' };
+        usuario(wa.reserva.pax);
+        bot(['¿Qué día?' + botones(['Hoy', 'Mañana', 'El sábado'].map(d => ({ texto: d, accion: 'dia:' + d })))]);
+        break;
+      case 'dia':
+        wa.reserva.dia = v1;
+        usuario(v1);
+        bot([`¿A qué hora? (${esc(v1.toLowerCase())})` + botones(['2030', '2100', '2130', '2200'].map((h, i) => ({ texto: i === 1 ? `${h.slice(0, 2)}:${h.slice(2)} · completo` : `${h.slice(0, 2)}:${h.slice(2)}`, accion: 'hres:' + h, off: i === 1 })))]);
+        break;
+      case 'hres':
+        wa.reserva.hora = `${v1.slice(0, 2)}:${v1.slice(2)}`;
+        usuario(wa.reserva.hora);
+        bot(['¿Dónde os sentamos?' + botones([{ texto: '🏠 Salón', accion: 'zona:Salón' }, { texto: '🌙 Terraza', accion: 'zona:Terraza' }, { texto: 'Me da igual', accion: 'zona:Donde haya sitio' }])]);
+        break;
+      case 'zona': {
+        const r = Object.assign(wa.reserva, { zona: v1 });
+        usuario(v1);
+        apuntarReserva(r);
+        bot([
+          `✅ <strong>Mesa reservada</strong><br>${esc(r.dia)} a las ${esc(r.hora)} · ${esc(r.pax)} · ${esc(r.zona)}<br>A nombre del titular de este WhatsApp.`,
+          'Te escribo 2 horas antes para confirmar. Si al final no podéis venir, responde «anular» y la mesa queda libre para otros. 🙏',
+          '¿Queréis dejar las pizzas encargadas para que estén saliendo del horno al llegar?' + botones([{ texto: '🍕 Sí, ver la carta', accion: 'carta' }, { texto: 'No, gracias', accion: 'nada' }])
+        ]);
+        break;
+      }
+      case 'nada':
+        usuario('No, gracias');
+        bot(['¡Perfecto! Os esperamos. 🍕']);
+        break;
     }
   }
 
   function horario() {
-    bot([`<img src="fachada-angela.jpg" alt="Fachada de Pizzería Ángela" width="320" height="145" class="rounded-lg mb-2 w-full object-cover">` + '📍 <strong>C. Simone de Beauvoir, 3 · Albacete</strong> (frente a Imaginalia, aparcamiento en la puerta)<br>🕒 Horario de ejemplo: de martes a domingo, 20:00-23:30<br><span class="text-[11px] text-stone-500">(Lo ajustamos al horario real de la pizzería)</span>', 'Aunque la cocina esté cerrada, puedes dejar tu pedido para mañana. 🙂' + botones(MENU.slice(0, 2))]);
+    bot([`<img src="fachada-angela.jpg" alt="Fachada de Pizzería Ángela" width="320" height="145" class="rounded-lg mb-2 w-full object-cover">` + '📍 <strong>C. Simone de Beauvoir, 3 · Albacete</strong> (frente a Imaginalia, aparcamiento en la puerta)<br>🕒 Horario de ejemplo: de martes a domingo, 20:00-23:30<br><span class="text-[11px] text-stone-500">(Lo ajustamos al horario real de la pizzería)</span>', 'Aunque estemos cerrados, puedes dejar tu pedido o tu reserva para otro día. 🙂' + botones(MENU.slice(0, 2))]);
+  }
+
+  // Añade la reserva a la lista «Próximas reservas» del panel lateral.
+  function apuntarReserva(r) {
+    const lista = document.getElementById('paReservas');
+    if (!lista) return;
+    const li = document.createElement('li');
+    li.className = 'flex items-center justify-between gap-2 bg-emerald-950/60 border border-emerald-600/60 rounded-lg px-3 py-2 animate-pulse';
+    li.innerHTML = `<span><strong class="text-white">Cliente WhatsApp</strong> · ${esc(r.pax)} · ${esc(r.zona)}</span><span class="font-mono text-amber-300">${esc(r.dia)} ${esc(r.hora)}</span>`;
+    lista.prepend(li);
+    setTimeout(() => li.classList.remove('animate-pulse'), 1500);
   }
 
   let siguienteComanda = 120;
@@ -308,8 +361,10 @@
       bot(['Tenemos masa sin gluten bajo pedido, pero con alergias e intolerancias prefiero que te confirme una persona del equipo cómo se prepara para tu caso. 🙏 Te paso con ellos ahora.' + botones([{ texto: '🙋 Hablar con una persona', accion: 'humano' }])]);
     } else if (/horari|abr|cerr|direcc|donde|ubicac|aparca/.test(t)) {
       horario();
-    } else if (/domicilio|reparto|envi|llevar a casa/.test(t)) {
-      bot(['Por WhatsApp preparamos pedidos <strong>para recoger</strong> en la pizzería: así sale recién hecho y sin comisiones de plataformas. 🍕' + botones(MENU.slice(0, 1))]);
+    } else if (/domicilio|reparto|envi|llevar a casa|uber|glovo/.test(t)) {
+      bot(['El reparto a domicilio lo hacemos a través de Uber Eats y Glovo. Por aquí puedes <strong>pedir para recoger</strong> (sale recién hecho, sin esperas) o <strong>reservar mesa</strong>. 🍕' + botones(MENU.slice(0, 2))]);
+    } else if (/reserv|mesa|cenar|comer ahi|sitio para/.test(t)) {
+      wa.ocupado = false; accion('reservar');
     } else if (/barbacoa|diavola|pepperoni|picante|atun|tonno|pollo|cherry|estaciones|serrano|jamon|mitad|verdura|vegetal|carne/.test(t)) {
       const ids = CARTA.filter(p => (p.cat === 'clasicas' || p.cat === 'especiales') && t.split(/\s+/).some(w => w.length > 3 && (p.nombre + ' ' + p.desc).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').includes(w))).map(p => p.id);
       bot([() => carrusel(ids.length ? ids : CARTA.filter(p => p.cat === 'especiales').map(p => p.id), ids.length ? 'Mira, esta es la que buscas:' : 'Mira nuestras especiales:')]);
@@ -322,7 +377,7 @@
     } else if (/hola|buenas|hey/.test(t)) {
       bot(['¡Hola! 😊 ¿Qué te apetece?' + botones(MENU)]);
     } else {
-      bot(['Te entiendo 🙂. Puedo enseñarte la carta con fotos, repetir tu último pedido o pasarte con una persona del equipo.' + botones(MENU)]);
+      bot(['Te entiendo 🙂. Puedo prepararte un pedido para recoger, reservarte mesa o pasarte con una persona del equipo.' + botones(MENU)]);
     }
   }
 

@@ -141,7 +141,7 @@
           <span>🍳</span> <span>1. Comandera KDS & Impresora</span>
         </button>
         <button onclick="switchView('whatsapp')" id="btn-whatsapp" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
-          <span>💬</span> <span>2. Pedidos por WhatsApp</span>
+          <span>💬</span> <span>2. Recogidas y reservas por WhatsApp</span>
         </button>
         <button onclick="switchView('voice')" id="btn-voice" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
           <span>🎙️</span> <span>3. Laura al teléfono (967 60 12 66)</span>
@@ -535,9 +535,9 @@
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-semibold mb-2 border border-emerald-800/40">
             <span>🟢 WhatsApp Business oficial · Abierto las 24 horas</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Pedidos para recoger por WhatsApp</h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Recogidas y reservas de mesa por WhatsApp</h2>
           <p class="text-stone-400 text-sm mt-1 max-w-2xl">
-            El cliente ve la carta <strong>con fotos</strong> dentro del chat, elige tamaño, pide la hora de recogida que deja libre el horno y decide si <strong>paga ahora</strong> o <strong>al recoger</strong>. El pedido entra solo en la comandera de cocina.
+            El cliente ve la carta <strong>con fotos</strong> dentro del chat, elige tamaño, pide la hora de recogida que deja libre el horno y decide si <strong>paga ahora</strong> o <strong>al recoger</strong>. El pedido entra solo en la comandera de cocina. Y quien quiere cenar en el restaurante <strong>reserva mesa</strong> en el mismo chat. El reparto a domicilio sigue como hasta ahora, con Uber Eats y Glovo.
           </p>
         </div>
         <button type="button" id="paReset" class="text-xs bg-stone-800 hover:bg-stone-700 text-stone-200 px-3 py-2 rounded-xl transition border border-stone-700 min-h-[40px]">
@@ -579,12 +579,25 @@
             <h3 class="font-bold text-white font-display">Prueba a escribir como un cliente</h3>
             <div class="flex flex-wrap gap-2">
               <button type="button" data-pa-sugerencia="Quiero pedir pizzas para recoger" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">Quiero pedir para recoger</button>
+              <button type="button" data-pa-sugerencia="Quiero reservar mesa para 4 el sábado" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">Reservar mesa para 4</button>
               <button type="button" data-pa-sugerencia="¿Tenéis carbonara?" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">¿Tenéis carbonara?</button>
               <button type="button" data-pa-sugerencia="Lo mismo de la última vez" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">Lo mismo de la última vez</button>
               <button type="button" data-pa-sugerencia="¿Tenéis masa sin gluten? Soy celíaca" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">Soy celíaca</button>
               <button type="button" data-pa-sugerencia="¿A qué hora abrís?" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">¿A qué hora abrís?</button>
             </div>
             <p class="text-[11px] text-stone-500">Después de añadir una pizza, escribe «sin cebolla» y verás la nota en la comanda.</p>
+          </div>
+
+          <div class="bg-stone-950 rounded-2xl border border-stone-800 p-5 space-y-3 text-sm">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-bold text-white font-display">🍽️ Próximas reservas</h3>
+              <span class="text-[10px] text-stone-500">Lo ve el equipo en la sala</span>
+            </div>
+            <ul id="paReservas" class="space-y-2 text-[12px] text-stone-300" aria-live="polite">
+              <li class="flex items-center justify-between gap-2 bg-stone-900 border border-stone-800 rounded-lg px-3 py-2"><span><strong class="text-white">Marta G.</strong> · 4 personas · Terraza</span><span class="font-mono text-amber-300">Hoy 21:00</span></li>
+              <li class="flex items-center justify-between gap-2 bg-stone-900 border border-stone-800 rounded-lg px-3 py-2"><span><strong class="text-white">Javier R.</strong> · 2 personas · Salón · Laura</span><span class="font-mono text-amber-300">Hoy 21:30</span></li>
+            </ul>
+            <p class="text-[11px] text-stone-500">Cada reserva recibe un recordatorio por WhatsApp 2 horas antes, con opción de anularla. Menos mesas vacías por olvidos.</p>
           </div>
 
           <div class="bg-stone-950 rounded-2xl border border-stone-800 p-5 space-y-3 text-sm">
@@ -596,6 +609,7 @@
               <li>💳 <strong>Paga ahora o al recoger</strong>: enlace de pago seguro con tarjeta, Apple Pay o Google Pay, o en el mostrador.</li>
               <li>🔁 <strong>«Lo de siempre»</strong>: reconoce el número y repite el último pedido.</li>
               <li>🔔 <strong>Aviso «ya está lista»</strong> cuando la cocina la saca del horno.</li>
+              <li>🍽️ <strong>Reserva de mesa</strong> en cuatro toques (personas, día, hora y salón o terraza), sin salir a otra web y con recordatorio antes de venir.</li>
             </ul>
           </div>
 
@@ -631,7 +645,7 @@
           </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Laura coge el teléfono cuando el equipo no llega</h2>
           <p class="text-stone-400 text-sm mt-1 max-w-2xl">
-            En plena hora punta, si nadie puede coger el fijo, salta Laura: toma el pedido para recoger con voz natural, consulta la carta y los huecos del horno, lo manda a la comandera y envía el resumen por WhatsApp con el pago opcional.
+            En plena hora punta, si nadie puede coger el fijo, salta Laura: toma el pedido para recoger con voz natural, consulta la carta y los huecos del horno, lo manda a la comandera y envía el resumen por WhatsApp con el pago opcional. También apunta reservas de mesa y las confirma por WhatsApp.
           </p>
         </div>
         <div class="bg-stone-900 px-4 py-2 rounded-xl border border-stone-800 text-center">
@@ -928,7 +942,7 @@
             </div>
             <div class="flex items-start gap-2 bg-stone-900 p-2.5 rounded-lg border border-stone-800">
               <span class="text-red-400 font-bold">3.</span>
-              <p><strong>Solo delivery por Uber Eats:</strong> Pierden entre el 25% y el 35% del ticket por no tener canal de venta propio.</p>
+              <p><strong>Sin canal propio para recoger ni reservar:</strong> el reparto por Uber Eats y Glovo se mantiene, pero quien solo quiere recoger o cenar en el local acaba en una plataforma (≈ 12–15 % de comisión al recoger) o llamando en plena hora punta.</p>
             </div>
             <div class="flex items-start gap-2 bg-stone-900 p-2.5 rounded-lg border border-stone-800">
               <span class="text-red-400 font-bold">4.</span>
@@ -977,11 +991,11 @@
       <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950 text-amber-300 text-xs font-semibold mb-2 border border-amber-800/40">
-            <span>📦 Estrategia de Migración de Clientes de Uber a Recogida Propia</span>
+            <span>📦 De la caja de reparto a la recogida y la reserva directas</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">La Pegatina QR en la Caja de Pizza</h2>
           <p class="text-stone-400 text-sm mt-1 max-w-2xl">
-            En cada caja anunciamos el pedido <strong>PARA RECOGER por WhatsApp</strong>, sin pasar por plataformas. Sáltate el sobrecoste y disfruta de la pizza recién salida del horno de piedra.
+            El reparto sigue con Uber Eats y Glovo. En cada caja que sale anunciamos el WhatsApp para la próxima vez: <strong>pedir para recoger</strong> sin sobrecoste o <strong>reservar mesa</strong> y tomarla recién salida del horno de piedra.
           </p>
         </div>
       </div>
@@ -1023,9 +1037,9 @@
 
         <!-- CALCULADORA DE RETORNO ECONÓMICO -->
         <div class="lg:col-span-6 bg-stone-950 p-6 rounded-2xl border border-stone-800 space-y-5">
-          <h3 class="text-xl font-bold text-white font-display">Calculadora de Ahorro: Canal Propio vs Uber</h3>
+          <h3 class="text-xl font-bold text-white font-display">Calculadora de ahorro: canal propio frente a plataformas</h3>
           <p class="text-xs text-stone-400">
-            Uber Eats retiene hasta el 30% del importe. Por cada vecino de Imaginalia que pasa a recoger la pizza directamente por el local:
+            Las plataformas se quedan hasta un 30 % del importe (orientativo). Por cada vecino de Imaginalia que la próxima vez encarga por WhatsApp y pasa a recogerla al local:
           </p>
 
           <div class="space-y-4">
@@ -1156,10 +1170,10 @@
               <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-mono">30% Comisión</span>
             </div>
             <p class="text-stone-300 text-[11px]">
-              Una pizzería que facture 3.000€ en delivery entrega unos <strong>900 € / mes a Uber</strong> en comisiones. No es dueña de los datos ni de los teléfonos de sus clientes.
+              Necesarias para el reparto, que se mantiene. Pero cada recogida que pasa por ellas también paga comisión (≈ 12–15 %), y los datos y teléfonos de los clientes se quedan en la plataforma.
             </p>
             <div class="pt-2 border-t border-red-900/40 font-mono text-red-400 font-bold">
-              Coste real: 600 € a 1.200 € / mes
+              Recogidas por plataforma: ≈ 12–15 % de cada pedido
             </div>
           </div>
 
