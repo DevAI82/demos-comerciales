@@ -153,6 +153,9 @@
         </div>
       </div>
 
+      <!-- Botón "Lo quiero" (shared/altera-cta.js): arriba para no tapar el widget de Laura -->
+      <div data-altera-cta-slot class="lg:order-last"></div>
+
       <!-- VIEW SELECTOR TABS -->
       <nav class="flex items-center flex-wrap gap-1.5 text-xs font-semibold" id="tabNav">
         <button onclick="switchTab('phone')" id="tab-btn-phone" class="tab-btn px-3.5 py-2 rounded-xl bg-carbon-900 text-white font-bold transition flex items-center gap-2 shadow-sm border border-carbon-800">
@@ -205,8 +208,50 @@
         </div>
       </div>
 
+      <!-- AGENTE EN DIRECTO (ElevenLabs Conversational AI · agent_id en shared/altera-config.js) -->
+      <div data-convai-only class="bg-white rounded-3xl p-5 sm:p-7 border-2 border-moto-500/50 card-shadow space-y-5">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-carbon-900 to-carbon-700 border-2 border-moto-500 flex items-center justify-center shadow shrink-0">
+            <span class="text-2xl sm:text-3xl">🏍️</span>
+          </div>
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Laura está disponible ahora
+            </span>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-slate-900 mt-0.5">Llama a Laura y compruébalo tú mismo</h2>
+            <p class="text-sm text-slate-600 mt-1">Es una conversación real, no una grabación: Laura te escucha y te responde con su voz. Es la misma voz que atendería el 967 67 16 76 mientras estáis con las manos en una moto.</p>
+          </div>
+        </div>
+
+        <ol class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+          <li class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex gap-3 items-start">
+            <span class="w-7 h-7 rounded-full bg-moto-600 text-white font-bold flex items-center justify-center shrink-0">1</span>
+            <span>Pulsa <strong>"Llamar a Laura"</strong>, abajo a la izquierda de la pantalla.</span>
+          </li>
+          <li class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex gap-3 items-start">
+            <span class="w-7 h-7 rounded-full bg-moto-600 text-white font-bold flex items-center justify-center shrink-0">2</span>
+            <span>Acepta el aviso y <strong>permite el micrófono</strong>.</span>
+          </li>
+          <li class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex gap-3 items-start">
+            <span class="w-7 h-7 rounded-full bg-moto-600 text-white font-bold flex items-center justify-center shrink-0">3</span>
+            <span>Habla como si fueras un cliente. Puedes interrumpirla, como en una llamada normal.</span>
+          </li>
+        </ol>
+
+        <div>
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Ideas para ponerla a prueba</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <div class="p-3 rounded-xl border border-orange-200 bg-orange-50/70 text-orange-950"><strong class="block text-xs text-moto-700">🔧 Cita de taller</strong>"Le toca la revisión a mi moto y además le chirrían los frenos."</div>
+            <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/70 text-emerald-950"><strong class="block text-xs text-emerald-700">🏍️ Comprar moto</strong>"Me acabo de sacar el A2 y busco una trail para empezar."</div>
+            <div class="p-3 rounded-xl border border-sky-200 bg-sky-50/70 text-sky-950"><strong class="block text-xs text-sky-700">🪖 Equipamiento</strong>"Busco un casco y una chaqueta para el invierno."</div>
+            <div class="p-3 rounded-xl border border-purple-200 bg-purple-50/70 text-purple-950"><strong class="block text-xs text-purple-700">💬 Pillarla</strong>"¿Cuánto me cuesta cambiar el kit de arrastre?" (da solo una cifra orientativa y te deriva al taller)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Llamada simulada: solo se muestra si la demo no tiene agente en directo -->
       <!-- PHONE SIMULATOR INTERFACE -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div data-convai-fallback class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         <!-- LEFT: SMARTPHONE DEVICE SIMULATOR -->
         <div class="lg:col-span-5 flex flex-col items-center">
@@ -276,7 +321,7 @@
                     <input type="checkbox" id="voiceToggleAudio" checked class="rounded accent-moto-500">
                     <label for="voiceToggleAudio" class="cursor-pointer">Voz activa</label>
                   </div>
-                  <span class="text-[10px] text-orange-300 font-semibold bg-orange-950 px-2 py-0.5 rounded border border-orange-800/40">✨ ElevenLabs HD (Dino)</span>
+                  <span class="text-[10px] text-orange-300 font-semibold bg-orange-950 px-2 py-0.5 rounded border border-orange-800/40">✨ ElevenLabs HD (Laura)</span>
                 </div>
               </div>
 
@@ -918,7 +963,7 @@
       {
         title: "Cita Taller KTM 790",
         dialogue: [
-          { speaker: "agent", text: "¡Gasss! Gracias por llamar a Motor Gas Bike Albacete, concesionario oficial KTM y taller multimarca. Te atiende Álex, tu asistente virtual. ¿Quieres pedir cita para el taller o información sobre alguna moto?" },
+          { speaker: "agent", text: "¡Gasss! Gracias por llamar a Motor Gas Bike Albacete, concesionario oficial KTM y taller multimarca. Te atiende Laura, tu asistente virtual. ¿Quieres pedir cita para el taller o información sobre alguna moto?" },
           { 
             speaker: "user", 
             options: [
@@ -940,7 +985,7 @@
       {
         title: "Consulta CFMOTO 450MT",
         dialogue: [
-          { speaker: "agent", text: "¡Hola! Bienvenido a Motor Gas Bike Albacete. Te atiende Álex. ¿En qué modelo de moto estás interesado?" },
+          { speaker: "agent", text: "¡Hola! Bienvenido a Motor Gas Bike Albacete. Te atiende Laura. ¿En qué modelo de moto estás interesado?" },
           { 
             speaker: "user", 
             options: [
@@ -1055,7 +1100,7 @@
       bubble.innerHTML = `
         <div class="w-7 h-7 rounded-full bg-carbon-900 text-moto-400 font-bold flex items-center justify-center text-[10px] shrink-0 shadow border border-carbon-700">IA</div>
         <div class="bg-orange-50/70 border border-moto-200 p-3 rounded-2xl rounded-tl-none text-slate-800 text-xs shadow-xs leading-relaxed max-w-[90%]">
-          <strong class="text-moto-900 block text-[10px] uppercase font-mono mb-0.5">Álex (Motor Gas Bike)</strong>
+          <strong class="text-moto-900 block text-[10px] uppercase font-mono mb-0.5">Laura (Motor Gas Bike)</strong>
           ${step.text}
         </div>
       `;
@@ -1136,7 +1181,7 @@
       const cachedUrl = window.AlteraVoice ? await window.AlteraVoice.cachedUrl(text) : null;
       if (!apiKey && !cachedUrl) return false;
 
-      const voiceId = localStorage.getItem('elevenlabs_voice_id_motorgas') || 'mGlMpcOq63YZLdidTVyo'; // Dino (Comercial & Enérgico)
+      const voiceId = localStorage.getItem('elevenlabs_voice_id_motorgas') || 'uQw4jpKzMLrZuo0RLPS9'; // Laura - Customer service
 
       try {
         let audioUrl = cachedUrl;
@@ -1194,7 +1239,7 @@
         currentElevenAudioMotorGas = null;
       }
 
-      // Probar ElevenLabs primero con voz Dino
+      // Probar ElevenLabs primero con voz Laura
       const usedEleven = await speakWithElevenLabsMotorGas(text, onEndCallback);
       if (usedEleven) return;
 
@@ -1276,12 +1321,12 @@
               <div class="p-2.5 rounded-xl bg-orange-50/50 border border-moto-200">
                 <p class="font-bold text-carbon-900">CFMOTO 450MT (Trail A2)</p>
                 <p class="text-[11px] text-slate-600">Bicilíndrica 44CV • Suspensiones KYB regulables</p>
-                <p class="font-extrabold text-moto-700 text-sm mt-1">5.990 € <span class="text-[10px] font-normal text-slate-500">(Matriculación gratis)</span></p>
+                <p class="font-extrabold text-moto-700 text-sm mt-1">5.990 € <span class="text-[10px] font-normal text-slate-500">(precio orientativo)</span></p>
               </div>
               <div class="p-2.5 rounded-xl bg-orange-50/50 border border-moto-200">
                 <p class="font-bold text-carbon-900">KTM 390 Duke (2024)</p>
                 <p class="text-[11px] text-slate-600">Monocilíndrica 45CV • Chasis ultraligero • Pantalla TFT</p>
-                <p class="font-extrabold text-moto-700 text-sm mt-1">6.399 € <span class="text-[10px] font-normal text-slate-500">(Financiación 0% TIN)</span></p>
+                <p class="font-extrabold text-moto-700 text-sm mt-1">6.399 € <span class="text-[10px] font-normal text-slate-500">(precio orientativo)</span></p>
               </div>
             </div>
             <p class="pt-1">¿Te gustaría venir a verlas y arrancarlas en tienda en C/ Casas Ibáñez?</p>

@@ -138,10 +138,12 @@
       </div>
       <div class="flex items-center gap-4 text-slate-400">
         <span class="hidden sm:inline">Sede: <strong>Marqués de Villores • Albacete</strong></span>
-        <a href="#radar-cartera-idealista" class="text-brand-blueAccent hover:text-white transition-colors flex items-center gap-1 font-semibold">
+        <a href="#radar-cartera-idealista" class="hidden md:flex text-brand-blueAccent hover:text-white transition-colors items-center gap-1 font-semibold">
           <span>Ver Comparador Izon vs Idealista</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </a>
+        <!-- Botón "Lo quiero" (shared/altera-cta.js): arriba para no tapar el widget de Laura -->
+        <div data-altera-cta-slot></div>
       </div>
     </div>
   </aside>
@@ -403,7 +405,52 @@
         </div>
 
         <div class="lg:col-span-6">
-          <div class="glass-card p-6 sm:p-8 rounded-3xl relative overflow-hidden">
+          <!-- AGENTE EN DIRECTO (ElevenLabs Conversational AI · agent_id en shared/altera-config.js) -->
+          <div data-convai-only class="glass-card p-6 sm:p-8 rounded-3xl relative overflow-hidden border border-brand-emerald/30 space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-brand-blue to-sky-400 flex items-center justify-center text-2xl shadow-lg shrink-0">🏠</div>
+              <div>
+                <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-emerald uppercase tracking-wider">
+                  <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span> Laura está disponible ahora
+                </span>
+                <h3 class="text-white font-extrabold font-display text-xl sm:text-2xl mt-0.5">Llame a Laura y compruébelo usted mismo</h3>
+                <p class="text-sm text-slate-300 mt-1">Es una conversación real, no una grabación: Laura escucha y responde con su voz. Es la misma voz que atendería el 967 66 00 05 cuando los asesores están enseñando pisos.</p>
+              </div>
+            </div>
+
+            <ol class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 gap-3 text-sm">
+              <li class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-slate-200 flex gap-3 items-start">
+                <span class="w-7 h-7 rounded-full bg-brand-blue text-white font-bold flex items-center justify-center shrink-0">1</span>
+                <span>Pulse <strong class="text-white">"Llamar a Laura"</strong>, abajo a la izquierda.</span>
+              </li>
+              <li class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-slate-200 flex gap-3 items-start">
+                <span class="w-7 h-7 rounded-full bg-brand-blue text-white font-bold flex items-center justify-center shrink-0">2</span>
+                <span>Acepte el aviso y <strong class="text-white">permita el micrófono</strong>.</span>
+              </li>
+              <li class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 text-slate-200 flex gap-3 items-start">
+                <span class="w-7 h-7 rounded-full bg-brand-blue text-white font-bold flex items-center justify-center shrink-0">3</span>
+                <span>Hable como un comprador o un propietario. Puede interrumpirla.</span>
+              </li>
+            </ol>
+
+            <div>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">Ideas para ponerla a prueba</span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-200">
+                <div class="p-3 rounded-xl border border-sky-500/30 bg-sky-500/10"><strong class="block text-xs text-sky-300">🔑 Comprador</strong>"Busco un piso de tres dormitorios en el centro, con hipoteca."</div>
+                <div class="p-3 rounded-xl border border-brand-emerald/30 bg-brand-emerald/10"><strong class="block text-xs text-brand-emerald">📅 Visita</strong>"Quiero ver el piso que tenéis anunciado, mejor por la tarde."</div>
+                <div class="p-3 rounded-xl border border-brand-gold/30 bg-brand-gold/10"><strong class="block text-xs text-brand-gold">🏷️ Propietario</strong>"Quiero vender mi casa, ¿cuánto me darían por ella?"</div>
+                <div class="p-3 rounded-xl border border-purple-500/30 bg-purple-500/10"><strong class="block text-xs text-purple-300">💬 Pillarla</strong>"¿Qué comisión cobráis?" (no inventa cifras: lo deriva al asesor)</div>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-brand-emerald/10 border border-brand-emerald/20 flex items-center justify-between text-xs">
+              <span class="text-slate-300">Resultado: <strong>Lead cualificado + aviso al asesor por WhatsApp</strong></span>
+              <span class="text-brand-emerald font-bold">24/7</span>
+            </div>
+          </div>
+
+          <!-- Llamada simulada: solo se muestra si la demo no tiene agente en directo -->
+          <div data-convai-fallback class="glass-card p-6 sm:p-8 rounded-3xl relative overflow-hidden">
             <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
               <div>
                 <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Simulación de Llamada Entrante</p>
@@ -425,8 +472,8 @@
                 <div class="flex-1">
                   <div class="flex items-center justify-between text-xs text-slate-400 mb-1.5">
                     <span class="font-medium text-slate-200 flex items-center gap-1.5">
-                      Voz Agente Virtual (Sofía)
-                      <span class="bg-indigo-950/80 text-sky-400 text-[10px] px-2 py-0.5 rounded border border-sky-500/30">✨ ElevenLabs HD (Sofía)</span>
+                      Voz Agente Virtual (Laura)
+                      <span class="bg-indigo-950/80 text-sky-400 text-[10px] px-2 py-0.5 rounded border border-sky-500/30">✨ ElevenLabs HD (Laura)</span>
                     </span>
                     <span id="audio-time">0:00 / 0:18</span>
                   </div>
@@ -1714,7 +1761,7 @@
       }).join('');
     }
 
-    // --- REPRODUCTOR ELEVENLABS (Sofía) ---
+    // --- REPRODUCTOR ELEVENLABS (Laura) ---
     let audioPlaying = false;
     let audioTimer = null;
     let audioSeconds = 0;
@@ -1725,7 +1772,7 @@
       const cachedUrl = window.AlteraVoice ? await window.AlteraVoice.cachedUrl(text) : null;
       if (!apiKey && !cachedUrl) return false;
 
-      const voiceId = localStorage.getItem('elevenlabs_voice_id_realestate') || 'uQw4jpKzMLrZuo0RLPS9'; // Laura / Sofía
+      const voiceId = localStorage.getItem('elevenlabs_voice_id_realestate') || 'uQw4jpKzMLrZuo0RLPS9'; // Laura - Customer service
 
       try {
         let audioUrl = cachedUrl;
@@ -1785,7 +1832,7 @@
         audioSeconds = 0;
 
         const demoText = "Hola, gracias por llamar a Izon Consulting en Albacete. En este momento nuestros asesores están fuera de oficina, pero puedo ayudarte a consultar cualquier vivienda de nuestra cartera o coordinar una visita para mañana. ¿Sobre qué piso deseas información?";
-        transcription.innerHTML = `<strong>Sofía (ElevenLabs):</strong> "${demoText}"`;
+        transcription.innerHTML = `<strong>Laura (ElevenLabs):</strong> "${demoText}"`;
 
         // Intentar reproducción con ElevenLabs
         const usedEleven = await speakWithElevenLabsRealEstate(demoText, () => {
