@@ -22,26 +22,26 @@
     ({ id, nombre, tel, email, desde, canal, dias, pedidos, gasto, favoritos, etiquetas, consentimiento, historial, nota });
 
   const clientes = [
-    cli('c1', 'Carmen L.', '6XX XX 31 08', 'carmen.l@ejemplo.com', '2018', 'Mostrador', 142, 23, 1180, ['payoyo', 'manchego-curado'], ['Cliente fiel', 'Cabra'], { wa: true, email: true },
-      [{ dias: 142, texto: 'Payoyo 500 g + manchego curado 250 g', importe: 21.5 }, { dias: 170, texto: 'Tabla para 4 personas', importe: 32 }, { dias: 205, texto: 'Payoyo 250 g + rulo de cabra', importe: 13 }], 'Siempre pregunta por quesos de cabra nuevos.'),
-    cli('c2', 'Antonio G.', '6XX XX 77 41', 'antonio.g@ejemplo.com', '2019', 'Mostrador', 96, 31, 1640, ['azul-asturiano', 'gorgonzola'], ['Amante del azul'], { wa: true, email: false },
-      [{ dias: 96, texto: 'Azul asturiano 500 g', importe: 18 }, { dias: 120, texto: 'Gorgonzola 250 g + azul 250 g', importe: 16.25 }], 'Le avisamos cuando llega azul de cueva.'),
-    cli('c3', 'Lucía M.', '6XX XX 12 90', 'lucia.m@ejemplo.com', '2021', 'Instagram', 318, 4, 236, ['lote-regalo'], ['Regalos', 'Navidad'], { wa: true, email: true },
-      [{ dias: 318, texto: '3 lotes regalo «La Mancha» (Navidad)', importe: 135 }, { dias: 680, texto: '2 lotes regalo', importe: 90 }], 'Compra lotes cada Navidad para su familia.'),
-    cli('c4', 'Empresa de ejemplo S.L.', '9XX XX XX 20', 'compras@empresa-ejemplo.com', '2022', 'Email', 330, 3, 1350, ['lote-regalo'], ['Empresa', 'Navidad'], { wa: false, email: true },
-      [{ dias: 330, texto: '25 lotes regalo para clientes', importe: 1125 }, { dias: 700, texto: '5 lotes regalo', importe: 225 }], 'Pedido grande de lotes en diciembre.'),
-    cli('c5', 'Pedro S.', '6XX XX 58 13', 'pedro.s@ejemplo.com', '2020', 'WhatsApp', 74, 18, 760, ['manchego-curado', 'oveja-aceite'], ['Manchego'], { wa: true, email: false },
-      [{ dias: 74, texto: 'Manchego curado 1 kg', importe: 26 }, { dias: 101, texto: 'Oveja en aceite 500 g', importe: 16 }], ''),
-    cli('c6', 'Isabel R.', '6XX XX 63 27', 'isabel.r@ejemplo.com', '2023', 'Web', 205, 6, 214, ['torta', 'brie'], ['Cremosos'], { wa: true, email: true },
-      [{ dias: 205, texto: 'Torta de oveja + brie 250 g', importe: 21 }, { dias: 260, texto: 'Cata guiada (2 personas)', importe: 36 }], 'Vino a una cata con su pareja.'),
-    cli('c7', 'Miguel Á. T.', '6XX XX 49 02', 'miguel.t@ejemplo.com', '2017', 'Mostrador', 12, 64, 3120, ['manchego-curado', 'comte', 'idiazabal'], ['Cliente fiel', 'Semanal'], { wa: true, email: true },
-      [{ dias: 12, texto: 'Comté 250 g + Idiazabal 250 g', importe: 17.75 }, { dias: 19, texto: 'Manchego curado 500 g', importe: 13 }], 'Viene casi todas las semanas.'),
-    cli('c8', 'Rosa P.', '6XX XX 85 66', '', '2024', 'WhatsApp', 33, 5, 118, ['rulo-cabra', 'manchego-semi'], ['Familia'], { wa: true, email: false },
-      [{ dias: 33, texto: 'Semicurado 1 kg + rulo de cabra', importe: 24.5 }], ''),
-    cli('c9', 'Javier N.', '6XX XX 20 74', 'javier.n@ejemplo.com', '2022', 'Instagram', 188, 7, 265, ['azul-asturiano', 'torta'], ['Tablas'], { wa: false, email: false },
-      [{ dias: 188, texto: 'Tabla para 4 + azul 250 g', importe: 41 }], 'No dio permiso para avisos: no se le escribe.'),
-    cli('c10', 'Elena F.', '6XX XX 39 51', 'elena.f@ejemplo.com', '2019', 'Mostrador', 120, 15, 540, ['romero', 'payoyo'], ['Aromáticos'], { wa: true, email: true },
-      [{ dias: 120, texto: 'Oveja al romero 500 g', importe: 13.5 }, { dias: 150, texto: 'Payoyo 250 g', importe: 7.5 }], '')
+    cli('c1', 'Carmen L.', '6XX XX 31 08', 'carmen.l@ejemplo.com', '2018', 'Mostrador', 142, 23, 1180, ['payoyo', 'cerron-romero-miel'], ['Cliente fiel', 'Cabra'], { wa: true, email: true },
+      [{ dias: 142, texto: 'Payoyo 500 g + Cerrón Romero y Miel 250 g', importe: 24.95 }, { dias: 170, texto: 'Black Betty 250 g', importe: 9.25 }, { dias: 205, texto: 'Cerrón Servilleta 500 g', importe: 12.45 }], 'Siempre pregunta por quesos de cabra nuevos.'),
+    cli('c2', 'Antonio G.', '6XX XX 77 41', 'antonio.g@ejemplo.com', '2019', 'Mostrador', 96, 31, 1640, ['stilton', 'gorgonzola'], ['Amante del azul'], { wa: true, email: false },
+      [{ dias: 96, texto: 'Stilton 500 g', importe: 18.5 }, { dias: 120, texto: 'Gorgonzola 250 g + Gamoneu 250 g', importe: 19.85 }], 'Le avisamos cuando llega el Gamoneu.'),
+    cli('c3', 'Lucía M.', '6XX XX 12 90', 'lucia.m@ejemplo.com', '2021', 'Instagram', 318, 4, 236, ['caja-regalo'], ['Regalos', 'Navidad'], { wa: true, email: true },
+      [{ dias: 318, texto: '3 cajas regalo con envío refrigerado (Navidad)', importe: 135 }, { dias: 680, texto: '2 cajas regalo', importe: 90 }], 'Envía cajas regalo a su familia cada Navidad.'),
+    cli('c4', 'Empresa de ejemplo S.L.', '9XX XX XX 20', 'compras@empresa-ejemplo.com', '2022', 'Email', 330, 3, 1350, ['caja-regalo'], ['Empresa', 'Navidad'], { wa: false, email: true },
+      [{ dias: 330, texto: '25 cajas regalo para clientes', importe: 1125 }, { dias: 700, texto: '5 cajas regalo', importe: 225 }], 'Pedido grande de cajas regalo en diciembre.'),
+    cli('c5', 'Pedro S.', '6XX XX 58 13', 'pedro.s@ejemplo.com', '2020', 'WhatsApp', 74, 18, 760, ['dehesa-llanos', 'plaza-aceite'], ['Manchego'], { wa: true, email: false },
+      [{ dias: 74, texto: 'Dehesa de Los Llanos 1 kg', importe: 43.9 }, { dias: 101, texto: 'Hnos. Plaza en Aceite, 2 bolsas', importe: 28 }], ''),
+    cli('c6', 'Isabel R.', '6XX XX 63 27', 'isabel.r@ejemplo.com', '2023', 'Web', 205, 6, 214, ['changarrilla', 'brie'], ['Cremosos'], { wa: true, email: true },
+      [{ dias: 205, texto: 'Changarrilla 250 g + Brie de Meaux 250 g', importe: 13.63 }, { dias: 260, texto: 'Reblochon 250 g', importe: 8.25 }], 'Le encantan los quesos de pasta blanda.'),
+    cli('c7', 'Miguel Á. T.', '6XX XX 49 02', 'miguel.t@ejemplo.com', '2017', 'Mostrador', 12, 64, 3120, ['plaza-curado', 'comte', 'mahon'], ['Cliente fiel', 'Semanal'], { wa: true, email: true },
+      [{ dias: 12, texto: 'Comté 250 g + Mahón 250 g', importe: 16.35 }, { dias: 19, texto: 'Hnos. Plaza Curado 500 g', importe: 12 }], 'Viene casi todas las semanas.'),
+    cli('c8', 'Rosa P.', '6XX XX 85 66', '', '2024', 'WhatsApp', 33, 5, 118, ['cerron-servilleta', 'plaza-curado'], ['Familia'], { wa: true, email: false },
+      [{ dias: 33, texto: 'Hnos. Plaza Curado 1 kg + Cerrón Servilleta 250 g', importe: 30.23 }], ''),
+    cli('c9', 'Javier N.', '6XX XX 20 74', 'javier.n@ejemplo.com', '2022', 'Instagram', 188, 7, 265, ['gamoneu', 'changarrilla'], ['Tablas'], { wa: false, email: false },
+      [{ dias: 188, texto: 'Gamoneu 250 g + Changarrilla 250 g', importe: 18.73 }], 'No dio permiso para avisos: no se le escribe.'),
+    cli('c10', 'Elena F.', '6XX XX 39 51', 'elena.f@ejemplo.com', '2019', 'Mostrador', 120, 15, 540, ['flor-romero', 'payoyo'], ['Aromáticos'], { wa: true, email: true },
+      [{ dias: 120, texto: 'Flor de Romero 500 g', importe: 14.25 }, { dias: 150, texto: 'Payoyo 250 g', importe: 8.23 }], '')
   ];
 
   // Mensaje personalizado según lo que compraba cada cliente.
@@ -49,18 +49,18 @@
     const fav = c.favoritos[0];
     const n = /S\.L\./.test(c.nombre) ? 'equipo de ' + c.nombre : c.nombre.split(' ')[0];
     const base = {
-      'payoyo': `Hola ${n} 👋 Te escribimos desde El Sueño del Quesero. Nos ha llegado un queso de cabra nuevo que creo que te va a encantar, en la línea del payoyo que te llevabas. ¿Te guardo un trozo para que lo pruebes?`,
-      'azul-asturiano': `Hola ${n} 👋 Esta semana ha llegado azul de cueva recién salido. Como sé que te gusta, te aviso antes de que vuele. ¿Te reservo medio kilo?`,
-      'lote-regalo': `Hola ${n} 🎄 Ya estamos preparando los lotes de Navidad. El año pasado te llevaste los lotes «La Mancha»: si nos dices cuántos necesitas, te los dejamos listos sin esperas.`,
-      'manchego-curado': `Hola ${n} 👋 Hace tiempo que no te vemos por la tienda. Tenemos manchego curado de la nueva partida en su punto. ¿Te aparto un trozo?`,
-      'torta': `Hola ${n} 👋 Vuelve la temporada de tortas cremosas. ¿Te guardo una para este fin de semana?`,
-      'romero': `Hola ${n} 👋 Te echamos de menos por la tienda. Tenemos el queso al romero que te gustaba y un par de novedades aromáticas. ¿Te apetece probarlas?`
+      'payoyo': `Hola ${n} 👋 Te escribimos desde El Sueño del Quesero. Tenemos en su punto el Cerrón Curado en Romero y Miel, de cabra y de aquí, de Fuenteálamo. Creo que te va a gustar tanto como el Payoyo. ¿Te guardo un trozo para que lo pruebes?`,
+      'stilton': `Hola ${n} 👋 Ya tenemos Stilton Colston Bassett y Gamoneu. Como sé que te gustan los azules, te aviso antes de que vuelen. ¿Te reservo medio kilo?`,
+      'caja-regalo': `Hola ${n} 🎄 Ya estamos preparando las cajas regalo de Navidad. El año pasado enviaste varias: dinos cuántas y a quién, y las mandamos con envío refrigerado sin que tengas que pasar por la tienda.`,
+      'dehesa-llanos': `Hola ${n} 👋 Hace tiempo que no te vemos por la tienda. El Dehesa de Los Llanos Gran Reserva que te llevabas está en su punto. ¿Te aparto un trozo?`,
+      'changarrilla': `Hola ${n} 👋 La Changarrilla de El Bonillo está en su mejor momento, cremosa como te gusta. ¿Te guardo un trozo para el fin de semana?`,
+      'flor-romero': `Hola ${n} 👋 Te echamos de menos por la tienda. Tenemos el Flor de Romero de Villarrobledo que te gustaba. ¿Te apetece que te guarde un trozo?`
     }[fav] || `Hola ${n} 👋 Hace tiempo que no te vemos por El Sueño del Quesero. Tenemos novedades que te pueden gustar. ¿Te enseño algunas?`;
     const enlace = canal === 'email' ? '\n\nReserva aquí y recoge en Calle Rosario, 58: elsuenodelquesero.es/reservar' : '\n\n👉 Responde «Sí» y te lo dejamos preparado.';
     return base + enlace;
   }
 
-  // ------------------------------------------------------------------ Pedidos (las reservas nuevas llegan desde la web y WhatsApp)
+  // ------------------------------------------------------------------ Pedidos (las reservas nuevas llegan desde la web, WhatsApp y el teléfono)
   const ESTADOS = [
     { id: 'nuevo', nombre: 'Nuevo', color: 'bg-sky-100 text-sky-800' },
     { id: 'preparando', nombre: 'Preparando', color: 'bg-amber-100 text-amber-800' },
@@ -68,9 +68,9 @@
     { id: 'recogido', nombre: 'Recogido', color: 'bg-stone-200 text-stone-700' }
   ];
   const pedidosBase = [
-    { codigo: 'QS-1040', cliente: 'Miguel Á. T.', canal: 'WhatsApp', recogida: 'Hoy · 13:00', pago: 'Paga en tienda', estado: 'listo', lineas: [{ id: 'manchego-curado', cantidad: 500 }, { id: 'comte', cantidad: 250 }] },
-    { codigo: 'QS-1041', cliente: 'Rosa P.', canal: 'WhatsApp', recogida: 'Hoy · 18:00', pago: 'Pagado online', estado: 'preparando', lineas: [{ id: 'tabla-4', cantidad: 1 }] },
-    { codigo: 'QS-1042', cliente: 'Cliente de ejemplo (web)', canal: 'Web', recogida: 'Mañana · 11:00', pago: 'Paga en tienda', estado: 'nuevo', lineas: [{ id: 'cata', cantidad: 2 }] }
+    { codigo: 'QS-1040', cliente: 'Miguel Á. T.', canal: 'WhatsApp', recogida: 'Hoy por la mañana', pago: 'Paga en tienda', estado: 'listo', lineas: [{ id: 'plaza-curado', cantidad: 500 }, { id: 'comte', cantidad: 250 }] },
+    { codigo: 'QS-1041', cliente: 'Rosa P.', canal: 'WhatsApp', recogida: 'Hoy por la tarde', pago: 'Pagado online', estado: 'preparando', lineas: [{ id: 'cerron-servilleta', cantidad: 500 }, { id: 'plaza-aceite', cantidad: 1 }] },
+    { codigo: 'QS-1042', cliente: 'Cliente de ejemplo (web)', canal: 'Web', recogida: 'Mañana por la mañana', pago: 'Paga en tienda', estado: 'nuevo', lineas: [{ id: 'dehesa-llanos', cantidad: 250 }, { id: 'gorgonzola', cantidad: 250 }] }
   ];
 
   const estado = {
@@ -197,9 +197,9 @@
     const c = clientes.find(x => x.id === id);
     const fav = c.favoritos[0];
     const p = Q.byId(fav);
-    const lineas = [{ id: fav, cantidad: p.precioUd ? (fav === 'lote-regalo' ? 3 : 1) : 500 }];
-    const r = Q.nuevaReserva({ cliente: c.nombre, canal: 'Recuperado', recogida: 'Mañana · 18:00', pago: 'Paga en tienda', lineas });
-    estado.respuestas[id] = `${nombreQueso(fav)} · ${r.codigo} para mañana a las 18:00`;
+    const lineas = [{ id: fav, cantidad: p.precioUd ? (fav === 'caja-regalo' ? 3 : 1) : 500 }];
+    const r = Q.nuevaReserva({ cliente: c.nombre, canal: 'Recuperado', recogida: 'Mañana por la tarde', pago: 'Paga en tienda', lineas });
+    estado.respuestas[id] = `${nombreQueso(fav)} · ${r.codigo} para mañana por la tarde`;
     c.pedidos++; c.gasto += r.total;
     c.historial.unshift({ dias: 0, texto: `Reserva ${r.codigo} tras el aviso: ${Q.etiquetaCantidad(p, lineas[0].cantidad)} de ${p.nombre}`, importe: r.total });
     toast(`${c.nombre} ha reservado. Ya está en Pedidos y recogidas.`);
@@ -210,12 +210,12 @@
     const pedidos = todosLosPedidos();
     const porCanal = {};
     pedidos.forEach(p => { porCanal[p.canal] = (porCanal[p.canal] || 0) + 1; });
-    const top = [['manchego-curado', 38], ['torta', 24], ['payoyo', 19], ['azul-asturiano', 15], ['tabla-4', 12]];
+    const top = [['dehesa-llanos', 38], ['payoyo', 24], ['cerron-romero-miel', 19], ['gorgonzola', 15], ['caja-regalo', 12]];
     const max = top[0][1];
     const fueraHorario = 41;
     $('#crm-resumen').innerHTML = `
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        ${tarjeta('Reservas esta semana', 26 + (Q.reservas || []).length, 'Web + WhatsApp + Instagram', 'text-vino-800')}
+        ${tarjeta('Reservas esta semana', 26 + (Q.reservas || []).length, 'Web, WhatsApp, Instagram y teléfono', 'text-vino-800')}
         ${tarjeta('Hechas con la tienda cerrada', fueraHorario + ' %', 'Noches y domingos (ejemplo)', 'text-queso-700')}
         ${tarjeta('Ticket medio', '24,80 €', 'Orientativo', 'text-oliva-700')}
         ${tarjeta('Clientes en la base de datos', '1.214', 'Con historial de compras (ejemplo)', 'text-stone-800')}
@@ -293,7 +293,7 @@
   function renderPedidos() {
     const pedidos = todosLosPedidos();
     $('#crm-pedidos').innerHTML = `
-      <p class="text-sm text-stone-600">Las reservas de la web y de WhatsApp entran aquí solas. Al marcar «Listo para recoger», el cliente recibe un WhatsApp automático.</p>
+      <p class="text-sm text-stone-600">Las reservas de la web, de WhatsApp y de las llamadas a Laura entran aquí solas. Al marcar «Listo para recoger», el cliente recibe un WhatsApp automático.</p>
       <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-3">
         ${ESTADOS.map(e => `<div class="bg-white rounded-2xl border border-queso-200 card-shadow p-3 space-y-2 min-h-[160px]">
           <p class="text-xs font-bold uppercase tracking-wide text-stone-500 flex justify-between"><span>${e.nombre}</span><span>${pedidos.filter(p => p.estado === e.id).length}</span></p>
@@ -307,7 +307,7 @@
     const sig = ESTADOS[i + 1];
     const nuevo = (Q.reservas || []).includes(p);
     return `<div class="rounded-xl border ${nuevo ? 'border-vino-400 ring-2 ring-vino-100' : 'border-queso-100'} p-3 space-y-1.5 text-sm bg-queso-50/40">
-      <div class="flex justify-between gap-2"><strong>${esc(p.codigo)}</strong>${chip(p.canal, p.canal === 'WhatsApp' ? 'bg-emerald-100 text-emerald-800' : p.canal === 'Recuperado' ? 'bg-vino-100 text-vino-800' : 'bg-sky-100 text-sky-800')}</div>
+      <div class="flex justify-between gap-2"><strong>${esc(p.codigo)}</strong>${chip(p.canal, p.canal === 'WhatsApp' ? 'bg-emerald-100 text-emerald-800' : p.canal === 'Recuperado' ? 'bg-vino-100 text-vino-800' : p.canal === 'Teléfono' ? 'bg-amber-100 text-amber-800' : 'bg-sky-100 text-sky-800')}</div>
       <p class="font-semibold">${esc(p.cliente)}</p>
       <ul class="text-xs text-stone-600">${p.lineas.map(l => `<li>• ${esc(Q.etiquetaCantidad(Q.byId(l.id), l.cantidad))} ${esc(nombreQueso(l.id))}</li>`).join('')}</ul>
       <p class="text-xs">🕒 ${esc(p.recogida)}</p>
@@ -327,10 +327,10 @@
 
   // ------------------------------------------------------------------ 5. CAMPAÑAS
   const CAMPANAS = [
-    { id: 'azul', titulo: '🔵 Llegó el azul de cueva', segmento: 'Clientes que han comprado quesos azules', n: 87, texto: 'Hola {nombre} 👋 Ha llegado azul de cueva recién salido. ¿Te guardamos un trozo?' },
-    { id: 'navidad', titulo: '🎄 Lotes de Navidad', segmento: 'Compraron lotes o regalos el año pasado', n: 142, texto: 'Hola {nombre} 🎄 Ya preparamos los lotes de Navidad. Resérvalos antes del 10 de diciembre y te los dejamos listos.' },
-    { id: 'cata', titulo: '🍷 Nueva cata guiada', segmento: 'Han venido a una cata o compran tablas', n: 64, texto: 'Hola {nombre} 🧀 Abrimos plazas para la próxima cata de 8 quesos. Grupos reducidos. ¿Te apuntamos?' },
-    { id: 'semana', titulo: '⭐ Queso de la semana', segmento: 'Todos los que aceptaron recibir novedades', n: 512, texto: 'Hola {nombre} 👋 El queso de la semana es el payoyo curado. Pásate a probarlo o resérvalo por WhatsApp.' }
+    { id: 'azul', titulo: '🔵 Ya tenemos Gamoneu', segmento: 'Clientes que han comprado quesos azules', n: 87, texto: 'Hola {nombre} 👋 Ya tenemos Gamoneu de Cangas de Onís, el de los tonos rojizos y azulados. ¿Te guardamos un trozo?' },
+    { id: 'navidad', titulo: '🎄 Cajas regalo de Navidad', segmento: 'Enviaron cajas regalo el año pasado', n: 142, texto: 'Hola {nombre} 🎄 Ya preparamos las cajas regalo de Navidad, con envío refrigerado a toda España. Dinos cuántas y a quién, y nos encargamos.' },
+    { id: 'cata', titulo: '🍷 Próxima cata comentada', segmento: 'Han venido a una cata o a unas jornadas', n: 64, texto: 'Hola {nombre} 🧀 Abrimos plazas para la próxima cata comentada en nuestra sala. Grupos reducidos. ¿Te apuntamos?' },
+    { id: 'semana', titulo: '⭐ Queso de la semana', segmento: 'Todos los que aceptaron recibir novedades', n: 512, texto: 'Hola {nombre} 👋 El queso de la semana es el Dehesa de Los Llanos Gran Reserva, de Albacete. Pásate a probarlo o resérvalo por WhatsApp.' }
   ];
 
   function renderCampanas() {
