@@ -269,7 +269,7 @@
   ];
   function cambiarRol(r) {
     rol = r;
-    document.querySelectorAll('[data-crm-rol]').forEach(b => {
+    document.querySelectorAll('#crm-inmo [data-crm-rol]').forEach(b => {
       const on = b.dataset.crmRol === r;
       b.className = 'shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ' +
         (on ? 'bg-brand-gold text-slate-950 shadow-glow-gold' : 'text-slate-300 hover:bg-slate-800');
@@ -959,9 +959,13 @@
   // ------------------------------------------------------------------ Eventos
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-crm-tab],[data-crm-go],[data-crm-duda],[data-crm-ficha],[data-crm-close],[data-crm-wa],[data-crm-paso],[data-crm-enviar],[data-crm-elegir],[data-crm-laura],[data-crm-opinion],[data-crm-informe],[data-agenda-filtro],[data-comp-filtro],[data-conv-filtro],[data-conv],[data-crm-rol],[data-ver-comercial],[data-ver-propietario],[data-prop-accion]');
-    if (!t || !t.closest('#crm-inmo, #crmDrawer')) return;
+    if (!t || !t.closest('#crm-inmo, #crmDrawer, #crmRolTop')) return;
     const d = t.dataset;
-    if (d.crmRol) { cambiarRol(d.crmRol); return; }
+    if (d.crmRol) {
+      cambiarRol(d.crmRol);
+      if ('crmScroll' in d) { const top = $('#crmRolTop'); if (top) top.open = false; $('#crm-inmo').scrollIntoView({ behavior: 'smooth' }); }
+      return;
+    }
     if (d.verComercial) { comercialVista = d.verComercial; render(); return; }
     if (d.verPropietario) { propietarioVista = d.verPropietario; render(); return; }
     if (d.propAccion) { accionPropietario(d.propAccion, d.oferta); return; }

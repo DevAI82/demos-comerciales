@@ -139,10 +139,18 @@
       </div>
       <div class="flex items-center gap-4 text-slate-400">
         <span class="hidden sm:inline">Sede: <strong>Marqués de Villores • Albacete</strong></span>
-        <a href="#crm-inmo" class="hidden md:flex text-brand-blueAccent hover:text-white transition-colors items-center gap-1 font-semibold">
-          <span>Ver panel del dueño</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </a>
+        <!-- Desplegable de rol: abre el CRM con la vista elegida (realestate/crm-inmobiliaria.js) -->
+        <details id="crmRolTop" class="relative">
+          <summary class="list-none cursor-pointer flex items-center gap-1 text-brand-blueAccent hover:text-white font-semibold select-none">
+            <span>Ver el CRM como…</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="absolute right-0 mt-2 w-60 rounded-xl bg-slate-900 border border-slate-700 shadow-2xl p-1.5 z-[60] text-xs">
+            <button data-crm-rol="dueno" data-crm-scroll class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-800 text-white"><b>🏢 Dueño</b><span class="block text-[10px] text-slate-400">Panel, agenda y productividad del equipo</span></button>
+            <button data-crm-rol="comercial" data-crm-scroll class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-800 text-white"><b>💼 Comercial</b><span class="block text-[10px] text-slate-400">«Mi día»: tareas, visitas y compradores</span></button>
+            <button data-crm-rol="propietario" data-crm-scroll class="w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-800 text-white"><b>🏠 Propietario que vende</b><span class="block text-[10px] text-slate-400">Visitas, opiniones, informe y ofertas</span></button>
+          </div>
+        </details>
         <!-- Botón "Lo quiero" (shared/altera-cta.js): arriba para no tapar el widget de Laura -->
         <div data-altera-cta-slot></div>
       </div>
@@ -800,6 +808,77 @@
 
     <!-- Aviso de acciones simuladas -->
     <div id="crmToast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[80] hidden max-w-[92vw] px-4 py-3 rounded-2xl bg-slate-900 text-white text-sm font-semibold shadow-2xl border border-sky-500/40"></div>
+  </section>
+
+  <!-- ================= SECCIÓN 4B: STACK TECNOLÓGICO QUE NECESITA IZON ================= -->
+  <section id="stack-tecnologico" class="py-16 bg-slate-950/60 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="text-xs uppercase font-bold tracking-widest text-brand-blueAccent bg-brand-blue/15 px-3 py-1 rounded-full border border-sky-500/30">
+          Puesta en marcha • Lo que hace falta
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold font-display text-white mt-3">Stack tecnológico de Izon</h2>
+        <p class="text-slate-300 text-sm sm:text-base mt-2">
+          Cada servicio se contrata a nombre de Izon y se paga según el uso. Así los datos y los números son siempre suyos. Nosotros lo instalamos, lo conectamos y lo mantenemos.
+        </p>
+      </div>
+
+      <!-- Sus números de teléfono -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="glass-card rounded-2xl p-5 space-y-2">
+          <p class="text-sm font-bold text-white">☎️ El fijo 967 66 00 05 se mantiene</p>
+          <p class="text-xs text-slate-300 leading-relaxed">Dos opciones: <strong>portarlo a Telnyx</strong>, de modo que el número sigue siendo el mismo y Laura contesta directamente, o dejarlo con su operador actual y <strong>desviar las llamadas</strong> a la línea de Laura cuando nadie coge o fuera de horario. Los clientes siguen marcando el número de siempre.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-5 space-y-2">
+          <p class="text-sm font-bold text-white">📱 Los móviles de los comerciales, también</p>
+          <p class="text-xs text-slate-300 leading-relaxed">No se tocan: se activa el <strong>desvío «si no contesta, comunica o no hay cobertura»</strong> hacia Laura. Cuando el comercial está enseñando un piso, Laura atiende la llamada y le deja el resumen en el CRM. Para WhatsApp se usa un número dado de alta en la API de WhatsApp Business (puede ser el fijo), sin perder el teléfono personal de nadie.</p>
+        </div>
+      </div>
+
+      <!-- Tabla de servicios -->
+      <div class="glass-card rounded-3xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs sm:text-sm min-w-[720px]">
+            <thead>
+              <tr class="bg-slate-900/90 text-[10px] uppercase tracking-wider text-slate-400 text-left">
+                <th class="p-4 font-bold">Servicio</th><th class="p-4 font-bold">Para qué</th><th class="p-4 font-bold">Coste orientativo</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr><td class="p-4 font-bold text-white">Telnyx</td><td class="p-4">Línea de teléfono de Laura: portabilidad o desvío del fijo y recepción de llamadas.</td><td class="p-4 whitespace-nowrap">≈ 1–2 €/mes por número<br><span class="text-slate-500">+ ≈ 0,01 € por minuto</span></td></tr>
+              <tr><td class="p-4 font-bold text-white">ElevenLabs</td><td class="p-4">La voz y la conversación de Laura al teléfono.</td><td class="p-4 whitespace-nowrap">≈ 22 €/mes (~250 min)<br><span class="text-slate-500">o ≈ 99 €/mes (~1.100 min)</span></td></tr>
+              <tr><td class="p-4 font-bold text-white">Zernio</td><td class="p-4">Conecta WhatsApp e Instagram con el asistente y con el CRM.</td><td class="p-4 whitespace-nowrap">Gratis<br><span class="text-slate-500">solo WhatsApp e Instagram</span></td></tr>
+              <tr><td class="p-4 font-bold text-white">Meta (WhatsApp Business)</td><td class="p-4">Mensajes que inicia la agencia: recordatorios de visita, avisos y seguimientos. Responder a un cliente que escribe es gratis durante 24 h.</td><td class="p-4 whitespace-nowrap">≈ 0,02 € recordatorio<br><span class="text-slate-500">≈ 0,06 € promoción · ≈ 5–15 €/mes</span></td></tr>
+              <tr><td class="p-4 font-bold text-white">OpenRouter</td><td class="p-4">El modelo de IA que redacta las respuestas del chatbot de WhatsApp e Instagram.</td><td class="p-4 whitespace-nowrap">Saldo prepago<br><span class="text-slate-500">≈ 5–15 €/mes</span></td></tr>
+              <tr><td class="p-4 font-bold text-white">Resend</td><td class="p-4">Correos automáticos: confirmación de visita, informe semanal al propietario y avisos.</td><td class="p-4 whitespace-nowrap">Gratis<br><span class="text-slate-500">hasta 3.000 correos/mes y 100/día</span></td></tr>
+              <tr><td class="p-4 font-bold text-white">Contabo</td><td class="p-4">Servidor propio en la Unión Europea donde viven el CRM, la base de datos y las automatizaciones.</td><td class="p-4 whitespace-nowrap">≈ 6–12 €/mes</td></tr>
+              <tr><td class="p-4 font-bold text-white">Coolify + Supabase</td><td class="p-4">Panel para desplegar y base de datos del CRM, autoalojados en el servidor de Izon: sin cuotas por usuario.</td><td class="p-4 whitespace-nowrap">0 €<br><span class="text-slate-500">software libre</span></td></tr>
+              <tr><td class="p-4 font-bold text-white">API de Idealista</td><td class="p-4">Datos de mercado para el radar €/m² y el informe al propietario.</td><td class="p-4 whitespace-nowrap">Según plan de consultas</td></tr>
+              <tr><td class="p-4 font-bold text-white">Copias de seguridad</td><td class="p-4">Copia diaria de la base de datos fuera del servidor.</td><td class="p-4 whitespace-nowrap">≈ 1–3 €/mes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-slate-900/90 px-5 py-4 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <p class="text-sm font-bold text-white">Servicios a nombre de Izon: ≈ 40–150 €/mes según el volumen de llamadas y mensajes</p>
+          <p class="text-[11px] text-slate-400">Más la API de Idealista según plan. Precios orientativos; pueden cambiar.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="glass-card rounded-2xl p-4 space-y-1">
+          <p class="font-bold text-white">🧾 Lo que ya tiene Izon</p>
+          <p class="text-slate-300">Su dominio (para enviar los correos desde @izonconsulting.es), la página de Facebook e Instagram profesional y el Business Manager de Meta, que hay que verificar.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-4 space-y-1">
+          <p class="font-bold text-white">🔒 Protección de datos</p>
+          <p class="text-slate-300">Aviso de que la llamada la atiende un asistente, cláusula RGPD en WhatsApp y web, y contratos de encargado de tratamiento con cada proveedor. Datos del CRM en servidor de la UE.</p>
+        </div>
+        <div class="glass-card rounded-2xl p-4 space-y-1">
+          <p class="font-bold text-white">🛠️ Nuestra parte</p>
+          <p class="text-slate-300">Instalación, conexión de todos los servicios, carga de la cartera y formación del equipo. Después, mantenimiento y soporte por una cuota de 99 €/mes (orientativa).</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ================= SECCIÓN 5: CALCULADORA ROI ================= -->
