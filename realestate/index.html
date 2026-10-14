@@ -6,7 +6,7 @@
   <title>Izon Consulting Albacete | Propuesta Estratégica & Radar de Mercado</title>
   
   <!-- SEO & OpenGraph Optimizado para WhatsApp -->
-  <meta name="description" content="Propuesta exclusiva para Izon Consulting: Chatbot WhatsApp 24/7, Agente de Voz ElevenLabs, Cartera Integrada con Radar de Mercado Idealista y Gráfica de Valor €/m².">
+  <meta name="description" content="Propuesta exclusiva para Izon Consulting: CRM para la dirección y el equipo comercial, Chatbot WhatsApp 24/7, Agente de Voz ElevenLabs, Cartera Integrada con Radar de Mercado Idealista y Gráfica de Valor €/m².">
   <meta property="og:title" content="Izon Consulting × Cartera Inteligente & Comparador Idealista">
   <meta property="og:description" content="Compara en tiempo real los inmuebles de Izon Consulting contra el mercado de Idealista, analiza la gráfica de €/m² y prueba el chatbot 24/7.">
   <meta property="og:image" content="https://www.izonconsulting.es/wp-content/uploads/2019/03/logo-izon-consulting.png">
@@ -122,6 +122,7 @@
   <script src="../shared/altera-config.js"></script>
   <script src="../shared/altera-convai.js" defer></script>
   <script src="../shared/altera-cta.js" defer></script>
+  <script src="crm-inmobiliaria.js" defer></script>
 </head>
 <body class="bg-luxury-grid antialiased min-h-screen selection:bg-brand-blue selection:text-white">
 
@@ -138,8 +139,8 @@
       </div>
       <div class="flex items-center gap-4 text-slate-400">
         <span class="hidden sm:inline">Sede: <strong>Marqués de Villores • Albacete</strong></span>
-        <a href="#radar-cartera-idealista" class="hidden md:flex text-brand-blueAccent hover:text-white transition-colors items-center gap-1 font-semibold">
-          <span>Ver Comparador Izon vs Idealista</span>
+        <a href="#crm-inmo" class="hidden md:flex text-brand-blueAccent hover:text-white transition-colors items-center gap-1 font-semibold">
+          <span>Ver panel del dueño</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </a>
         <!-- Botón "Lo quiero" (shared/altera-cta.js): arriba para no tapar el widget de Laura -->
@@ -183,21 +184,21 @@
         </div>
 
         <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-white leading-[1.12]">
-          Vende más rápido y <br>
+          Venda más rápido y <br>
           <span class="bg-gradient-to-r from-brand-blueAccent via-white to-brand-goldLight bg-clip-text text-transparent">
-            demuestra el valor real
+            controle a todo su equipo
           </span>
-          de tus inmuebles en Albacete
+          desde una sola pantalla
         </h1>
 
         <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-          Integra la <strong>cartera real de Izon Consulting</strong> con un asistente de WhatsApp 24/7, contestador de voz con IA humana (ElevenLabs) y un <strong>comparador en tiempo real con Idealista</strong> que demuestra qué pisos están por debajo de mercado para cerrar operaciones sin esperas.
+          Ningún contacto sin atender: Laura coge el teléfono 24/7 y el asistente de WhatsApp responde al momento. Todo entra en un <strong>CRM pensado para la dirección</strong>, donde usted ve lo que está agendado, quién espera visita, qué compradores dudan y cómo trabaja cada comercial. Y con el <strong>radar de Idealista</strong>, sus comerciales demuestran qué pisos están por debajo de mercado.
         </p>
 
         <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
-          <a href="#radar-cartera-idealista" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-gradient-to-r from-brand-blue to-sky-500 hover:from-sky-500 hover:to-brand-blue text-white font-bold text-sm shadow-glow-blue transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+          <a href="#crm-inmo" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-gradient-to-r from-brand-blue to-sky-500 hover:from-sky-500 hover:to-brand-blue text-white font-bold text-sm shadow-glow-blue transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-            <span>Ver Cartera Izon vs Idealista</span>
+            <span>Ver el panel del dueño</span>
           </a>
           <a href="#simulador-whatsapp" class="w-full sm:w-auto px-7 py-4 rounded-xl glass-panel hover:bg-slate-800/80 text-slate-200 hover:text-white font-semibold text-sm transition-all flex items-center justify-center gap-2">
             <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
@@ -273,7 +274,7 @@
         <div class="glass-card p-6 rounded-3xl">
           <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-2 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-brand-blueAccent"></span>
-            Prueba cómo interactúa el comprador:
+            Pruebe cómo interactúa el comprador:
           </h3>
           <p class="text-xs text-slate-400 mb-4">
             Haz clic en los casos de uso para ver la respuesta inteligente generada:
@@ -315,7 +316,7 @@
 
           <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center gap-3">
             <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center font-bold flex-shrink-0">✓</span>
-            <p>Se conecta a vuestro propio número de WhatsApp Business sin perder el historial.</p>
+            <p>Se conecta a su propio número de WhatsApp Business sin perder el historial.</p>
           </div>
         </div>
       </div>
@@ -345,8 +346,8 @@
             <div id="chat-messages" class="flex-1 p-3.5 space-y-3 overflow-y-auto bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:16px_16px]">
               <div class="chat-bubble-agent p-3 text-xs max-w-[85%] text-slate-200 shadow">
                 <p class="font-semibold text-brand-blueAccent mb-1">Izon Consulting:</p>
-                <p>¡Hola! Bienvenido a Izon Consulting Albacete. Soy vuestro asistente digital 24/7. 🏠</p>
-                <p class="mt-1 text-slate-300">¿Estás buscando vivienda para comprar, alquilar o deseas valorar una propiedad en Albacete?</p>
+                <p>¡Hola! Bienvenido a Izon Consulting Albacete. Soy su asistente digital 24/7. 🏠</p>
+                <p class="mt-1 text-slate-300">¿Busca vivienda para comprar, alquilar o desea valorar una propiedad en Albacete?</p>
                 <span class="text-[9px] text-slate-400 block text-right mt-1">21:42</span>
               </div>
             </div>
@@ -741,124 +742,52 @@
     </div>
   </section>
 
-  <!-- ================= SECCIÓN 4: CRM PROPIO OMNICANAL ================= -->
-  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800">
-    <div class="text-center max-w-3xl mx-auto mb-12">
+  <!-- ================= SECCIÓN 4: CRM INMOBILIARIO PARA LA DIRECCIÓN (realestate/crm-inmobiliaria.js) ================= -->
+  <section id="crm-inmo" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800 space-y-5">
+    <div class="text-center max-w-3xl mx-auto mb-8">
       <span class="text-xs uppercase font-bold tracking-widest text-brand-gold bg-brand-gold/15 px-3 py-1 rounded-full border border-brand-gold/30">
-        Fase 2 • Escalabilidad Total
+        El centro de la solución • Control de la dirección
       </span>
       <h2 class="text-2xl sm:text-4xl font-extrabold font-display text-white mt-3">
-        CRM Inmobiliario Unificado: Toda la Agencia en una Sola Pantalla
+        Todo su equipo comercial en una sola pantalla
       </h2>
       <p class="text-slate-300 text-sm sm:text-base mt-2">
-        Centraliza los chats de <strong>WhatsApp</strong>, mensajes de <strong>Instagram</strong>, llamadas transcritas y consultas de portales (Idealista, Fotocasa) en una misma bandeja para los comerciales de Izon.
+        Cada llamada que atiende Laura, cada WhatsApp y cada consulta de Idealista o Fotocasa entra aquí con su comercial asignado. Usted ve lo que está agendado, quién está pendiente de visita, qué compradores están en duda y cómo trabaja cada comercial, sin tener que preguntar.
       </p>
     </div>
 
-    <div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
-      <div class="bg-slate-900/95 px-6 py-4 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
-          <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-          <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
-          <span class="text-xs font-semibold text-slate-300 ml-2 border-l border-slate-700 pl-3">
-            Izon Omnichannel CRM • Panel de Gestión
-          </span>
-        </div>
-
-        <div class="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs">
-          <button class="px-3 py-1 rounded-lg font-semibold bg-brand-blue text-white">Todos (18)</button>
-          <button class="px-3 py-1 rounded-lg text-slate-400 hover:text-white">WhatsApp (11)</button>
-          <button class="px-3 py-1 rounded-lg text-slate-400 hover:text-white">Llamadas (4)</button>
-          <button class="px-3 py-1 rounded-lg text-slate-400 hover:text-white">Instagram (3)</button>
-        </div>
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/15 text-sky-300 text-xs font-semibold border border-sky-500/30">
+        <span>🏢 Panel de dirección y equipo</span><span>•</span><span>Izon Consulting</span>
       </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-slate-800">
-        
-        <div class="lg:col-span-5 p-4 space-y-3 max-h-[440px] overflow-y-auto">
-          <div class="p-3.5 rounded-xl bg-slate-900/90 border border-brand-blueAccent/50 flex items-start justify-between">
-            <div class="flex items-start gap-3">
-              <span class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">WA</span>
-              <div>
-                <h5 class="text-xs font-bold text-white">Carlos Gómez <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.2 rounded font-semibold ml-1">Visita Confirmada</span></h5>
-                <p class="text-[11px] text-slate-300 mt-0.5 line-clamp-1">"Perfecto, nos vemos el jueves a las 17:30 en el piso de C/ Rosario."</p>
-                <span class="text-[10px] text-slate-400 block mt-1">Interés: 3 hab Ensanche • Asesor: Lucía</span>
-              </div>
-            </div>
-            <span class="text-[10px] text-slate-500">Hace 3 min</span>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800 flex items-start justify-between">
-            <div class="flex items-start gap-3">
-              <span class="w-8 h-8 rounded-full bg-brand-blue/20 text-brand-blueAccent flex items-center justify-center font-bold text-xs">TEL</span>
-              <div>
-                <h5 class="text-xs font-bold text-white">Llamada Entrante ElevenLabs <span class="text-[10px] bg-brand-blue/20 text-brand-blueAccent px-1.5 py-0.2 rounded font-semibold ml-1">Propietario</span></h5>
-                <p class="text-[11px] text-slate-300 mt-0.5 line-clamp-1">"Quiere vender piso en Altozano (120 m²). Valoración enviada."</p>
-                <span class="text-[10px] text-slate-400 block mt-1">Estimación: 190.000 € • Asesor: Antonio</span>
-              </div>
-            </div>
-            <span class="text-[10px] text-slate-500">Hace 25 min</span>
-          </div>
-
-          <div class="p-3.5 rounded-xl bg-slate-900/40 border border-slate-800 flex items-start justify-between">
-            <div class="flex items-start gap-3">
-              <span class="w-8 h-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs">IG</span>
-              <div>
-                <h5 class="text-xs font-bold text-white">@mariamartinez_ab <span class="text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.2 rounded font-semibold ml-1">Nuevo</span></h5>
-                <p class="text-[11px] text-slate-300 mt-0.5 line-clamp-1">"Hola, ¿el ático de la terraza sigue disponible para alquilar?"</p>
-                <span class="text-[10px] text-slate-400 block mt-1">Origen: Reel Instagram Izon</span>
-              </div>
-            </div>
-            <span class="text-[10px] text-slate-500">Hace 1 h</span>
-          </div>
-        </div>
-
-        <div class="lg:col-span-7 p-6 space-y-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <span class="text-[11px] font-bold text-brand-blueAccent uppercase tracking-wider">Ficha de Inmueble & Expediente Digital</span>
-              <h4 class="text-base font-bold text-white">Piso Céntrico Villacerrada (Albacete)</h4>
-            </div>
-            <span class="px-2.5 py-1 rounded bg-brand-emerald/15 text-brand-emerald text-xs font-bold border border-brand-emerald/30">
-              Exclusiva Activa
-            </span>
-          </div>
-
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-              <span class="text-slate-400 block text-[10px]">Superficie</span>
-              <strong class="text-white">165 m² construidos</strong>
-            </div>
-            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-              <span class="text-slate-400 block text-[10px]">Distribución</span>
-              <strong class="text-white">4 hab • 2 baños</strong>
-            </div>
-            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-              <span class="text-slate-400 block text-[10px]">Cert. Energético</span>
-              <strong class="text-brand-emerald">Calificación C</strong>
-            </div>
-            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-              <span class="text-slate-400 block text-[10px]">Radar Idealista</span>
-              <strong class="text-brand-emerald">-14% vs Media</strong>
-            </div>
-          </div>
-
-          <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800">
-            <p class="text-xs font-semibold text-slate-300 mb-2.5 flex items-center gap-2">
-              <svg class="w-4 h-4 text-brand-blueAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-              Documentación enviada automáticamente al comprador:
-            </p>
-            <div class="flex flex-wrap gap-2 text-[11px]">
-              <span class="px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-200">📄 Plano_Villacerrada_165m.pdf</span>
-              <span class="px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-200">⚡ Certificado_Eficiencia_Energetica.pdf</span>
-              <span class="px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-200">📊 Informe_Tasacion_Idealista.pdf</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <span class="self-start sm:self-auto text-[11px] font-semibold px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-slate-300">Datos de ejemplo · importes orientativos</span>
     </div>
+
+    <!-- NAVEGACIÓN DEL CRM -->
+    <nav class="glass-panel rounded-2xl p-1.5 flex gap-1 overflow-x-auto" aria-label="Secciones del CRM">
+      <button data-crm-tab="panel" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>📊</span>Panel del dueño <span id="crmBadgeAlertas" class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-400 text-slate-950">0</span></button>
+      <button data-crm-tab="agenda" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>📅</span>Agenda del equipo</button>
+      <button data-crm-tab="compradores" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>🔑</span>Compradores <span id="crmBadgeCompradores" class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-700 text-slate-200">0</span></button>
+      <button data-crm-tab="conversaciones" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>💬</span>Conversaciones</button>
+      <button data-crm-tab="equipo" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>👥</span>Equipo comercial</button>
+      <button data-crm-tab="propietarios" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>🏠</span>Propietarios e inmuebles</button>
+    </nav>
+
+    <div id="crm-panel" class="crm-pane space-y-4"></div>
+    <div id="crm-agenda" class="crm-pane hidden space-y-4"></div>
+    <div id="crm-compradores" class="crm-pane hidden space-y-4"></div>
+    <div id="crm-conversaciones" class="crm-pane hidden space-y-4"></div>
+    <div id="crm-equipo" class="crm-pane hidden space-y-4"></div>
+    <div id="crm-propietarios" class="crm-pane hidden space-y-4"></div>
+
+    <!-- FICHA DEL COMPRADOR (panel lateral) -->
+    <div id="crmDrawer" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-labelledby="crmDrawerTitle">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-crm-close></div>
+      <aside id="crmDrawerBody" class="absolute right-0 top-0 h-full w-full max-w-xl bg-slate-950 border-l border-slate-800 shadow-2xl overflow-y-auto"></aside>
+    </div>
+
+    <!-- Aviso de acciones simuladas -->
+    <div id="crmToast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[80] hidden max-w-[92vw] px-4 py-3 rounded-2xl bg-slate-900 text-white text-sm font-semibold shadow-2xl border border-sky-500/40"></div>
   </section>
 
   <!-- ================= SECCIÓN 5: CALCULADORA ROI ================= -->
@@ -871,7 +800,7 @@
           ¿Cuánto Dinero Extra Puede Aportar a Izon Consulting?
         </h2>
         <p class="text-slate-400 text-sm mt-2">
-          Ajusta el volumen mensual de consultas para ver el beneficio directo al recuperar llamadas y mensajes desatendidos.
+          Ajuste el volumen mensual de consultas para ver el beneficio directo al recuperar llamadas y mensajes desatendidos.
         </p>
       </div>
 
@@ -914,10 +843,10 @@
               +4.800 € / mes
             </div>
             <p class="text-xs text-slate-400 leading-relaxed mb-4">
-              Tomando como base una comisión media estándar de 4.000 € por operación en Albacete.
+              Cálculo orientativo con una comisión media de 4.000 € por operación en Albacete.
             </p>
             <div class="text-[11px] bg-brand-emerald/10 text-brand-emerald py-2 px-3 rounded-lg border border-brand-emerald/20 font-semibold">
-              El sistema se amortiza en los primeros 10 días de funcionamiento.
+              Cifras orientativas: dependen del volumen real de consultas de Izon.
             </div>
           </div>
 
@@ -936,7 +865,7 @@
           ¿Activamos el Piloto para Izon Consulting?
         </h2>
         <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8">
-          Podemos tener la Fase 1 operativa en 5 días hábiles con vuestro propio número de WhatsApp y vuestra cartera real de Albacete.
+          Podemos tener la atención 24/7 operativa en 5 días hábiles con su propio número de WhatsApp y su cartera real de Albacete, y el CRM con su equipo a continuación.
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1432,7 +1361,7 @@
                   <strong>Comportamiento de la IA:</strong> Al ser un precio un <strong>${Math.abs(item.diff)}% más bajo que Idealista</strong>, la IA utiliza este dato como argumento de urgencia y ahorro real (<strong class="text-brand-emerald">${item.ahorroEuros.toLocaleString('es-ES')} € de ahorro estimado</strong>).
                 </p>
                 <div class="p-2.5 rounded-xl bg-slate-950/80 border border-brand-emerald/30 font-mono text-[10px] text-emerald-300">
-                  "💬 Hola Carlos, este piso en ${item.barrio} está un ${Math.abs(item.diff)}% por debajo de la media de Idealista en su zona. Ahorras ${item.ahorroEuros.toLocaleString('es-ES')} € respecto al mercado medio..."
+                  "💬 Hola Carlos, este piso en ${item.barrio} está un ${Math.abs(item.diff)}% por debajo de la media de Idealista en su zona. Se ahorra ${item.ahorroEuros.toLocaleString('es-ES')} € respecto al mercado medio..."
                 </div>
                 <p class="text-[10px] text-slate-400">🛡️ <em>Protegido: Ningún enlace hacia portales competidores es facilitado.</em></p>
               ` : `
@@ -1440,7 +1369,7 @@
                   <strong>Comportamiento de la IA:</strong> Como el inmueble está sobre mercado, <strong>la IA NO menciona a Idealista</strong> para evitar que el comprador compare y se marche.
                 </p>
                 <div class="p-2.5 rounded-xl bg-slate-950/80 border border-amber-500/30 font-mono text-[10px] text-amber-200">
-                  "💬 Hola Carlos, esta vivienda destaca por su luz natural y excelente ubicación céntrica. ¿Quieres que te envíe los planos completos?"
+                  "💬 Hola Carlos, esta vivienda destaca por su luz natural y excelente ubicación céntrica. ¿Le envío los planos completos?"
                 </div>
                 <p class="text-[10px] text-emerald-400 font-semibold">✓ El cliente permanece en el funnel de Izon sin fuga.</p>
               `
@@ -1903,7 +1832,7 @@
 🏢 **Piso junto al Rosario (Ensanche)**
 • 111 m² | 3 dormitorios | 2 baños | 190.000 €
 
-¿Te gustaría que te envíe los planos de distribución y agendemos una visita para verlos?`
+¿Le envío los planos de distribución y le busco hueco para una visita?`
       },
       agendar_visita: {
         q: "Quiero agendar una visita este jueves con Lucía",
@@ -1914,7 +1843,7 @@
 2️⃣ 17:00h - 17:45h
 3️⃣ 18:30h - 19:15h
 
-Indícame cuál de estos horarios prefieres y tu número de teléfono para dejar la cita confirmada y enviarte la ubicación por WhatsApp. ✨`
+Indíqueme qué horario prefiere y su teléfono para dejar la cita confirmada y enviarle la ubicación por WhatsApp. ✨`
       },
       valorar_piso: {
         q: "Tengo un piso en Zona Altozano y quiero valorarlo",
@@ -1925,17 +1854,17 @@ Indícame cuál de estos horarios prefieres y tu número de teléfono para dejar
 • Rango habitual: 1.700 €/m² a 1.950 €/m²
 • Para una vivienda tipo de 100 m², el valor de mercado estimado se sitúa entre **175.000 € y 192.000 €**.
 
-¿Cuántos metros cuadrados tiene tu vivienda aproximadamente y si cuenta con ascensor o garaje? Te preparo la valoración detallada para captación.`
+¿Cuántos metros cuadrados tiene su vivienda, aproximadamente, y si cuenta con ascensor o garaje? Le preparo la valoración detallada.`
       },
       planos_ficha: {
         q: "¿Tenéis la ficha técnica y los planos de distribución?",
-        a: `¡Por supuesto! Aquí tienes los enlaces de acceso directo a la documentación oficial:
+        a: `¡Por supuesto! Aquí tiene los enlaces de acceso directo a la documentación oficial:
 
 📄 [Descargar Ficha_Tecnica_Villacerrada.pdf]
 📐 [Ver Plano_Arquitectura_165m.pdf]
 ⚡ Certificado Energético: **Calificación C** (Consumo eficiente: 112 kWh/m² año)
 
-¿Quieres resolver alguna duda sobre los gastos de comunidad o la ITE del edificio?`
+¿Quiere resolver alguna duda sobre los gastos de comunidad o la ITE del edificio?`
       }
     };
 
@@ -1965,12 +1894,12 @@ Indícame cuál de estos horarios prefieres y tu número de teléfono para dejar
 
       setTimeout(() => {
         typingIndicator.classList.add('hidden');
-        let resp = "Gracias por tu mensaje. En Izon Consulting gestionamos más de 120 inmuebles en Albacete. Un asesor de nuestro equipo te contactará de inmediato o puedes indicarme qué zona buscas.";
+        let resp = "Gracias por su mensaje. En Izon Consulting gestionamos más de 120 inmuebles en Albacete. Un asesor de nuestro equipo le contactará de inmediato, o puede indicarme qué zona busca.";
         const lower = texto.toLowerCase();
         if (lower.includes("precio") || lower.includes("idealista") || lower.includes("cuanto")) {
-          resp = "Consultando el radar de Idealista para Albacete: el precio medio actual en el Ensanche es de 1.540 €/m² y en Centro Altozano es de 1.820 €/m². ¿Qué tipología o presupuesto buscas?";
+          resp = "Consultando el radar de Idealista para Albacete: el precio medio actual en el Ensanche es de 1.540 €/m² y en Centro Altozano es de 1.820 €/m². ¿Qué tipo de vivienda o presupuesto busca?";
         } else if (lower.includes("visita") || lower.includes("cita")) {
-          resp = "¡Estupendo! Tenemos visitas disponibles esta semana de mañana y tarde. ¿Qué día te encaja mejor?";
+          resp = "¡Estupendo! Tenemos visitas disponibles esta semana de mañana y tarde. ¿Qué día le viene mejor?";
         }
         agregarMensajeBot(resp);
       }, 900);
