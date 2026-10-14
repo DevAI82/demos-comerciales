@@ -56,7 +56,7 @@
     <!-- HERO SECTION -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
       <div class="inline-block text-xs uppercase tracking-widest bg-stone-900 border border-stone-800 text-stone-300 px-3.5 py-1.5 rounded-full font-bold">
-        🚀 Catálogo de Demos Comerciales Activas (9 Clientes)
+        🚀 Catálogo de Demos Comerciales Activas (10 Clientes)
       </div>
       <h1 class="text-3xl sm:text-5xl font-black text-white font-display tracking-tight leading-tight">
         Inteligencia REAL aplicada a negocios locales
@@ -68,7 +68,7 @@
       <!-- FILTER TABS -->
       <div class="flex items-center justify-center flex-wrap gap-2 pt-2" id="filterNav">
         <button onclick="filterSector('all')" id="btn-all" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-cyan-600 text-white shadow-lg shadow-cyan-900/40 transition">
-          Todos (9)
+          Todos (10)
         </button>
         <button onclick="filterSector('food')" id="btn-food" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
           🍔 Hostelería (2)
@@ -88,10 +88,13 @@
         <button onclick="filterSector('retail')" id="btn-retail" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
           🧀 Tiendas gourmet (1)
         </button>
+        <button onclick="filterSector('fitness')" id="btn-fitness" class="filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 hover:bg-stone-800 text-stone-300 transition">
+          🏋️ Entrenamiento (1)
+        </button>
       </div>
     </div>
 
-    <!-- DEMOS GRID (8 CARDS) -->
+    <!-- DEMOS GRID (10 CARDS) -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7" id="demosGrid">
 
       <!-- 1. VIBRA BURGER -->
@@ -513,6 +516,51 @@
             </button>
           </div>
         </div>
+
+      </div>
+      <!-- 10. FITFUSION -->
+      <div class="demo-card fitness bg-[#0f1117] rounded-3xl border border-stone-800 p-7 shadow-xl hover:border-sky-500/50 transition duration-300 flex flex-col justify-between space-y-5">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs bg-sky-950/80 text-sky-300 px-3 py-1 rounded-full font-bold border border-sky-700/40">
+              🏋️ Entrenamiento personal
+            </span>
+            <span class="text-xs text-stone-400 font-mono">Online & Albacete</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <img src="fitfusion/assets/logo-fitfusion.png" alt="Logo FitFusionPro" class="h-11 w-11 rounded-full object-contain bg-black p-1 border-2 border-sky-500/60 shadow-md">
+            <div>
+              <h2 class="text-2xl font-black text-white font-display">FitFusionPro</h2>
+              <span class="text-xs text-sky-400 font-semibold">Cuestionario, app del entrenador y prueba gratis</span>
+            </div>
+          </div>
+
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+            Centro de entrenamiento con clientes online e híbridos: web que capta con un <strong>cuestionario gratuito</strong> y recomienda el plan, <strong>prueba gratis sin tarjeta</strong> y una <strong>app propia</strong> donde cada cliente sigue el plan que le prepara su entrenador.
+          </p>
+
+          <div class="space-y-1.5 text-xs text-stone-400 bg-stone-950/60 p-3 rounded-2xl border border-stone-800/80">
+            <div class="flex items-center gap-2"><span class="text-sky-400">✓</span> <span><strong>Cuestionario que vende:</strong> objetivo, nivel y disponibilidad, con plan recomendado al final.</span></div>
+            <div class="flex items-center gap-2"><span class="text-sky-400">✓</span> <span><strong>App del cliente:</strong> vídeo de cada ejercicio, nota del entrenador, calendario y progreso.</span></div>
+            <div class="flex items-center gap-2"><span class="text-sky-400">📲</span> <span><strong>Planes a distancia:</strong> online e híbrido, con avisos al entrenador y respuesta.</span></div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-stone-800/80 space-y-3">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-stone-400">Coste cliente (80% Bono Pyme): <strong class="text-emerald-400 font-mono text-sm">600 €</strong></span>
+            <span class="text-stone-400">Mantenimiento: <strong class="text-emerald-400 font-mono">99 €/mes</strong></span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <a href="fitfusion/" class="bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-500 hover:to-cyan-500 text-white font-bold text-xs py-2.5 px-3 rounded-xl shadow-md text-center transition flex items-center justify-center gap-1.5">
+              <span>🏋️ Abrir Demo</span>
+            </a>
+            <button onclick="copyMsg('fitfusion')" class="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs py-2.5 px-3 rounded-xl border border-stone-700 transition flex items-center justify-center gap-1.5">
+              <span>💬 Copiar WhatsApp</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -687,7 +735,24 @@ Qué incluye:
 
 💡 Con el Bono Crecimiento Pyme de la JCCM el coste final es de unos 600 € y 99 €/mes de mantenimiento (precios orientativos).
 
-¿Os parece que nos pasemos 10 minutos por la tienda y os lo enseñamos?`
+¿Os parece que nos pasemos 10 minutos por la tienda y os lo enseñamos?`,
+
+      fitfusion: `Hola, buenas. 🏋️
+
+Os escribo desde Altera, en Albacete. Hemos preparado una demo pensada para FitFusionPro, para captar clientes online e híbridos sin depender de las redes:
+
+👉 Probar la demo:
+https://devai82.github.io/demos-comerciales/fitfusion/
+
+Qué incluye:
+• Web con cuestionario gratuito que recomienda el plan adecuado a cada persona.
+• Prueba gratis sin tarjeta que se activa sola al terminar el cuestionario.
+• App propia de FitFusion: el entrenador prepara el plan y el cliente lo sigue en el móvil, con vídeo de cada ejercicio.
+• Avisos al entrenador y seguimiento del progreso de cada cliente.
+
+💡 Con el Bono Crecimiento Pyme de la JCCM el coste final es de unos 600 € y 99 €/mes de mantenimiento (precios orientativos).
+
+¿Os parece que nos pasemos 10 minutos por el centro y os lo enseñamos?`
     };
 
     function copyMsg(key) {
