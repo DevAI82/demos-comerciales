@@ -1,34 +1,34 @@
 [
   {
-    "text": "¡Hola! Soy Ángela, la recepcionista virtual de Pizzería Ángela. ¿En qué puedo ayudarte hoy?",
+    "text": "¡Hola! Soy Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?",
     "role": "agent"
   },
   {
-    "text": "¡Hola, buenas noches! Te atiende Ángela, la asistente inteligente de Pizzería Ángela en Imaginalia. Ahora mismo todos nuestros pizzeros están en sala. ¿Deseas encargar una comanda para recoger o reservar una mesa?",
+    "text": "¡Hola, buenas noches! Te atiende Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?",
     "role": "agent"
   },
   {
-    "text": "Hola, queríamos reservar una mesa para cuatro personas este sábado a las nueve y media de la noche. ¿Tenéis sitio en terraza o dentro?",
+    "text": "Hola, sí. Quería una barbacoa familiar y una diavola mediana para recoger sobre las nueve y media.",
     "role": "client"
   },
   {
-    "text": "¡Perfecto! Para este sábado a las 21:30h tenemos mesa disponible en nuestro salón interior climatizado. ¿A nombre de quién realizo la reserva y qué teléfono móvil nos dejas para enviarte la confirmación por WhatsApp?",
+    "text": "¡Perfecto! Una barbacoa familiar y una diavola mediana. A las nueve y media tengo hueco en el horno. ¿A nombre de quién lo apunto y a qué móvil te mando el resumen por WhatsApp?",
     "role": "agent"
   },
   {
-    "text": "A nombre de Carlos Gómez, móvil seis cuatro cuatro doce treinta y cuatro cincuenta y seis.",
+    "text": "A nombre de Carlos, al seis cuatro cuatro, doce, treinta y cuatro, cincuenta y seis.",
     "role": "client"
   },
   {
-    "text": "¡Queda confirmada tu mesa para cuatro personas este sábado a las nueve y media! Te acabo de enviar la confirmación con la ubicación en Google Maps por WhatsApp. ¡Muchas gracias Carlos, nos vemos el sábado!",
+    "text": "Hecho, Carlos. Te acabo de mandar el resumen por WhatsApp con un enlace por si quieres pagarlo ya; si no, lo pagas al recoger. ¡Hasta luego!",
     "role": "agent"
   },
   {
-    "text": "¡Por supuesto! En Pizzería Ángela disponemos de bases especiales sin gluten certificadas y horneadas en área aislada con estricto protocolo para evitar contaminación cruzada.",
+    "text": "Tenemos masa sin gluten bajo pedido. Si es por celiaquía o alergia, te paso con una persona del equipo para que te explique cómo la preparamos.",
     "role": "agent"
   },
   {
-    "text": "Ahora mismo nuestro horno de piedra tiene una carga óptima. Tres pizzas familiares estarían listas para recoger en nuestro local de Imaginalia en exactamente veinticinco minutos.",
+    "text": "Ahora mismo el horno va bien de carga. Tres pizzas familiares estarían listas para recoger en unos veinticinco minutos.",
     "role": "agent"
   },
   {
@@ -36,15 +36,15 @@
     "role": "agent"
   },
   {
-    "text": "Sí, contamos con una terraza exterior muy acogedora para las noches de buen tiempo y también con un salón interior completamente climatizado.",
+    "text": "Sí, claro. Puedes pagar al recoger, en efectivo o con tarjeta. Y si prefieres pagarlo ya, te mando un enlace seguro por WhatsApp.",
     "role": "agent"
   },
   {
-    "text": "¡Te he entendido perfectamente! Anoto tu comanda para nuestro horno de piedra y te confirmamos por WhatsApp.",
+    "text": "¡Te he entendido! Te apunto el pedido para recoger y te mando el resumen por WhatsApp.",
     "role": "agent"
   },
   {
-    "text": "¡Por supuesto! Disponemos de mesas en salón y terraza en Imaginalia. ¿Para qué día y cuántos comensales sería la reserva?",
+    "text": "¡Claro! ¿Para qué día y cuántas personas sería la mesa?",
     "role": "agent"
   },
   {
@@ -52,15 +52,11 @@
     "role": "agent"
   },
   {
-    "text": "Sí, contamos con masa especial sin gluten certificada y elaborada en bandeja protegida para evitar trazas.",
+    "text": "Las pizzas medianas van de once a doce euros y medio, y las familiares de dieciséis y medio a dieciocho. Te mando la carta con fotos a tu WhatsApp.",
     "role": "agent"
   },
   {
-    "text": "Nuestras pizzas artesanales parten desde 9 euros la Margarita hasta 14,50 euros la Especial Ángela con trufa y rúcula. Te mando la carta en PDF a tu WhatsApp.",
-    "role": "agent"
-  },
-  {
-    "text": "¡Hola, muy buenas! Te atiende Ángela de Pizzería Ángela en Albacete. ¿Quieres encargar comida para recoger o reservar mesa?",
+    "text": "¡Hola, muy buenas! Te atiende Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?",
     "role": "agent"
   }
 ]

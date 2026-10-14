@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pizzería Ángela Imaginalia — Prototipo Interactivo Altera_FOOD | Sistema Propio de Pedidos & KDS</title>
-  <meta name="description" content="Prototipo interactivo exclusivo para Pizzería Ángela (Albacete): Bot de WhatsApp para pedir pizzas, pago integrado con Stripe, Recepcionista de Voz IA 24/7, Pantalla KDS e impresora térmica, y estrategia de ahorro frente a Uber con el 80% de subvención JCCM.">
+  <meta name="description" content="Prototipo interactivo exclusivo para Pizzería Ángela (Albacete): pedidos para recoger por WhatsApp con la carta en fotos y pago ahora o al recoger, Laura al teléfono con voz natural, Pantalla KDS e impresora térmica, y estrategia de ahorro frente a Uber con el 80% de subvención JCCM.">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -112,6 +112,7 @@
   <script src="../shared/altera-config.js"></script>
   <script src="../shared/altera-convai.js" defer></script>
   <script src="../shared/altera-cta.js" defer></script>
+  <script src="pizzeria.js" defer></script>
 </head>
 <body class="bg-stone-900 text-stone-100 antialiased min-h-screen flex flex-col selection:bg-pizzeria-red selection:text-white">
 
@@ -135,15 +136,15 @@
       </div>
 
       <!-- VIEW SELECTOR BUTTONS -->
-      <nav class="flex items-center flex-wrap gap-1.5 text-xs font-medium" id="viewNav">
+      <nav class="flex items-center gap-1.5 text-xs font-medium w-full lg:w-auto overflow-x-auto lg:flex-wrap pb-1 lg:pb-0 [&>button]:shrink-0 [&>button]:whitespace-nowrap" id="viewNav">
         <button onclick="switchView('kds')" id="btn-kds" class="view-btn px-3 py-1.5 rounded-lg bg-red-600 text-white font-bold transition flex items-center gap-1.5 shadow-md shadow-red-900/40">
           <span>🍳</span> <span>1. Comandera KDS & Impresora</span>
         </button>
         <button onclick="switchView('whatsapp')" id="btn-whatsapp" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
-          <span>💬</span> <span>2. Bot WhatsApp & Stripe</span>
+          <span>💬</span> <span>2. Recogidas y reservas por WhatsApp</span>
         </button>
         <button onclick="switchView('voice')" id="btn-voice" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
-          <span>🎙️</span> <span>3. Recepcionista Voz IA (967 60 12 66)</span>
+          <span>🎙️</span> <span>3. Laura al teléfono (967 60 12 66)</span>
         </button>
         <button onclick="switchView('web')" id="btn-web" class="view-btn px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 transition flex items-center gap-1.5">
           <span>🌐</span> <span>4. Nueva Web vs Tappens</span>
@@ -155,6 +156,8 @@
           <span>🛡️</span> <span>6. Ayuda JCCM 80% (600€)</span>
         </button>
       </nav>
+
+      <a href="propuesta.html" class="text-xs font-bold bg-amber-500 hover:bg-amber-400 text-stone-950 px-3 py-1.5 rounded-lg transition">📄 Ver la propuesta</a>
 
       <!-- Badge de Financiación -->
       <div class="hidden xl:flex items-center gap-2 text-xs text-stone-400">
@@ -383,13 +386,13 @@
                     <span class="font-mono font-bold text-sm text-white">#109</span>
                     <span class="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-bold">PAGO EN TIENDA</span>
                   </div>
-                  <span class="text-xs text-stone-400 block mt-0.5">Cliente: <strong>Laura M. (Teléfono)</strong></span>
+                  <span class="text-xs text-stone-400 block mt-0.5">Cliente: <strong>Rosa M. (Teléfono)</strong></span>
                 </div>
                 <span class="text-[11px] font-mono font-bold text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-800/40">Recogida: 21:45h</span>
               </div>
 
               <div class="mt-2 flex items-center gap-1.5 text-[11px] text-sky-400 font-medium">
-                <span>🔵</span> <span>Voz IA (967 60 12 66)</span>
+                <span>🔵</span> <span>Laura al teléfono (967 60 12 66)</span>
               </div>
 
               <div class="mt-2.5 pt-2 border-t border-stone-800 space-y-1 text-xs">
@@ -407,7 +410,7 @@
                 <button onclick="retrocederTicket(109, 'reception')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">
                   &larr;
                 </button>
-                <button onclick="verTicketTermico(109, 'Laura M.', '21:45', ['1x Pizza Barbacoa', '2x Cerveza Moretti'], '18.00€', 'Teléfono Voz IA', 'PAGO EN TIENDA')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">
+                <button onclick="verTicketTermico(109, 'Rosa M.', '21:45', ['1x Pizza Barbacoa', '2x Cerveza Moretti'], '18.00€', 'Teléfono (Laura)', 'PAGO EN TIENDA')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">
                   🖨️ 80mm
                 </button>
                 <button onclick="avanzarTicket(109, 'baking')" class="text-[11px] font-bold text-white bg-amber-600 hover:bg-amber-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow">
@@ -524,130 +527,109 @@
     </section>
 
     <!-- ======================================================================= -->
-    <!-- VISTA 2: BOT DE WHATSAPP CONVERSACIONAL & STRIPE PAY                    -->
+    <!-- VISTA 2: PEDIDOS PARA RECOGER POR WHATSAPP (carta con fotos, pago ahora o al recoger) -->
     <!-- ======================================================================= -->
     <section id="view-whatsapp" class="view-content hidden space-y-6">
       <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-semibold mb-2 border border-emerald-800/40">
-            <span>🟢 WhatsApp Business API Oficial + Zernio + Stripe</span>
+            <span>🟢 WhatsApp Business oficial · Abierto las 24 horas</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Asistente de Pedidos y Cobro por WhatsApp</h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Recogidas y reservas de mesa por WhatsApp</h2>
           <p class="text-stone-400 text-sm mt-1 max-w-2xl">
-            El cliente pide con total naturalidad por texto o nota de voz. El bot sugiere extras, confirma alérgenos, asigna turno de horno y genera el link de pago seguro de Stripe.
+            El cliente ve la carta <strong>con fotos</strong> dentro del chat, elige tamaño, pide la hora de recogida que deja libre el horno y decide si <strong>paga ahora</strong> o <strong>al recoger</strong>. El pedido entra solo en la comandera de cocina. Y quien quiere cenar en el restaurante <strong>reserva mesa</strong> en el mismo chat. El reparto a domicilio sigue como hasta ahora, con Uber Eats y Glovo.
           </p>
         </div>
-        <div class="flex items-center gap-2">
-          <button onclick="reiniciarChat()" class="text-xs bg-stone-800 hover:bg-stone-700 text-stone-200 px-3 py-2 rounded-xl transition border border-stone-700">
-            🔄 Reiniciar Conversación
-          </button>
-        </div>
+        <button type="button" id="paReset" class="text-xs bg-stone-800 hover:bg-stone-700 text-stone-200 px-3 py-2 rounded-xl transition border border-stone-700 min-h-[40px]">
+          🔄 Reiniciar conversación
+        </button>
       </div>
 
-      <!-- SIMULADOR WHATSAPP IPHONE -->
-      <div class="max-w-md mx-auto bg-stone-950 rounded-[40px] p-3 shadow-2xl border-4 border-stone-800">
-        <!-- Speaker / Notch -->
-        <div class="w-32 h-4 bg-stone-800 rounded-full mx-auto mb-2"></div>
-
-        <!-- Pantalla WhatsApp -->
-        <div class="bg-[#efeae2] rounded-[32px] overflow-hidden flex flex-col h-[650px] shadow-inner text-stone-900">
-          
-          <!-- Cabecera WhatsApp -->
-          <div class="bg-[#075e54] text-white p-3 flex items-center justify-between shadow-md">
-            <div class="flex items-center gap-2.5">
-              <span class="text-lg">&larr;</span>
-              <div class="w-10 h-10 rounded-full bg-red-700 flex items-center justify-center font-bold text-white border border-amber-300 text-sm">
-                PÁ
-              </div>
-              <div>
-                <h4 class="font-bold text-sm leading-tight">Pizzería Ángela Imaginalia</h4>
-                <span class="text-[11px] text-emerald-200 flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Cuenta Oficial · En línea
-                </span>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 text-sm">
-              <span>📞</span>
-              <span>⋮</span>
-            </div>
-          </div>
-
-          <!-- Área de Mensajes -->
-          <div class="flex-1 p-3 overflow-y-auto space-y-3 custom-scroll text-xs" id="chat-messages" style="background-image: radial-gradient(#d1d5db 0.7px, transparent 0.7px); background-size: 12px 12px;">
-            
-            <div class="text-center my-1">
-              <span class="bg-white/80 text-stone-500 text-[10px] px-2.5 py-0.5 rounded-full shadow-sm">Hoy · C. Simone de Beauvoir, 3</span>
-            </div>
-
-            <!-- Msg 1 Bot -->
-            <div class="flex items-start gap-1">
-              <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-stone-800 space-y-1">
-                <p>¡Buenas noches! 🍕 Bienvenido a <strong>Pizzería Ángela</strong> en Imaginalia.</p>
-                <p>¿Te apetece pedir pizzas para <strong>recoger en nuestro horno de piedra</strong> o prefieres reservar una mesa en nuestra terraza/salón?</p>
-                <span class="text-[9px] text-stone-400 block text-right mt-1">20:14</span>
-              </div>
-            </div>
-
-            <!-- Msg 2 Cliente -->
-            <div class="flex items-end justify-end gap-1">
-              <div class="bg-[#dcf8c6] p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-stone-900 space-y-1">
-                <p>¡Hola! Quiero encargar para recoger a las 21:30: una Carbonara (sin cebolla) y una Innamorata. ¿Tenéis tiramisú casero?</p>
-                <span class="text-[9px] text-stone-400 block text-right mt-1">20:15 ✓✓</span>
-              </div>
-            </div>
-
-            <!-- Msg 3 Bot -->
-            <div class="flex items-start gap-1">
-              <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-stone-800 space-y-1.5">
-                <p>¡Marchando! Tomo nota perfecta: <strong>Carbonara sin cebolla</strong> (13€) e <strong>Innamorata</strong> (13.50€). 👨‍🍳🔥</p>
-                <p>Y sí, nos queda tiramisú casero recién hecho esta tarde (5,00€). Te va a encantar.</p>
-                <div class="bg-stone-50 p-2 rounded-lg border border-stone-200 mt-1">
-                  <span class="font-bold text-[11px] text-stone-900 block">Resumen de tu Comanda:</span>
-                  <div class="text-[11px] text-stone-600 space-y-0.5 mt-1">
-                    <div>• 1x Pizza Carbonara (Sin cebolla) = 13,00€</div>
-                    <div>• 1x Pizza Innamorata = 13,50€</div>
-                    <div>• 1x Tiramisú casero = 5,00€</div>
-                    <div class="font-bold text-stone-900 pt-1 border-t border-stone-200 flex justify-between">
-                      <span>Total:</span> <span>31,50 €</span>
-                    </div>
+      <div class="grid lg:grid-cols-12 gap-6 items-start">
+        <!-- Teléfono con el chat -->
+        <div class="lg:col-span-7">
+          <div class="max-w-md mx-auto bg-stone-950 rounded-[40px] p-3 shadow-2xl border-4 border-stone-800">
+            <div class="w-32 h-4 bg-stone-800 rounded-full mx-auto mb-2"></div>
+            <div class="bg-[#efeae2] rounded-[32px] overflow-hidden flex flex-col h-[660px] shadow-inner text-stone-900">
+              <div class="bg-[#075e54] text-white p-3 flex items-center justify-between shadow-md">
+                <div class="flex items-center gap-2.5">
+                  <img src="logo-angela.jpg" alt="" class="w-10 h-10 rounded-full object-cover border border-amber-300">
+                  <div>
+                    <h4 class="font-bold text-sm leading-tight">Pizzería Ángela</h4>
+                    <span class="text-[11px] text-emerald-200 flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Cuenta de empresa · En línea
+                    </span>
                   </div>
                 </div>
-                <p class="text-[11px] text-amber-800 font-medium">📍 Recogida programada: <strong>Hoy a las 21:30h</strong> en C. Simone de Beauvoir, 3.</p>
-                <span class="text-[9px] text-stone-400 block text-right mt-1">20:15</span>
+                <span id="paCesta" class="hidden text-xs font-bold bg-white/15 px-2 py-1 rounded-full" aria-live="polite"></span>
               </div>
+              <div id="paChat" class="flex-1 p-3 overflow-y-auto space-y-2 custom-scroll" aria-live="polite" style="background-image: radial-gradient(#d1d5db 0.7px, transparent 0.7px); background-size: 12px 12px;"></div>
+              <form id="paForm" class="bg-[#f0f2f5] p-2 flex items-center gap-2 border-t border-stone-200">
+                <label for="paInput" class="sr-only">Escribe un mensaje</label>
+                <input type="text" id="paInput" maxlength="300" autocomplete="off" placeholder="Escribe, por ejemplo: «sin cebolla»" class="flex-1 bg-white text-stone-800 text-[13px] px-3 py-2 rounded-full border border-stone-300 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+                <button type="submit" aria-label="Enviar" class="w-9 h-9 rounded-full bg-[#075e54] text-white flex items-center justify-center text-sm shadow hover:bg-[#128c7e] transition">➤</button>
+              </form>
             </div>
+          </div>
+        </div>
 
-            <!-- Msg 4 Bot (Stripe Link) -->
-            <div class="flex items-start gap-1" id="chat-stripe-card">
-              <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[88%] text-stone-800 space-y-2 border border-emerald-500/40">
-                <div class="flex items-center justify-between text-[11px] font-bold text-emerald-800">
-                  <span>💳 Pago Seguro Stripe / Apple Pay</span>
-                  <span class="text-[9px] bg-emerald-100 px-1.5 py-0.5 rounded text-emerald-800">Cero Esperas</span>
-                </div>
-                <p class="text-[11px] text-stone-600">Para que entre directa a la cola de nuestro horno y la tengas caliente a las 21:30h, confírmala con 1 clic:</p>
-                
-                <button onclick="simularPagoStripe()" id="btn-pay-stripe" class="w-full bg-[#635bff] hover:bg-[#5349e0] text-white font-bold py-2 px-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md">
-                  <span>Pagar 31,50 €</span>
-                  <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded">Apple Pay / Bizum</span>
-                </button>
-                <span class="text-[9px] text-stone-400 block text-center">Protegido con cifrado TLS 256 bits</span>
-              </div>
+        <!-- Explicación lateral -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="bg-stone-950 rounded-2xl border border-stone-800 p-5 space-y-3">
+            <h3 class="font-bold text-white font-display">Prueba a escribir como un cliente</h3>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-pa-sugerencia="Quiero pedir pizzas para recoger" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">Quiero pedir para recoger</button>
+              <button type="button" data-pa-sugerencia="Quiero reservar mesa para 4 el sábado" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">Reservar mesa para 4</button>
+              <button type="button" data-pa-sugerencia="¿Tenéis carbonara?" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">¿Tenéis carbonara?</button>
+              <button type="button" data-pa-sugerencia="Lo mismo de la última vez" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">Lo mismo de la última vez</button>
+              <button type="button" data-pa-sugerencia="¿Tenéis masa sin gluten? Soy celíaca" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">Soy celíaca</button>
+              <button type="button" data-pa-sugerencia="¿A qué hora abrís?" class="min-h-[38px] px-3 rounded-full bg-stone-900 border border-stone-700 text-xs text-stone-200 hover:border-amber-500">¿A qué hora abrís?</button>
             </div>
-
-            <!-- Dynamic Message Container -->
-            <div id="dynamic-chat-msgs" class="space-y-3"></div>
-
+            <p class="text-[11px] text-stone-500">Después de añadir una pizza, escribe «sin cebolla» y verás la nota en la comanda.</p>
           </div>
 
-          <!-- Barra Inferior de Entrada -->
-          <div class="bg-[#f0f2f5] p-2 flex items-center gap-2 border-t border-stone-200">
-            <span class="text-stone-500 text-base">😊</span>
-            <input type="text" id="chat-input" placeholder="Escribe un mensaje o pide una pizza..." class="flex-1 bg-white text-stone-800 text-xs px-3 py-2 rounded-full border border-stone-300 focus:outline-none focus:ring-1 focus:ring-emerald-500">
-            <button onclick="enviarMensajeUsuario()" class="w-8 h-8 rounded-full bg-[#075e54] text-white flex items-center justify-center text-sm shadow hover:bg-[#128c7e] transition">
-              ➤
-            </button>
+          <div class="bg-stone-950 rounded-2xl border border-stone-800 p-5 space-y-3 text-sm">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-bold text-white font-display">🍽️ Próximas reservas</h3>
+              <span class="text-[10px] text-stone-500">Lo ve el equipo en la sala</span>
+            </div>
+            <ul id="paReservas" class="space-y-2 text-[12px] text-stone-300" aria-live="polite">
+              <li class="flex items-center justify-between gap-2 bg-stone-900 border border-stone-800 rounded-lg px-3 py-2"><span><strong class="text-white">Marta G.</strong> · 4 personas · Terraza</span><span class="font-mono text-amber-300">Hoy 21:00</span></li>
+              <li class="flex items-center justify-between gap-2 bg-stone-900 border border-stone-800 rounded-lg px-3 py-2"><span><strong class="text-white">Javier R.</strong> · 2 personas · Salón · Laura</span><span class="font-mono text-amber-300">Hoy 21:30</span></li>
+            </ul>
+            <p class="text-[11px] text-stone-500">Cada reserva recibe un recordatorio por WhatsApp 2 horas antes, con opción de anularla. Menos mesas vacías por olvidos.</p>
           </div>
 
+          <div class="bg-stone-950 rounded-2xl border border-stone-800 p-5 space-y-3 text-sm">
+            <h3 class="font-bold text-white font-display">Lo que ve el cliente en su WhatsApp</h3>
+            <ul class="space-y-2 text-stone-300 text-[13px]">
+              <li>📸 <strong>Fotos de cada pizza</strong> con sus ingredientes y precio. WhatsApp Business permite enviar imágenes, un catálogo de productos y botones dentro del chat.</li>
+              <li>🍕 <strong>Mediana o familiar</strong> con un toque, y cambios como «sin cebolla» escritos con sus palabras.</li>
+              <li>🕒 <strong>Hora de recogida real</strong>: solo ofrece las franjas que el horno puede sacar a tiempo.</li>
+              <li>💳 <strong>Paga ahora o al recoger</strong>: enlace de pago seguro con tarjeta, Apple Pay o Google Pay, o en el mostrador.</li>
+              <li>🔁 <strong>«Lo de siempre»</strong>: reconoce el número y repite el último pedido.</li>
+              <li>🔔 <strong>Aviso «ya está lista»</strong> cuando la cocina la saca del horno.</li>
+              <li>🍽️ <strong>Reserva de mesa</strong> en cuatro toques (personas, día, hora y salón o terraza), sin salir a otra web y con recordatorio antes de venir.</li>
+            </ul>
+          </div>
+
+          <div class="bg-emerald-950/40 border border-emerald-700/50 rounded-2xl p-5 space-y-3 text-sm">
+            <h3 class="font-bold text-white font-display">Cada pedido por aquí es un pedido sin comisión</h3>
+            <p class="text-[12px] text-stone-400">Ejemplo orientativo: pedido de 24 € para recoger en el local.</p>
+            <div class="grid grid-cols-3 gap-2 text-center text-[11px]">
+              <div class="bg-stone-950 rounded-xl p-2.5 border border-red-900/50"><p class="text-stone-400">Uber Eats o Glovo<br>con reparto</p><p class="font-mono font-bold text-red-400 text-base mt-1">≈ 7,20 €</p><p class="text-stone-500">≈ 30 %</p></div>
+              <div class="bg-stone-950 rounded-xl p-2.5 border border-amber-900/50"><p class="text-stone-400">Uber Eats o Glovo<br>para recoger</p><p class="font-mono font-bold text-amber-400 text-base mt-1">≈ 3,00 €</p><p class="text-stone-500">≈ 12–15 %</p></div>
+              <div class="bg-stone-950 rounded-xl p-2.5 border border-emerald-600/60"><p class="text-stone-400">WhatsApp propio<br>para recoger</p><p class="font-mono font-bold text-emerald-400 text-base mt-1">0 €</p><p class="text-stone-500">≈ 0,60 € si paga online</p></div>
+            </div>
+            <p class="text-[12px] text-stone-300">Y el teléfono del cliente queda en vuestra base de datos, no en la de la plataforma.</p>
+            <p class="text-[12px] text-stone-300"><strong class="text-white">¿Y las fotos de WhatsApp?</strong> No cuestan más. Mientras el cliente está escribiendo (24 h desde su último mensaje) todo es gratis: fotos, carta, botones y el aviso «ya está lista». Solo se paga lo que la pizzería envía fuera de ese plazo: ≈ 0,02 € un aviso y ≈ 0,06 € una promoción.</p>
+            <p class="text-[10px] text-stone-500">Comisiones de plataformas según contrato; tarifas de Meta y Stripe orientativas.</p>
+          </div>
+
+          <div class="bg-amber-950/30 border border-amber-800/40 rounded-2xl p-4 text-[12px] text-amber-100/90 space-y-1">
+            <p><strong>Con alergias no se arriesga:</strong> si alguien pregunta por gluten o alérgenos, el asistente pasa la conversación a una persona del equipo.</p>
+            <p class="text-amber-200/70">Las fotos son de vuestras pizzas. Los nombres y precios son de ejemplo: en la instalación cargamos vuestra carta real.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -659,11 +641,11 @@
       <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950 text-sky-300 text-xs font-semibold mb-2 border border-sky-800/40">
-            <span>🎙️ Teléfono Fijo 967 60 12 66 + ElevenLabs Conversational AI</span>
+            <span>🎙️ Fijo 967 60 12 66 · Voz de Laura (ElevenLabs) + Telnyx + la misma IA del WhatsApp</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Recepcionista de Voz IA para Horas Punta</h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">Laura coge el teléfono cuando el equipo no llega</h2>
           <p class="text-stone-400 text-sm mt-1 max-w-2xl">
-            Cuando la pizzería está llena y el personal no puede responder al fijo, la IA atiende con voz natural española, toma comandas y reservas de mesa, y envía el resumen por WhatsApp.
+            En plena hora punta, si nadie puede coger el fijo, salta Laura: toma el pedido para recoger con voz natural, consulta la carta y los huecos del horno, lo manda a la comandera y envía el resumen por WhatsApp con el pago opcional. También apunta reservas de mesa y las confirma por WhatsApp.
           </p>
         </div>
         <div class="bg-stone-900 px-4 py-2 rounded-xl border border-stone-800 text-center">
@@ -686,7 +668,7 @@
           </div>
 
           <div>
-            <h3 class="text-xl font-bold text-white font-display">Ángela · Asistente Virtual Pizzería Ángela</h3>
+            <h3 class="text-xl font-bold text-white font-display">Laura · Teléfono de Pizzería Ángela</h3>
             <span class="text-xs text-stone-400 block mt-1">Llamada entrante al <strong>967 60 12 66</strong> (Imaginalia)</span>
             <span class="inline-block mt-2 text-xs bg-stone-800 text-stone-300 border border-stone-700 px-3 py-1 rounded-full font-mono transition" id="call-status">
               ● En espera · Pulsa un botón para escuchar
@@ -712,7 +694,7 @@
               <span id="call-timer" class="font-mono text-amber-400">00:00</span>
             </span>
             <p id="current-speaking-text" class="text-stone-300 italic min-h-[32px] flex items-center">
-              "Haz clic en el botón inferior para escuchar a Ángela hablar en tiempo real..."
+              "Pulsa el botón de abajo para escuchar una llamada con Laura..."
             </p>
           </div>
 
@@ -735,10 +717,10 @@
             </div>
           </div>
 
-          <!-- PREGUNTAS RÁPIDAS DIRECTAS (Respuestas instantáneas de Ángela) -->
+          <!-- PREGUNTAS RÁPIDAS DIRECTAS (Respuestas instantáneas de Laura) -->
           <div class="pt-3 border-t border-stone-800/80 text-left space-y-2">
             <span class="text-[11px] font-bold text-amber-400 flex items-center gap-1">
-              <span>⚡ O pulsa para escuchar respuestas directas de Ángela:</span>
+              <span>⚡ O pulsa para escuchar respuestas directas de Laura:</span>
             </span>
             <div class="grid grid-cols-2 gap-1.5">
               <button onclick="preguntarAngelaDirecto('gluten')" class="text-left bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white p-2 rounded-lg text-[11px] border border-stone-800 transition truncate">
@@ -750,8 +732,8 @@
               <button onclick="preguntarAngelaDirecto('donde')" class="text-left bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white p-2 rounded-lg text-[11px] border border-stone-800 transition truncate">
                 📍 ¿Dónde estáis ubicados?
               </button>
-              <button onclick="preguntarAngelaDirecto('terraza')" class="text-left bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white p-2 rounded-lg text-[11px] border border-stone-800 transition truncate">
-                🍷 ¿Tenéis mesa en terraza?
+              <button onclick="preguntarAngelaDirecto('pago')" class="text-left bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white p-2 rounded-lg text-[11px] border border-stone-800 transition truncate">
+                💳 ¿Puedo pagar al recoger?
               </button>
             </div>
           </div>
@@ -804,7 +786,7 @@
             </div>
 
             <div data-altera-dev class="bg-amber-950/30 border border-amber-800/40 p-2 rounded-lg text-[10px] text-amber-200/90 leading-relaxed">
-              💡 <strong>Nota para la venta al cliente:</strong> Este prototipo local usa el sintetizador de tu navegador como maqueta previa. En la instalación final de Altera se conecta **ElevenLabs Conversational AI**, con voz humana ultra-natural, respiración y acento español, indistinguible de una llamada real.
+              💡 <strong>Nota interna:</strong> sin audios pregenerados, esta página usa la voz del navegador. Para que suene la voz real de Laura, ejecuta en local <code>node scripts/voices.mjs generate pizzeria-angela</code> y sube los MP3. En la instalación no se usa el agente de ElevenLabs: solo su voz (TTS), con Telnyx y el mismo LLM del WhatsApp.
             </div>
 
             <div data-altera-dev class="pt-1">
@@ -824,7 +806,7 @@
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <h4 class="font-bold text-sm text-white font-display">
-                  Transcripción en Tiempo Real (ElevenLabs + Web Speech API)
+                  Transcripción de la llamada
                 </h4>
               </div>
               <span class="text-[11px] bg-emerald-950 text-emerald-300 border border-emerald-800/40 px-2 py-0.5 rounded font-mono">
@@ -837,30 +819,30 @@
               
               <div id="bubble-elena-1" class="transcript-bubble bg-stone-900/80 p-3 rounded-xl border border-stone-800">
                 <span class="text-amber-400 font-bold block mb-1 flex items-center justify-between">
-                  <span>🤖 Ángela (Voz IA Pizzería Ángela):</span>
+                  <span>🤖 Laura (Pizzería Ángela):</span>
                   <span class="text-[10px] text-stone-500 font-normal">Fijo 967 60 12 66</span>
                 </span>
-                <p class="text-stone-200">"¡Hola, buenas noches! Te atiende Ángela, de Pizzería Ángela en Imaginalia. Ahora mismo todos nuestros pizzeros están en sala. ¿Deseas encargar una comanda para recoger o reservar una mesa?"</p>
+                <p class="text-stone-200">"¡Hola, buenas noches! Te atiende Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?"</p>
               </div>
 
               <div id="bubble-client-1" class="transcript-bubble bg-stone-900/40 p-3 rounded-xl border border-stone-800/60 ml-4">
                 <span class="text-sky-400 font-bold block mb-1">👤 Cliente:</span>
-                <p class="text-stone-300">"Hola, queríamos reservar una mesa para cuatro personas este sábado a las nueve y media de la noche. ¿Tenéis sitio en terraza o dentro?"</p>
+                <p class="text-stone-300">"Hola, sí. Quería una barbacoa familiar y una diavola mediana para recoger sobre las nueve y media."</p>
               </div>
 
               <div id="bubble-elena-2" class="transcript-bubble bg-stone-900/80 p-3 rounded-xl border border-stone-800">
-                <span class="text-amber-400 font-bold block mb-1">🤖 Ángela (Voz IA):</span>
-                <p class="text-stone-200">"¡Perfecto! Para este sábado a las 21:30h tenemos mesa disponible en nuestro salón interior climatizado. ¿A nombre de quién realizo la reserva y qué teléfono móvil nos dejas para enviarte la confirmación por WhatsApp?"</p>
+                <span class="text-amber-400 font-bold block mb-1">🤖 Laura:</span>
+                <p class="text-stone-200">"¡Perfecto! Una barbacoa familiar y una diavola mediana. A las nueve y media tengo hueco en el horno. ¿A nombre de quién lo apunto y a qué móvil te mando el resumen por WhatsApp?"</p>
               </div>
 
               <div id="bubble-client-2" class="transcript-bubble bg-stone-900/40 p-3 rounded-xl border border-stone-800/60 ml-4">
                 <span class="text-sky-400 font-bold block mb-1">👤 Cliente:</span>
-                <p class="text-stone-300">"A nombre de Carlos Gómez, móvil seis cuatro cuatro doce treinta y cuatro cincuenta y seis."</p>
+                <p class="text-stone-300">"A nombre de Carlos, al seis cuatro cuatro, doce, treinta y cuatro, cincuenta y seis."</p>
               </div>
 
               <div id="bubble-elena-3" class="transcript-bubble bg-stone-900/80 p-3 rounded-xl border border-stone-800">
-                <span class="text-amber-400 font-bold block mb-1">🤖 Ángela (Voz IA):</span>
-                <p class="text-stone-200">"¡Queda confirmada tu mesa para 4 personas este sábado a las 21:30h! Te acabo de enviar la confirmación con la ubicación en Google Maps por WhatsApp. ¡Muchas gracias Carlos, nos vemos el sábado!"</p>
+                <span class="text-amber-400 font-bold block mb-1">🤖 Laura:</span>
+                <p class="text-stone-200">"Hecho, Carlos. Te acabo de mandar el resumen por WhatsApp con un enlace por si quieres pagarlo ya; si no, lo pagas al recoger. ¡Hasta luego!"</p>
               </div>
 
             </div>
@@ -874,15 +856,15 @@
               <div class="space-y-1.5 text-xs text-stone-300">
                 <div class="flex items-center gap-2" id="check-step-1">
                   <span class="text-stone-500">○</span>
-                  <span>Registro en <strong>Supabase</strong>: Mesa 4 pax · Sábado 21:30h · Salón Interior</span>
+                  <span>Comanda #111 en la <strong>pantalla de cocina</strong>: recogida 21:30 · pago al recoger</span>
                 </div>
                 <div class="flex items-center gap-2" id="check-step-2">
                   <span class="text-stone-500">○</span>
-                  <span>WhatsApp automático enviado a <strong>+34 644 12 34 56</strong> con ficha de Google Maps</span>
+                  <span>WhatsApp a <strong>+34 644 12 34 56</strong> con el resumen y el enlace de pago opcional</span>
                 </div>
                 <div class="flex items-center gap-2" id="check-step-3">
                   <span class="text-stone-500">○</span>
-                  <span>Recordatorio programado para el Sábado a las 19:30h (reduce ausencias un 92%)</span>
+                  <span>Aviso automático «ya está lista» cuando salga del horno</span>
                 </div>
               </div>
             </div>
@@ -890,6 +872,33 @@
           </div>
         </div>
 
+      </div>
+      <!-- CÓMO FUNCIONA LAURA SIN EL AGENTE DE ELEVENLABS -->
+      <div class="bg-stone-950 rounded-2xl border border-stone-800 p-6 space-y-5">
+        <div>
+          <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Cómo funciona por dentro</span>
+          <h3 class="text-xl font-bold text-white font-display mt-1">Solo la voz de Laura, sin pagar un agente de voz por minuto</h3>
+          <p class="text-stone-400 text-sm mt-1 max-w-3xl">No contratamos la recepcionista completa de ElevenLabs, que cobra cada minuto de conversación además de la IA y la línea. Montamos nosotros la llamada con piezas que se pagan por uso, y el cerebro es <strong>el mismo que atiende el WhatsApp</strong>: misma carta, mismos precios y mismos huecos del horno.</p>
+        </div>
+        <ol class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <li class="bg-stone-900 rounded-xl border border-stone-800 p-4 space-y-1"><span class="text-amber-400 font-bold">1 · Telnyx</span><p class="text-stone-300">Recibe la llamada (el fijo 967 60 12 66 se desvía si nadie lo coge) y pasa a texto lo que dice el cliente.</p></li>
+          <li class="bg-stone-900 rounded-xl border border-stone-800 p-4 space-y-1"><span class="text-amber-400 font-bold">2 · La IA del WhatsApp</span><p class="text-stone-300">El mismo modelo de OpenRouter entiende el pedido, consulta la carta y la carga del horno y decide qué responder.</p></li>
+          <li class="bg-stone-900 rounded-xl border border-stone-800 p-4 space-y-1"><span class="text-amber-400 font-bold">3 · Voz de Laura</span><p class="text-stone-300">ElevenLabs convierte la respuesta en la voz de Laura. Las frases de siempre (saludo, dirección, horario) se guardan grabadas y no se vuelven a pagar.</p></li>
+          <li class="bg-stone-900 rounded-xl border border-stone-800 p-4 space-y-1"><span class="text-amber-400 font-bold">4 · Cocina y WhatsApp</span><p class="text-stone-300">El pedido entra en la comandera y el cliente recibe el resumen por WhatsApp, con enlace por si quiere pagar ya.</p></li>
+        </ol>
+        <div class="grid md:grid-cols-2 gap-3 text-xs">
+          <div class="bg-red-950/20 border border-red-900/40 rounded-xl p-4 space-y-1">
+            <span class="font-bold text-red-300">Agente de voz de ElevenLabs</span>
+            <p class="text-stone-300">≈ 0,08 € por minuto de llamada, más la IA y la línea aparte, y un plan mensual con minutos incluidos.</p>
+            <p class="font-mono font-bold text-red-300">≈ 0,10–0,13 € / minuto</p>
+          </div>
+          <div class="bg-emerald-950/30 border border-emerald-600/50 rounded-xl p-4 space-y-1">
+            <span class="font-bold text-emerald-300">Laura con Telnyx + misma IA + voz ElevenLabs</span>
+            <p class="text-stone-300">Línea y voz a texto de Telnyx, unos céntimos de IA y solo los caracteres que Laura dice nuevos.</p>
+            <p class="font-mono font-bold text-emerald-300">≈ 0,04–0,07 € / minuto</p>
+          </div>
+        </div>
+        <p class="text-[11px] text-stone-500">Ejemplo orientativo: 300 llamadas al mes de 2 minutos son ≈ 25–40 €/mes con Laura frente a ≈ 60–80 €/mes con el agente completo. Precios orientativos de cada proveedor; pueden cambiar.</p>
       </div>
     </section>
 
@@ -933,7 +942,7 @@
             </div>
             <div class="flex items-start gap-2 bg-stone-900 p-2.5 rounded-lg border border-stone-800">
               <span class="text-red-400 font-bold">3.</span>
-              <p><strong>Solo delivery por Uber Eats:</strong> Pierden entre el 25% y el 35% del ticket por no tener canal de venta propio.</p>
+              <p><strong>Sin canal propio para recoger ni reservar:</strong> el reparto por Uber Eats y Glovo se mantiene, pero quien solo quiere recoger o cenar en el local acaba en una plataforma (≈ 12–15 % de comisión al recoger) o llamando en plena hora punta.</p>
             </div>
             <div class="flex items-start gap-2 bg-stone-900 p-2.5 rounded-lg border border-stone-800">
               <span class="text-red-400 font-bold">4.</span>
@@ -963,7 +972,7 @@
             </div>
             <div class="flex items-start gap-2 bg-stone-900/90 p-2.5 rounded-lg border border-emerald-900/40">
               <span class="text-emerald-400 font-bold">3.</span>
-              <p><strong>Pasarela Stripe integrada:</strong> Cobro por tarjeta, Bizum y Apple Pay en el acto.</p>
+              <p><strong>Pago ahora o al recoger:</strong> enlace seguro con tarjeta, Apple Pay o Google Pay, o pago en el mostrador.</p>
             </div>
             <div class="flex items-start gap-2 bg-stone-900/90 p-2.5 rounded-lg border border-emerald-900/40">
               <span class="text-emerald-400 font-bold">4.</span>
@@ -982,11 +991,11 @@
       <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950 text-amber-300 text-xs font-semibold mb-2 border border-amber-800/40">
-            <span>📦 Estrategia de Migración de Clientes de Uber a Recogida Propia</span>
+            <span>📦 De la caja de reparto a la recogida y la reserva directas</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-display">La Pegatina QR en la Caja de Pizza</h2>
           <p class="text-stone-400 text-sm mt-1 max-w-2xl">
-            Como Pizzería Ángela no dispone de repartidores propios, anunciamos en cada caja el servicio de <strong>RECOGIDA EN LOCAL por WhatsApp</strong>. Sáltate el sobrecoste y disfruta de la pizza recién salida del horno de piedra.
+            El reparto sigue con Uber Eats y Glovo. En cada caja que sale anunciamos el WhatsApp para la próxima vez: <strong>pedir para recoger</strong> sin sobrecoste o <strong>reservar mesa</strong> y tomarla recién salida del horno de piedra.
           </p>
         </div>
       </div>
@@ -1028,9 +1037,9 @@
 
         <!-- CALCULADORA DE RETORNO ECONÓMICO -->
         <div class="lg:col-span-6 bg-stone-950 p-6 rounded-2xl border border-stone-800 space-y-5">
-          <h3 class="text-xl font-bold text-white font-display">Calculadora de Ahorro: Canal Propio vs Uber</h3>
+          <h3 class="text-xl font-bold text-white font-display">Calculadora de ahorro: canal propio frente a plataformas</h3>
           <p class="text-xs text-stone-400">
-            Uber Eats retiene hasta el 30% del importe. Por cada vecino de Imaginalia que pasa a recoger la pizza directamente por el local:
+            Las plataformas se quedan hasta un 30 % del importe (orientativo). Por cada vecino de Imaginalia que la próxima vez encarga por WhatsApp y pasa a recogerla al local:
           </p>
 
           <div class="space-y-4">
@@ -1088,7 +1097,7 @@
           <span class="text-3xl font-black text-white font-mono block">3.000 €</span>
           <span class="text-[11px] text-stone-500 block">+ IVA deducible</span>
           <p class="text-xs text-stone-400 pt-2 border-t border-stone-800">
-            Bot WhatsApp, Pasarela Stripe, Recepcionista ElevenLabs, KDS Cocina y Rediseño Web.
+            Pedidos por WhatsApp con carta en fotos, pago online opcional, Laura al teléfono, comandera de cocina y web nueva.
           </p>
         </div>
 
@@ -1121,7 +1130,7 @@
             </div>
             <h3 class="text-xl font-bold text-white font-display">Tarifa Plana Base: 99 € / mes</h3>
             <p class="text-stone-400 text-xs mt-1">
-              Infraestructura cloud dedicada (VPS propio en Coolify), base de datos Supabase, KDS de cocina, bot de WhatsApp ilimitado y soporte técnico prioritario en Albacete.
+              Mantenimiento del servidor propio (Contabo con Coolify y Supabase), la comandera de cocina, el WhatsApp y Laura, y soporte cercano en Albacete.
             </p>
           </div>
           <div class="bg-stone-900 p-3 rounded-xl border border-stone-800 text-center min-w-[190px]">
@@ -1131,25 +1140,24 @@
           </div>
         </div>
 
-        <!-- CONSUMOS VARIABLES TRANSPARENTES (PAGO DIRECTO A PROVEEDOR) -->
-        <div class="bg-stone-900/60 p-4 rounded-xl border border-stone-800 text-xs space-y-2">
-          <span class="font-bold text-amber-400 uppercase tracking-wider text-[11px] block">
-            ⚖️ Consumos Variables Transparentes (A coste real directo de proveedor, sin márgenes ocultos de Altera):
-          </span>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-stone-300">
-            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800">
-              <span class="font-bold text-white block mb-0.5">📲 Campañas Salientes de WhatsApp (Meta):</span>
-              <p class="text-[11px] text-stone-400">
-                La atención entrante al cliente es <strong>0,00 € (GRATIS)</strong>. Las campañas masivas de marketing las factura Meta directamente a la tarjeta del cliente a ~<strong>0,055 € por mensaje</strong> (ej. 400 clientes = ~22 € de coste para llenar el local un jueves).
-              </p>
-            </div>
-            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800">
-              <span class="font-bold text-white block mb-0.5">🎙️ Recepcionista Telefónica Voz IA (ElevenLabs + Twilio):</span>
-              <p class="text-[11px] text-stone-400">
-                Facturado por consumo real de minutos hablados a coste de proveedor (~<strong>0,10 € / minuto atendido</strong>). Si un día no hay llamadas, coste 0 €. Si el sábado atiende 40 llamadas en pleno pico de pedidos, el coste es de solo ~4 € y salva más de 500 € en comandas.
-              </p>
-            </div>
+        <!-- SERVICIOS A NOMBRE DE LA PIZZERÍA (PAGO POR USO, PRECIOS ORIENTATIVOS) -->
+        <div class="bg-stone-900/60 p-4 rounded-xl border border-stone-800 text-xs space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="font-bold text-amber-400 uppercase tracking-wider text-[11px]">⚖️ Servicios a nombre de la pizzería, pagados por uso (orientativo)</span>
+            <a href="propuesta.html" class="text-[11px] font-bold text-amber-300 hover:underline">Ver la propuesta completa →</a>
           </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-stone-300">
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">📞 Telnyx</span><p class="text-[11px] text-stone-400">Línea de Laura y voz a texto · ≈ 5–15 €/mes</p></div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">🎙️ ElevenLabs (solo la voz)</span><p class="text-[11px] text-stone-400">Voz de Laura, sin agente por minuto · ≈ 6–22 €/mes</p></div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">🧠 OpenRouter</span><p class="text-[11px] text-stone-400">Misma IA para WhatsApp y teléfono · ≈ 5–15 €/mes</p></div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">🔗 Zernio</span><p class="text-[11px] text-stone-400">WhatsApp e Instagram conectados · gratis con solo esos dos</p></div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">💬 Meta (WhatsApp)</span><p class="text-[11px] text-stone-400">Avisos en las 24 h tras el mensaje del cliente: gratis · promoción ≈ 0,06 €</p></div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">💳 Stripe</span><p class="text-[11px] text-stone-400">Solo si paga online · ≈ 1,5 % + 0,25 € por pago</p></div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">✉️ Resend</span><p class="text-[11px] text-stone-400">Correos · gratis hasta 3.000/mes y 100/día</p></div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">🖥️ Contabo</span><p class="text-[11px] text-stone-400">Servidor en la UE · ≈ 6–12 €/mes</p></div>
+            <div class="bg-stone-950 p-3 rounded-lg border border-stone-800"><span class="font-bold text-white block">🗄️ Coolify + Supabase</span><p class="text-[11px] text-stone-400">Instalados en el servidor · 0 € (software libre)</p></div>
+          </div>
+          <p class="text-[11px] text-stone-400"><strong class="text-white">Total ≈ 25–80 €/mes</strong> según llamadas y mensajes. Precios orientativos de cada proveedor; pueden cambiar.</p>
         </div>
 
         <!-- COMPARATIVA FRENTE A GASTOS ACTUALES -->
@@ -1162,10 +1170,10 @@
               <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-mono">30% Comisión</span>
             </div>
             <p class="text-stone-300 text-[11px]">
-              Una pizzería que facture 3.000€ en delivery entrega unos <strong>900 € / mes a Uber</strong> en comisiones. No es dueña de los datos ni de los teléfonos de sus clientes.
+              Necesarias para el reparto, que se mantiene. Pero cada recogida que pasa por ellas también paga comisión (≈ 12–15 %), y los datos y teléfonos de los clientes se quedan en la plataforma.
             </p>
             <div class="pt-2 border-t border-red-900/40 font-mono text-red-400 font-bold">
-              Coste real: 600 € a 1.200 € / mes
+              Recogidas por plataforma: ≈ 12–15 % de cada pedido
             </div>
           </div>
 
@@ -1193,7 +1201,7 @@
               <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded font-mono font-bold">0% Comisiones</span>
             </div>
             <p class="text-stone-300 text-[11px]">
-              VPS propio Coolify + Supabase + Bot WhatsApp ilimitado + KDS cocina + soporte local Albacete. Consumos IA a coste real.
+              Servidor propio + comandera + WhatsApp y Laura + soporte en Albacete. Los servicios por uso se pagan aparte, a coste real.
             </p>
             <div class="pt-2 border-t border-emerald-900/50 font-mono text-emerald-400 font-bold text-sm">
               Cuota fija: 99 € / mes
@@ -1538,73 +1546,6 @@
       return t.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     }
 
-    // Chat Simulator
-    function simularPagoStripe() {
-      const btn = document.getElementById('btn-pay-stripe');
-      if (btn.disabled) return;
-      btn.disabled = true;
-      btn.innerHTML = '🔄 Procesando con Stripe...';
-      btn.classList.add('opacity-75');
-
-      setTimeout(() => {
-        btn.innerHTML = '✅ Pagado (Apple Pay / Stripe)';
-        btn.classList.remove('bg-[#635bff]', 'opacity-75');
-        btn.classList.add('bg-emerald-600');
-
-        const dyn = document.getElementById('dynamic-chat-msgs');
-        dyn.innerHTML += `
-          <div class="flex items-start gap-1">
-            <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-stone-800 space-y-1">
-              <p>¡Pago recibido correctamente! 🎉 Tu pedido <strong>#108</strong> está registrado.</p>
-              <p>Acabamos de meter la comanda a la tablet de la cocina. Te enviaremos un WhatsApp automático en cuanto las pizzas salgan del horno de piedra para que las recojas sin esperar ni 1 minuto.</p>
-              <span class="text-[9px] text-stone-400 block text-right mt-1">20:16</span>
-            </div>
-          </div>
-        `;
-        scrollChat();
-      }, 1000);
-    }
-
-    function enviarMensajeUsuario() {
-      const input = document.getElementById('chat-input');
-      const val = input.value.trim();
-      if (!val) return;
-
-      const dyn = document.getElementById('dynamic-chat-msgs');
-      dyn.innerHTML += `
-        <div class="flex items-end justify-end gap-1">
-          <div class="bg-[#dcf8c6] p-2.5 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-stone-900">
-            <p>${escapeHtml(val)}</p>
-            <span class="text-[9px] text-stone-400 block text-right mt-0.5">Ahora ✓✓</span>
-          </div>
-        </div>
-      `;
-      input.value = '';
-      scrollChat();
-
-      setTimeout(() => {
-        dyn.innerHTML += `
-          <div class="flex items-start gap-1">
-            <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] text-stone-800">
-              <p>¡Oído cocina! 👨‍🍳 Nuestro pizzero ya lo tiene anotado en su pantalla de horno de piedra.</p>
-              <span class="text-[9px] text-stone-400 block text-right mt-1">Ahora</span>
-            </div>
-          </div>
-        `;
-        scrollChat();
-      }, 800);
-    }
-
-    function reiniciarChat() {
-      document.getElementById('dynamic-chat-msgs').innerHTML = '';
-      const btn = document.getElementById('btn-pay-stripe');
-      btn.innerHTML = '<span>Pagar 31,50 €</span> <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded">Apple Pay / Bizum</span>';
-      btn.className = 'w-full bg-[#635bff] hover:bg-[#5349e0] text-white font-bold py-2 px-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md';
-      btn.disabled = false;
-    }
-    document.getElementById('chat-input').addEventListener('keydown', e => {
-      if (e.key === 'Enter') enviarMensajeUsuario();
-    });
     actualizarContadoresKDS();
 
     // Calculadora Ahorro Uber
@@ -1796,7 +1737,7 @@
             }
             if (msg) {
               msg.innerHTML = `✅ <strong>¡API Key válida y confirmada por ElevenLabs!</strong> (Clave de 51 caracteres).<br>
-              <div class="mt-1 text-stone-200">Tu clave está conectada. Hemos asignado la voz de <strong>Laura (Customer Service)</strong> para Ángela. ¡Pulsa abajo <strong>"🔊 Probar Voz"</strong> para escuchar el audio de estudio real!</div>`;
+              <div class="mt-1 text-stone-200">Tu clave está conectada. Hemos asignado la voz de <strong>Laura (Customer Service)</strong>. ¡Pulsa abajo <strong>"🔊 Probar Voz"</strong> para escuchar el audio de estudio real!</div>`;
               msg.className = 'text-[10px] text-emerald-300 p-2.5 rounded bg-emerald-950/60 border border-emerald-700/80 block leading-relaxed';
             }
             return;
@@ -1926,7 +1867,7 @@
         msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-stone-950 border border-amber-800/40 block';
       }
 
-      const frasePrueba = "¡Hola! Soy Ángela, la recepcionista virtual de Pizzería Ángela. ¿En qué puedo ayudarte hoy?";
+      const frasePrueba = "¡Hola! Soy Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?";
       const ok = await speakWithElevenLabs(frasePrueba, true, () => {
         if (btn) {
           btn.innerHTML = originalText;
@@ -1959,7 +1900,7 @@
 
       // Si no hay voz configurada en localStorage, fallback
       if (!voiceId) {
-        voiceId = isElena ? '21m00Tcm4TlvDq8ikWAM' : 'ErXwobaYiN019PkySvjV';
+        voiceId = isElena ? 'uQw4jpKzMLrZuo0RLPS9' : 'ErXwobaYiN019PkySvjV'; // Laura - Customer service
       }
 
       const msg = document.getElementById('eleven-status-msg');
@@ -2003,7 +1944,7 @@
 
         if (waveContainer) waveContainer.classList.add('wave-speaking');
         if (pulse) pulse.classList.remove('hidden');
-        if (subtitle) subtitle.innerHTML = `<strong>${isElena ? '🤖 Ángela (ElevenLabs HD):' : '👤 Cliente:'}</strong> "${text}"`;
+        if (subtitle) subtitle.innerHTML = `<strong>${isElena ? '🤖 Laura:' : '👤 Cliente:'}</strong> "${text}"`;
 
         audio.onended = () => {
           if (waveContainer) waveContainer.classList.remove('wave-speaking');
@@ -2090,7 +2031,7 @@
       utter.onstart = () => {
         if (waveContainer) waveContainer.classList.add('wave-speaking');
         if (pulse) pulse.classList.remove('hidden');
-        if (subtitle) subtitle.innerHTML = `<strong>${isElena ? '🤖 Ángela:' : '👤 Cliente:'}</strong> "${text}"`;
+        if (subtitle) subtitle.innerHTML = `<strong>${isElena ? '🤖 Laura:' : '👤 Cliente:'}</strong> "${text}"`;
       };
 
       utter.onend = () => {
@@ -2152,14 +2093,14 @@
         playTelephoneClick();
         startCallTimer();
 
-        st.innerHTML = '● En llamada activa con Ángela (IA)';
+        st.innerHTML = '● En llamada con Laura';
         st.className = 'inline-block mt-2 text-xs bg-emerald-950 text-emerald-300 border border-emerald-500/40 px-3 py-1 rounded-full font-mono animate-pulse';
 
-        // Paso 1: Ángela
+        // Paso 1: Laura
         limpiarResaltadosTranscripcion();
         document.getElementById('bubble-elena-1')?.classList.add('transcript-active');
         
-        const texto1 = "¡Hola, buenas noches! Te atiende Ángela, la asistente inteligente de Pizzería Ángela en Imaginalia. Ahora mismo todos nuestros pizzeros están en sala. ¿Deseas encargar una comanda para recoger o reservar una mesa?";
+        const texto1 = "¡Hola, buenas noches! Te atiende Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?";
         
         speakText(texto1, true, () => {
           if (!sigue()) return;
@@ -2170,7 +2111,7 @@
             limpiarResaltadosTranscripcion();
             document.getElementById('bubble-client-1')?.classList.add('transcript-client-active');
 
-            const texto2 = "Hola, queríamos reservar una mesa para cuatro personas este sábado a las nueve y media de la noche. ¿Tenéis sitio en terraza o dentro?";
+            const texto2 = "Hola, sí. Quería una barbacoa familiar y una diavola mediana para recoger sobre las nueve y media.";
             
             speakText(texto2, false, () => {
               if (!sigue()) return;
@@ -2181,7 +2122,7 @@
                 limpiarResaltadosTranscripcion();
                 document.getElementById('bubble-elena-2')?.classList.add('transcript-active');
 
-                const texto3 = "¡Perfecto! Para este sábado a las 21:30h tenemos mesa disponible en nuestro salón interior climatizado. ¿A nombre de quién realizo la reserva y qué teléfono móvil nos dejas para enviarte la confirmación por WhatsApp?";
+                const texto3 = "¡Perfecto! Una barbacoa familiar y una diavola mediana. A las nueve y media tengo hueco en el horno. ¿A nombre de quién lo apunto y a qué móvil te mando el resumen por WhatsApp?";
                 
                 speakText(texto3, true, () => {
                   if (!sigue()) return;
@@ -2192,7 +2133,7 @@
                     limpiarResaltadosTranscripcion();
                     document.getElementById('bubble-client-2')?.classList.add('transcript-client-active');
 
-                    const texto4 = "A nombre de Carlos Gómez, móvil seis cuatro cuatro doce treinta y cuatro cincuenta y seis.";
+                    const texto4 = "A nombre de Carlos, al seis cuatro cuatro, doce, treinta y cuatro, cincuenta y seis.";
                     
                     speakText(texto4, false, () => {
                       if (!sigue()) return;
@@ -2203,7 +2144,7 @@
                         limpiarResaltadosTranscripcion();
                         document.getElementById('bubble-elena-3')?.classList.add('transcript-active');
 
-                        const texto5 = "¡Queda confirmada tu mesa para cuatro personas este sábado a las nueve y media! Te acabo de enviar la confirmación con la ubicación en Google Maps por WhatsApp. ¡Muchas gracias Carlos, nos vemos el sábado!";
+                        const texto5 = "Hecho, Carlos. Te acabo de mandar el resumen por WhatsApp con un enlace por si quieres pagarlo ya; si no, lo pagas al recoger. ¡Hasta luego!";
                         
                         speakText(texto5, true, () => {
                           if (!sigue()) return;
@@ -2233,7 +2174,7 @@
       if (btn) btn.innerHTML = '<span>▶️ Volver a Reproducir Conversación Completa</span>';
 
       const sub = document.getElementById('current-speaking-text');
-      if (sub) sub.innerText = 'Llamada concluida. Supabase ha recibido los datos y se ha disparado el webhook de WhatsApp.';
+      if (sub) sub.innerText = 'Llamada terminada. El pedido ya está en la cocina y el cliente tiene el resumen en su WhatsApp.';
 
       // Animar checklist de automatización
       const badge = document.getElementById('badge-auto-status');
@@ -2246,12 +2187,12 @@
       const c2 = document.getElementById('check-step-2');
       const c3 = document.getElementById('check-step-3');
 
-      if (c1) c1.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">Registro en <strong>Supabase</strong> completado: Mesa 4 pax · Sábado 21:30h (#RES-892)</span>';
+      if (c1) c1.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">Comanda #111 en la <strong>pantalla de cocina</strong>: barbacoa familiar + diavola mediana · recogida 21:30</span>';
       setTimeout(() => {
-        if (c2) c2.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">WhatsApp automático enviado a <strong>+34 644 12 34 56</strong> con ficha de Google Maps</span>';
+        if (c2) c2.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">WhatsApp enviado a <strong>+34 644 12 34 56</strong> con el resumen y el enlace de pago opcional</span>';
       }, 400);
       setTimeout(() => {
-        if (c3) c3.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">Recordatorio programado para el Sábado a las 19:30h (reduce no-shows un 92%)</span>';
+        if (c3) c3.innerHTML = '<span class="text-emerald-400 font-bold">✓</span> <span class="text-emerald-200">Aviso «ya está lista» preparado para cuando salga del horno</span>';
       }, 800);
     }
 
@@ -2261,16 +2202,16 @@
       isCallActive = true;
 
       const respuestas = {
-        'gluten': "¡Por supuesto! En Pizzería Ángela disponemos de bases especiales sin gluten certificadas y horneadas en área aislada con estricto protocolo para evitar contaminación cruzada.",
-        'tiempo': "Ahora mismo nuestro horno de piedra tiene una carga óptima. Tres pizzas familiares estarían listas para recoger en nuestro local de Imaginalia en exactamente veinticinco minutos.",
+        'gluten': "Tenemos masa sin gluten bajo pedido. Si es por celiaquía o alergia, te paso con una persona del equipo para que te explique cómo la preparamos.",
+        'tiempo': "Ahora mismo el horno va bien de carga. Tres pizzas familiares estarían listas para recoger en unos veinticinco minutos.",
         'donde': "Estamos en Albacete, en Calle Simone de Beauvoir número 3, justo frente a Imaginalia, con facilísimo aparcamiento en la misma puerta.",
-        'terraza': "Sí, contamos con una terraza exterior muy acogedora para las noches de buen tiempo y también con un salón interior completamente climatizado."
+        'pago': "Sí, claro. Puedes pagar al recoger, en efectivo o con tarjeta. Y si prefieres pagarlo ya, te mando un enlace seguro por WhatsApp."
       };
 
       const texto = respuestas[tipo] || "¡Hola! Dime qué necesitas y te ayudo al momento.";
       
       const st = document.getElementById('call-status');
-      st.innerHTML = '● Ángela respondiendo consulta rápida...';
+      st.innerHTML = '● Laura respondiendo...';
       st.className = 'inline-block mt-2 text-xs bg-amber-950 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-full font-mono';
 
       playTelephoneClick();
@@ -2288,7 +2229,7 @@
       const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
 
       if (!SpeechRec) {
-        alert("Tu navegador no soporta reconocimiento de voz por micrófono (Web Speech API). Puedes usar las 'Preguntas Rápidas' o reproducir la llamada completa para escuchar la voz de Ángela.");
+        alert("Tu navegador no soporta reconocimiento de voz por micrófono (Web Speech API). Puedes usar las 'Preguntas Rápidas' o reproducir la llamada completa para escuchar la voz de Laura.");
         preguntarAngelaDirecto('tiempo');
         return;
       }
@@ -2334,24 +2275,24 @@
             list.scrollTop = list.scrollHeight;
           }
 
-          // Generar respuesta inteligente de Ángela
+          // Generar respuesta de Laura
           const tLower = transcript.toLowerCase();
-          let respuestaAngela = "¡Te he entendido perfectamente! Anoto tu comanda para nuestro horno de piedra y te confirmamos por WhatsApp.";
+          let respuestaAngela = "¡Te he entendido! Te apunto el pedido para recoger y te mando el resumen por WhatsApp.";
 
           if (tLower.includes('mesa') || tLower.includes('reserva') || tLower.includes('persona')) {
-            respuestaAngela = "¡Por supuesto! Disponemos de mesas en salón y terraza en Imaginalia. ¿Para qué día y cuántos comensales sería la reserva?";
+            respuestaAngela = "¡Claro! ¿Para qué día y cuántas personas sería la mesa?";
           } else if (tLower.includes('pizza') || tLower.includes('pedir') || tLower.includes('comanda')) {
             respuestaAngela = "¡Oído cocina! Tenemos nuestras pizzas en horno de piedra listas para recoger en unos 20 minutos. ¿Qué especialidad te apetece?";
           } else if (tLower.includes('gluten') || tLower.includes('celíac')) {
-            respuestaAngela = "Sí, contamos con masa especial sin gluten certificada y elaborada en bandeja protegida para evitar trazas.";
+            respuestaAngela = "Tenemos masa sin gluten bajo pedido. Si es por celiaquía o alergia, te paso con una persona del equipo para que te explique cómo la preparamos.";
           } else if (tLower.includes('precio') || tLower.includes('carta') || tLower.includes('cuánto')) {
-            respuestaAngela = "Nuestras pizzas artesanales parten desde 9 euros la Margarita hasta 14,50 euros la Especial Ángela con trufa y rúcula. Te mando la carta en PDF a tu WhatsApp.";
+            respuestaAngela = "Las pizzas medianas van de once a doce euros y medio, y las familiares de dieciséis y medio a dieciocho. Te mando la carta con fotos a tu WhatsApp.";
           } else if (tLower.includes('hola') || tLower.includes('buenas')) {
-            respuestaAngela = "¡Hola, muy buenas! Te atiende Ángela de Pizzería Ángela en Albacete. ¿Quieres encargar comida para recoger o reservar mesa?";
+            respuestaAngela = "¡Hola, muy buenas! Te atiende Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?";
           }
 
-          // Ángela responde con voz
-          st.innerHTML = '● Ángela respondiendo a tu voz...';
+          // Laura responde con voz
+          st.innerHTML = '● Laura respondiendo a tu voz...';
           st.className = 'inline-block mt-2 text-xs bg-amber-950 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-full font-mono';
 
           setTimeout(() => {
