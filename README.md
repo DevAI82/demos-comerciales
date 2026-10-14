@@ -7,7 +7,7 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 
 ---
 
-## 📂 Las 10 Demos Activas y sus Enlaces
+## 📂 Las 12 Demos Activas y sus Enlaces
 
 | Cliente | Nicho | URL Directa | Puntos Fuertes |
 | :--- | :--- | :--- | :--- |
@@ -21,6 +21,8 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 | **Fisioterapia Online con Adela** | Salud | [devai82.github.io/demos-comerciales/adela-fisio/](https://devai82.github.io/demos-comerciales/adela-fisio/) | Historial clínico, rutinas en vídeo con voz en off, pagos Bizum/tarjeta y reserva |
 | **El Sueño del Quesero** | Tienda gourmet | [devai82.github.io/demos-comerciales/quesero/](https://devai82.github.io/demos-comerciales/quesero/) | Reserva y recoge, WhatsApp 24/7 con fotos, Instagram Zernio, CRM para recuperar clientes |
 | **Bakra Nails Salon** | Belleza (uñas) | [devai82.github.io/demos-comerciales/bakra/](https://devai82.github.io/demos-comerciales/bakra/) | Laura en directo (ElevenLabs), WhatsApp e Instagram con aviso de relleno, agenda propia inspirada en Fresha |
+| **FitFusionPro** | Entrenamiento | [devai82.github.io/demos-comerciales/fitfusion/](https://devai82.github.io/demos-comerciales/fitfusion/) | Cuestionario con plan recomendado, prueba gratis sin tarjeta, app del entrenador con vídeo de cada ejercicio |
+| **Andor Seguridad** | Seguridad privada ⭐ insignia | [devai82.github.io/demos-comerciales/andor/](https://devai82.github.io/demos-comerciales/andor/) | Cuadrante de vigilantes con huecos y sustitutos, informe de cobertura, fichaje y rondas, CRM de presupuestos y partes, recepción 24/7 |
 
 📋 Antes de enseñar una demo, revisa [`docs/AUDITORIA.md`](docs/AUDITORIA.md) (fallos corregidos y pendientes de decisión).
 
@@ -46,7 +48,8 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 ├── scripts/
 │   ├── dev-server.mjs         Servidor local que usa las claves del .env
 │   ├── voices.mjs             Genera los MP3 de ElevenLabs
-│   └── nueva-demo.mjs         Clona la demo de referencia de un nicho para un cliente nuevo
+│   ├── nueva-demo.mjs         Clona la demo de referencia de un nicho para un cliente nuevo
+│   └── fitfusion/build.sh     Regenera fitfusion/ desde el repo de la web (Vue): `bash scripts/fitfusion/build.sh <clon de FITFUSION>`
 ├── .env.example               Plantilla de claves (copiar a .env, que NUNCA se sube)
 └── docs/AUDITORIA.md          Auditoría QA / UX / comercial
 ```
