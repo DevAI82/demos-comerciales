@@ -83,17 +83,20 @@
   <!-- TOP BAR CONTROL MOCKUP (Selector de Vistas Global) -->
   <header class="sticky top-0 z-50 bg-slate-950 text-white px-4 py-2.5 shadow-xl border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center space-x-3">
-        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <div class="order-1 flex items-center gap-3">
+        <span class="hidden sm:inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
         <div class="flex items-center gap-2">
           <img src="logo-sonrisa.png" alt="Sonrisastar" class="h-6 w-auto bg-white rounded px-1 py-0.5">
-          <span class="text-xs font-bold tracking-widest uppercase text-white font-display">SONRISA STAR · PROTOTIPO INTERACTIVO</span>
+          <span class="text-xs font-bold tracking-widest uppercase text-white font-display"><span class="hidden sm:inline">SONRISA STAR · PROTOTIPO INTERACTIVO</span><span class="sm:hidden">Demo</span></span>
         </div>
         <span class="hidden sm:inline-block text-[11px] bg-slate-800 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30">Albacete</span>
       </div>
 
+      <!-- Botón "Lo quiero" (shared/altera-cta.js): arriba para no tapar el widget de Sofía -->
+      <div data-altera-cta-slot class="order-2 lg:order-last"></div>
+
       <!-- VIEW SELECTOR BUTTONS -->
-      <nav class="flex items-center flex-wrap gap-1.5 text-xs font-medium" id="viewNav">
+      <nav class="order-3 flex items-center flex-wrap gap-1.5 text-xs font-medium" id="viewNav">
         <button onclick="switchView('web')" id="btn-web" class="view-btn px-3 py-1.5 rounded-lg bg-brand-magenta text-white font-bold transition flex items-center gap-1.5 shadow-sm">
           <span>🌐</span> <span>1. Nueva Web Sonrisastar</span>
         </button>
@@ -112,7 +115,7 @@
       </nav>
 
       <!-- PROPOSAL LINK -->
-      <a href="propuesta.html" class="hidden md:inline-flex items-center gap-1.5 text-xs font-bold text-emerald-300 hover:text-white bg-slate-900 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-emerald-500/40 transition">
+      <a href="propuesta.html" class="order-4 hidden md:inline-flex items-center gap-1.5 text-xs font-bold text-emerald-300 hover:text-white bg-slate-900 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-emerald-500/40 transition">
         <span>📄 Ver Propuesta Comercial · hasta 80% subvencionado &rarr;</span>
       </a>
     </div>
