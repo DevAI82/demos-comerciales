@@ -14,7 +14,7 @@ Se crea en ElevenLabs → **Agents** (Conversational AI) → *Create agent* → 
 |---|---|
 | Nombre | `Sofía · Sonrisastar (demo Altera)` |
 | Idioma | Español (`es`) |
-| Voz | Voz femenina de **español de España**, tono cálido y profesional (la misma que uses en `ELEVENLABS_VOICE_SONRISASTAR_AGENT`) |
+| Voz | **Laura** (o la voz femenina de español de España que elijas). Usa el mismo voice_id en `ELEVENLABS_VOICE_SONRISASTAR_AGENT` para que la llamada de ejemplo suene igual |
 | Modelo de voz | Flash / Turbo v2.5 (baja latencia) |
 | LLM | El rápido por defecto de ElevenLabs |
 | Duración máxima de llamada | **180 s** (es una demo; limita el gasto) |
