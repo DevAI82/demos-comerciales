@@ -560,8 +560,8 @@
             <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-moto-600/20 text-moto-400 text-xs font-semibold">
               <span>🛠️ Panel de Taller y Ventas</span><span>•</span><span>Motor Gas Bike</span>
             </div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight">Todo el taller en una pantalla</h2>
-            <p class="text-sm text-slate-300 leading-relaxed">Métricas del negocio, órdenes de reparación paso a paso, ficha de cada cliente con su garaje, embudo de venta de motos, agenda por elevador y recordatorios automáticos por WhatsApp. Lo que Laura toma por teléfono entra aquí solo.</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight">Que ningún cliente se olvide de volver al taller</h2>
+            <p class="text-sm text-slate-300 leading-relaxed">Ficha de todos los clientes que han pasado por el taller. El CRM detecta quién lleva meses sin hacer la revisión, le avisa por WhatsApp, email o los dos, y el cliente reserva su cita desde el enlace. Además: métricas del taller, órdenes de reparación paso a paso, venta de motos, agenda por elevador y recordatorios automáticos.</p>
           </div>
           <span class="self-start lg:self-auto text-[11px] font-semibold px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-slate-200 whitespace-nowrap">Datos de ejemplo · importes orientativos</span>
         </div>
@@ -569,6 +569,7 @@
 
       <!-- NAVEGACIÓN DEL CRM -->
       <nav class="bg-white rounded-2xl border border-slate-200 card-shadow p-1.5 flex gap-1 overflow-x-auto custom-scroll" aria-label="Secciones del CRM">
+        <button data-crm-tab="recuperar" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>🔁</span>Recuperar clientes</button>
         <button data-crm-tab="resumen" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>📊</span>Resumen</button>
         <button data-crm-tab="taller" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>🔧</span>Taller <span id="crmBadgeTaller" class="text-[10px] px-1.5 py-0.5 rounded-full bg-moto-100 text-moto-800">0</span></button>
         <button data-crm-tab="clientes" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>👥</span>Clientes</button>
@@ -577,7 +578,8 @@
         <button data-crm-tab="recordatorios" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>🔔</span>Recordatorios</button>
       </nav>
 
-      <div id="crm-resumen" class="crm-pane space-y-5"></div>
+      <div id="crm-recuperar" class="crm-pane space-y-4"></div>
+      <div id="crm-resumen" class="crm-pane hidden space-y-5"></div>
       <div id="crm-taller" class="crm-pane hidden space-y-4"></div>
       <div id="crm-clientes" class="crm-pane hidden"></div>
       <div id="crm-ventas" class="crm-pane hidden space-y-4"></div>

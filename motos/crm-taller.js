@@ -1,7 +1,7 @@
 /*
  * Motor Gas Bike · CRM de taller y ventas (demo).
  * Todo funciona en el navegador con datos de ejemplo: nombres genéricos e importes orientativos.
- * Secciones: Resumen, Taller (órdenes de reparación), Clientes, Venta de motos, Agenda y Recordatorios.
+ * Secciones: Recuperar clientes, Resumen, Taller (órdenes de reparación), Clientes, Venta de motos, Agenda y Recordatorios.
  */
 (function () {
   'use strict';
@@ -74,6 +74,31 @@
         { fecha: '20/02/2026', tipo: 'Taller', texto: 'Neumáticos.', importe: 230 }
       ] }
   ];
+
+  // Clientes que llevan tiempo sin pasar por el taller (los que se intentan recuperar).
+  const dormido = (id, nombre, tel, email, wa, desde, gasto, visitas, modelo, anio, matricula, km, fecha, trabajo, importe, previo) => ({
+    id, nombre, tel, email, wa, canal: 'Mostrador', desde, etiquetas: ['Sin revisión'], gasto, visitas,
+    motos: [{ modelo, anio, matricula, km, proxima: 'Revisión pendiente', proximaFecha: 'vencida' }],
+    historial: [{ fecha, tipo: 'Taller', texto: trabajo, importe }].concat(previo ? [previo] : [])
+  });
+  clientes.push(
+    dormido('c9', 'Pablo D.', '6XX XX 18 64', 'p•••••@gmail.com', true, '2018', 1460, 7, 'Yamaha Tracer 700', 2018, '4821 KBN', 29800, '22/08/2024', 'Revisión 30.000 km (aceite, filtros, frenos).', 235,
+      { fecha: '14/04/2023', tipo: 'Taller', texto: 'Neumáticos y kit de arrastre.', importe: 410 }),
+    dormido('c10', 'Irene C.', '6XX XX 70 29', 'i•••••@hotmail.com', true, '2020', 820, 4, 'Honda CB500F', 2019, '6153 KVR', 18400, '15/05/2025', 'Revisión anual.', 150),
+    dormido('c11', 'Miguel S.', '6XX XX 93 41', null, true, '2017', 3920, 12, 'KTM 1290 Super Duke R', 2017, '3307 JWS', 41200, '10/03/2024', 'Revisión 40.000 km y reglaje de válvulas.', 520),
+    dormido('c12', 'Lucía F.', '6XX XX 26 85', 'l•••••@gmail.com', true, '2021', 610, 3, 'Vespa GTS 300', 2021, '7790 LFG', 12100, '02/09/2025', 'Cambio de aceite y correa.', 175),
+    dormido('c13', 'Hugo N.', '6XX XX 51 70', 'h•••••@yahoo.es', true, '2020', 1980, 6, 'Kawasaki Z900', 2020, '9046 LBT', 22700, '28/06/2024', 'Revisión 20.000 km.', 240,
+      { fecha: '03/03/2023', tipo: 'Tienda', texto: 'Escape homologado y montaje.', importe: 690 }),
+    dormido('c14', 'Teresa V.', '6XX XX 38 12', 't•••••@gmail.com', false, '2019', 940, 5, 'Piaggio Beverly 300', 2019, '1184 KPL', 26900, '11/11/2024', 'Revisión y pastillas de freno.', 165),
+    dormido('c15', 'Diego M.', '6XX XX 64 03', 'd•••••@gmail.com', true, '2016', 2750, 10, 'Suzuki V-Strom 650', 2016, '5512 JHC', 63800, '04/02/2023', 'Revisión 60.000 km.', 280),
+    dormido('c16', 'Raquel P.', '6XX XX 07 96', null, true, '2022', 380, 2, 'Yamaha NMAX 125', 2022, '2675 LRC', 8900, '19/07/2025', 'Cambio de aceite.', 85),
+    dormido('c17', 'Alberto J.', '6XX XX 82 57', 'a•••••@outlook.es', true, '2018', 1610, 6, 'Triumph Street Triple', 2018, '8433 KFM', 31500, '30/01/2025', 'Revisión y neumático trasero.', 330),
+    dormido('c18', 'Nerea O.', '6XX XX 45 38', 'n•••••@gmail.com', true, '2021', 1120, 4, 'Honda X-ADV', 2021, '3958 LGD', 19600, '07/04/2024', 'Revisión 16.000 km.', 210)
+  );
+  clientes.forEach(c => {
+    if (c.wa === undefined) c.wa = true;
+    if (c.email === undefined) c.email = c.nombre[0].toLowerCase() + '•••••@gmail.com';
+  });
   const cliente = id => clientes.find(c => c.id === id);
 
   let ordenes = [
@@ -156,7 +181,7 @@
     { id: 'rg2', nombre: 'ITV', detalle: '30 días antes del vencimiento, con hueco para pasarla desde el taller', activa: true },
     { id: 'rg3', nombre: 'Cambio de aceite por km', detalle: 'Estimado con los km de la última visita y el uso medio', activa: true },
     { id: 'rg4', nombre: 'Reseña en Google', detalle: '2 días después de entregar la moto, si la valoración es buena', activa: true },
-    { id: 'rg5', nombre: 'Cliente dormido', detalle: 'Si no viene en 12 meses, mensaje con una oferta de revisión', activa: false }
+    { id: 'rg5', nombre: 'Cliente sin revisión', detalle: 'A los 12 meses sin venir, aviso por WhatsApp y email con enlace para reservar; segundo aviso a los 15 días', activa: true }
   ];
 
   const AGENDA = {
@@ -205,7 +230,7 @@
   };
 
   // ------------------------------------------------------------------ Navegación
-  let tabActual = 'resumen';
+  let tabActual = 'recuperar';
   function mostrar(tab) {
     tabActual = tab;
     document.querySelectorAll('.crm-pane').forEach(p => p.classList.toggle('hidden', p.id !== 'crm-' + tab));
@@ -221,7 +246,7 @@
     const enTaller = ordenes.length;
     const badge = $('#crmBadgeTaller');
     if (badge) badge.textContent = enTaller;
-    ({ resumen: renderResumen, taller: renderTaller, clientes: renderClientes, ventas: renderVentas, agenda: renderAgenda, recordatorios: renderRecordatorios })[tabActual]();
+    ({ recuperar: renderRecuperar, resumen: renderResumen, taller: renderTaller, clientes: renderClientes, ventas: renderVentas, agenda: renderAgenda, recordatorios: renderRecordatorios })[tabActual]();
   }
 
   // ------------------------------------------------------------------ Resumen
@@ -252,6 +277,11 @@
     const maxS = Math.max(...semanas.map(s => s.v));
 
     $('#crm-resumen').innerHTML = `
+      <button data-crm-tab="recuperar" class="w-full text-left p-4 rounded-2xl bg-gradient-to-r from-moto-600 to-orange-500 text-white card-shadow flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:opacity-95">
+        <span><span class="block font-display font-bold text-base">🔁 ${miles(BASE.mas12)} clientes llevan más de un año sin hacer la revisión</span>
+        <span class="block text-xs text-orange-50">${miles(BASE.mas24)} de ellos más de 2 años. Avísales por WhatsApp o email y que reserven desde el enlace.</span></span>
+        <span class="shrink-0 px-3 py-2 rounded-xl bg-white text-moto-700 font-bold text-xs">Recuperarlos →</span>
+      </button>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
         ${kpi('Motos en el taller', enTaller, `${enElevador} en elevador · ${listas} listas`)}
         ${kpi('Ocupación elevadores', ocupacion + ' %', '3 elevadores · media semanal 78 %')}
@@ -522,6 +552,10 @@
               </div>
               <div class="flex flex-wrap gap-1.5">${c.etiquetas.map(e => chip(e, 'bg-slate-100 text-slate-700')).join('')}</div>
             </div>
+            ${mesesSinVenir(c) >= 12 && estadoReac(c.id) !== 'cita' ? `<div class="p-3 rounded-xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <p class="text-xs text-amber-900"><strong>Lleva ${mesesSinVenir(c)} meses sin pasar por el taller.</strong> ${estadoReac(c.id) === 'pendiente' ? 'Todavía no se le ha avisado.' : 'Ya se le ha avisado.'}</p>
+              <button data-crm-movil="${c.id}" class="shrink-0 px-3 py-2 rounded-xl bg-moto-600 hover:bg-moto-500 text-white font-bold text-xs">📱 Ver aviso y reservar</button>
+            </div>` : ''}
             <div class="flex flex-wrap gap-2">
               <button data-crm-wa="${c.nombre}" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs">💬 WhatsApp</button>
               <button data-crm-cita="${c.nombre}" class="px-3 py-2 rounded-xl bg-carbon-900 hover:bg-carbon-800 text-white font-bold text-xs">📅 Nueva cita</button>
@@ -678,12 +712,297 @@
       </div>`;
   }
 
+  // ------------------------------------------------------------------ Recuperar clientes
+  // Detecta a quien lleva meses sin pasar por el taller y le avisa por WhatsApp, email o ambos
+  // con un enlace para elegir día y hora. La reserva cae en la agenda y deja programado el recordatorio.
+  const BASE = { clientes: 1284, mas12: 312, mas24: 97, ticketRevision: 185 };
+  const CAMPANA_ANTERIOR = { avisados: 140, abiertos: 109, citas: 52 };
+  const DIAS_LARGOS = { Lun: 'lunes', Mar: 'martes', 'Mié': 'miércoles', Jue: 'jueves', Vie: 'viernes', 'Sáb': 'sábado' };
+  const diaLargo = d => { const [a, n] = d.split(' '); return `${DIAS_LARGOS[a] || a} ${n}`; };
+
+  const ultimaVisita = c => c.historial.find(h => h.tipo !== 'Cita') || c.historial[0];
+  function mesesSinVenir(c) {
+    const h = ultimaVisita(c);
+    if (!h) return 0;
+    const [d, m, a] = h.fecha.split('/').map(Number);
+    return (2026 - a) * 12 + (10 - m) - (d > 14 ? 1 : 0);
+  }
+  const textoMeses = m => m >= 24 ? `más de ${Math.floor(m / 12)} años` : m >= 12 ? `más de un año` : `${m} meses`;
+  const nombrePila = n => n.split(' ')[0];
+
+  const reac = {};               // id → { estado: 'pendiente'|'enviado'|'abierto'|'cita', canales, cita }
+  let segmento = 12;
+  let canalCampana = 'ambos';
+  let seleccion = null;          // Set de ids seleccionados (null = todos los pendientes del segmento)
+  const estadoReac = id => (reac[id] && reac[id].estado) || 'pendiente';
+
+  const candidatos = () => clientes.filter(c => mesesSinVenir(c) >= 12).sort((a, b) => mesesSinVenir(b) - mesesSinVenir(a));
+  const delSegmento = () => candidatos().filter(c => mesesSinVenir(c) >= segmento || estadoReac(c.id) !== 'pendiente');
+  function seleccionados() {
+    const pend = delSegmento().filter(c => estadoReac(c.id) === 'pendiente');
+    return seleccion ? pend.filter(c => seleccion.has(c.id)) : pend;
+  }
+  function canalesPara(c, canal) {
+    const out = [];
+    if ((canal === 'wa' || canal === 'ambos') && c.wa) out.push('wa');
+    if ((canal === 'email' || canal === 'ambos') && c.email) out.push('email');
+    if (!out.length) out.push(c.wa ? 'wa' : 'email');
+    return out;
+  }
+
+  function huecosLibres(max) {
+    const out = [];
+    for (let dia = AGENDA.hoy + 1; dia < AGENDA.dias.length; dia++) {
+      for (const turno of ['Mañana', 'Tarde']) {
+        for (let el = 0; el < AGENDA.elevadores.length; el++) {
+          if (!AGENDA.citas.some(x => x.dia === dia && x.el === el && x.turno === turno)) { out.push({ dia, el, turno }); break; }
+        }
+      }
+    }
+    return out.slice(0, max);
+  }
+
+  function mensajeWa(c) {
+    const m = c.motos[0];
+    return `¡Hola, ${nombrePila(c.nombre)}! 👋 Soy Laura, de Motor Gas Bike. Hace ${textoMeses(mesesSinVenir(c))} que tu <strong>${m.modelo}</strong> no pasa por el taller. ` +
+      `Antes de las próximas salidas te revisamos aceite, frenos, neumáticos y cadena. Elige tú el día y la hora aquí:`;
+  }
+  function asuntoEmail(c) { return `${nombrePila(c.nombre)}, tu ${c.motos[0].modelo} lleva ${textoMeses(mesesSinVenir(c))} sin revisión`; }
+
+  function vistaWa(c, conBoton) {
+    return `<div class="rounded-2xl p-3 bg-[#efeae2] border border-slate-200 space-y-2">
+      <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">💬 WhatsApp</p>
+      <div class="bg-white rounded-2xl rounded-tl-none p-3 text-xs text-slate-800 shadow-sm space-y-2">
+        <p>${mensajeWa(c)}</p>
+        <div class="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-[11px] font-bold text-emerald-800 ${conBoton ? '' : 'pointer-events-none'}">📅 Elegir día y hora · motorgasbike.es/cita</div>
+        <p class="text-[11px] text-slate-500">¿Prefieres hablar? Contesta aquí o llama al 967 67 16 76.</p>
+        <p class="text-[10px] text-slate-400 text-right">10:02</p>
+      </div>
+    </div>`;
+  }
+  function vistaEmail(c) {
+    return `<div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+      <div class="px-3 py-2 bg-slate-50 border-b border-slate-200 text-[11px] text-slate-600 space-y-0.5">
+        <p><span class="text-slate-400">De:</span> Motor Gas Bike</p>
+        <p><span class="text-slate-400">Para:</span> ${c.email || '—'}</p>
+        <p class="font-bold text-slate-900">${asuntoEmail(c)}</p>
+      </div>
+      <div class="p-3 text-xs text-slate-700 space-y-2">
+        <p>Hola, ${nombrePila(c.nombre)}:</p>
+        <p>Según nuestra ficha, la última visita de tu ${c.motos[0].modelo} (${c.motos[0].matricula}) fue el ${ultimaVisita(c).fecha}: ${ultimaVisita(c).texto.toLowerCase()}</p>
+        <p>Te recomendamos una revisión antes de volver a rodar. Reserva en un clic el hueco que mejor te venga:</p>
+        <span class="inline-block px-3 py-2 rounded-lg bg-moto-600 text-white font-bold text-[11px]">Reservar mi cita</span>
+        <p class="text-[10px] text-slate-400">Si no quieres recibir más avisos, puedes darte de baja aquí.</p>
+      </div>
+    </div>`;
+  }
+  const iconosCanal = c => `${c.wa ? '<span title="WhatsApp">💬</span>' : '<span class="opacity-25" title="Sin WhatsApp">💬</span>'} ${c.email ? '<span title="Email">✉️</span>' : '<span class="opacity-25" title="Sin email">✉️</span>'}`;
+
+  function renderRecuperar() {
+    const lista = delSegmento();
+    const sel = seleccionados();
+    const muestra = sel[0] || lista.find(c => estadoReac(c.id) === 'pendiente') || lista[0];
+    const cuenta = est => candidatos().filter(c => estadoReac(c.id) === est).length;
+    const enviados = candidatos().filter(c => estadoReac(c.id) !== 'pendiente').length;
+    const abiertos = cuenta('abierto') + cuenta('cita');
+    const citas = cuenta('cita');
+    const estadoChip = {
+      pendiente: chip('Sin avisar', 'bg-slate-100 text-slate-700'),
+      enviado: chip('Avisado', 'bg-sky-100 text-sky-800'),
+      abierto: chip('Ha abierto el enlace', 'bg-amber-100 text-amber-800'),
+      cita: chip('✅ Cita reservada', 'bg-emerald-100 text-emerald-800')
+    };
+    const tono = m => m >= 24 ? 'bg-red-100 text-red-800' : m >= 18 ? 'bg-orange-100 text-orange-800' : 'bg-amber-100 text-amber-800';
+    const segBtn = (v, txt) => `<button data-crm-seg="${v}" class="px-3 py-1.5 rounded-lg text-[11px] font-bold ${segmento === v ? 'bg-carbon-900 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:border-moto-400'}">${txt}</button>`;
+    const canalBtn = (v, txt) => `<button data-crm-canal="${v}" class="flex-1 px-3 py-2 rounded-xl text-xs font-bold ${canalCampana === v ? 'bg-moto-600 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:border-moto-400'}">${txt}</button>`;
+
+    $('#crm-recuperar').innerHTML = `
+      <div class="rounded-2xl p-5 bg-gradient-to-r from-moto-600 to-orange-500 text-white card-shadow flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1 max-w-2xl">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-orange-100">Recuperar clientes</p>
+          <h3 class="font-display font-bold text-xl md:text-2xl leading-tight">${miles(BASE.mas12)} clientes llevan más de un año sin pasar por el taller</h3>
+          <p class="text-sm text-orange-50">El CRM los detecta solo a partir del historial, les avisa por WhatsApp, email o los dos, y ellos reservan desde el enlace. La cita entra en la agenda sin llamar a nadie.</p>
+        </div>
+        <div class="shrink-0 text-left md:text-right">
+          <p class="text-[11px] text-orange-100">Revisiones por recuperar</p>
+          <p class="font-display text-3xl font-bold">≈ ${eur(BASE.mas12 * BASE.ticketRevision)}</p>
+          <p class="text-[11px] text-orange-100">Orientativo · ${miles(BASE.mas12)} × ≈ ${BASE.ticketRevision} € de revisión media</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        ${kpi('Clientes en la ficha', miles(BASE.clientes), 'Todos los que han pasado por el taller')}
+        ${kpi('Más de 12 meses sin venir', miles(BASE.mas12), '24 % de la base')}
+        ${kpi('Más de 2 años sin venir', miles(BASE.mas24), 'Los que más riesgo hay de perder')}
+        ${kpi('Última campaña', `${CAMPANA_ANTERIOR.citas} citas`, `de ${CAMPANA_ANTERIOR.avisados} avisados (${Math.round(CAMPANA_ANTERIOR.citas / CAMPANA_ANTERIOR.avisados * 100)} %)`)}
+      </div>
+
+      <div class="${card} p-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+          ${[['Para avisar', lista.filter(c => estadoReac(c.id) === 'pendiente').length, 'bg-slate-50 border-slate-200 text-slate-900'],
+             ['Avisados', enviados, 'bg-sky-50 border-sky-200 text-sky-900'],
+             ['Han abierto el enlace', abiertos, 'bg-amber-50 border-amber-200 text-amber-900'],
+             ['Con cita reservada', citas, 'bg-emerald-50 border-emerald-200 text-emerald-900']]
+            .map(([k, v, cls], i) => `<div class="p-3 rounded-xl border ${cls} relative"><p class="text-[10px] uppercase font-bold opacity-70">${i + 1}. ${k}</p><p class="font-display text-2xl font-bold">${v}</p></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        <div class="lg:col-span-7 ${card} p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div><h3 class="font-display font-bold text-sm text-slate-900">1. Quién lleva tiempo sin venir</h3>
+            <p class="text-[11px] text-slate-500">Mostrando ${lista.length} de ejemplo, ordenados por tiempo sin revisión.</p></div>
+            <div class="flex gap-1.5">${segBtn(12, '+12 meses')}${segBtn(18, '+18 meses')}${segBtn(24, '+2 años')}</div>
+          </div>
+          <label class="flex items-center gap-2 text-[11px] font-bold text-slate-600 px-1 cursor-pointer">
+            <input type="checkbox" data-crm-selall ${sel.length && sel.length === lista.filter(c => estadoReac(c.id) === 'pendiente').length ? 'checked' : ''} class="w-4 h-4" style="accent-color:#ea580c"> Seleccionar todos los que faltan por avisar
+          </label>
+          <div class="space-y-2">
+          ${lista.map(c => {
+            const m = mesesSinVenir(c);
+            const est = estadoReac(c.id);
+            const r = reac[c.id];
+            return `<div class="p-3 rounded-xl border ${est === 'cita' ? 'border-emerald-200 bg-emerald-50/40' : 'border-slate-200'} flex flex-col sm:flex-row sm:items-center gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                ${est === 'pendiente'
+                  ? `<input type="checkbox" data-crm-sel="${c.id}" ${sel.some(x => x.id === c.id) ? 'checked' : ''} class="w-4 h-4 shrink-0" style="accent-color:#ea580c" aria-label="Seleccionar a ${c.nombre}">`
+                  : '<span class="w-4 shrink-0"></span>'}
+                <span class="w-9 h-9 rounded-full bg-carbon-900 text-moto-400 font-bold text-xs flex items-center justify-center shrink-0">${iniciales(c.nombre)}</span>
+                <div class="min-w-0">
+                  <button data-crm-cliente="${c.id}" class="text-sm font-bold text-slate-900 hover:text-moto-700 text-left">${c.nombre}</button>
+                  <p class="text-[11px] text-slate-600 truncate">${c.motos[0].modelo} · ${c.motos[0].matricula}</p>
+                  <p class="text-[11px] text-slate-500">Última visita ${ultimaVisita(c).fecha} · ${ultimaVisita(c).texto}</p>
+                  ${r && r.cita ? `<p class="text-[11px] font-bold text-emerald-700">📅 ${r.cita} · recordatorio el día antes</p>` : ''}
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 sm:justify-end shrink-0">
+                ${chip('Hace ' + m + ' meses', tono(m))}
+                <span class="text-sm">${iconosCanal(c)}</span>
+                ${estadoChip[est]}
+                <button data-crm-movil="${c.id}" class="px-2.5 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-moto-400 text-[11px] font-bold text-slate-800">📱 Ver lo que recibe</button>
+              </div>
+            </div>`;
+          }).join('')}
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-4">
+          <div class="${card} p-4 space-y-3">
+            <h3 class="font-display font-bold text-sm text-slate-900">2. Cómo avisarles</h3>
+            <div class="flex gap-2">${canalBtn('wa', '💬 WhatsApp')}${canalBtn('email', '✉️ Email')}${canalBtn('ambos', '💬 + ✉️ Los dos')}</div>
+            <p class="text-[11px] text-slate-500">A quien no tenga WhatsApp o email se le avisa por el canal que sí tenga.</p>
+            ${muestra ? `<p class="text-[11px] font-bold text-slate-500 uppercase tracking-wider pt-1">Vista previa · ${muestra.nombre}</p>
+            ${canalCampana !== 'email' ? vistaWa(muestra, false) : ''}
+            ${canalCampana !== 'wa' ? vistaEmail(muestra) : ''}` : ''}
+            <button data-crm-campana class="w-full py-3 rounded-xl font-bold text-sm ${sel.length ? 'bg-emerald-600 hover:bg-emerald-500 text-white' : 'bg-slate-200 text-slate-500 cursor-not-allowed'}" ${sel.length ? '' : 'disabled'}>
+              ${sel.length ? `Enviar aviso a ${sel.length} cliente${sel.length === 1 ? '' : 's'}` : 'Selecciona a quién avisar'}
+            </button>
+          </div>
+          <div class="${card} p-4 space-y-2">
+            <h3 class="font-display font-bold text-sm text-slate-900">3. Lo que pasa después, solo</h3>
+            <ul class="text-xs text-slate-700 space-y-1.5">
+              <li>📅 El cliente elige día y hora en el enlace y la cita entra en la agenda.</li>
+              <li>🔔 El día antes le llega el recordatorio por el mismo canal.</li>
+              <li>🔁 Si no contesta, segundo aviso a los 15 días; si llama, Laura le coge la cita.</li>
+              <li>⭐ Tras la revisión, se le pide la reseña en Google.</li>
+            </ul>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  let timersCampana = [];
+  function enviarCampana() {
+    const sel = seleccionados();
+    if (!sel.length) return;
+    sel.forEach(c => { reac[c.id] = { estado: 'enviado', canales: canalesPara(c, canalCampana) }; });
+    seleccion = null;
+    const nWa = sel.filter(c => reac[c.id].canales.includes('wa')).length;
+    const nEm = sel.filter(c => reac[c.id].canales.includes('email')).length;
+    toast(`Aviso enviado a ${sel.length} cliente${sel.length === 1 ? '' : 's'}: ${nWa} por WhatsApp y ${nEm} por email (simulado).`);
+    render();
+    // Respuestas simuladas para enseñar el flujo completo en la demo.
+    timersCampana.forEach(clearTimeout);
+    timersCampana = [
+      setTimeout(() => {
+        sel.slice(0, 3).forEach(c => { if (estadoReac(c.id) === 'enviado') reac[c.id].estado = 'abierto'; });
+        if (tabActual === 'recuperar') render();
+      }, 1800),
+      setTimeout(() => {
+        const c = sel.find(x => estadoReac(x.id) === 'abierto');
+        const h = huecosLibres(1)[0];
+        if (!c || !h) return;
+        reservar(c.id, h, 'desde el enlace');
+      }, 4200)
+    ];
+  }
+
+  function reservar(id, h, como) {
+    const c = cliente(id);
+    if (AGENDA.citas.some(x => x.dia === h.dia && x.el === h.el && x.turno === h.turno)) return toast('Ese hueco se acaba de ocupar. Elige otro.');
+    const etiqueta = `${diaLargo(AGENDA.dias[h.dia])} por la ${h.turno.toLowerCase()}`;
+    AGENDA.citas.push({ dia: h.dia, el: h.el, turno: h.turno, texto: `${c.motos[0].modelo} · Revisión`, tipo: 'recordatorio' });
+    reac[id] = Object.assign(reac[id] || { canales: canalesPara(c, canalCampana) }, { estado: 'cita', cita: `${etiqueta} · ${AGENDA.elevadores[h.el]}` });
+    c.historial.unshift({ fecha: '14/10/2026', tipo: 'Cita', texto: `Reserva la revisión ${como} tras el aviso de revisión pendiente: ${etiqueta}.` });
+    c.etiquetas = c.etiquetas.filter(e => e !== 'Sin revisión').concat('Recuperado');
+    recordatorios.unshift({ id: 'r' + Date.now(), cliente: id, moto: c.motos[0].modelo, tipo: 'Recordatorio de cita (día antes)', cuando: diaLargo(AGENDA.dias[h.dia - 1] || AGENDA.dias[h.dia]), estado: 'Programado' });
+    toast(`📅 ${c.nombre} ha reservado ${como}: ${etiqueta}. Ya está en la agenda.`);
+    if (!$('#crmDrawer').classList.contains('hidden') && abiertoMovil === id) abrirMovil(id);
+    render();
+  }
+
+  let abiertoMovil = null;
+  function abrirMovil(id) {
+    const c = cliente(id);
+    abiertoMovil = id;
+    const r = reac[id];
+    const canales = r ? r.canales : canalesPara(c, canalCampana);
+    const huecos = huecosLibres(6);
+    $('#crmDrawerBody').innerHTML = `
+      <div class="sticky top-0 bg-white/95 backdrop-blur border-b border-slate-100 px-5 py-4 flex items-start justify-between gap-3 z-10">
+        <div>
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Así le llega al cliente</p>
+          <h3 id="crmDrawerTitle" class="font-display font-bold text-lg text-slate-900 leading-tight">${c.nombre} · ${c.motos[0].modelo}</h3>
+          <p class="text-xs text-slate-500">${canales.map(k => k === 'wa' ? '💬 WhatsApp ' + c.tel : '✉️ ' + c.email).join(' · ')}</p>
+        </div>
+        <button data-crm-close class="w-9 h-9 shrink-0 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="p-5 space-y-4">
+        ${canales.includes('wa') ? vistaWa(c, true) : vistaEmail(c)}
+        <div class="rounded-2xl border-2 border-moto-200 p-4 space-y-3 bg-orange-50/40">
+          <p class="text-[10px] font-bold uppercase tracking-wider text-moto-700">Al pulsar el enlace · motorgasbike.es/cita</p>
+          ${r && r.estado === 'cita'
+            ? `<div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 space-y-1">
+                <p class="font-bold text-emerald-900 text-sm">✅ Cita confirmada</p>
+                <p class="text-xs text-emerald-800">${r.cita}. Te mandamos un recordatorio el día antes. ¡Nos vemos en el taller!</p>
+              </div>`
+            : `<p class="text-sm font-bold text-slate-900">Hola, ${nombrePila(c.nombre)}. ¿Cuándo te viene bien traer tu ${c.motos[0].modelo}?</p>
+              <div class="grid grid-cols-2 gap-2">
+                ${huecos.map(h => `<button data-crm-reservar="${id}|${h.dia}|${h.el}|${h.turno}" class="p-2.5 rounded-xl bg-white border border-slate-200 hover:border-moto-500 hover:bg-orange-50 text-left">
+                  <span class="block text-xs font-bold text-slate-900">${diaLargo(AGENDA.dias[h.dia])}</span><span class="block text-[11px] text-slate-500">${h.turno}</span></button>`).join('') || '<p class="text-xs text-slate-500">No quedan huecos esta semana.</p>'}
+              </div>
+              <p class="text-[11px] text-slate-500">Pulsa un hueco como si fueras el cliente: la cita aparecerá en la agenda del taller.</p>`}
+        </div>
+        ${canales.includes('wa') && canales.includes('email') ? vistaEmail(c) : ''}
+      </div>`;
+    $('#crmDrawer').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
   // ------------------------------------------------------------------ Eventos
   document.addEventListener('click', e => {
-    const t = e.target.closest('[data-crm-tab],[data-crm-go],[data-crm-orden],[data-crm-close],[data-crm-avanzar],[data-crm-aprobar],[data-crm-entregar],[data-crm-cliente],[data-crm-filtro],[data-crm-nueva-orden],[data-crm-lead],[data-crm-wa],[data-crm-cita],[data-crm-recordar],[data-crm-hueco],[data-crm-enviar]');
+    const t = e.target.closest('[data-crm-tab],[data-crm-go],[data-crm-orden],[data-crm-close],[data-crm-avanzar],[data-crm-aprobar],[data-crm-entregar],[data-crm-cliente],[data-crm-filtro],[data-crm-nueva-orden],[data-crm-lead],[data-crm-wa],[data-crm-cita],[data-crm-recordar],[data-crm-hueco],[data-crm-enviar],[data-crm-seg],[data-crm-canal],[data-crm-campana],[data-crm-movil],[data-crm-reservar]');
     if (!t || !t.closest('#view-crm, #crmDrawer')) return;
     const d = t.dataset;
     if (d.crmTab) return mostrar(d.crmTab);
+    if (d.crmSeg) { segmento = Number(d.crmSeg); seleccion = null; return render(); }
+    if (d.crmCanal) { canalCampana = d.crmCanal; return render(); }
+    if ('crmCampana' in d) return enviarCampana();
+    if (d.crmMovil) return abrirMovil(d.crmMovil);
+    if (d.crmReservar) {
+      const [id, dia, el, turno] = d.crmReservar.split('|');
+      return reservar(id, { dia: Number(dia), el: Number(el), turno }, 'desde el enlace');
+    }
     if (d.crmGo) { filtroTaller = d.filtro || null; return mostrar(d.crmGo); }
     if ('crmClose' in d) return cerrarOrden();
     if (d.crmOrden) return abrirOrden(d.crmOrden);
@@ -710,7 +1029,14 @@
     }
   });
   document.addEventListener('change', e => {
-    const id = e.target.dataset && e.target.dataset.crmRegla;
+    const ds = e.target.dataset || {};
+    if (ds.crmSel) {
+      if (!seleccion) seleccion = new Set(seleccionados().map(c => c.id));
+      if (e.target.checked) seleccion.add(ds.crmSel); else seleccion.delete(ds.crmSel);
+      return render();
+    }
+    if ('crmSelall' in ds) { seleccion = e.target.checked ? null : new Set(); return render(); }
+    const id = ds.crmRegla;
     if (!id) return;
     const rg = reglas.find(r => r.id === id);
     rg.activa = e.target.checked;
@@ -725,7 +1051,7 @@
     // El panel lateral y el aviso cuelgan del body para quedar siempre por encima de la cabecera fija.
     document.body.appendChild($('#crmDrawer'));
     document.body.appendChild($('#crmToast'));
-    mostrar('resumen');
+    mostrar('recuperar');
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
