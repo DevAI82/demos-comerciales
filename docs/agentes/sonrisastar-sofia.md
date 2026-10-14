@@ -3,6 +3,12 @@
 Guía para crear en 10 minutos el agente que el dueño de la clínica podrá **llamar desde la demo** con su móvil.
 Se crea en ElevenLabs → **Agents** (Conversational AI) → *Create agent* → *Blank template*.
 
+> ✅ **Ya creado (14/10/2026):** `agent_6801m4xcms8xe2vry45fwqfkw6d6` · voz *Laura - Customer service*
+> (`uQw4jpKzMLrZuo0RLPS9`) · conectado en `shared/altera-config.js`. Ajustes aplicados: 180 s máx., sin grabación de
+> audio, transcripciones 30 días, solo `devai82.github.io` y `localhost`, 100 llamadas/día, 3 simultáneas, widget en
+> español abajo a la izquierda. El prompt es **genérico** (sin precios, doctores ni promociones): si la clínica te da
+> datos reales, añádelos en ElevenLabs → Agents → Sofía → Prompt.
+
 > ⚠️ Antes de enseñarlo, confirma con datos reales todo lo marcado con **[CONFIRMAR]**. Si Sofía dice algo falso
 > de su propia clínica (una oferta que no tienen, un horario equivocado), el dueño lo nota en el primer minuto.
 
