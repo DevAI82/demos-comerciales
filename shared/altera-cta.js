@@ -1,6 +1,8 @@
 /*
  * Altera · Botón flotante "Lo quiero en mi negocio" (WhatsApp con mensaje prellenado).
  * Se configura en shared/altera-config.js. No se muestra si no hay número.
+ * Si la página tiene un hueco [data-altera-cta-slot] (p. ej. en la cabecera), el botón va ahí
+ * en versión compacta en vez de flotar abajo (así no tapa el widget de voz en directo).
  */
 (function () {
   'use strict';
@@ -21,6 +23,21 @@
         <strong style="font-size:14px">Lo quiero en mi negocio</strong>
         <span style="font-size:11px;opacity:.9">${oferta.costeCliente || ''} con la ayuda JCCM · ${oferta.cuotaMensual || ''}</span>
       </span>`;
+    const slot = document.querySelector('[data-altera-cta-slot]');
+    if (slot) {
+      a.innerHTML = `<span style="font-size:16px;line-height:1">💬</span>
+        <span style="display:flex;flex-direction:column;line-height:1.1;text-align:left">
+          <strong style="font-size:13px">Lo quiero</strong>
+          <span style="font-size:10px;opacity:.9">${oferta.costeCliente || ''} con ayuda JCCM</span>
+        </span>`;
+      a.style.cssText = [
+        'display:inline-flex', 'align-items:center', 'gap:7px', 'min-height:40px', 'padding:5px 14px 5px 11px',
+        'border-radius:999px', 'background:#16a34a', 'color:#fff', 'text-decoration:none', 'white-space:nowrap',
+        'font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif', 'box-shadow:0 4px 14px -4px rgba(22,163,74,.6)'
+      ].join(';');
+      slot.appendChild(a);
+      return;
+    }
     a.style.cssText = [
       'position:fixed', 'z-index:2147483000', 'right:16px', 'bottom:calc(16px + env(safe-area-inset-bottom))',
       'display:flex', 'align-items:center', 'gap:10px', 'min-height:52px', 'padding:10px 18px',
