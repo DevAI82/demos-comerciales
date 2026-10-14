@@ -1,7 +1,8 @@
 /*
  * Izon Consulting · CRM inmobiliario para la dirección y el equipo comercial (demo).
  * Todo funciona en el navegador con datos de ejemplo: nombres genéricos e importes orientativos.
- * Secciones: Panel del dueño, Agenda del equipo, Compradores, Conversaciones, Equipo comercial y Propietarios e inmuebles.
+ * Tres vistas: Dueño (panel, agenda del equipo, compradores, conversaciones, equipo comercial, propietarios e inmuebles),
+ * Comercial («Mi día») y Propietario que vende (portal con visitas, opiniones, informe semanal y ofertas).
  * Flujo principal: alerta «compradores en duda» → ficha → WhatsApp con huecos → el cliente elige → visita en la agenda.
  */
 (function () {
@@ -256,8 +257,27 @@
     };
   }
 
-  // ------------------------------------------------------------------ Navegación
+  // ------------------------------------------------------------------ Navegación y roles
   let tabActual = 'panel';
+  let rol = 'dueno'; // dueno | comercial | propietario
+  let comercialVista = 'lucia';
+  let propietarioVista = 'p1';
+  const ROLES = [
+    { id: 'dueno', tab: 'panel' },
+    { id: 'comercial', tab: 'comercial' },
+    { id: 'propietario', tab: 'propietario' }
+  ];
+  function cambiarRol(r) {
+    rol = r;
+    document.querySelectorAll('[data-crm-rol]').forEach(b => {
+      const on = b.dataset.crmRol === r;
+      b.className = 'shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ' +
+        (on ? 'bg-brand-gold text-slate-950 shadow-glow-gold' : 'text-slate-300 hover:bg-slate-800');
+    });
+    const nav = $('#crmNavDueno');
+    if (nav) nav.classList.toggle('hidden', r !== 'dueno');
+    mostrar(ROLES.find(x => x.id === r).tab);
+  }
   function mostrar(tab) {
     tabActual = tab;
     document.querySelectorAll('.crm-pane').forEach(p => p.classList.toggle('hidden', p.id !== 'crm-' + tab));
@@ -274,7 +294,7 @@
     if (badge) { badge.textContent = alertas; badge.classList.toggle('hidden', !alertas); }
     const bDuda = $('#crmBadgeCompradores');
     if (bDuda) bDuda.textContent = compradores.filter(b => b.etapa !== 'vendido').length;
-    ({ panel: renderPanel, agenda: renderAgenda, compradores: renderCompradores, conversaciones: renderConversaciones, equipo: renderEquipo, propietarios: renderPropietarios })[tabActual]();
+    ({ panel: renderPanel, agenda: renderAgenda, compradores: renderCompradores, conversaciones: renderConversaciones, equipo: renderEquipo, propietarios: renderPropietarios, comercial: renderComercial, propietario: renderPropietario })[tabActual]();
   }
 
   // ------------------------------------------------------------------ Panel del dueño
@@ -561,8 +581,8 @@
     b.temp = 'Caliente';
     cerrarFicha();
     filtroAgenda = 'todos';
-    mostrar('agenda');
-    toast(`✅ ${pila(b.nombre)} elige el ${huecoTxt(h)}. La visita ya está en la agenda de ${com(b.comercial).nombre} y el panel se ha actualizado.`);
+    if (rol === 'dueno') mostrar('agenda'); else render();
+    toast(`✅ ${pila(b.nombre)} elige el ${huecoTxt(h)}. La visita ya está en la agenda de ${com(b.comercial).nombre}, en el panel del dueño y en el portal del propietario.`);
   }
 
   // ------------------------------------------------------------------ Conversaciones
@@ -723,11 +743,228 @@
       <p class="text-[11px] text-slate-500">«Vs. mercado» sale del radar de Idealista de esta misma propuesta. Precios y propietarios de ejemplo.</p>`;
   }
 
+  // ------------------------------------------------------------------ Vista del comercial («Mi día»)
+  const OBJETIVO_MES = 3; // operaciones, orientativo
+  function renderComercial() {
+    const c = com(comercialVista);
+    const e = equipo(c.id);
+    const mios = compradores.filter(b => b.comercial === c.id && b.etapa !== 'vendido');
+    const misCitas = agenda.filter(a => a.comercial === c.id);
+    const hoy = misCitas.filter(a => a.dia === HOY).sort((a, b) => a.hora.localeCompare(b.hora));
+    const proximas = misCitas.filter(a => a.dia > HOY).sort((a, b) => a.dia - b.dia || a.hora.localeCompare(b.hora));
+    const mediaResp = COMERCIALES.reduce((s2, x) => s2 + EQUIPO_BASE[x.id].respuesta, 0) / COMERCIALES.length;
+    const misInmuebles = INMUEBLES.filter(i => i.comercial === c.id).map(i => i.id);
+
+    const tareas = [];
+    mios.filter(b => b.etapa === 'duda').forEach(b => tareas.push({ urg: b.dias >= 3, icono: '🟠', texto: `Reactivar a ${b.nombre}`, nota: `${b.duda} Último contacto ${diasTxt(b.dias)}.`, boton: `<button data-crm-wa="${b.id}" class="shrink-0 px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-[11px]">💬 WhatsApp</button>` }));
+    mios.filter(b => b.etapa === 'visitado' && b.sinOpinion).forEach(b => tareas.push({ urg: true, icono: '📝', texto: `Apuntar la opinión de ${b.nombre}`, nota: 'Visitó el inmueble y aún no consta qué le pareció.', boton: `<button data-crm-opinion="${b.id}" class="shrink-0 px-3 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-[11px]">Pedir opinión</button>` }));
+    mios.filter(b => b.etapa === 'cualificado').forEach(b => tareas.push({ urg: b.dias >= 3, icono: '📅', texto: `Proponer visita a ${b.nombre}`, nota: `${b.busca} · ${b.pago}.`, boton: `<button data-crm-wa="${b.id}" class="shrink-0 px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-[11px]">💬 Proponer</button>` }));
+    mios.filter(b => b.etapa === 'oferta').forEach(b => tareas.push({ urg: false, icono: '🤝', texto: `Seguir la oferta de ${b.nombre}`, nota: `Ofrecen ${eur(b.oferta)}. El propietario la está viendo en su portal.`, boton: `<button data-crm-ficha="${b.id}" class="shrink-0 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-[11px]">Abrir ficha</button>` }));
+    propietarios.filter(p => misInmuebles.includes(p.inmueble) && p.ultimoInforme >= 7).forEach(p => tareas.push({ urg: false, icono: '📨', texto: `Enviar el informe semanal a ${p.nombre}`, nota: `Último informe hace ${p.ultimoInforme} días.`, boton: `<button data-crm-informe="${p.id}" class="shrink-0 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-[11px]">📨 Enviar</button>` }));
+    propietarios.filter(p => misInmuebles.includes(p.inmueble) && p.vence <= 21).forEach(p => tareas.push({ urg: true, icono: '🏠', texto: `Renovar el encargo de ${p.nombre}`, nota: `Vence en ${p.vence} días.`, boton: '' }));
+    tareas.sort((a, b) => b.urg - a.urg);
+
+    const cita = a => `<button ${a.comprador ? `data-crm-ficha="${a.comprador}"` : ''} class="w-full text-left p-2.5 rounded-xl border ${TIPOS[a.tipo].cls} ${a.nuevo ? 'ring-2 ring-amber-400' : ''}">
+      <span class="block text-xs font-bold">${a.dia === HOY ? '' : DIAS[a.dia].k + ' ' + DIAS[a.dia].n + ' · '}${a.hora} · ${TIPOS[a.tipo].nombre}${a.nuevo ? ' · nueva' : ''}</span>
+      <span class="block text-[11px]">${esc(a.texto)}</span>
+      <span class="block text-[10px] opacity-75">${a.origen === 'Laura' ? '📞 La agendó Laura' : a.origen === 'WhatsApp' ? '💬 El cliente eligió hora por WhatsApp' : '👤 La agendó usted'}</span>
+    </button>`;
+
+    $('#crm-comercial').innerHTML = `
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div><p class="text-[11px] font-bold uppercase tracking-wider text-sky-300">Vista del comercial · en el móvil o en el ordenador</p>
+        <h3 class="font-display text-xl font-extrabold text-white">Buenos días, ${c.nombre} <span class="text-slate-400 font-semibold text-sm">· miércoles 14</span></h3></div>
+        <div class="flex flex-wrap gap-1.5">${COMERCIALES.map(x => `<button data-ver-comercial="${x.id}" class="px-3 py-1.5 rounded-lg text-xs font-bold border ${x.id === c.id ? 'bg-brand-blue text-white border-brand-blue' : 'bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800'}">${x.nombre}</button>`).join('')}</div>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        ${kpi('Mis compradores activos', mios.length, `${mios.filter(b => b.etapa === 'duda').length} en duda · ${mios.filter(b => b.temp === 'Caliente').length} calientes 🔥`)}
+        ${kpi('Mis visitas esta semana', misCitas.filter(a => a.tipo === 'visita' || a.tipo === 'segunda').length, hoy.length === 1 ? '1 cita hoy' : `${hoy.length} citas hoy`)}
+        ${kpi('Mi primera respuesta', String(e.respuesta).replace('.', ',') + ' h', `Media del equipo ${String(mediaResp.toFixed(1)).replace('.', ',')} h`, e.respuesta <= mediaResp ? 'text-emerald-300' : 'text-amber-300')}
+        ${kpi('Mis operaciones del mes', `${e.operaciones} / ${OBJETIVO_MES}`, `Comisión ≈ ${eur(e.comision)} · orientativa`, 'text-brand-gold')}
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        <div class="lg:col-span-7 ${card} p-5 space-y-2.5">
+          <div class="flex items-center justify-between"><h3 class="font-display font-bold text-sm text-white">Mis tareas de hoy</h3><span class="text-[10px] text-slate-500">${tareas.length} pendientes · el CRM las ordena por urgencia</span></div>
+          ${tareas.map(t => `<div class="p-3 rounded-xl bg-slate-950/60 border ${t.urg ? 'border-amber-500/50' : 'border-slate-800'} flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div><p class="text-xs font-bold text-white">${t.icono} ${esc(t.texto)}</p><p class="text-[11px] text-slate-400">${esc(t.nota)}</p></div>${t.boton}
+          </div>`).join('') || '<p class="text-xs text-emerald-300 p-3">✅ Sin tareas pendientes. Todo al día.</p>'}
+        </div>
+        <div class="lg:col-span-5 space-y-4">
+          <div class="${card} p-5 space-y-2">
+            <h3 class="font-display font-bold text-sm text-white">Hoy</h3>
+            ${hoy.map(cita).join('') || '<p class="text-xs text-slate-500">Sin citas hoy.</p>'}
+          </div>
+          <div class="${card} p-5 space-y-2">
+            <h3 class="font-display font-bold text-sm text-white">Próximos días</h3>
+            ${proximas.map(cita).join('') || '<p class="text-xs text-slate-500">Sin citas.</p>'}
+          </div>
+        </div>
+      </div>
+      <div class="${card} p-5 space-y-3">
+        <h3 class="font-display font-bold text-sm text-white">Mis compradores</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">${mios.map(b => `<button data-crm-ficha="${b.id}" class="text-left p-3 rounded-xl bg-slate-950/60 border border-slate-800 hover:border-sky-400 transition space-y-1">
+          <div class="flex items-center justify-between gap-2"><span class="text-xs font-bold text-white">${esc(b.nombre)}</span>${b.temp === 'Caliente' ? '🔥' : ''}</div>
+          <div class="flex flex-wrap gap-1">${etapaChip(b.etapa)}${origenChip(b.origen)}</div>
+          <p class="text-[10px] text-slate-500">${esc(b.busca)}</p>
+        </button>`).join('')}</div>
+      </div>
+      <p class="text-[11px] text-slate-500">Cada comercial solo ve lo suyo. Laura le pasa los contactos ya cualificados y el dueño ve el conjunto en su panel.</p>`;
+  }
+
+  // ------------------------------------------------------------------ Portal del propietario que vende
+  const OPINIONES = {
+    i1: [
+      { fecha: '13/10', texto: 'Le gustó mucho la distribución y la luz. Quiere volver con su pareja.', interes: 'Alto' },
+      { fecha: '09/10', texto: 'Le encanta la zona. Le preocupa el coste de reformar la cocina y el baño.', interes: 'Alto' },
+      { fecha: '05/10', texto: 'Buscaba garaje incluido. Descarta la vivienda.', interes: 'Bajo' },
+      { fecha: '02/10', texto: 'Le parece bien de precio para el centro. Está comparando con otra vivienda.', interes: 'Medio' }
+    ],
+    i2: [
+      { fecha: '13/10', texto: 'Les encaja todo. Han presentado una oferta.', interes: 'Alto' },
+      { fecha: '10/10', texto: 'Segunda visita. Dudan con la financiación; les ponemos en contacto con el asesor hipotecario.', interes: 'Alto' },
+      { fecha: '07/10', texto: 'Le pareció algo ruidosa la calle por la noche.', interes: 'Medio' }
+    ],
+    i4: [
+      { fecha: '11/10', texto: 'Le gustó la parcela. Pendiente de comentar con su familia.', interes: 'Medio' },
+      { fecha: '06/10', texto: 'Le encanta. Necesita vender antes su piso; le ayudamos con la valoración.', interes: 'Alto' }
+    ]
+  };
+  const RECOMENDACION = {
+    i1: 'El precio está un 14 % por debajo de la media de la zona y hay mucho interés. Recomendamos mantener el precio: esperamos ofertas en las próximas dos semanas.',
+    i2: 'Hay una oferta firme de 182.000 €. Con dos interesados más, una contraoferta cerca de 186.000 € es razonable.',
+    i4: 'Buen interés para una vivienda de este tipo. Si en tres semanas no hay oferta, valoraríamos ajustar el precio un 3 %.'
+  };
+  const CLAVES_INMUEBLE = [['Villacerrada', 'i1'], ['Rosario', 'i2'], ['Industria', 'i3'], ['Chalet', 'i4'], ['Ático', 'i5'], ['Feria', 'i7'], ['Fátima', 'i8']];
+  const inmuebleDeCita = a => a.comprador ? comp(a.comprador).inmueble : ((CLAVES_INMUEBLE.find(([k]) => a.texto.includes(k)) || [])[1]);
+  const PORTAL = ['p1', 'p2', 'p4'];
+
+  function renderPropietario() {
+    const p = propietarios.find(x => x.id === propietarioVista);
+    const i = inm(p.inmueble);
+    const c = com(i.comercial);
+    const citas = agenda.filter(a => (a.tipo === 'visita' || a.tipo === 'segunda') && inmuebleDeCita(a) === i.id);
+    const proximas = citas.filter(a => !a.hecha && a.dia >= HOY).sort((a, b) => a.dia - b.dia || a.hora.localeCompare(b.hora));
+    const ofertas = compradores.filter(b => b.inmueble === i.id && (b.etapa === 'oferta' || b.etapa === 'arras'));
+    const interesados = compradores.filter(b => b.inmueble === i.id && ['visita', 'visitado', 'duda', 'oferta'].includes(b.etapa)).length;
+    const fases = ['Valoración', 'Encargo firmado', 'Fotos y publicación', 'Visitas', 'Oferta', 'Arras', 'Notaría'];
+    const faseActual = ofertas.some(b => b.etapa === 'arras') ? 5 : ofertas.length ? 4 : 3;
+    const vistasPortal = i.visitas * 46 + i.dias * 9;
+    const nivel = { Alto: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40', Medio: 'bg-amber-500/15 text-amber-300 border-amber-500/40', Bajo: 'bg-slate-700/40 text-slate-300 border-slate-600' };
+
+    $('#crm-propietario').innerHTML = `
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div><p class="text-[11px] font-bold uppercase tracking-wider text-brand-gold">Portal del propietario · lo que ve quien vende su casa con Izon</p>
+        <h3 class="font-display text-xl font-extrabold text-white">Hola, ${esc(p.nombre.replace(' (ejemplo)', ''))} <span class="text-slate-400 font-semibold text-sm">· datos de ejemplo</span></h3></div>
+        <div class="flex flex-wrap gap-1.5">${PORTAL.map(id => { const q = propietarios.find(x => x.id === id); return `<button data-ver-propietario="${id}" class="px-3 py-1.5 rounded-lg text-xs font-bold border ${id === p.id ? 'bg-brand-gold text-slate-950 border-brand-gold' : 'bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800'}">${esc((t => t[0].toUpperCase() + t.slice(1))(inm(q.inmueble).titulo.split('·').pop().trim()))}</button>`; }).join('')}</div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        <div class="lg:col-span-8 ${card} p-5 space-y-4">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div><p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Su vivienda · ref. ${i.ref}</p>
+            <p class="font-display text-lg font-extrabold text-white">${esc(i.titulo)}</p>
+            <p class="text-xs text-slate-400">${i.m2} m² · ${esc(i.zona)} · ${p.estado} · publicada hace ${i.dias} días</p></div>
+            <p class="font-display text-2xl font-extrabold text-brand-gold">${eur(i.precio)}</p>
+          </div>
+          <div>
+            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">En qué punto está la venta</p>
+            <div class="grid grid-cols-7 gap-1">${fases.map((f, k) => `<div class="space-y-1 text-center">
+              <div class="h-2 rounded-full ${k < faseActual ? 'bg-emerald-500' : k === faseActual ? 'bg-brand-gold animate-pulse' : 'bg-slate-800'}"></div>
+              <p class="text-[9px] sm:text-[10px] leading-tight ${k === faseActual ? 'text-brand-gold font-bold' : k < faseActual ? 'text-emerald-300' : 'text-slate-500'}">${f}</p>
+            </div>`).join('')}</div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800"><p class="text-[10px] text-slate-400">Personas que vieron el anuncio</p><p class="font-display text-xl font-extrabold text-white">${miles(vistasPortal)}</p></div>
+            <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800"><p class="text-[10px] text-slate-400">Visitas hechas</p><p class="font-display text-xl font-extrabold text-white">${i.visitas}</p></div>
+            <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800"><p class="text-[10px] text-slate-400">Visitas próximas</p><p class="font-display text-xl font-extrabold text-sky-300">${proximas.length}</p></div>
+            <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800"><p class="text-[10px] text-slate-400">Compradores interesados</p><p class="font-display text-xl font-extrabold text-emerald-300">${Math.max(interesados, i.interesados)}</p></div>
+          </div>
+        </div>
+        <div class="lg:col-span-4 ${card} p-5 space-y-3">
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Su comercial</p>
+          <div class="flex items-center gap-3"><span class="w-11 h-11 rounded-full ${c.color} text-slate-950 font-black flex items-center justify-center">${c.nombre[0]}</span>
+          <div><p class="text-sm font-bold text-white">${c.nombre}</p><p class="text-[11px] text-slate-400">Izon Consulting · responde en el día</p></div></div>
+          <button data-prop-accion="chat" class="w-full px-3 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">💬 Escribir a ${c.nombre}</button>
+          <button data-prop-accion="laura" class="w-full px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs">📞 Llamar (le atiende Laura 24/7)</button>
+          <div class="pt-1 space-y-1.5">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Sus documentos</p>
+            ${['Hoja de encargo firmada', 'Nota simple', 'Certificado energético', 'Informe de valoración'].map(d => `<button data-prop-accion="doc" class="w-full text-left px-3 py-2 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-slate-200 hover:border-slate-600">📄 ${d}</button>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      ${ofertas.length ? `<div class="p-4 rounded-2xl bg-brand-gold/10 border border-brand-gold/40 space-y-2">
+        <p class="text-sm font-extrabold text-brand-gold">🤝 Ofertas recibidas</p>
+        ${ofertas.map(b => `<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+          <div><p class="text-sm font-bold text-white">${b.etapa === 'arras' ? 'Arras firmadas' : 'Oferta de ' + eur(b.oferta)}</p><p class="text-[11px] text-slate-400">Comprador con ${esc(b.pago.toLowerCase())} · ${c.nombre} se la explica por teléfono</p></div>
+          ${b.etapa === 'oferta' ? `<div class="flex flex-wrap gap-1.5">
+            <button data-prop-accion="aceptar" data-oferta="${b.id}" class="px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-[11px]">Aceptar</button>
+            <button data-prop-accion="contra" data-oferta="${b.id}" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-[11px]">Contraoferta</button>
+          </div>` : chip('En curso', 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40')}
+        </div>`).join('')}
+      </div>` : ''}
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="${card} p-5 space-y-2.5">
+          <h3 class="font-display font-bold text-sm text-white">Visitas a su vivienda</h3>
+          ${proximas.map(a => `<div class="p-3 rounded-xl border ${TIPOS[a.tipo].cls} ${a.nuevo ? 'ring-2 ring-amber-400' : ''}"><p class="text-xs font-bold">📅 ${DIAS[a.dia].largo} ${DIAS[a.dia].n} a las ${a.hora} · ${TIPOS[a.tipo].nombre}${a.nuevo ? ' · nueva' : ''}</p><p class="text-[11px] opacity-80">Con ${com(a.comercial).nombre}. Le avisamos si necesita estar o dejar la llave.</p></div>`).join('') || '<p class="text-xs text-slate-500">No hay visitas programadas esta semana.</p>'}
+          <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 pt-2">Qué opinaron los compradores</p>
+          ${(OPINIONES[i.id] || []).map(o => `<div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
+            <div class="flex items-center justify-between gap-2"><span class="text-[11px] text-slate-400">Visita del ${o.fecha} · comprador anónimo</span>${chip('Interés ' + o.interes.toLowerCase(), nivel[o.interes])}</div>
+            <p class="text-xs text-slate-200">${esc(o.texto)}</p>
+          </div>`).join('')}
+        </div>
+        <div class="${card} p-5 space-y-3">
+          <div class="flex items-center justify-between"><h3 class="font-display font-bold text-sm text-white">Informe semanal de Izon</h3>${p.informeHoy ? chip('Nuevo · recibido hoy', 'bg-emerald-500/15 text-emerald-300 border-emerald-500/40') : `<span class="text-[10px] text-slate-500">Recibido hace ${p.ultimoInforme} días</span>`}</div>
+          <p class="text-[11px] text-slate-400 -mt-2">Semana del 5 al 11 de octubre</p>
+          ${barras([{ k: 'Personas que vieron el anuncio', v: Math.round(vistasPortal / 3), label: miles(Math.round(vistasPortal / 3)) }, { k: 'Contactos recibidos', v: Math.round(i.visitas * 1.6) }, { k: 'Visitas', v: Math.max(1, Math.round(i.visitas / 3)) }], 'bg-brand-gold')}
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Su precio frente al mercado</p>
+            <p class="text-sm font-bold ${i.mercado > 0 ? 'text-red-300' : 'text-emerald-300'}">${i.mercado > 0 ? '+' : ''}${i.mercado} % respecto a la media de la zona en Idealista</p>
+          </div>
+          <div class="p-3 rounded-xl bg-brand-blue/10 border border-sky-500/40">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-sky-300">Recomendación de ${c.nombre}</p>
+            <p class="text-xs text-slate-200 mt-1">${esc(RECOMENDACION[i.id] || '')}</p>
+          </div>
+          <button data-prop-accion="pdf" class="w-full px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs">⬇️ Descargar informe en PDF</button>
+        </div>
+      </div>
+      <p class="text-[11px] text-slate-500">El propietario entra con un enlace privado desde el móvil. Ve lo que pasa con su casa sin tener que llamar, y la agencia gana confianza para pedir la exclusiva.</p>`;
+  }
+
+  function accionPropietario(acc, id) {
+    const p = propietarios.find(x => x.id === propietarioVista);
+    const c = com(inm(p.inmueble).comercial);
+    if (acc === 'aceptar' || acc === 'contra') {
+      const b = comp(id);
+      if (acc === 'aceptar') {
+        b.etapa = 'arras';
+        b.historial.unshift({ fecha: '14/10', canal: 'Comercial', texto: `El propietario acepta la oferta de ${eur(b.oferta)} desde su portal. Preparar arras.` });
+        toast(`✅ Oferta aceptada. ${c.nombre} recibe el aviso y prepara el contrato de arras.`);
+      } else {
+        b.historial.unshift({ fecha: '14/10', canal: 'Comercial', texto: 'El propietario pide contraofertar desde su portal (186.000 €).' });
+        toast(`↩️ Contraoferta de 186.000 € enviada a ${c.nombre}, que se la traslada hoy al comprador.`);
+      }
+      render(); return;
+    }
+    const msg = {
+      chat: `💬 Mensaje enviado a ${c.nombre}. Le contestará en el día por WhatsApp.`,
+      laura: '📞 Laura atiende al propietario, resuelve la duda o le pasa la llamada a su comercial.',
+      doc: '📄 Documento abierto (ejemplo).',
+      pdf: '⬇️ Informe en PDF descargado (ejemplo).'
+    };
+    toast(msg[acc] || 'Hecho.');
+  }
+
   // ------------------------------------------------------------------ Eventos
   document.addEventListener('click', e => {
-    const t = e.target.closest('[data-crm-tab],[data-crm-go],[data-crm-duda],[data-crm-ficha],[data-crm-close],[data-crm-wa],[data-crm-paso],[data-crm-enviar],[data-crm-elegir],[data-crm-laura],[data-crm-opinion],[data-crm-informe],[data-agenda-filtro],[data-comp-filtro],[data-conv-filtro],[data-conv]');
+    const t = e.target.closest('[data-crm-tab],[data-crm-go],[data-crm-duda],[data-crm-ficha],[data-crm-close],[data-crm-wa],[data-crm-paso],[data-crm-enviar],[data-crm-elegir],[data-crm-laura],[data-crm-opinion],[data-crm-informe],[data-agenda-filtro],[data-comp-filtro],[data-conv-filtro],[data-conv],[data-crm-rol],[data-ver-comercial],[data-ver-propietario],[data-prop-accion]');
     if (!t || !t.closest('#crm-inmo, #crmDrawer')) return;
     const d = t.dataset;
+    if (d.crmRol) { cambiarRol(d.crmRol); return; }
+    if (d.verComercial) { comercialVista = d.verComercial; render(); return; }
+    if (d.verPropietario) { propietarioVista = d.verPropietario; render(); return; }
+    if (d.propAccion) { accionPropietario(d.propAccion, d.oferta); return; }
     if (d.crmTab) { mostrar(d.crmTab); return; }
     if (d.crmGo) {
       if (d.crmGo === 'compradores') filtroComp = d.filtro || null;
@@ -753,7 +990,8 @@
       const p = propietarios.find(x => x.id === d.crmInforme);
       const i = inm(p.inmueble);
       p.ultimoInforme = 0;
-      toast(`📨 Informe enviado: «Esta semana su vivienda tuvo ${Math.max(1, Math.round(i.visitas / 3))} visitas y ${i.interesados} interesados. Opiniones y próximos pasos dentro».`);
+      p.informeHoy = true;
+      toast(`📨 Informe enviado: «Esta semana su vivienda tuvo ${Math.max(1, Math.round(i.visitas / 3))} visitas y ${i.interesados} interesados. Opiniones y próximos pasos dentro». También aparece en su portal.`);
       render(); return;
     }
     if (d.agendaFiltro) { filtroAgenda = d.agendaFiltro; render(); return; }
@@ -779,7 +1017,7 @@
     // El panel lateral y el aviso cuelgan del body para quedar por encima de la barra fija.
     document.body.appendChild($('#crmDrawer'));
     document.body.appendChild($('#crmToast'));
-    mostrar('panel');
+    cambiarRol('dueno');
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

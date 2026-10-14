@@ -752,7 +752,7 @@
         Todo su equipo comercial en una sola pantalla
       </h2>
       <p class="text-slate-300 text-sm sm:text-base mt-2">
-        Cada llamada que atiende Laura, cada WhatsApp y cada consulta de Idealista o Fotocasa entra aquí con su comercial asignado. Usted ve lo que está agendado, quién está pendiente de visita, qué compradores están en duda y cómo trabaja cada comercial, sin tener que preguntar.
+        Cada llamada que atiende Laura, cada WhatsApp y cada consulta de Idealista o Fotocasa entra aquí con su comercial asignado. Usted ve lo que está agendado, quién está pendiente de visita, qué compradores están en duda y cómo trabaja cada comercial, sin tener que preguntar. Cada comercial tiene su «Mi día» con lo que debe hacer, y el propietario que vende con Izon sigue desde su móvil las visitas, las opiniones y el informe semanal de su casa.
       </p>
     </div>
 
@@ -763,8 +763,18 @@
       <span class="self-start sm:self-auto text-[11px] font-semibold px-3 py-1.5 rounded-full bg-white/5 border border-white/15 text-slate-300">Datos de ejemplo · importes orientativos</span>
     </div>
 
-    <!-- NAVEGACIÓN DEL CRM -->
-    <nav class="glass-panel rounded-2xl p-1.5 flex gap-1 overflow-x-auto" aria-label="Secciones del CRM">
+    <!-- SELECTOR DE ROL: el mismo CRM visto por el dueño, un comercial o el propietario que vende -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+      <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 shrink-0">Ver como:</span>
+      <div class="glass-panel rounded-2xl p-1.5 flex gap-1 overflow-x-auto" role="group" aria-label="Rol">
+        <button data-crm-rol="dueno" class="shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold">🏢 Dueño</button>
+        <button data-crm-rol="comercial" class="shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold">💼 Comercial</button>
+        <button data-crm-rol="propietario" class="shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold">🏠 Propietario que vende</button>
+      </div>
+    </div>
+
+    <!-- NAVEGACIÓN DEL CRM (vista del dueño) -->
+    <nav id="crmNavDueno" class="glass-panel rounded-2xl p-1.5 flex gap-1 overflow-x-auto" aria-label="Secciones del CRM">
       <button data-crm-tab="panel" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>📊</span>Panel del dueño <span id="crmBadgeAlertas" class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-400 text-slate-950">0</span></button>
       <button data-crm-tab="agenda" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>📅</span>Agenda del equipo</button>
       <button data-crm-tab="compradores" class="crm-tab shrink-0 px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5"><span>🔑</span>Compradores <span id="crmBadgeCompradores" class="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-700 text-slate-200">0</span></button>
@@ -779,6 +789,8 @@
     <div id="crm-conversaciones" class="crm-pane hidden space-y-4"></div>
     <div id="crm-equipo" class="crm-pane hidden space-y-4"></div>
     <div id="crm-propietarios" class="crm-pane hidden space-y-4"></div>
+    <div id="crm-comercial" class="crm-pane hidden space-y-4"></div>
+    <div id="crm-propietario" class="crm-pane hidden space-y-4"></div>
 
     <!-- FICHA DEL COMPRADOR (panel lateral) -->
     <div id="crmDrawer" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-labelledby="crmDrawerTitle">
