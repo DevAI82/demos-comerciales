@@ -8,7 +8,7 @@
     "role": "client"
   },
   {
-    "text": "Lamento mucho el dolor, Carlos. Al tratarse de una inflamación aguda le doy prioridad inmediata de urgencia. Tenemos hueco mañana a las 10:00 con el doctor Martínez en nuestra clínica de calle Dionisio Guardiola, 2. ¿Le reservo esa hora?",
+    "text": "Lamento mucho el dolor, Carlos. Al tratarse de una inflamación aguda le doy prioridad inmediata de urgencia. Tenemos hueco mañana a las 10:00 en nuestra clínica de calle Dionisio Guardiola, 2. ¿Le reservo esa hora?",
     "role": "agent"
   },
   {
@@ -24,11 +24,11 @@
     "role": "agent"
   },
   {
-    "text": "Hola, he visto en vuestra web que la primera revisión y la radiografía son gratuitas, ¿es así?",
+    "text": "Hola, he visto vuestra web y quería pedir una primera cita para una revisión, ¿cómo lo hago?",
     "role": "client"
   },
   {
-    "text": "¡Exactamente, Elena! Nuestra primera consulta incluye diagnóstico completo por especialista y radiografía digital 100% gratuita y sin compromiso. ¿Prefiere venir por la mañana o por la tarde?",
+    "text": "¡Claro, Elena! En la primera visita el equipo le hace una revisión completa y le explica las opciones. ¿Prefiere venir por la mañana o por la tarde?",
     "role": "agent"
   },
   {
@@ -36,7 +36,7 @@
     "role": "client"
   },
   {
-    "text": "Perfecto. Le puedo agendar este jueves a las 17:30 con la doctora Sánchez. ¿Le viene bien?",
+    "text": "Perfecto. Le puedo agendar este jueves a las 17:30. ¿Le viene bien?",
     "role": "agent"
   },
   {
@@ -56,7 +56,7 @@
     "role": "client"
   },
   {
-    "text": "Sí, Laura. Somos especialistas en ortodoncia invisible con alineadores transparentes. Además disponemos de financiación a medida hasta 36 meses sin intereses. El primer paso es un estudio 3D gratuito para valorar tu caso. ¿Te gustaría venir a informarte este viernes a las 12:00?",
+    "text": "Sí, Laura. Somos especialistas en ortodoncia invisible con alineadores transparentes. En la clínica te explican las opciones de pago. El primer paso es una cita de valoración para estudiar tu caso. ¿Te gustaría venir a informarte este viernes a las 12:00?",
     "role": "agent"
   },
   {
@@ -68,15 +68,15 @@
     "role": "agent"
   },
   {
-    "text": "Al tratarse de dolor dental agudo le asignamos máxima prioridad de urgencia. Disponemos de hueco hoy mismo en nuestra clínica de calle Dionisio Guardiola, 2. ¿Desea que le reserve cita de inmediato con el doctor de guardia?",
+    "text": "Al tratarse de dolor dental agudo le asignamos máxima prioridad de urgencia. Aviso ahora mismo al equipo de la clínica de calle Dionisio Guardiola, 2 para darle la primera hora disponible. ¿Me indica su nombre y un teléfono móvil?",
     "role": "agent"
   },
   {
-    "text": "Nuestra primera consulta incluye diagnóstico completo por especialista y radiografía digital 100% gratuita y sin compromiso. ¿Prefiere que le reservemos hueco por la mañana o por la tarde?",
+    "text": "En la primera visita el equipo le hace una revisión completa y le explica las opciones de tratamiento. ¿Prefiere que le reservemos hueco por la mañana o por la tarde?",
     "role": "agent"
   },
   {
-    "text": "En Sonrisastar somos especialistas en ortodoncia invisible con alineadores transparentes. Contamos con financiación a su medida de hasta 36 meses sin intereses y el estudio 3D inicial es gratuito. ¿Le reservamos cita para informarse?",
+    "text": "En Sonrisastar somos especialistas en ortodoncia invisible con alineadores transparentes. En la clínica le explican las opciones de pago en una cita de valoración. ¿Le reservamos cita para informarse?",
     "role": "agent"
   },
   {
@@ -85,10 +85,6 @@
   },
   {
     "text": "🚨 Urgencia con Dolor Agudo",
-    "role": "agent"
-  },
-  {
-    "text": "💎 1ª Revisión & Radiografía Gratis",
     "role": "agent"
   },
   {
