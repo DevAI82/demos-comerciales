@@ -20,7 +20,7 @@ Se crea en ElevenLabs → **Agents** (Conversational AI) → *Create agent* → 
 |---|---|
 | Nombre | `Sofía · Sonrisastar (demo Altera)` |
 | Idioma | Español (`es`) |
-| Voz | **Laura** (o la voz femenina de español de España que elijas). Usa el mismo voice_id en `ELEVENLABS_VOICE_SONRISASTAR_AGENT` para que la llamada de ejemplo suene igual |
+| Voz | **Laura - Customer service** (`uQw4jpKzMLrZuo0RLPS9`, español de España) |
 | Modelo de voz | Flash / Turbo v2.5 (baja latencia) |
 | LLM | El rápido por defecto de ElevenLabs |
 | Duración máxima de llamada | **180 s** (es una demo; limita el gasto) |
@@ -96,13 +96,7 @@ cómo llegar y aparcar. Mejor 1 página con datos reales que 10 con texto genér
    abajo a la izquierda, el botón de llamada de ElevenLabs.
 4. Pruébalo desde un iPhone y un Android con datos móviles (no solo wifi) antes de enviar el enlace.
 
-## 4. La llamada de ejemplo (sin micrófono)
+## 4. Sin llamada simulada
 
-La simulación guionizada de la misma pestaña sigue disponible para quien no quiera hablar. Para que suene con la voz
-de ElevenLabs y no con la del móvil, genera los audios en tu ordenador:
-
-```bash
-cp .env.example .env   # ELEVENLABS_API_KEY y ELEVENLABS_VOICE_SONRISASTAR_AGENT
-node scripts/voices.mjs generate sonrisastar
-git add sonrisastar/audio && git commit -m "Voces Sonrisastar" && git push
-```
+La demo ya no tiene la llamada guionizada con la voz del navegador (sonaba robótica y confundía tener dos sitios
+para llamar). La pestaña **"2. Voz IA 24/7"** solo muestra a Sofía en directo, con ideas de frases para probarla.

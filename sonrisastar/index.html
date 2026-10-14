@@ -66,14 +66,6 @@
       backdrop-filter: blur(14px);
       border: 1px solid rgba(226, 232, 240, 0.9);
     }
-    .wave-bar {
-      animation: wave 1.2s ease-in-out infinite alternate;
-    }
-    @keyframes wave {
-      0% { height: 15%; }
-      50% { height: 95%; }
-      100% { height: 35%; }
-    }
     .custom-scroll::-webkit-scrollbar {
       width: 5px;
     }
@@ -82,8 +74,6 @@
       border-radius: 4px;
     }
   </style>
-  <!-- Motor de voz Altera: audios pregenerados + desbloqueo móvil + modo dev (.env) -->
-  <script src="../shared/altera-voice.js"></script>
   <script src="../shared/altera-config.js"></script>
   <script src="../shared/altera-convai.js" defer></script>
   <script src="../shared/altera-cta.js" defer></script>
@@ -373,215 +363,59 @@
         </div>
       </div>
 
-      <!-- AGENTE EN DIRECTO (solo visible si hay agent_id de ElevenLabs en shared/altera-config.js) -->
-      <div data-convai-only class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-pink-50 border-2 border-emerald-300 flex items-start gap-3 shadow-sm">
-        <span class="text-2xl leading-none">🎙️</span>
-        <div class="text-sm text-slate-800 space-y-1">
-          <strong class="block text-base text-slate-900">Habla ahora en directo con Sofía</strong>
-          <p>Pulsa el botón de llamada de Sofía (abajo a la izquierda), permite el micrófono y pídele una cita, cuéntale una urgencia o pregúntale por la ortodoncia invisible. Es la misma voz que atendería el 967 116 136.</p>
-          <p class="text-xs text-slate-500">¿Sin micrófono a mano? Escucha abajo una llamada de ejemplo.</p>
+      <!-- AGENTE EN DIRECTO (ElevenLabs Conversational AI · agent_id en shared/altera-config.js) -->
+      <div data-convai-only class="p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-pink-50 via-white to-emerald-50 border-2 border-brand-magenta/40 shadow-sm space-y-5">
+        <div class="flex items-start gap-4">
+          <img src="logo-sonrisa.png" alt="Sonrisastar" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-contain border-2 border-brand-magenta bg-white p-1.5 shadow shrink-0">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Sofía está disponible ahora
+            </span>
+            <h2 class="text-xl sm:text-2xl font-display font-extrabold text-slate-900 mt-0.5">Llama a Sofía y compruébalo tú mismo</h2>
+            <p class="text-sm text-slate-600 mt-1">Es una conversación real, no una grabación: Sofía te escucha y te responde con su voz. Es la misma voz que atendería el 967 116 136.</p>
+          </div>
+        </div>
+
+        <ol class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+          <li class="p-3.5 rounded-2xl bg-white border border-slate-200 flex gap-3 items-start">
+            <span class="w-7 h-7 rounded-full bg-brand-magenta text-white font-bold flex items-center justify-center shrink-0">1</span>
+            <span>Pulsa <strong>"Llamar a Sofía"</strong>, abajo a la izquierda de la pantalla.</span>
+          </li>
+          <li class="p-3.5 rounded-2xl bg-white border border-slate-200 flex gap-3 items-start">
+            <span class="w-7 h-7 rounded-full bg-brand-magenta text-white font-bold flex items-center justify-center shrink-0">2</span>
+            <span>Acepta el aviso y <strong>permite el micrófono</strong>.</span>
+          </li>
+          <li class="p-3.5 rounded-2xl bg-white border border-slate-200 flex gap-3 items-start">
+            <span class="w-7 h-7 rounded-full bg-brand-magenta text-white font-bold flex items-center justify-center shrink-0">3</span>
+            <span>Habla como si fueras un paciente. Puedes interrumpirla, como en una llamada normal.</span>
+          </li>
+        </ol>
+
+        <div>
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Ideas para ponerla a prueba</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <div class="p-3 rounded-xl border border-rose-200 bg-rose-50/70 text-rose-950"><strong class="block text-xs text-rose-700">🚨 Urgencia</strong>"Me duele mucho una muela y se me está hinchando la cara."</div>
+            <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/70 text-emerald-950"><strong class="block text-xs text-emerald-700">📅 Primera visita</strong>"Quiero pedir cita para una revisión, mejor por la tarde."</div>
+            <div class="p-3 rounded-xl border border-sky-200 bg-sky-50/70 text-sky-950"><strong class="block text-xs text-sky-700">🦷 Ortodoncia invisible</strong>"¿Hacéis ortodoncia invisible? ¿Se puede pagar a plazos?"</div>
+            <div class="p-3 rounded-xl border border-purple-200 bg-purple-50/70 text-purple-950"><strong class="block text-xs text-purple-700">💬 Pillarla</strong>"¿Cuánto cuesta un implante?" (no da precios cerrados: te invita a una valoración)</div>
+          </div>
         </div>
       </div>
 
-      <!-- GRID SIMULADOR LLAMADA -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
-        <!-- COLUMNA IZQUIERDA: TELÉFONO INTERACTIVO (5 COLS) -->
-        <div class="lg:col-span-5 bg-slate-950 rounded-3xl p-6 text-white shadow-2xl border border-slate-800 flex flex-col justify-between min-h-[580px]">
-          
-          <!-- Top Status Bar -->
-          <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-3">
-            <div class="flex items-center gap-1.5 font-mono">
-              <span>📶 5G</span>
-              <span>HD Voice</span>
-            </div>
-            <span class="font-mono text-emerald-400">10:45 AM</span>
-            <div class="flex items-center gap-1">
-              <span>99%</span>
-              <span>🔋</span>
-            </div>
-          </div>
+      <!-- Si la demo no tiene agente en directo configurado -->
+      <div data-convai-fallback class="p-5 rounded-2xl bg-white border border-slate-200 text-sm text-slate-700">
+        La recepcionista de voz en directo se activa para cada clínica. Pídenos por WhatsApp una llamada de prueba con tu propio nombre de clínica.
+      </div>
 
-          <!-- Call Screen Center -->
-          <div class="text-center py-6 space-y-4">
-            <div class="relative w-28 h-28 mx-auto">
-              <div id="callAvatarRing" class="absolute inset-0 rounded-full bg-brand-magenta/30 scale-100 transition-transform duration-500"></div>
-              <img src="logo-sonrisa.png" alt="Sonrisastar" class="relative z-10 w-28 h-28 rounded-full object-contain border-2 border-brand-magenta shadow-xl bg-white p-2">
-            </div>
-
-            <div>
-              <h2 class="text-xl font-bold font-display text-white tracking-wide">CLÍNICA SONRISA STAR</h2>
-              <p class="text-xs text-slate-400 font-medium">Llamada entrante: 967 116 136</p>
-              <p id="callStatusText" class="text-xs font-semibold text-emerald-400 mt-1 uppercase tracking-wider">Listo para simular llamada</p>
-            </div>
-
-            <!-- Waveform Animation -->
-            <div id="waveformHolder" class="h-12 flex items-center justify-center gap-1.5 opacity-20 transition-opacity">
-              <span class="w-1.5 bg-brand-magenta rounded-full wave-bar" style="animation-delay: 0.1s; height: 30%"></span>
-              <span class="w-1.5 bg-brand-magenta rounded-full wave-bar" style="animation-delay: 0.3s; height: 60%"></span>
-              <span class="w-1.5 bg-pink-400 rounded-full wave-bar" style="animation-delay: 0.2s; height: 90%"></span>
-              <span class="w-1.5 bg-brand-magenta rounded-full wave-bar" style="animation-delay: 0.4s; height: 40%"></span>
-              <span class="w-1.5 bg-pink-400 rounded-full wave-bar" style="animation-delay: 0.15s; height: 80%"></span>
-              <span class="w-1.5 bg-brand-magenta rounded-full wave-bar" style="animation-delay: 0.25s; height: 50%"></span>
-              <span class="w-1.5 bg-pink-400 rounded-full wave-bar" style="animation-delay: 0.35s; height: 70%"></span>
-            </div>
-
-            <p id="callTimer" class="font-mono text-sm text-slate-400">00:00</p>
-          </div>
-
-          <!-- Botones de Acción de Llamada -->
-          <div class="space-y-3 pt-4 border-t border-slate-800">
-            <div class="flex items-center justify-center gap-3">
-              <button id="btnStartCall" onclick="startCallSimulation()" class="w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/40 transition flex items-center justify-center gap-2 cursor-pointer">
-                <span>📞</span> <span>Llamar al Recepcionista IA</span>
-              </button>
-              <button id="btnEndCall" onclick="endCallSimulation()" class="hidden w-full py-3.5 px-6 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm shadow-lg shadow-rose-900/40 transition flex items-center justify-center gap-2 cursor-pointer">
-                <span>📵</span> <span>Colgar Llamada</span>
-              </button>
-            </div>
-
-            <!-- Audio TTS Toggle & Status -->
-            <div class="flex items-center justify-between text-xs text-slate-400 px-1">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" id="toggleSpeech" checked class="rounded accent-brand-magenta">
-                <span>Voz hablada activa</span>
-              </label>
-              <span id="elevenBadgeStatus" class="text-[11px] font-semibold bg-pink-950 text-pink-300 border border-pink-700/40 px-2 py-0.5 rounded">✨ ElevenLabs HD (Sofía)</span>
-            </div>
-
-            <!-- BOTÓN Y PANEL CONFIGURACIÓN ELEVENLABS (solo en localhost o con ?dev) -->
-            <div data-altera-dev class="pt-2 border-t border-slate-800/80">
-              <div class="flex items-center justify-between text-[11px]">
-                <span class="text-slate-400 font-medium">Motor de Voz:</span>
-                <button type="button" onclick="toggleElevenConfigDental()" class="text-brand-magenta hover:text-pink-300 font-bold underline cursor-pointer">
-                  ⚙️ Configurar ElevenLabs
-                </button>
-              </div>
-
-              <!-- PANEL DESPLEGABLE ELEVENLABS -->
-              <div id="elevenConfigPanelDental" class="hidden mt-2 p-3 rounded-xl bg-slate-900 border border-brand-magenta/40 space-y-2 text-left">
-                <div class="flex items-center justify-between">
-                  <span class="text-[11px] font-bold text-pink-300">ElevenLabs API Key</span>
-                  <span class="text-[9px] text-slate-400">Voz humana ultra-realista</span>
-                </div>
-                <div class="flex gap-1.5 items-center">
-                  <input type="password" id="elevenApiKeyInput" placeholder="Pega tu clave (sk_... o xi-api-key)" class="flex-1 bg-slate-950 text-white border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-brand-magenta focus:outline-none font-mono">
-                  <button type="button" onclick="saveAndTestElevenDental()" class="bg-brand-magenta hover:bg-brand-magentadark text-white font-bold text-xs px-3 py-1.5 rounded-lg transition whitespace-nowrap cursor-pointer">
-                    Conectar
-                  </button>
-                </div>
-                <div class="flex items-center justify-between gap-2 pt-1">
-                  <button type="button" onclick="testElevenVoiceDental()" class="bg-slate-800 hover:bg-slate-700 text-pink-300 border border-pink-500/30 text-[11px] px-2.5 py-1 rounded-lg transition font-semibold flex items-center gap-1 cursor-pointer">
-                    <span>🔊</span> <span>Probar Voz Sofía</span>
-                  </button>
-                  <a href="https://elevenlabs.io" target="_blank" class="text-[10px] text-sky-400 hover:underline">
-                    Crear cuenta gratis &rarr;
-                  </a>
-                </div>
-                <div id="elevenStatusMsg" class="text-[10px] text-slate-400 p-2 rounded bg-slate-950 border border-slate-800 break-words leading-relaxed">
-                  Introduce tu clave API de ElevenLabs para activar la voz de estudio de Sofía. Si no dispones de clave, la demo utilizará automáticamente la voz española del navegador de alta calidad.
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- QUÉ PASA DESPUÉS DE LA LLAMADA -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <span class="text-xs font-bold text-slate-800 uppercase tracking-wider block">Y cuando cuelga el paciente… (en la versión para tu clínica)</span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-slate-900">📋 Petición en el CRM</strong>Nombre, móvil, motivo y preferencia de horario, sin que nadie tome notas.</div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-slate-900">💬 WhatsApp al paciente</strong>Confirmación con la dirección y el enlace a Google Maps.</div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200"><strong class="block text-slate-900">🚨 Aviso de urgencias</strong>Si hay dolor o inflamación, el equipo recibe un aviso para darle la primera hora libre.</div>
         </div>
-
-        <!-- COLUMNA DERECHA: TRANSCRIPCIÓN EN VIVO & ESCENARIOS (7 COLS) -->
-        <div class="lg:col-span-7 space-y-4">
-          
-          <!-- Selector de Escenarios -->
-          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2">Selecciona un escenario clínico de prueba:</span>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <button onclick="selectCallScenario(0)" id="scen-0" class="scenario-btn p-2.5 rounded-xl border-2 border-brand-magenta bg-pink-50/80 text-left text-xs font-semibold text-slate-900 transition">
-                <span class="block text-brand-magenta font-bold">Caso 1: Urgencia con Dolor</span>
-                <span class="text-[11px] text-slate-600 font-normal">Flemón · Prioridad urgente</span>
-              </button>
-              <button onclick="selectCallScenario(1)" id="scen-1" class="scenario-btn p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 text-left text-xs font-semibold text-slate-700 transition">
-                <span class="block text-slate-900 font-bold">Caso 2: Primera Visita</span>
-                <span class="text-[11px] text-slate-500 font-normal">Paciente nuevo · Revisión</span>
-              </button>
-              <button onclick="selectCallScenario(2)" id="scen-2" class="scenario-btn p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 text-left text-xs font-semibold text-slate-700 transition">
-                <span class="block text-slate-900 font-bold">Caso 3: Ortodoncia</span>
-                <span class="text-[11px] text-slate-500 font-normal">Invisible & Financiación</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Caja de Transcripción -->
-          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-3">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div class="flex items-center gap-2">
-                <span class="text-sm font-bold text-slate-900">Transcripción en Tiempo Real</span>
-                <span id="transcriptionBadge" class="text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full">En espera</span>
-              </div>
-              <span class="text-xs text-slate-400 font-mono">ElevenLabs + Supabase Sync</span>
-            </div>
-
-            <div id="transcriptBox" class="space-y-3 min-h-[260px] max-h-[320px] overflow-y-auto custom-scroll pr-2 text-xs sm:text-sm">
-              <p class="text-slate-400 italic text-center py-12">
-                Pulsa en <strong>"Llamar al Recepcionista IA"</strong> para iniciar la conversación en tiempo real.
-              </p>
-            </div>
-          </div>
-
-          <!-- Tarjeta de Confirmación de Cita Generada -->
-          <div id="callResultCard" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-slate-800 space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-emerald-900 uppercase flex items-center gap-1.5">
-                <span>✅</span> <span>Cita Registrada en CRM & WhatsApp Enviado</span>
-              </span>
-              <span class="text-[11px] font-mono text-emerald-700" id="callResultTime">10:46 AM</span>
-            </div>
-            <p class="text-xs text-slate-700" id="callResultDetails">
-              Paciente: <strong>Carlos Ruiz</strong> · Cita: <strong>Mañana a las 10:00h</strong> (Urgencias Gabinete 1). WhatsApp con ubicación Google Maps enviado al +34 654 321 098.
-            </p>
-          </div>
-
-          <!-- Consultas Rápidas Directas a Sofía -->
-          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-                <span>⚡</span> <span>Preguntas Rápidas a Sofía (Prueba Directa)</span>
-              </span>
-              <span class="text-[10px] text-brand-magenta font-semibold">Toca una pregunta para escuchar</span>
-            </div>
-            <p class="text-[11px] text-slate-500">
-              Pulsa cualquier botón para escuchar cómo la recepcionista IA responde preguntas frecuentes de la clínica de forma instantánea:
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-              <button type="button" onclick="askSofíaQuick('urgencia')" class="p-2.5 rounded-xl border border-rose-200 bg-rose-50/70 hover:bg-rose-100 text-left text-xs font-semibold text-rose-900 transition flex items-center gap-2 cursor-pointer shadow-2xs">
-                <span class="text-base">🚨</span>
-                <div>
-                  <span class="block font-bold">Urgencia con Dolor</span>
-                  <span class="text-[10px] text-rose-700 font-normal">Flemón / Muela infectada</span>
-                </div>
-              </button>
-              <button type="button" onclick="askSofíaQuick('revision')" class="p-2.5 rounded-xl border border-emerald-200 bg-emerald-50/70 hover:bg-emerald-100 text-left text-xs font-semibold text-emerald-900 transition flex items-center gap-2 cursor-pointer shadow-2xs">
-                <span class="text-base">💎</span>
-                <div>
-                  <span class="block font-bold">Primera Visita</span>
-                  <span class="text-[10px] text-emerald-700 font-normal">Paciente nuevo · Revisión</span>
-                </div>
-              </button>
-              <button type="button" onclick="askSofíaQuick('ortodoncia')" class="p-2.5 rounded-xl border border-sky-200 bg-sky-50/70 hover:bg-sky-100 text-left text-xs font-semibold text-sky-900 transition flex items-center gap-2 cursor-pointer shadow-2xs">
-                <span class="text-base">🦷</span>
-                <div>
-                  <span class="block font-bold">Ortodoncia Invisible</span>
-                  <span class="text-[10px] text-sky-700 font-normal">Alineadores · Facilidades de pago</span>
-                </div>
-              </button>
-              <button type="button" onclick="askSofíaQuick('donde')" class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/70 hover:bg-purple-100 text-left text-xs font-semibold text-purple-900 transition flex items-center gap-2 cursor-pointer shadow-2xs">
-                <span class="text-base">📍</span>
-                <div>
-                  <span class="block font-bold">Ubicación & Horarios</span>
-                  <span class="text-[10px] text-purple-700 font-normal">c/ Dionisio Guardiola, 2</span>
-                </div>
-              </button>
-            </div>
-          </div>
-
-        </div>
+        <p class="text-[11px] text-slate-500">En esta demo Sofía no está conectada a vuestra agenda real, así que no reserva huecos de verdad.</p>
       </div>
     </section>
 
@@ -1156,473 +990,6 @@
       closeAppointmentModal();
       switchView('crm');
     }
-
-    // -------------------------------------------------------------
-    // SIMULADOR DE LLAMADA TELEFÓNICA (ELEVENLABS + SINTETIZADOR RESILIENTE)
-    // -------------------------------------------------------------
-    let currentScenario = 0;
-    let callTimerInterval = null;
-    let callSeconds = 0;
-    let isCalling = false;
-    let currentElevenAudioDental = null;
-    let currentUtteranceDental = null;
-
-    const callScenarios = [
-      {
-        title: "Caso 1: Urgencia con Dolor Agudo (Flemón)",
-        patient: "Carlos Ruiz",
-        dialogue: [
-          { speaker: "IA", text: "Buenos días, Clínica Dental Sonrisastar. Le atiende Sofía, asistente virtual de la clínica. ¿Desea pedir una cita o tiene alguna urgencia dental?" },
-          { speaker: "Paciente", text: "Hola Sofía, mira, tengo un dolor terrible en una muela del lado izquierdo y se me está hinchando la cara. ¿Tenéis algún hueco hoy o mañana a primera hora?" },
-          { speaker: "IA", text: "Lamento mucho el dolor, Carlos. Al tratarse de una inflamación aguda le doy prioridad inmediata de urgencia. Tenemos hueco mañana a las 10:00 en nuestra clínica de calle Dionisio Guardiola, 2. ¿Le reservo esa hora?" },
-          { speaker: "Paciente", text: "Sí, por favor, a las 10:00 me viene perfecto. Muchas gracias." },
-          { speaker: "IA", text: "Queda reservado Carlos: mañana a las 10:00 en Gabinete 1. Le acabo de enviar un WhatsApp de confirmación con la ubicación en Google Maps y pautas para el dolor. Si empeora antes, no dude en volver a llamarnos. ¡Hasta mañana!" }
-        ],
-        result: "Paciente: Carlos Ruiz · Cita: Mañana a las 10:00h (Urgencias Gabinete 1). WhatsApp con ubicación Google Maps enviado al +34 654 321 098."
-      },
-      {
-        title: "Caso 2: Primera Visita de Paciente Nuevo",
-        patient: "Elena Navarro",
-        dialogue: [
-          { speaker: "IA", text: "Buenos días, Clínica Dental Sonrisastar. Le atiende Sofía, asistente virtual de la clínica. ¿En qué puedo ayudarle?" },
-          { speaker: "Paciente", text: "Hola, he visto vuestra web y quería pedir una primera cita para una revisión, ¿cómo lo hago?" },
-          { speaker: "IA", text: "¡Claro, Elena! En la primera visita el equipo le hace una revisión completa y le explica las opciones. ¿Prefiere venir por la mañana o por la tarde?" },
-          { speaker: "Paciente", text: "Prefiero por la tarde, a partir de las cinco." },
-          { speaker: "IA", text: "Perfecto. Le puedo agendar este jueves a las 17:30. ¿Le viene bien?" },
-          { speaker: "Paciente", text: "Genial, anótame el jueves a las cinco y media." },
-          { speaker: "IA", text: "¡Estupendo! Cita confirmada para este jueves a las 17:30. Le envío los detalles por WhatsApp ahora mismo. ¡Que tenga un buen día!" }
-        ],
-        result: "Paciente: Elena Navarro · Cita: Jueves a las 17:30h (Primera visita · Revisión). Confirmación enviada a su móvil."
-      },
-      {
-        title: "Caso 3: Consulta Ortodoncia Invisible & Financiación",
-        patient: "Laura Gómez",
-        dialogue: [
-          { speaker: "IA", text: "Buenos días, Clínica Dental Sonrisastar. Le atiende Sofía. ¿Desea información sobre algún tratamiento o agendar visita?" },
-          { speaker: "Paciente", text: "Hola, quería saber si hacéis ortodoncia invisible y cómo funciona el tema del pago a plazos." },
-          { speaker: "IA", text: "Sí, Laura. Somos especialistas en ortodoncia invisible con alineadores transparentes. En la clínica te explican las opciones de pago. El primer paso es una cita de valoración para estudiar tu caso. ¿Te gustaría venir a informarte este viernes a las 12:00?" },
-          { speaker: "Paciente", text: "Sí, me parece estupendo, apúntame." },
-          { speaker: "IA", text: "Hecho, Laura. Cita para estudio de ortodoncia el viernes a las 12:00. Te mando la confirmación y guía por WhatsApp. ¡Te esperamos en calle Dionisio Guardiola!" }
-        ],
-        result: "Paciente: Laura Gómez · Cita: Viernes 12:00h (Estudio Ortodoncia 3D). Financiación informada."
-      }
-    ];
-
-    function selectCallScenario(idx) {
-      if (isCalling) endCallSimulation();
-      currentScenario = idx;
-      document.querySelectorAll('.scenario-btn').forEach((btn, i) => {
-        if (i === idx) {
-          btn.classList.add('border-2', 'border-brand-magenta', 'bg-pink-50/80');
-          btn.classList.remove('border', 'border-slate-200');
-        } else {
-          btn.classList.remove('border-2', 'border-brand-magenta', 'bg-pink-50/80');
-          btn.classList.add('border', 'border-slate-200');
-        }
-      });
-      document.getElementById('transcriptBox').innerHTML = `<p class="text-slate-400 italic text-center py-12">Escenario cargado: <strong>${callScenarios[idx].title}</strong>.<br>Pulsa en <strong>"Llamar al Recepcionista IA"</strong> para iniciar.</p>`;
-      document.getElementById('callResultCard').classList.add('hidden');
-    }
-
-    // --- CONFIGURACIÓN & ESTADO ELEVENLABS ---
-    function checkElevenLabsStatusDental() {
-      // Sin claves por URL (?key=...): acabarían en historiales y previsualizaciones de WhatsApp.
-      // En local se cargan del .env con scripts/dev-server.mjs.
-
-      const apiKey = localStorage.getItem('elevenlabs_api_key');
-      const badge = document.getElementById('elevenBadgeStatus');
-      const msg = document.getElementById('elevenStatusMsg');
-      const input = document.getElementById('elevenApiKeyInput');
-      if (input && apiKey) input.value = apiKey;
-
-      if (apiKey && apiKey.trim().length > 10) {
-        if (badge) {
-          badge.textContent = "✨ ElevenLabs HD (Sofía) Conectado";
-          badge.className = "text-[11px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded";
-        }
-        if (msg) {
-          msg.innerHTML = "✅ <strong>ElevenLabs Conectado:</strong> La llamada reproducirá la voz de alta fidelidad de <strong>Sofía</strong> en tiempo real con latencia ultra-baja.";
-          msg.className = "text-[10px] text-emerald-300 p-2 rounded bg-emerald-950/60 border border-emerald-800/80 block";
-        }
-      } else if (window.AlteraVoice && !window.AlteraVoice.devMode) {
-        // Vista del cliente: sin avisos técnicos (la voz sale de los audios pregenerados si existen)
-        if (badge) badge.textContent = "✨ Voz IA · Sofía";
-      } else {
-        if (badge) {
-          badge.textContent = "🔊 Voz del Navegador (Sofía)";
-          badge.className = "text-[11px] font-semibold bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded";
-        }
-        if (msg) {
-          msg.innerHTML = "💡 <em>Voz estándar del navegador activa.</em> Para escuchar a <strong>Sofía con audio humano HD (ElevenLabs)</strong>, pega tu API Key arriba y pulsa <em>Conectar</em>. Si no tienes una, créala gratis en elevenlabs.io.";
-          msg.className = "text-[10px] text-slate-400 p-2 rounded bg-slate-900 border border-slate-800 block";
-        }
-      }
-    }
-
-    function toggleElevenConfigDental() {
-      const panel = document.getElementById('elevenConfigPanelDental');
-      if (panel) panel.classList.toggle('hidden');
-    }
-
-    async function saveAndTestElevenDental() {
-      const input = document.getElementById('elevenApiKeyInput');
-      const msg = document.getElementById('elevenStatusMsg');
-      if (!input) return;
-      const val = input.value.trim().replace(/^xi-api-key[:\s=]+/i, '');
-      if (!val) {
-        localStorage.removeItem('elevenlabs_api_key');
-        checkElevenLabsStatusDental();
-        return;
-      }
-      localStorage.setItem('elevenlabs_api_key', val);
-      if (msg) msg.innerHTML = "⏳ Verificando clave con ElevenLabs...";
-
-      try {
-        const res = await fetch('https://api.elevenlabs.io/v1/voices', {
-          headers: { 'xi-api-key': val }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (msg) msg.innerHTML = `✅ <strong>¡API Key válida y confirmada!</strong> Conectado con éxito a ElevenLabs (${data.voices ? data.voices.length : 0} voces disponibles).`;
-          checkElevenLabsStatusDental();
-        } else {
-          if (msg) msg.innerHTML = `⚠️ Clave rechazada por ElevenLabs (Error ${res.status}). Comprueba que has copiado la Secret API Key de tu cuenta.`;
-        }
-      } catch (e) {
-        if (msg) msg.innerHTML = `⚠️ Error al contactar con ElevenLabs: ${e.message}`;
-      }
-    }
-
-    async function testElevenVoiceDental() {
-      const msg = document.getElementById('elevenStatusMsg');
-      if (msg) msg.innerHTML = "⏳ Generando audio de prueba con ElevenLabs en alta definición...";
-      const testPhrase = "Hola, le atiende Sofía de Clínica Dental Sonrisastar en Albacete. Estamos listos para atender las llamadas de su clínica las 24 horas del día.";
-
-      const wave = document.getElementById('waveformHolder');
-      if (wave) { wave.classList.remove('opacity-20'); wave.classList.add('opacity-100'); }
-
-      const ok = await speakWithElevenLabsDental(testPhrase, () => {
-        if (wave) { wave.classList.add('opacity-20'); wave.classList.remove('opacity-100'); }
-        if (msg) msg.innerHTML = "✅ <strong>¡Audio reproducido con éxito!</strong> Voz humana HD emitida por ElevenLabs.";
-      });
-
-      if (!ok) {
-        if (wave) { wave.classList.add('opacity-20'); wave.classList.remove('opacity-100'); }
-        if (msg) msg.innerHTML = "⚠️ No se pudo reproducir con ElevenLabs. Comprueba tu clave API o tu saldo de caracteres.";
-      }
-    }
-
-    // --- REPRODUCTOR DE VOZ (ELEVENLABS + SINTETIZADOR) ---
-    async function speakWithElevenLabsDental(text, onEndCallback = null) {
-      const apiKey = localStorage.getItem('elevenlabs_api_key');
-      const cachedUrl = window.AlteraVoice ? await window.AlteraVoice.cachedUrl(text) : null;
-      if (!apiKey && !cachedUrl) return false;
-
-      const voiceId = localStorage.getItem('elevenlabs_voice_id_dental') || 'uQw4jpKzMLrZuo0RLPS9'; // Laura / Sofía
-
-      try {
-        let audioUrl = cachedUrl;
-        if (!audioUrl) {
-          const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-            method: 'POST',
-            headers: {
-              'Accept': 'audio/mpeg',
-              'Content-Type': 'application/json',
-              'xi-api-key': apiKey
-            },
-            body: JSON.stringify({
-              text: text,
-              model_id: 'eleven_multilingual_v2',
-              voice_settings: { stability: 0.5, similarity_boost: 0.8 }
-            })
-          });
-
-          if (!res.ok) {
-            console.warn("ElevenLabs Dental notice:", res.status);
-            return false;
-          }
-
-          const blob = await res.blob();
-          audioUrl = URL.createObjectURL(blob);
-        }
-        const audio = (window.AlteraVoice ? window.AlteraVoice.getPlayer(audioUrl) : new Audio(audioUrl));
-        currentElevenAudioDental = audio;
-
-        let ended = false;
-        const triggerEnd = () => {
-          if (!ended) {
-            ended = true;
-            currentElevenAudioDental = null;
-            if (onEndCallback) onEndCallback();
-          }
-        };
-
-        audio.onended = triggerEnd;
-        audio.onerror = triggerEnd;
-
-        await audio.play();
-        return true;
-      } catch (e) {
-        console.warn("ElevenLabs Dental fallback:", e);
-        return false;
-      }
-    }
-
-    function speakWithBrowserSpeech(text, isIA = true, onEndCallback = null) {
-      if (!('speechSynthesis' in window)) {
-        if (onEndCallback) setTimeout(onEndCallback, 1500);
-        return;
-      }
-
-      window.speechSynthesis.cancel();
-      const utter = new SpeechSynthesisUtterance(text);
-      currentUtteranceDental = utter;
-      utter.lang = 'es-ES';
-
-      const voices = window.speechSynthesis.getVoices();
-      const spanishVoices = voices.filter(v => v.lang.startsWith('es') || v.lang.includes('ES') || v.lang.includes('Spanish'));
-
-      let chosenVoice = null;
-      if (isIA) {
-        // Voz femenina para la recepcionista Sofía
-        chosenVoice = spanishVoices.find(v => 
-          v.name.toLowerCase().includes('monica') || 
-          v.name.toLowerCase().includes('helena') || 
-          v.name.toLowerCase().includes('laura') || 
-          v.name.toLowerCase().includes('sofia') ||
-          v.name.toLowerCase().includes('lucia') ||
-          v.name.toLowerCase().includes('google')
-        ) || spanishVoices[0];
-        utter.rate = 1.02;
-        utter.pitch = 1.06;
-      } else {
-        // Voz para el paciente
-        chosenVoice = spanishVoices.find(v => 
-          v.name.toLowerCase().includes('jorge') || 
-          v.name.toLowerCase().includes('alvaro') || 
-          v.name.toLowerCase().includes('pablo') ||
-          v.name.toLowerCase().includes('david') ||
-          v.name.toLowerCase().includes('male')
-        ) || spanishVoices[1] || spanishVoices[0];
-        utter.rate = 0.98;
-        utter.pitch = 0.94;
-      }
-
-      if (chosenVoice) utter.voice = chosenVoice;
-
-      let ended = false;
-      const triggerEnd = () => {
-        if (!ended) {
-          ended = true;
-          currentUtteranceDental = null;
-          if (onEndCallback) onEndCallback();
-        }
-      };
-
-      utter.onend = triggerEnd;
-      utter.onerror = triggerEnd;
-      // Seguro anti-bloqueo: Chrome a veces no dispara onend en frases largas
-      setTimeout(triggerEnd, Math.max(4000, text.length * 95));
-
-      window.speechSynthesis.speak(utter);
-    }
-
-    async function speakDialogueStep(text, isIA, onEndCallback) {
-      const isSpeechOn = document.getElementById('toggleSpeech').checked;
-      if (!isSpeechOn) {
-        setTimeout(onEndCallback, 2200);
-        return;
-      }
-
-      const wave = document.getElementById('waveformHolder');
-      const avatarRing = document.getElementById('callAvatarRing');
-      if (wave) {
-        wave.classList.remove('opacity-20');
-        wave.classList.add('opacity-100');
-      }
-      if (avatarRing) avatarRing.classList.add('scale-125');
-
-      const wrappedEnd = () => {
-        if (wave) {
-          wave.classList.remove('opacity-100');
-          wave.classList.add('opacity-20');
-        }
-        if (avatarRing) avatarRing.classList.remove('scale-125');
-        if (onEndCallback) onEndCallback();
-      };
-
-      if (isIA) {
-        const usedEleven = await speakWithElevenLabsDental(text, wrappedEnd);
-        if (usedEleven) return;
-      }
-
-      speakWithBrowserSpeech(text, isIA, wrappedEnd);
-    }
-
-    // --- FLUJO DE LLAMADA SECUENCIAL SIN CORTES ---
-    let callSessionDental = 0;
-
-    function startCallSimulation() {
-      if (isCalling) endCallSimulation();
-      const session = ++callSessionDental;
-      const sigue = () => isCalling && session === callSessionDental;
-      isCalling = true;
-      document.getElementById('btnStartCall').classList.add('hidden');
-      document.getElementById('btnEndCall').classList.remove('hidden');
-      document.getElementById('callStatusText').textContent = "Llamada en curso · Conectado";
-      document.getElementById('callStatusText').classList.remove('text-emerald-400');
-      document.getElementById('callStatusText').classList.add('text-brand-magenta');
-
-      callSeconds = 0;
-      clearInterval(callTimerInterval);
-      callTimerInterval = setInterval(() => {
-        callSeconds++;
-        const mins = String(Math.floor(callSeconds / 60)).padStart(2, '0');
-        const secs = String(callSeconds % 60).padStart(2, '0');
-        document.getElementById('callTimer').textContent = `${mins}:${secs}`;
-      }, 1000);
-
-      const scenario = callScenarios[currentScenario];
-      const box = document.getElementById('transcriptBox');
-      box.innerHTML = '';
-      document.getElementById('callResultCard').classList.add('hidden');
-      const badge = document.getElementById('transcriptionBadge');
-      if (badge) {
-        badge.textContent = 'Llamada activa';
-        badge.className = 'text-[10px] bg-brand-magenta text-white font-bold px-2 py-0.5 rounded-full animate-pulse';
-      }
-
-      let step = 0;
-
-      function playNextStep() {
-        if (!sigue()) return;
-
-        if (step >= scenario.dialogue.length) {
-          setTimeout(() => { if (sigue()) finishCallSuccessfully(); }, 800);
-          return;
-        }
-
-        const msg = scenario.dialogue[step];
-        const isIA = msg.speaker === "IA";
-
-        const div = document.createElement('div');
-        div.className = `p-3 rounded-2xl transition-all duration-300 ${isIA ? 'bg-pink-50 border border-pink-200 text-slate-800' : 'bg-slate-100 border border-slate-200 text-slate-800 ml-6'}`;
-        div.innerHTML = `<span class="text-[11px] font-bold ${isIA ? 'text-brand-magenta' : 'text-slate-600'} block">${isIA ? '🎙️ Recepcionista Virtual (Sonrisastar)' : '👤 ' + scenario.patient}:</span><p class="mt-0.5">${msg.text}</p>`;
-        box.appendChild(div);
-        box.scrollTop = box.scrollHeight;
-
-        step++;
-
-        speakDialogueStep(msg.text, isIA, () => {
-          if (!sigue()) return;
-          // Pausa natural de 650ms entre turnos
-          setTimeout(playNextStep, 650);
-        });
-      }
-
-      setTimeout(playNextStep, 400);
-    }
-
-    function finishCallSuccessfully() {
-      endCallSimulation();
-      const scenario = callScenarios[currentScenario];
-      const resCard = document.getElementById('callResultCard');
-      resCard.classList.remove('hidden');
-      document.getElementById('callResultDetails').textContent = scenario.result;
-      const badge = document.getElementById('transcriptionBadge');
-      if (badge) {
-        badge.textContent = 'Completada';
-        badge.className = 'text-[10px] bg-emerald-600 text-white font-bold px-2 py-0.5 rounded-full';
-      }
-    }
-
-    function endCallSimulation() {
-      isCalling = false;
-      callSessionDental++;
-      clearInterval(callTimerInterval);
-      if (currentElevenAudioDental) {
-        try { currentElevenAudioDental.pause(); } catch(e){}
-        currentElevenAudioDental = null;
-      }
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-
-      document.getElementById('btnStartCall').classList.remove('hidden');
-      document.getElementById('btnEndCall').classList.add('hidden');
-      document.getElementById('callStatusText').textContent = "Llamada finalizada";
-      document.getElementById('callStatusText').classList.add('text-emerald-400');
-      document.getElementById('callStatusText').classList.remove('text-brand-magenta');
-      
-      const wave = document.getElementById('waveformHolder');
-      if (wave) {
-        wave.classList.add('opacity-20');
-        wave.classList.remove('opacity-100');
-      }
-      const avatarRing = document.getElementById('callAvatarRing');
-      if (avatarRing) avatarRing.classList.remove('scale-125');
-
-      const badge = document.getElementById('transcriptionBadge');
-      if (badge && badge.textContent === 'Llamada activa') {
-        badge.textContent = 'En espera';
-        badge.className = 'text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full';
-      }
-    }
-
-    // --- CONSULTAS RÁPIDAS DIRECTAS A SOFÍA ---
-    function askSofíaQuick(topic) {
-      if (isCalling) endCallSimulation();
-
-      const responses = {
-        'urgencia': "Al tratarse de dolor dental agudo le asignamos máxima prioridad de urgencia. Aviso ahora mismo al equipo de la clínica de calle Dionisio Guardiola, 2 para darle la primera hora disponible. ¿Me indica su nombre y un teléfono móvil?",
-        'revision': "En la primera visita el equipo le hace una revisión completa y le explica las opciones de tratamiento. ¿Prefiere que le reservemos hueco por la mañana o por la tarde?",
-        'ortodoncia': "En Sonrisastar somos especialistas en ortodoncia invisible con alineadores transparentes. En la clínica le explican las opciones de pago en una cita de valoración. ¿Le reservamos cita para informarse?",
-        'donde': "Estamos situados en pleno centro de Albacete, en Calle Dionisio Guardiola número 2. Nuestro horario presencial es de lunes a viernes de 10:00 a 14:00 y de 17:00 a 21:00, y este asistente atiende su teléfono 24 horas al día."
-      };
-
-      const titles = {
-        'urgencia': '🚨 Urgencia con Dolor Agudo',
-        'revision': '📅 Primera visita',
-        'ortodoncia': '🦷 Ortodoncia Invisible & Financiación',
-        'donde': '📍 Ubicación en Albacete & Horarios'
-      };
-
-      const text = responses[topic] || "Hola, le atiende Sofía de Clínica Dental Sonrisastar. ¿En qué podemos ayudarle hoy?";
-
-      const box = document.getElementById('transcriptBox');
-      box.innerHTML = '';
-      const div = document.createElement('div');
-      div.className = 'p-3.5 rounded-2xl bg-pink-50 border border-pink-200 text-slate-800 space-y-1';
-      div.innerHTML = `<span class="text-[11px] font-bold text-brand-magenta block">🎙️ Sofía responde a: ${titles[topic] || 'Consulta'}:</span><p class="mt-0.5">${text}</p>`;
-      box.appendChild(div);
-
-      const statusEl = document.getElementById('callStatusText');
-      statusEl.textContent = "Respondiendo consulta rápida...";
-      statusEl.classList.remove('text-emerald-400');
-      statusEl.classList.add('text-brand-magenta');
-
-      const badge = document.getElementById('transcriptionBadge');
-      if (badge) {
-        badge.textContent = 'Audio en curso';
-        badge.className = 'text-[10px] bg-brand-magenta text-white font-bold px-2 py-0.5 rounded-full';
-      }
-
-      speakDialogueStep(text, true, () => {
-        statusEl.textContent = "Consulta completada · Lista para nueva prueba";
-        statusEl.classList.add('text-emerald-400');
-        statusEl.classList.remove('text-brand-magenta');
-        if (badge) {
-          badge.textContent = 'En espera';
-          badge.className = 'text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full';
-        }
-      });
-    }
-
-    // Inicializar estado de ElevenLabs y voces al cargar la página
-    window.addEventListener('DOMContentLoaded', () => {
-      checkElevenLabsStatusDental();
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.onvoiceschanged = () => {};
-      }
-    });
 
     // -------------------------------------------------------------
     // CHAT WHATSAPP & INSTAGRAM DIRECT
