@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Sueño del Quesero — Demo interactiva | Web, WhatsApp 24/7, Instagram y CRM</title>
+  <meta name="description" content="Demo de Altera para El Sueño del Quesero (Albacete): nueva web con reserva para recoger en tienda, WhatsApp que vende 24/7 con fotos de los quesos, Instagram conectado con Zernio y CRM para recuperar clientes.">
+  <!-- Es una demo comercial: no debe competir en Google con la web real de la tienda -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#45161a">
+  <link rel="canonical" href="https://devai82.github.io/demos-comerciales/quesero/">
+
+  <!-- Open Graph / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="El Sueño del Quesero">
+  <meta property="og:title" content="El Sueño del Quesero — Demo interactiva de Altera">
+  <meta property="og:description" content="Pruébalo: reserva quesos por WhatsApp a cualquier hora, recógelos en Calle Rosario y recupera a los clientes que hace tiempo que no vienen.">
+  <meta property="og:url" content="https://devai82.github.io/demos-comerciales/quesero/">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/quesero/og-quesero.jpg?v=2">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="El Sueño del Quesero: web, WhatsApp con fotos de quesos y CRM">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://devai82.github.io/demos-comerciales/quesero/og-quesero.jpg?v=2">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%80%3C/text%3E%3C/svg%3E">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            queso: { 50: '#fdf8ee', 100: '#f9edd3', 200: '#f0dcb0', 300: '#e9c06c', 400: '#e0a843', 500: '#d18f24', 600: '#b4721a', 700: '#8f5617', 800: '#6b3f15', 900: '#4a2b10' },
+            vino: { 50: '#fbf1f1', 100: '#f5dede', 400: '#b45a5a', 600: '#8a3434', 700: '#7c2d2d', 800: '#5f1f22', 900: '#45161a', 950: '#2b0d10' },
+            oliva: { 50: '#f3f5ea', 500: '#6b7a3a', 600: '#556130', 700: '#434d26' }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['Fraunces', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .card-shadow { box-shadow: 0 1px 2px rgba(74,43,16,.06), 0 8px 24px -8px rgba(74,43,16,.14); }
+    .custom-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: rgba(124,45,45,.35); border-radius: 4px; }
+    .tab-btn { background: #fff; color: #44403c; border: 1px solid #f0dcb0; }
+    .tab-btn:hover { border-color: #8a3434; }
+    .tab-btn.tab-activa { background: #45161a; color: #fff; border-color: #45161a; }
+    .wa-fondo { background-color: #efeae2; background-image: radial-gradient(rgba(0,0,0,.035) 1px, transparent 1px); background-size: 14px 14px; }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .faq-icono { transform: rotate(45deg); }
+    :focus-visible { outline: 3px solid #d18f24; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+  </style>
+  <script src="../shared/altera-config.js"></script>
+  <script src="../shared/altera-cta.js" defer></script>
+  <script src="quesero.js" defer></script>
+  <script src="crm-quesero.js" defer></script>
+</head>
+<body class="bg-queso-50 text-stone-800 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- BARRA SUPERIOR -->
+  <div class="bg-vino-950 text-queso-100 text-xs py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+      <span class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-queso-400 animate-pulse"></span><strong>Demo interactiva de Altera</strong> · datos de ejemplo y precios orientativos</span>
+      <span class="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <span>📍 Calle Rosario, 58 · Albacete</span>
+        <span>📞 639 25 18 84</span>
+        <a href="propuesta.html" class="font-semibold text-queso-300 hover:underline">Ver la propuesta completa →</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- CABECERA + PESTAÑAS -->
+  <header class="bg-white/95 backdrop-blur border-b border-queso-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 pt-3 pb-2 flex flex-col gap-2.5">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-11 h-11 shrink-0 rounded-full bg-vino-900 text-queso-300 flex items-center justify-center font-display text-lg" aria-hidden="true">SQ</div>
+          <div class="min-w-0">
+            <p class="font-display text-xl leading-none text-vino-900">El Sueño del Quesero</p>
+            <p class="text-[11px] text-stone-500 mt-0.5 truncate">Quesería artesana en el centro de Albacete</p>
+          </div>
+        </div>
+        <div data-altera-cta-slot></div>
+      </div>
+      <nav class="flex gap-1.5 overflow-x-auto custom-scroll -mx-4 px-4 pb-1" role="tablist" aria-label="Partes de la demo">
+        <button type="button" role="tab" onclick="switchTab('web')" id="tab-btn-web" class="tab-btn shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-semibold transition">🌐 Web nueva</button>
+        <button type="button" role="tab" onclick="switchTab('whatsapp')" id="tab-btn-whatsapp" class="tab-btn shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-semibold transition">💬 WhatsApp 24/7</button>
+        <button type="button" role="tab" onclick="switchTab('instagram')" id="tab-btn-instagram" class="tab-btn shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-semibold transition">📸 Instagram</button>
+        <button type="button" role="tab" onclick="switchTab('crm')" id="tab-btn-crm" class="tab-btn shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-semibold transition">🧀 CRM de clientes</button>
+        <button type="button" role="tab" onclick="switchTab('seo')" id="tab-btn-seo" class="tab-btn shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-semibold transition">🔍 SEO y seguridad</button>
+        <button type="button" role="tab" onclick="switchTab('inversion')" id="tab-btn-inversion" class="tab-btn shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-semibold transition">💶 Inversión</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+
+    <!-- ===================================================== 1. WEB NUEVA -->
+    <section id="view-web" class="tab-view space-y-5" aria-labelledby="t-web">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+        <div class="max-w-3xl">
+          <p class="text-xs font-bold uppercase tracking-widest text-queso-700">1 · La web nueva</p>
+          <h1 id="t-web" class="font-display text-3xl md:text-4xl text-vino-900 mt-1">Que la web venda aunque la tienda esté cerrada</h1>
+          <p class="text-stone-600 mt-2">El cliente ve los quesos con foto y precio, elige cuánto quiere y reserva la hora de recogida. La reserva llega al CRM y al WhatsApp de la tienda. Pruébalo: pulsa «Reservar» en un par de quesos.</p>
+          <a href="web/" class="inline-flex min-h-[44px] items-center gap-1 font-bold text-vino-700 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-queso-500 rounded">Ver la web nueva completa con su marca →</a>
+        </div>
+        <span class="self-start md:self-auto text-[11px] font-semibold px-3 py-1.5 rounded-full bg-white border border-queso-200 text-stone-600 whitespace-nowrap">Catálogo de ejemplo · precios orientativos</span>
+      </div>
+
+      <!-- Navegador simulado -->
+      <div class="rounded-3xl border border-queso-200 bg-white card-shadow overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-2.5 bg-stone-100 border-b border-stone-200">
+          <span class="w-3 h-3 rounded-full bg-red-300"></span><span class="w-3 h-3 rounded-full bg-amber-300"></span><span class="w-3 h-3 rounded-full bg-emerald-300"></span>
+          <span class="ml-3 flex-1 max-w-md text-xs text-stone-500 bg-white rounded-lg px-3 py-1.5 truncate">🔒 elsuenodelquesero.es</span>
+        </div>
+
+        <!-- Cabecera de la web -->
+        <div class="px-5 md:px-8 py-4 flex flex-wrap items-center justify-between gap-3 border-b border-queso-100">
+          <p class="font-display text-xl text-vino-900">El Sueño del Quesero</p>
+          <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-stone-600">
+            <a href="#web-catalogo" class="hover:text-vino-700">Quesos</a>
+            <a href="#web-regalos" class="hover:text-vino-700">Tablas y regalos</a>
+            <a href="#web-catas" class="hover:text-vino-700">Catas</a>
+            <a href="#web-visitanos" class="hover:text-vino-700">Visítanos</a>
+          </div>
+          <a href="#web-reserva" class="min-h-[40px] inline-flex items-center gap-2 px-4 rounded-xl bg-vino-800 text-white text-sm font-bold">🧺 Mi reserva <span id="webCarritoCount" class="bg-white/20 rounded-full px-2 text-xs">0</span></a>
+        </div>
+
+        <!-- Hero de la web -->
+        <div class="relative bg-gradient-to-br from-vino-900 via-vino-800 to-queso-800 text-white px-5 md:px-8 py-10 md:py-14 overflow-hidden">
+          <div class="absolute -right-10 -bottom-16 w-80 h-80 rounded-full bg-queso-400/20 blur-3xl"></div>
+          <div class="relative max-w-2xl space-y-4">
+            <p class="text-queso-300 text-sm font-semibold">Quesería en Albacete desde 2017</p>
+            <h2 class="font-display text-3xl md:text-5xl leading-tight">Más de 30 quesos artesanos, cortados a tu gusto</h2>
+            <p class="text-queso-100/90 md:text-lg">Reserva hoy por la web o por WhatsApp y recógelo en Calle Rosario, 58. Tablas para compartir, lotes de regalo y catas guiadas.</p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="#web-catalogo" class="min-h-[48px] inline-flex items-center px-5 rounded-xl bg-queso-400 hover:bg-queso-300 text-vino-950 font-bold">Ver quesos y reservar</a>
+              <button type="button" onclick="switchTab('whatsapp')" class="min-h-[48px] inline-flex items-center gap-2 px-5 rounded-xl bg-[#25d366] hover:bg-[#1fb857] text-white font-bold">💬 Pedir por WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sellos de confianza -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-queso-100 border-b border-queso-100 text-center">
+          <div class="bg-white p-4"><p class="font-display text-2xl text-vino-800">+30</p><p class="text-xs text-stone-500">variedades en tienda</p></div>
+          <div class="bg-white p-4"><p class="font-display text-2xl text-vino-800">2017</p><p class="text-xs text-stone-500">en el centro de Albacete</p></div>
+          <div class="bg-white p-4"><p class="font-display text-2xl text-vino-800">24/7</p><p class="text-xs text-stone-500">reservas por web y WhatsApp</p></div>
+          <div class="bg-white p-4"><p class="font-display text-2xl text-vino-800">Catas</p><p class="text-xs text-stone-500">guiadas en grupos reducidos</p></div>
+        </div>
+
+        <!-- Catálogo + reserva -->
+        <div class="px-5 md:px-8 py-8 grid lg:grid-cols-[1fr_340px] gap-6" id="web-catalogo">
+          <div class="space-y-4 min-w-0">
+            <div class="flex items-end justify-between gap-3">
+              <h3 class="font-display text-2xl text-vino-900">Nuestros quesos</h3>
+              <p class="text-xs text-stone-500 hidden sm:block">Precio al corte · eliges los gramos</p>
+            </div>
+            <div id="webFiltros" class="flex gap-2 overflow-x-auto custom-scroll pb-1" role="group" aria-label="Filtrar por tipo"></div>
+            <div id="webCatalogo" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+          </div>
+
+          <aside id="web-reserva" class="lg:sticky lg:top-28 self-start bg-queso-50 rounded-2xl border border-queso-200 p-5 space-y-4">
+            <h3 class="font-display text-xl text-vino-900">🧺 Tu reserva</h3>
+            <div id="webCarrito" aria-live="polite"></div>
+            <form id="webReservaForm" class="space-y-3">
+              <div>
+                <label for="webNombre" class="text-xs font-semibold text-stone-600">Tu nombre</label>
+                <input id="webNombre" type="text" maxlength="40" autocomplete="given-name" placeholder="Nombre de ejemplo" class="mt-1 w-full min-h-[44px] px-3 rounded-xl border border-queso-200 bg-white text-sm">
+              </div>
+              <div>
+                <label for="webHueco" class="text-xs font-semibold text-stone-600">¿Cuándo lo recoges?</label>
+                <select id="webHueco" class="mt-1 w-full min-h-[44px] px-3 rounded-xl border border-queso-200 bg-white text-sm"></select>
+              </div>
+              <div>
+                <label for="webPago" class="text-xs font-semibold text-stone-600">Pago</label>
+                <select id="webPago" class="mt-1 w-full min-h-[44px] px-3 rounded-xl border border-queso-200 bg-white text-sm">
+                  <option>Paga en tienda</option>
+                  <option>Pagado online (Bizum o tarjeta)</option>
+                </select>
+              </div>
+              <label class="flex items-start gap-2 text-xs text-stone-600"><input type="checkbox" checked class="mt-0.5 w-4 h-4 accent-vino-700"> Acepto recibir por WhatsApp la confirmación y avisos de novedades (puedo darme de baja cuando quiera).</label>
+              <button id="webReservarBtn" type="submit" disabled class="w-full min-h-[48px] rounded-xl bg-vino-800 hover:bg-vino-900 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold">Reservar para recoger</button>
+            </form>
+            <div id="webConfirmacion" aria-live="polite"></div>
+          </aside>
+        </div>
+
+        <!-- Regalos y catas -->
+        <div id="web-regalos" class="px-5 md:px-8 py-8 bg-queso-50 border-t border-queso-100 grid md:grid-cols-3 gap-4">
+          <div class="md:col-span-3"><h3 class="font-display text-2xl text-vino-900">Tablas, regalos y catas</h3><p class="text-sm text-stone-600">Las páginas que más buscan en Google en Navidad y para celebraciones.</p></div>
+          <div class="bg-white rounded-2xl border border-queso-200 p-5 space-y-2"><p class="text-2xl">🍽️</p><h4 class="font-display text-lg text-vino-900">Tablas para compartir</h4><p class="text-sm text-stone-600">Dinos cuántos sois y si os gustan suaves o intensos. La dejamos cortada y lista.</p><button type="button" data-cat="lotes" onclick="document.getElementById('web-catalogo').scrollIntoView()" class="text-sm font-bold text-vino-700 hover:underline min-h-[40px]">Ver tablas →</button></div>
+          <div class="bg-white rounded-2xl border border-queso-200 p-5 space-y-2"><p class="text-2xl">🎁</p><h4 class="font-display text-lg text-vino-900">Lotes de regalo y empresa</h4><p class="text-sm text-stone-600">Cajas con queso, vino y mermelada. Presupuesto para empresas en el día.</p><button type="button" onclick="switchTab('whatsapp')" class="text-sm font-bold text-vino-700 hover:underline min-h-[40px]">Pedir presupuesto por WhatsApp →</button></div>
+          <div id="web-catas" class="bg-white rounded-2xl border border-queso-200 p-5 space-y-2"><p class="text-2xl">🍷</p><h4 class="font-display text-lg text-vino-900">Catas guiadas</h4><p class="text-sm text-stone-600">Una tarde probando 8 quesos con maridaje, para grupos reducidos y empresas.</p><button type="button" data-add="cata" class="text-sm font-bold text-vino-700 hover:underline min-h-[40px]">Reservar plaza →</button></div>
+        </div>
+
+        <!-- Visítanos + FAQ -->
+        <div id="web-visitanos" class="px-5 md:px-8 py-8 grid md:grid-cols-2 gap-6 border-t border-queso-100">
+          <div class="space-y-3">
+            <h3 class="font-display text-2xl text-vino-900">Visítanos</h3>
+            <p class="text-sm"><strong>Calle Rosario, 58 · 02003 Albacete</strong><br>📞 639 25 18 84</p>
+            <p class="text-sm text-stone-600">Lunes a viernes: 10:30-14:00 y 17:30-20:30<br>Sábado: mañanas<br><span class="text-xs text-stone-500">(Horario de ejemplo: se pone el real y el mismo en Google, la web y los directorios)</span></p>
+            <div class="h-40 rounded-2xl bg-[repeating-linear-gradient(45deg,#f9edd3,#f9edd3_12px,#fdf8ee_12px,#fdf8ee_24px)] border border-queso-200 flex items-center justify-center text-sm text-stone-500">🗺️ Mapa de Google (en la web real)</div>
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-display text-2xl text-vino-900">Preguntas frecuentes</h3>
+            <details class="bg-white rounded-xl border border-queso-200 p-4"><summary class="flex justify-between items-center gap-3 font-semibold text-sm min-h-[28px]">¿Puedo reservar y recogerlo más tarde?<span class="faq-icono text-xl text-vino-700 transition">+</span></summary><p class="text-sm text-stone-600 mt-2">Sí. Eliges la hora de recogida y te lo dejamos cortado y envasado al vacío.</p></details>
+            <details class="bg-white rounded-xl border border-queso-200 p-4"><summary class="flex justify-between items-center gap-3 font-semibold text-sm min-h-[28px]">¿Hacéis tablas de quesos para eventos?<span class="faq-icono text-xl text-vino-700 transition">+</span></summary><p class="text-sm text-stone-600 mt-2">Sí, para el número de personas que necesites. Pídela por WhatsApp con un par de días de antelación.</p></details>
+            <details class="bg-white rounded-xl border border-queso-200 p-4"><summary class="flex justify-between items-center gap-3 font-semibold text-sm min-h-[28px]">¿Preparáis lotes de Navidad para empresas?<span class="faq-icono text-xl text-vino-700 transition">+</span></summary><p class="text-sm text-stone-600 mt-2">Sí, con tarjeta personalizada. Escríbenos y te pasamos presupuesto.</p></details>
+            <details class="bg-white rounded-xl border border-queso-200 p-4"><summary class="flex justify-between items-center gap-3 font-semibold text-sm min-h-[28px]">Tengo una alergia o intolerancia, ¿qué queso puedo tomar?<span class="faq-icono text-xl text-vino-700 transition">+</span></summary><p class="text-sm text-stone-600 mt-2">Pregúntanos en tienda o por WhatsApp: te atiende una persona del equipo con la ficha de cada queso.</p></details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== 2. WHATSAPP -->
+    <section id="view-whatsapp" class="tab-view hidden space-y-5" aria-labelledby="t-wa">
+      <div class="grid lg:grid-cols-[1fr_400px] gap-6 items-start">
+        <div class="space-y-5">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-queso-700">2 · WhatsApp que vende 24/7</p>
+            <h2 id="t-wa" class="font-display text-3xl md:text-4xl text-vino-900 mt-1">El cliente escribe a las 23:47 y se va a dormir con su queso reservado</h2>
+            <p class="text-stone-600 mt-2">El asistente contesta en el WhatsApp de la tienda, enseña los quesos con foto y precio, arma una tabla según cuántos son y qué les gusta, y deja la reserva con hora de recogida. Si hace falta una persona, pasa la conversación al móvil de la tienda.</p>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-emerald-200 p-5 card-shadow space-y-2">
+            <h3 class="font-display text-lg text-vino-900">¿Se pueden enviar fotos de los quesos por WhatsApp?</h3>
+            <p class="text-sm text-stone-700"><strong>Sí.</strong> Con la API oficial de WhatsApp Business el asistente envía fotos con texto y botones, y también el <strong>catálogo de productos</strong> de WhatsApp: el cliente ve cada queso con su foto y precio, lo añade a la cesta y la envía en el mismo chat. En la demo lo ves en las tarjetas deslizables.</p>
+            <ul class="text-sm text-stone-600 space-y-1">
+              <li>📷 Fotos reales de cada queso (las hacemos el día de la sesión de fotos).</li>
+              <li>🧺 Cesta dentro del chat y reserva con hora de recogida.</li>
+              <li>💳 Pago opcional con Bizum o tarjeta por enlace seguro (la pasarela cobra su pequeña comisión).</li>
+              <li>🔔 Recordatorio automático 2 horas antes de la recogida.</li>
+            </ul>
+          </div>
+
+          <div class="space-y-2">
+            <p class="text-sm font-semibold text-stone-700">Prueba a escribir como un cliente:</p>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" data-wa-sugerencia="¿Tenéis manchego curado?" class="min-h-[40px] px-3 rounded-full bg-white border border-queso-200 text-sm hover:border-vino-600">¿Tenéis manchego curado?</button>
+              <button type="button" data-wa-sugerencia="Quiero una tabla para cenar el sábado" class="min-h-[40px] px-3 rounded-full bg-white border border-queso-200 text-sm hover:border-vino-600">Quiero una tabla para el sábado</button>
+              <button type="button" data-wa-sugerencia="Busco un regalo para Navidad" class="min-h-[40px] px-3 rounded-full bg-white border border-queso-200 text-sm hover:border-vino-600">Busco un regalo para Navidad</button>
+              <button type="button" data-wa-sugerencia="¿A qué hora abrís?" class="min-h-[40px] px-3 rounded-full bg-white border border-queso-200 text-sm hover:border-vino-600">¿A qué hora abrís?</button>
+              <button type="button" data-wa-sugerencia="Soy intolerante a la lactosa, ¿qué me recomiendas?" class="min-h-[40px] px-3 rounded-full bg-white border border-queso-200 text-sm hover:border-vino-600">Soy intolerante a la lactosa</button>
+            </div>
+            <p class="text-xs text-stone-500">Con alergias, intolerancias o embarazo el asistente no recomienda: pasa la conversación a una persona del equipo.</p>
+          </div>
+        </div>
+
+        <!-- Móvil con WhatsApp -->
+        <div class="mx-auto w-full max-w-[400px] rounded-[2.2rem] bg-stone-900 p-2.5 card-shadow">
+          <div class="rounded-[1.8rem] overflow-hidden bg-white flex flex-col h-[680px] max-h-[80vh]">
+            <div class="bg-[#008069] text-white px-4 py-3 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-queso-300 text-vino-900 flex items-center justify-center font-display" aria-hidden="true">SQ</div>
+              <div class="flex-1 min-w-0"><p class="font-semibold leading-tight truncate">El Sueño del Quesero</p><p class="text-[11px] text-emerald-100">Cuenta de empresa · responde al momento</p></div>
+              <span id="waCesta" class="hidden text-xs font-bold bg-white/20 rounded-full px-2 py-1"></span>
+              <button type="button" id="waReset" class="w-9 h-9 rounded-full hover:bg-white/10" aria-label="Reiniciar conversación" title="Reiniciar">↺</button>
+            </div>
+            <div id="waChat" class="wa-fondo flex-1 overflow-y-auto custom-scroll p-3 space-y-2" aria-live="polite"></div>
+            <form id="waForm" class="bg-[#f0f2f5] p-2 flex gap-2">
+              <label for="waInput" class="sr-only">Escribe un mensaje</label>
+              <input id="waInput" type="text" maxlength="300" autocomplete="off" placeholder="Escribe un mensaje" class="flex-1 min-h-[44px] px-4 rounded-full bg-white text-sm border-0">
+              <button type="submit" class="w-11 h-11 rounded-full bg-[#00a884] text-white flex items-center justify-center" aria-label="Enviar">➤</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== 3. INSTAGRAM + ZERNIO -->
+    <section id="view-instagram" class="tab-view hidden space-y-5" aria-labelledby="t-ig">
+      <div class="max-w-3xl">
+        <p class="text-xs font-bold uppercase tracking-widest text-queso-700">3 · Instagram conectado con Zernio</p>
+        <h2 id="t-ig" class="font-display text-3xl md:text-4xl text-vino-900 mt-1">Cada «¿precio?» en Instagram se convierte en una reserva</h2>
+        <p class="text-stone-600 mt-2">Zernio conecta el Instagram de la tienda con el mismo asistente: contesta los comentarios en segundos, manda por mensaje privado el queso con foto y el enlace para reservar, y guarda el contacto en el CRM. También programa las publicaciones de la semana.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-[380px_1fr] gap-6 items-start">
+        <!-- Post de Instagram -->
+        <div class="mx-auto w-full max-w-[380px] bg-white rounded-3xl border border-stone-200 card-shadow overflow-hidden">
+          <div class="flex items-center gap-3 px-4 py-3">
+            <div class="w-9 h-9 rounded-full p-[2px] bg-gradient-to-tr from-amber-400 via-pink-500 to-purple-600"><div class="w-full h-full rounded-full bg-vino-900 text-queso-300 text-[11px] flex items-center justify-center font-display">SQ</div></div>
+            <div class="text-sm"><p class="font-semibold leading-tight">elsuenodelquesero</p><p class="text-[11px] text-stone-500">Albacete</p></div>
+          </div>
+          <img id="igPostImg" alt="Tabla de quesos para 4 personas" width="380" height="285" class="w-full aspect-[4/3] object-cover bg-queso-100">
+          <div class="px-4 py-3 space-y-2">
+            <p class="text-lg" aria-hidden="true">♡ 💬 ➤</p>
+            <p class="text-[13px]"><strong>elsuenodelquesero</strong> Tabla del finde para 4 🧀🍷 Manchego curado, torta cremosa, payoyo y un azul para valientes. ¿Os la preparamos?</p>
+            <div id="igComentarios" class="space-y-2 max-h-56 overflow-y-auto custom-scroll" aria-live="polite"></div>
+            <button type="button" id="igSimular" class="w-full min-h-[44px] rounded-xl bg-gradient-to-r from-pink-600 to-purple-600 text-white font-bold text-sm">💬 Simular comentario de un cliente</button>
+          </div>
+        </div>
+
+        <!-- Bandeja + programación -->
+        <div class="space-y-5">
+          <div class="bg-white rounded-2xl border border-queso-200 card-shadow p-5 space-y-3">
+            <div class="flex items-center justify-between gap-2"><h3 class="font-display text-xl text-vino-900">Bandeja única de mensajes</h3><span class="text-[11px] font-semibold px-2 py-1 rounded-full bg-pink-50 text-pink-700">Instagram + WhatsApp + web</span></div>
+            <div id="igBandeja" class="space-y-2 max-h-[420px] overflow-y-auto custom-scroll" aria-live="polite">
+              <p id="igBandejaVacia" class="text-sm text-stone-500 p-4 rounded-xl bg-queso-50 text-center">Pulsa «Simular comentario» y mira cómo llega aquí la respuesta privada.</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-queso-200 card-shadow p-5 space-y-3">
+            <h3 class="font-display text-xl text-vino-900">Publicaciones programadas esta semana</h3>
+            <div class="grid sm:grid-cols-3 gap-3 text-sm">
+              <div class="rounded-xl border border-queso-200 p-3 space-y-1"><p class="text-xs font-bold text-queso-700">LUNES · 13:00</p><p class="font-semibold">Queso de la semana</p><p class="text-xs text-stone-500">Foto + nota de cata + «Resérvalo por WhatsApp».</p></div>
+              <div class="rounded-xl border border-queso-200 p-3 space-y-1"><p class="text-xs font-bold text-queso-700">JUEVES · 19:00</p><p class="font-semibold">Tabla del finde</p><p class="text-xs text-stone-500">Reel corto cortando la tabla. Comentarios automáticos activos.</p></div>
+              <div class="rounded-xl border border-queso-200 p-3 space-y-1"><p class="text-xs font-bold text-queso-700">SÁBADO · 10:00</p><p class="font-semibold">Plazas de la cata</p><p class="text-xs text-stone-500">Historia con encuesta y enlace para apuntarse.</p></div>
+            </div>
+            <p class="text-xs text-stone-500">Las publicaciones las aprueba la tienda antes de salir. Zernio solo las programa y responde.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================== 4. CRM -->
+    <section id="view-crm" class="tab-view hidden space-y-5" aria-labelledby="t-crm">
+      <div class="bg-gradient-to-r from-vino-950 via-vino-900 to-queso-900 rounded-3xl p-5 md:p-7 text-white relative overflow-hidden card-shadow">
+        <div class="absolute -right-16 -top-16 w-72 h-72 rounded-full bg-queso-400/15 blur-3xl pointer-events-none"></div>
+        <div class="relative flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div class="space-y-2 max-w-3xl">
+            <p class="text-xs font-bold uppercase tracking-widest text-queso-300">4 · CRM de clientes y pedidos</p>
+            <h2 id="t-crm" class="font-display text-2xl md:text-3xl">Saber quién compra qué, y avisar a quien hace tiempo que no viene</h2>
+            <p class="text-sm text-queso-100/90">Cada cliente con su historial de compras y sus quesos favoritos. El CRM detecta quién lleva meses sin comprar y le propone un mensaje personalizado por WhatsApp o email, solo si dio permiso.</p>
+          </div>
+          <span class="self-start lg:self-auto text-[11px] font-semibold px-3 py-1.5 rounded-full bg-white/10 border border-white/15 whitespace-nowrap">Datos de ejemplo · importes orientativos</span>
+        </div>
+      </div>
+
+      <nav class="bg-white rounded-2xl border border-queso-200 card-shadow p-1.5 flex gap-1 overflow-x-auto custom-scroll" aria-label="Secciones del CRM" role="tablist">
+        <button type="button" role="tab" data-crm-tab="recuperar" class="crm-tab shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-bold">🔁 Recuperar clientes</button>
+        <button type="button" role="tab" data-crm-tab="resumen" class="crm-tab shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-bold">📊 Resumen</button>
+        <button type="button" role="tab" data-crm-tab="clientes" class="crm-tab shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-bold">👥 Clientes</button>
+        <button type="button" role="tab" data-crm-tab="pedidos" class="crm-tab shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-bold">🧺 Pedidos y recogidas <span id="crmBadgePedidos" class="ml-1 text-[11px] px-1.5 py-0.5 rounded-full bg-queso-200 text-queso-900">3</span></button>
+        <button type="button" role="tab" data-crm-tab="campanas" class="crm-tab shrink-0 min-h-[44px] px-3.5 rounded-xl text-sm font-bold">📣 Campañas</button>
+      </nav>
+
+      <div id="crm-recuperar" class="crm-pane space-y-4"></div>
+      <div id="crm-resumen" class="crm-pane hidden space-y-4"></div>
+      <div id="crm-clientes" class="crm-pane hidden"></div>
+      <div id="crm-pedidos" class="crm-pane hidden space-y-4"></div>
+      <div id="crm-campanas" class="crm-pane hidden space-y-4"></div>
+
+      <div id="crmDrawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="crmDrawerTitle">
+        <div class="absolute inset-0 bg-black/50" data-crm-close></div>
+        <aside class="absolute right-0 top-0 h-full w-full max-w-xl bg-white shadow-2xl overflow-y-auto custom-scroll" id="crmDrawerBody"></aside>
+      </div>
+      <div id="crmToast" role="status" class="fixed left-1/2 -translate-x-1/2 bottom-24 z-[60] hidden max-w-[92vw] px-4 py-3 rounded-2xl bg-vino-950 text-white text-sm font-semibold shadow-2xl"></div>
+    </section>
+
+    <!-- ===================================================== 5. SEO Y SEGURIDAD -->
+    <section id="view-seo" class="tab-view hidden space-y-6" aria-labelledby="t-seo">
+      <div class="max-w-3xl">
+        <p class="text-xs font-bold uppercase tracking-widest text-queso-700">5 · SEO, velocidad y seguridad</p>
+        <h2 id="t-seo" class="font-display text-3xl md:text-4xl text-vino-900 mt-1">Que quien busca «quesería en Albacete» os encuentre a vosotros</h2>
+        <p class="text-stone-600 mt-2">La tienda ya tiene muy buena fama y reseñas. El trabajo es que Google lo entienda y lo enseñe: cada tipo de búsqueda con su página, los mismos datos en todas partes y una web rápida y segura.</p>
+      </div>
+
+      <!-- Vista en Google -->
+      <div class="bg-white rounded-2xl border border-queso-200 card-shadow p-5 space-y-3">
+        <h3 class="font-display text-xl text-vino-900">Así aparecería en Google</h3>
+        <div class="max-w-2xl rounded-xl border border-stone-200 p-4 space-y-1 font-[Arial,sans-serif]">
+          <p class="text-xs text-stone-600">elsuenodelquesero.es</p>
+          <p class="text-[#1a0dab] text-lg leading-snug">Quesería en Albacete · Más de 30 quesos artesanos | El Sueño del Quesero</p>
+          <p class="text-sm text-stone-600">Quesos manchegos, de cabra, azules e internacionales en Calle Rosario, 58. Reserva por WhatsApp y recoge en tienda. Tablas, lotes de regalo y catas.</p>
+          <p class="text-sm text-stone-600"><span class="text-amber-500">★★★★★</span> Valoraciones de Google · Abierto hoy · 639 25 18 84</p>
+        </div>
+        <p class="text-xs text-stone-500">Las estrellas salen de las reseñas reales de Google; no se inventan ni se marcan a mano.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-4">
+        <div class="bg-white rounded-2xl border border-queso-200 card-shadow p-5 space-y-3">
+          <h3 class="font-display text-xl text-vino-900">🔍 SEO local</h3>
+          <ul class="text-sm text-stone-700 space-y-2">
+            <li><strong>Mismos datos en todas partes.</strong> Hoy los directorios publican horarios distintos para la tienda. Google desconfía cuando no cuadran: se unifica nombre, dirección, teléfono y horario en la web, Google Business y directorios.</li>
+            <li><strong>Una página por búsqueda:</strong> quesos manchegos, tablas de quesos, lotes de regalo y empresa, catas en Albacete.</li>
+            <li><strong>Ficha de Google cuidada:</strong> fotos, productos, publicaciones semanales y respuesta a cada reseña.</li>
+            <li><strong>Datos estructurados</strong> (tienda, productos y preguntas frecuentes) para salir con más información en Google.</li>
+            <li><strong>Contenido propio:</strong> notas de cata y maridajes que atraen búsquedas todo el año.</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-queso-200 card-shadow p-5 space-y-3">
+          <h3 class="font-display text-xl text-vino-900">⚡ Velocidad y móvil</h3>
+          <ul class="text-sm text-stone-700 space-y-2">
+            <li><strong>Objetivo:</strong> que la web cargue en menos de 2,5 s en un móvil con 4G (lo que Google llama LCP).</li>
+            <li>Fotos en formato moderno (WebP o AVIF), con su tamaño justo y carga diferida.</li>
+            <li>Botones grandes, texto legible y el WhatsApp siempre a mano.</li>
+            <li>Accesible: contraste, textos alternativos en cada foto y navegación con teclado.</li>
+            <li>Medición mensual con Google Search Console y PageSpeed.</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl border border-queso-200 card-shadow p-5 space-y-3">
+          <h3 class="font-display text-xl text-vino-900">🔒 Seguridad y datos</h3>
+          <ul class="text-sm text-stone-700 space-y-2">
+            <li><strong>HTTPS siempre</strong> y cabeceras de seguridad (HSTS, CSP, X-Content-Type-Options, Referrer-Policy).</li>
+            <li>Formularios con protección anti-spam y sin datos sensibles a la vista.</li>
+            <li>Gestor de contenidos y plugins al día, copias de seguridad diarias y acceso con doble factor.</li>
+            <li>Pagos por pasarela certificada: la web nunca ve ni guarda la tarjeta.</li>
+            <li><strong>RGPD:</strong> permiso expreso para WhatsApp y email, baja en un clic, aviso de cookies y política de privacidad clara.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Búsquedas objetivo -->
+      <div class="bg-white rounded-2xl border border-queso-200 card-shadow p-5 space-y-3">
+        <h3 class="font-display text-xl text-vino-900">Búsquedas a las que apuntamos</h3>
+        <div class="overflow-x-auto custom-scroll">
+          <table class="w-full text-sm min-w-[560px]">
+            <thead><tr class="text-left text-xs text-stone-500 border-b border-queso-200"><th class="py-2 pr-3">Búsqueda</th><th class="pr-3">Qué quiere la persona</th><th>Página de destino</th></tr></thead>
+            <tbody class="[&>tr]:border-b [&>tr]:border-queso-100">
+              <tr><td class="py-2 pr-3 font-semibold">quesería en Albacete</td><td class="pr-3">Ir a una tienda cerca</td><td>Inicio + ficha de Google</td></tr>
+              <tr><td class="py-2 pr-3 font-semibold">comprar queso manchego Albacete</td><td class="pr-3">Comprar un queso concreto</td><td>Quesos manchegos</td></tr>
+              <tr><td class="py-2 pr-3 font-semibold">tabla de quesos Albacete</td><td class="pr-3">Encargo para una cena o evento</td><td>Tablas para compartir</td></tr>
+              <tr><td class="py-2 pr-3 font-semibold">lotes de navidad empresa Albacete</td><td class="pr-3">Regalo de empresa (temporada)</td><td>Lotes de regalo y empresa</td></tr>
+              <tr><td class="py-2 pr-3 font-semibold">cata de quesos Albacete</td><td class="pr-3">Plan o regalo de experiencia</td><td>Catas guiadas</td></tr>
+              <tr><td class="py-2 pr-3 font-semibold">regalo gourmet Albacete</td><td class="pr-3">Regalo especial</td><td>Lotes de regalo</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-stone-500">El volumen de cada búsqueda se mide con Search Console tras el lanzamiento; no damos cifras inventadas.</p>
+      </div>
+
+      <!-- Datos estructurados -->
+      <details class="bg-white rounded-2xl border border-queso-200 card-shadow p-5">
+        <summary class="flex justify-between items-center gap-3 font-display text-xl text-vino-900">Ver el código de datos estructurados que entiende Google<span class="faq-icono text-2xl text-vino-700 transition">+</span></summary>
+        <pre class="mt-3 text-xs bg-stone-900 text-emerald-200 rounded-xl p-4 overflow-x-auto custom-scroll"><code>{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "El Sueño del Quesero",
+  "url": "https://elsuenodelquesero.es/",
+  "telephone": "+34 639 25 18 84",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Rosario, 58",
+    "postalCode": "02003",
+    "addressLocality": "Albacete",
+    "addressCountry": "ES"
+  },
+  "openingHoursSpecification": [ "(el horario real, igual que en Google)" ],
+  "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Quesos artesanos" },
+  "potentialAction": { "@type": "OrderAction", "target": "https://wa.me/34639251884" }
+}</code></pre>
+      </details>
+    </section>
+
+    <!-- ===================================================== 6. INVERSIÓN -->
+    <section id="view-inversion" class="tab-view hidden space-y-6" aria-labelledby="t-inv">
+      <div class="max-w-3xl">
+        <p class="text-xs font-bold uppercase tracking-widest text-queso-700">6 · Inversión</p>
+        <h2 id="t-inv" class="font-display text-3xl md:text-4xl text-vino-900 mt-1">Todo junto, con la ayuda del Bono Crecimiento Pyme</h2>
+        <p class="text-stone-600 mt-2">Precios orientativos. La propuesta final se ajusta tras ver juntos la web actual, el catálogo y cómo trabajáis en tienda.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="md:col-span-2 bg-white rounded-2xl border border-queso-200 card-shadow p-6 space-y-4">
+          <h3 class="font-display text-xl text-vino-900">Qué incluye</h3>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="p-4 rounded-xl bg-queso-50 space-y-1"><p class="font-bold">🌐 Web nueva</p><p class="text-stone-600">Catálogo con fotos, reserva para recoger, páginas de tablas, regalos y catas.</p></div>
+            <div class="p-4 rounded-xl bg-queso-50 space-y-1"><p class="font-bold">🔍 SEO local y seguridad</p><p class="text-stone-600">Google Business, datos unificados, datos estructurados, HTTPS y RGPD.</p></div>
+            <div class="p-4 rounded-xl bg-queso-50 space-y-1"><p class="font-bold">💬 WhatsApp 24/7</p><p class="text-stone-600">Asistente con catálogo y fotos, cesta, reserva y recordatorios.</p></div>
+            <div class="p-4 rounded-xl bg-queso-50 space-y-1"><p class="font-bold">📸 Instagram con Zernio</p><p class="text-stone-600">Respuesta a comentarios y mensajes, y publicaciones programadas.</p></div>
+            <div class="p-4 rounded-xl bg-queso-50 space-y-1 sm:col-span-2"><p class="font-bold">🧀 CRM de clientes</p><p class="text-stone-600">Historial de compras, pedidos y recogidas, campañas y avisos a quien lleva tiempo sin comprar.</p></div>
+          </div>
+          <h3 class="font-display text-xl text-vino-900 pt-2">Cómo lo hacemos</h3>
+          <ol class="text-sm text-stone-700 space-y-2">
+            <li><strong>Semana 1:</strong> sesión de fotos de los quesos, catálogo y textos con vosotros.</li>
+            <li><strong>Semanas 2-3:</strong> web nueva, SEO local y ficha de Google.</li>
+            <li><strong>Semana 4:</strong> WhatsApp e Instagram conectados al CRM. Importamos los clientes que ya tengáis.</li>
+            <li><strong>Después:</strong> revisión mensual de resultados y ajustes.</li>
+          </ol>
+        </div>
+        <div class="bg-vino-950 text-white rounded-2xl card-shadow p-6 space-y-4">
+          <p class="text-sm text-queso-300 font-semibold">Coste final para la tienda</p>
+          <p class="font-display text-5xl" data-oferta="costeCliente">600 €</p>
+          <p class="text-sm text-queso-100/90">Inversión de <span data-oferta="inversionTotal">3.000 €</span> + IVA. La Junta devuelve <span data-oferta="subvencion">2.400 €</span> (80 %) tras justificar el proyecto con el Bono Crecimiento Pyme.</p>
+          <div class="border-t border-white/15 pt-4">
+            <p class="text-sm text-queso-300 font-semibold">Mantenimiento</p>
+            <p class="font-display text-3xl" data-oferta="cuotaMensual">99 €/mes</p>
+            <p class="text-xs text-queso-100/80">Alojamiento, seguridad, copias, soporte y el asistente funcionando. Los mensajes de WhatsApp que cobra Meta y la comisión de la pasarela de pago van aparte.</p>
+          </div>
+          <p class="text-[11px] text-queso-100/70">Importes orientativos, pendientes de confirmar en la propuesta firmada.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-queso-200 bg-white py-6 px-4 text-center text-xs text-stone-500 space-y-1">
+    <p>Prototipo de demostración preparado por Altera Soluciones Tecnológicas para El Sueño del Quesero.</p>
+    <p>Catálogo, clientes e importes de ejemplo. Nada de lo que hagas aquí envía mensajes reales.</p>
+  </footer>
+
+  <div id="qsToast" role="status" class="fixed left-1/2 -translate-x-1/2 bottom-24 z-[60] hidden max-w-[92vw] px-4 py-3 rounded-2xl bg-vino-950 text-white text-sm font-semibold shadow-2xl"></div>
+
+  <script>
+    // Rellena la oferta con los datos comunes de Altera (shared/altera-config.js)
+    (function () {
+      var o = (window.ALTERA_CONFIG || {}).oferta || {};
+      document.querySelectorAll('[data-oferta]').forEach(function (el) { if (o[el.dataset.oferta]) el.textContent = o[el.dataset.oferta]; });
+    })();
+  </script>
+</body>
+</html>

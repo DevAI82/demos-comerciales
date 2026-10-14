@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Y7TUHhZelcIaW0fl1KYkRgApeOrq5O1iIY+k+NRfS2I='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; form-action https://wa.me; base-uri 'none'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Quesería en Albacete · Quesos artesanos | El Sueño del Quesero</title>
+  <meta name="description" content="Quesería artesana en el centro de Albacete (Calle Rosario, 58). Quesos de autor, cajas regalo, catas privadas y mesas de quesos para eventos. Reserva por WhatsApp y recoge en tienda.">
+  <!-- Propuesta de Altera: maqueta publicada fuera del dominio del cliente, no debe indexarse -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#3a3a3a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="El Sueño del Quesero">
+  <meta property="og:title" content="El Sueño del Quesero · Quesos artesanos en Albacete">
+  <meta property="og:description" content="Quesos artesanos, cajas regalo, catas y mesas de quesos para eventos en Calle Rosario, 58 (Albacete).">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/quesero/og-quesero.jpg?v=2">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23ffd23f'/%3E%3Ccircle cx='22' cy='24' r='6' fill='%23e0a91a'/%3E%3Ccircle cx='40' cy='38' r='8' fill='%23e0a91a'/%3E%3Ccircle cx='24' cy='44' r='4' fill='%23e0a91a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "El Sueño del Quesero",
+    "description": "Quesería artesana en Albacete: quesos, cajas regalo, catas privadas, mesas de quesos para eventos y jornadas con productores.",
+    "url": "https://elsuenodelquesero.es/",
+    "telephone": ["+34639251884", "+34627698001"],
+    "image": "https://elsuenodelquesero.es/",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Rosario, 58",
+      "postalCode": "02003",
+      "addressLocality": "Albacete",
+      "addressRegion": "Albacete",
+      "addressCountry": "ES"
+    },
+    "sameAs": ["https://www.facebook.com/esdquesero.albacete/"]
+  }
+  </script>
+
+  <style>
+    :root {
+      /* Marca: amarillo del logo y gris carbón de su web actual */
+      --queso: #ffd23f;
+      --queso-claro: #fff3c4;
+      --queso-oscuro: #e0a91a;
+      --corteza: #8a5a1c;
+      --carbon: #2e2e2e;
+      --carbon-2: #3a3a3a;
+      --carbon-3: #474747;
+      --crema: #fbf7ee;
+      --papel: #fffdf8;
+      --tinta: #24221f;
+      --tinta-suave: #5c574f;
+      --borde: #ece3cf;
+      --wa: #1f9e57;
+      /* Espaciado intencionado */
+      --s1: .5rem; --s2: 1rem; --s3: 1.5rem; --s4: 2.5rem; --s5: 4rem; --s6: 6.5rem;
+      --radio: 22px;
+      --sombra-1: 0 1px 2px rgba(74, 52, 12, .06), 0 4px 12px -4px rgba(74, 52, 12, .10);
+      --sombra-2: 0 2px 4px rgba(74, 52, 12, .06), 0 18px 40px -16px rgba(74, 52, 12, .28);
+      --sombra-3: 0 30px 70px -24px rgba(46, 32, 8, .45);
+      --muelle: cubic-bezier(.22, 1.2, .36, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; overflow-x: clip; }
+    body { margin: 0; font-family: 'Outfit', system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.7; color: var(--tinta); background: var(--crema); -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; margin: 0; color: var(--tinta); }
+    p { margin: 0; }
+    .contenedor { width: min(1200px, 100% - 2.5rem); margin-inline: auto; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .salto { position: absolute; left: 1rem; top: -100px; background: var(--queso); color: var(--tinta); padding: .75rem 1rem; border-radius: 10px; z-index: 100; font-weight: 700; }
+    .salto:focus { top: 1rem; }
+    :focus-visible { outline: 3px solid var(--queso-oscuro); outline-offset: 3px; border-radius: 6px; }
+    ::selection { background: var(--queso); color: var(--tinta); }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--crema); }
+    ::-webkit-scrollbar-thumb { background: var(--queso-oscuro); border-radius: 10px; border: 2px solid var(--crema); }
+
+    /* Grano sutil sobre toda la página */
+    body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 90; opacity: .05; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* Botones */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 52px; padding: 0 1.5rem; border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 2px solid transparent; cursor: pointer;
+      transition: transform .35s var(--muelle), box-shadow .35s ease, background-color .2s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(1px) scale(.98); }
+    .btn-queso { background: var(--queso); color: var(--tinta); box-shadow: 0 10px 24px -10px rgba(224, 169, 26, .8); }
+    .btn-queso:hover { background: #ffdc66; box-shadow: 0 16px 30px -12px rgba(224, 169, 26, .9); }
+    .btn-wa { background: var(--wa); color: #fff; box-shadow: 0 10px 24px -12px rgba(31, 158, 87, .8); }
+    .btn-wa:hover { background: #1a8a4c; }
+    .btn-linea { border-color: currentColor; color: inherit; background: transparent; }
+    .btn-linea:hover { background: rgba(255, 255, 255, .08); }
+    .icono { width: 20px; height: 20px; flex: none; }
+
+    /* Navegación */
+    .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background-color .3s ease, box-shadow .3s ease; }
+    .nav.con-fondo { background: rgba(46, 46, 46, .86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 10px 30px -20px rgba(0,0,0,.8); }
+    .nav .contenedor { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); min-height: 76px; }
+    .nav-logo img { height: 46px; width: auto; border-radius: 6px; }
+    .nav-enlaces { display: flex; align-items: center; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+    .nav-enlaces a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .85rem; color: #f4efe3; text-decoration: none; font-weight: 500; border-radius: 999px; transition: background-color .2s ease, color .2s ease; }
+    .nav-enlaces a:hover { background: rgba(255, 210, 63, .14); color: var(--queso); }
+    .nav-tel { color: #f4efe3; text-decoration: none; font-weight: 600; white-space: nowrap; }
+    .nav-tel:hover { color: var(--queso); }
+    .nav-acciones { display: flex; align-items: center; gap: var(--s2); }
+    .nav-boton { display: none; width: 48px; height: 48px; border-radius: 14px; border: 0; background: rgba(255,255,255,.1); color: #fff; cursor: pointer; }
+    .nav-boton:active { transform: scale(.96); }
+    @media (max-width: 980px) {
+      .nav { background: rgba(46, 46, 46, .92); backdrop-filter: blur(14px); }
+      .nav-boton { display: inline-flex; align-items: center; justify-content: center; }
+      .nav-tel, .nav-acciones .btn { display: none; }
+      .nav-enlaces { position: absolute; top: 76px; left: 0; right: 0; flex-direction: column; align-items: stretch; padding: var(--s2) 1.25rem var(--s3); background: var(--carbon); gap: .25rem;
+        opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity .25s ease, transform .35s var(--muelle); }
+      .nav-enlaces.abierto { opacity: 1; transform: none; pointer-events: auto; }
+      .nav-enlaces a { min-height: 52px; font-size: 1.1rem; }
+      .nav-enlaces .solo-movil { display: flex; margin-top: var(--s1); }
+    }
+    @media (min-width: 981px) { .solo-movil { display: none !important; } }
+
+    /* Hero */
+    .hero { position: relative; min-height: 100svh; display: grid; align-items: center; overflow: hidden; color: #fff; isolation: isolate;
+      background:
+        radial-gradient(60% 70% at 85% 30%, rgba(255, 210, 63, .28), transparent 60%),
+        radial-gradient(50% 60% at 10% 90%, rgba(224, 169, 26, .18), transparent 60%),
+        radial-gradient(120% 90% at 50% 0%, #4a4a4a 0%, #2e2e2e 55%, #232323 100%); }
+    .hero .contenedor { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: var(--s4); padding-top: 110px; padding-bottom: var(--s5); }
+    .hero-etiqueta { display: inline-flex; align-items: center; gap: .5rem; padding: .4rem .9rem; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: var(--queso); font-weight: 600; font-size: .9rem; }
+    .hero h1 { color: #fff; font-size: clamp(2.6rem, 6.4vw, 5.2rem); margin: var(--s3) 0 var(--s2); }
+    .hero h1 em { font-style: italic; color: var(--queso); font-weight: 500; }
+    .hero-texto { color: #e9e3d6; font-size: clamp(1.05rem, 1.6vw, 1.25rem); max-width: 34rem; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
+    .hero-cta .btn-linea { color: #fff; }
+    .hero-datos { display: flex; flex-wrap: wrap; gap: var(--s4); margin-top: var(--s5); }
+    .hero-datos strong { display: block; font-family: 'Fraunces', serif; font-size: 2.6rem; line-height: 1; color: var(--queso); letter-spacing: -0.03em; }
+    .hero-datos span { color: #cfc8b8; font-size: .95rem; }
+    .luna { position: relative; aspect-ratio: 1; width: min(100%, 520px); justify-self: end; }
+    .luna svg { width: 100%; height: 100%; overflow: visible; }
+    .capa { will-change: transform; }
+    .flota { animation: flota 7s ease-in-out infinite; }
+    @keyframes flota { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    .hero-bajar { position: absolute; left: 50%; bottom: 1.5rem; transform: translateX(-50%); color: #cfc8b8; font-size: .85rem; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: .3rem; }
+    .hero-bajar span { width: 2px; height: 34px; background: linear-gradient(var(--queso), transparent); animation: baja 2s ease-in-out infinite; transform-origin: top; }
+    @keyframes baja { 0% { transform: scaleY(0); opacity: 0; } 40% { opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+    @media (max-width: 900px) {
+      .hero .contenedor { grid-template-columns: 1fr; padding-top: 104px; }
+      .luna { justify-self: center; width: min(78vw, 360px); order: -1; margin-bottom: -1rem; }
+      .hero-datos { gap: var(--s3); margin-top: var(--s4); }
+      .hero-bajar { display: none; }
+    }
+
+    /* Secciones */
+    section { position: relative; }
+    .seccion { padding: var(--s6) 0; }
+    .antetitulo { display: inline-block; font-weight: 600; font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; color: var(--corteza); margin-bottom: var(--s2); }
+    .titulo { font-size: clamp(2rem, 4.2vw, 3.3rem); max-width: 18ch; }
+    .entradilla { color: var(--tinta-suave); font-size: 1.15rem; max-width: 38rem; margin-top: var(--s2); }
+    .cabecera-seccion { margin-bottom: var(--s5); }
+
+    /* Quiénes somos */
+    .nosotros { background: var(--papel); }
+    .nosotros .contenedor { display: grid; grid-template-columns: .95fr 1.05fr; gap: var(--s5); align-items: center; }
+    .foto-marco { position: relative; border-radius: 38% 38% var(--radio) var(--radio); overflow: hidden; background: var(--queso-claro); box-shadow: var(--sombra-3); }
+    .foto-marco img { width: 100%; height: auto; aspect-ratio: 886 / 769; object-fit: cover; mix-blend-mode: multiply; }
+    .foto-marco::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(46, 32, 8, .35), transparent 45%); pointer-events: none; }
+    .foto-pie { position: absolute; left: var(--s3); bottom: var(--s3); right: var(--s3); color: #fff; font-weight: 600; z-index: 1; font-size: .95rem; }
+    .cita { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.35; letter-spacing: -0.01em; color: var(--tinta); border-left: 4px solid var(--queso); padding-left: var(--s3); margin: var(--s3) 0; }
+    .nosotros p + p { margin-top: var(--s2); }
+    .nosotros .texto p { color: var(--tinta-suave); }
+    @media (max-width: 900px) { .nosotros .contenedor { grid-template-columns: 1fr; gap: var(--s4); } }
+
+    /* Servicios */
+    .servicios { background: var(--crema); overflow: hidden; }
+    .rejilla-servicios { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s3); }
+    .tarjeta { position: relative; background: var(--papel); border: 1px solid var(--borde); border-radius: var(--radio); padding: var(--s4) var(--s3) var(--s3); box-shadow: var(--sombra-1);
+      transition: transform .5s var(--muelle), box-shadow .4s ease; display: flex; flex-direction: column; gap: var(--s2); }
+    .tarjeta:hover { transform: translateY(-8px) rotate(-.4deg); box-shadow: var(--sombra-2); }
+    .tarjeta-icono { width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; background: var(--queso-claro); color: var(--corteza); }
+    .tarjeta-icono svg { width: 34px; height: 34px; }
+    .tarjeta h3 { font-size: 1.55rem; }
+    .tarjeta p { color: var(--tinta-suave); font-size: 1rem; }
+    .tarjeta a { margin-top: auto; font-weight: 600; color: var(--corteza); text-decoration: none; display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; }
+    .tarjeta a:hover { color: var(--tinta); }
+    .tarjeta a span { transition: transform .35s var(--muelle); }
+    .tarjeta a:hover span { transform: translateX(4px); }
+    @media (max-width: 1060px) { .rejilla-servicios { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .rejilla-servicios { grid-template-columns: 1fr; } }
+
+    /* Banda de reserva */
+    .reserva { background: var(--carbon); color: #f4efe3; overflow: hidden; isolation: isolate; }
+    .reserva::before { content: ""; position: absolute; inset: -20% -10% auto auto; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(255,210,63,.25), transparent 65%); z-index: -1; }
+    .reserva .titulo { color: #fff; }
+    .reserva .entradilla { color: #d6cfbf; }
+    .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); margin: var(--s5) 0 var(--s4); counter-reset: paso; list-style: none; padding: 0; }
+    .paso { position: relative; padding: var(--s4) var(--s3) var(--s3); border-radius: var(--radio); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
+    .paso::before { counter-increment: paso; content: counter(paso); position: absolute; top: -22px; left: var(--s3); width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--queso); color: var(--tinta); font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.2rem; box-shadow: 0 8px 20px -8px rgba(255,210,63,.8); }
+    .paso h3 { color: #fff; font-size: 1.35rem; margin-bottom: var(--s1); }
+    .paso p { color: #d6cfbf; font-size: 1rem; }
+    @media (max-width: 800px) { .pasos { grid-template-columns: 1fr; gap: var(--s4); } }
+
+    /* Nuestros quesos */
+    .quesos { background: var(--papel); }
+    .rejilla-quesos { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s2); }
+    .familia { text-align: center; padding: var(--s3) var(--s2); border-radius: var(--radio); background: var(--crema); border: 1px solid var(--borde); transition: transform .5s var(--muelle), box-shadow .4s ease; }
+    .familia:hover { transform: translateY(-6px); box-shadow: var(--sombra-2); }
+    .familia svg { width: 96px; height: 72px; margin: 0 auto var(--s2); }
+    .familia h3 { font-size: 1.25rem; }
+    .familia p { color: var(--tinta-suave); font-size: .95rem; margin-top: .35rem; }
+    .nota { margin-top: var(--s3); font-size: .9rem; color: var(--tinta-suave); }
+    .nota strong { background: var(--queso-claro); padding: .1rem .4rem; border-radius: 6px; color: var(--tinta); }
+    @media (max-width: 1000px) { .rejilla-quesos { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 560px) { .rejilla-quesos { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Preguntas frecuentes */
+    .faq { background: var(--crema); }
+    .faq .contenedor { display: grid; grid-template-columns: .8fr 1.2fr; gap: var(--s5); }
+    .faq details { background: var(--papel); border: 1px solid var(--borde); border-radius: 18px; padding: 0 var(--s3); box-shadow: var(--sombra-1); }
+    .faq details + details { margin-top: var(--s2); }
+    .faq summary { list-style: none; cursor: pointer; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: var(--s2); font-weight: 600; font-size: 1.08rem; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-size: 1.6rem; color: var(--corteza); transition: transform .35s var(--muelle); }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq details p { color: var(--tinta-suave); padding-bottom: var(--s3); }
+    @media (max-width: 900px) { .faq .contenedor { grid-template-columns: 1fr; gap: var(--s4); } }
+
+    /* Contacto */
+    .contacto { background: var(--carbon-2); color: #f4efe3; }
+    .contacto .titulo { color: #fff; }
+    .contacto .contenedor { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--s5); }
+    .dato { display: flex; gap: var(--s2); align-items: flex-start; padding: var(--s2) 0; min-width: 0; overflow-wrap: anywhere; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .dato svg { width: 24px; height: 24px; color: var(--queso); flex: none; margin-top: .2rem; }
+    .dato a { text-decoration: none; }
+    .dato a:hover { color: var(--queso); }
+    .hueco { display: inline-block; background: rgba(255,210,63,.16); color: var(--queso); border: 1px dashed rgba(255,210,63,.6); border-radius: 6px; padding: 0 .4rem; font-size: .92rem; }
+    .formulario { background: var(--papel); color: var(--tinta); border-radius: var(--radio); padding: var(--s4) var(--s3); box-shadow: var(--sombra-3); }
+    .formulario h3 { font-size: 1.6rem; margin-bottom: var(--s1); }
+    .formulario > p { color: var(--tinta-suave); font-size: .98rem; margin-bottom: var(--s3); }
+    .campo { display: grid; gap: .35rem; margin-bottom: var(--s2); }
+    .campo label { font-weight: 600; font-size: .95rem; }
+    .campo input, .campo select, .campo textarea { font: inherit; font-size: 1rem; color: var(--tinta); background: #fff; border: 1.5px solid var(--borde); border-radius: 14px; min-height: 50px; padding: .65rem .9rem; transition: border-color .2s ease, box-shadow .2s ease; }
+    .campo textarea { min-height: 110px; resize: vertical; }
+    .campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: var(--queso-oscuro); box-shadow: 0 0 0 4px rgba(255,210,63,.35); }
+    .privacidad { display: flex; gap: .6rem; align-items: flex-start; font-size: .9rem; color: var(--tinta-suave); margin: var(--s2) 0; }
+    .privacidad input { width: 20px; height: 20px; margin-top: .2rem; accent-color: var(--corteza); flex: none; }
+    .formulario .btn { width: 100%; }
+    @media (max-width: 900px) { .contacto .contenedor { grid-template-columns: minmax(0,1fr); gap: var(--s4); } }
+
+    footer { background: #232323; color: #a9a294; padding: var(--s4) 0; font-size: .92rem; }
+    footer .contenedor { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); align-items: center; justify-content: space-between; }
+    footer nav { display: flex; flex-wrap: wrap; gap: .25rem var(--s2); }
+    footer a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+    footer a:hover { color: var(--queso); }
+
+    /* Botón flotante de WhatsApp */
+    .maqueta-corto { display: none; }
+    @media (max-width: 640px) { .maqueta-largo { display: none; } .maqueta-corto { display: inline; } }
+    .wa-flotante { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 60; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: var(--wa); color: #fff; box-shadow: 0 14px 30px -10px rgba(31,158,87,.9);
+      transition: transform .4s var(--muelle); }
+    .wa-flotante:hover { transform: scale(1.08) rotate(-6deg); }
+    .wa-flotante:active { transform: scale(.95); }
+    .wa-flotante svg { width: 30px; height: 30px; }
+
+    /* Aviso de maqueta */
+    .maqueta { position: fixed; left: 18px; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 60; max-width: min(320px, calc(100% - 110px)); background: rgba(35,35,35,.92); color: #f4efe3; font-size: .8rem; line-height: 1.45; padding: .6rem .85rem; border-radius: 14px; backdrop-filter: blur(10px); }
+    .maqueta a { color: var(--queso); }
+
+    /* Animaciones de scroll (solo transform y opacity) */
+    .revela { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform 1s var(--muelle); }
+    .revela.izq { transform: translateX(-36px); }
+    .revela.der { transform: translateX(36px); }
+    .revela.escala { transform: scale(.94); }
+    .revela.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .revela { opacity: 1; transform: none; transition: none; }
+      .flota, .hero-bajar span { animation: none; }
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="salto" href="#contenido">Saltar al contenido</a>
+
+  <header class="nav" id="nav">
+    <div class="contenedor">
+      <a class="nav-logo" href="#inicio" aria-label="El Sueño del Quesero, inicio">
+        <img src="logo-sueno-del-quesero.png" alt="El Sueño del Quesero · Quesos Artesanos" width="204" height="46">
+      </a>
+      <nav aria-label="Principal">
+        <ul class="nav-enlaces" id="menu">
+          <li><a href="#quienes-somos">Quiénes somos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#quesos">Nuestros quesos</a></li>
+          <li><a href="#reserva">Reserva y recoge</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li class="solo-movil"><a class="btn btn-wa" href="https://wa.me/34639251884?text=Hola%2C%20quer%C3%ADa%20reservar%20queso" target="_blank" rel="noopener">Reservar por WhatsApp</a></li>
+        </ul>
+      </nav>
+      <div class="nav-acciones">
+        <a class="nav-tel" href="tel:+34639251884">639 251 884</a>
+        <a class="btn btn-queso" href="#reserva">Reservar</a>
+        <button class="nav-boton" id="menuBoton" type="button" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+          <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- HERO -->
+    <section class="hero" id="inicio" aria-labelledby="titulo-hero">
+      <div class="contenedor">
+        <div>
+          <span class="hero-etiqueta revela">● Calle Rosario, 58 · Albacete</span>
+          <h1 id="titulo-hero" class="revela">Quesos artesanos que <em>se sueñan</em> en Albacete</h1>
+          <p class="hero-texto revela">Quesería de autor en el centro de la ciudad. Cajas regalo, catas privadas, mesas de quesos para tus celebraciones y jornadas con los productores. Ahora también puedes reservar por WhatsApp y recoger en tienda.</p>
+          <div class="hero-cta revela">
+            <a class="btn btn-queso" href="#reserva">Reserva y recoge en tienda</a>
+            <a class="btn btn-linea" href="#servicios">Ver servicios</a>
+          </div>
+          <div class="hero-datos revela">
+            <div><strong data-contar="30" data-prefijo="+">+30</strong><span>variedades en tienda</span></div>
+            <div><strong data-contar="2017">2017</strong><span>en el centro de Albacete</span></div>
+            <div><strong data-contar="4">4</strong><span>servicios a medida</span></div>
+          </div>
+        </div>
+
+        <!-- La luna de queso del logo, con capas en parallax -->
+        <div class="luna" aria-hidden="true">
+          <svg viewBox="0 0 400 400">
+            <defs>
+              <radialGradient id="gLuna" cx="38%" cy="32%" r="70%">
+                <stop offset="0" stop-color="#fff1a8"/>
+                <stop offset=".55" stop-color="#ffd23f"/>
+                <stop offset="1" stop-color="#e0a91a"/>
+              </radialGradient>
+              <radialGradient id="gHalo" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#ffd23f" stop-opacity=".45"/>
+                <stop offset="1" stop-color="#ffd23f" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <g class="capa" data-velocidad="0.04"><circle cx="200" cy="190" r="200" fill="url(#gHalo)"/></g>
+            <g class="capa" data-velocidad="0.1"><g class="flota">
+              <circle cx="200" cy="185" r="140" fill="url(#gLuna)"/>
+              <g fill="#c98f12" opacity=".55">
+                <circle cx="150" cy="130" r="22"/><circle cx="235" cy="115" r="12"/><circle cx="262" cy="180" r="26"/>
+                <circle cx="180" cy="200" r="15"/><circle cx="120" cy="215" r="10"/><circle cx="215" cy="255" r="18"/><circle cx="290" cy="245" r="9"/><circle cx="160" cy="268" r="8"/>
+              </g>
+              <circle cx="200" cy="185" r="140" fill="none" stroke="#fff6cc" stroke-opacity=".5" stroke-width="2"/>
+            </g></g>
+            <g class="capa" data-velocidad="0.22" fill="#f7f2e6">
+              <path d="M40 330c0-26 21-46 46-46 8-24 31-41 58-41 30 0 55 21 60 49 5-2 11-3 17-3 27 0 48 20 48 46 0 3 0 5-1 8H41c-1-4-1-8-1-13z" opacity=".95"/>
+            </g>
+            <g class="capa" data-velocidad="0.32" fill="#ffffff">
+              <path d="M210 352c0-22 18-40 40-40 6-20 25-34 48-34 26 0 48 19 52 44 21 2 37 19 37 40v6H210z"/>
+            </g>
+            <g class="capa" data-velocidad="0.16" fill="#ffd23f">
+              <circle cx="58" cy="90" r="3"/><circle cx="350" cy="70" r="2.5"/><circle cx="330" cy="150" r="2"/><circle cx="80" cy="170" r="2"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <a class="hero-bajar" href="#quienes-somos">Descubre<span></span></a>
+    </section>
+
+    <!-- QUIÉNES SOMOS -->
+    <section class="seccion nosotros" id="quienes-somos" aria-labelledby="titulo-nosotros">
+      <div class="contenedor">
+        <figure class="foto-marco revela izq" style="margin:0">
+          <img src="equipo-sueno-del-quesero.jpg" alt="El equipo de El Sueño del Quesero con su uniforme de la quesería" width="886" height="769" loading="lazy" decoding="async">
+          <figcaption class="foto-pie">Las caras detrás del mostrador de Calle Rosario</figcaption>
+        </figure>
+        <div class="texto revela der">
+          <span class="antetitulo">Quiénes somos</span>
+          <h2 class="titulo" id="titulo-nosotros">Una quesería que nació de un sueño</h2>
+          <p class="cita">¿Qué es un sueño? Un camino, una pasión, una ilusión, el motor que mueve el mundo.</p>
+          <p>En El Sueño del Quesero seleccionamos quesos artesanos y te los cortamos a tu gusto, con el consejo de quien los conoce uno a uno. Desde 2017 en el centro de Albacete, con más de 30 variedades y una sala propia para catas y degustaciones.</p>
+          <p><span class="hueco">[Historia del negocio y de sus dueños, con sus palabras]</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="seccion servicios" id="servicios" aria-labelledby="titulo-servicios">
+      <div class="contenedor">
+        <div class="cabecera-seccion revela">
+          <span class="antetitulo">Servicios</span>
+          <h2 class="titulo" id="titulo-servicios">Mucho más que una tienda de quesos</h2>
+          <p class="entradilla">Para regalar, para celebrar o para aprender. Cuéntanos qué necesitas y lo preparamos a tu medida.</p>
+        </div>
+        <div class="rejilla-servicios" data-escalonado>
+          <article class="tarjeta revela" id="cajas-regalo">
+            <div class="tarjeta-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1s6 1 6 1zm0 0c2-4 6-4 6-1s-6 1-6 1z"/></svg></div>
+            <h3>Cajas regalo</h3>
+            <p>Enviamos a esa persona tan especial una caja regalo con un surtido de quesos personalizado.</p>
+            <a href="https://wa.me/34639251884?text=Hola%2C%20quiero%20una%20caja%20regalo" target="_blank" rel="noopener">Pedir una caja <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="tarjeta revela" id="catas">
+            <div class="tarjeta-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v7M8 21h8"/></svg></div>
+            <h3>Catas</h3>
+            <p>Reserva nuestra sala para una cata-cumpleaños o una degustación privada con tu grupo.</p>
+            <a href="https://wa.me/34639251884?text=Hola%2C%20quiero%20reservar%20una%20cata" target="_blank" rel="noopener">Reservar la sala <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="tarjeta revela" id="eventos">
+            <div class="tarjeta-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M5 18l7-11 7 11M9 18l3-5 3 5"/></svg></div>
+            <h3>Eventos</h3>
+            <p>Montamos mesas de quesos para bodas, comuniones, bautizos y cumpleaños.</p>
+            <a href="https://wa.me/34639251884?text=Hola%2C%20quiero%20una%20mesa%20de%20quesos%20para%20un%20evento" target="_blank" rel="noopener">Pedir presupuesto <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="tarjeta revela" id="jornadas">
+            <div class="tarjeta-icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c0-2.5 1.4-4.5 3-4.5s4 2 4 4.5"/></svg></div>
+            <h3>Jornadas</h3>
+            <p>Productores locales os explican de primera mano cómo elaboran sus quesos.</p>
+            <a href="#contacto">Quiero enterarme <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESERVA Y RECOGE -->
+    <section class="seccion reserva" id="reserva" aria-labelledby="titulo-reserva">
+      <div class="contenedor">
+        <div class="revela">
+          <span class="antetitulo" style="color:var(--queso)">Nuevo</span>
+          <h2 class="titulo" id="titulo-reserva">Reserva por WhatsApp, recoge en tienda</h2>
+          <p class="entradilla">A cualquier hora: te enseñamos los quesos con foto, eliges cuánto quieres y te lo dejamos cortado y envasado para cuando pases.</p>
+        </div>
+        <ol class="pasos" data-escalonado>
+          <li class="paso revela"><h3>Escríbenos</h3><p>Pregunta por un queso, pide una tabla o un regalo. Te respondemos al momento, también de noche y en domingo.</p></li>
+          <li class="paso revela"><h3>Elige con fotos</h3><p>Te mandamos fotos y precio de cada queso, y armas tu cesta en el mismo chat.</p></li>
+          <li class="paso revela"><h3>Recoge en Calle Rosario</h3><p>Eliges la hora de recogida y te avisamos cuando esté listo. Sin esperas en el mostrador.</p></li>
+        </ol>
+        <div class="revela" style="display:flex;flex-wrap:wrap;gap:1rem">
+          <a class="btn btn-wa" href="https://wa.me/34639251884?text=Hola%2C%20quer%C3%ADa%20reservar%20queso%20para%20recoger" target="_blank" rel="noopener">
+            <svg class="icono" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>
+            Reservar por WhatsApp
+          </a>
+          <a class="btn btn-linea" href="../index.html#whatsapp" style="color:#fff">Ver cómo funciona (demo)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUESTROS QUESOS -->
+    <section class="seccion quesos" id="quesos" aria-labelledby="titulo-quesos">
+      <div class="contenedor">
+        <div class="cabecera-seccion revela">
+          <span class="antetitulo">Nuestros quesos</span>
+          <h2 class="titulo" id="titulo-quesos">Más de 30 variedades, cortadas a tu gusto</h2>
+          <p class="entradilla">Te aconsejamos según el momento: para picar, para una tabla, para cocinar o para regalar.</p>
+        </div>
+        <div class="rejilla-quesos" data-escalonado>
+          <article class="familia revela escala"><svg viewBox="0 0 96 72" aria-hidden="true"><path d="M8 56 48 14l40 42z" fill="#f3d98f"/><path d="M8 56h80v8H8z" fill="#7a5230"/><circle cx="46" cy="40" r="4" fill="#7a5230" opacity=".25"/></svg><h3>Oveja</h3><p>Curados y semicurados de la tierra</p></article>
+          <article class="familia revela escala"><svg viewBox="0 0 96 72" aria-hidden="true"><ellipse cx="48" cy="54" rx="34" ry="10" fill="#c9b48a"/><rect x="14" y="34" width="68" height="20" fill="#d8c79e"/><ellipse cx="48" cy="34" rx="34" ry="10" fill="#fbf6e9"/></svg><h3>Cabra</h3><p>Frescos, rulos y curados</p></article>
+          <article class="familia revela escala"><svg viewBox="0 0 96 72" aria-hidden="true"><path d="M8 56 48 14l40 42z" fill="#f4ecd2"/><path d="M8 56h80v8H8z" fill="#8d7a5c"/><path d="M30 46c5-3 7 2 11-1M48 30c4 3 2 7 7 6M56 46c3-4 8-1 11-4" stroke="#3f6b6b" stroke-width="3" fill="none" stroke-linecap="round"/></svg><h3>Azules</h3><p>Para los más atrevidos</p></article>
+          <article class="familia revela escala"><svg viewBox="0 0 96 72" aria-hidden="true"><ellipse cx="48" cy="52" rx="36" ry="12" fill="#c79b5b"/><path d="M22 48q26-30 52 0-26 8-52 0z" fill="#fbefc9"/></svg><h3>Cremosos</h3><p>Tortas y quesos de cuchara</p></article>
+          <article class="familia revela escala"><svg viewBox="0 0 96 72" aria-hidden="true"><path d="M8 56 48 14l40 42z" fill="#f0d27c"/><path d="M8 56h80v8H8z" fill="#9c7a45"/><circle cx="42" cy="38" r="3" fill="#9c7a45" opacity=".3"/><circle cx="56" cy="46" r="2.5" fill="#9c7a45" opacity=".3"/></svg><h3>De autor</h3><p>Selección de pequeños productores</p></article>
+        </div>
+        <p class="nota revela">En la web real cada familia enlaza a su categoría de la tienda online con fotos y precios: <strong>[catálogo real de la tienda]</strong></p>
+      </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <section class="seccion faq" id="preguntas" aria-labelledby="titulo-faq">
+      <div class="contenedor">
+        <div class="revela">
+          <span class="antetitulo">Preguntas frecuentes</span>
+          <h2 class="titulo" id="titulo-faq">Lo que más nos preguntáis</h2>
+          <p class="entradilla">Y si no está aquí, escríbenos por WhatsApp.</p>
+        </div>
+        <div class="revela">
+          <details><summary>¿Puedo reservar queso y recogerlo más tarde?</summary><p>Sí. Escríbenos por WhatsApp, elige los quesos y la hora de recogida, y te lo dejamos cortado y envasado en Calle Rosario, 58.</p></details>
+          <details><summary>¿Hacéis mesas de quesos para bodas y comuniones?</summary><p>Sí, montamos mesas de quesos para bodas, comuniones, bautizos y cumpleaños. Cuéntanos la fecha y el número de invitados y te pasamos presupuesto.</p></details>
+          <details><summary>¿Se puede reservar la sala para una cata?</summary><p>Sí, para una cata-cumpleaños o una degustación privada con tu grupo. Pregúntanos por las fechas disponibles.</p></details>
+          <details><summary>¿Enviáis cajas regalo?</summary><p>Sí, preparamos cajas con un surtido personalizado para esa persona especial. <span class="hueco">[Zona de envío y plazos]</span></p></details>
+          <details><summary>Tengo una alergia o intolerancia, ¿qué queso puedo tomar?</summary><p>Pregúntanos en tienda o por WhatsApp: te atiende una persona del equipo con la información de cada queso.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="seccion contacto" id="contacto" aria-labelledby="titulo-contacto">
+      <div class="contenedor">
+        <div class="revela izq">
+          <span class="antetitulo" style="color:var(--queso)">Visítanos</span>
+          <h2 class="titulo" id="titulo-contacto">En el centro de Albacete</h2>
+          <div style="margin-top:2rem">
+            <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><div><strong>Calle Rosario, 58</strong><br>02003 Albacete</div></div>
+            <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><div><a href="tel:+34639251884">639 251 884</a><br><a href="tel:+34627698001">627 698 001</a></div></div>
+            <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><span class="hueco">[Horario real, el mismo que en Google]</span></div></div>
+            <div class="dato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M14 8h2V5h-2a3 3 0 0 0-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8.5a.5.5 0 0 1 .5-.5z"/></svg><div><a href="https://www.facebook.com/esdquesero.albacete/" target="_blank" rel="noopener">Facebook</a> · <span class="hueco">[enlace de Instagram]</span></div></div>
+          </div>
+        </div>
+
+        <!-- Sin servidor: el formulario prepara un WhatsApp, no guarda datos en la web -->
+        <form class="formulario revela der" id="formulario" action="https://wa.me/34639251884" method="get" novalidate>
+          <h3>¿Qué te preparamos?</h3>
+          <p>Te respondemos por WhatsApp. Esta web no guarda tus datos.</p>
+          <div class="campo"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" type="text" autocomplete="given-name" maxlength="60" required></div>
+          <div class="campo"><label for="f-motivo">Me interesa</label>
+            <select id="f-motivo" name="motivo">
+              <option>Reservar queso para recoger</option>
+              <option>Una caja regalo</option>
+              <option>Una cata en la sala</option>
+              <option>Una mesa de quesos para un evento</option>
+              <option>Las jornadas con productores</option>
+            </select></div>
+          <div class="campo"><label for="f-mensaje">Cuéntanos</label><textarea id="f-mensaje" name="mensaje" maxlength="600" placeholder="Fecha, número de personas, quesos que te gustan…"></textarea></div>
+          <label class="privacidad"><input type="checkbox" id="f-privacidad" required> <span>He leído la <a href="#privacidad">política de privacidad</a> y acepto que me respondáis por WhatsApp.</span></label>
+          <p id="f-error" role="alert" style="color:#b42318;font-size:.92rem;min-height:1.4em;margin:0 0 .5rem"></p>
+          <button class="btn btn-wa" type="submit">Enviar por WhatsApp</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contenedor">
+      <p>© <span id="anio">2026</span> El Sueño del Quesero · Quesos Artesanos · Albacete</p>
+      <nav aria-label="Legal">
+        <a href="#aviso-legal">Aviso legal</a>
+        <a href="#privacidad" id="privacidad">Privacidad</a>
+        <a href="#cookies">Cookies</a>
+      </nav>
+    </div>
+  </footer>
+
+  <a class="wa-flotante" href="https://wa.me/34639251884?text=Hola%2C%20quer%C3%ADa%20reservar%20queso" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>
+  </a>
+  <p class="maqueta"><span class="maqueta-corto">Maqueta de Altera · </span><span class="maqueta-largo">Propuesta de web nueva preparada por Altera. Textos y fotos tomados de su web actual; los huecos <span style="color:var(--queso)">[entre corchetes]</span> se rellenan con sus datos. </span><a href="../propuesta.html">Ver propuesta</a></p>
+
+  <script>
+  (function () {
+    'use strict';
+    var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Navegación: fondo al hacer scroll y menú móvil
+    var nav = document.getElementById('nav');
+    var menu = document.getElementById('menu');
+    var boton = document.getElementById('menuBoton');
+    function alScroll() { nav.classList.toggle('con-fondo', window.scrollY > 40); }
+    alScroll();
+    boton.addEventListener('click', function () {
+      var abierto = menu.classList.toggle('abierto');
+      boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+      boton.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { menu.classList.remove('abierto'); boton.setAttribute('aria-expanded', 'false'); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('abierto')) { menu.classList.remove('abierto'); boton.setAttribute('aria-expanded', 'false'); boton.focus(); }
+    });
+
+    // Escalonado: retraso creciente para los hijos de cada rejilla
+    document.querySelectorAll('[data-escalonado]').forEach(function (grupo) {
+      Array.prototype.forEach.call(grupo.children, function (hijo, i) { hijo.style.transitionDelay = (i * 0.09) + 's'; });
+    });
+
+    // Contadores
+    function contar(el) {
+      var fin = parseInt(el.getAttribute('data-contar'), 10);
+      var prefijo = el.getAttribute('data-prefijo') || '';
+      var inicio = fin > 1000 ? fin - 40 : 0;
+      if (reducido) { el.textContent = prefijo + fin; return; }
+      var t0 = null, dur = 1400;
+      function paso(t) {
+        if (!t0) t0 = t;
+        var p = Math.min((t - t0) / dur, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefijo + Math.round(inicio + (fin - inicio) * e);
+        if (p < 1) requestAnimationFrame(paso);
+      }
+      requestAnimationFrame(paso);
+    }
+
+    // Aparición al entrar en pantalla
+    var elementos = document.querySelectorAll('.revela');
+    if ('IntersectionObserver' in window && !reducido) {
+      var io = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          en.target.classList.add('visible');
+          en.target.querySelectorAll('[data-contar]').forEach(contar);
+          io.unobserve(en.target);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      elementos.forEach(function (el) { io.observe(el); });
+    } else {
+      elementos.forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    // Parallax de la luna de queso
+    var capas = document.querySelectorAll('.capa');
+    var pendiente = false;
+    function parallax() {
+      var y = window.scrollY;
+      capas.forEach(function (c) { c.style.transform = 'translate3d(0,' + (y * parseFloat(c.getAttribute('data-velocidad'))) + 'px,0)'; });
+      pendiente = false;
+    }
+    window.addEventListener('scroll', function () {
+      alScroll();
+      if (!reducido && !pendiente) { pendiente = true; requestAnimationFrame(parallax); }
+    }, { passive: true });
+
+    // Formulario: valida y abre WhatsApp con el mensaje (no se envía nada a ningún servidor)
+    var form = document.getElementById('formulario');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nombre = form.nombre.value.trim();
+      var error = document.getElementById('f-error');
+      if (!nombre) { error.textContent = 'Dinos tu nombre para poder responderte.'; form.nombre.focus(); return; }
+      if (!document.getElementById('f-privacidad').checked) { error.textContent = 'Necesitamos que aceptes la política de privacidad.'; return; }
+      error.textContent = '';
+      var texto = 'Hola, soy ' + nombre + '. Me interesa: ' + form.motivo.value + '.' + (form.mensaje.value.trim() ? ' ' + form.mensaje.value.trim() : '');
+      window.open('https://wa.me/34639251884?text=' + encodeURIComponent(texto.slice(0, 700)), '_blank', 'noopener');
+    });
+
+    document.getElementById('anio').textContent = new Date().getFullYear();
+  })();
+  </script>
+</body>
+</html>
