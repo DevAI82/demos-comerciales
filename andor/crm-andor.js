@@ -97,7 +97,7 @@
       <div class="p-5 space-y-4">
         <div class="flex items-start justify-between gap-3"><div><p class="text-xs font-bold uppercase tracking-widest text-oro-600">Parte de incidencia</p><h3 id="crmDrawerTitle" class="font-display font-black text-xl text-marino-900">${esc(p.tipo)}</h3><p class="text-sm text-slate-600">${esc(p.puesto)} · ${esc(p.hora)}</p></div>
         <button type="button" data-crm-close class="w-10 h-10 rounded-full hover:bg-slate-100 text-xl" aria-label="Cerrar">×</button></div>
-        <div class="aspect-video rounded-2xl bg-[repeating-linear-gradient(45deg,#dfe8f5,#dfe8f5_12px,#f1f5fb_12px,#f1f5fb_24px)] border border-marino-100 flex items-center justify-center text-sm text-slate-500">📷 Foto enviada por el vigilante</div>
+        <div class="aspect-video rounded-2xl bg-[repeating-linear-gradient(45deg,#ece6e2,#ece6e2_12px,#f7f4f2_12px,#f7f4f2_24px)] border border-marino-100 flex items-center justify-center text-sm text-slate-500">📷 Foto enviada por el vigilante</div>
         <dl class="grid grid-cols-2 gap-3 text-sm"><div><dt class="text-xs text-slate-500">Vigilante</dt><dd class="font-semibold">${esc(p.vigilante)}</dd></div><div><dt class="text-xs text-slate-500">Gravedad</dt><dd class="font-semibold">${p.grave ? 'Alta' : 'Normal'}</dd></div></dl>
         <div class="rounded-2xl bg-marino-50 p-4 text-sm text-slate-700">${esc(p.texto)}</div>
         <div class="rounded-2xl border border-marino-100 p-4 space-y-2 text-sm"><p class="text-xs font-bold text-slate-500">Informe para el cliente (redactado por el asistente, lo revisa la oficina)</p>

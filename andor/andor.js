@@ -217,10 +217,25 @@
 
   // ---------- Web nueva: servicios y formulario ----------
   const SERVICIOS = [
-    { i: '🏭', t: 'Vigilancia de instalaciones', d: 'Naves, oficinas y centros de trabajo, de día, de noche o 24 horas, con rondas registradas.' },
-    { i: '🪪', t: 'Control de accesos', d: 'Recepción, identificación y registro de visitas en empresas, centros comerciales y edificios públicos.' },
-    { i: '🏟️', t: 'Seguridad en eventos', d: 'Conciertos, ferias y partidos: accesos, recinto y zonas sensibles con vigilantes con su curso.' },
-    { i: '🏗️', t: 'Vigilancia de obras', d: 'Vigilancia nocturna y de fin de semana para evitar robos de material y maquinaria.' }
+    { i: '🛡️', t: 'Vigilancia y protección', d: 'Instalaciones públicas y privadas, vigilancia perimetral y rondas, con presencia preventiva y respuesta rápida.' },
+    { i: '🪪', t: 'Control de accesos', d: 'Verificación de personas y gestión ordenada de entradas y salidas en edificios, recintos y eventos.' },
+    { i: '🎪', t: 'Seguridad en eventos', d: 'Ferias, festivales y partidos: flujo de público, prevención de riesgos y gestión de incidencias.' },
+    { i: '⚡', t: 'Infraestructuras críticas', d: 'Plantas fotovoltaicas, parques eólicos y subestaciones con vigilancia técnica y control perimetral.' },
+    { i: '🤝', t: 'Personal auxiliar y azafatas', d: 'Atención al público, información y apoyo operativo en ferias, congresos y espacios comerciales.' },
+    { i: '📦', t: 'Carga, descarga y logística', d: 'Apoyo en montajes, recepción de mercancía y control de instalaciones, coordinado con la vigilancia.' }
+  ];
+  const SECTORES = [
+    { f: 'renovables', ic: 'panel-solar', t: 'Energías renovables', p: 'ISFV Covatillas (150 MW) · ISFV Campanario (80 MW) · parques eólicos y subestaciones' },
+    { f: 'eventos', ic: 'festival', t: 'Ferias, eventos y espectáculos', p: 'Feria de Albacete · FENAVIN · Viña Rock · Abycine · Festival de les Arts' },
+    { f: 'deportivos', ic: 'trofeo', t: 'Eventos deportivos', p: 'Albacete Balompié · F.C. Cartagena · ElPozo Murcia · Albacete Fútbol Sala' },
+    { f: 'industria', ic: 'fabrica', t: 'Industria e infraestructuras', p: 'ADIF · vías del AVE · polígonos industriales · obras de construcción' }
+  ];
+  const VALORES = [
+    ['Seriedad y compromiso', 'Cumplimos lo acordado con el cliente y con nuestros profesionales.'],
+    ['Rigor profesional', 'Procedimientos claros, controles internos y supervisión constante.'],
+    ['Legalidad', 'Cada servicio conforme a la normativa de seguridad privada y laboral.'],
+    ['Eficacia operativa', 'Prevención de incidentes, respuesta rápida y continuidad del servicio.'],
+    ['Discreción y confidencialidad', 'Máxima reserva con la información del cliente en cada intervención.']
   ];
   let webPaso = 1; const web = {};
   const CAMPOS = {
@@ -257,7 +272,9 @@
     $('waForm').onsubmit = (e) => { e.preventDefault(); enviar($('waInput').value); };
     $('waReset').onclick = () => setModo(modo);
     setModo('cliente');
-    $('webServicios').innerHTML = SERVICIOS.map(s => `<div class="rounded-2xl border border-marino-100 p-5 space-y-2 bg-white hover:-translate-y-0.5 hover:shadow-lg transition"><p class="text-3xl">${s.i}</p><h4 class="font-display font-extrabold text-marino-900">${s.t}</h4><p class="text-sm text-slate-600 leading-relaxed">${s.d}</p></div>`).join('');
+    $('webServicios').innerHTML = SERVICIOS.map(s => `<div class="rounded-2xl border border-marino-100 p-5 space-y-2 bg-white hover:-translate-y-0.5 hover:shadow-lg transition"><p class="w-11 h-11 rounded-xl bg-oro-50 text-2xl flex items-center justify-center" aria-hidden="true">${s.i}</p><h5 class="font-display font-bold text-lg text-marino-900">${s.t}</h5><p class="text-sm text-slate-600 leading-relaxed">${s.d}</p></div>`).join('');
+    $('webSectores').innerHTML = SECTORES.map(s => `<article class="rounded-2xl overflow-hidden bg-marino-900 border border-white/10"><img src="img/${s.f}.webp" alt="Servicio de Andor Seguridad: ${s.t.toLowerCase()}" loading="lazy" class="w-full h-40 object-cover"><div class="p-4 space-y-2"><div class="flex items-center gap-2"><img src="img/icono-${s.ic}.png" alt="" class="w-7 h-7"><h5 class="font-display font-bold text-lg leading-tight">${s.t}</h5></div><p class="text-xs text-marino-200 leading-relaxed">${s.p}</p></div></article>`).join('');
+    $('webValores').innerHTML = VALORES.map((v, i) => `<div class="rounded-xl border border-marino-100 p-4 flex gap-3 ${i === 4 ? 'sm:col-span-2' : ''}"><span class="w-8 h-8 shrink-0 rounded-full bg-oro-300 text-marino-950 font-display font-bold flex items-center justify-center">${i + 1}</span><div><p class="font-bold text-marino-900">${v[0]}</p><p class="text-sm text-slate-600">${v[1]}</p></div></div>`).join('');
     pintarPaso(); $('webForm').onsubmit = webEnviar;
     const ini = (location.hash || '').slice(1);
     window.switchTab(TABS.includes(ini) ? ini : 'web');
