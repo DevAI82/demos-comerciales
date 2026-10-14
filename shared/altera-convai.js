@@ -5,14 +5,15 @@
  * se carga el widget oficial de ElevenLabs y el visitante puede hablar con el
  * asistente desde el navegador (micrófono). El agent_id es público: no es una API key.
  * Protege el agente en ElevenLabs con lista de dominios permitidos y límites de uso.
- * Los elementos con data-convai-only solo se muestran cuando el agente está activo.
+ * Los elementos con data-convai-only solo se muestran cuando el agente está activo;
+ * los data-convai-fallback, solo cuando no lo está.
  */
 (function () {
   'use strict';
   const WIDGET_SRC = 'https://unpkg.com/@elevenlabs/convai-widget-embed@0.18.3/dist/index.js';
 
   const style = document.createElement('style');
-  style.textContent = 'html:not(.altera-convai) [data-convai-only]{display:none!important}';
+  style.textContent = 'html:not(.altera-convai) [data-convai-only],html.altera-convai [data-convai-fallback]{display:none!important}';
   document.head.appendChild(style);
 
   const cfg = window.ALTERA_CONFIG || {};
