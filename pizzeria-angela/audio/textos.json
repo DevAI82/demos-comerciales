@@ -1,0 +1,66 @@
+[
+  {
+    "text": "¡Hola! Soy Ángela, la recepcionista virtual de Pizzería Ángela. ¿En qué puedo ayudarte hoy?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola, buenas noches! Te atiende Ángela, la asistente inteligente de Pizzería Ángela en Imaginalia. Ahora mismo todos nuestros pizzeros están en sala. ¿Deseas encargar una comanda para recoger o reservar una mesa?",
+    "role": "agent"
+  },
+  {
+    "text": "Hola, queríamos reservar una mesa para cuatro personas este sábado a las nueve y media de la noche. ¿Tenéis sitio en terraza o dentro?",
+    "role": "client"
+  },
+  {
+    "text": "¡Perfecto! Para este sábado a las 21:30h tenemos mesa disponible en nuestro salón interior climatizado. ¿A nombre de quién realizo la reserva y qué teléfono móvil nos dejas para enviarte la confirmación por WhatsApp?",
+    "role": "agent"
+  },
+  {
+    "text": "A nombre de Carlos Gómez, móvil seis cuatro cuatro doce treinta y cuatro cincuenta y seis.",
+    "role": "client"
+  },
+  {
+    "text": "¡Queda confirmada tu mesa para cuatro personas este sábado a las nueve y media! Te acabo de enviar la confirmación con la ubicación en Google Maps por WhatsApp. ¡Muchas gracias Carlos, nos vemos el sábado!",
+    "role": "agent"
+  },
+  {
+    "text": "¡Por supuesto! En Pizzería Ángela disponemos de bases especiales sin gluten certificadas y horneadas en área aislada con estricto protocolo para evitar contaminación cruzada.",
+    "role": "agent"
+  },
+  {
+    "text": "Ahora mismo nuestro horno de piedra tiene una carga óptima. Tres pizzas familiares estarían listas para recoger en nuestro local de Imaginalia en exactamente veinticinco minutos.",
+    "role": "agent"
+  },
+  {
+    "text": "Estamos en Albacete, en Calle Simone de Beauvoir número 3, justo frente a Imaginalia, con facilísimo aparcamiento en la misma puerta.",
+    "role": "agent"
+  },
+  {
+    "text": "Sí, contamos con una terraza exterior muy acogedora para las noches de buen tiempo y también con un salón interior completamente climatizado.",
+    "role": "agent"
+  },
+  {
+    "text": "¡Te he entendido perfectamente! Anoto tu comanda para nuestro horno de piedra y te confirmamos por WhatsApp.",
+    "role": "agent"
+  },
+  {
+    "text": "¡Por supuesto! Disponemos de mesas en salón y terraza en Imaginalia. ¿Para qué día y cuántos comensales sería la reserva?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Oído cocina! Tenemos nuestras pizzas en horno de piedra listas para recoger en unos 20 minutos. ¿Qué especialidad te apetece?",
+    "role": "agent"
+  },
+  {
+    "text": "Sí, contamos con masa especial sin gluten certificada y elaborada en bandeja protegida para evitar trazas.",
+    "role": "agent"
+  },
+  {
+    "text": "Nuestras pizzas artesanales parten desde 9 euros la Margarita hasta 14,50 euros la Especial Ángela con trufa y rúcula. Te mando la carta en PDF a tu WhatsApp.",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola, muy buenas! Te atiende Ángela de Pizzería Ángela en Albacete. ¿Quieres encargar comida para recoger o reservar mesa?",
+    "role": "agent"
+  }
+]

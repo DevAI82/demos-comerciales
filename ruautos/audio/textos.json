@@ -1,0 +1,34 @@
+[
+  {
+    "text": "¡Hola! Gracias por llamar a RUAUTOS Albacete. Mi nombre es Mateo, tu asistente virtual. ¿En qué vehículo de ocasión estás interesado hoy?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Sí, sigue disponible! Es un Seat León 1.5 TSI FR con 130 caballos, del año 2021, con tan solo 48.200 kilómetros certificados. Su precio al contado es de 16.490€ o desde 210€ al mes financiado. Incluye la revisión de 82 puntos y un año de garantía completa. ¿Te gustaría venir a probarlo esta semana a nuestras instalaciones de Albacete?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hecho! Te he reservado la prueba del Seat León FR para este sábado a las 11:30 en nuestra campa de Albacete. Te acabo de enviar un WhatsApp con la confirmación de la cita y la ubicación exacta de Google Maps. ¡Te esperamos!",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola! Bienvenido a RUAUTOS Albacete. Te atiende Mateo. ¿Quieres comprar un coche o estás pensando en tasar y entregar tu vehículo actual?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Excelente! En RUAUTOS compramos vehículos todos los días con tasación en el acto. ¿Podrías indicarme qué motor tiene tu Ford Focus y aproximadamente cuántos kilómetros tiene?",
+    "role": "agent"
+  },
+  {
+    "text": "Perfecto. Por ese modelo y kilometraje, nuestra valoración estimada ronda entre 6.200€ y 6.800€, a descontar directamente del coche que elijas. Si te parece, te agendo una cita de 15 minutos en nuestro taller para revisarlo y darte el importe definitivo. ¿Te viene bien mañana por la tarde?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola! Gracias por contactar con RUAUTOS Albacete. ¿En qué podemos asesorarte hoy?",
+    "role": "agent"
+  },
+  {
+    "text": "En RUAUTOS todos los coches incluyen un año de garantía oficial con libre elección de taller en toda España y cambio de titularidad incluido. Además, antes de entregarlo, sometemos cada vehículo a una inspección de 82 puntos mecánicos y electrónicos, cambiando aceite y filtros para que no tengas que gastar ni un euro en el primer año.",
+    "role": "agent"
+  }
+]

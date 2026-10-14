@@ -1,0 +1,46 @@
+[
+  {
+    "text": "¡Buenos días! Gracias por llamar a Salón 224. Mi nombre es Clara, tu asistente virtual. ¿En qué puedo ayudarte hoy?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Por supuesto! Nuestras estilistas en Torres Quevedo son auténticas especialistas en rubios y degradados. Para este jueves tengo disponibilidad a las 11:30 de la mañana con Alberto, o por la tarde a las 16:30. ¿Cuál de los dos horarios te encaja mejor?",
+    "role": "agent"
+  },
+  {
+    "text": "Genial. Tomo nota: cita para Balayage Iluminación con Alberto, este jueves a las 11:30h en nuestro salón de Calle Torres Quevedo 8. ¿Me confirmas tu nombre y teléfono móvil para enviarte la confirmación por WhatsApp?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Listo, María! Tu cita ya ha quedado agendada en nuestro sistema. En un instante recibirás la confirmación en tu WhatsApp con la ubicación de Google Maps. ¡Te esperamos el jueves para dejarte espectacular!",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola! Bienvenida a Salón 224. Soy Clara, asistente de recepción. ¿Te gustaría reservar una cita o tienes alguna consulta sobre nuestros tratamientos?",
+    "role": "agent"
+  },
+  {
+    "text": "Somos el único salón en Albacete con la gama completa de Authentic Beauty Concept. Nuestro tratamiento intensivo incluye diagnóstico de fibra capilar, lavado con esencia vegana sensorial, mascarilla selladora de brillo y secado styling. Su precio oscila entre 35€ y 48€ según longitud. ¿Te gustaría probarlo este viernes?",
+    "role": "agent"
+  },
+  {
+    "text": "Perfecto, tengo disponible el viernes a las 10:30h en Salón 224 de Torres Quevedo o en El Corte Inglés. ¿En cuál de los dos centros prefieres tu sesión?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Apuntado! Queda reservado tu tratamiento Authentic Beauty Concept para el viernes a las 10:30h en la primera planta de El Corte Inglés. ¡Muchísimas gracias por confiar en Salón 224!",
+    "role": "agent"
+  },
+  {
+    "text": "¡Hola, buenas! Salón 224, te atiende Clara. ¿En qué salón te gustaría tu servicio o qué información necesitas?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Sí! Estamos en El Corte Inglés de Avenida Maisonnave 53 en pleno corazón de Alicante. Dispones del parking cubierto de El Corte Inglés con acceso directo en ascensor. Abrimos de lunes a sábado ininterrumpidamente de 10 a 21 horas. ¿Deseas agendar un corte o peinado?",
+    "role": "agent"
+  },
+  {
+    "text": "¡Estupendo! Te confirmo cita para corte y secado styling este sábado a las 12:00h en Salón 224 Maisonnave Alicante. Te mandamos ahora mismo el código de reserva por WhatsApp.",
+    "role": "agent"
+  }
+]

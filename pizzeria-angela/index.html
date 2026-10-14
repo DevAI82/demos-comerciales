@@ -100,7 +100,18 @@
       background-size: 8px 8px;
       background-color: #faf8f5;
     }
+    /* Imprimir solo el ticket térmico de 80mm */
+    @media print {
+      body * { visibility: hidden !important; }
+      .thermal-receipt, .thermal-receipt * { visibility: visible !important; }
+      .thermal-receipt { position: absolute; left: 0; top: 0; width: 80mm; box-shadow: none; background-image: none; }
+    }
   </style>
+  <!-- Motor de voz Altera: audios pregenerados + desbloqueo móvil + modo dev (.env) -->
+  <script src="../shared/altera-voice.js"></script>
+  <script src="../shared/altera-config.js"></script>
+  <script src="../shared/altera-convai.js" defer></script>
+  <script src="../shared/altera-cta.js" defer></script>
 </head>
 <body class="bg-stone-900 text-stone-100 antialiased min-h-screen flex flex-col selection:bg-pizzeria-red selection:text-white">
 
@@ -490,7 +501,7 @@
               </div>
 
               <!-- BOTÓN NOTIFICACIÓN WHATSAPP AL CLIENTE -->
-              <div class="mt-3 p-2 bg-emerald-950/50 rounded-lg border border-emerald-800/40 flex items-center justify-between gap-1.5">
+              <div data-aviso class="mt-3 p-2 bg-emerald-950/50 rounded-lg border border-emerald-800/40 flex items-center justify-between gap-1.5">
                 <span class="text-[11px] text-emerald-300 flex items-center gap-1">📲 Aviso:</span>
                 <button onclick="enviarAvisoRecogida('Marta V.', '#106')" id="btn-aviso-106" class="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">
                   Enviar WhatsApp "¡Ya está lista!"
@@ -751,7 +762,7 @@
               <label class="text-[10px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1">
                 <span>✨ Motor de Audio: ElevenLabs</span>
               </label>
-              <button onclick="toggleElevenConfig()" class="text-[10px] text-stone-400 hover:text-white underline">
+              <button data-altera-dev onclick="toggleElevenConfig()" class="text-[10px] text-stone-400 hover:text-white underline">
                 Configurar API Key
               </button>
             </div>
@@ -792,11 +803,11 @@
               </div>
             </div>
 
-            <div class="bg-amber-950/30 border border-amber-800/40 p-2 rounded-lg text-[10px] text-amber-200/90 leading-relaxed">
+            <div data-altera-dev class="bg-amber-950/30 border border-amber-800/40 p-2 rounded-lg text-[10px] text-amber-200/90 leading-relaxed">
               💡 <strong>Nota para la venta al cliente:</strong> Este prototipo local usa el sintetizador de tu navegador como maqueta previa. En la instalación final de Altera se conecta **ElevenLabs Conversational AI**, con voz humana ultra-natural, respiración y acento español, indistinguible de una llamada real.
             </div>
 
-            <div class="pt-1">
+            <div data-altera-dev class="pt-1">
               <label class="text-[10px] text-stone-400 block mb-1">Voz del Navegador (Test Local):</label>
               <select id="select-voice-angela" class="w-full bg-stone-900 text-stone-300 border border-stone-800 rounded-lg p-1.5 text-xs focus:ring-1 focus:ring-red-500 focus:outline-none">
                 <option value="">Cargando voces del sistema...</option>
@@ -1056,7 +1067,7 @@
     <!-- ======================================================================= -->
     <!-- VISTA 6: SUBVENCIÓN JCCM 80% (BONO CRECIMIENTO PYME)                  -->
     <!-- ======================================================================= -->
-    <section id="jccm" class="view-content hidden space-y-6">
+    <section id="view-jccm" class="view-content hidden space-y-6">
       <div class="bg-stone-950 p-6 rounded-2xl border border-stone-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 text-xs font-semibold mb-2 border border-emerald-800/40">
@@ -1331,7 +1342,14 @@
       colTarget.appendChild(ticket);
 
       // Reconfigurar borde y botones según la columna destino
-      const btnArea = ticket.querySelector('.mt-3') || ticket.querySelector('.pt-2.5') || ticket.querySelector('.border-t:last-of-type');
+      // La barra de acciones es siempre el último bloque del ticket. Guardamos la llamada
+      // original al ticket 80mm para no perder cliente/importe al mover entre columnas.
+      ticket.querySelectorAll(':scope > [data-aviso]').forEach(el => el.remove());
+      const btnArea = ticket.lastElementChild;
+      const printBtn = btnArea ? btnArea.querySelector('[onclick^="verTicketTermico"]') : null;
+      if (printBtn && !ticket.dataset.print) ticket.dataset.print = printBtn.getAttribute('onclick');
+      const printCall = ticket.dataset.print || `verTicketTermico(${id}, 'Cliente', '21:30', ['Comanda #${id}'], '—', 'KDS', 'PAGADO')`;
+      const clienteNombre = (ticket.querySelector('strong') || {}).textContent || ('Cliente #' + id);
       
       // Limpiar clases de estado
       ticket.classList.remove('border-sky-900/60', 'border-amber-500/50', 'border-red-900/60', 'border-emerald-900/60');
@@ -1340,7 +1358,7 @@
         ticket.classList.add('border-sky-900/60');
         if (btnArea) {
           btnArea.innerHTML = `
-            <button onclick="verTicketTermico(${id}, 'Cliente', '21:30', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="${printCall}" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
             <button onclick="avanzarTicket(${id}, 'prep')" class="text-[11px] font-bold text-white bg-sky-600 hover:bg-sky-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>👉 Aceptar a Preparación &rarr;</span></button>
           `;
         }
@@ -1349,7 +1367,7 @@
         if (btnArea) {
           btnArea.innerHTML = `
             <button onclick="retrocederTicket(${id}, 'reception')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
-            <button onclick="verTicketTermico(${id}, 'Cliente', '21:30', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="${printCall}" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
             <button onclick="avanzarTicket(${id}, 'baking')" class="text-[11px] font-bold text-white bg-amber-600 hover:bg-amber-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>🔥 Meter al Horno &rarr;</span></button>
           `;
         }
@@ -1358,7 +1376,7 @@
         if (btnArea) {
           btnArea.innerHTML = `
             <button onclick="retrocederTicket(${id}, 'prep')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
-            <button onclick="verTicketTermico(${id}, 'Cliente', '21:30', ['Comanda #${id}'], 'Total', 'KDS', 'PAGADO')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
+            <button onclick="${printCall}" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2.5 py-1.5 rounded-lg transition">🖨️ 80mm</button>
             <button onclick="avanzarTicket(${id}, 'ready')" class="text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-500 px-3 py-1.5 rounded-lg transition flex items-center gap-1 shadow"><span>✅ Sacar y Cortar &rarr;</span></button>
           `;
         }
@@ -1369,7 +1387,7 @@
             <div class="w-full space-y-2">
               <div class="p-2 bg-emerald-950/50 rounded-lg border border-emerald-800/40 flex items-center justify-between gap-1.5">
                 <span class="text-[11px] text-emerald-300 flex items-center gap-1">📲 Aviso:</span>
-                <button onclick="enviarAvisoRecogida('Cliente #${id}', '#${id}')" class="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">Enviar WhatsApp "¡Ya está lista!"</button>
+                <button onclick="enviarAvisoRecogida('${clienteNombre}', '#${id}')" class="text-[10px] font-bold bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded transition">Enviar WhatsApp "¡Ya está lista!"</button>
               </div>
               <div class="flex items-center justify-between gap-2">
                 <button onclick="retrocederTicket(${id}, 'baking')" class="text-[11px] text-stone-400 hover:text-white bg-stone-800 px-2 py-1.5 rounded-lg transition">&larr;</button>
@@ -1446,8 +1464,9 @@
       }
     }
 
+    let siguienteIdPedido = 115;
     function simularNuevoPedido() {
-      const nextId = Math.floor(Math.random() * 80) + 115;
+      const nextId = siguienteIdPedido++;
       const colReception = document.getElementById('kds-col-reception');
       if (!colReception) return;
 
@@ -1506,10 +1525,24 @@
     function cerrarTicketTermico() {
       document.getElementById('modal-ticket').classList.add('hidden');
     }
+    document.getElementById('modal-ticket').addEventListener('click', e => {
+      if (e.target.id === 'modal-ticket') cerrarTicketTermico();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarTicketTermico(); });
+
+    function scrollChat() {
+      const box = document.getElementById('chat-messages');
+      if (box) requestAnimationFrame(() => { box.scrollTop = box.scrollHeight; });
+    }
+    function escapeHtml(t) {
+      return t.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
 
     // Chat Simulator
     function simularPagoStripe() {
       const btn = document.getElementById('btn-pay-stripe');
+      if (btn.disabled) return;
+      btn.disabled = true;
       btn.innerHTML = '🔄 Procesando con Stripe...';
       btn.classList.add('opacity-75');
 
@@ -1528,6 +1561,7 @@
             </div>
           </div>
         `;
+        scrollChat();
       }, 1000);
     }
 
@@ -1540,12 +1574,13 @@
       dyn.innerHTML += `
         <div class="flex items-end justify-end gap-1">
           <div class="bg-[#dcf8c6] p-2.5 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-stone-900">
-            <p>${val}</p>
+            <p>${escapeHtml(val)}</p>
             <span class="text-[9px] text-stone-400 block text-right mt-0.5">Ahora ✓✓</span>
           </div>
         </div>
       `;
       input.value = '';
+      scrollChat();
 
       setTimeout(() => {
         dyn.innerHTML += `
@@ -1556,6 +1591,7 @@
             </div>
           </div>
         `;
+        scrollChat();
       }, 800);
     }
 
@@ -1564,7 +1600,12 @@
       const btn = document.getElementById('btn-pay-stripe');
       btn.innerHTML = '<span>Pagar 31,50 €</span> <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded">Apple Pay / Bizum</span>';
       btn.className = 'w-full bg-[#635bff] hover:bg-[#5349e0] text-white font-bold py-2 px-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md';
+      btn.disabled = false;
     }
+    document.getElementById('chat-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') enviarMensajeUsuario();
+    });
+    actualizarContadoresKDS();
 
     // Calculadora Ahorro Uber
     function actualizarCalculadora(pizzas) {
@@ -1572,8 +1613,8 @@
       const uberLost = Math.round(pizzas * 3.90);
       const savingsYear = Math.round(uberLost * 12);
 
-      document.getElementById('calc-uber-lost').innerText = `-${uberLost} € / mes`;
-      document.getElementById('calc-savings').innerText = `+${savingsYear.toLocaleString()} € / año`;
+      document.getElementById('calc-uber-lost').innerText = `-${uberLost.toLocaleString('es-ES')} € / mes`;
+      document.getElementById('calc-savings').innerText = `+${savingsYear.toLocaleString('es-ES')} € / año`;
     }
 
     // =======================================================================
@@ -1584,6 +1625,7 @@
     let callTimerInterval = null;
     let callSeconds = 0;
     let isCallActive = false;
+    let callSession = 0;
     let speechRecognitionInstance = null;
 
     // Inicializar Audio Context
@@ -1906,7 +1948,8 @@
 
     async function speakWithElevenLabs(text, isElena, onEndCallback) {
       const apiKey = localStorage.getItem('elevenlabs_api_key');
-      if (!apiKey) return false;
+      const cachedUrl = window.AlteraVoice ? await window.AlteraVoice.cachedUrl(text) : null;
+      if (!apiKey && !cachedUrl) return false;
 
       let voiceId = localStorage.getItem('elevenlabs_voice_id');
       const voiceSelect = document.getElementById('eleven-voice-select');
@@ -1922,33 +1965,36 @@
       const msg = document.getElementById('eleven-status-msg');
 
       try {
-        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-          method: 'POST',
-          headers: {
-            'Accept': 'audio/mpeg',
-            'Content-Type': 'application/json',
-            'xi-api-key': apiKey
-          },
-          body: JSON.stringify({
-            text: text,
-            model_id: 'eleven_multilingual_v2',
-            voice_settings: { stability: 0.5, similarity_boost: 0.8 }
-          })
-        });
+        let audioUrl = cachedUrl;
+        if (!audioUrl) {
+          const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'audio/mpeg',
+              'Content-Type': 'application/json',
+              'xi-api-key': apiKey
+            },
+            body: JSON.stringify({
+              text: text,
+              model_id: 'eleven_multilingual_v2',
+              voice_settings: { stability: 0.5, similarity_boost: 0.8 }
+            })
+          });
 
-        if (!res.ok) {
-          const errDetail = await res.text();
-          console.warn("ElevenLabs API responded with error:", res.status, errDetail);
-          if (msg) {
-            msg.innerHTML = `⚠️ <strong>ElevenLabs Error (${res.status}):</strong> ${errDetail.substring(0, 110)}... Revisa que la voz esté disponible en tu cuenta. Usando voz del navegador temporalmente.`;
-            msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-amber-950/50 border border-amber-800/70 block';
+          if (!res.ok) {
+            const errDetail = await res.text();
+            console.warn("ElevenLabs API responded with error:", res.status, errDetail);
+            if (msg) {
+              msg.innerHTML = `⚠️ <strong>ElevenLabs Error (${res.status}):</strong> ${errDetail.substring(0, 110)}... Revisa que la voz esté disponible en tu cuenta. Usando voz del navegador temporalmente.`;
+              msg.className = 'text-[10px] text-amber-300 p-2 rounded bg-amber-950/50 border border-amber-800/70 block';
+            }
+            return false;
           }
-          return false;
-        }
 
-        const blob = await res.blob();
-        const audioUrl = URL.createObjectURL(blob);
-        const audio = new Audio(audioUrl);
+          const blob = await res.blob();
+          audioUrl = URL.createObjectURL(blob);
+        }
+        const audio = (window.AlteraVoice ? window.AlteraVoice.getPlayer(audioUrl) : new Audio(audioUrl));
         currentElevenAudio = audio;
 
         const waveContainer = document.getElementById('voice-wave-container');
@@ -2091,6 +2137,8 @@
     function reproducirLlamadaCompleta() {
       detenerAudioLlamada();
       isCallActive = true;
+      const session = callSession;
+      const sigue = () => isCallActive && session === callSession;
       const st = document.getElementById('call-status');
       const btn = document.getElementById('btn-play-call');
       if (btn) btn.innerHTML = '<span>⏸️ Reproduciendo llamada en vivo...</span>';
@@ -2100,7 +2148,7 @@
 
       // Timbre telefónico
       playTelephoneRing(() => {
-        if (!isCallActive) return;
+        if (!sigue()) return;
         playTelephoneClick();
         startCallTimer();
 
@@ -2114,50 +2162,51 @@
         const texto1 = "¡Hola, buenas noches! Te atiende Ángela, la asistente inteligente de Pizzería Ángela en Imaginalia. Ahora mismo todos nuestros pizzeros están en sala. ¿Deseas encargar una comanda para recoger o reservar una mesa?";
         
         speakText(texto1, true, () => {
-          if (!isCallActive) return;
+          if (!sigue()) return;
 
           // Paso 2: Cliente (tras pausa realista)
           setTimeout(() => {
-            if (!isCallActive) return;
+            if (!sigue()) return;
             limpiarResaltadosTranscripcion();
             document.getElementById('bubble-client-1')?.classList.add('transcript-client-active');
 
             const texto2 = "Hola, queríamos reservar una mesa para cuatro personas este sábado a las nueve y media de la noche. ¿Tenéis sitio en terraza o dentro?";
             
             speakText(texto2, false, () => {
-              if (!isCallActive) return;
+              if (!sigue()) return;
 
               // Paso 3: Elena
               setTimeout(() => {
-                if (!isCallActive) return;
+                if (!sigue()) return;
                 limpiarResaltadosTranscripcion();
                 document.getElementById('bubble-elena-2')?.classList.add('transcript-active');
 
                 const texto3 = "¡Perfecto! Para este sábado a las 21:30h tenemos mesa disponible en nuestro salón interior climatizado. ¿A nombre de quién realizo la reserva y qué teléfono móvil nos dejas para enviarte la confirmación por WhatsApp?";
                 
                 speakText(texto3, true, () => {
-                  if (!isCallActive) return;
+                  if (!sigue()) return;
 
                   // Paso 4: Cliente
                   setTimeout(() => {
-                    if (!isCallActive) return;
+                    if (!sigue()) return;
                     limpiarResaltadosTranscripcion();
                     document.getElementById('bubble-client-2')?.classList.add('transcript-client-active');
 
                     const texto4 = "A nombre de Carlos Gómez, móvil seis cuatro cuatro doce treinta y cuatro cincuenta y seis.";
                     
                     speakText(texto4, false, () => {
-                      if (!isCallActive) return;
+                      if (!sigue()) return;
 
                       // Paso 5: Elena confirmación
                       setTimeout(() => {
-                        if (!isCallActive) return;
+                        if (!sigue()) return;
                         limpiarResaltadosTranscripcion();
                         document.getElementById('bubble-elena-3')?.classList.add('transcript-active');
 
                         const texto5 = "¡Queda confirmada tu mesa para cuatro personas este sábado a las nueve y media! Te acabo de enviar la confirmación con la ubicación en Google Maps por WhatsApp. ¡Muchas gracias Carlos, nos vemos el sábado!";
                         
                         speakText(texto5, true, () => {
+                          if (!sigue()) return;
                           finalizarLlamadaExitosa();
                         });
                       }, 700);
@@ -2225,7 +2274,9 @@
       st.className = 'inline-block mt-2 text-xs bg-amber-950 text-amber-300 border border-amber-500/40 px-3 py-1 rounded-full font-mono';
 
       playTelephoneClick();
+      const session = callSession;
       speakText(texto, true, () => {
+        if (session !== callSession) return;
         st.innerHTML = '● Respuesta completada · Pulsa otra pregunta o reproduce la llamada';
         st.className = 'inline-block mt-2 text-xs bg-stone-800 text-stone-300 px-3 py-1 rounded-full font-mono';
         isCallActive = false;
@@ -2330,6 +2381,7 @@
     // DETENER AUDIO Y RESETEAR ESTADOS
     function detenerAudioLlamada() {
       isCallActive = false;
+      callSession++;
       stopCallTimer();
 
       if (currentElevenAudio) {
