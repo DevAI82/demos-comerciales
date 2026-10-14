@@ -77,8 +77,9 @@
         <button class="view-btn px-3 py-2 rounded-lg bg-cacao-800 hover:bg-cacao-850 transition" data-view="phone">📞 1. Laura al teléfono</button>
         <button class="view-btn px-3 py-2 rounded-lg bg-cacao-800 hover:bg-cacao-850 transition" data-view="whatsapp">💬 2. WhatsApp e Instagram</button>
         <button class="view-btn px-3 py-2 rounded-lg bg-cacao-800 hover:bg-cacao-850 transition" data-view="agenda">📅 3. Agenda y fichas</button>
-        <button class="view-btn px-3 py-2 rounded-lg bg-cacao-800 hover:bg-cacao-850 transition" data-view="inbox">📥 4. Bandeja única</button>
-        <button class="view-btn px-3 py-2 rounded-lg bg-emerald-950 text-emerald-200 border border-emerald-500/40 hover:bg-emerald-900 transition" data-view="calc">💶 5. Cuánto se ahorra</button>
+        <button class="view-btn px-3 py-2 rounded-lg bg-cacao-800 hover:bg-cacao-850 transition" data-view="crm">👩🏻 4. Clientas y facturación</button>
+        <button class="view-btn px-3 py-2 rounded-lg bg-cacao-800 hover:bg-cacao-850 transition" data-view="inbox">📥 5. Bandeja única</button>
+        <button class="view-btn px-3 py-2 rounded-lg bg-emerald-950 text-emerald-200 border border-emerald-500/40 hover:bg-emerald-900 transition" data-view="calc">💶 6. Cuánto se ahorra</button>
       </nav>
       <div class="flex items-center gap-3">
         <a href="propuesta.html" class="text-xs font-semibold text-nude-300 hover:text-white">📄 Ver propuesta →</a>
@@ -280,15 +281,67 @@
           <div class="grid grid-cols-2 gap-3 text-sm" id="mFacts"></div>
           <div class="rounded-xl overflow-hidden border border-nude-200"><img id="mPhoto" src="assets/trabajo-1.jpg" alt="Último trabajo de la clienta" class="w-full h-44 object-cover"></div>
           <div class="bg-nude-50 p-3 rounded-xl border border-nude-200 text-sm"><span class="font-bold block mb-1">🔒 Notas del equipo</span><p id="mNotes"></p></div>
-          <div class="flex justify-end gap-2 text-sm">
+          <div class="flex flex-wrap justify-end gap-2 text-sm">
             <button id="mClose2" class="px-4 py-2 rounded-xl bg-nude-100 hover:bg-nude-200 font-semibold">Cerrar</button>
+            <button id="mCrm" class="px-4 py-2 rounded-xl bg-cacao-900 hover:bg-cacao-800 text-white font-bold">📊 Servicios y facturación</button>
             <button id="mWa" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold">💬 Escribirle por WhatsApp</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== VISTA 4 · BANDEJA ===================== -->
+    <!-- ===================== VISTA 4 · CLIENTAS Y FACTURACIÓN ===================== -->
+    <section id="view-crm" class="view hidden space-y-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-nude-200 pb-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-amber-700">Pieza 3 · CRM de clientas</p>
+          <h2 class="font-display text-2xl sm:text-4xl mt-1">Qué se hace cada clienta y cuánto factura</h2>
+          <p class="text-sm text-cacao-800/80 max-w-3xl mt-2">Cada visita queda apuntada con su servicio, manicurista, centro e importe. Así sabéis qué se hace cada clienta, cuánto deja al año, cuándo le toca volver y qué servicios y qué centro facturan más. Pulsa una clienta o cobra un servicio para ver cómo se actualiza.</p>
+        </div>
+        <div class="inline-flex rounded-xl bg-nude-200 p-1 text-xs font-semibold shrink-0" id="crmCenterTabs">
+          <button class="crmc px-3 py-1.5 rounded-lg" data-cc="all">Los dos centros</button>
+          <button class="crmc px-3 py-1.5 rounded-lg" data-cc="mayor">📍 Calle Mayor</button>
+          <button class="crmc px-3 py-1.5 rounded-lg" data-cc="eci">📍 El Corte Inglés</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="crmKpis"></div>
+
+      <div class="grid lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 min-w-0 card rounded-2xl overflow-hidden flex flex-col">
+          <div class="p-4 border-b border-nude-100 space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold uppercase tracking-wider">Clientas</h3>
+              <select id="crmSort" class="text-xs border border-nude-200 rounded-lg px-2 py-1 bg-white" aria-label="Ordenar clientas">
+                <option value="spent">Más facturación</option>
+                <option value="last">Última visita</option>
+                <option value="due">Les toca volver</option>
+              </select>
+            </div>
+            <input id="crmSearch" type="search" placeholder="Buscar por nombre o servicio…" class="w-full text-sm border border-nude-200 rounded-xl px-3 py-2 focus:outline-none focus:border-nude-500" aria-label="Buscar clienta">
+          </div>
+          <ul id="crmList" class="divide-y divide-nude-100 max-h-[560px] overflow-y-auto"></ul>
+        </div>
+
+        <div class="lg:col-span-7 min-w-0 card rounded-2xl p-5 space-y-4" id="crmDetail"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card rounded-2xl p-5">
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-1">Facturación del mes por servicio</h3>
+          <p class="text-xs text-cacao-800/60 mb-4">Octubre hasta hoy · cifras de ejemplo</p>
+          <div id="crmBySvc" class="space-y-3"></div>
+        </div>
+        <div class="card rounded-2xl p-5">
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-1">Facturación del mes por manicurista</h3>
+          <p class="text-xs text-cacao-800/60 mb-4">Útil para comisiones e incentivos · cifras de ejemplo</p>
+          <div id="crmByStaff" class="space-y-3"></div>
+        </div>
+      </div>
+      <p class="text-[11px] text-cacao-800/50">Clientas, visitas e importes son de ejemplo. Los precios salen de la carta de la web de Bakra y son orientativos.</p>
+    </section>
+
+    <!-- ===================== VISTA 5 · BANDEJA ===================== -->
     <section id="view-inbox" class="view hidden space-y-6">
       <div class="border-b border-nude-200 pb-4">
         <p class="text-xs font-bold uppercase tracking-widest text-purple-700">Pieza 4 · Bandeja única</p>
@@ -301,7 +354,7 @@
       </div>
     </section>
 
-    <!-- ===================== VISTA 5 · CALCULADORA ===================== -->
+    <!-- ===================== VISTA 6 · CALCULADORA ===================== -->
     <section id="view-calc" class="view hidden space-y-6">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-nude-200 pb-4">
         <div>
@@ -620,6 +673,7 @@
       $('#mName').textContent = c.name; $('#mMeta').textContent = c.meta;
       $('#mFacts').innerHTML = c.facts.map(([k, v]) => `<div class="p-2.5 rounded-xl bg-nude-50 border border-nude-200"><p class="text-[10px] font-bold uppercase tracking-wider text-cacao-800/50">${k}</p><p class="font-semibold">${esc(v)}</p></div>`).join('');
       $('#mPhoto').src = c.photo; $('#mNotes').textContent = c.notes;
+      $('#mCrm').dataset.c = id;
       $('#mWa').onclick = () => { closeClient(); showView('whatsapp'); msg('bot', `💅 ¡Hola, ${esc(c.name.split(' ')[0])}! Te escribimos de Bakra: ¿te guardamos hueco para tu próxima cita?`); };
       $('#clientModal').classList.remove('hidden');
     }
@@ -630,7 +684,154 @@
     $$('.ctab').forEach(b => b.addEventListener('click', () => { center = b.dataset.center; renderAgenda(); }));
     renderAgenda();
 
-    /* ---------- Vista 4: bandeja ---------- */
+    /* ---------- Vista 4: clientas y facturación ---------- */
+    Object.assign(CLIENTS, {
+      paula: { name: 'Paula Navarro', meta: 'Clienta desde 2024 · El Corte Inglés', facts: [['Servicio habitual', 'Acrigel con relleno'], ['Forma', 'Ovalada, media'], ['Color favorito', 'Burdeos'], ['Vuelve cada', '3 semanas']], notes: 'Trabaja en el centro comercial: le encajan los huecos de mediodía.', photo: 'assets/trabajo-2.jpg' },
+      irene: { name: 'Irene Castillo', meta: 'Clienta desde 2025 · El Corte Inglés', facts: [['Servicio habitual', 'Manicura y pedicura normal'], ['Forma', 'Cuadrada, corta'], ['Color favorito', 'Transparente'], ['Vuelve cada', '4–5 semanas']], notes: 'Suele venir con su madre. Ofrecer pedicura permanente en verano.', photo: 'assets/trabajo-3.jpg' },
+      noelia: { name: 'Noelia Martínez', meta: 'Clienta desde 2022 · C/ Mayor', facts: [['Servicio habitual', 'Experience + pedicura spa'], ['Piel', 'Talones secos'], ['Color favorito', 'Nude'], ['Vuelve cada', '4 semanas']], notes: 'Le gusta el masaje de la Experience. Clienta muy fiel: felicitar en su cumpleaños (marzo).', photo: 'assets/trabajo-1.jpg' },
+      rocio: { name: 'Rocío Fernández', meta: 'Clienta desde 2023 · El Corte Inglés', facts: [['Servicio habitual', 'Permanente manos y pies'], ['Forma', 'Almendra, corta'], ['Color favorito', 'Rojo'], ['Vuelve cada', '3–4 semanas']], notes: 'Lleva casi dos meses sin venir. Mandarle un mensaje con hueco y un detalle.', photo: 'assets/trabajo-3.jpg' }
+    });
+    const SVC = {
+      normal: ['Manicura normal', 13, 'Manos'], japonesa: ['Manicura japonesa', 14, 'Manos'], basic: ['Permanente BAKRA Basic', 22, 'Manos'],
+      exp: ['BAKRA Experience', 25, 'Manos'], spa: ['BAKRA Spa', 32, 'Manos'],
+      pedi: ['Pedicura normal', 18, 'Pies'], pediperm: ['Pedicura permanente', 22, 'Pies'], pedispa: ['Pedicura spa', 28, 'Pies'], pedispaperm: ['Pedicura spa + permanente', 38, 'Pies'],
+      acri: ['Acrílico primera puesta', 55, 'Acrílico y acrigel'], rellcolor: ['Relleno acrílico color', 25, 'Acrílico y acrigel'], rellfr: ['Relleno acrílico francesa', 30, 'Acrílico y acrigel'],
+      acrigel: ['Acrigel puesta', 40, 'Acrílico y acrigel'], rellacrigel: ['Relleno acrigel', 30, 'Acrílico y acrigel']
+    };
+    const CENTER_N = { mayor: 'C/ Mayor', eci: 'El Corte Inglés' };
+    const PAY = ['Tarjeta', 'Bizum', 'Efectivo', 'Tarjeta'];
+    const TODAY = new Date(2026, 9, 14);
+    const dayMs = 86400000;
+    const fmtD = d => d.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    // Cada clienta: centro, manicurista, ciclo de servicios, cada cuántos días vuelve, visitas y hace cuántos días fue la última.
+    const PLAN = {
+      marta: ['mayor', 0, ['basic', 'basic', 'exp'], 21, 10, 17, null],
+      elena: ['mayor', 1, ['japonesa'], 30, 1, 2, null],
+      lucia: ['eci', 1, ['rellfr'], 21, 8, 3, 'acri'],
+      ana: ['eci', 0, ['pediperm'], 35, 6, 31, null],
+      sara: ['mayor', 2, ['rellcolor'], 21, 6, 4, 'acri'],
+      carmen: ['mayor', 0, ['spa', 'spa', 'pedispa'], 28, 11, 24, null],
+      paula: ['eci', 0, ['rellacrigel'], 21, 5, 8, 'acrigel'],
+      irene: ['eci', 1, ['normal', 'pedi'], 32, 4, 51, null],
+      noelia: ['mayor', 1, ['exp', 'pedispaperm'], 28, 8, 12, null],
+      rocio: ['eci', 0, ['basic', 'pediperm'], 25, 5, 58, null]
+    };
+    const HIST = {};
+    Object.entries(PLAN).forEach(([id, [cen, st, cyc, every, n, lastAgo, first]], ci) => {
+      const h = [];
+      for (let i = 0; i < n; i++) {
+        const isFirst = first && i === n - 1;
+        const svc = isFirst ? first : cyc[i % cyc.length];
+        h.push({ d: new Date(TODAY - (lastAgo + i * every + ((i * 3 + ci) % 4)) * dayMs), svc, staff: STAFF[cen][(st + (i % 5 === 4 ? 1 : 0)) % STAFF[cen].length], cen, pay: PAY[(i + ci) % PAY.length] });
+      }
+      HIST[id] = h;
+    });
+    const stats = id => {
+      const h = HIST[id], [, , , every] = PLAN[id];
+      const yearAgo = new Date(TODAY - 365 * dayMs);
+      const total = h.reduce((a, v) => a + SVC[v.svc][1], 0);
+      const year = h.filter(v => v.d >= yearAgo).reduce((a, v) => a + SVC[v.svc][1], 0);
+      const last = h[0].d, due = new Date(+last + every * dayMs);
+      return { total, year, visits: h.length, avg: total / h.length, last, due, late: (TODAY - due) / dayMs > 14 };
+    };
+    // Cifras del mes para todo el salón (ejemplo); lo que se cobra en la demo se suma encima.
+    const MONTH = {
+      mayor: { svc: { 'Manos': 3420, 'Pies': 1180, 'Acrílico y acrigel': 1610 }, staff: [2380, 2050, 1780], citas: 268 },
+      eci: { svc: { 'Manos': 2210, 'Pies': 890, 'Acrílico y acrigel': 1140 }, staff: [2290, 1950], citas: 186 }
+    };
+    const extra = { mayor: { svc: {}, staff: [0, 0, 0], citas: 0 }, eci: { svc: {}, staff: [0, 0], citas: 0 } };
+    let crmC = 'all', crmSel = 'marta', crmTab = 'svc';
+    const eur0 = n => Math.round(n).toLocaleString('es-ES') + ' €';
+    const centers = () => crmC === 'all' ? ['mayor', 'eci'] : [crmC];
+    function monthBy(kind) {
+      const out = {};
+      centers().forEach(c => {
+        if (kind === 'svc') Object.keys(MONTH[c].svc).forEach(k => out[k] = (out[k] || 0) + MONTH[c].svc[k] + (extra[c].svc[k] || 0));
+        else STAFF[c].forEach((s, i) => out[s + ' · ' + CENTER_N[c]] = MONTH[c].staff[i] + extra[c].staff[i]);
+      });
+      return out;
+    }
+    function bars(el, data) {
+      const max = Math.max(...Object.values(data)), sum = Object.values(data).reduce((a, b) => a + b, 0);
+      $(el).innerHTML = Object.entries(data).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<div><div class="flex justify-between text-sm mb-1"><span class="font-semibold">${esc(k)}</span><span class="font-mono font-bold">${eur0(v)} <span class="text-cacao-800/50 font-normal">· ${Math.round(v / sum * 100)} %</span></span></div><div class="h-2.5 rounded-full bg-nude-100 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-nude-400 to-nude-700" style="width:${v / max * 100}%"></div></div></div>`).join('');
+    }
+    function renderCrm() {
+      $$('.crmc').forEach(b => b.className = 'crmc px-3 py-1.5 rounded-lg ' + (b.dataset.cc === crmC ? 'bg-white shadow-sm' : 'text-cacao-800/60'));
+      const svc = monthBy('svc'), fact = Object.values(svc).reduce((a, b) => a + b, 0);
+      const citas = centers().reduce((a, c) => a + MONTH[c].citas + extra[c].citas, 0);
+      const ids = Object.keys(PLAN).filter(id => crmC === 'all' || PLAN[id][0] === crmC);
+      const late = ids.filter(id => stats(id).late).length;
+      $('#crmKpis').innerHTML = [['Facturación de octubre', eur0(fact), 'hasta hoy · ejemplo'], ['Citas cobradas', citas, 'este mes'], ['Ticket medio', eur0(fact / citas), 'por cita'], ['Les toca volver', (n => n + (n === 1 ? ' clienta' : ' clientas'))(ids.filter(id => stats(id).due <= new Date(+TODAY + 7 * dayMs)).length), 'esta semana · ' + late + ' con retraso']]
+        .map(([l, v, n]) => `<div class="card rounded-2xl p-4"><p class="text-[11px] font-bold uppercase tracking-wider text-cacao-800/50">${l}</p><p class="font-display text-2xl mt-1">${v}</p><p class="text-[11px] text-emerald-700 font-semibold mt-0.5">${n}</p></div>`).join('');
+      bars('#crmBySvc', svc); bars('#crmByStaff', monthBy('staff'));
+      const q = $('#crmSearch').value.trim().toLowerCase();
+      const sort = $('#crmSort').value;
+      const list = ids.filter(id => !q || CLIENTS[id].name.toLowerCase().includes(q) || HIST[id].some(v => SVC[v.svc][0].toLowerCase().includes(q)))
+        .sort((a, b) => { const A = stats(a), B = stats(b); return sort === 'spent' ? B.year - A.year : sort === 'last' ? B.last - A.last : A.due - B.due; });
+      if (list.length && !list.includes(crmSel)) crmSel = list[0];
+      $('#crmList').innerHTML = list.length ? list.map(id => {
+        const c = CLIENTS[id], s = stats(id);
+        return `<li><button data-c="${id}" class="crm-row w-full text-left p-3.5 flex items-center gap-3 transition ${id === crmSel ? 'bg-nude-50 border-l-4 border-nude-500' : 'hover:bg-nude-50 border-l-4 border-transparent'}"><span class="w-9 h-9 shrink-0 rounded-full bg-nude-100 border border-nude-300 flex items-center justify-center text-xs font-bold text-nude-800">${c.name.split(' ').map(x => x[0]).join('')}</span><span class="flex-1 min-w-0"><span class="block text-sm font-bold">${esc(c.name)}</span><span class="block text-[11px] text-cacao-800/60 truncate">${esc(SVC[HIST[id][0].svc][0])} · ${CENTER_N[PLAN[id][0]]}</span></span><span class="text-right shrink-0"><span class="block text-sm font-mono font-bold">${eur0(s.year)}</span><span class="block text-[10px] ${s.late ? 'text-amber-700 font-bold' : 'text-cacao-800/50'}">${s.late ? 'No vuelve desde el ' + fmtD(s.last).slice(0, 5) : s.visits + ' visitas'}</span></span></button></li>`;
+      }).join('') : '<li class="p-4 text-sm text-cacao-800/60">No hay clientas con esa búsqueda.</li>';
+      $$('.crm-row').forEach(b => b.addEventListener('click', () => { crmSel = b.dataset.c; renderCrm(); }));
+      renderCrmDetail();
+    }
+    function renderCrmDetail() {
+      const id = crmSel, c = CLIENTS[id], s = stats(id), h = HIST[id], cen = PLAN[id][0];
+      const bySvc = {}; h.forEach(v => { const n = SVC[v.svc][0]; bySvc[n] = (bySvc[n] || 0) + SVC[v.svc][1]; });
+      const byPay = {}; h.forEach(v => byPay[v.pay] = (byPay[v.pay] || 0) + 1);
+      const tabBtn = (k, l) => `<button data-t="${k}" class="crm-tab px-3 py-1.5 rounded-lg ${crmTab === k ? 'bg-white shadow-sm' : 'text-cacao-800/60'}">${l}</button>`;
+      let body = '';
+      if (crmTab === 'svc') {
+        body = `<div class="overflow-x-auto"><table class="w-full text-sm min-w-[520px]"><thead><tr class="text-left text-[11px] uppercase tracking-wider text-cacao-800/50 border-b border-nude-100"><th class="py-2 pr-2">Fecha</th><th class="pr-2">Servicio</th><th class="pr-2">Manicurista</th><th class="pr-2">Centro</th><th class="pr-2">Pago</th><th class="text-right">Importe</th></tr></thead><tbody class="divide-y divide-nude-50">${h.map(v => `<tr${v.isNew ? ' class="bg-emerald-50"' : ''}><td class="py-2 pr-2 font-mono text-xs">${fmtD(v.d)}</td><td class="pr-2 font-semibold">${esc(SVC[v.svc][0])}</td><td class="pr-2 text-xs">${esc(v.staff)}</td><td class="pr-2 text-xs">${CENTER_N[v.cen]}</td><td class="pr-2 text-xs">${v.pay}</td><td class="text-right font-mono font-bold">${SVC[v.svc][1]} €</td></tr>`).join('')}</tbody></table></div>`;
+      } else if (crmTab === 'bill') {
+        const max = Math.max(...Object.values(bySvc));
+        body = `<div class="grid sm:grid-cols-2 gap-4"><div class="space-y-2.5"><p class="text-[11px] font-bold uppercase tracking-wider text-cacao-800/50">Lo que factura por servicio</p>${Object.entries(bySvc).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<div><div class="flex justify-between text-xs mb-1"><span class="font-semibold">${esc(k)}</span><span class="font-mono font-bold">${v} €</span></div><div class="h-2 rounded-full bg-nude-100"><div class="h-full rounded-full bg-nude-500" style="width:${v / max * 100}%"></div></div></div>`).join('')}</div><div class="space-y-2"><p class="text-[11px] font-bold uppercase tracking-wider text-cacao-800/50">Cómo paga</p>${Object.entries(byPay).map(([k, v]) => `<p class="flex justify-between text-sm"><span>${k}</span><span class="font-bold">${v} ${v === 1 ? 'vez' : 'veces'}</span></p>`).join('')}<p class="text-[11px] font-bold uppercase tracking-wider text-cacao-800/50 pt-3">Tickets</p>${h.slice(0, 3).map((v, i) => `<button class="crm-ticket w-full flex justify-between text-xs p-2 rounded-lg bg-nude-50 border border-nude-200 hover:bg-white"><span>🧾 T-${cen === 'mayor' ? 'M' : 'C'}${String(2610 - i * 37 - id.length).padStart(5, '0')} · ${fmtD(v.d)}</span><span class="font-bold">${SVC[v.svc][1]} €</span></button>`).join('')}</div></div>`;
+      } else {
+        body = `<div class="grid grid-cols-2 gap-3 text-sm">${c.facts.map(([k, v]) => `<div class="p-2.5 rounded-xl bg-nude-50 border border-nude-200"><p class="text-[10px] font-bold uppercase tracking-wider text-cacao-800/50">${k}</p><p class="font-semibold">${esc(v)}</p></div>`).join('')}</div><div class="bg-nude-50 p-3 rounded-xl border border-nude-200 text-sm"><span class="font-bold block mb-1">🔒 Notas del equipo</span><p>${esc(c.notes)}</p></div>`;
+      }
+      const opts = Object.entries(SVC).map(([k, [n, p]]) => `<option value="${k}"${k === h[0].svc ? ' selected' : ''}>${esc(n)} · ${p} €</option>`).join('');
+      $('#crmDetail').innerHTML = `
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3"><span class="w-12 h-12 rounded-full bg-nude-100 border border-nude-300 flex items-center justify-center font-bold text-nude-800">${c.name.split(' ').map(x => x[0]).join('')}</span><div><h3 class="text-lg font-bold">${esc(c.name)}</h3><p class="text-xs text-cacao-800/60">${esc(c.meta)}</p></div></div>
+          <button id="crmWa" class="shrink-0 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">💬 WhatsApp</button>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          ${[['Último año', eur0(s.year)], ['Visitas', s.visits], ['Ticket medio', eur0(s.avg)], ['Le toca volver', fmtD(s.due).slice(0, 5)]].map(([k, v], i) => `<div class="p-3 rounded-xl ${i === 3 && s.late ? 'bg-amber-50 border border-amber-300' : 'bg-nude-50 border border-nude-200'}"><p class="text-[10px] font-bold uppercase tracking-wider text-cacao-800/50">${k}</p><p class="font-display text-xl">${v}</p></div>`).join('')}
+        </div>
+        ${s.late ? `<p class="text-xs p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900">⏰ Le tocaba volver el ${fmtD(s.due)}. El sistema puede escribirle con un hueco libre esta semana.</p>` : ''}
+        <div class="inline-flex rounded-xl bg-nude-200 p-1 text-xs font-semibold">${tabBtn('svc', 'Servicios')}${tabBtn('bill', 'Facturación')}${tabBtn('ficha', 'Ficha de uñas')}</div>
+        <div>${body}</div>
+        <form id="crmCharge" class="rounded-2xl bg-cacao-900 text-white p-4 grid sm:grid-cols-12 gap-2 items-end text-sm">
+          <p class="sm:col-span-12 text-xs font-bold uppercase tracking-wider text-nude-300">Cobrar servicio de hoy</p>
+          <label class="sm:col-span-6"><span class="sr-only">Servicio</span><select id="chSvc" class="w-full rounded-lg px-2 py-2 text-cacao-900">${opts}</select></label>
+          <label class="sm:col-span-3"><span class="sr-only">Manicurista</span><select id="chStaff" class="w-full rounded-lg px-2 py-2 text-cacao-900">${STAFF[cen].map(x => `<option>${x}</option>`).join('')}</select></label>
+          <label class="sm:col-span-3"><span class="sr-only">Forma de pago</span><select id="chPay" class="w-full rounded-lg px-2 py-2 text-cacao-900"><option>Tarjeta</option><option>Bizum</option><option>Efectivo</option></select></label>
+          <button class="sm:col-span-12 mt-1 py-2.5 rounded-xl bg-gradient-to-r from-nude-400 to-nude-600 hover:from-nude-300 hover:to-nude-500 font-bold text-cacao-900">Cobrar y guardar en su historial</button>
+        </form>`;
+      $$('.crm-tab').forEach(b => b.addEventListener('click', () => { crmTab = b.dataset.t; renderCrmDetail(); }));
+      $$('.crm-ticket').forEach(b => b.addEventListener('click', () => { b.lastElementChild.textContent = '✓ Enviado por WhatsApp'; }));
+      $('#crmWa').onclick = () => { showView('whatsapp'); msg('bot', `💅 ¡Hola, ${esc(c.name.split(' ')[0])}! Te escribimos de Bakra: ${s.late ? 'hace tiempo que no te vemos y esta semana tenemos hueco.' : 'te recordamos que pronto te toca volver.'} ¿Te guardamos cita?`); };
+      $('#crmCharge').addEventListener('submit', e => {
+        e.preventDefault();
+        const svc = $('#chSvc').value, staff = $('#chStaff').value, cen0 = PLAN[id][0];
+        h.forEach(v => v.isNew = false);
+        h.unshift({ d: new Date(TODAY), svc, staff, cen: cen0, pay: $('#chPay').value, isNew: true });
+        PLAN[id][5] = 0;
+        const cat = SVC[svc][2];
+        extra[cen0].svc[cat] = (extra[cen0].svc[cat] || 0) + SVC[svc][1];
+        extra[cen0].staff[STAFF[cen0].indexOf(staff)] += SVC[svc][1];
+        extra[cen0].citas += 1;
+        crmTab = 'svc'; renderCrm();
+      });
+    }
+    $$('.crmc').forEach(b => b.addEventListener('click', () => { crmC = b.dataset.cc; renderCrm(); }));
+    $('#crmSearch').addEventListener('input', renderCrm);
+    $('#crmSort').addEventListener('change', renderCrm);
+    $('#mCrm').addEventListener('click', () => { const id = $('#mCrm').dataset.c; closeClient(); crmC = 'all'; crmSel = id; crmTab = 'svc'; $('#crmSearch').value = ''; showView('crm'); renderCrm(); });
+    renderCrm();
+
+    /* ---------- Vista 5: bandeja ---------- */
     const INBOX = [
       { icon: '📞', ch: 'Llamada · Laura', who: 'Marta López', when: 'Hoy 09:42', sum: 'Pide manicura permanente el jueves por la tarde en C/ Mayor.', status: 'Resuelto', text: 'Laura atendió la llamada mientras el equipo estaba con clientas. Tomó servicio, centro, franja y móvil, y dejó la cita pendiente de confirmar.', actions: ['Confirmar cita jueves 17:30', 'Enviar WhatsApp'] },
       { icon: '📷', ch: 'Instagram', who: '@carla.p', when: 'Hoy 00:17', sum: '¿Hacéis francesa en acrílico? ¿Cuánto tarda?', status: 'Necesita al equipo', text: 'El asistente le enseñó trabajos y le explicó que el precio depende del diseño. Pide hablar con una manicurista para un diseño concreto.', actions: ['Responder con presupuesto', 'Proponer cita de diseño'] },
@@ -650,7 +851,7 @@
     }
     renderInbox();
 
-    /* ---------- Vista 5: calculadora ---------- */
+    /* ---------- Vista 6: calculadora ---------- */
     const SL = [
       { id: 'missed', label: 'Llamadas sin coger a la semana (los dos centros)', min: 0, max: 60, step: 2, val: 20, fmt: v => v + ' llamadas' },
       { id: 'ticket', label: 'Ticket medio por cita', min: 12, max: 50, step: 1, val: 23, fmt: v => v + ' €' },
@@ -674,7 +875,7 @@
 
     /* ---------- Inicio ---------- */
     const start = (location.hash || '').slice(1);
-    showView(['phone', 'whatsapp', 'agenda', 'inbox', 'calc'].includes(start) ? start : 'phone');
+    showView(['phone', 'whatsapp', 'agenda', 'crm', 'inbox', 'calc'].includes(start) ? start : 'phone');
   })();
   </script>
 </body>
