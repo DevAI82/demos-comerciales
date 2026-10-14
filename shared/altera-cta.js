@@ -27,7 +27,9 @@
       'border-radius:999px', 'background:#16a34a', 'color:#fff', 'text-decoration:none',
       'font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif', 'box-shadow:0 10px 30px -8px rgba(0,0,0,.55)'
     ].join(';');
-    if (window.matchMedia('(max-width: 640px)').matches) {
+    // Con el agente de voz en directo (abajo a la izquierda) el botón no ocupa todo el ancho
+    const conConvai = document.documentElement.classList.contains('altera-convai');
+    if (window.matchMedia('(max-width: 640px)').matches && !conConvai) {
       a.style.left = '16px';
       a.style.justifyContent = 'center';
       document.body.style.paddingBottom = '84px';

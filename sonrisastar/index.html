@@ -7,15 +7,24 @@
   <title>Clínica Dental Sonrisastar — Prototipo Interactivo | Recepción IA 24/7 & Nueva Web</title>
   <meta name="description" content="Prototipo interactivo en vivo para Clínica Dental Sonrisastar (Albacete): Recepcionista de voz ElevenLabs, WhatsApp & Instagram Zernio, Nueva Web UX y CRM Clínico.">
 
-  <!-- Open Graph -->
+  <!-- Open Graph / WhatsApp -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Sonrisastar — Prototipo Interactivo de Automatización & Recepción 24/7">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Altera · Clínica Dental Sonrisastar">
+  <meta property="og:title" content="Clínica Dental Sonrisastar · Escucha a Sofía, tu recepcionista IA 24/7">
+  <meta property="og:description" content="Prototipo preparado para Sonrisastar (Albacete): llamada de prueba con voz real, citas y recordatorios por WhatsApp, nueva web con cita online y CRM. Hasta 80 % subvencionado por el Bono Crecimiento Pyme JCCM.">
   <meta property="og:url" content="https://devai82.github.io/demos-comerciales/sonrisastar/">
-  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-dental-sonrisastar.png">
-  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-dental-sonrisastar.png">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-sonrisastar-v2.jpg">
+  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-sonrisastar-v2.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Clínica Dental Sonrisastar y Sofía, recepcionista IA 24/7">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Clínica Dental Sonrisastar · Escucha a Sofía, tu recepcionista IA 24/7">
+  <meta name="twitter:description" content="Prototipo preparado para Sonrisastar (Albacete): llamada de prueba con voz real, citas y recordatorios por WhatsApp, nueva web con cita online y CRM. Hasta 80 % subvencionado por el Bono Crecimiento Pyme JCCM.">
+  <meta name="twitter:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-sonrisastar-v2.jpg">
+  <link rel="icon" type="image/png" href="logo-sonrisa.png">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -75,6 +84,7 @@
   <!-- Motor de voz Altera: audios pregenerados + desbloqueo móvil + modo dev (.env) -->
   <script src="../shared/altera-voice.js"></script>
   <script src="../shared/altera-config.js"></script>
+  <script src="../shared/altera-convai.js" defer></script>
   <script src="../shared/altera-cta.js" defer></script>
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
@@ -321,7 +331,7 @@
               <div class="p-5 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200 hover:border-brand-magenta transition space-y-2 cursor-pointer shadow-2xs" onclick="openAppointmentModal('Urgencia Dental')">
                 <div class="text-2xl">🚨</div>
                 <h4 class="font-bold text-slate-900 text-sm">Urgencias Dentales 24/7</h4>
-                <p class="text-xs text-slate-600">Dolor agudo, inflamación o rotura de pieza. Triaje inmediato por voz o WhatsApp para atenderte.</p>
+                <p class="text-xs text-slate-600">Dolor agudo, inflamación o rotura de pieza. Te priorizamos por voz o WhatsApp para atenderte cuanto antes.</p>
                 <span class="text-[11px] font-bold text-rose-600 flex items-center gap-1">Atención prioritaria &rarr;</span>
               </div>
 
@@ -352,13 +362,23 @@
             Recepcionista Telefónico con Voz IA 24/7
           </h1>
           <p class="text-sm text-slate-600 max-w-3xl mt-1">
-            Desvío automático del teléfono fijo de la clínica (<strong>967 116 136</strong>). Habla en español natural, realiza triaje médico de dolor, agenda citas en tiempo real y envía WhatsApp de confirmación.
+            Desvío automático del teléfono fijo de la clínica (<strong>967 116 136</strong>). Habla en español natural, prioriza las urgencias con dolor y avisa al equipo, agenda citas y envía WhatsApp de confirmación.
           </p>
         </div>
         <div class="flex items-center gap-2">
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Fijo 967 116 136 Listo
           </span>
+        </div>
+      </div>
+
+      <!-- AGENTE EN DIRECTO (solo visible si hay agent_id de ElevenLabs en shared/altera-config.js) -->
+      <div data-convai-only class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-50 to-pink-50 border-2 border-emerald-300 flex items-start gap-3 shadow-sm">
+        <span class="text-2xl leading-none">🎙️</span>
+        <div class="text-sm text-slate-800 space-y-1">
+          <strong class="block text-base text-slate-900">Habla ahora en directo con Sofía</strong>
+          <p>Pulsa el botón de llamada de Sofía (abajo a la izquierda), permite el micrófono y pídele una cita, cuéntale una urgencia o pregúntale por la ortodoncia invisible. Es la misma voz que atendería el 967 116 136.</p>
+          <p class="text-xs text-slate-500">¿Sin micrófono a mano? Escucha abajo una llamada de ejemplo.</p>
         </div>
       </div>
 
@@ -439,7 +459,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <button onclick="selectCallScenario(0)" id="scen-0" class="scenario-btn p-2.5 rounded-xl border-2 border-brand-magenta bg-pink-50/80 text-left text-xs font-semibold text-slate-900 transition">
                 <span class="block text-brand-magenta font-bold">Caso 1: Urgencia con Dolor</span>
-                <span class="text-[11px] text-slate-600 font-normal">Flemón · Triaje urgente</span>
+                <span class="text-[11px] text-slate-600 font-normal">Flemón · Prioridad urgente</span>
               </button>
               <button onclick="selectCallScenario(1)" id="scen-1" class="scenario-btn p-2.5 rounded-xl border border-slate-200 hover:border-slate-300 text-left text-xs font-semibold text-slate-700 transition">
                 <span class="block text-slate-900 font-bold">Caso 2: Revisión Gratis</span>
@@ -710,7 +730,7 @@
             </div>
             <h4 class="font-bold text-slate-900 text-xs">Javier Morales</h4>
             <p class="text-[11px] text-slate-600">Llamada fuera de horario. Flemón molar inferior.</p>
-            <span class="text-[10px] font-bold text-rose-600 block">Triaje Urgente: Prioridad 1</span>
+            <span class="text-[10px] font-bold text-rose-600 block">Urgencia: Prioridad 1</span>
           </div>
         </div>
 

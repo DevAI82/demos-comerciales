@@ -8,17 +8,24 @@
   <meta name="description" content="Propuesta de transformación digital para Clínica Dental Sonrisastar (Albacete): Recepcionista de voz IA 24/7 (ElevenLabs), WhatsApp & Instagram con Zernio, rediseño web de alta conversión y CRM clínico con el 80% de subvención de Castilla-La Mancha.">
 
   <!-- Open Graph / WhatsApp / Redes Sociales -->
+  <!-- Open Graph / WhatsApp -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
-  <meta property="og:site_name" content="Altera · Inteligencia REAL aplicada a tu negocio">
-  <meta property="og:title" content="Clínica Dental Sonrisastar — Propuesta de Transformación Digital & Recepción 24/7">
+  <meta property="og:site_name" content="Altera · Clínica Dental Sonrisastar">
+  <meta property="og:title" content="Propuesta para Clínica Dental Sonrisastar · Recepción IA 24/7 y nueva web">
+  <meta property="og:description" content="Diagnóstico, solución, plan de trabajo y financiación con el Bono Crecimiento Pyme JCCM. Incluye prototipo interactivo con la voz de Sofía.">
   <meta property="og:url" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.html">
-  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.htmlog-dental-sonrisastar.png">
-  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.htmlog-dental-sonrisastar.png">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-sonrisastar-v2.jpg">
+  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-sonrisastar-v2.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Clínica Dental Sonrisastar — Recepción Telefónica IA 24/7 & Web Clínica">
+  <meta property="og:image:alt" content="Logo de Clínica Dental Sonrisastar y Sofía, recepcionista IA 24/7">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Propuesta para Clínica Dental Sonrisastar · Recepción IA 24/7 y nueva web">
+  <meta name="twitter:description" content="Diagnóstico, solución, plan de trabajo y financiación con el Bono Crecimiento Pyme JCCM. Incluye prototipo interactivo con la voz de Sofía.">
+  <meta name="twitter:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-sonrisastar-v2.jpg">
+  <link rel="icon" type="image/png" href="logo-sonrisa.png">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -72,6 +79,8 @@
                   radial-gradient(circle at 90% 80%, rgba(226, 0, 119, 0.08) 0%, transparent 40%);
     }
   </style>
+  <script src="../shared/altera-config.js"></script>
+  <script src="../shared/altera-cta.js" defer></script>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased py-8 px-4 sm:px-6 lg:px-8 gradient-hero">
 
@@ -88,7 +97,7 @@
       <!-- Badge de Financiación Oficial JCCM -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-subvencion text-emerald-900 text-xs font-bold uppercase tracking-wider shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-        <span>🛡️ Bono Crecimiento Pyme · Orden 116/2026 JCCM · Subvencionado al 80%</span>
+        <span>🛡️ Bono Crecimiento Pyme · Orden 116/2026 JCCM · Hasta el 80% subvencionado</span>
       </div>
 
       <!-- Logos Oficiales -->
@@ -108,16 +117,16 @@
       <!-- Resumen de impacto económico de la subvención -->
       <div class="max-w-2xl mx-auto p-4 rounded-2xl bg-emerald-50/80 border border-emerald-300 text-slate-700 text-sm leading-relaxed flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
         <div class="text-left space-y-0.5">
-          <span class="text-xs uppercase font-bold text-emerald-800 tracking-wider">Inversión Oficial Subvencionada</span>
+          <span class="text-xs uppercase font-bold text-emerald-800 tracking-wider">Inversión subvencionable</span>
           <div class="text-lg font-bold text-slate-900">
             Total Proyecto: <span class="line-through text-slate-400">3.000 €</span> 
             <span class="text-emerald-700 font-extrabold text-xl ml-2">600 € netos</span>
           </div>
-          <p class="text-xs text-slate-600">La Junta de Comunidades de Castilla-La Mancha abona el 80% (2.400 € a fondo perdido).</p>
+          <p class="text-xs text-slate-600">La Junta de Comunidades de Castilla-La Mancha subvenciona hasta el 80% (2.400 € a fondo perdido).</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button onclick="openFormularioModal()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 whitespace-nowrap cursor-pointer">
-            <span>👁️</span> <span>Ver Formulario III Oficial</span>
+            <span>👁️</span> <span>Ver borrador del Formulario III</span>
           </button>
         </div>
       </div>
@@ -128,7 +137,7 @@
           <span class="text-base">🚀</span> <span>Probar Prototipo Interactivo en Vivo</span>
         </a>
         <button onclick="openFormularioModal()" class="px-5 py-3.5 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-900 font-bold text-xs border border-emerald-300 transition flex items-center gap-2 cursor-pointer">
-          <span>📄</span> <span>Consultar Memoria Oficial JCCM</span>
+          <span>📄</span> <span>Ver memoria técnica (borrador)</span>
         </button>
       </div>
     </header>
@@ -221,7 +230,7 @@
             <span>🎙️</span> <span>Recepcionista de Voz IA 24/7 (ElevenLabs)</span>
           </h3>
           <p class="text-xs text-slate-600 leading-relaxed">
-            Desvío inteligente de las llamadas al <strong>967 116 136</strong> fuera de horario y en picos de saturación. La IA responde al primer tono con voz ultra-realista española, realiza <strong>triaje de urgencias dentales con dolor</strong>, agenda citas y envía de inmediato confirmación por WhatsApp con enlace en Google Maps.
+            Desvío inteligente de las llamadas al <strong>967 116 136</strong> fuera de horario y en picos de saturación. La IA responde al primer tono con voz ultra-realista española, <strong>prioriza las urgencias con dolor y avisa al equipo</strong>, agenda citas y envía de inmediato confirmación por WhatsApp con enlace en Google Maps.
           </p>
         </div>
 
@@ -386,7 +395,7 @@
         <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-1">
           <span class="text-xs uppercase font-semibold text-slate-400 block">Inversión Total Proyecto</span>
           <div class="text-3xl font-extrabold text-white font-display">3.000,00 €</div>
-          <span class="text-[11px] text-slate-400">2 Actuaciones oficiales (Modalidad 4)</span>
+          <span class="text-[11px] text-slate-400">2 actuaciones (Modalidad 4)</span>
         </div>
 
         <div class="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-1">
@@ -405,7 +414,7 @@
       <!-- DESGLOSE DE ACTUACIONES Y VENTAJAS -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
         <div class="space-y-3">
-          <h4 class="text-sm font-bold text-emerald-300 uppercase tracking-wider">Actuaciones en la Memoria Técnica Oficial (Formulario III):</h4>
+          <h4 class="text-sm font-bold text-emerald-300 uppercase tracking-wider">Actuaciones de la Memoria Técnica (Formulario III):</h4>
           <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2 text-xs text-slate-300">
             <div class="flex justify-between items-center font-semibold text-white">
               <span>1. Agente Omnicanal (WhatsApp/IG) & Voz IA 24/7</span>
@@ -448,7 +457,7 @@
       <!-- BOTONES DE VISUALIZACIÓN Y DESCARGA FORMULARIO III -->
       <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-center gap-3">
         <button onclick="openFormularioModal()" class="px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm shadow-lg transition flex items-center gap-2 cursor-pointer">
-          <span>👁️</span> <span>Ver Memoria Oficial en Pantalla</span>
+          <span>👁️</span> <span>Ver el borrador de la memoria</span>
         </button>
       </div>
     </section>
@@ -541,8 +550,8 @@
             🏛️
           </div>
           <div>
-            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-emerald-400 block">Junta de Comunidades de Castilla-La Mancha</span>
-            <h3 class="text-sm sm:text-lg font-bold font-display">Formulario III · Memoria Técnica Oficial (Orden 116/2026)</h3>
+            <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-emerald-400 block">Borrador preparado por Altera · Solicitud a la JCCM</span>
+            <h3 class="text-sm sm:text-lg font-bold font-display">Formulario III · Memoria Técnica (Orden 116/2026)</h3>
             <span class="text-[11px] text-slate-400">Código Trámite Sede JCCM: 1023976 · Bono Crecimiento Pyme</span>
           </div>
         </div>
@@ -560,7 +569,7 @@
         <!-- Banner Resumen Económico -->
         <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-400 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-emerald-900 block">Presupuesto Oficial Presentado en la JCCM</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-900 block">Presupuesto propuesto para la solicitud</span>
             <div class="text-xl sm:text-2xl font-black text-slate-900 font-display mt-0.5">
               Inversión: 3.000,00 € · <span class="text-emerald-700">Subvención 80%: 2.400,00 €</span>
             </div>
@@ -601,7 +610,7 @@
                   <td class="p-2.5 font-bold">1</td>
                   <td class="p-2.5">
                     <strong>Agente Omnicanal (WhatsApp/IG) & Recepcionista de Voz IA 24/7</strong><br>
-                    <span class="text-[11px] text-slate-500">Implantación de IA conversacional (ElevenLabs + Zernio) en teléfono 967 116 136 y redes sociales para triaje y reservas 24/7.</span>
+                    <span class="text-[11px] text-slate-500">Implantación de IA conversacional (ElevenLabs + Zernio) en teléfono 967 116 136 y redes sociales para atención de urgencias y reservas 24/7.</span>
                   </td>
                   <td class="p-2.5 text-slate-500">Altera Soluciones Tecnológicas</td>
                   <td class="p-2.5 text-right font-semibold">1.500,00 €</td>
@@ -631,7 +640,7 @@
         <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 text-xs text-slate-700">
           <strong class="text-slate-900 block font-bold">⚖️ Justificación Legal de Contrato Menor (Exención de 3 presupuestos):</strong>
           <p>
-            Conforme al artículo 9.4 de la Orden 116/2026 de la JCCM y al artículo 118 de la Ley 9/2017 de Contratos del Sector Público, al ser el importe del contrato de servicios de <strong>3.000,00 €</strong> (muy inferior al límite legal de 15.000 €), <strong>no resulta preceptiva la aportación de tres ofertas de diferentes proveedores</strong>, bastando con el presupuesto pro-forma aportado por Altera Soluciones Tecnológicas.
+            Conforme al artículo 31.3 de la Ley 38/2003, General de Subvenciones, solo es obligatorio pedir tres ofertas cuando el gasto supera el importe del contrato menor (15.000 € en servicios, art. 118 de la Ley 9/2017). Al ser este proyecto de <strong>3.000,00 €</strong>, <strong>no es preceptivo aportar tres ofertas</strong>: basta con el presupuesto de Altera Soluciones Tecnológicas.
           </p>
         </div>
 
@@ -659,7 +668,7 @@
           <strong class="text-emerald-950 font-bold block text-sm">📋 Tramitación Llave en Mano por Altera (Coste 0 €):</strong>
           <ol class="list-decimal list-inside space-y-1 text-slate-700">
             <li><strong>Presentación telemática oficial:</strong> Altera registra la solicitud en la sede de la JCCM con el Formulario III. Queda fijado el número de registro y reservada la subvención.</li>
-            <li><strong>Inicio inmediato:</strong> Por el art. 10.2, una vez obtenido el resguardo telemático de entrada ya se puede arrancar la ejecución de los trabajos sin esperar 6 meses.</li>
+            <li><strong>Inicio inmediato:</strong> La convocatoria admite proyectos iniciados desde el 1 de enero de 2026 que no hayan terminado al presentar la solicitud, así que podemos empezar en cuanto esté registrada.</li>
             <li><strong>Ejecución y facturación:</strong> Altera despliega las herramientas y emite factura por 3.000 € + IVA (el IVA es deducible al 100%).</li>
             <li><strong>Justificación y reembolso:</strong> Altera presenta la memoria final (Formulario V) y la Junta abona los 2.400 € directamente por transferencia a la cuenta de Sonrisastar.</li>
           </ol>
@@ -670,7 +679,7 @@
       <!-- Modal Footer -->
       <div class="bg-slate-100 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 shrink-0">
         <span class="text-xs text-slate-500 font-medium">
-          Documento oficial listo para firma electrónica del representante legal.
+          Borrador listo para revisar y firmar electrónicamente por el representante legal.
         </span>
         <div class="flex items-center gap-2">
           <button onclick="closeFormularioModal()" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition">
