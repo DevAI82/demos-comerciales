@@ -8,11 +8,11 @@
     "role": "agent"
   },
   {
-    "text": "Hola, sí. Quería una barbacoa familiar y una margarita mediana para recoger sobre las nueve y media.",
+    "text": "Hola, sí. Quería una barbacoa familiar y una diavola mediana para recoger sobre las nueve y media.",
     "role": "client"
   },
   {
-    "text": "¡Perfecto! Una barbacoa familiar y una margarita mediana. A las nueve y media tengo hueco en el horno. ¿A nombre de quién lo apunto y a qué móvil te mando el resumen por WhatsApp?",
+    "text": "¡Perfecto! Una barbacoa familiar y una diavola mediana. A las nueve y media tengo hueco en el horno. ¿A nombre de quién lo apunto y a qué móvil te mando el resumen por WhatsApp?",
     "role": "agent"
   },
   {
@@ -52,7 +52,7 @@
     "role": "agent"
   },
   {
-    "text": "Las pizzas van desde nueve euros la margarita mediana hasta catorce cincuenta la Especial Ángela. Te mando la carta con fotos a tu WhatsApp.",
+    "text": "Las pizzas medianas van de once a doce euros y medio, y las familiares de dieciséis y medio a dieciocho. Te mando la carta con fotos a tu WhatsApp.",
     "role": "agent"
   },
   {

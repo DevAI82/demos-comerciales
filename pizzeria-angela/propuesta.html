@@ -72,9 +72,18 @@
           <a href="#piezas" class="min-h-[52px] inline-flex items-center px-6 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 font-semibold text-white">Ver la propuesta</a>
         </div>
       </div>
-      <img src="logo-angela.jpg" alt="Logo de Pizzería Ángela" width="220" height="220" class="hidden md:block w-56 h-56 rounded-full object-cover border-4 border-horno-400/40 shadow-2xl shadow-tomate-900/60">
+      <div class="relative hidden md:block w-80">
+        <img src="carta/diavola.jpg" alt="Pizza diavola de Pizzería Ángela" width="480" height="360" class="w-80 rounded-3xl object-cover border border-white/10 shadow-2xl shadow-tomate-900/60 rotate-2">
+        <img src="carta/mitad-y-mitad.jpg" alt="Pizza mitad y mitad de Pizzería Ángela" width="480" height="360" class="absolute -bottom-16 -left-14 w-56 rounded-2xl object-cover border-4 border-brasa-900 shadow-2xl -rotate-3">
+        <img src="logo-angela.jpg" alt="Logo de Pizzería Ángela" width="96" height="96" class="absolute -top-8 -right-6 w-24 h-24 rounded-full object-cover border-4 border-horno-400/60 shadow-xl">
+      </div>
     </div>
   </header>
+
+  <div class="relative h-56 md:h-72 overflow-hidden">
+    <img src="fachada-angela.jpg" alt="Fachada de Pizzería Ángela en la calle Simone de Beauvoir" width="1600" height="727" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-brasa-900 via-brasa-900/30 to-transparent"></div>
+  </div>
 
   <main class="max-w-6xl mx-auto px-4 py-12 space-y-16">
 
@@ -99,7 +108,7 @@
         <h2 id="s2" class="font-display text-3xl text-white mt-1">Cuatro piezas que trabajan juntas</h2>
       </div>
       <div class="grid lg:grid-cols-2 gap-5">
-        <article class="card rounded-3xl p-6 space-y-3 border-horno-400/30">
+        <article class="card rounded-3xl p-6 space-y-3 border-horno-400/30 min-w-0">
           <p class="text-xs font-bold text-horno-400">PIEZA 1</p>
           <h3 class="font-display text-2xl text-white">💬 Pedidos para recoger por WhatsApp</h3>
           <p class="text-sm text-stone-300">El cliente escribe al WhatsApp de la pizzería y el asistente le enseña <strong>la carta con fotos</strong> dentro del chat: cada pizza con su foto, ingredientes y precio, y botones para elegir mediana o familiar. WhatsApp Business permite enviar imágenes, un catálogo de productos y botones, así que se pide sin salir de la conversación.</p>
@@ -110,6 +119,12 @@
             <li>✓ «Lo de siempre»: reconoce el número y repite el último pedido.</li>
             <li>✓ Con alergias o celiaquía no se arriesga: pasa a una persona del equipo.</li>
           </ul>
+          <div class="flex gap-2 overflow-x-auto pb-1">
+            <img src="carta/cuatro-estaciones.jpg" alt="Cuatro Estaciones" width="480" height="360" loading="lazy" class="w-28 h-20 rounded-lg object-cover shrink-0">
+            <img src="carta/barbacoa.jpg" alt="Barbacoa" width="480" height="360" loading="lazy" class="w-28 h-20 rounded-lg object-cover shrink-0">
+            <img src="carta/tonno.jpg" alt="Tonno" width="480" height="360" loading="lazy" class="w-28 h-20 rounded-lg object-cover shrink-0">
+            <img src="carta/pollo-cherry.jpg" alt="Pollo y cherry" width="480" height="360" loading="lazy" class="w-28 h-20 rounded-lg object-cover shrink-0">
+          </div>
           <a href="index.html#whatsapp" class="inline-flex min-h-[44px] items-center font-bold text-horno-300 hover:underline">Probar el pedido por WhatsApp →</a>
         </article>
 
@@ -168,10 +183,36 @@
       </div>
     </section>
 
+    <!-- AHORRO FRENTE A PLATAFORMAS -->
+    <section class="space-y-6" aria-labelledby="s-ahorro">
+      <div class="border-b border-white/10 pb-4">
+        <p class="text-xs font-bold uppercase tracking-widest text-horno-400">04 · Frente a Uber Eats y Glovo</p>
+        <h2 id="s-ahorro" class="font-display text-3xl text-white mt-1">Lo que se queda en casa en cada recogida</h2>
+        <p class="text-sm text-stone-400 mt-2 max-w-3xl">Las plataformas cobran comisión también cuando el cliente pasa a recoger. Con el WhatsApp propio, el pedido para recoger no paga comisión y el cliente queda en vuestra base de datos para volver a pedir.</p>
+      </div>
+      <div class="card rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm min-w-[620px]">
+            <thead><tr class="bg-white/5 text-[11px] uppercase tracking-wider text-stone-400 text-left"><th class="p-3">Pedido de ejemplo: 24 €</th><th class="p-3">Comisión orientativa</th><th class="p-3">Os queda</th><th class="p-3">300 pedidos al mes</th></tr></thead>
+            <tbody class="divide-y divide-white/5">
+              <tr><td class="p-3 text-white font-semibold">Uber Eats o Glovo, con reparto</td><td class="p-3 text-stone-400">≈ 30 % · 7,20 €</td><td class="p-3">16,80 €</td><td class="p-3 font-mono text-red-400">≈ 2.160 € en comisiones</td></tr>
+              <tr><td class="p-3 text-white font-semibold">Uber Eats o Glovo, para recoger</td><td class="p-3 text-stone-400">≈ 12–15 % · ≈ 3,00 €</td><td class="p-3">≈ 21,00 €</td><td class="p-3 font-mono text-amber-400">≈ 900 € en comisiones</td></tr>
+              <tr class="bg-horno-400/5"><td class="p-3 text-white font-semibold">WhatsApp propio, paga al recoger</td><td class="p-3 text-stone-400">0 €</td><td class="p-3 font-bold text-horno-300">24,00 €</td><td class="p-3 font-mono text-horno-300">0 €</td></tr>
+              <tr class="bg-horno-400/5"><td class="p-3 text-white font-semibold">WhatsApp propio, paga online</td><td class="p-3 text-stone-400">Stripe ≈ 1,5 % + 0,25 € · ≈ 0,61 €</td><td class="p-3 font-bold text-horno-300">≈ 23,39 €</td><td class="p-3 font-mono text-horno-300">≈ 180 € si todos pagan online</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-white/5 px-6 py-4 border-t border-white/10 text-sm text-stone-300">
+          Pasar 300 recogidas al mes de la plataforma al WhatsApp propio deja <strong class="text-white">≈ 700–900 € al mes</strong> en la pizzería, más que todo lo que cuestan los servicios y el mantenimiento juntos.
+          <p class="text-[11px] text-stone-500 mt-1">Las comisiones dependen del contrato de cada plataforma; cifras orientativas.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- 04 QUÉ SE GANA -->
     <section class="space-y-6" aria-labelledby="s4">
       <div class="border-b border-white/10 pb-4">
-        <p class="text-xs font-bold uppercase tracking-widest text-horno-400">04 · Qué se gana</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-horno-400">05 · Qué se gana</p>
         <h2 id="s4" class="font-display text-3xl text-white mt-1">Cómo se nota en la caja</h2>
         <p class="text-sm text-stone-400 mt-2">Ejemplo orientativo. Lo medimos con datos reales desde el primer mes.</p>
       </div>
@@ -186,7 +227,7 @@
     <!-- 05 INVERSIÓN Y PLAN -->
     <section class="space-y-6" aria-labelledby="s5">
       <div class="border-b border-white/10 pb-4">
-        <p class="text-xs font-bold uppercase tracking-widest text-horno-400">05 · Inversión y plazos</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-horno-400">06 · Inversión y plazos</p>
         <h2 id="s5" class="font-display text-3xl text-white mt-1">En marcha en 6–8 semanas, con el Bono Crecimiento Pyme</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-4">
@@ -194,12 +235,12 @@
           <h3 class="font-display text-xl text-white">Cómo lo hacemos</h3>
           <ol class="text-sm text-stone-300 space-y-2">
             <li><strong class="text-white">Semanas 1–3 · Sistemas.</strong> Servidor propio, Coolify y Supabase; WhatsApp Business oficial con Zernio y Meta; línea de Laura en Telnyx; IA con OpenRouter; voz de ElevenLabs y pasarela de pago, todo a nombre de la pizzería.</li>
-            <li><strong class="text-white">Semanas 4–5 · Carta y asistentes.</strong> Cargamos la carta con las fotos que ya tenéis publicadas, precios y tamaños, y ajustamos el WhatsApp y a Laura con vuestras preguntas de cada día.</li>
+            <li><strong class="text-white">Semanas 4–5 · Carta y asistentes.</strong> Cargamos la carta con las fotos de vuestra web, precios y tamaños, y ajustamos el WhatsApp y a Laura con vuestras preguntas de cada día.</li>
             <li><strong class="text-white">Semana 6 · Cocina.</strong> Comandera e impresora en cocina y pruebas con pedidos reales del equipo antes de abrirlo al público.</li>
             <li><strong class="text-white">Semanas 7–8 · Lanzamiento.</strong> Desvío del fijo a Laura, web nueva, QR en las cajas y ajustes con los primeros pedidos.</li>
             <li><strong class="text-white">Después.</strong> Revisión mensual de pedidos, llamadas atendidas y mejoras.</li>
           </ol>
-          <p class="text-xs text-stone-500">Sin sesiones de fotos: usamos las fotos de vuestras pizzas que ya están en redes y en Google.</p>
+          <p class="text-xs text-stone-500">Sin sesiones de fotos: usamos las fotos de vuestras pizzas que ya tenéis en la web.</p>
         </div>
         <div class="rounded-2xl p-6 space-y-3 bg-gradient-to-b from-tomate-700 to-tomate-900 text-white shadow-2xl shadow-tomate-900/40">
           <p class="text-sm text-horno-200 font-semibold">Coste final para la pizzería</p>
@@ -224,7 +265,7 @@
               <tr><td class="p-3 font-bold text-white">ElevenLabs</td><td class="p-3 text-stone-400">Solo la voz de Laura (texto a voz). Sin el agente de voz por minuto.</td><td class="p-3 whitespace-nowrap font-semibold">≈ 6–22 €/mes<br><span class="text-xs font-normal text-stone-500">según caracteres hablados</span></td></tr>
               <tr><td class="p-3 font-bold text-white">OpenRouter</td><td class="p-3 text-stone-400">La IA que atiende el WhatsApp y el teléfono. Es la misma para los dos.</td><td class="p-3 whitespace-nowrap font-semibold">Saldo prepago<br><span class="text-xs font-normal text-stone-500">≈ 5–15 €/mes</span></td></tr>
               <tr><td class="p-3 font-bold text-white">Zernio</td><td class="p-3 text-stone-400">Conecta el WhatsApp y el Instagram de la pizzería con el asistente.</td><td class="p-3 whitespace-nowrap font-semibold">Gratis<br><span class="text-xs font-normal text-stone-500">con solo WhatsApp e Instagram</span></td></tr>
-              <tr><td class="p-3 font-bold text-white">Meta (WhatsApp Business)</td><td class="p-3 text-stone-400">Mensajes que envía la pizzería. Responder y avisar «ya está lista» dentro de las 24 h desde que el cliente escribió no se cobra.</td><td class="p-3 whitespace-nowrap font-semibold">≈ 0,02 € por aviso fuera de plazo<br><span class="text-xs font-normal text-stone-500">≈ 0,06 € por promoción · ≈ 0–15 €/mes</span></td></tr>
+              <tr><td class="p-3 font-bold text-white">Meta (WhatsApp Business)</td><td class="p-3 text-stone-400">Mensajes que envía la pizzería. Mientras el cliente está escribiendo (24 h desde su último mensaje) todo es gratis: fotos de la carta, botones y el aviso «ya está lista». Solo se pagan los mensajes que la pizzería inicia fuera de ese plazo.</td><td class="p-3 whitespace-nowrap font-semibold">≈ 0,02 € por aviso fuera de plazo<br><span class="text-xs font-normal text-stone-500">≈ 0,06 € por promoción · ≈ 0–15 €/mes</span></td></tr>
               <tr><td class="p-3 font-bold text-white">Stripe</td><td class="p-3 text-stone-400">Enlace de pago para quien prefiere pagar al pedir. Quien paga al recoger no genera coste.</td><td class="p-3 whitespace-nowrap font-semibold">≈ 1,5 % + 0,25 €<br><span class="text-xs font-normal text-stone-500">por pago con tarjeta europea</span></td></tr>
               <tr><td class="p-3 font-bold text-white">Resend</td><td class="p-3 text-stone-400">Correos automáticos: ticket del pedido y avisos a quien dio permiso.</td><td class="p-3 whitespace-nowrap font-semibold">Gratis<br><span class="text-xs font-normal text-stone-500">hasta 3.000 correos/mes y 100/día</span></td></tr>
               <tr><td class="p-3 font-bold text-white">Contabo</td><td class="p-3 text-stone-400">Servidor en la Unión Europea donde viven la comandera, la base de datos y las automatizaciones.</td><td class="p-3 whitespace-nowrap font-semibold">≈ 6–12 €/mes</td></tr>
