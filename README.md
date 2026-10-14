@@ -18,7 +18,7 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 | **Izon Consulting** | Inmobiliaria ⭐ referencia | [devai82.github.io/demos-comerciales/realestate/](https://devai82.github.io/demos-comerciales/realestate/) | Radar de Mercado Idealista €/m², Chatbot 24/7, Cualificación de compradores |
 | **Salón 224** | Belleza ⭐ referencia | [devai82.github.io/demos-comerciales/salon224/](https://devai82.github.io/demos-comerciales/salon224/) | Recepción telefónica ElevenLabs, WhatsApp con Fresha, CRM recordatorios |
 | **Clínica Sonrisastar** | Salud ⭐ referencia | [devai82.github.io/demos-comerciales/sonrisastar/](https://devai82.github.io/demos-comerciales/sonrisastar/) | Recepción IA 24/7 (ElevenLabs), Agendamiento citas, Nueva Web, CRM |
-| **Adela Fisioterapia** | Salud | [devai82.github.io/demos-comerciales/adela-fisio/](https://devai82.github.io/demos-comerciales/adela-fisio/) | Contestador Sofía HD (ElevenLabs), Selector de dolor 3D, Portal Paciente |
+| **Fisioterapia Online con Adela** | Salud | [devai82.github.io/demos-comerciales/adela-fisio/](https://devai82.github.io/demos-comerciales/adela-fisio/) | Historial clínico, rutinas en vídeo con voz en off, pagos Bizum/tarjeta y reserva |
 
 📋 Antes de enseñar una demo, revisa [`docs/AUDITORIA.md`](docs/AUDITORIA.md) (fallos corregidos y pendientes de decisión).
 
