@@ -10,7 +10,7 @@ window.ALTERA_CONFIG = {
   // Pega el agent_id (ElevenLabs → Agents → tu agente → Widget). Es público, no es la API key.
   // Guía para crear el de Sonrisastar: docs/agentes/sonrisastar-sofia.md
   elevenlabsAgents: {
-    sonrisastar: ''
+    sonrisastar: 'agent_6801m4xcms8xe2vry45fwqfkw6d6' // Sofía · voz Laura (creado 14/10/2026)
   },
   oferta: {
     costeCliente: '600 €',       // tras la subvención del 80% (Bono Crecimiento Pyme JCCM)
