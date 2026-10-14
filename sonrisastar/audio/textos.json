@@ -66,5 +66,37 @@
   {
     "text": "Hecho, Laura. Cita para estudio de ortodoncia el viernes a las 12:00. Te mando la confirmación y guía por WhatsApp. ¡Te esperamos en calle Dionisio Guardiola!",
     "role": "agent"
+  },
+  {
+    "text": "Al tratarse de dolor dental agudo le asignamos máxima prioridad de urgencia. Disponemos de hueco hoy mismo en nuestra clínica de calle Dionisio Guardiola, 2. ¿Desea que le reserve cita de inmediato con el doctor de guardia?",
+    "role": "agent"
+  },
+  {
+    "text": "Nuestra primera consulta incluye diagnóstico completo por especialista y radiografía digital 100% gratuita y sin compromiso. ¿Prefiere que le reservemos hueco por la mañana o por la tarde?",
+    "role": "agent"
+  },
+  {
+    "text": "En Sonrisastar somos especialistas en ortodoncia invisible con alineadores transparentes. Contamos con financiación a su medida de hasta 36 meses sin intereses y el estudio 3D inicial es gratuito. ¿Le reservamos cita para informarse?",
+    "role": "agent"
+  },
+  {
+    "text": "Estamos situados en pleno centro de Albacete, en Calle Dionisio Guardiola número 2. Nuestro horario presencial es de lunes a viernes de 10:00 a 14:00 y de 17:00 a 21:00, y este asistente atiende su teléfono 24 horas al día.",
+    "role": "agent"
+  },
+  {
+    "text": "🚨 Urgencia con Dolor Agudo",
+    "role": "agent"
+  },
+  {
+    "text": "💎 1ª Revisión & Radiografía Gratis",
+    "role": "agent"
+  },
+  {
+    "text": "🦷 Ortodoncia Invisible & Financiación",
+    "role": "agent"
+  },
+  {
+    "text": "📍 Ubicación en Albacete & Horarios",
+    "role": "agent"
   }
 ]

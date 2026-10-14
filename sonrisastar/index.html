@@ -25,6 +25,7 @@
   <meta name="twitter:description" content="Prototipo preparado para Sonrisastar (Albacete): llamada de prueba con voz real, citas y recordatorios por WhatsApp, nueva web con cita online y CRM. Hasta 80 % subvencionado por el Bono Crecimiento Pyme JCCM.">
   <meta name="twitter:image" content="https://devai82.github.io/demos-comerciales/sonrisastar/og-sonrisastar-v2.jpg">
   <link rel="icon" type="image/png" href="logo-sonrisa.png">
+  <link rel="apple-touch-icon" href="logo-sonrisa.png">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -116,13 +117,13 @@
           <span>📊</span> <span>4. CRM Dental Kanban</span>
         </button>
         <button onclick="switchView('calculator')" id="btn-calculator" class="view-btn px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-900 transition flex items-center gap-1.5 font-semibold">
-          <span>🛡️</span> <span>5. Subvención JCCM (80%)</span>
+          <span>🛡️</span> <span>5. Subvención JCCM (hasta 80%)</span>
         </button>
       </nav>
 
-      <!-- PRESENTATION LINK -->
-      <a href="propuesta.html" class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-white transition">
-        <span>📄 Volver a la Presentación &rarr;</span>
+      <!-- PROPOSAL LINK -->
+      <a href="propuesta.html" class="hidden md:inline-flex items-center gap-1.5 text-xs font-bold text-emerald-300 hover:text-white bg-slate-900 hover:bg-slate-800 px-3 py-1.5 rounded-lg border border-emerald-500/40 transition">
+        <span>📄 Ver Propuesta Comercial · hasta 80% subvencionado &rarr;</span>
       </a>
     </div>
   </header>
@@ -429,23 +430,58 @@
           </div>
 
           <!-- Botones de Acción de Llamada -->
-          <div class="space-y-4 pt-4 border-t border-slate-800">
-            <div class="flex items-center justify-center gap-4">
-              <button id="btnStartCall" onclick="startCallSimulation()" class="w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/40 transition flex items-center justify-center gap-2">
+          <div class="space-y-3 pt-4 border-t border-slate-800">
+            <div class="flex items-center justify-center gap-3">
+              <button id="btnStartCall" onclick="startCallSimulation()" class="w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/40 transition flex items-center justify-center gap-2 cursor-pointer">
                 <span>📞</span> <span>Llamar al Recepcionista IA</span>
               </button>
-              <button id="btnEndCall" onclick="endCallSimulation()" class="hidden w-full py-3.5 px-6 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm shadow-lg shadow-rose-900/40 transition flex items-center justify-center gap-2">
+              <button id="btnEndCall" onclick="endCallSimulation()" class="hidden w-full py-3.5 px-6 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-sm shadow-lg shadow-rose-900/40 transition flex items-center justify-center gap-2 cursor-pointer">
                 <span>📵</span> <span>Colgar Llamada</span>
               </button>
             </div>
 
-            <!-- Audio TTS Toggle -->
-            <div class="flex items-center justify-between text-xs text-slate-400 px-2">
+            <!-- Audio TTS Toggle & Status -->
+            <div class="flex items-center justify-between text-xs text-slate-400 px-1">
               <label class="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" id="toggleSpeech" checked class="rounded accent-brand-magenta">
                 <span>Voz hablada activa</span>
               </label>
-              <span class="text-[11px] text-brand-magenta font-semibold bg-pink-50 px-2 py-0.5 rounded border border-pink-200">✨ Voz IA · Sofía</span>
+              <span id="elevenBadgeStatus" class="text-[11px] font-semibold bg-pink-950 text-pink-300 border border-pink-700/40 px-2 py-0.5 rounded">✨ ElevenLabs HD (Sofía)</span>
+            </div>
+
+            <!-- BOTÓN Y PANEL CONFIGURACIÓN ELEVENLABS (solo en localhost o con ?dev) -->
+            <div data-altera-dev class="pt-2 border-t border-slate-800/80">
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-slate-400 font-medium">Motor de Voz:</span>
+                <button type="button" onclick="toggleElevenConfigDental()" class="text-brand-magenta hover:text-pink-300 font-bold underline cursor-pointer">
+                  ⚙️ Configurar ElevenLabs
+                </button>
+              </div>
+
+              <!-- PANEL DESPLEGABLE ELEVENLABS -->
+              <div id="elevenConfigPanelDental" class="hidden mt-2 p-3 rounded-xl bg-slate-900 border border-brand-magenta/40 space-y-2 text-left">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-pink-300">ElevenLabs API Key</span>
+                  <span class="text-[9px] text-slate-400">Voz humana ultra-realista</span>
+                </div>
+                <div class="flex gap-1.5 items-center">
+                  <input type="password" id="elevenApiKeyInput" placeholder="Pega tu clave (sk_... o xi-api-key)" class="flex-1 bg-slate-950 text-white border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-brand-magenta focus:outline-none font-mono">
+                  <button type="button" onclick="saveAndTestElevenDental()" class="bg-brand-magenta hover:bg-brand-magentadark text-white font-bold text-xs px-3 py-1.5 rounded-lg transition whitespace-nowrap cursor-pointer">
+                    Conectar
+                  </button>
+                </div>
+                <div class="flex items-center justify-between gap-2 pt-1">
+                  <button type="button" onclick="testElevenVoiceDental()" class="bg-slate-800 hover:bg-slate-700 text-pink-300 border border-pink-500/30 text-[11px] px-2.5 py-1 rounded-lg transition font-semibold flex items-center gap-1 cursor-pointer">
+                    <span>🔊</span> <span>Probar Voz Sofía</span>
+                  </button>
+                  <a href="https://elevenlabs.io" target="_blank" class="text-[10px] text-sky-400 hover:underline">
+                    Crear cuenta gratis &rarr;
+                  </a>
+                </div>
+                <div id="elevenStatusMsg" class="text-[10px] text-slate-400 p-2 rounded bg-slate-950 border border-slate-800 break-words leading-relaxed">
+                  Introduce tu clave API de ElevenLabs para activar la voz de estudio de Sofía. Si no dispones de clave, la demo utilizará automáticamente la voz española del navegador de alta calidad.
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -500,6 +536,49 @@
             <p class="text-xs text-slate-700" id="callResultDetails">
               Paciente: <strong>Carlos Ruiz</strong> · Cita: <strong>Mañana a las 10:00h</strong> (Urgencias Gabinete 1). WhatsApp con ubicación Google Maps enviado al +34 654 321 098.
             </p>
+          </div>
+
+          <!-- Consultas Rápidas Directas a Sofía -->
+          <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                <span>⚡</span> <span>Preguntas Rápidas a Sofía (Prueba Directa)</span>
+              </span>
+              <span class="text-[10px] text-brand-magenta font-semibold">Toca una pregunta para escuchar</span>
+            </div>
+            <p class="text-[11px] text-slate-500">
+              Pulsa cualquier botón para escuchar cómo la recepcionista IA responde preguntas frecuentes de la clínica de forma instantánea:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <button type="button" onclick="askSofíaQuick('urgencia')" class="p-2.5 rounded-xl border border-rose-200 bg-rose-50/70 hover:bg-rose-100 text-left text-xs font-semibold text-rose-900 transition flex items-center gap-2 cursor-pointer shadow-2xs">
+                <span class="text-base">🚨</span>
+                <div>
+                  <span class="block font-bold">Urgencia con Dolor</span>
+                  <span class="text-[10px] text-rose-700 font-normal">Flemón / Muela infectada</span>
+                </div>
+              </button>
+              <button type="button" onclick="askSofíaQuick('revision')" class="p-2.5 rounded-xl border border-emerald-200 bg-emerald-50/70 hover:bg-emerald-100 text-left text-xs font-semibold text-emerald-900 transition flex items-center gap-2 cursor-pointer shadow-2xs">
+                <span class="text-base">💎</span>
+                <div>
+                  <span class="block font-bold">Revisión + Rx Gratis</span>
+                  <span class="text-[10px] text-emerald-700 font-normal">Diagnóstico sin coste</span>
+                </div>
+              </button>
+              <button type="button" onclick="askSofíaQuick('ortodoncia')" class="p-2.5 rounded-xl border border-sky-200 bg-sky-50/70 hover:bg-sky-100 text-left text-xs font-semibold text-sky-900 transition flex items-center gap-2 cursor-pointer shadow-2xs">
+                <span class="text-base">🦷</span>
+                <div>
+                  <span class="block font-bold">Ortodoncia Invisible</span>
+                  <span class="text-[10px] text-sky-700 font-normal">Financiación 36m sin intereses</span>
+                </div>
+              </button>
+              <button type="button" onclick="askSofíaQuick('donde')" class="p-2.5 rounded-xl border border-purple-200 bg-purple-50/70 hover:bg-purple-100 text-left text-xs font-semibold text-purple-900 transition flex items-center gap-2 cursor-pointer shadow-2xs">
+                <span class="text-base">📍</span>
+                <div>
+                  <span class="block font-bold">Ubicación & Horarios</span>
+                  <span class="text-[10px] text-purple-700 font-normal">c/ Dionisio Guardiola, 2</span>
+                </div>
+              </button>
+            </div>
           </div>
 
         </div>
@@ -855,16 +934,16 @@
         <div>
           <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Bono Crecimiento Pyme · JCCM</span>
           <h1 class="text-2xl sm:text-4xl font-display font-extrabold text-slate-900 mt-1">
-            Simulador de Financiación & Subvención (80%)
+            Simulador de Financiación & Subvención (hasta 80%)
           </h1>
           <p class="text-sm text-slate-600 max-w-3xl mt-1">
             Orden 116/2026 de la Junta de Comunidades de Castilla-La Mancha. Concesión directa no competitiva con 9.000.000 € de dotación y memoria oficial Formulario III incluida.
           </p>
         </div>
         <div class="flex items-center gap-2">
-          <span class="px-4 py-2 rounded-xl bg-emerald-100 text-emerald-900 font-bold text-xs border border-emerald-300 flex items-center gap-1.5">
-            <span>📄</span> <span>Memoria Formulario III incluida</span>
-          </span>
+          <a href="propuesta.html" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5">
+            <span>📄</span> <span>Ver Propuesta Completa & Memoria Formulario III &rarr;</span>
+          </a>
         </div>
       </div>
 
@@ -875,21 +954,39 @@
           <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
             <span class="text-xs uppercase font-bold text-slate-500">Inversión Presupuestada</span>
             <div class="text-3xl sm:text-4xl font-black text-slate-900 font-display">3.000,00 €</div>
-            <p class="text-xs text-slate-500">Contrato menor sin necesidad de 3 ofertas (Art. 9.4)</p>
+            <p class="text-xs text-slate-500">Sin IVA · no requiere 3 ofertas (art. 31.3 Ley 38/2003)</p>
           </div>
 
           <div class="p-6 rounded-2xl bg-emerald-50 border border-emerald-300 space-y-2">
-            <span class="text-xs uppercase font-bold text-emerald-800">Subvención Junta CLM (80%)</span>
+            <span class="text-xs uppercase font-bold text-emerald-800">Subvención Junta CLM (hasta 80%)</span>
             <div class="text-3xl sm:text-4xl font-black text-emerald-600 font-display">-2.400,00 €</div>
-            <p class="text-xs text-emerald-700 font-semibold">A fondo perdido por transferencia directa</p>
+            <p class="text-xs text-emerald-700 font-semibold">A fondo perdido · con el 60%: 1.800 €</p>
           </div>
 
           <div class="p-6 rounded-2xl bg-brand-magenta/10 border-2 border-brand-magenta space-y-2">
-            <span class="text-xs uppercase font-bold text-brand-magenta">Coste Real para Sonrisastar</span>
-            <div class="text-4xl sm:text-5xl font-black text-brand-magenta font-display">600,00 €</div>
-            <p class="text-xs font-bold text-brand-magenta">¡Amortizable con solo 1 o 2 pacientes!</p>
+            <span class="text-xs uppercase font-bold text-brand-magenta">Coste final para Sonrisastar</span>
+            <div class="text-4xl sm:text-5xl font-black text-brand-magenta font-display"><span class="text-lg font-bold align-middle">desde</span> 600,00 €</div>
+            <p class="text-xs font-bold text-brand-magenta">1.200,00 € si la ayuda queda en el 60%</p>
           </div>
         </div>
+
+      <!-- CÓMO SE PAGA Y CUOTA MENSUAL -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs text-slate-700 text-left">
+          <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider">💶 Cómo se paga</h4>
+          <ol class="space-y-1.5 list-decimal pl-4">
+            <li><strong class="text-slate-900">Solicitud (0 €):</strong> Altera prepara y registra la solicitud del Bono en la sede de la JCCM.</li>
+            <li><strong class="text-slate-900">Al entregar los trabajos:</strong> la clínica abona la factura de 3.000 € + IVA.</li>
+            <li><strong class="text-slate-900">Tras la justificación:</strong> la Junta ingresa la subvención en la cuenta de la clínica (2.400 € con el 80 %).</li>
+          </ol>
+          <p>La ayuda va del <strong class="text-slate-900">60 % al 80 %</strong> según la puntuación de la memoria: el coste final queda <strong class="text-slate-900">entre 600 € y 1.200 €</strong>. Importes sin IVA.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs text-slate-700 text-left">
+          <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider">🛠️ Después de la puesta en marcha</h4>
+          <p><strong class="text-slate-900">Mantenimiento y soporte: 99 €/mes</strong> (servidor propio en la UE, actualizaciones, copias de seguridad y soporte en Albacete). Va aparte de la subvención.</p>
+          <p><strong class="text-slate-900">Consumos a precio de proveedor, sin margen:</strong> llamadas atendidas por la voz IA (≈0,10 €/minuto) y recordatorios de WhatsApp (unos céntimos por mensaje, tarifa oficial de Meta). Los mensajes que inicia el paciente son gratis.</p>
+        </div>
+      </div>
 
         <!-- Tabla de Actuaciones Oficiales en Memoria -->
         <div class="space-y-4">
@@ -903,7 +1000,7 @@
                   <th class="p-3">Concepto Oficial</th>
                   <th class="p-3">Proveedor</th>
                   <th class="p-3 text-right">Importe Sin IVA</th>
-                  <th class="p-3 text-right">Subvención (80%)</th>
+                  <th class="p-3 text-right">Subvención solicitada (80%)</th>
                   <th class="p-3 text-right">Coste Clínica</th>
                 </tr>
               </thead>
@@ -941,7 +1038,7 @@
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Tramitación Oficial Incluida (Coste 0€)</span>
             <h4 class="text-lg font-bold">Altera gestiona íntegramente la solicitud y justificación</h4>
             <p class="text-xs text-slate-300 max-w-xl">
-              Entregamos la Memoria Técnica Formulario III lista para firma electrónica y te acompañamos hasta el cobro del 80% en tu cuenta bancaria.
+              Entregamos la Memoria Técnica Formulario III lista para firma electrónica y te acompañamos hasta el cobro de la subvención en tu cuenta bancaria.
             </p>
           </div>
           <div class="flex items-center gap-2">
@@ -1060,12 +1157,14 @@
     }
 
     // -------------------------------------------------------------
-    // SIMULADOR DE LLAMADA TELEFÓNICA (ELEVENLABS)
+    // SIMULADOR DE LLAMADA TELEFÓNICA (ELEVENLABS + SINTETIZADOR RESILIENTE)
     // -------------------------------------------------------------
     let currentScenario = 0;
     let callTimerInterval = null;
     let callSeconds = 0;
     let isCalling = false;
+    let currentElevenAudioDental = null;
+    let currentUtteranceDental = null;
 
     const callScenarios = [
       {
@@ -1124,14 +1223,101 @@
       document.getElementById('callResultCard').classList.add('hidden');
     }
 
-    let currentElevenAudioDental = null;
+    // --- CONFIGURACIÓN & ESTADO ELEVENLABS ---
+    function checkElevenLabsStatusDental() {
+      // Sin claves por URL (?key=...): acabarían en historiales y previsualizaciones de WhatsApp.
+      // En local se cargan del .env con scripts/dev-server.mjs.
 
+      const apiKey = localStorage.getItem('elevenlabs_api_key');
+      const badge = document.getElementById('elevenBadgeStatus');
+      const msg = document.getElementById('elevenStatusMsg');
+      const input = document.getElementById('elevenApiKeyInput');
+      if (input && apiKey) input.value = apiKey;
+
+      if (apiKey && apiKey.trim().length > 10) {
+        if (badge) {
+          badge.textContent = "✨ ElevenLabs HD (Sofía) Conectado";
+          badge.className = "text-[11px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded";
+        }
+        if (msg) {
+          msg.innerHTML = "✅ <strong>ElevenLabs Conectado:</strong> La llamada reproducirá la voz de alta fidelidad de <strong>Sofía</strong> en tiempo real con latencia ultra-baja.";
+          msg.className = "text-[10px] text-emerald-300 p-2 rounded bg-emerald-950/60 border border-emerald-800/80 block";
+        }
+      } else if (window.AlteraVoice && !window.AlteraVoice.devMode) {
+        // Vista del cliente: sin avisos técnicos (la voz sale de los audios pregenerados si existen)
+        if (badge) badge.textContent = "✨ Voz IA · Sofía";
+      } else {
+        if (badge) {
+          badge.textContent = "🔊 Voz del Navegador (Sofía)";
+          badge.className = "text-[11px] font-semibold bg-slate-800 text-slate-300 border border-slate-700 px-2 py-0.5 rounded";
+        }
+        if (msg) {
+          msg.innerHTML = "💡 <em>Voz estándar del navegador activa.</em> Para escuchar a <strong>Sofía con audio humano HD (ElevenLabs)</strong>, pega tu API Key arriba y pulsa <em>Conectar</em>. Si no tienes una, créala gratis en elevenlabs.io.";
+          msg.className = "text-[10px] text-slate-400 p-2 rounded bg-slate-900 border border-slate-800 block";
+        }
+      }
+    }
+
+    function toggleElevenConfigDental() {
+      const panel = document.getElementById('elevenConfigPanelDental');
+      if (panel) panel.classList.toggle('hidden');
+    }
+
+    async function saveAndTestElevenDental() {
+      const input = document.getElementById('elevenApiKeyInput');
+      const msg = document.getElementById('elevenStatusMsg');
+      if (!input) return;
+      const val = input.value.trim().replace(/^xi-api-key[:\s=]+/i, '');
+      if (!val) {
+        localStorage.removeItem('elevenlabs_api_key');
+        checkElevenLabsStatusDental();
+        return;
+      }
+      localStorage.setItem('elevenlabs_api_key', val);
+      if (msg) msg.innerHTML = "⏳ Verificando clave con ElevenLabs...";
+
+      try {
+        const res = await fetch('https://api.elevenlabs.io/v1/voices', {
+          headers: { 'xi-api-key': val }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (msg) msg.innerHTML = `✅ <strong>¡API Key válida y confirmada!</strong> Conectado con éxito a ElevenLabs (${data.voices ? data.voices.length : 0} voces disponibles).`;
+          checkElevenLabsStatusDental();
+        } else {
+          if (msg) msg.innerHTML = `⚠️ Clave rechazada por ElevenLabs (Error ${res.status}). Comprueba que has copiado la Secret API Key de tu cuenta.`;
+        }
+      } catch (e) {
+        if (msg) msg.innerHTML = `⚠️ Error al contactar con ElevenLabs: ${e.message}`;
+      }
+    }
+
+    async function testElevenVoiceDental() {
+      const msg = document.getElementById('elevenStatusMsg');
+      if (msg) msg.innerHTML = "⏳ Generando audio de prueba con ElevenLabs en alta definición...";
+      const testPhrase = "Hola, le atiende Sofía de Clínica Dental Sonrisastar en Albacete. Estamos listos para atender las llamadas de su clínica las 24 horas del día.";
+
+      const wave = document.getElementById('waveformHolder');
+      if (wave) { wave.classList.remove('opacity-20'); wave.classList.add('opacity-100'); }
+
+      const ok = await speakWithElevenLabsDental(testPhrase, () => {
+        if (wave) { wave.classList.add('opacity-20'); wave.classList.remove('opacity-100'); }
+        if (msg) msg.innerHTML = "✅ <strong>¡Audio reproducido con éxito!</strong> Voz humana HD emitida por ElevenLabs.";
+      });
+
+      if (!ok) {
+        if (wave) { wave.classList.add('opacity-20'); wave.classList.remove('opacity-100'); }
+        if (msg) msg.innerHTML = "⚠️ No se pudo reproducir con ElevenLabs. Comprueba tu clave API o tu saldo de caracteres.";
+      }
+    }
+
+    // --- REPRODUCTOR DE VOZ (ELEVENLABS + SINTETIZADOR) ---
     async function speakWithElevenLabsDental(text, onEndCallback = null) {
       const apiKey = localStorage.getItem('elevenlabs_api_key');
       const cachedUrl = window.AlteraVoice ? await window.AlteraVoice.cachedUrl(text) : null;
       if (!apiKey && !cachedUrl) return false;
 
-      const voiceId = localStorage.getItem('elevenlabs_voice_id_dental') || 'uQw4jpKzMLrZuo0RLPS9'; // Laura (Customer Service)
+      const voiceId = localStorage.getItem('elevenlabs_voice_id_dental') || 'uQw4jpKzMLrZuo0RLPS9'; // Laura / Sofía
 
       try {
         let audioUrl = cachedUrl;
@@ -1161,13 +1347,17 @@
         const audio = (window.AlteraVoice ? window.AlteraVoice.getPlayer(audioUrl) : new Audio(audioUrl));
         currentElevenAudioDental = audio;
 
-        audio.onended = () => {
-          if (onEndCallback) onEndCallback();
+        let ended = false;
+        const triggerEnd = () => {
+          if (!ended) {
+            ended = true;
+            currentElevenAudioDental = null;
+            if (onEndCallback) onEndCallback();
+          }
         };
 
-        audio.onerror = () => {
-          if (onEndCallback) onEndCallback();
-        };
+        audio.onended = triggerEnd;
+        audio.onerror = triggerEnd;
 
         await audio.play();
         return true;
@@ -1177,51 +1367,110 @@
       }
     }
 
-    // Locuta `text` y llama a onDone al terminar (audio pregenerado, ElevenLabs o voz del navegador).
-    async function speakText(text, onDone) {
-      let finished = false;
-      const done = () => { if (!finished) { finished = true; if (onDone) onDone(); } };
-      if (!document.getElementById('toggleSpeech').checked) { setTimeout(done, 2600); return; }
-
-      if (currentElevenAudioDental) {
-        try { currentElevenAudioDental.pause(); } catch(e){}
-        currentElevenAudioDental = null;
+    function speakWithBrowserSpeech(text, isIA = true, onEndCallback = null) {
+      if (!('speechSynthesis' in window)) {
+        if (onEndCallback) setTimeout(onEndCallback, 1500);
+        return;
       }
 
-      const usedEleven = await speakWithElevenLabsDental(text, done);
-      if (usedEleven) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      currentUtteranceDental = utter;
+      utter.lang = 'es-ES';
 
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'es-ES';
-        utterance.rate = 1.05;
-        const es = window.speechSynthesis.getVoices().find(v => v.lang && v.lang.startsWith('es'));
-        if (es) utterance.voice = es;
-        utterance.onend = done;
-        utterance.onerror = done;
-        // Seguro anti-bloqueo (Chrome corta voces largas sin disparar onend)
-        setTimeout(done, Math.max(4000, text.length * 90));
-        window.speechSynthesis.speak(utterance);
+      const voices = window.speechSynthesis.getVoices();
+      const spanishVoices = voices.filter(v => v.lang.startsWith('es') || v.lang.includes('ES') || v.lang.includes('Spanish'));
+
+      let chosenVoice = null;
+      if (isIA) {
+        // Voz femenina para la recepcionista Sofía
+        chosenVoice = spanishVoices.find(v => 
+          v.name.toLowerCase().includes('monica') || 
+          v.name.toLowerCase().includes('helena') || 
+          v.name.toLowerCase().includes('laura') || 
+          v.name.toLowerCase().includes('sofia') ||
+          v.name.toLowerCase().includes('lucia') ||
+          v.name.toLowerCase().includes('google')
+        ) || spanishVoices[0];
+        utter.rate = 1.02;
+        utter.pitch = 1.06;
       } else {
-        setTimeout(done, 2600);
+        // Voz para el paciente
+        chosenVoice = spanishVoices.find(v => 
+          v.name.toLowerCase().includes('jorge') || 
+          v.name.toLowerCase().includes('alvaro') || 
+          v.name.toLowerCase().includes('pablo') ||
+          v.name.toLowerCase().includes('david') ||
+          v.name.toLowerCase().includes('male')
+        ) || spanishVoices[1] || spanishVoices[0];
+        utter.rate = 0.98;
+        utter.pitch = 0.94;
       }
+
+      if (chosenVoice) utter.voice = chosenVoice;
+
+      let ended = false;
+      const triggerEnd = () => {
+        if (!ended) {
+          ended = true;
+          currentUtteranceDental = null;
+          if (onEndCallback) onEndCallback();
+        }
+      };
+
+      utter.onend = triggerEnd;
+      utter.onerror = triggerEnd;
+      // Seguro anti-bloqueo: Chrome a veces no dispara onend en frases largas
+      setTimeout(triggerEnd, Math.max(4000, text.length * 95));
+
+      window.speechSynthesis.speak(utter);
     }
 
+    async function speakDialogueStep(text, isIA, onEndCallback) {
+      const isSpeechOn = document.getElementById('toggleSpeech').checked;
+      if (!isSpeechOn) {
+        setTimeout(onEndCallback, 2200);
+        return;
+      }
+
+      const wave = document.getElementById('waveformHolder');
+      const avatarRing = document.getElementById('callAvatarRing');
+      if (wave) {
+        wave.classList.remove('opacity-20');
+        wave.classList.add('opacity-100');
+      }
+      if (avatarRing) avatarRing.classList.add('scale-125');
+
+      const wrappedEnd = () => {
+        if (wave) {
+          wave.classList.remove('opacity-100');
+          wave.classList.add('opacity-20');
+        }
+        if (avatarRing) avatarRing.classList.remove('scale-125');
+        if (onEndCallback) onEndCallback();
+      };
+
+      if (isIA) {
+        const usedEleven = await speakWithElevenLabsDental(text, wrappedEnd);
+        if (usedEleven) return;
+      }
+
+      speakWithBrowserSpeech(text, isIA, wrappedEnd);
+    }
+
+    // --- FLUJO DE LLAMADA SECUENCIAL SIN CORTES ---
     let callSessionDental = 0;
 
     function startCallSimulation() {
+      if (isCalling) endCallSimulation();
       const session = ++callSessionDental;
+      const sigue = () => isCalling && session === callSessionDental;
       isCalling = true;
       document.getElementById('btnStartCall').classList.add('hidden');
       document.getElementById('btnEndCall').classList.remove('hidden');
       document.getElementById('callStatusText').textContent = "Llamada en curso · Conectado";
       document.getElementById('callStatusText').classList.remove('text-emerald-400');
       document.getElementById('callStatusText').classList.add('text-brand-magenta');
-      document.getElementById('waveformHolder').classList.remove('opacity-20');
-      document.getElementById('waveformHolder').classList.add('opacity-100');
-      document.getElementById('callAvatarRing').classList.add('scale-125');
-      document.getElementById('transcriptionBadge').textContent = 'En directo';
 
       callSeconds = 0;
       clearInterval(callTimerInterval);
@@ -1236,13 +1485,19 @@
       const box = document.getElementById('transcriptBox');
       box.innerHTML = '';
       document.getElementById('callResultCard').classList.add('hidden');
-      const sigue = () => isCalling && session === callSessionDental;
+      const badge = document.getElementById('transcriptionBadge');
+      if (badge) {
+        badge.textContent = 'Llamada activa';
+        badge.className = 'text-[10px] bg-brand-magenta text-white font-bold px-2 py-0.5 rounded-full animate-pulse';
+      }
 
       let step = 0;
+
       function playNextStep() {
         if (!sigue()) return;
+
         if (step >= scenario.dialogue.length) {
-          setTimeout(() => { if (sigue()) finishCallSuccessfully(); }, 1200);
+          setTimeout(() => { if (sigue()) finishCallSuccessfully(); }, 800);
           return;
         }
 
@@ -1250,19 +1505,21 @@
         const isIA = msg.speaker === "IA";
 
         const div = document.createElement('div');
-        div.className = `p-3 rounded-2xl ${isIA ? 'bg-pink-50 border border-pink-200 text-slate-800' : 'bg-slate-100 border border-slate-200 text-slate-800 ml-6'}`;
-        div.innerHTML = `<span class="text-[11px] font-bold ${isIA ? 'text-brand-magenta' : 'text-slate-600'} block">${isIA ? '🎙️ Sofía · Recepcionista IA (Sonrisastar)' : '👤 ' + scenario.patient}:</span><p class="mt-0.5">${msg.text}</p>`;
+        div.className = `p-3 rounded-2xl transition-all duration-300 ${isIA ? 'bg-pink-50 border border-pink-200 text-slate-800' : 'bg-slate-100 border border-slate-200 text-slate-800 ml-6'}`;
+        div.innerHTML = `<span class="text-[11px] font-bold ${isIA ? 'text-brand-magenta' : 'text-slate-600'} block">${isIA ? '🎙️ Recepcionista Virtual (Sonrisastar)' : '👤 ' + scenario.patient}:</span><p class="mt-0.5">${msg.text}</p>`;
         box.appendChild(div);
         box.scrollTop = box.scrollHeight;
+
         step++;
 
-        // La IA habla y el siguiente turno empieza cuando termina de hablar;
-        // las frases del paciente se leen en pantalla con una pausa proporcional.
-        if (isIA) speakText(msg.text, () => setTimeout(playNextStep, 500));
-        else setTimeout(playNextStep, Math.min(4500, 1200 + msg.text.length * 35));
+        speakDialogueStep(msg.text, isIA, () => {
+          if (!sigue()) return;
+          // Pausa natural de 650ms entre turnos
+          setTimeout(playNextStep, 650);
+        });
       }
 
-      playNextStep();
+      setTimeout(playNextStep, 400);
     }
 
     function finishCallSuccessfully() {
@@ -1271,7 +1528,11 @@
       const resCard = document.getElementById('callResultCard');
       resCard.classList.remove('hidden');
       document.getElementById('callResultDetails').textContent = scenario.result;
-      document.getElementById('transcriptionBadge').textContent = 'Cita registrada';
+      const badge = document.getElementById('transcriptionBadge');
+      if (badge) {
+        badge.textContent = 'Completada';
+        badge.className = 'text-[10px] bg-emerald-600 text-white font-bold px-2 py-0.5 rounded-full';
+      }
     }
 
     function endCallSimulation() {
@@ -1289,11 +1550,78 @@
       document.getElementById('callStatusText').textContent = "Llamada finalizada";
       document.getElementById('callStatusText').classList.add('text-emerald-400');
       document.getElementById('callStatusText').classList.remove('text-brand-magenta');
-      document.getElementById('waveformHolder').classList.add('opacity-20');
-      document.getElementById('waveformHolder').classList.remove('opacity-100');
-      document.getElementById('callAvatarRing').classList.remove('scale-125');
-      document.getElementById('transcriptionBadge').textContent = 'En espera';
+      
+      const wave = document.getElementById('waveformHolder');
+      if (wave) {
+        wave.classList.add('opacity-20');
+        wave.classList.remove('opacity-100');
+      }
+      const avatarRing = document.getElementById('callAvatarRing');
+      if (avatarRing) avatarRing.classList.remove('scale-125');
+
+      const badge = document.getElementById('transcriptionBadge');
+      if (badge && badge.textContent === 'Llamada activa') {
+        badge.textContent = 'En espera';
+        badge.className = 'text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full';
+      }
     }
+
+    // --- CONSULTAS RÁPIDAS DIRECTAS A SOFÍA ---
+    function askSofíaQuick(topic) {
+      if (isCalling) endCallSimulation();
+
+      const responses = {
+        'urgencia': "Al tratarse de dolor dental agudo le asignamos máxima prioridad de urgencia. Disponemos de hueco hoy mismo en nuestra clínica de calle Dionisio Guardiola, 2. ¿Desea que le reserve cita de inmediato con el doctor de guardia?",
+        'revision': "Nuestra primera consulta incluye diagnóstico completo por especialista y radiografía digital 100% gratuita y sin compromiso. ¿Prefiere que le reservemos hueco por la mañana o por la tarde?",
+        'ortodoncia': "En Sonrisastar somos especialistas en ortodoncia invisible con alineadores transparentes. Contamos con financiación a su medida de hasta 36 meses sin intereses y el estudio 3D inicial es gratuito. ¿Le reservamos cita para informarse?",
+        'donde': "Estamos situados en pleno centro de Albacete, en Calle Dionisio Guardiola número 2. Nuestro horario presencial es de lunes a viernes de 10:00 a 14:00 y de 17:00 a 21:00, y este asistente atiende su teléfono 24 horas al día."
+      };
+
+      const titles = {
+        'urgencia': '🚨 Urgencia con Dolor Agudo',
+        'revision': '💎 1ª Revisión & Radiografía Gratis',
+        'ortodoncia': '🦷 Ortodoncia Invisible & Financiación',
+        'donde': '📍 Ubicación en Albacete & Horarios'
+      };
+
+      const text = responses[topic] || "Hola, le atiende Sofía de Clínica Dental Sonrisastar. ¿En qué podemos ayudarle hoy?";
+
+      const box = document.getElementById('transcriptBox');
+      box.innerHTML = '';
+      const div = document.createElement('div');
+      div.className = 'p-3.5 rounded-2xl bg-pink-50 border border-pink-200 text-slate-800 space-y-1';
+      div.innerHTML = `<span class="text-[11px] font-bold text-brand-magenta block">🎙️ Sofía responde a: ${titles[topic] || 'Consulta'}:</span><p class="mt-0.5">${text}</p>`;
+      box.appendChild(div);
+
+      const statusEl = document.getElementById('callStatusText');
+      statusEl.textContent = "Respondiendo consulta rápida...";
+      statusEl.classList.remove('text-emerald-400');
+      statusEl.classList.add('text-brand-magenta');
+
+      const badge = document.getElementById('transcriptionBadge');
+      if (badge) {
+        badge.textContent = 'Audio en curso';
+        badge.className = 'text-[10px] bg-brand-magenta text-white font-bold px-2 py-0.5 rounded-full';
+      }
+
+      speakDialogueStep(text, true, () => {
+        statusEl.textContent = "Consulta completada · Lista para nueva prueba";
+        statusEl.classList.add('text-emerald-400');
+        statusEl.classList.remove('text-brand-magenta');
+        if (badge) {
+          badge.textContent = 'En espera';
+          badge.className = 'text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full';
+        }
+      });
+    }
+
+    // Inicializar estado de ElevenLabs y voces al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+      checkElevenLabsStatusDental();
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {};
+      }
+    });
 
     // -------------------------------------------------------------
     // CHAT WHATSAPP & INSTAGRAM DIRECT
