@@ -367,7 +367,7 @@
             Chatbot de WhatsApp 24/7 para Salón 224
           </h1>
           <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Conectado mediante <strong>Zernio</strong> a la API de WhatsApp oficial. Responde preguntas sobre servicios, horarios de los 3 centros, muestra fotografías de trabajos en rubios y balayage, y agenda la cita directamente en Fresha en menos de 60 segundos.
+            Conectado mediante <strong>Zernio</strong> a la API de WhatsApp oficial. Responde preguntas sobre servicios, horarios de los 3 centros, muestra fotografías de trabajos en rubios y balayage, y deja la cita en la agenda del salón en menos de un minuto.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -460,7 +460,7 @@
                   <span class="text-emerald-600 text-xs">✓</span>
                 </div>
                 <p class="text-[11px] text-emerald-700 font-medium flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Conectado vía Zernio IA · Citas Fresha
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Conectado vía Zernio · Agenda del salón
                 </p>
               </div>
             </div>
@@ -722,7 +722,7 @@
                 <strong>Resumen IA:</strong> Llamó al fijo preguntando por hueco para tratamiento hidratante y corte. Se le agendó para viernes a las 17:00h en ECI Albacete.
               </p>
               <div class="mt-2 flex items-center gap-2 text-[10px]">
-                <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold">Cita Creada en Fresha</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold">Cita anotada en la agenda</span>
                 <span class="text-stone-400">Duración: 1m 24s</span>
               </div>
             </div>
@@ -1385,7 +1385,7 @@
             </div>
           `;
         } else if (text.includes("viernes") || text.includes("Torres Quevedo") || text.includes("ECI")) {
-          reply = "Consultando agenda de Fresha en tiempo real... 🔍<br><br>¡Huecos disponibles para ti este viernes!<br>• <strong>11:30h</strong> con Alberto<br>• <strong>16:00h</strong> con Alexandra<br>• <strong>17:30h</strong> con Carlos<br><br>Pulsa el botón para confirmar y reservar directamente:";
+          reply = "Mirando la agenda del salón... 🔍<br><br>¡Huecos disponibles para ti este viernes!<br>• <strong>11:30h</strong> con Alberto<br>• <strong>16:00h</strong> con Alexandra<br>• <strong>17:30h</strong> con Carlos<br><br>Pulsa el botón para confirmar y reservar directamente:";
           extraCards = `
             <div class="space-y-1.5 pt-2">
               <button onclick="confirmWABooking('Viernes 11:30h con Alberto')" class="w-full text-left px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl font-bold flex justify-between">

@@ -27,6 +27,7 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../shared/altera-config.js"></script>
 
   <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -208,14 +209,14 @@
       <div class="p-6 rounded-3xl bg-amber-50/60 border-2 border-amber-300 space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-2">
-            <span class="px-3 py-1 rounded-full bg-amber-200 text-amber-900 font-bold text-xs uppercase tracking-wider">Fase 1 · Inmediata (Semana 1 a 2)</span>
+            <span class="px-3 py-1 rounded-full bg-amber-200 text-amber-900 font-bold text-xs uppercase tracking-wider">Fase 1 · Semanas 1 a 4</span>
             <span class="text-xs text-stone-500 font-medium">Adopción Cero Riesgo</span>
           </div>
           <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">Fresha Sigue Intacto</span>
         </div>
 
         <h3 class="text-xl font-bold text-stone-900">
-          Recepcionista Virtual Dual: Voz (ElevenLabs) + WhatsApp (Zernio) conectadas a Fresha
+          Recepcionista virtual doble: Laura al teléfono (ElevenLabs) y el WhatsApp (Zernio)
         </h3>
 
         <p class="text-xs sm:text-sm text-stone-700 leading-relaxed">
@@ -228,7 +229,7 @@
               <span>🎙️</span> <span>Asistente Telefónico ElevenLabs</span>
             </div>
             <p class="text-xs text-stone-600 leading-relaxed">
-              Atiende el fijo <strong>967 105 930</strong> al primer tono con voz ultra-realista española. Resuelve dudas de precios y tratamientos (Authentic Beauty Concept), consulta huecos libres y <strong>crea la cita en Fresha al instante</strong>.
+              Laura atiende el fijo <strong>967 105 930</strong> al primer tono con una voz natural en español de España. Resuelve dudas de precios y tratamientos (Authentic Beauty Concept), toma los datos de la cita y <strong>la deja anotada para que el salón la confirme por WhatsApp</strong>.
             </p>
           </div>
 
@@ -247,7 +248,7 @@
       <div class="p-6 rounded-3xl bg-emerald-50/60 border-2 border-emerald-300 space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div class="flex items-center gap-2">
-            <span class="px-3 py-1 rounded-full bg-emerald-200 text-emerald-900 font-bold text-xs uppercase tracking-wider">Fase 2 · Consolidación (Mes 2 a 3)</span>
+            <span class="px-3 py-1 rounded-full bg-emerald-200 text-emerald-900 font-bold text-xs uppercase tracking-wider">Fase 2 · Semanas 5 a 8</span>
             <span class="text-xs text-emerald-700 font-medium">Soberanía Total</span>
           </div>
           <span class="text-xs font-bold text-emerald-800 bg-emerald-200 px-3 py-1 rounded-full">Ahorro &gt; 12.000 €/año</span>
@@ -318,10 +319,10 @@
         <!-- ZONA MORADA: ORQUESTADOR & FRESHA -->
         <div class="p-4 rounded-xl bg-purple-50 border-2 border-purple-300 space-y-2">
           <span class="text-[10px] font-bold text-purple-800 uppercase tracking-wider block">Zona Morada · Fase 1</span>
-          <h4 class="font-bold text-slate-900 text-sm">API Fresha (Actual)</h4>
+          <h4 class="font-bold text-slate-900 text-sm">Agenda Fresha (mientras tanto)</h4>
           <ul class="text-xs text-slate-600 space-y-1">
-            <li>• Consulta huecos 3 salones</li>
-            <li>• Creación de cita en vivo</li>
+            <li>• El equipo sigue con su agenda</li>
+            <li>• Confirma las citas que toma Laura</li>
             <li>• Recordatorio T-24h anti no-show</li>
           </ul>
         </div>
@@ -456,39 +457,61 @@
     <!-- ========================================================================= -->
     <section class="bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-stone-200 space-y-6">
       <div class="border-b border-stone-100 pb-4">
-        <span class="text-xs font-bold text-gold-700 uppercase tracking-widest block">06. Próximos Pasos</span>
-        <h2 class="text-2xl sm:text-3xl font-semibold text-stone-900 mt-1">Cómo Empezamos: 2 Semanas para la Fase 1</h2>
+        <span class="text-xs font-bold text-gold-700 uppercase tracking-widest block">06. Plan e inversión</span>
+        <h2 class="text-2xl sm:text-3xl font-semibold text-stone-900 mt-1">En marcha en 6 a 8 semanas, con la ayuda del Bono Crecimiento Pyme</h2>
       </div>
 
-      <div class="space-y-4 text-xs sm:text-sm text-stone-700 leading-relaxed">
-        <div class="flex items-start gap-3">
-          <span class="w-6 h-6 rounded-full bg-gold-200 text-gold-900 font-bold flex items-center justify-center shrink-0 text-xs">1</span>
-          <div>
-            <strong class="text-stone-900 block">Día 1 a 4: Configuración de los Agentes y Conexión Fresha</strong>
-            <span>Configuración del agente conversacional en ElevenLabs con tono de marca 224 y despliegue del bot de WhatsApp en Zernio con la clave API de Fresha.</span>
-          </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="md:col-span-2 rounded-2xl border border-stone-200 p-6 space-y-3">
+          <h3 class="font-bold text-stone-900">Plan de trabajo</h3>
+          <ol class="text-sm text-stone-700 space-y-2.5 leading-relaxed">
+            <li><strong class="text-stone-900">Semanas 1–2 · Sistemas.</strong> Servidor en Contabo con Coolify y Supabase, líneas en Telnyx, WhatsApp e Instagram en Zernio, voz de Laura en ElevenLabs y saldo de IA en OpenRouter. Todo a nombre del salón.</li>
+            <li><strong class="text-stone-900">Semanas 3–4 · Laura y el WhatsApp.</strong> Servicios, precios y los tres salones cargados; pruebas de llamadas y mensajes con el equipo de Torres Quevedo hasta que suene como Salón 224. Fresha sigue funcionando como hasta ahora.</li>
+            <li><strong class="text-stone-900">Semanas 5–6 · CRM propio.</strong> Agenda por estilista de los tres salones, fichas con las fórmulas de color e importación de las clientas actuales.</li>
+            <li><strong class="text-stone-900">Semanas 7–8 · Puesta en marcha.</strong> Recordatorios y avisos de retoque activados, formación al equipo y baja de Fresha cuando el salón lo decida.</li>
+            <li><strong class="text-stone-900">Cada mes.</strong> Revisión de llamadas atendidas, citas recuperadas y retoques.</li>
+          </ol>
+          <p class="text-xs text-stone-500">Usamos las fotos y textos que ya tenéis; no hace falta ninguna sesión de fotos.</p>
         </div>
-
-        <div class="flex items-start gap-3">
-          <span class="w-6 h-6 rounded-full bg-gold-200 text-gold-900 font-bold flex items-center justify-center shrink-0 text-xs">2</span>
-          <div>
-            <strong class="text-stone-900 block">Día 5 a 8: Pruebas Piloto en Sede Torres Quevedo</strong>
-            <span>Simulaciones reales de reserva de corte, balayage y tratamientos comprobando que las citas entran perfectamente en la agenda del equipo.</span>
-          </div>
-        </div>
-
-        <div class="flex items-start gap-3">
-          <span class="w-6 h-6 rounded-full bg-gold-200 text-gold-900 font-bold flex items-center justify-center shrink-0 text-xs">3</span>
-          <div>
-            <strong class="text-stone-900 block">Día 9 a 14: Activación 24/7 en los 3 Salones</strong>
-            <span>Lanzamiento oficial en la línea 967 105 930 y el WhatsApp de Salón 224. Cero llamadas perdidas desde el primer minuto.</span>
-          </div>
+        <div class="bg-noir-900 text-white rounded-2xl p-6 space-y-3 border border-gold-400/30">
+          <p class="text-sm text-gold-300 font-semibold">Coste final para el salón</p>
+          <p class="font-display text-5xl font-bold" data-oferta="costeCliente">600 €</p>
+          <p class="text-sm text-stone-300">Inversión de <span data-oferta="inversionTotal">3.000 €</span> + IVA; la Junta devuelve <span data-oferta="subvencion">2.400 €</span> (80 %) tras justificar el proyecto.</p>
+          <p class="text-sm text-gold-300 font-semibold pt-2">Mantenimiento</p>
+          <p class="font-display text-3xl font-bold" data-oferta="cuotaMensual">99 €/mes</p>
+          <p class="text-[11px] text-stone-400">Importes orientativos.</p>
         </div>
       </div>
 
-      <div class="pt-6 border-t border-stone-100 text-center">
+      <div class="rounded-2xl border border-stone-200 overflow-hidden">
+        <div class="p-6 pb-3 space-y-1">
+          <h3 class="font-bold text-stone-900">Servicios a nombre del salón</h3>
+          <p class="text-sm text-stone-600">Cada servicio se contrata a nombre de Salón 224 y se paga según el uso, así las clientas y los datos son siempre vuestros. Nosotros lo instalamos, lo conectamos y lo mantenemos.</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm min-w-[620px]">
+            <thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-3">Servicio</th><th class="p-3">Para qué</th><th class="p-3">Coste orientativo</th></tr></thead>
+            <tbody class="divide-y divide-stone-100">
+              <tr><td class="p-3 font-bold">Telnyx</td><td class="p-3 text-stone-600">Línea de Laura. El 967 105 930 y los teléfonos de los salones se conservan: se portan o se desvían cuando nadie coge.</td><td class="p-3 whitespace-nowrap font-semibold">≈ 1–2 €/mes por número<br><span class="text-xs font-normal text-stone-500">+ ≈ 0,01 € por minuto</span></td></tr>
+              <tr><td class="p-3 font-bold">ElevenLabs</td><td class="p-3 text-stone-600">Solo la voz de Laura. La conversación la lleva la misma IA del WhatsApp, que sale más barato que un agente de voz completo.</td><td class="p-3 whitespace-nowrap font-semibold">Saldo prepago<br><span class="text-xs font-normal text-stone-500">≈ 5–22 €/mes según llamadas</span></td></tr>
+              <tr><td class="p-3 font-bold">OpenRouter</td><td class="p-3 text-stone-600">La IA que entiende y redacta las respuestas de Laura, WhatsApp e Instagram.</td><td class="p-3 whitespace-nowrap font-semibold">Saldo prepago<br><span class="text-xs font-normal text-stone-500">≈ 5–15 €/mes</span></td></tr>
+              <tr><td class="p-3 font-bold">Zernio</td><td class="p-3 text-stone-600">Une el WhatsApp y el Instagram del salón con el asistente y con la agenda.</td><td class="p-3 whitespace-nowrap font-semibold">Gratis<br><span class="text-xs font-normal text-stone-500">con solo WhatsApp e Instagram</span></td></tr>
+              <tr><td class="p-3 font-bold">Meta (WhatsApp Business)</td><td class="p-3 text-stone-600">Mensajes que envía el salón: confirmaciones, recordatorios y avisos de retoque. Contestar a quien escribe es gratis durante 24 h.</td><td class="p-3 whitespace-nowrap font-semibold">≈ 0,02 € por aviso<br><span class="text-xs font-normal text-stone-500">≈ 10–25 €/mes con tres salones</span></td></tr>
+              <tr><td class="p-3 font-bold">Resend</td><td class="p-3 text-stone-600">Correos automáticos de confirmación y novedades a quien dio permiso.</td><td class="p-3 whitespace-nowrap font-semibold">Gratis<br><span class="text-xs font-normal text-stone-500">hasta 3.000 correos/mes y 100/día</span></td></tr>
+              <tr><td class="p-3 font-bold">Contabo</td><td class="p-3 text-stone-600">Servidor en la Unión Europea donde viven la agenda, las fichas de color y las automatizaciones.</td><td class="p-3 whitespace-nowrap font-semibold">≈ 6–12 €/mes</td></tr>
+              <tr><td class="p-3 font-bold">Coolify + Supabase</td><td class="p-3 text-stone-600">Panel de despliegue y base de datos, instalados en el servidor del salón, sin cuotas por usuario ni por estilista.</td><td class="p-3 whitespace-nowrap font-semibold">0 €<br><span class="text-xs font-normal text-stone-500">software libre</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-stone-50 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-stone-200">
+          <p class="text-sm font-bold text-stone-900">Total a nombre del salón: ≈ 30–90 €/mes según llamadas y mensajes</p>
+          <p class="text-[11px] text-stone-500">Precios orientativos; pueden cambiar.</p>
+        </div>
+      </div>
+
+      <div class="pt-2 text-center">
         <a href="index.html" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-noir-900 hover:bg-noir-850 text-gold-300 font-bold text-sm shadow-xl transition border border-gold-400/50">
-          <span>✨</span> <span>Explorar Prototipo Interactivo de Salón 224</span>
+          <span>✨</span> <span>Probar la demo: llamar a Laura y ver el CRM</span>
         </a>
       </div>
     </section>
@@ -497,10 +520,16 @@
     <footer class="text-center text-xs text-stone-500 py-6 border-t border-stone-200 space-y-1">
       <p class="font-semibold text-stone-700">SALÓN 224 · Peluquería y Estética en Albacete y Alicante</p>
       <p>Calle Torres Quevedo 8 · El Corte Inglés Albacete · El Corte Inglés Maisonnave Alicante</p>
-      <p class="text-[11px] text-stone-400">Documento confidencial para la dirección de Salón 224</p>
+      <p class="text-[11px] text-stone-400">Documento confidencial para la dirección de Salón 224 · Cifras de ejemplo e importes orientativos.</p>
     </footer>
 
   </div>
 
+  <script>
+    (function () {
+      var o = (window.ALTERA_CONFIG || {}).oferta || {};
+      document.querySelectorAll('[data-oferta]').forEach(function (el) { if (o[el.dataset.oferta]) el.textContent = o[el.dataset.oferta]; });
+    })();
+  </script>
 </body>
 </html>
