@@ -874,7 +874,7 @@
                 <span class="text-[10px] text-stone-400">Hace 18 min</span>
               </div>
               <p class="text-[11px] text-stone-600 line-clamp-2">
-                Pidió presupuesto aproximado para Balayage Iluminación en cabello largo. El bot le envió dossier de fotos y cotización 110-130€.
+                Pidió precio del balayage para melena larga. El bot le envió fotos de trabajos y la carta: Babylage + peinado, 109,70 € en Albacete.
               </p>
               <div class="mt-2 flex items-center gap-2 text-[10px]">
                 <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 font-bold">Esperando confirmación</span>
@@ -1214,7 +1214,7 @@
             ]
           },
           {
-            ai: "Genial. Tomo nota: cita para Balayage Iluminación con María, este jueves a las 11:30h en nuestro salón de Calle Torres Quevedo 8. ¿Me confirmas tu nombre y teléfono móvil para enviarte la confirmación por WhatsApp?",
+            ai: "Genial. Tomo nota: cita para Babylage más peinado con María, este jueves a las 11:30h en nuestro salón de Calle Torres Quevedo 8. ¿Me confirmas tu nombre y teléfono móvil para enviarte la confirmación por WhatsApp?",
             userPrompt: "Facilitar datos de clienta:",
             options: [
               { text: "Soy Marta García, teléfono 654 321 000", next: 3 }
@@ -1237,7 +1237,7 @@
             ]
           },
           {
-            ai: "Somos el único salón en Albacete con la gama completa de Authentic Beauty Concept. Nuestro tratamiento intensivo incluye diagnóstico de fibra capilar, lavado con esencia vegana sensorial, mascarilla selladora de brillo y secado styling. Su precio oscila entre 35€ y 48€ según longitud. ¿Te gustaría probarlo este viernes?",
+            ai: "Somos el único salón en Albacete con la gama completa de Authentic Beauty Concept. Nuestro tratamiento intensivo incluye diagnóstico de fibra capilar, lavado con esencia vegana sensorial, mascarilla selladora de brillo y secado styling. El Tratamiento Botox cuesta 25 euros y el Cronograma restaurador, 45 euros. ¿Te gustaría probarlo este viernes?",
             userPrompt: "Decisión de la clienta:",
             options: [
               { text: "Sí, me gustaría reservar para el viernes por la mañana", next: 2 }
@@ -1537,7 +1537,7 @@
             </div>
           `;
         } else if (text.includes("Tratamientos") || text.includes("Authentic")) {
-          reply = "En Salón 224 somos abanderados de <strong>Authentic Beauty Concept</strong> 🌱:<br><br>• <strong>Glow Treatment</strong> (para cabellos coloreados o mechas, sella pigmento).<br>• <strong>Hydrate Treatment</strong> (máxima elasticidad y suavidad en cabello seco).<br>• <strong>Replenish Ritual</strong> (fortalecimiento de fibra con proteína vegana).<br><br>Todos incluyen masaje shiatsu en lavacabezas.";
+          reply = "En Salón 224 trabajamos con <strong>Authentic Beauty Concept</strong> 🌱. Estos son nuestros tratamientos en Albacete:<br><br>• <strong>Tratamiento Botox</strong> · 25 € · 45 min<br>• <strong>Tratamiento Cronograma- Restaurador</strong> · 45 € · 1 h<br>• <strong>Tratamiento Curly Power</strong> · 45 € · 1 h<br>• <strong>Keratina</strong> · desde 200 €<br><br>En Alicante empezamos siempre con un <strong>diagnóstico de salud capilar gratuito</strong>.";
         } else if (text.includes("cambiar la hora")) {
           reply = "¡Sin problema! 😊 Te busco otro hueco con María en Torres Quevedo:<br>• <strong>Viernes 10:00h</strong><br>• <strong>Sábado 9:30h</strong><br><br>Tu tarjeta de garantía se mantiene para la nueva hora y no se cobra nada por cambiar.";
           extraCards = `
@@ -1614,7 +1614,7 @@
       box.scrollTop = box.scrollHeight;
     }
 
-    // Balayage = 120 € (más de 85 €): se pide tarjeta como garantía antes de confirmar.
+    // Babylage + peinado = 109,70 € (más de 85 €): se pide tarjeta como garantía antes de confirmar.
     function confirmWABooking(details, changed) {
       if (changed) {
         addWABot(`<div class="flex items-center gap-1.5 text-emerald-800 font-bold"><span>✅</span> <span>Cita cambiada</span></div>
@@ -1625,7 +1625,7 @@
       window._waPending = details;
       addWABot(`<p class="font-semibold text-gold-700 text-[11px]">SALÓN 224</p>
         <p>¡Te guardo <strong>${details}</strong>! 🙌</p>
-        <p class="text-xs text-stone-700">Como el balayage es un servicio de más de 85 €, pedimos una <strong>tarjeta como garantía</strong>. <strong>No se cobra nada ahora.</strong> Solo si no vinieras sin avisar se cobraría el 50 %. Puedes cambiar o cancelar gratis desde aquí hasta 24 horas antes.</p>
+        <p class="text-xs text-stone-700">Como el Babylage + peinado cuesta 109,70 € (más de 85 €), pedimos una <strong>tarjeta como garantía</strong>. <strong>No se cobra nada ahora.</strong> Solo si no vinieras sin avisar se cobraría el 50 %. Puedes cambiar o cancelar gratis desde aquí hasta 24 horas antes.</p>
         <button onclick="openWACardForm()" class="w-full mt-1 px-3 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl font-bold text-[11px]">💳 Añadir tarjeta de garantía</button>`);
     }
 
@@ -1643,7 +1643,7 @@
     function saveWACard() {
       const details = window._waPending || 'Viernes 11:30h con María';
       addWABot(`<div class="flex items-center gap-1.5 text-emerald-800 font-bold"><span>🎉</span> <span>¡Cita confirmada!</span></div>
-        <p class="text-xs text-stone-700"><strong>Servicio:</strong> Balayage / iluminación (120 €)<br><strong>Horario:</strong> ${details}<br><strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete<br><strong>Garantía:</strong> Visa ••4242 · 0 € cobrados</p>
+        <p class="text-xs text-stone-700"><strong>Servicio:</strong> Babylage + peinado (109,70 €)<br><strong>Horario:</strong> ${details}<br><strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete<br><strong>Garantía:</strong> Visa ••4242 · 0 € cobrados</p>
         <div class="pt-2 border-t border-emerald-200 flex flex-wrap gap-2 text-[10px]">
           <a href="https://maps.app.goo.gl/BNPwanZRJgcEeCvx9" target="_blank" rel="noopener" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg font-bold">📍 Abrir en Google Maps</a>
           <span class="px-2.5 py-1 bg-white border border-emerald-300 text-emerald-800 rounded-lg font-semibold">🔔 Te avisamos 24 h antes</span>
@@ -1700,7 +1700,7 @@
       const $ = s => document.querySelector(s);
       const $$ = s => Array.from(document.querySelectorAll(s));
       const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-      const eur = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €';
+      const eur = n => { const [i, d] = (Math.round(n * 100) / 100).toFixed(2).split('.'); return i.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (d === '00' ? '' : ',' + d) + ' €'; };
       const DAY = 86400000;
       const TODAY = new Date(2026, 9, 15);
       const TODAY_S = '2026-10-15';
@@ -1718,24 +1718,43 @@
         ab: { n: 'El Corte Inglés Albacete', open: [10 * 60, 21 * 60], hours: 'L-V 10–21 · S 10–19:45', staff: ['Juan Carlos', 'Mónica', 'Encar', 'Encarni', 'Lucía'] },
         al: { n: 'El Corte Inglés Alicante', open: [10 * 60, 21 * 60], hours: 'L-V 10–21 · S 10–19:45', staff: ['Jose', 'Maje', 'Ester', 'Claudio'] }
       };
+      const PHOTO = { 'María': 'maria', Noelia: 'noelia', Irene: 'irene', Rosi: 'rosi', 'Juan Carlos': 'juan-carlos', 'Mónica': 'monica', Encar: 'encar', Encarni: 'encarni', 'Lucía': 'lucia', Jose: 'jose', Maje: 'maje', Ester: 'ester', Claudio: 'claudio' };
+      const avatar = (p, size = 'w-7 h-7') => PHOTO[p] ? `<img src="assets/equipo/${PHOTO[p]}.jpg" alt="${p}" class="${size} rounded-full object-cover border border-gold-300 bg-white shrink-0" loading="lazy">` : `<span class="${size} rounded-full bg-gold-100 border border-gold-300 text-gold-800 text-[10px] font-bold flex items-center justify-center shrink-0">${p.slice(0, 2).toUpperCase()}</span>`;
       const ROLE = { 'María': 'Peluquera', Noelia: 'Peluquera', Irene: 'Esteticista y maquilladora', Rosi: '', 'Toñi': '', 'Juan Carlos': 'Peluquero', 'Mónica': '', Encar: 'Peluquera', Encarni: 'Peluquera', 'Lucía': 'Peluquera', Jose: 'Peluquera', Maje: 'Peluquera', Ester: 'Peluquera', Claudio: 'Peluquero' };
       const STAFF_SEDE = {};
       Object.entries(SEDES).forEach(([k, s]) => s.staff.forEach(p => STAFF_SEDE[p] = k));
 
-      // [nombre, precio orientativo con IVA, minutos, tipo, días hasta el aviso de «vuelve a reservar»]
+      // Carta real del salón (nombre, precio con IVA y duración de su reserva online). [nombre, precio, minutos, tipo, días para «vuelve a reservar», centros]
+      // Albacete (Torres Quevedo y El Corte Inglés) comparte carta; Alicante tiene la suya. La estética solo se hace en Torres Quevedo.
       const SVC = {
-        balayage: ['Balayage / iluminación', 120, 180, 'color', 75],
-        babylights: ['Babylights + matiz', 110, 180, 'color', 60],
-        raiz: ['Raíz con tinte + matiz', 55, 90, 'color', 35],
-        glaze: ['Matiz glaze ABC', 35, 45, 'color', 45],
-        corte: ['Corte y secado', 32, 45, 'corte', 50],
-        abc: ['Tratamiento Authentic Beauty Concept', 42, 60, 'trat', 40],
-        novia: ['Prueba de novia', 90, 120, 'evento', null],
-        invitada: ['Peinado de invitada', 38, 60, 'evento', null],
-        cejas: ['Diseño de cejas', 18, 30, 'estetica', 30],
-        maquillaje: ['Maquillaje de evento', 55, 60, 'estetica', null]
+        babylage: ['Babylage + peinado', 109.7, 220, 'color', 75, 'alb'],
+        mechas: ['Mechas classic + peinado', 91, 190, 'color', 60, 'alb'],
+        raiz: ['Color raíz + peinado', 47.5, 105, 'color', 35, 'alb'],
+        color: ['Color completo + peinado', 60.1, 120, 'color', 45, 'alb'],
+        corte: ['Corte + secado natural', 29.5, 45, 'corte', 50, 'alb'],
+        cortepeinado: ['Corte + peinado', 41, 70, 'corte', 50, 'alb'],
+        botox: ['Tratamiento Botox', 25, 45, 'trat', 40, 'alb'],
+        crono: ['Tratamiento Cronograma- Restaurador', 45, 60, 'trat', 40, 'alb'],
+        keratina: ['Keratina cabello medio', 240, 150, 'trat', 120, 'alb'],
+        ondas: ['Ondas Hollywood', 32, 60, 'evento', null, 'alb'],
+        invitada: ['Ondas invitada con lavado en el salón', 25, 60, 'evento', null, 'alb'],
+        cejas: ['Laminado y diseño de cejas', 30, 45, 'estetica', 30, 'tq'],
+        facial: ['Higiene Facial Profunda - Skin Reset', 37, 60, 'estetica', 30, 'tq'],
+        pestanas: ['Lifting de pestañas', 37, 60, 'estetica', 45, 'tq'],
+        balayage_al: ['Balayage + lavado con Authentic Beauty Concept + peinado', 129.8, 195, 'color', 75, 'al'],
+        mechas_al: ['Mechas 224 + lavado con Authentic Beauty Concept + peinado', 125, 195, 'color', 60, 'al'],
+        raiz_al: ['Color raíz + peinado', 56, 110, 'color', 35, 'al'],
+        color_al: ['Color completo + peinado', 70.5, 125, 'color', 45, 'al'],
+        corte_al: ['Corte + secado natural', 43, 45, 'corte', 50, 'al'],
+        cortepeinado_al: ['Corte + peinado medio (encima de los hombros)', 59, 60, 'corte', 50, 'al'],
+        caballero_al: ['Corte + peinado caballero', 22.5, 30, 'corte', 35, 'al'],
+        botox_al: ['Tratamiento Botox', 30, 45, 'trat', 40, 'al'],
+        crono_al: ['Tratamiento Cronograma- Restaurador', 69, 60, 'trat', 40, 'al'],
+        diagnostico_al: ['Diagnóstico Salud Capilar', 0, 30, 'trat', null, 'al'],
+        ondas_al: ['Ondas Hollywood', 46, 60, 'evento', null, 'al']
       };
-      const PROD = { champu: ['Champú Authentic Beauty Concept', 24], masc: ['Mascarilla Authentic Beauty Concept', 29] };
+      const svcIn = (k, sede) => SVC[k][5] === sede || (SVC[k][5] === 'alb' && sede !== 'al');
+      const PROD = { champu: ['Champú Authentic Beauty Concept', 24], masc: ['Mascarilla Authentic Beauty Concept', 29] }; // productos: precio orientativo
       const CAT = {
         color: ['Color', 'bg-amber-100 border-amber-400 text-amber-950', 'bg-amber-400'],
         corte: ['Corte', 'bg-sky-100 border-sky-400 text-sky-950', 'bg-sky-400'],
@@ -1833,13 +1852,13 @@
       // Citas de hoy
       const APPTS = [
         { id: 1, staff: 'María', t: '10:00', svc: 'babylights', c: 'veronica', src: 'whatsapp', st: 'confirmada' },
-        { id: 2, staff: 'María', t: '13:00', svc: 'balayage', c: 'elena', src: 'whatsapp', st: 'confirmada' },
-        { id: 3, staff: 'María', t: '16:30', svc: 'corte', c: 'Teresa Ruiz', src: 'laura', st: 'reservada' },
-        { id: 4, staff: 'Noelia', t: '10:00', svc: 'babylights', c: 'sofia', src: 'instagram', st: 'completada', pay: 'Bizum', prods: [] },
-        { id: 5, staff: 'Noelia', t: '13:30', svc: 'glaze', c: 'ana', src: 'whatsapp', st: 'confirmada' },
-        { id: 6, staff: 'Noelia', t: '15:30', svc: 'balayage', c: 'Cristina Vidal', src: 'laura', st: 'reservada', card: 'Mastercard ••2218' },
-        { id: 7, staff: 'Rosi', t: '10:00', svc: 'corte', c: 'Laia Ferrer', src: 'mostrador', st: 'completada', pay: 'Efectivo', prods: [] },
-        { id: 8, staff: 'Rosi', t: '10:45', svc: 'raiz', c: 'maria', src: 'whatsapp', st: 'completada', pay: 'Tarjeta', prods: ['champu'] },
+        { id: 2, staff: 'María', t: '13:15', svc: 'balayage', c: 'elena', src: 'whatsapp', st: 'confirmada' },
+        { id: 3, staff: 'María', t: '17:00', svc: 'corte', c: 'Teresa Ruiz', src: 'laura', st: 'reservada' },
+        { id: 4, staff: 'Noelia', t: '10:00', svc: 'glaze', c: 'sofia', src: 'instagram', st: 'completada', pay: 'Bizum', prods: [] },
+        { id: 5, staff: 'Noelia', t: '12:30', svc: 'glaze', c: 'ana', src: 'whatsapp', st: 'confirmada' },
+        { id: 6, staff: 'Noelia', t: '14:45', svc: 'balayage', c: 'Cristina Vidal', src: 'laura', st: 'reservada', card: 'Mastercard ••2218' },
+        { id: 7, staff: 'Toñi', t: '10:30', svc: 'corte', c: 'Laia Ferrer', src: 'mostrador', st: 'completada', pay: 'Efectivo', prods: [] },
+        { id: 8, staff: 'Rosi', t: '10:00', svc: 'raiz', c: 'maria', src: 'whatsapp', st: 'completada', pay: 'Tarjeta', prods: ['champu'] },
         { id: 9, staff: 'Rosi', t: '13:00', svc: 'abc', c: 'Silvia Rey', src: 'laura', st: 'confirmada' },
         { id: 20, staff: 'Irene', t: '10:30', svc: 'cejas', c: 'Amparo López', src: 'mostrador', st: 'completada', pay: 'Tarjeta', prods: [] },
         { id: 21, staff: 'Irene', t: '17:00', svc: 'maquillaje', c: 'Andrea Gil', src: 'laura', st: 'confirmada' },
@@ -1847,7 +1866,7 @@
         { id: 23, staff: 'Toñi', t: '16:00', svc: 'abc', c: 'Sonia Martín', src: 'whatsapp', st: 'reservada' },
         { id: 24, staff: 'Juan Carlos', t: '10:00', svc: 'corte', c: 'Álvaro Pérez', src: 'mostrador', st: 'completada', pay: 'Efectivo', prods: [] },
         { id: 25, staff: 'Juan Carlos', t: '16:00', svc: 'raiz', c: 'Mercedes Gallego', src: 'whatsapp', st: 'confirmada' },
-        { id: 26, staff: 'Mónica', t: '11:00', svc: 'glaze', c: 'Clara Ibáñez', src: 'instagram', st: 'completada', pay: 'Bizum', prods: [] },
+        { id: 26, staff: 'Mónica', t: '10:00', svc: 'glaze', c: 'Clara Ibáñez', src: 'instagram', st: 'completada', pay: 'Bizum', prods: [] },
         { id: 27, staff: 'Mónica', t: '19:00', svc: 'corte', c: 'Lidia Martínez', src: 'laura', st: 'confirmada' },
         { id: 28, staff: 'Encar', t: '15:00', svc: 'balayage', c: 'Isabel Moreno', src: 'whatsapp', st: 'confirmada', card: 'Visa ••3306' },
         { id: 10, staff: 'Encarni', t: '10:30', svc: 'babylights', c: 'paula', src: 'mostrador', st: 'llegada' },
@@ -1856,7 +1875,7 @@
         { id: 13, staff: 'Lucía', t: '12:00', svc: 'novia', c: 'carmen', src: 'instagram', st: 'llegada' },
         { id: 14, staff: 'Lucía', t: '18:30', svc: 'invitada', c: 'Patricia León', src: 'laura', st: 'confirmada' },
         { id: 29, staff: 'Jose', t: '11:00', svc: 'corte', c: 'Gema Ortiz', src: 'mostrador', st: 'completada', pay: 'Tarjeta', prods: [] },
-        { id: 30, staff: 'Jose', t: '18:00', svc: 'babylights', c: 'Natalia Ribas', src: 'whatsapp', st: 'confirmada', card: 'Mastercard ••8812' },
+        { id: 30, staff: 'Jose', t: '17:45', svc: 'babylights', c: 'Natalia Ribas', src: 'whatsapp', st: 'confirmada', card: 'Mastercard ••8812' },
         { id: 15, staff: 'Maje', t: '10:00', svc: 'balayage', c: 'irene', src: 'whatsapp', st: 'llegada' },
         { id: 16, staff: 'Maje', t: '16:30', svc: 'glaze', c: 'rocio', src: 'whatsapp', st: 'confirmada' },
         { id: 17, staff: 'Ester', t: '10:30', svc: 'corte', c: 'nuria', src: 'mostrador', st: 'completada', pay: 'Bizum', prods: ['masc'] },
@@ -1864,8 +1883,12 @@
         { id: 19, staff: 'Ester', t: '17:30', svc: 'corte', c: 'Olga Martí', src: 'laura', st: 'cancelada', motivo: 'Cliente no disponible', canceladaPor: 'la clienta, por WhatsApp, ayer a las 21:40' },
         { id: 31, staff: 'Claudio', t: '13:00', svc: 'corte', c: 'Sergio Campos', src: 'mostrador', st: 'confirmada' }
       ];
+      const MAP_ALB = { balayage: 'babylage', babylights: 'mechas', glaze: 'color', abc: 'crono', novia: 'ondas', maquillaje: 'pestanas' };
+      const MAP_AL = { balayage: 'balayage_al', babylights: 'mechas_al', raiz: 'raiz_al', glaze: 'color_al', corte: 'corte_al', abc: 'crono_al' };
+      const fixSvc = (k, sede) => (sede === 'al' ? MAP_AL[k] : MAP_ALB[k]) || k;
+      Object.values(CLIENTS).forEach(c => c.hist.forEach(h => { h.svc = fixSvc(h.svc, c.sede); h.p = SVC[h.svc][1]; }));
       APPTS.forEach(a => {
-        a.sede = STAFF_SEDE[a.staff]; a.p = SVC[a.svc][1];
+        a.sede = STAFF_SEDE[a.staff]; a.svc = fixSvc(a.svc, a.sede); a.p = SVC[a.svc][1];
         if (!a.card && CLIENTS[a.c] && CLIENTS[a.c].card && a.src !== 'mostrador' && a.p >= LIMIT) a.card = CLIENTS[a.c].card;
         if (a.st === 'completada') a.paidAt = toHM(toMin(a.t) + SVC[a.svc][2]);
       });
@@ -1883,6 +1906,7 @@
       const MONTH_CAT_SHARE = { color: 0.55, corte: 0.17, trat: 0.10, evento: 0.08, estetica: 0.05, prod: 0.05 };
 
       // Vuelve a reservar: estado de los avisos
+      WAIT.forEach(w => { w.want = fixSvc(w.want, w.sede); });
       const RETOQUE = { nuria: 'respondido', maria: 'enviado' };
       const RESPUESTA = { nuria: '«¡Sí! ¿Tenéis algo el sábado por la mañana?»' };
 
@@ -1891,7 +1915,7 @@
         { id: 'r1', c: 'Inés Romero', stars: 2, staff: 'Encarni', sede: 'ab', d: 'Ayer', txt: 'El color bien, pero esperé 25 minutos sin que nadie me dijera nada.', google: 'no', alert: true, st: 'pendiente' },
         { id: 'r2', c: 'Sofía Valero', stars: 5, staff: 'Noelia', sede: 'tq', d: 'Hoy', txt: 'Noelia es una artista con los rubios fríos. Cero amarillo. ¡Volveré!', google: 'publicada' },
         { id: 'r3', c: 'Beatriz Ortega', stars: 5, staff: 'Lucía', sede: 'ab', d: 'Hoy', txt: 'Me cuidan muchísimo con la alergia al amoniaco. Trato de diez.', google: 'clic' },
-        { id: 'r4', c: 'Laia Ferrer', stars: 4, staff: 'Rosi', sede: 'tq', d: 'Hoy', txt: 'Muy buen corte. El secado un poco rápido.', google: 'no' },
+        { id: 'r4', c: 'Laia Ferrer', stars: 4, staff: 'Toñi', sede: 'tq', d: 'Hoy', txt: 'Muy buen corte. El secado un poco rápido.', google: 'no' },
         { id: 'r5', c: 'Rocío Llorens', stars: 5, staff: 'Maje', sede: 'al', d: 'Hace 2 días', txt: 'Rubio miel perfecto, justo lo que pedí.', google: 'publicada' },
         { id: 'r6', c: 'Rosa Moreno', stars: 3, staff: 'María', sede: 'tq', d: 'Hace 3 días', txt: 'Bien, aunque el matiz me ha quedado algo más oscuro de lo que quería.', google: 'no', alert: true, st: 'llamada' }
       ];
@@ -2036,24 +2060,24 @@
       }
 
       // ---------- AGENDA ----------
-      const START = 10 * 60, END = 21 * 60, ROW = 26;
+      const START = 10 * 60, END = 21 * 60, ROW = 26, HEAD = 40;
       function renderAgenda() {
         const staff = staffList();
         const colW = 130;
         const rows = (END - START) / 30;
-        let html = `<div class="relative" style="min-width:${56 + staff.length * colW}px;height:${rows * ROW + 34}px">`;
-        html += `<div class="absolute top-0 left-14 right-0 flex h-8">` + staff.map(p => `<div class="flex-1 px-1 text-center"><span class="block text-xs font-bold text-stone-800 truncate">${p}</span>${sede === 'all' ? `<span class="block text-[9px] text-stone-400 truncate -mt-0.5">${short(SEDES[STAFF_SEDE[p]].n)}</span>` : ''}</div>`).join('') + `</div>`;
+        let html = `<div class="relative" style="min-width:${56 + staff.length * colW}px;height:${rows * ROW + HEAD}px">`;
+        html += `<div class="absolute top-0 left-14 right-0 flex h-9">` + staff.map(p => `<div class="flex-1 px-1 flex items-center justify-center gap-1.5 min-w-0">${avatar(p)}<span class="min-w-0 text-left"><span class="block text-xs font-bold text-stone-800 truncate">${p}</span>${sede === 'all' ? `<span class="block text-[9px] text-stone-400 truncate -mt-0.5">${short(SEDES[STAFF_SEDE[p]].n)}</span>` : ''}</span></div>`).join('') + `</div>`;
         for (let i = 0; i <= rows; i++) {
-          const m = START + i * 30, y = 34 + i * ROW;
+          const m = START + i * 30, y = HEAD + i * ROW;
           html += `<div class="absolute left-14 right-0 border-t ${m % 60 ? 'border-stone-100' : 'border-stone-200'}" style="top:${y}px"></div>`;
           if (m % 60 === 0 && i < rows) html += `<span class="absolute left-0 w-12 text-right text-[10px] font-mono text-stone-400" style="top:${y - 6}px">${toHM(m)}</span>`;
         }
-        staff.forEach((p, i) => { if (i) html += `<div class="absolute border-l border-stone-200" style="top:34px;bottom:0;left:calc(56px + (100% - 56px) * ${i / staff.length})"></div>`; });
-        staff.forEach((p, i) => { const close = SEDES[STAFF_SEDE[p]].open[1]; if (close < END) html += `<div class="absolute bg-stone-100/90 border-t border-stone-300 flex items-start justify-center pt-1 text-[10px] font-semibold text-stone-400" style="top:${34 + (close - START) / 30 * ROW}px;bottom:0;left:calc(56px + (100% - 56px) * ${i / staff.length} + 1px);width:calc((100% - 56px) / ${staff.length} - 2px)">Cerrado</div>`; });
-        html += `<div class="absolute left-12 right-0 border-t-2 border-red-400 z-20" style="top:${34 + (toMin(NOW) - START) / 30 * ROW}px"><span class="absolute -left-1 -top-1.5 w-3 h-3 rounded-full bg-red-400"></span></div>`;
+        staff.forEach((p, i) => { if (i) html += `<div class="absolute border-l border-stone-200" style="top:${HEAD}px;bottom:0;left:calc(56px + (100% - 56px) * ${i / staff.length})"></div>`; });
+        staff.forEach((p, i) => { const close = SEDES[STAFF_SEDE[p]].open[1]; if (close < END) html += `<div class="absolute bg-stone-100/90 border-t border-stone-300 flex items-start justify-center pt-1 text-[10px] font-semibold text-stone-400" style="top:${HEAD + (close - START) / 30 * ROW}px;bottom:0;left:calc(56px + (100% - 56px) * ${i / staff.length} + 1px);width:calc((100% - 56px) / ${staff.length} - 2px)">Cerrado</div>`; });
+        html += `<div class="absolute left-12 right-0 border-t-2 border-red-400 z-20" style="top:${HEAD + (toMin(NOW) - START) / 30 * ROW}px"><span class="absolute -left-1 -top-1.5 w-3 h-3 rounded-full bg-red-400"></span></div>`;
         APPTS.filter(a => staff.includes(a.staff)).forEach(a => {
           const i = staff.indexOf(a.staff), s = SVC[a.svc], cat = CAT[s[3]];
-          const top = 34 + (toMin(a.t) - START) / 30 * ROW + 1, h = s[2] / 30 * ROW - 3;
+          const top = HEAD + (toMin(a.t) - START) / 30 * ROW + 1, h = s[2] / 30 * ROW - 3;
           const off = !live(a);
           const look = off ? 'bg-stone-50 border border-dashed border-stone-300 text-stone-400' : cat[1] + ' ' + (a.st === 'reservada' ? 'border-2 border-dashed' : 'border-l-4');
           const fade = a.st === 'completada' ? 'opacity-55' : '';
@@ -2103,7 +2127,7 @@
         selAppt = a.id;
         const s = SVC[a.svc], known = CLIENTS[a.c], last = known && lastOfType(a.c, ['color']);
         const started = toMin(a.t) <= toMin(NOW);
-        const half = Math.round(a.p * 0.5);
+        const half = Math.round(a.p * 50) / 100;
         let action = '';
         if (apptMode === 'cancel') {
           action = `<p class="text-sm font-bold text-stone-900 mb-2">¿Por qué se cancela?</p>
@@ -2137,7 +2161,7 @@
         }
         $('#apptDetail').innerHTML = `
           <div class="flex items-start justify-between gap-2">
-            <div class="min-w-0"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider">${a.t} · ${a.staff}</p>
+            <div class="min-w-0"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider flex items-center gap-1.5">${avatar(a.staff, 'w-6 h-6')}${a.t} · ${a.staff}</p>
               <h3 class="text-lg font-bold text-stone-900 truncate">${esc(clientName(a.c))}</h3>
               <p class="text-sm text-stone-600">${esc(s[0])} · ${eur(a.p)}</p></div>
             <span class="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${ST[a.st][1]}">${ST[a.st][0]}</span>
@@ -2231,9 +2255,9 @@
           <div id="newSvcForm" class="hidden p-4 rounded-2xl border-2 border-gold-300 bg-gold-50/60 space-y-3">
             <p class="text-sm font-bold text-stone-900">Registrar el servicio de hoy</p>
             <div class="grid sm:grid-cols-3 gap-2">
-              <select id="nsSvc" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Servicio">${Object.entries(SVC).map(([k, s]) => `<option value="${k}">${s[0]}</option>`).join('')}</select>
+              <select id="nsSvc" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Servicio">${Object.entries(SVC).filter(([k]) => svcIn(k, c.sede)).map(([k, s]) => `<option value="${k}">${s[0]} · ${eur(s[1])}</option>`).join('')}</select>
               <select id="nsStaff" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Estilista">${SEDES[c.sede].staff.map(p => `<option ${p === c.staff ? 'selected' : ''}>${p}</option>`).join('')}</select>
-              <input id="nsPrice" type="number" min="0" step="1" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Importe en euros">
+              <input id="nsPrice" type="number" min="0" step="0.1" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Importe en euros">
             </div>
             <textarea id="nsFormula" rows="2" class="w-full text-sm font-mono border border-stone-300 rounded-xl px-3 py-2 bg-white" placeholder="Fórmula: tintes, volúmenes, tiempos de exposición…" aria-label="Fórmula"></textarea>
             <div class="flex justify-end gap-2"><button data-act="cancel" class="px-3 py-2 rounded-xl bg-stone-200 text-xs font-bold">Cancelar</button><button data-act="save" class="px-3 py-2 rounded-xl bg-gold-400 hover:bg-gold-300 text-noir-950 text-xs font-bold">Guardar y cobrar</button></div>
@@ -2267,7 +2291,7 @@
         f.querySelector('[data-act="wa"]').onclick = () => toast('Abriendo la conversación de WhatsApp con ' + first(c.name) + ' en la bandeja única.');
         f.querySelector('[data-act="save"]').onclick = () => {
           const svc = f.querySelector('#nsSvc').value, staff = f.querySelector('#nsStaff').value;
-          const p = Math.max(0, Math.round(+f.querySelector('#nsPrice').value || 0));
+          const p = Math.max(0, Math.round((+f.querySelector('#nsPrice').value || 0) * 100) / 100);
           c.hist.unshift({ d: TODAY_S, svc, staff, p, f: f.querySelector('#nsFormula').value.trim() });
           EXTRA.push({ time: NOW, c: c.name, concept: SVC[svc][0], type: 'svc', cat: SVC[svc][3], staff, sede: STAFF_SEDE[staff], pay: 'Tarjeta', p });
           delete RETOQUE[id];
@@ -2307,7 +2331,8 @@
         $$('[data-send]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.send] = 'enviado'; selRet = b.dataset.send; toast('Aviso enviado por WhatsApp a ' + first(CLIENTS[b.dataset.send].name) + '.'); refresh(); }));
         $$('[data-book]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.book] = 'cita'; toast('Cita propuesta a ' + first(CLIENTS[b.dataset.book].name) + ' para el sábado a las 10:00. Se confirma sola si dice que sí.'); refresh(); }));
         $('#retoquePreview').innerHTML = selRet ? retoqueMsg(selRet) : 'Hola 💛 Ya te toca volver. ¿Te buscamos hueco esta semana?';
-        $('#retoqueRules').innerHTML = Object.values(SVC).filter(s => s[4]).map(s => `<li class="flex justify-between"><span>${s[0]}</span><span class="font-mono font-semibold">${s[4]} días</span></li>`).join('');
+        const rs = sede === 'all' ? 'tq' : sede;
+        $('#retoqueRules').innerHTML = Object.entries(SVC).filter(([k, s]) => s[4] && svcIn(k, rs)).map(([k, s]) => s).map(s => `<li class="flex justify-between"><span>${s[0]}</span><span class="font-mono font-semibold">${s[4]} días</span></li>`).join('');
       }
 
       // ---------- CAJA ----------
@@ -2368,7 +2393,7 @@
         const pinS = sede === 'all' ? 'tq' : sede;
         $('#pinSede').textContent = SEDES[pinS].n;
         const stCls = { dentro: 'bg-emerald-500', pausa: 'bg-amber-400', fuera: 'bg-stone-500' };
-        $('#pinStaff').innerHTML = SEDES[pinS].staff.map(p => `<button data-pin="${p}" class="py-2.5 rounded-xl text-sm font-bold transition ${pinStaff === p ? 'bg-gold-400 text-noir-950' : 'bg-white/10 hover:bg-white/20 text-white'}"><span class="inline-block w-2 h-2 rounded-full mr-1 ${stCls[staffState(p)]}"></span>${p}</button>`).join('');
+        $('#pinStaff').innerHTML = SEDES[pinS].staff.map(p => `<button data-pin="${p}" class="py-2.5 rounded-xl text-sm font-bold transition ${pinStaff === p ? 'bg-gold-400 text-noir-950' : 'bg-white/10 hover:bg-white/20 text-white'}"><span class="flex flex-col items-center gap-1">${avatar(p, 'w-10 h-10')}<span class="flex items-center gap-1 text-xs"><span class="inline-block w-2 h-2 rounded-full ${stCls[staffState(p)]}"></span>${p}</span></span></button>`).join('');
         $$('[data-pin]').forEach(b => b.addEventListener('click', () => { pinStaff = b.dataset.pin; pinCode = ''; renderEquipo(); }));
         const st = pinStaff ? staffState(pinStaff) : null;
         if (pinStaff && pinCode.length === 4) {
@@ -2401,7 +2426,7 @@
 
         const days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
         const cell = v => v === 'Libre' || v === 'Cerrado' ? 'text-stone-400' : v === 'Vacaciones' || v === 'Formación' ? 'text-purple-700 font-semibold' : 'text-stone-800';
-        $('#turnosTable').innerHTML = `<thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-2.5">Estilista</th>${days.map((d, i) => `<th class="p-2.5 ${i === 3 ? 'text-gold-700' : ''}">${d}${i === 3 ? ' · hoy' : ''}</th>`).join('')}<th class="p-2.5 text-right">Horas</th></tr></thead><tbody class="divide-y divide-stone-100">${staffList().map(p => `<tr><td class="p-2.5 font-semibold">${p}<span class="block text-[10px] text-stone-400 font-normal">${[ROLE[p], sede === 'all' ? short(SEDES[STAFF_SEDE[p]].n) : ''].filter(Boolean).join(' · ')}</span></td>${TURNOS[p].slice(0, 6).map((v, i) => `<td class="p-2.5 ${cell(v)} ${i === 3 ? 'bg-gold-50/60' : ''}">${v}</td>`).join('')}<td class="p-2.5 text-right font-mono font-bold">${TURNOS[p][6]} h</td></tr>`).join('')}</tbody>`;
+        $('#turnosTable').innerHTML = `<thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-2.5">Estilista</th>${days.map((d, i) => `<th class="p-2.5 ${i === 3 ? 'text-gold-700' : ''}">${d}${i === 3 ? ' · hoy' : ''}</th>`).join('')}<th class="p-2.5 text-right">Horas</th></tr></thead><tbody class="divide-y divide-stone-100">${staffList().map(p => `<tr><td class="p-2.5 font-semibold"><span class="flex items-center gap-2">${avatar(p, 'w-8 h-8')}<span>${p}<span class="block text-[10px] text-stone-400 font-normal">${[ROLE[p], sede === 'all' ? short(SEDES[STAFF_SEDE[p]].n) : ''].filter(Boolean).join(' · ')}</span></span></span></td>${TURNOS[p].slice(0, 6).map((v, i) => `<td class="p-2.5 ${cell(v)} ${i === 3 ? 'bg-gold-50/60' : ''}">${v}</td>`).join('')}<td class="p-2.5 text-right font-mono font-bold">${TURNOS[p][6]} h</td></tr>`).join('')}</tbody>`;
       }
 
       // ---------- RESEÑAS ----------
@@ -2441,7 +2466,7 @@
           ['Clientas nuevas', Math.round(38 * share), 'de ' + Math.round(450 * share) + ' clientas atendidas', 'text-emerald-700'],
           ['No vinieron', Math.round(6 * share), eur(248 * share) + ' cobrados por la norma', 'text-red-700']
         ]);
-        bars('#infStaff', staff.map(p => [p + (sede === 'all' ? ' · ' + short(SEDES[STAFF_SEDE[p]].n) : ''), MONTH_STAFF[p] + today(p)]).sort((a, b) => b[1] - a[1]));
+        bars('#infStaff', staff.map(p => [`<span class="inline-flex items-center gap-1.5">${avatar(p, 'w-5 h-5')}${p}${sede === 'all' ? ' · ' + short(SEDES[STAFF_SEDE[p]].n) : ''}</span>`, MONTH_STAFF[p] + today(p)]).sort((a, b) => b[1] - a[1]));
         bars('#infSvc', Object.entries(MONTH_CAT_SHARE).map(([k, sh]) => [k === 'prod' ? 'Productos' : CAT[k][0], Math.round(monthTotal * sh), k === 'prod' ? 'bg-stone-400' : CAT[k][2]]));
         bars('#infSrc', [['💬 WhatsApp', 182], ['🧾 Mostrador', 214], ['📞 Laura', 96], ['📸 Instagram', 41]].map(([l, v]) => [l, Math.round(v * share), 'bg-emerald-400']), false);
         bars('#infCancel', [['Cliente no disponible', 14], ['Enfermedad', 6], ['No vino sin avisar', 6], ['Cambio a otro día', 5], ['Reservada por error', 3]].map(([l, v]) => [l, Math.max(1, Math.round(v * share)), 'bg-red-300']), false);
