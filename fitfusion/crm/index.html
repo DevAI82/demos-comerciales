@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>FitFusionPro — CRM de clientes | Demo interactiva</title>
+  <meta name="description" content="Demo del CRM de FitFusionPro: leads del cuestionario, planes de entrenamiento con un clic, avisos de los clientes y app de entreno en el móvil.">
+  <link rel="icon" type="image/png" href="../favicon-48.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fondo: '#080c14', panel: '#0f172a', sup: '#131d33', elev: '#17233d', borde: '#1e293b',
+            cian: { 300: '#66f0ff', 400: '#33ebff', 500: '#00e5ff', 600: '#00b4d8' },
+            texto: { 1: '#f7f8f8', 2: '#d0d6e0', 3: '#8a8f98' }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], display: ['Outfit', 'Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #080c14; }
+    .grid > * { min-width: 0; }
+    .tarjeta { background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; }
+    .brillo { box-shadow: 0 0 25px rgba(0, 229, 255, .25); }
+    .scroll-fino::-webkit-scrollbar { width: 6px; height: 6px; }
+    .scroll-fino::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .12); border-radius: 4px; }
+    .nav-btn[aria-current="page"] { background: rgba(0, 229, 255, .12); color: #00e5ff; }
+    .modo-btn[aria-pressed="true"] { background: #00e5ff; color: #080c14; }
+    .sub-btn[aria-selected="true"] { background: #00e5ff; color: #080c14; }
+    :focus-visible { outline: 3px solid #00e5ff; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+  <script src="../../shared/altera-config.js"></script>
+  <script src="../../shared/altera-cta.js" defer></script>
+  <script src="contenido.js" defer></script>
+  <script src="crm.js" defer></script>
+</head>
+<body class="text-texto-2 font-sans antialiased min-h-screen flex flex-col">
+  <div class="bg-black/60 border-b border-borde text-xs py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <span class="inline-flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cian-500 animate-pulse"></span><strong class="text-texto-1">Demo interactiva de Altera</strong> · clientes de ejemplo; nada de lo que hagas envía mensajes</span>
+      <a href="../" class="font-semibold text-cian-500 hover:underline">← Ver la web de FitFusionPro</a>
+    </div>
+  </div>
+
+  <header class="border-b border-borde bg-fondo/95 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3 min-w-0">
+        <img src="img/fitfusion.png" alt="FitFusionPro" width="452" height="99" class="h-7 w-auto">
+        <span class="hidden sm:inline text-xs text-texto-3 border-l border-borde pl-3">CRM del centro</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="flex rounded-xl border border-borde p-1 bg-panel" role="group" aria-label="Qué quieres ver">
+          <button type="button" class="modo-btn px-3 min-h-[40px] rounded-lg text-sm font-semibold" data-modo="panel" aria-pressed="true">🧑‍💼 Panel del centro</button>
+          <button type="button" class="modo-btn px-3 min-h-[40px] rounded-lg text-sm font-semibold" data-modo="app" aria-pressed="false">📱 App del cliente</button>
+        </div>
+        <div data-altera-cta-slot class="hidden md:block"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-5">
+    <!-- ===================== PANEL DEL CENTRO -->
+    <div id="vistaPanel" class="grid lg:grid-cols-[210px_1fr] gap-5">
+      <nav class="lg:sticky lg:top-24 self-start flex lg:flex-col gap-1 overflow-x-auto scroll-fino -mx-4 px-4 lg:mx-0 lg:px-0 pb-1" aria-label="Secciones del panel" id="navPanel"></nav>
+      <section id="contenidoPanel" class="min-w-0 space-y-5" aria-live="polite"></section>
+    </div>
+
+    <!-- ===================== APP DEL CLIENTE -->
+    <div id="vistaApp" class="hidden grid lg:grid-cols-[1fr_400px] gap-8 items-start">
+      <div class="space-y-4 lg:pt-6 order-2 lg:order-1">
+        <p class="text-xs font-bold uppercase tracking-widest text-cian-500">App del cliente</p>
+        <h1 class="font-display font-bold text-3xl md:text-4xl text-texto-1">Su plan en el móvil, con vídeo de cada ejercicio</h1>
+        <p class="text-texto-3">El cliente entra con el enlace que recibe por email, sin contraseña. Ve el entreno de hoy, marca las series, dice cómo le ha costado y avisa si algo le molesta. Todo llega al panel del centro al momento.</p>
+        <ul class="space-y-2 text-sm">
+          <li class="tarjeta p-3">✅ <strong class="text-texto-1">Marca cada serie</strong> y el entreno cuenta para su cumplimiento y su racha.</li>
+          <li class="tarjeta p-3">😣 <strong class="text-texto-1">«Avisar molestia o duda»</strong> crea un aviso en el panel. Pruébalo y cambia a «Panel del centro» para responderlo.</li>
+          <li class="tarjeta p-3">📈 <strong class="text-texto-1">Progreso</strong>: entrenos hechos y evolución de pesos semana a semana.</li>
+        </ul>
+      </div>
+      <div class="order-1 lg:order-2 mx-auto w-full max-w-[400px] rounded-[2.4rem] bg-black p-2.5 border border-borde brillo">
+        <div class="rounded-[2rem] overflow-hidden bg-fondo flex flex-col h-[760px] max-h-[86vh]">
+          <div class="px-5 pt-5 pb-3 border-b border-borde flex items-start justify-between">
+            <div>
+              <p class="font-display font-bold text-2xl text-texto-1">Hola, <span id="appNombre">Laura</span></p>
+              <span class="inline-flex items-center gap-1 mt-1 rounded-full bg-cian-500 text-fondo text-xs font-bold px-2.5 py-0.5" id="appRacha">🔥 9 días</span>
+            </div>
+            <div class="text-right"><p class="font-display font-bold text-2xl text-texto-1" id="appCumpl">86 %</p><p class="text-[11px] text-texto-3">cumplimiento</p></div>
+          </div>
+          <div id="appContenido" class="flex-1 overflow-y-auto scroll-fino p-4 space-y-3"></div>
+          <nav class="grid grid-cols-4 border-t border-borde bg-panel" aria-label="Secciones de la app">
+            <button type="button" class="app-nav py-2.5 text-[11px] font-semibold flex flex-col items-center gap-0.5" data-app="hoy">☀️<span>Hoy</span></button>
+            <button type="button" class="app-nav py-2.5 text-[11px] font-semibold flex flex-col items-center gap-0.5" data-app="calendario">📅<span>Calendario</span></button>
+            <button type="button" class="app-nav py-2.5 text-[11px] font-semibold flex flex-col items-center gap-0.5" data-app="progreso">📈<span>Progreso</span></button>
+            <button type="button" class="app-nav py-2.5 text-[11px] font-semibold flex flex-col items-center gap-0.5 relative" data-app="mensajes">💬<span>Mensajes</span></button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-borde py-5 text-center text-xs text-texto-3 px-4">
+    Prototipo preparado por Altera Soluciones Tecnológicas para FitFusionPro. Clientes, entrenadores y cifras de ejemplo; ejercicios y plantillas reales del centro.
+  </footer>
+
+  <!-- Panel lateral (ficha de lead, cliente o plan) -->
+  <div id="cajon" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="cajonTitulo">
+    <div class="absolute inset-0 bg-black/70" data-cerrar></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-2xl bg-fondo border-l border-borde overflow-y-auto scroll-fino">
+      <div class="sticky top-0 bg-fondo/95 backdrop-blur border-b border-borde px-5 py-3 flex items-center justify-between gap-3">
+        <h2 id="cajonTitulo" class="font-display font-bold text-xl text-texto-1 truncate"></h2>
+        <button type="button" data-cerrar class="w-10 h-10 rounded-xl border border-borde text-texto-2 hover:text-cian-500" aria-label="Cerrar">✕</button>
+      </div>
+      <div id="cajonCuerpo" class="p-5 space-y-5"></div>
+    </div>
+  </div>
+
+  <!-- Vídeo de un ejercicio -->
+  <div id="modalVideo" class="fixed inset-0 z-[60] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="videoTitulo">
+    <div class="absolute inset-0 bg-black/80" data-cerrar-video></div>
+    <div class="relative w-full max-w-3xl tarjeta overflow-hidden">
+      <div class="flex items-center justify-between px-4 py-2.5 border-b border-borde">
+        <p id="videoTitulo" class="font-semibold text-texto-1"></p>
+        <button type="button" data-cerrar-video class="w-9 h-9 rounded-lg border border-borde" aria-label="Cerrar vídeo">✕</button>
+      </div>
+      <div class="aspect-video bg-black" id="videoMarco"></div>
+    </div>
+  </div>
+
+  <div id="aviso" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-[70] hidden max-w-[92vw] rounded-xl bg-cian-500 text-fondo font-semibold text-sm px-4 py-3 shadow-lg" role="status"></div>
+</body>
+</html>
