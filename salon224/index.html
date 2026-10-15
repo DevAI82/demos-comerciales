@@ -191,7 +191,7 @@
       <!-- AGENTE EN DIRECTO (ElevenLabs) -->
       <div data-convai-only class="bg-white rounded-3xl p-5 sm:p-7 space-y-5 border-2 border-gold-400/60 shadow-sm">
         <div class="flex items-start gap-4">
-          <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gold-400 bg-noir-950 p-1.5 shadow shrink-0">
+          <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gold-400 bg-white p-1.5 shadow shrink-0">
           <div>
             <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 uppercase tracking-wider"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Laura está disponible ahora</span>
             <h2 class="font-display text-xl sm:text-2xl font-bold text-noir-900 mt-0.5">Llama a Laura y pruébala como si fueras una clienta</h2>
@@ -234,7 +234,7 @@
           <div class="text-center py-6 space-y-4">
             <div class="relative w-28 h-28 mx-auto">
               <div id="callAvatarRing" class="absolute inset-0 rounded-full bg-gold-400/20 scale-100 transition-transform duration-500"></div>
-              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="relative z-10 w-28 h-28 rounded-full object-cover border-2 border-gold-400 shadow-xl bg-noir-950 p-2">
+              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="relative z-10 w-28 h-28 rounded-full object-cover border-2 border-gold-400 shadow-xl bg-white p-2">
             </div>
 
             <div>
@@ -453,7 +453,7 @@
           <!-- CHAT HEADER -->
           <div class="p-3 bg-stone-100 border-b border-stone-200 flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-10 h-10 rounded-full border border-stone-300 object-cover bg-black p-1">
+              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-10 h-10 rounded-full border border-stone-300 object-cover bg-white p-1">
               <div>
                 <div class="flex items-center gap-1.5">
                   <span class="text-xs font-bold text-stone-900">SALÓN 224</span>
@@ -529,264 +529,146 @@
     <!-- VISTA 3: CRM PROPIO SALÓN 224 (EL SUSTITUTO DE FRESHA)                    -->
     <!-- ========================================================================= -->
     <section id="view-crm" class="view-content hidden space-y-6">
-      
-      <!-- HEADER VISTA 3 -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
+
+      <!-- CABECERA -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-4 border-b border-stone-200">
         <div>
-          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Fase 2 · El Sustituto de Fresha (Ahorro 100% Suscripciones)</span>
-          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">
-            CRM Salón 224 — Gestión Multi-Sede & Ficha Técnica
-          </h1>
-          <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Plataforma propia diseñada exclusivamente para la operativa de Salón 224. Gestiona las 3 sedes sin pagar comisiones por clientes a Fresha, con ficha técnica capilar de colorimetría para cada clienta y agenda optimizada por estilista.
-          </p>
+          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Fase 2 · CRM propio de Salón 224</span>
+          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">Agenda, fichas de color y caja de los tres salones</h1>
+          <p class="text-sm text-stone-600 max-w-3xl mt-1">Todo lo que hoy está repartido entre Fresha, libretas y el WhatsApp del salón, en un solo panel que es vuestro: la agenda por estilista, la fórmula exacta de cada clienta, los avisos de retoque y la caja del día.</p>
         </div>
-
-        <!-- SALON SELECTOR TABS -->
-        <div class="inline-flex rounded-xl bg-stone-200 p-1 text-xs font-semibold">
-          <button onclick="setSalonTab('tq')" id="tab-tq" class="salon-tab px-3 py-1.5 rounded-lg bg-white text-stone-900 shadow-sm transition">
-            📍 Torres Quevedo (Centro)
-          </button>
-          <button onclick="setSalonTab('eci-ab')" id="tab-eci-ab" class="salon-tab px-3 py-1.5 rounded-lg text-stone-600 hover:text-stone-900 transition">
-            📍 El Corte Inglés Albacete
-          </button>
-          <button onclick="setSalonTab('eci-alc')" id="tab-eci-alc" class="salon-tab px-3 py-1.5 rounded-lg text-stone-600 hover:text-stone-900 transition">
-            📍 El Corte Inglés Alicante
-          </button>
+        <div class="inline-flex flex-wrap rounded-xl bg-stone-200 p-1 text-xs font-semibold shrink-0" id="crmSedeTabs" role="tablist" aria-label="Salón">
+          <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="all">Los 3 salones</button>
+          <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="tq">📍 Torres Quevedo</button>
+          <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="ab">📍 ECI Albacete</button>
+          <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="al">📍 ECI Alicante</button>
         </div>
       </div>
 
-      <!-- KPI -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
-          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Citas Confirmadas Hoy</span>
-          <div class="flex items-baseline justify-between mt-2">
-            <span class="text-2xl font-bold font-display text-stone-900" id="crmKpiAppointments">18 Citas</span>
-            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">+4 vía IA</span>
-          </div>
-          <span class="text-[11px] text-stone-400 mt-1 block">Ocupación estimada: 92%</span>
-        </div>
+      <!-- KPIs -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="crmKpis"></div>
 
-        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
-          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Facturación Estimada Hoy</span>
-          <div class="flex items-baseline justify-between mt-2">
-            <span class="text-2xl font-bold font-display text-gold-700">1.485 €</span>
-            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Ticket medio 82,5€</span>
-          </div>
-          <span class="text-[11px] text-stone-400 mt-1 block">Balayage & Color dominan</span>
-        </div>
+      <!-- SUBPESTAÑAS -->
+      <div class="flex gap-1 overflow-x-auto border-b border-stone-200 text-sm font-semibold" id="crmTabs" role="tablist">
+        <button class="crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap" data-tab="agenda">📅 Agenda de hoy</button>
+        <button class="crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap" data-tab="clientas">🎨 Clientas y fichas de color</button>
+        <button class="crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap" data-tab="retoques">🔔 Retoques</button>
+        <button class="crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap" data-tab="caja">💶 Caja del día</button>
+      </div>
 
-        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
-          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Ahorro Mensual vs Fresha</span>
-          <div class="flex items-baseline justify-between mt-2">
-            <span class="text-2xl font-bold font-display text-emerald-700">+1.140 €/mes</span>
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">0% Comisiones</span>
+      <!-- PANEL: AGENDA -->
+      <div class="crm-panel" data-panel="agenda">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-8 min-w-0 glass-panel rounded-2xl p-4 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <p class="text-sm font-bold text-stone-900" id="agendaTitle">Jueves · agenda por estilista</p>
+              <div class="flex flex-wrap gap-2 text-[11px] text-stone-600">
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-amber-300"></span>Color</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-sky-300"></span>Corte</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-emerald-300"></span>Tratamiento</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-rose-300"></span>Novias e invitadas</span>
+              </div>
+            </div>
+            <div class="overflow-x-auto custom-scroll" id="agendaScroll">
+              <div id="agendaGrid" class="relative"></div>
+            </div>
+            <p class="text-[11px] text-stone-500 mt-3">Las citas con borde discontinuo las ha tomado Laura o el WhatsApp y esperan a que el salón las confirme. Pulsa una cita para verla.</p>
           </div>
-          <span class="text-[11px] text-stone-400 mt-1 block">Sin comisión de marketplace</span>
-        </div>
-
-        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
-          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Tasa Retención / Retoque</span>
-          <div class="flex items-baseline justify-between mt-2">
-            <span class="text-2xl font-bold font-display text-stone-900">89,4%</span>
-            <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">Aviso auto 75 días</span>
+          <div class="lg:col-span-4 space-y-4">
+            <div class="glass-panel rounded-2xl p-4 shadow-sm" id="apptDetail"></div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Huecos libres esta tarde</p>
+              <ul class="space-y-1.5 text-sm" id="agendaGaps"></ul>
+              <p class="text-[11px] text-stone-500 mt-2">Laura y el WhatsApp ofrecen estos huecos a quien pregunta.</p>
+            </div>
           </div>
-          <span class="text-[11px] text-stone-400 mt-1 block">Fórmula de color guardada</span>
         </div>
       </div>
 
-      <!-- PIPELINE -->
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h3 class="text-sm font-bold text-stone-800 uppercase tracking-wider">Flujo de Clientas en Directo (Pipeline)</h3>
-          <span class="text-xs text-stone-500">Haz clic en una clienta para abrir su <strong>Ficha Técnica de Color</strong></span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          
-          <!-- COL 1: PETICIONES ENTRANTE (IA) -->
-          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-amber-500"></span> 1. Petición IA (Chat/Voz)
-              </span>
-              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">2</span>
-            </div>
-
-            <!-- CARD 1 -->
-            <div onclick="openClientModal('elena')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Elena Navarro</span>
-                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">WhatsApp IA</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Pide: Balayage Rubio Vainilla</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span>Torres Quevedo</span>
-                <span>Jueves 11:30</span>
+      <!-- PANEL: CLIENTAS -->
+      <div class="crm-panel hidden" data-panel="clientas">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-4 min-w-0 glass-panel rounded-2xl shadow-sm overflow-hidden">
+            <div class="p-3 border-b border-stone-200 space-y-2">
+              <input id="crmSearch" type="search" placeholder="Buscar por nombre, servicio o fórmula…" class="w-full text-sm border border-stone-300 rounded-xl px-3 py-2 focus:outline-none focus:border-gold-500" aria-label="Buscar clienta">
+              <div class="flex items-center justify-between text-[11px] text-stone-500">
+                <span id="crmCount"></span>
+                <label class="flex items-center gap-1">Ordenar
+                  <select id="crmSort" class="border border-stone-300 rounded-lg px-1.5 py-0.5 bg-white text-[11px]">
+                    <option value="last">Última visita</option>
+                    <option value="spend">Gasto del año</option>
+                    <option value="name">Nombre</option>
+                  </select>
+                </label>
               </div>
             </div>
-
-            <!-- CARD 2 -->
-            <div onclick="openClientModal('laura')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Lucía Gómez</span>
-                <span class="text-[10px] bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-bold">Teléfono IA</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Tratamiento Reparador ABC + Corte</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span>ECI Albacete</span>
-                <span>Viernes 17:00</span>
-              </div>
-            </div>
+            <ul id="crmList" class="divide-y divide-stone-100 max-h-[620px] overflow-y-auto custom-scroll"></ul>
           </div>
-
-          <!-- COL 2: CITAS CONFIRMADAS -->
-          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-blue-500"></span> 2. Confirmadas Fresha/CRM
-              </span>
-              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">3</span>
-            </div>
-
-            <!-- CARD 3 -->
-            <div onclick="openClientModal('carmen')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Carmen Rodenas</span>
-                <span class="text-[10px] text-stone-400">Estilista: Alberto</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Novia 224: Prueba Recogido + Maquillaje</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span class="text-emerald-700 font-semibold">T-24h Notificada</span>
-                <span>Hoy 10:30</span>
-              </div>
-            </div>
-
-            <!-- CARD 4 -->
-            <div onclick="openClientModal('maria')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">María Santos</span>
-                <span class="text-[10px] text-stone-400">Estilista: Alexandra</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Retoque Raíz + Matiz Glaze ABC</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span>Fórmula archivada</span>
-                <span>Hoy 12:00</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- COL 3: EN SALÓN (EN ATENCIÓN) -->
-          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 3. En Salón (Sillón)
-              </span>
-              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">2</span>
-            </div>
-
-            <!-- CARD 5 -->
-            <div onclick="openClientModal('sofia')" class="p-3 bg-white rounded-xl shadow-sm border-2 border-amber-300 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Sofía Valero</span>
-                <span class="text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-bold">Tiempo tinte: 18 min</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Babylights Nordic Blonde + Olaplex</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span>Puesto 3 (Color)</span>
-                <span class="text-gold-700 font-bold">Ticket: 110€</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- COL 4: FIDELIZACIÓN & RETOQUE -->
-          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-purple-500"></span> 4. Retoque Auto (60-90d)
-              </span>
-              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">4</span>
-            </div>
-
-            <!-- CARD 6 -->
-            <div onclick="openClientModal('ana')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Ana Martínez</span>
-                <span class="text-[10px] bg-purple-100 text-purple-900 px-1.5 py-0.5 rounded font-bold">Día 72 de Balayage</span>
-              </div>
-              <p class="text-[11px] text-stone-600">WhatsApp automático enviado ayer: "¿Te apetece iluminar tu tono?"</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span class="text-emerald-600 font-bold">Respondió: ¡Sí, este sábado!</span>
-              </div>
-            </div>
-          </div>
-
+          <div class="lg:col-span-8 min-w-0 glass-panel rounded-2xl p-5 shadow-sm space-y-5" id="crmFicha"></div>
         </div>
       </div>
 
-      <!-- MODAL FICHA TÉCNICA DE COLORIMETRÍA (OVERLAY INTERACTIVO) -->
-      <div id="clientModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-gold-300 space-y-5 animate-in fade-in duration-200">
-          
-          <div class="flex items-start justify-between border-b border-stone-100 pb-4">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-full bg-gold-100 border border-gold-400 flex items-center justify-center text-lg font-bold text-gold-800" id="modalInitials">
-                EN
+      <!-- PANEL: RETOQUES -->
+      <div class="crm-panel hidden" data-panel="retoques">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-7 min-w-0 space-y-3" id="retoqueList"></div>
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3">
+              <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Así le llega a la clienta</p>
+              <div class="bg-[#e5ddd5] rounded-xl p-3 text-stone-900 text-sm">
+                <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm max-w-[95%]" id="retoquePreview"></div>
+                <div class="flex flex-wrap gap-1.5 mt-2" id="retoqueChips">
+                  <span class="text-xs bg-white text-emerald-700 font-semibold px-2.5 py-1 rounded-full shadow-sm">📅 Ver huecos</span>
+                  <span class="text-xs bg-white text-stone-600 font-semibold px-2.5 py-1 rounded-full shadow-sm">Más adelante</span>
+                </div>
               </div>
-              <div>
-                <h3 class="text-lg font-bold text-stone-900" id="modalName">Elena Navarro Alarcón</h3>
-                <p class="text-xs text-stone-500">Clienta VIP desde 2024 · Tel: 654 321 987 · Sede habitual: Torres Quevedo</p>
-              </div>
+              <p class="text-[11px] text-stone-400">Se envía solo, a los días que marque cada estilista según la técnica. Si la clienta pulsa «Ver huecos», el WhatsApp le ofrece hora con su estilista de siempre.</p>
             </div>
-            <button onclick="closeClientModal()" class="text-stone-400 hover:text-stone-800 text-xl font-bold">&times;</button>
-          </div>
-
-          <!-- FICHA COLOR TABS -->
-          <div class="space-y-4">
-            <div class="bg-gold-50/70 p-4 rounded-2xl border border-gold-200 space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-gold-900 uppercase tracking-wider">🎨 Fórmula de Colorimetría Actual (Guardada)</span>
-                <span class="text-[11px] font-mono text-gold-800 bg-gold-200 px-2 py-0.5 rounded">Última aplicación: 14 Enero</span>
-              </div>
-              <p class="text-xs text-stone-800 font-mono leading-relaxed" id="modalFormula">
-                <strong>Raíz:</strong> Igora Royal 7.1 + 7.0 a 20 volúmenes (35 min).<br>
-                <strong>Medios y Puntas:</strong> Técnica Balayage mano alzada con Deco Blond Studio 9 + 30 vol.<br>
-                <strong>Matiz / Glaze:</strong> Authentic Beauty Concept Toner Vainilla Suave 9.13 (15 min en lavacabezas).<br>
-                <strong>Tratamiento:</strong> ABC Glow Cleanser & Mask selladora de cutícula.
-              </p>
-            </div>
-
-            <!-- COMPARATIVA FOTOGRÁFICA -->
-            <div class="grid grid-cols-2 gap-3 text-center">
-              <div class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100 p-2">
-                <span class="text-[10px] font-bold text-stone-500 uppercase block mb-1">Antes de la sesión</span>
-                <img src="assets/trabajos-224.webp" alt="Antes" class="w-full h-32 object-cover rounded-lg">
-              </div>
-              <div class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100 p-2">
-                <span class="text-[10px] font-bold text-gold-700 uppercase block mb-1">Resultado Salón 224</span>
-                <img src="assets/rubios-224.webp" alt="Después" class="w-full h-32 object-cover rounded-lg">
-              </div>
-            </div>
-
-            <!-- NOTAS PRIVADAS DEL ESTILISTA -->
-            <div class="bg-stone-50 p-3 rounded-xl border border-stone-200 text-xs text-stone-600">
-              <span class="font-bold text-stone-800 block mb-1">🔒 Notas Clínicas / Privadas del Estilista (Con candado):</span>
-              <p id="modalNotes">Cabello fino con tendencia a porosidad en puntas. No subir a 40 volúmenes bajo ningún concepto. Le encanta el café cortado con leche desnatada y sacarina.</p>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-2 text-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cuándo se avisa (lo decidís vosotras)</p>
+              <ul class="space-y-1 text-stone-700">
+                <li class="flex justify-between"><span>Raíz con tinte</span><span class="font-mono font-semibold">35 días</span></li>
+                <li class="flex justify-between"><span>Matiz glaze</span><span class="font-mono font-semibold">45 días</span></li>
+                <li class="flex justify-between"><span>Babylights</span><span class="font-mono font-semibold">60 días</span></li>
+                <li class="flex justify-between"><span>Balayage</span><span class="font-mono font-semibold">75 días</span></li>
+                <li class="flex justify-between"><span>Corte</span><span class="font-mono font-semibold">50 días</span></li>
+              </ul>
             </div>
           </div>
-
-          <div class="flex items-center justify-end gap-3 pt-3 border-t border-stone-100 text-xs">
-            <button onclick="closeClientModal()" class="px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold transition">
-              Cerrar Ficha
-            </button>
-            <button onclick="alert('Abriendo chat de WhatsApp con Elena para confirmar retoque'); closeClientModal();" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1.5">
-              <span>💬</span> <span>Escribir WhatsApp a Elena</span>
-            </button>
-          </div>
-
         </div>
       </div>
 
+      <!-- PANEL: CAJA -->
+      <div class="crm-panel hidden" data-panel="caja">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-7 min-w-0 glass-panel rounded-2xl shadow-sm overflow-hidden">
+            <div class="p-4 border-b border-stone-200 flex items-center justify-between gap-2">
+              <p class="text-sm font-bold text-stone-900">Tickets de hoy</p>
+              <span class="text-[11px] text-stone-500" id="cajaCount"></span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm min-w-[560px]">
+                <thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-3">Hora</th><th class="p-3">Clienta</th><th class="p-3">Servicio</th><th class="p-3">Estilista</th><th class="p-3">Pago</th><th class="p-3 text-right">Importe</th></tr></thead>
+                <tbody class="divide-y divide-stone-100" id="cajaRows"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3" id="cajaResumen"></div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Facturación del mes por estilista</p>
+              <div class="space-y-2.5" id="cajaByStaff"></div>
+            </div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Facturación del mes por tipo de servicio</p>
+              <div class="space-y-2.5" id="cajaBySvc"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-stone-500">Clientas, fórmulas e importes de ejemplo para la demostración. Precios orientativos.</p>
+      <div id="crmToast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-noir-900 text-white text-sm font-semibold px-4 py-3 rounded-2xl shadow-2xl border border-gold-400/40 max-w-[90vw]"></div>
     </section>
 
     <!-- ========================================================================= -->
@@ -1615,78 +1497,465 @@
       `;
     }
 
-    // --- 4. CRM TABS & MODALS ---
-    const clientsData = {
-      elena: {
-        name: "Elena Navarro Alarcón",
-        initials: "EN",
-        notes: "Cabello fino con tendencia a porosidad en puntas. No subir a 40 volúmenes bajo ningún concepto. Le encanta el café cortado con leche desnatada y sacarina.",
-        formula: "<strong>Raíz:</strong> Igora Royal 7.1 + 7.0 a 20 volúmenes (35 min).<br><strong>Medios y Puntas:</strong> Balayage mano alzada con Deco Blond Studio 9 + 30 vol.<br><strong>Matiz:</strong> ABC Toner Vainilla 9.13 (15 min).<br><strong>Tratamiento:</strong> ABC Glow Cleanser & Mask selladora."
-      },
-      laura: {
-        name: "Lucía Gómez Ibáñez",
-        initials: "LG",
-        notes: "Sensibilidad leve en cuero cabelludo. Usar siempre champú protector ABC Bare Cleanser hipoalergénico. Prefiere corte a tijera sin vaciado.",
-        formula: "<strong>Tratamiento:</strong> Ritual Hidratante Profundo ABC con toalla caliente 15 min.<br><strong>Corte:</strong> Bob texturizado desfilado en clavícula.<br><strong>Styling:</strong> Spray de sal Authentic Beauty Concept sin siliconas."
-      },
-      carmen: {
-        name: "Carmen Rodenas Montes",
-        initials: "CR",
-        notes: "Novia 2026 (Boda el 12 de Septiembre). Lleva velo clásico y tiara artesanal. Requiere fijación extra resistente al calor pero con aspecto natural sin apelmazar.",
-        formula: "<strong>Prueba Nupcial:</strong> Semirecogido trenzado con ondas románticas rotas.<br><strong>Matiz:</strong> Glaze Brillo Espejo con aceite de jojoba.<br><strong>Maquillaje:</strong> Piel glow con fijador HD."
-      },
-      maria: {
-        name: "María Santos Cuesta",
-        initials: "MS",
-        notes: "Viene religiosamente cada 5 semanas para cobertura de canas 100% en sienes. Muy puntual.",
-        formula: "<strong>Cobertura Canas:</strong> 6.0 + 6.1 a partes iguales con oxidante 20 vol.<br><strong>Emulsión final:</strong> Agua termal en lavacabezas con masaje relajante 5 min."
-      },
-      sofia: {
-        name: "Sofía Valero Peña",
-        initials: "SV",
-        notes: "Rubio nórdico muy frío. Utilizar matiz con violeta anti-amarillo. Fanática de las fotos para Instagram del salón.",
-        formula: "<strong>Mechas:</strong> Babylights micro-tricotadas plata.<br><strong>Deco:</strong> 9 tonos con Olaplex Nº1.<br><strong>Matiz:</strong> 10.21 + gota de 9.11 para neutralizar reflejo dorado."
-      },
-      ana: {
-        name: "Ana Martínez Gil",
-        initials: "AM",
-        notes: "Clienta de Balayage semestral. Se le envía aviso automático a los 75 días para retocar contorno de luz (money piece).",
-        formula: "<strong>Técnica:</strong> Contouring facial Money Piece + difuminado de raíz Shadow Root para crecimiento invisible."
+    // --- 4. CRM PROPIO SALÓN 224 ---
+    // Datos de ejemplo: clientas genéricas, precios orientativos.
+    (function () {
+      const $ = s => document.querySelector(s);
+      const $$ = s => Array.from(document.querySelectorAll(s));
+      const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const eur = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €';
+      const DAY = 86400000;
+      const TODAY = new Date(2026, 9, 15);
+      const NOW = '12:15';
+      const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+      const toHM = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+      const fmtD = d => new Date(d).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+      const daysSince = d => Math.round((TODAY - new Date(d)) / DAY);
+
+      const SEDES = {
+        tq: { n: 'Torres Quevedo', staff: ['Alberto', 'Alexandra', 'Carlos'] },
+        ab: { n: 'El Corte Inglés Albacete', staff: ['Marta', 'Irene'] },
+        al: { n: 'El Corte Inglés Alicante', staff: ['Noelia', 'Sara'] }
+      };
+      const STAFF_SEDE = {};
+      Object.entries(SEDES).forEach(([k, s]) => s.staff.forEach(p => STAFF_SEDE[p] = k));
+
+      // [nombre, precio orientativo, minutos, tipo, días hasta el aviso de retoque]
+      const SVC = {
+        balayage: ['Balayage / iluminación', 120, 180, 'color', 75],
+        babylights: ['Babylights + matiz', 110, 180, 'color', 60],
+        raiz: ['Raíz con tinte + matiz', 55, 90, 'color', 35],
+        glaze: ['Matiz glaze ABC', 35, 45, 'color', 45],
+        corte: ['Corte y secado', 32, 45, 'corte', 50],
+        abc: ['Tratamiento Authentic Beauty Concept', 42, 60, 'trat', null],
+        novia: ['Prueba de novia', 90, 120, 'evento', null],
+        invitada: ['Peinado de invitada', 38, 60, 'evento', null]
+      };
+      const CAT = {
+        color: ['Color', 'bg-amber-100 border-amber-400 text-amber-950', 'bg-amber-400'],
+        corte: ['Corte', 'bg-sky-100 border-sky-400 text-sky-950', 'bg-sky-400'],
+        trat: ['Tratamiento', 'bg-emerald-100 border-emerald-400 text-emerald-950', 'bg-emerald-400'],
+        evento: ['Novias e invitadas', 'bg-rose-100 border-rose-400 text-rose-950', 'bg-rose-400']
+      };
+      const SRC = { laura: '📞 Laura', whatsapp: '💬 WhatsApp', instagram: '📸 Instagram', mostrador: '🧾 Mostrador' };
+
+      const CLIENTS = {
+        elena: { name: 'Elena Navarro', phone: '654 ·· ·· 87', since: 2021, sede: 'tq', staff: 'Alberto', photos: true,
+          notes: 'Cabello fino con tendencia a porosidad en puntas. No subir de 30 volúmenes. Café con leche desnatada.', test: '2026-06-02',
+          hist: [
+            { d: '2026-08-06', svc: 'balayage', staff: 'Alberto', p: 125, f: 'Raíz: Igora Royal 7.1 + 7.0 a 20 vol (35 min). Medios y puntas: balayage a mano alzada con Blond Studio 9 + 30 vol. Matiz: toner vainilla 9.13 (15 min). Final: mascarilla selladora ABC.' },
+            { d: '2026-05-20', svc: 'corte', staff: 'Alberto', p: 32, f: '' },
+            { d: '2026-03-12', svc: 'balayage', staff: 'Alberto', p: 120, f: 'Balayage con Blond Studio 9 + 30 vol. Matiz 9.1 ceniza (12 min).' }
+          ] },
+        ana: { name: 'Ana Martínez', phone: '622 ·· ·· 14', since: 2022, sede: 'tq', staff: 'Alexandra', photos: true,
+          notes: 'Balayage con money piece. Prefiere raíz difuminada (shadow root) para que el crecimiento no se note.', test: '2026-03-30',
+          hist: [
+            { d: '2026-08-03', svc: 'balayage', staff: 'Alexandra', p: 130, f: 'Money piece con Blond Studio 9 + 20 vol. Shadow root 7.0 + 7.1 (20 min). Matiz 9.13 + 9.11.' },
+            { d: '2026-04-18', svc: 'glaze', staff: 'Alexandra', p: 35, f: 'Glaze 9.13 con agua oxigenada 6 vol (15 min).' }
+          ] },
+        maria: { name: 'María Santos', phone: '687 ·· ·· 02', since: 2019, sede: 'tq', staff: 'Carlos',
+          notes: 'Cobertura total de canas en sienes. Viene cada cinco semanas, muy puntual.', test: '2026-01-15',
+          hist: [
+            { d: '2026-09-08', svc: 'raiz', staff: 'Carlos', p: 55, f: '6.0 + 6.1 a partes iguales con oxidante 20 vol (35 min). Masaje de 5 min en lavacabezas.' },
+            { d: '2026-08-04', svc: 'raiz', staff: 'Carlos', p: 55, f: '6.0 + 6.1 a partes iguales con 20 vol (35 min).' },
+            { d: '2026-06-30', svc: 'raiz', staff: 'Carlos', p: 55, f: '6.0 + 6.1 con 20 vol.' }
+          ] },
+        sofia: { name: 'Sofía Valero', phone: '611 ·· ·· 39', since: 2023, sede: 'tq', staff: 'Alexandra', photos: true,
+          notes: 'Rubio nórdico muy frío: matiz con violeta para quitar el amarillo. Le gusta que le hagan fotos para Instagram.', test: '2026-07-22',
+          hist: [
+            { d: '2026-08-21', svc: 'babylights', staff: 'Alexandra', p: 110, f: 'Babylights finas con decoloración 9 tonos + protector de enlaces. Matiz 10.21 + gota de 9.11 (12 min).' }
+          ] },
+        lucia: { name: 'Lucía Gómez', phone: '611 ·· ·· 44', since: 2024, sede: 'ab', staff: 'Marta',
+          notes: 'Cuero cabelludo sensible: champú suave sin sulfatos. Corte a tijera, sin vaciar.', test: '',
+          hist: [
+            { d: '2026-09-17', svc: 'abc', staff: 'Marta', p: 42, f: 'Ritual hidratante con toalla caliente (15 min).' },
+            { d: '2026-08-22', svc: 'corte', staff: 'Marta', p: 32, f: 'Bob texturizado a la altura de la clavícula.' }
+          ] },
+        carmen: { name: 'Carmen Ródenas', phone: '634 ·· ·· 71', since: 2025, sede: 'ab', staff: 'Irene',
+          notes: 'Novia: boda en junio de 2027. Velo clásico y tiara. Fijación resistente al calor con aspecto natural.', test: '2026-09-01',
+          hist: [
+            { d: '2026-09-01', svc: 'glaze', staff: 'Irene', p: 35, f: 'Glaze brillo espejo 8.3 (15 min).' }
+          ] },
+        paula: { name: 'Paula Jiménez', phone: '699 ·· ·· 58', since: 2022, sede: 'ab', staff: 'Marta',
+          notes: 'Castaño natural. Quiere aclarar poco a poco sin perder brillo.', test: '2026-02-11',
+          hist: [
+            { d: '2026-08-12', svc: 'babylights', staff: 'Marta', p: 110, f: 'Babylights con Blond Studio 7 + 20 vol. Matiz 8.13 (15 min).' },
+            { d: '2026-05-28', svc: 'corte', staff: 'Marta', p: 32, f: '' }
+          ] },
+        beatriz: { name: 'Beatriz Ortega', phone: '678 ·· ·· 26', since: 2020, sede: 'ab', staff: 'Irene',
+          notes: 'Canas en raya. Alergia leve al amoniaco: usar coloración sin amoniaco.', test: '2026-08-28',
+          hist: [
+            { d: '2026-09-04', svc: 'raiz', staff: 'Irene', p: 55, f: 'Coloración sin amoniaco 5.0 + 5.3 con 9 vol (30 min).' }
+          ] },
+        irene: { name: 'Irene Castillo', phone: '645 ·· ·· 93', since: 2023, sede: 'al', staff: 'Noelia', photos: true,
+          notes: 'Pelo muy largo y grueso: calcular doble de decoloración.', test: '2026-04-09',
+          hist: [
+            { d: '2026-07-24', svc: 'balayage', staff: 'Noelia', p: 130, f: 'Balayage con Blond Studio 9 + 30 vol, doble cantidad. Matiz 9.1 + 9.13.' }
+          ] },
+        nuria: { name: 'Nuria Pastor', phone: '603 ·· ·· 67', since: 2024, sede: 'al', staff: 'Sara',
+          notes: 'Le gusta el corte muy marcado, flequillo cortina.', test: '',
+          hist: [
+            { d: '2026-08-20', svc: 'corte', staff: 'Sara', p: 32, f: '' },
+            { d: '2026-06-25', svc: 'corte', staff: 'Sara', p: 32, f: '' }
+          ] },
+        rocio: { name: 'Rocío Llorens', phone: '628 ·· ·· 11', since: 2021, sede: 'al', staff: 'Noelia',
+          notes: 'Rubio miel. No quiere tonos fríos.', test: '2026-05-05',
+          hist: [
+            { d: '2026-08-27', svc: 'glaze', staff: 'Noelia', p: 35, f: 'Glaze 9.3 + 9.31 (15 min).' },
+            { d: '2026-06-10', svc: 'babylights', staff: 'Noelia', p: 115, f: 'Babylights con Blond Studio 8 + 20 vol. Matiz 9.3.' }
+          ] },
+        marina: { name: 'Marina Soler', phone: '617 ·· ·· 80', since: 2026, sede: 'al', staff: 'Sara',
+          notes: 'Clienta nueva: llegó por el WhatsApp en septiembre.', test: '',
+          hist: [
+            { d: '2026-09-24', svc: 'abc', staff: 'Sara', p: 42, f: 'Tratamiento nutritivo intenso (20 min).' }
+          ] }
+      };
+
+      // Citas de hoy. st: cobrada · salon · confirmada · pendiente
+      const APPTS = [
+        { id: 1, staff: 'Alberto', t: '09:30', svc: 'raiz', c: 'Pilar Moreno', src: 'mostrador', st: 'cobrada', pay: 'Tarjeta' },
+        { id: 2, staff: 'Alberto', t: '11:30', svc: 'balayage', c: 'elena', src: 'whatsapp', st: 'salon' },
+        { id: 3, staff: 'Alberto', t: '16:00', svc: 'corte', c: 'Teresa Ruiz', src: 'laura', st: 'pendiente' },
+        { id: 4, staff: 'Alexandra', t: '09:00', svc: 'babylights', c: 'sofia', src: 'instagram', st: 'cobrada', pay: 'Bizum' },
+        { id: 5, staff: 'Alexandra', t: '12:30', svc: 'glaze', c: 'ana', src: 'whatsapp', st: 'confirmada' },
+        { id: 6, staff: 'Alexandra', t: '17:00', svc: 'balayage', c: 'Cristina Vidal', src: 'laura', st: 'confirmada' },
+        { id: 7, staff: 'Carlos', t: '09:30', svc: 'corte', c: 'Laia Ferrer', src: 'mostrador', st: 'cobrada', pay: 'Efectivo' },
+        { id: 8, staff: 'Carlos', t: '10:30', svc: 'raiz', c: 'maria', src: 'whatsapp', st: 'cobrada', pay: 'Tarjeta' },
+        { id: 9, staff: 'Carlos', t: '13:00', svc: 'abc', c: 'Silvia Rey', src: 'laura', st: 'confirmada' },
+        { id: 10, staff: 'Marta', t: '10:00', svc: 'babylights', c: 'paula', src: 'mostrador', st: 'salon' },
+        { id: 11, staff: 'Marta', t: '17:00', svc: 'abc', c: 'lucia', src: 'laura', st: 'pendiente' },
+        { id: 12, staff: 'Irene', t: '09:30', svc: 'raiz', c: 'beatriz', src: 'whatsapp', st: 'cobrada', pay: 'Tarjeta' },
+        { id: 13, staff: 'Irene', t: '11:30', svc: 'novia', c: 'carmen', src: 'instagram', st: 'salon' },
+        { id: 14, staff: 'Irene', t: '18:00', svc: 'invitada', c: 'Andrea Gil', src: 'laura', st: 'confirmada' },
+        { id: 15, staff: 'Noelia', t: '09:30', svc: 'balayage', c: 'irene', src: 'whatsapp', st: 'salon' },
+        { id: 16, staff: 'Noelia', t: '16:30', svc: 'glaze', c: 'rocio', src: 'whatsapp', st: 'confirmada' },
+        { id: 17, staff: 'Sara', t: '10:30', svc: 'corte', c: 'nuria', src: 'mostrador', st: 'cobrada', pay: 'Bizum' },
+        { id: 18, staff: 'Sara', t: '12:00', svc: 'abc', c: 'marina', src: 'whatsapp', st: 'confirmada' },
+        { id: 19, staff: 'Sara', t: '17:30', svc: 'corte', c: 'Olga Martí', src: 'laura', st: 'pendiente' }
+      ];
+      APPTS.forEach(a => { a.sede = STAFF_SEDE[a.staff]; a.p = SVC[a.svc][1]; if (a.st === 'cobrada') a.paidAt = toHM(toMin(a.t) + SVC[a.svc][2]); });
+      const EXTRA_TICKETS = []; // servicios registrados desde la ficha
+
+      // Facturación del mes antes de hoy (ejemplo)
+      const MONTH_STAFF = { Alberto: 6240, Alexandra: 5480, Carlos: 3920, Marta: 4310, Irene: 3650, Noelia: 4870, Sara: 3290 };
+      const MONTH_CAT_SHARE = { color: 0.61, corte: 0.17, trat: 0.12, evento: 0.10 };
+
+      // Avisos de retoque: estado inicial
+      const RETOQUE = { nuria: 'respondido', maria: 'enviado' };
+      const RESPUESTA = { nuria: '«¡Sí! ¿Tenéis algo el sábado por la mañana?»' };
+
+      let sede = 'all', tab = 'agenda', selAppt = 2, selClient = 'elena', selRet = null;
+      const inSede = s => sede === 'all' || s === sede;
+      const clientName = c => CLIENTS[c] ? CLIENTS[c].name : c;
+      const staffList = () => (sede === 'all' ? Object.keys(SEDES) : [sede]).flatMap(k => SEDES[k].staff);
+
+      function toast(msg) {
+        const t = $('#crmToast');
+        t.textContent = msg;
+        t.classList.remove('hidden');
+        clearTimeout(toast._t);
+        toast._t = setTimeout(() => t.classList.add('hidden'), 3200);
       }
-    };
 
-    function openClientModal(id) {
-      const data = clientsData[id] || clientsData.elena;
-      document.getElementById('modalName').textContent = data.name;
-      document.getElementById('modalInitials').textContent = data.initials;
-      document.getElementById('modalNotes').textContent = data.notes;
-      document.getElementById('modalFormula').innerHTML = data.formula;
-      document.getElementById('clientModal').classList.remove('hidden');
-    }
-
-    function closeClientModal() {
-      document.getElementById('clientModal').classList.add('hidden');
-    }
-
-    function setSalonTab(tabId) {
-      document.querySelectorAll('.salon-tab').forEach(btn => {
-        btn.classList.remove('bg-white', 'text-stone-900', 'shadow-sm');
-        btn.classList.add('text-stone-600');
-      });
-      const active = document.getElementById('tab-' + tabId);
-      if (active) {
-        active.classList.add('bg-white', 'text-stone-900', 'shadow-sm');
-        active.classList.remove('text-stone-600');
+      function lastOfType(id, types) {
+        return CLIENTS[id].hist.find(h => types.includes(SVC[h.svc][3]));
+      }
+      function retoqueInfo(id) {
+        const h = CLIENTS[id].hist.find(x => SVC[x.svc][4]);
+        if (!h) return null;
+        const every = SVC[h.svc][4], days = daysSince(h.d);
+        return { h, every, days, ratio: days / every };
+      }
+      function hasFutureAppt(id) {
+        return APPTS.some(a => a.c === id && a.st !== 'cobrada');
+      }
+      function tickets() {
+        return APPTS.filter(a => a.st === 'cobrada').map(a => ({ time: a.paidAt, c: clientName(a.c), svc: a.svc, staff: a.staff, sede: a.sede, pay: a.pay, p: a.p }))
+          .concat(EXTRA_TICKETS).filter(t => inSede(t.sede)).sort((a, b) => a.time.localeCompare(b.time));
       }
 
-      if (tabId === 'tq') {
-        document.getElementById('crmKpiAppointments').textContent = "18 Citas";
-      } else if (tabId === 'eci-ab') {
-        document.getElementById('crmKpiAppointments').textContent = "14 Citas";
-      } else {
-        document.getElementById('crmKpiAppointments').textContent = "11 Citas";
+      // ---------- KPIs ----------
+      function renderKpis() {
+        const ap = APPTS.filter(a => inSede(a.sede));
+        const cob = tickets().reduce((s, t) => s + t.p, 0);
+        const prev = cob + ap.filter(a => a.st !== 'cobrada').reduce((s, a) => s + a.p, 0);
+        const ia = ap.filter(a => a.src !== 'mostrador').length;
+        const pend = ap.filter(a => a.st === 'pendiente').length;
+        const due = Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede)).map(id => [id, retoqueInfo(id)])
+          .filter(([id, r]) => r && r.ratio >= 0.9 && !hasFutureAppt(id));
+        const sent = due.filter(([id]) => RETOQUE[id]).length;
+        const k = [
+          ['Citas hoy', ap.length, ap.filter(a => a.st === 'cobrada').length + ' cobradas · ' + pend + ' por confirmar', 'text-stone-900'],
+          ['Caja de hoy', eur(cob), 'previsto al cierre: ' + eur(prev), 'text-gold-700'],
+          ['Traídas por Laura y el chat', ia + ' de ' + ap.length, 'citas de hoy sin coger el teléfono', 'text-emerald-700'],
+          ['Retoques que tocan', due.length, sent + ' avisos ya enviados', 'text-purple-700']
+        ];
+        $('#crmKpis').innerHTML = k.map(([l, v, s, c]) => `<div class="glass-panel p-4 rounded-2xl shadow-sm"><span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">${l}</span><span class="block text-2xl font-bold font-display mt-1.5 ${c}">${v}</span><span class="text-[11px] text-stone-500 mt-0.5 block">${s}</span></div>`).join('');
       }
-    }
+
+      // ---------- AGENDA ----------
+      const START = 9 * 60, END = 20 * 60 + 30, ROW = 26;
+      function renderAgenda() {
+        const staff = staffList();
+        const colW = 130;
+        const rows = (END - START) / 30;
+        let html = `<div class="relative" style="min-width:${56 + staff.length * colW}px;height:${rows * ROW + 34}px">`;
+        // cabecera
+        html += `<div class="absolute top-0 left-14 right-0 flex h-8">` + staff.map(p => `<div class="flex-1 px-1 text-center"><span class="block text-xs font-bold text-stone-800 truncate">${p}</span>${sede === 'all' ? `<span class="block text-[9px] text-stone-400 truncate -mt-0.5">${SEDES[STAFF_SEDE[p]].n.replace('El Corte Inglés', 'ECI')}</span>` : ''}</div>`).join('') + `</div>`;
+        // líneas de hora
+        for (let i = 0; i <= rows; i++) {
+          const m = START + i * 30, y = 34 + i * ROW;
+          html += `<div class="absolute left-14 right-0 border-t ${m % 60 ? 'border-stone-100' : 'border-stone-200'}" style="top:${y}px"></div>`;
+          if (m % 60 === 0 && i < rows) html += `<span class="absolute left-0 w-12 text-right text-[10px] font-mono text-stone-400" style="top:${y - 6}px">${toHM(m)}</span>`;
+        }
+        // separadores de columna
+        staff.forEach((p, i) => { if (i) html += `<div class="absolute border-l border-stone-200" style="top:34px;bottom:0;left:calc(56px + (100% - 56px) * ${i / staff.length})"></div>`; });
+        // línea de ahora
+        html += `<div class="absolute left-12 right-0 border-t-2 border-red-400 z-20" style="top:${34 + (toMin(NOW) - START) / 30 * ROW}px"><span class="absolute -left-1 -top-1.5 w-3 h-3 rounded-full bg-red-400"></span></div>`;
+        // citas
+        APPTS.filter(a => staff.includes(a.staff)).forEach(a => {
+          const i = staff.indexOf(a.staff), s = SVC[a.svc], cat = CAT[s[3]];
+          const top = 34 + (toMin(a.t) - START) / 30 * ROW + 1, h = s[2] / 30 * ROW - 3;
+          const border = a.st === 'pendiente' ? 'border-2 border-dashed' : 'border-l-4';
+          const fade = a.st === 'cobrada' ? 'opacity-55' : '';
+          const ring = a.id === selAppt ? 'ring-2 ring-noir-900 z-10' : '';
+          html += `<button data-appt="${a.id}" class="appt absolute text-left rounded-lg px-1.5 py-1 overflow-hidden shadow-sm hover:shadow-md transition ${cat[1]} ${border} ${fade} ${ring}" style="top:${top}px;height:${h}px;left:calc(56px + (100% - 56px) * ${i / staff.length} + 3px);width:calc((100% - 56px) / ${staff.length} - 6px)">
+            <span class="block text-[10px] font-mono font-bold truncate">${a.t}${a.st === 'cobrada' ? ' ✓ cobrada' : a.st === 'salon' ? ' · en sillón' : a.st === 'pendiente' ? ' · confirmar' : ''}</span>
+            <span class="block text-[11px] font-bold leading-tight truncate">${esc(clientName(a.c))}</span>
+            ${h > 40 ? `<span class="block text-[10px] leading-tight truncate opacity-80">${esc(s[0])}</span>` : ''}
+            ${h > 64 && a.src !== 'mostrador' ? `<span class="inline-block mt-0.5 text-[9px] font-bold bg-white/80 rounded px-1">${SRC[a.src]}</span>` : ''}
+          </button>`;
+        });
+        html += '</div>';
+        $('#agendaGrid').innerHTML = html;
+        $$('#agendaGrid .appt').forEach(b => b.addEventListener('click', () => { selAppt = +b.dataset.appt; renderAgenda(); renderAppt(); }));
+        $('#agendaTitle').textContent = 'Hoy · ' + (sede === 'all' ? 'los 3 salones' : SEDES[sede].n) + ' · ' + staff.length + ' estilistas';
+        renderGaps(staff);
+      }
+
+      function renderGaps(staff) {
+        const gaps = [];
+        staff.forEach(p => {
+          const busy = APPTS.filter(a => a.staff === p).map(a => [toMin(a.t), toMin(a.t) + SVC[a.svc][2]]).sort((x, y) => x[0] - y[0]);
+          let cur = Math.max(15 * 60, toMin(NOW));
+          busy.forEach(([s, e]) => { if (s - cur >= 60) gaps.push([p, cur, s]); cur = Math.max(cur, e); });
+          if (END - cur >= 60) gaps.push([p, cur, END]);
+        });
+        gaps.sort((a, b) => a[1] - b[1]);
+        $('#agendaGaps').innerHTML = gaps.slice(0, 6).map(([p, s, e]) => `<li class="flex items-center justify-between gap-2"><span><strong>${toHM(s)}–${toHM(e)}</strong> · ${p}</span><span class="text-[10px] text-stone-400 truncate">${SEDES[STAFF_SEDE[p]].n.replace('El Corte Inglés', 'ECI')}</span></li>`).join('') || '<li class="text-stone-500">Tarde completa.</li>';
+      }
+
+      function renderAppt() {
+        const a = APPTS.find(x => x.id === selAppt && inSede(x.sede)) || APPTS.find(x => inSede(x.sede));
+        if (!a) { $('#apptDetail').innerHTML = ''; return; }
+        selAppt = a.id;
+        const s = SVC[a.svc], known = CLIENTS[a.c], last = known && lastOfType(a.c, ['color']);
+        const stLabel = { cobrada: ['Cobrada', 'bg-stone-200 text-stone-700'], salon: ['En el sillón', 'bg-amber-100 text-amber-900'], confirmada: ['Confirmada', 'bg-emerald-100 text-emerald-800'], pendiente: ['Por confirmar', 'bg-orange-100 text-orange-800'] }[a.st];
+        let action = '';
+        if (a.st === 'pendiente') action = `<button data-act="confirm" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm">✓ Confirmar y avisar por WhatsApp</button>`;
+        else if (a.st === 'confirmada') action = `<button data-act="arrive" class="w-full py-2.5 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 font-bold text-sm">Ha llegado · pasar al sillón</button>`;
+        else if (a.st === 'salon') action = `<div class="flex gap-2"><select id="payMethod" class="flex-1 text-sm border border-stone-300 rounded-xl px-2 bg-white" aria-label="Forma de pago"><option>Tarjeta</option><option>Bizum</option><option>Efectivo</option></select><button data-act="pay" class="flex-1 py-2.5 rounded-xl bg-gold-400 hover:bg-gold-300 text-noir-950 font-bold text-sm">Cobrar ${eur(a.p)}</button></div>`;
+        else action = `<p class="text-sm text-stone-600">Cobrada a las ${a.paidAt} · ${a.pay}</p>`;
+        $('#apptDetail').innerHTML = `
+          <div class="flex items-start justify-between gap-2">
+            <div class="min-w-0"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider">${a.t} · ${a.staff}</p>
+              <h3 class="text-lg font-bold text-stone-900 truncate">${esc(clientName(a.c))}</h3>
+              <p class="text-sm text-stone-600">${esc(s[0])} · ${eur(a.p)}</p></div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${stLabel[1]}">${stLabel[0]}</span>
+          </div>
+          <p class="text-xs text-stone-500 mt-2">${SEDES[a.sede].n} · ${s[2]} min · Entró por ${SRC[a.src].replace(/^\S+ /, '')}</p>
+          ${last ? `<div class="mt-3 p-3 rounded-xl bg-gold-50 border border-gold-200"><p class="text-[10px] font-bold text-gold-800 uppercase tracking-wider">🎨 ${a.st === 'cobrada' ? 'Fórmula aplicada' : 'Fórmula a preparar'} (${fmtD(last.d)})</p><p class="text-xs font-mono text-stone-800 mt-1 leading-relaxed">${esc(last.f)}</p></div>` : known ? '' : `<p class="mt-3 text-xs text-stone-500 italic">Clienta nueva: la ficha se crea al cobrar.</p>`}
+          ${known ? `<button data-act="ficha" class="mt-3 text-xs font-bold text-gold-700 hover:text-gold-900 underline">Abrir ficha completa →</button>` : ''}
+          <div class="mt-4 pt-3 border-t border-stone-200">${action}</div>`;
+        const btn = act => $('#apptDetail [data-act="' + act + '"]');
+        if (btn('confirm')) btn('confirm').onclick = () => { a.st = 'confirmada'; toast('Cita confirmada. WhatsApp enviado a ' + clientName(a.c) + ' con la ubicación del salón.'); refresh(); };
+        if (btn('arrive')) btn('arrive').onclick = () => { a.st = 'salon'; refresh(); };
+        if (btn('pay')) btn('pay').onclick = () => { a.st = 'cobrada'; a.pay = $('#payMethod').value; a.paidAt = NOW; if (known) known.hist.unshift({ d: '2026-10-15', svc: a.svc, staff: a.staff, p: a.p, f: last && s[3] === 'color' ? last.f : '' }); toast('Cobrado ' + eur(a.p) + ' con ' + a.pay.toLowerCase() + '. Ya está en la caja del día.'); refresh(); };
+        if (btn('ficha')) btn('ficha').onclick = () => { selClient = a.c; setTab('clientas'); };
+      }
+
+      // ---------- CLIENTAS ----------
+      function clientStats(id) {
+        const h = CLIENTS[id].hist;
+        return { visits: h.length, year: h.filter(x => x.d.startsWith('2026')).reduce((s, x) => s + x.p, 0), last: h[0].d };
+      }
+      function renderClients() {
+        const q = $('#crmSearch').value.trim().toLowerCase();
+        const sort = $('#crmSort').value;
+        let ids = Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede));
+        if (q) ids = ids.filter(id => { const c = CLIENTS[id]; return (c.name + ' ' + c.notes + ' ' + c.hist.map(h => SVC[h.svc][0] + ' ' + h.f).join(' ')).toLowerCase().includes(q); });
+        ids.sort((a, b) => sort === 'name' ? CLIENTS[a].name.localeCompare(CLIENTS[b].name) : sort === 'spend' ? clientStats(b).year - clientStats(a).year : clientStats(b).last.localeCompare(clientStats(a).last));
+        if (ids.length && !ids.includes(selClient)) selClient = ids[0];
+        $('#crmCount').textContent = ids.length + (ids.length === 1 ? ' clienta' : ' clientas');
+        $('#crmList').innerHTML = ids.map(id => {
+          const c = CLIENTS[id], st = clientStats(id), r = retoqueInfo(id);
+          const due = r && r.ratio >= 0.9 && !hasFutureAppt(id);
+          return `<li><button data-c="${id}" class="crm-row w-full text-left p-3 flex items-center gap-3 transition border-l-4 ${id === selClient ? 'bg-gold-50 border-gold-500' : 'border-transparent hover:bg-stone-50'}">
+            <span class="w-9 h-9 shrink-0 rounded-full bg-gold-100 border border-gold-300 flex items-center justify-center text-xs font-bold text-gold-800">${c.name.split(' ').map(x => x[0]).join('')}</span>
+            <span class="flex-1 min-w-0"><span class="block text-sm font-bold text-stone-900 truncate">${esc(c.name)}</span><span class="block text-[11px] text-stone-500 truncate">${esc(SVC[c.hist[0].svc][0])} · ${c.staff}</span></span>
+            <span class="text-right shrink-0"><span class="block text-sm font-mono font-bold">${eur(st.year)}</span><span class="block text-[10px] ${due ? 'text-purple-700 font-bold' : 'text-stone-400'}">${due ? 'Toca retoque' : st.visits + (st.visits === 1 ? ' visita' : ' visitas')}</span></span>
+          </button></li>`;
+        }).join('') || '<li class="p-6 text-sm text-stone-500 text-center">Ninguna clienta coincide con la búsqueda.</li>';
+        $$('.crm-row').forEach(b => b.addEventListener('click', () => { selClient = b.dataset.c; renderClients(); }));
+        renderFicha(ids.length ? selClient : null);
+      }
+
+      function renderFicha(id) {
+        if (!id) { $('#crmFicha').innerHTML = '<p class="text-sm text-stone-500">Elige una clienta de la lista.</p>'; return; }
+        const c = CLIENTS[id], st = clientStats(id), r = retoqueInfo(id), color = lastOfType(id, ['color']);
+        const next = APPTS.find(a => a.c === id && a.st !== 'cobrada');
+        const retTxt = next ? 'Hoy a las ' + next.t : r ? (r.every - r.days > 0 ? 'en ' + (r.every - r.days) + ' días' : 'ya le toca') : '—';
+        const testOk = c.test && daysSince(c.test) <= 180;
+        $('#crmFicha').innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-stone-200 pb-4">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="w-12 h-12 shrink-0 rounded-full bg-gold-100 border border-gold-400 flex items-center justify-center text-lg font-bold text-gold-800">${c.name.split(' ').map(x => x[0]).join('')}</span>
+              <div class="min-w-0"><h3 class="text-xl font-bold text-stone-900 font-display">${esc(c.name)}</h3>
+                <p class="text-xs text-stone-500">Clienta desde ${c.since} · ${c.phone} · ${SEDES[c.sede].n} · con ${c.staff}</p></div>
+            </div>
+            <div class="flex gap-2 shrink-0">
+              <button data-act="wa" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">💬 WhatsApp</button>
+              <button data-act="new" class="px-3 py-2 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 text-xs font-bold">+ Servicio de hoy</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Visitas</span><span class="block text-lg font-bold">${st.visits}</span></div>
+            <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Gasto 2026</span><span class="block text-lg font-bold text-gold-700">${eur(st.year)}</span></div>
+            <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Última visita</span><span class="block text-sm font-bold mt-1">${fmtD(st.last)}</span></div>
+            <div class="p-3 rounded-xl bg-purple-50 border border-purple-200"><span class="block text-[10px] font-bold text-purple-700 uppercase">Próximo retoque</span><span class="block text-sm font-bold mt-1 text-purple-900">${retTxt}</span></div>
+          </div>
+          <div id="newSvcForm" class="hidden p-4 rounded-2xl border-2 border-gold-300 bg-gold-50/60 space-y-3">
+            <p class="text-sm font-bold text-stone-900">Registrar el servicio de hoy</p>
+            <div class="grid sm:grid-cols-3 gap-2">
+              <select id="nsSvc" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Servicio">${Object.entries(SVC).map(([k, s]) => `<option value="${k}">${s[0]}</option>`).join('')}</select>
+              <select id="nsStaff" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Estilista">${SEDES[c.sede].staff.map(p => `<option ${p === c.staff ? 'selected' : ''}>${p}</option>`).join('')}</select>
+              <input id="nsPrice" type="number" min="0" step="1" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Importe en euros">
+            </div>
+            <textarea id="nsFormula" rows="2" class="w-full text-sm font-mono border border-stone-300 rounded-xl px-3 py-2 bg-white" placeholder="Fórmula: tintes, volúmenes, tiempos de exposición…" aria-label="Fórmula"></textarea>
+            <div class="flex justify-end gap-2"><button data-act="cancel" class="px-3 py-2 rounded-xl bg-stone-200 text-xs font-bold">Cancelar</button><button data-act="save" class="px-3 py-2 rounded-xl bg-gold-400 hover:bg-gold-300 text-noir-950 text-xs font-bold">Guardar y cobrar</button></div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-gold-50/80 border border-gold-200 space-y-2">
+              <p class="text-xs font-bold text-gold-900 uppercase tracking-wider">🎨 Fórmula de color actual</p>
+              ${color ? `<p class="text-xs font-mono text-stone-800 leading-relaxed">${esc(color.f)}</p><p class="text-[11px] text-gold-800">${esc(SVC[color.svc][0])} · ${fmtD(color.d)} · ${color.staff}</p>` : '<p class="text-xs text-stone-500">Sin servicios de color todavía.</p>'}
+            </div>
+            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-2 text-xs text-stone-700">
+              <p class="font-bold text-stone-800">🔒 Notas privadas del equipo</p>
+              <p>${esc(c.notes)}</p>
+              <p class="pt-1 ${testOk ? 'text-emerald-700' : 'text-orange-700'} font-semibold">${testOk ? '✓ Prueba de alergia al tinte: ' + fmtD(c.test) : '⚠ Prueba de alergia al tinte pendiente: hacerla 48 h antes del color'}</p>
+            </div>
+          </div>
+          ${c.photos ? `<div class="grid grid-cols-2 gap-3"><figure class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100"><img src="assets/rubios-224.webp" alt="Rubio trabajado en Salón 224" class="w-full h-36 object-cover"><figcaption class="text-[10px] text-stone-500 p-1.5">Foto del resultado · ${fmtD(color ? color.d : st.last)}</figcaption></figure><figure class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100"><img src="assets/trabajos-224.webp" alt="Trabajo de color de Salón 224" class="w-full h-36 object-cover"><figcaption class="text-[10px] text-stone-500 p-1.5">Referencia que trajo la clienta</figcaption></figure></div>` : ''}
+          <div>
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Historial de servicios</p>
+            <ol class="relative border-l-2 border-gold-200 ml-2 space-y-3">
+              ${c.hist.map(h => `<li class="pl-4 relative"><span class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full ${CAT[SVC[h.svc][3]][2]}"></span>
+                <div class="flex flex-wrap items-baseline justify-between gap-x-3"><span class="text-sm font-bold text-stone-900">${esc(SVC[h.svc][0])}</span><span class="text-xs font-mono text-stone-600">${fmtD(h.d)} · ${h.staff} · <strong>${eur(h.p)}</strong></span></div>
+                ${h.f ? `<p class="text-[11px] font-mono text-stone-600 leading-relaxed mt-0.5">${esc(h.f)}</p>` : ''}</li>`).join('')}
+            </ol>
+          </div>`;
+        const f = $('#crmFicha');
+        const form = f.querySelector('#newSvcForm');
+        const setPrice = () => { f.querySelector('#nsPrice').value = SVC[f.querySelector('#nsSvc').value][1]; };
+        f.querySelector('#nsSvc').addEventListener('change', setPrice); setPrice();
+        f.querySelector('[data-act="new"]').onclick = () => { form.classList.remove('hidden'); f.querySelector('#nsFormula').value = color ? color.f : ''; f.querySelector('#nsSvc').focus(); };
+        f.querySelector('[data-act="cancel"]').onclick = () => form.classList.add('hidden');
+        f.querySelector('[data-act="wa"]').onclick = () => toast('Abriendo la conversación de WhatsApp con ' + c.name.split(' ')[0] + ' en la bandeja única.');
+        f.querySelector('[data-act="save"]').onclick = () => {
+          const svc = f.querySelector('#nsSvc').value, staff = f.querySelector('#nsStaff').value;
+          const p = Math.max(0, Math.round(+f.querySelector('#nsPrice').value || 0));
+          c.hist.unshift({ d: '2026-10-15', svc, staff, p, f: f.querySelector('#nsFormula').value.trim() });
+          EXTRA_TICKETS.push({ time: NOW, c: c.name, svc, staff, sede: STAFF_SEDE[staff], pay: 'Tarjeta', p });
+          delete RETOQUE[id];
+          toast('Guardado en la ficha de ' + c.name.split(' ')[0] + ' y cobrado ' + eur(p) + '.');
+          refresh();
+        };
+      }
+
+      // ---------- RETOQUES ----------
+      function retoqueMsg(id) {
+        const c = CLIENTS[id], r = retoqueInfo(id), weeks = Math.round(r.days / 7);
+        return `Hola ${esc(c.name.split(' ')[0])} 💛 Hace ${weeks} semanas de tu ${esc(SVC[r.h.svc][0].toLowerCase())} con ${r.h.staff} en ${SEDES[c.sede].n}. ¿Te apetece renovar el brillo antes de que se note la raíz? ${r.h.staff} tiene huecos esta semana.`;
+      }
+      function renderRetoques() {
+        const list = Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede)).map(id => [id, retoqueInfo(id)])
+          .filter(([id, r]) => r && r.ratio >= 0.85 && !hasFutureAppt(id)).sort((a, b) => b[1].ratio - a[1].ratio);
+        if (!list.some(([id]) => id === selRet)) selRet = list.length ? list[0][0] : null;
+        $('#retoqueList').innerHTML = (list.length ? `<p class="text-sm text-stone-600">Clientas a las que les toca volver según su última técnica. El aviso sale solo; aquí veis cómo va cada una.</p>` : '<p class="text-sm text-stone-500">Ninguna clienta tiene retoque pendiente en este salón.</p>') + list.map(([id, r]) => {
+          const c = CLIENTS[id], st = RETOQUE[id], pct = Math.min(100, Math.round(r.ratio * 100));
+          const late = r.days > r.every;
+          return `<div data-r="${id}" class="ret-card glass-panel rounded-2xl p-4 shadow-sm cursor-pointer transition ${id === selRet ? 'ring-2 ring-gold-400' : 'hover:shadow-md'}">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0"><p class="text-sm font-bold text-stone-900">${esc(c.name)}</p><p class="text-xs text-stone-500">${esc(SVC[r.h.svc][0])} el ${fmtD(r.h.d)} · ${r.h.staff} · ${SEDES[c.sede].n.replace('El Corte Inglés', 'ECI')}</p></div>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full shrink-0 ${late ? 'bg-orange-100 text-orange-800' : 'bg-purple-100 text-purple-800'}">Día ${r.days} de ${r.every}</span>
+            </div>
+            <div class="h-1.5 rounded-full bg-stone-200 mt-3 overflow-hidden"><div class="h-full ${late ? 'bg-orange-400' : 'bg-purple-400'}" style="width:${pct}%"></div></div>
+            <div class="mt-3 flex items-center justify-between gap-2 text-xs">
+              ${st === 'respondido' ? `<span class="text-emerald-700 font-semibold">💬 Respondió: ${RESPUESTA[id]}</span><button data-book="${id}" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold shrink-0">Darle cita</button>`
+              : st === 'enviado' ? `<span class="text-stone-500">✓ Aviso enviado ayer · esperando respuesta</span>`
+              : st === 'cita' ? `<span class="text-emerald-700 font-semibold">📅 Cita propuesta para el sábado a las 10:00</span>`
+              : `<span class="text-stone-500">${late ? 'Lleva ' + (r.days - r.every) + ' días de retraso' : 'Le toca en ' + (r.every - r.days) + ' días'}</span><button data-send="${id}" class="px-3 py-1.5 rounded-lg bg-noir-900 hover:bg-noir-800 text-gold-300 font-bold shrink-0">Enviar aviso ahora</button>`}
+            </div>
+          </div>`;
+        }).join('');
+        $$('.ret-card').forEach(el => el.addEventListener('click', e => { if (e.target.closest('button')) return; selRet = el.dataset.r; renderRetoques(); }));
+        $$('[data-send]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.send] = 'enviado'; selRet = b.dataset.send; toast('Aviso de retoque enviado por WhatsApp a ' + CLIENTS[b.dataset.send].name.split(' ')[0] + '.'); refresh(); }));
+        $$('[data-book]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.book] = 'cita'; toast('Cita propuesta a ' + CLIENTS[b.dataset.book].name.split(' ')[0] + ' para el sábado a las 10:00. Se confirma sola si dice que sí.'); refresh(); }));
+        $('#retoquePreview').innerHTML = selRet ? retoqueMsg(selRet) : 'Hola 💛 Ya te toca renovar el color. ¿Te buscamos hueco esta semana?';
+      }
+
+      // ---------- CAJA ----------
+      function bars(sel, rows) {
+        const max = Math.max(1, ...rows.map(r => r[1]));
+        $(sel).innerHTML = rows.map(([l, v, cls]) => `<div><div class="flex justify-between text-xs mb-1"><span class="font-semibold text-stone-700">${l}</span><span class="font-mono font-bold">${eur(v)}</span></div><div class="h-2 rounded-full bg-stone-200 overflow-hidden"><div class="h-full rounded-full ${cls || 'bg-gold-400'}" style="width:${Math.round(v / max * 100)}%"></div></div></div>`).join('');
+      }
+      function renderCaja() {
+        const t = tickets();
+        const total = t.reduce((s, x) => s + x.p, 0);
+        $('#cajaCount').textContent = t.length + (t.length === 1 ? ' ticket' : ' tickets');
+        $('#cajaRows').innerHTML = t.map(x => `<tr><td class="p-3 font-mono text-xs">${x.time}</td><td class="p-3 font-semibold">${esc(x.c)}</td><td class="p-3 text-stone-600">${esc(SVC[x.svc][0])}</td><td class="p-3 text-stone-600">${x.staff}</td><td class="p-3 text-stone-600">${x.pay}</td><td class="p-3 text-right font-mono font-bold">${eur(x.p)}</td></tr>`).join('') || '<tr><td colspan="6" class="p-6 text-center text-stone-500">Todavía no hay cobros hoy en este salón.</td></tr>';
+        const by = m => t.filter(x => x.pay === m).reduce((s, x) => s + x.p, 0);
+        const pend = APPTS.filter(a => inSede(a.sede) && a.st !== 'cobrada').reduce((s, a) => s + a.p, 0);
+        $('#cajaResumen').innerHTML = `
+          <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Cobrado hoy</p>
+          <p class="font-display text-4xl font-bold">${eur(total)}</p>
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="p-2 rounded-xl bg-white/5 border border-white/10"><span class="block text-stone-400">Tarjeta</span><span class="font-mono font-bold">${eur(by('Tarjeta'))}</span></div>
+            <div class="p-2 rounded-xl bg-white/5 border border-white/10"><span class="block text-stone-400">Bizum</span><span class="font-mono font-bold">${eur(by('Bizum'))}</span></div>
+            <div class="p-2 rounded-xl bg-white/5 border border-white/10"><span class="block text-stone-400">Efectivo</span><span class="font-mono font-bold">${eur(by('Efectivo'))}</span></div>
+          </div>
+          <div class="flex justify-between text-sm pt-2 border-t border-white/10"><span class="text-stone-300">Ticket medio</span><span class="font-mono font-bold">${t.length ? eur(total / t.length) : '—'}</span></div>
+          <div class="flex justify-between text-sm"><span class="text-stone-300">Pendiente de cobrar hoy</span><span class="font-mono font-bold text-gold-300">${eur(pend)}</span></div>
+          <p class="text-[11px] text-stone-400">Sin comisiones por reserva: cada euro de la caja es del salón.</p>`;
+        const staff = staffList();
+        const today = p => t.filter(x => x.staff === p).reduce((s, x) => s + x.p, 0);
+        bars('#cajaByStaff', staff.map(p => [p + (sede === 'all' ? ' · ' + SEDES[STAFF_SEDE[p]].n.replace('El Corte Inglés', 'ECI') : ''), MONTH_STAFF[p] + today(p)]).sort((a, b) => b[1] - a[1]));
+        const monthTotal = staff.reduce((s, p) => s + MONTH_STAFF[p], 0);
+        const todayCat = k => t.filter(x => SVC[x.svc][3] === k).reduce((s, x) => s + x.p, 0);
+        bars('#cajaBySvc', Object.entries(MONTH_CAT_SHARE).map(([k, sh]) => [CAT[k][0], Math.round(monthTotal * sh) + todayCat(k), CAT[k][2]]));
+      }
+
+      // ---------- NAVEGACIÓN ----------
+      function setTab(t) {
+        tab = t;
+        $$('.crm-tab').forEach(b => { const on = b.dataset.tab === t; b.className = 'crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap ' + (on ? 'border-gold-500 text-noir-900' : 'border-transparent text-stone-500 hover:text-stone-800'); b.setAttribute('aria-selected', on); });
+        $$('.crm-panel').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== t));
+        refresh();
+      }
+      function refresh() {
+        $$('.crm-sede').forEach(b => { b.className = 'crm-sede px-3 py-1.5 rounded-lg transition ' + (b.dataset.sede === sede ? 'bg-white text-stone-900 shadow-sm' : 'text-stone-600 hover:text-stone-900'); });
+        renderKpis();
+        if (tab === 'agenda') { renderAgenda(); renderAppt(); }
+        if (tab === 'clientas') renderClients();
+        if (tab === 'retoques') renderRetoques();
+        if (tab === 'caja') renderCaja();
+      }
+      $$('.crm-sede').forEach(b => b.addEventListener('click', () => { sede = b.dataset.sede; refresh(); }));
+      $$('.crm-tab').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+      $('#crmSearch').addEventListener('input', renderClients);
+      $('#crmSort').addEventListener('change', renderClients);
+      setTab('agenda');
+    })();
 
     // --- 5. INBOX SELECTION ---
     const inboxDetails = [
