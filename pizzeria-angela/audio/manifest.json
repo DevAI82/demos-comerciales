@@ -1,0 +1,62 @@
+{
+  "22e099f7": {
+    "role": "agent",
+    "text": "¡Hola! Soy Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?"
+  },
+  "078c4249": {
+    "role": "agent",
+    "text": "¡Hola, buenas noches! Te atiende Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?"
+  },
+  "ceea0f0e": {
+    "role": "client",
+    "text": "Hola, sí. Quería una barbacoa familiar y una diavola mediana para recoger sobre las nueve y media."
+  },
+  "ce26712a": {
+    "role": "agent",
+    "text": "¡Perfecto! Una barbacoa familiar y una diavola mediana. A las nueve y media tengo hueco en el horno. ¿A nombre de quién lo apunto y a qué móvil te mando el resumen por WhatsApp?"
+  },
+  "ab7a5c35": {
+    "role": "client",
+    "text": "A nombre de Carlos, al seis cuatro cuatro, doce, treinta y cuatro, cincuenta y seis."
+  },
+  "5e2105de": {
+    "role": "agent",
+    "text": "Hecho, Carlos. Te acabo de mandar el resumen por WhatsApp con un enlace por si quieres pagarlo ya; si no, lo pagas al recoger. ¡Hasta luego!"
+  },
+  "9d030321": {
+    "role": "agent",
+    "text": "Tenemos masa sin gluten bajo pedido. Si es por celiaquía o alergia, te paso con una persona del equipo para que te explique cómo la preparamos."
+  },
+  "16d41267": {
+    "role": "agent",
+    "text": "Ahora mismo el horno va bien de carga. Tres pizzas familiares estarían listas para recoger en unos veinticinco minutos."
+  },
+  "95bcb232": {
+    "role": "agent",
+    "text": "Estamos en Albacete, en Calle Simone de Beauvoir número 3, justo frente a Imaginalia, con facilísimo aparcamiento en la misma puerta."
+  },
+  "9493ee77": {
+    "role": "agent",
+    "text": "Sí, claro. Puedes pagar al recoger, en efectivo o con tarjeta. Y si prefieres pagarlo ya, te mando un enlace seguro por WhatsApp."
+  },
+  "e15dc478": {
+    "role": "agent",
+    "text": "¡Te he entendido! Te apunto el pedido para recoger y te mando el resumen por WhatsApp."
+  },
+  "f67d02ab": {
+    "role": "agent",
+    "text": "¡Claro! ¿Para qué día y cuántas personas sería la mesa?"
+  },
+  "bc91518a": {
+    "role": "agent",
+    "text": "¡Oído cocina! Tenemos nuestras pizzas en horno de piedra listas para recoger en unos 20 minutos. ¿Qué especialidad te apetece?"
+  },
+  "2d7b71ee": {
+    "role": "agent",
+    "text": "Las pizzas medianas van de once a doce euros y medio, y las familiares de dieciséis y medio a dieciocho. Te mando la carta con fotos a tu WhatsApp."
+  },
+  "e78c6740": {
+    "role": "agent",
+    "text": "¡Hola, muy buenas! Te atiende Laura, de Pizzería Ángela. ¿Quieres encargar pizzas para recoger?"
+  }
+}
