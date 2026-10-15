@@ -175,7 +175,7 @@
             Asistente Telefónico 24/7 para Salón 224
           </h1>
           <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Atiende las llamadas al teléfono del salón (967 105 930) sin esperas. Desarrollado con <strong>ElevenLabs Conversational AI</strong>, entiende peticiones en lenguaje natural, consulta huecos libres en <strong>Fresha</strong> y agenda citas automáticamente sin que el equipo interrumpa un peinado o color.
+            Laura, la recepcionista de voz, contesta al primer tono en el 967 105 930 mientras el equipo está con una clienta en el lavacabezas o aplicando color. Explica servicios y precios orientativos, orienta entre balayage, babylights o mechas y deja la cita en la agenda para que el salón la confirme por WhatsApp.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -183,13 +183,36 @@
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Línea 967 105 930 Conectada
           </span>
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
-            API Fresha Sincronizada
+            Agenda del salón conectada
           </span>
         </div>
       </div>
 
-      <!-- SIMULADOR TELEFÓNICO GRID -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- AGENTE EN DIRECTO (ElevenLabs) -->
+      <div data-convai-only class="bg-white rounded-3xl p-5 sm:p-7 space-y-5 border-2 border-gold-400/60 shadow-sm">
+        <div class="flex items-start gap-4">
+          <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gold-400 bg-noir-950 p-1.5 shadow shrink-0">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 uppercase tracking-wider"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Laura está disponible ahora</span>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-noir-900 mt-0.5">Llama a Laura y pruébala como si fueras una clienta</h2>
+            <p class="text-sm text-stone-600 mt-1">Es una conversación real, no una grabación: te escucha, te responde con su voz y puedes interrumpirla como en una llamada normal.</p>
+          </div>
+        </div>
+        <ol class="grid sm:grid-cols-3 gap-3 text-sm">
+          <li class="p-3.5 rounded-2xl bg-gold-50 border border-gold-200 flex gap-3"><span class="w-7 h-7 rounded-full bg-noir-900 text-gold-300 font-bold flex items-center justify-center shrink-0">1</span><span>Pulsa <strong>«Llamar a Laura»</strong>, abajo a la izquierda.</span></li>
+          <li class="p-3.5 rounded-2xl bg-gold-50 border border-gold-200 flex gap-3"><span class="w-7 h-7 rounded-full bg-noir-900 text-gold-300 font-bold flex items-center justify-center shrink-0">2</span><span>Acepta el aviso y <strong>permite el micrófono</strong>.</span></li>
+          <li class="p-3.5 rounded-2xl bg-gold-50 border border-gold-200 flex gap-3"><span class="w-7 h-7 rounded-full bg-noir-900 text-gold-300 font-bold flex items-center justify-center shrink-0">3</span><span>Pide cita, pregunta un precio o duda entre balayage y babylights.</span></li>
+        </ol>
+        <div class="grid sm:grid-cols-2 gap-2 text-sm">
+          <div class="p-3 rounded-xl border border-gold-200 bg-gold-50/70"><strong class="block text-xs text-gold-700">✨ Rubios</strong>«Quiero un balayage el jueves por la mañana en Torres Quevedo.»</div>
+          <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/70"><strong class="block text-xs text-emerald-700">💧 Tratamiento</strong>«¿Cuánto cuesta el tratamiento de Authentic Beauty Concept?»</div>
+          <div class="p-3 rounded-xl border border-sky-200 bg-sky-50/70"><strong class="block text-xs text-sky-700">🎨 Consejo</strong>«Tengo el pelo castaño con tinte, ¿qué me queda mejor para aclararlo?»</div>
+          <div class="p-3 rounded-xl border border-purple-200 bg-purple-50/70"><strong class="block text-xs text-purple-700">💍 Novias</strong>«Me caso en junio y quiero reservar la prueba de peinado.»</div>
+        </div>
+      </div>
+
+      <!-- SIMULADOR TELEFÓNICO GRID (solo si no hay agente en directo) -->
+      <div data-convai-fallback class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         <!-- COLUMNA IZQUIERDA: TELÉFONO INTERACTIVO (5 COLS) -->
         <div class="lg:col-span-5 bg-noir-900 rounded-3xl p-6 text-white shadow-2xl border border-gold-400/30 flex flex-col justify-between min-h-[580px]">
@@ -312,8 +335,8 @@
               <span class="text-2xl">⚡</span>
               <div class="space-y-1 flex-1">
                 <div class="flex items-center justify-between">
-                  <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wider">Evento Ejecutado: Fresha API v2 (POST /appointments)</h4>
-                  <span class="text-[11px] font-mono bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded font-bold">Status: 201 Created</span>
+                  <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wider">Cita anotada en la agenda de Salón 224</h4>
+                  <span class="text-[11px] font-mono bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded font-bold">Pendiente de confirmar</span>
                 </div>
                 <p class="text-xs text-emerald-800">
                   <strong>Cita creada en el calendario de Salón 224:</strong> <span id="freshaCardDetails">Balayage Rubio Iluminación con Alberto en Torres Quevedo para el jueves a las 11:30h.</span>
@@ -380,7 +403,7 @@
               </div>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between">
-                  <span class="font-bold text-stone-900 truncate">Clara Sánchez (Tú)</span>
+                  <span class="font-bold text-stone-900 truncate">María Sánchez (Tú)</span>
                   <span class="text-[10px] text-stone-400">Ahora</span>
                 </div>
                 <p class="text-[11px] text-stone-500 truncate" id="lastChatMessagePreview">¡Hola! Quiero información de cita...</p>
@@ -391,7 +414,7 @@
               <span class="w-9 h-9 rounded-full bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-xs">LM</span>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between">
-                  <span class="font-bold text-stone-800 truncate">Laura Martínez</span>
+                  <span class="font-bold text-stone-800 truncate">Lucía Martínez</span>
                   <span class="text-[10px] text-stone-400">10:14</span>
                 </div>
                 <p class="text-[11px] text-stone-500 truncate">Cita confirmada para viernes 16h ✅</p>
@@ -533,7 +556,7 @@
         </div>
       </div>
 
-      <!-- KPI SUMMARY CARDS (ESTILO SAAS FACTORY BENTO GRID) -->
+      <!-- KPI -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
           <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Citas Confirmadas Hoy</span>
@@ -572,7 +595,7 @@
         </div>
       </div>
 
-      <!-- KANBAN PIPELINE VIEW (ESTILO CRM FISIO ADELA ADAPTADO A SALÓN) -->
+      <!-- PIPELINE -->
       <div class="space-y-3">
         <div class="flex items-center justify-between">
           <h3 class="text-sm font-bold text-stone-800 uppercase tracking-wider">Flujo de Clientas en Directo (Pipeline)</h3>
@@ -606,7 +629,7 @@
             <!-- CARD 2 -->
             <div onclick="openClientModal('laura')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
               <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Laura Gómez</span>
+                <span class="font-bold text-xs text-stone-900">Lucía Gómez</span>
                 <span class="text-[10px] bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-bold">Teléfono IA</span>
               </div>
               <p class="text-[11px] text-stone-600">Tratamiento Reparador ABC + Corte</p>
@@ -809,7 +832,7 @@
             <div onclick="selectInboxItem(0)" id="inbox-0" class="inbox-item p-3.5 bg-white border-l-4 border-gold-500 cursor-pointer transition">
               <div class="flex items-center justify-between mb-1">
                 <span class="font-bold text-stone-900 flex items-center gap-1.5">
-                  <span>📞</span> <span>Llamada de Laura Gómez</span>
+                  <span>📞</span> <span>Llamada de Lucía Gómez</span>
                 </span>
                 <span class="text-[10px] text-stone-400">Hace 4 min</span>
               </div>
@@ -867,7 +890,7 @@
                   <span class="text-xl" id="inboxDetailIcon">📞</span>
                   <h3 class="text-base font-bold text-stone-900" id="inboxDetailTitle">Llamada Telefónica Atendida por ElevenLabs</h3>
                 </div>
-                <p class="text-xs text-stone-500 mt-0.5" id="inboxDetailMeta">Clienta: Laura Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h</p>
+                <p class="text-xs text-stone-500 mt-0.5" id="inboxDetailMeta">Clienta: Lucía Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h</p>
               </div>
 
               <div class="flex items-center gap-2">
@@ -895,7 +918,7 @@
                 </div>
                 <div>
                   <span class="text-stone-400 block">Acción Tomada:</span>
-                  <span class="font-semibold text-emerald-700">✅ Cita inyectada en Fresha API</span>
+                  <span class="font-semibold text-emerald-700">✅ Cita anotada en la agenda</span>
                 </div>
               </div>
 
@@ -1156,7 +1179,7 @@
         title: "Caso 1: Cita Balayage",
         steps: [
           {
-            ai: "¡Buenos días! Gracias por llamar a Salón 224. Mi nombre es Clara, tu asistente virtual. ¿En qué puedo ayudarte hoy?",
+            ai: "¡Buenos días! Gracias por llamar a Salón 224. Soy Laura, la asistente virtual. ¿En qué puedo ayudarte hoy?",
             userPrompt: "¿Qué responde la clienta?",
             options: [
               { text: "Quiero pedir cita para Balayage este jueves en Torres Quevedo", next: 1 }
@@ -1187,7 +1210,7 @@
         title: "Caso 2: Dudas sobre Tratamientos",
         steps: [
           {
-            ai: "¡Hola! Bienvenida a Salón 224. Soy Clara, asistente de recepción. ¿Te gustaría reservar una cita o tienes alguna consulta sobre nuestros tratamientos?",
+            ai: "¡Hola! Bienvenida a Salón 224. Soy Laura, asistente de recepción. ¿Te gustaría reservar una cita o tienes alguna consulta sobre nuestros tratamientos?",
             userPrompt: "¿Qué consulta hace la clienta?",
             options: [
               { text: "¿Qué incluye el tratamiento de Authentic Beauty Concept y qué precio tiene?", next: 1 }
@@ -1217,7 +1240,7 @@
         title: "Caso 3: Sede Alicante y Parking",
         steps: [
           {
-            ai: "¡Hola, buenas! Salón 224, te atiende Clara. ¿En qué salón te gustaría tu servicio o qué información necesitas?",
+            ai: "¡Hola, buenas! Salón 224, te atiende Laura. ¿En qué salón te gustaría tu servicio o qué información necesitas?",
             userPrompt: "Pregunta sobre la nueva sede de Alicante:",
             options: [
               { text: "¿Tenéis salón en Alicante y se puede aparcar fácilmente?", next: 1 }
@@ -1316,7 +1339,7 @@
       aiBubble.innerHTML = `
         <span class="w-6 h-6 rounded-full bg-gold-400 text-noir-950 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">IA</span>
         <div class="bg-noir-900 text-stone-200 p-3 rounded-2xl rounded-tl-none shadow-sm leading-relaxed border border-gold-400/20">
-          <span class="text-[10px] font-bold text-gold-300 block mb-0.5">Clara · Salón 224</span>
+          <span class="text-[10px] font-bold text-gold-300 block mb-0.5">Laura · Salón 224</span>
           ${stepData.ai}
         </div>
       `;
@@ -1559,7 +1582,7 @@
             <span>🔔</span> <span>RECORDATORIO AUTOMÁTICO 24H (ZERNIO)</span>
           </div>
           <p class="text-xs">
-            ¡Hola Clara! Te recordamos tu cita de <strong>Balayage en Salón 224</strong> mañana a las <strong>11:30h</strong> en Torres Quevedo con Alberto.
+            ¡Hola María! Te recordamos tu cita de <strong>Balayage en Salón 224</strong> mañana a las <strong>11:30h</strong> en Torres Quevedo con Alberto.
           </p>
           <p class="text-[11px] text-stone-600">
             ¿Nos confirmas tu asistencia?
@@ -1601,7 +1624,7 @@
         formula: "<strong>Raíz:</strong> Igora Royal 7.1 + 7.0 a 20 volúmenes (35 min).<br><strong>Medios y Puntas:</strong> Balayage mano alzada con Deco Blond Studio 9 + 30 vol.<br><strong>Matiz:</strong> ABC Toner Vainilla 9.13 (15 min).<br><strong>Tratamiento:</strong> ABC Glow Cleanser & Mask selladora."
       },
       laura: {
-        name: "Laura Gómez Ibáñez",
+        name: "Lucía Gómez Ibáñez",
         initials: "LG",
         notes: "Sensibilidad leve en cuero cabelludo. Usar siempre champú protector ABC Bare Cleanser hipoalergénico. Prefiere corte a tijera sin vaciado.",
         formula: "<strong>Tratamiento:</strong> Ritual Hidratante Profundo ABC con toalla caliente 15 min.<br><strong>Corte:</strong> Bob texturizado desfilado en clavícula.<br><strong>Styling:</strong> Spray de sal Authentic Beauty Concept sin siliconas."
@@ -1670,7 +1693,7 @@
       {
         icon: "📞",
         title: "Llamada Telefónica Atendida por ElevenLabs",
-        meta: "Clienta: Laura Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h",
+        meta: "Clienta: Lucía Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h",
         transcript: "Hola, buenos días, llamaba para saber si tenéis hueco para un tratamiento hidratante en El Corte Inglés... Sí, para el viernes por la tarde sobre las cinco... Perfecto, ponme con quien esté disponible, me viene genial esa hora. Muchas gracias."
       },
       {
