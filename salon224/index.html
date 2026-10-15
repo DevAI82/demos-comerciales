@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SALÓN 224 — Prototipo Interactivo | Asistente Telefónico, WhatsApp Bot & CRM Propio</title>
-  <meta name="description" content="Prototipo interactivo de alta fidelidad para Salón 224: Asistente de llamadas con IA (ElevenLabs), Chatbot de WhatsApp (Zernio), integración con Fresha y CRM propio.">
+  <meta name="description" content="Prototipo interactivo de alta fidelidad para Salón 224: Asistente de llamadas con IA (ElevenLabs), Chatbot de WhatsApp (Zernio) y la app propia del salón: agenda, fichas de color, caja, fichaje y reseñas.">
 
   <!-- Open Graph / WhatsApp / Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="SALÓN 224 · Plataforma Digital">
   <meta property="og:title" content="SALÓN 224 — Prototipo Interactivo de Automatización & CRM">
-  <meta property="og:description" content="Demostración interactiva: Asistente telefónico con ElevenLabs, bot de WhatsApp con Zernio, conexión a Fresha y CRM propio.">
+  <meta property="og:description" content="Demostración interactiva: Asistente telefónico con ElevenLabs, bot de WhatsApp con Zernio y la app propia del salón.">
   <meta property="og:image" content="og-salon-224.jpg">
   <meta property="og:image:secure_url" content="og-salon-224.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -97,6 +97,7 @@
     /* Chat scroll styling */
     .custom-scroll::-webkit-scrollbar {
       width: 5px;
+      height: 5px;
     }
     .custom-scroll::-webkit-scrollbar-thumb {
       background: #c5a880;
@@ -151,7 +152,7 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="bg-gold-500/20 text-gold-300 px-2 py-0.5 rounded text-[11px] font-bold">Fase 1 + Fase 2</span>
-        <span>Demostración de cómo la IA atiende el teléfono fijo y WhatsApp conectándose a Fresha, y cómo el CRM propio ahorra las suscripciones.</span>
+        <span>Laura atiende el teléfono fijo con el salón cerrado, el WhatsApp responde a todas horas y todo cae en la app propia del salón, más sencilla que Fresha.</span>
       </div>
       <div class="text-[11px] text-stone-400">
         💡 <em>Haz clic en los botones interactivos para probar cada flujo</em>
@@ -175,7 +176,7 @@
             Asistente Telefónico 24/7 para Salón 224
           </h1>
           <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Laura, la recepcionista de voz, contesta al primer tono en el 967 105 930 mientras el equipo está con una clienta en el lavacabezas o aplicando color. Explica servicios y precios orientativos, orienta entre balayage, babylights o mechas y deja la cita en la agenda para que el salón la confirme por WhatsApp.
+            Laura, la recepcionista de voz, contesta en el 967 105 930 cuando el salón está cerrado: por la noche, los domingos y los festivos. Explica servicios y precios orientativos, orienta entre balayage, babylights o mechas y deja la cita en la agenda. A la mañana siguiente la clienta recibe la confirmación por WhatsApp.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -342,9 +343,10 @@
                   <strong>Cita creada en el calendario de Salón 224:</strong> <span id="freshaCardDetails">Balayage Rubio Iluminación con Alberto en Torres Quevedo para el jueves a las 11:30h.</span>
                 </p>
                 <div class="flex flex-wrap items-center gap-3 pt-2 text-[11px] text-emerald-700">
-                  <span>📱 SMS/WhatsApp de confirmación enviado</span>
+                  <span>💬 Confirmación por WhatsApp</span>
                   <span>📍 Enlace de Maps a C/ Torres Quevedo 8</span>
-                  <span>🔔 Recordatorio programado T-24h</span>
+                  <span>🔔 Recordatorio 24 h antes</span>
+                  <span>💳 Enlace para dejar tarjeta de garantía (servicio de más de 85 €)</span>
                 </div>
               </div>
             </div>
@@ -367,7 +369,7 @@
             Chatbot de WhatsApp 24/7 para Salón 224
           </h1>
           <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Conectado mediante <strong>Zernio</strong> a la API de WhatsApp oficial. Responde preguntas sobre servicios, horarios de los 3 centros, muestra fotografías de trabajos en rubios y balayage, y deja la cita en la agenda del salón en menos de un minuto.
+            Funciona en el número de WhatsApp de siempre del salón, conectado con <strong>Zernio</strong> a la API oficial. Responde preguntas sobre servicios, horarios de los 3 centros, muestra fotografías de trabajos en rubios y balayage, y deja la cita en la agenda del salón en menos de un minuto.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -437,7 +439,15 @@
           <div class="p-3 bg-stone-100 border-t border-stone-200 space-y-1.5">
             <span class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Disparadores Especiales:</span>
             <button onclick="trigger24hReminder()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold transition flex items-center justify-between">
-              <span>🔔 Enviar Recordatorio 24h</span>
+              <span>🔔 Recordatorio 24 h antes</span>
+              <span>&rarr;</span>
+            </button>
+            <button onclick="triggerVuelveAReservar()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-purple-50 text-purple-800 border border-purple-200 font-semibold transition flex items-center justify-between">
+              <span>🔁 Aviso de «vuelve a reservar»</span>
+              <span>&rarr;</span>
+            </button>
+            <button onclick="triggerReviewRequest()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-sky-50 text-sky-800 border border-sky-200 font-semibold transition flex items-center justify-between">
+              <span>⭐ Valoración después de la visita</span>
               <span>&rarr;</span>
             </button>
             <button onclick="resetWhatsAppChat()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-stone-50 text-stone-600 border border-stone-200 transition flex items-center justify-between">
@@ -526,16 +536,16 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- VISTA 3: CRM PROPIO SALÓN 224 (EL SUSTITUTO DE FRESHA)                    -->
+    <!-- VISTA 3: CRM PROPIO SALÓN 224                                              -->
     <!-- ========================================================================= -->
-    <section id="view-crm" class="view-content hidden space-y-6">
+    <section id="view-crm" class="view-content hidden space-y-5">
 
       <!-- CABECERA -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-4 border-b border-stone-200">
         <div>
-          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Fase 2 · CRM propio de Salón 224</span>
-          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">Agenda, fichas de color y caja de los tres salones</h1>
-          <p class="text-sm text-stone-600 max-w-3xl mt-1">Todo lo que hoy está repartido entre Fresha, libretas y el WhatsApp del salón, en un solo panel que es vuestro: la agenda por estilista, la fórmula exacta de cada clienta, los avisos de retoque y la caja del día.</p>
+          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Fase 2 · La app de Salón 224</span>
+          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">Todo el salón en una pantalla, sin funciones que no usáis</h1>
+          <p class="text-sm text-stone-600 max-w-3xl mt-1">Agenda, fichas de color, caja, equipo y reseñas de los tres salones. Laura y el WhatsApp trabajan dentro: las citas que cogen aparecen aquí solas, y lo que necesita a una persona sale arriba, en «Hoy».</p>
         </div>
         <div class="inline-flex flex-wrap rounded-xl bg-stone-200 p-1 text-xs font-semibold shrink-0" id="crmSedeTabs" role="tablist" aria-label="Salón">
           <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="all">Los 3 salones</button>
@@ -545,23 +555,50 @@
         </div>
       </div>
 
-      <!-- KPIs -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="crmKpis"></div>
+      <!-- MENÚ DE LA APP -->
+      <div class="flex gap-1 overflow-x-auto custom-scroll border-b border-stone-200 text-sm font-semibold" id="crmTabs" role="tablist">
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="hoy">🏠 Hoy</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="agenda">📅 Agenda</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="clientas">🎨 Clientas</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="vuelve">🔁 Vuelve a reservar</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="caja">💶 Caja</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="equipo">👥 Equipo y fichaje</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="resenas">⭐ Reseñas</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="informes">📊 Informes</button>
+      </div>
 
-      <!-- SUBPESTAÑAS -->
-      <div class="flex gap-1 overflow-x-auto border-b border-stone-200 text-sm font-semibold" id="crmTabs" role="tablist">
-        <button class="crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap" data-tab="agenda">📅 Agenda de hoy</button>
-        <button class="crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap" data-tab="clientas">🎨 Clientas y fichas de color</button>
-        <button class="crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap" data-tab="retoques">🔔 Retoques</button>
-        <button class="crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap" data-tab="caja">💶 Caja del día</button>
+      <!-- PANEL: HOY -->
+      <div class="crm-panel space-y-5" data-panel="hoy">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <p class="font-display text-2xl font-bold text-noir-900" id="hoyHello">Buenos días</p>
+          <p class="text-xs text-stone-500">Jueves, 15 de octubre · 12:15</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="hoyKpis"></div>
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-7 space-y-3">
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Necesita a una persona</p>
+            <div class="space-y-2.5" id="hoyTodo"></div>
+          </div>
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3" id="hoyNoche"></div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Próximas citas</p>
+              <ul class="divide-y divide-stone-100 text-sm" id="hoyNext"></ul>
+            </div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-2">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">En qué fijarse esta semana</p>
+              <ul class="space-y-2 text-sm text-stone-700" id="hoyInsights"></ul>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- PANEL: AGENDA -->
-      <div class="crm-panel" data-panel="agenda">
+      <div class="crm-panel hidden" data-panel="agenda">
         <div class="grid lg:grid-cols-12 gap-5 items-start">
           <div class="lg:col-span-8 min-w-0 glass-panel rounded-2xl p-4 shadow-sm">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-              <p class="text-sm font-bold text-stone-900" id="agendaTitle">Jueves · agenda por estilista</p>
+              <p class="text-sm font-bold text-stone-900" id="agendaTitle">Hoy · agenda por estilista</p>
               <div class="flex flex-wrap gap-2 text-[11px] text-stone-600">
                 <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-amber-300"></span>Color</span>
                 <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-sky-300"></span>Corte</span>
@@ -572,14 +609,28 @@
             <div class="overflow-x-auto custom-scroll" id="agendaScroll">
               <div id="agendaGrid" class="relative"></div>
             </div>
-            <p class="text-[11px] text-stone-500 mt-3">Las citas con borde discontinuo las ha tomado Laura o el WhatsApp y esperan a que el salón las confirme. Pulsa una cita para verla.</p>
+            <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-[11px] text-stone-500">
+              <span><span class="inline-block w-3 h-2 border-2 border-dashed border-stone-500 rounded-sm align-middle"></span> Sin confirmar (la cogió Laura o el WhatsApp)</span>
+              <span>💳 Tarjeta guardada como garantía</span>
+              <span>Pulsa una cita para verla</span>
+            </div>
           </div>
           <div class="lg:col-span-4 space-y-4">
             <div class="glass-panel rounded-2xl p-4 shadow-sm" id="apptDetail"></div>
             <div class="glass-panel rounded-2xl p-4 shadow-sm">
-              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Huecos libres esta tarde</p>
-              <ul class="space-y-1.5 text-sm" id="agendaGaps"></ul>
-              <p class="text-[11px] text-stone-500 mt-2">Laura y el WhatsApp ofrecen estos huecos a quien pregunta.</p>
+              <div class="flex items-center justify-between mb-2">
+                <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Lista de espera</p>
+                <span class="text-[10px] font-bold bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full" id="waitCount"></span>
+              </div>
+              <ul class="space-y-2 text-sm" id="waitList"></ul>
+              <p class="text-[11px] text-stone-500 mt-2">Si alguien cancela, el WhatsApp ofrece el hueco a la primera de la lista.</p>
+            </div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-1.5 text-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-1">Normas de reserva del salón</p>
+              <p class="flex justify-between gap-2"><span>Reservas online de 85 € o más</span><span class="font-semibold text-right">Tarjeta como garantía</span></p>
+              <p class="flex justify-between gap-2"><span>Si no viene sin avisar</span><span class="font-semibold">Se cobra el 50 %</span></p>
+              <p class="flex justify-between gap-2"><span>Cancelar o cambiar</span><span class="font-semibold text-right">Desde el WhatsApp, hasta 24 h antes</span></p>
+              <p class="text-[11px] text-stone-500 pt-1">Importes con IVA incluido. El cobro nunca es automático: lo confirma una persona.</p>
             </div>
           </div>
         </div>
@@ -608,66 +659,152 @@
         </div>
       </div>
 
-      <!-- PANEL: RETOQUES -->
-      <div class="crm-panel hidden" data-panel="retoques">
+      <!-- PANEL: VUELVE A RESERVAR -->
+      <div class="crm-panel hidden" data-panel="vuelve">
         <div class="grid lg:grid-cols-12 gap-5 items-start">
           <div class="lg:col-span-7 min-w-0 space-y-3" id="retoqueList"></div>
           <div class="lg:col-span-5 space-y-4">
             <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3">
-              <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Así le llega a la clienta</p>
+              <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Así le llega por WhatsApp</p>
               <div class="bg-[#e5ddd5] rounded-xl p-3 text-stone-900 text-sm">
                 <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm max-w-[95%]" id="retoquePreview"></div>
-                <div class="flex flex-wrap gap-1.5 mt-2" id="retoqueChips">
+                <div class="flex flex-wrap gap-1.5 mt-2">
                   <span class="text-xs bg-white text-emerald-700 font-semibold px-2.5 py-1 rounded-full shadow-sm">📅 Ver huecos</span>
                   <span class="text-xs bg-white text-stone-600 font-semibold px-2.5 py-1 rounded-full shadow-sm">Más adelante</span>
                 </div>
               </div>
-              <p class="text-[11px] text-stone-400">Se envía solo, a los días que marque cada estilista según la técnica. Si la clienta pulsa «Ver huecos», el WhatsApp le ofrece hora con su estilista de siempre.</p>
+              <p class="text-[11px] text-stone-400">Sale solo, a los días que marquéis para cada servicio. Si pulsa «Ver huecos», el WhatsApp le ofrece hora con su estilista de siempre.</p>
             </div>
             <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-2 text-sm">
               <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cuándo se avisa (lo decidís vosotras)</p>
-              <ul class="space-y-1 text-stone-700">
-                <li class="flex justify-between"><span>Raíz con tinte</span><span class="font-mono font-semibold">35 días</span></li>
-                <li class="flex justify-between"><span>Matiz glaze</span><span class="font-mono font-semibold">45 días</span></li>
-                <li class="flex justify-between"><span>Babylights</span><span class="font-mono font-semibold">60 días</span></li>
-                <li class="flex justify-between"><span>Balayage</span><span class="font-mono font-semibold">75 días</span></li>
-                <li class="flex justify-between"><span>Corte</span><span class="font-mono font-semibold">50 días</span></li>
-              </ul>
+              <ul class="space-y-1 text-stone-700" id="retoqueRules"></ul>
             </div>
           </div>
         </div>
       </div>
 
       <!-- PANEL: CAJA -->
-      <div class="crm-panel hidden" data-panel="caja">
+      <div class="crm-panel hidden space-y-5" data-panel="caja">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="text-sm text-stone-600">Ventas de hoy y cierre de caja. Mismas cuentas que hoy hacéis a mano, pero solas.</p>
+          <div class="flex gap-2 text-xs font-bold">
+            <button data-export="PDF" class="crm-export px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ PDF</button>
+            <button data-export="Excel" class="crm-export px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ Excel para la gestoría</button>
+          </div>
+        </div>
         <div class="grid lg:grid-cols-12 gap-5 items-start">
-          <div class="lg:col-span-7 min-w-0 glass-panel rounded-2xl shadow-sm overflow-hidden">
-            <div class="p-4 border-b border-stone-200 flex items-center justify-between gap-2">
-              <p class="text-sm font-bold text-stone-900">Tickets de hoy</p>
-              <span class="text-[11px] text-stone-500" id="cajaCount"></span>
+          <div class="lg:col-span-7 min-w-0 space-y-5">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="glass-panel rounded-2xl p-4 shadow-sm">
+                <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Ventas por tipo</p>
+                <table class="w-full text-sm"><tbody class="divide-y divide-stone-100" id="cajaByType"></tbody></table>
+              </div>
+              <div class="glass-panel rounded-2xl p-4 shadow-sm">
+                <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Cobros por forma de pago</p>
+                <table class="w-full text-sm"><tbody class="divide-y divide-stone-100" id="cajaByPay"></tbody></table>
+              </div>
             </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-sm min-w-[560px]">
-                <thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-3">Hora</th><th class="p-3">Clienta</th><th class="p-3">Servicio</th><th class="p-3">Estilista</th><th class="p-3">Pago</th><th class="p-3 text-right">Importe</th></tr></thead>
-                <tbody class="divide-y divide-stone-100" id="cajaRows"></tbody>
-              </table>
+            <div class="glass-panel rounded-2xl shadow-sm overflow-hidden">
+              <div class="p-4 border-b border-stone-200 flex items-center justify-between gap-2">
+                <p class="text-sm font-bold text-stone-900">Tickets de hoy</p>
+                <span class="text-[11px] text-stone-500" id="cajaCount"></span>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm min-w-[560px]">
+                  <thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-3">Hora</th><th class="p-3">Clienta</th><th class="p-3">Concepto</th><th class="p-3">Estilista</th><th class="p-3">Pago</th><th class="p-3 text-right">Importe</th></tr></thead>
+                  <tbody class="divide-y divide-stone-100" id="cajaRows"></tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="lg:col-span-5 space-y-4">
             <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3" id="cajaResumen"></div>
-            <div class="glass-panel rounded-2xl p-4 shadow-sm">
-              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Facturación del mes por estilista</p>
-              <div class="space-y-2.5" id="cajaByStaff"></div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-3" id="cajaCierre"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: EQUIPO Y FICHAJE -->
+      <div class="crm-panel hidden space-y-5" data-panel="equipo">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-3xl p-5 shadow-xl border border-gold-400/30 space-y-4">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Tablet de recepción · fichar</p>
+                <span class="text-[11px] text-stone-400" id="pinSede"></span>
+              </div>
+              <div class="grid grid-cols-3 gap-2" id="pinStaff"></div>
+              <div class="text-center">
+                <p class="text-sm text-stone-300" id="pinWho">Elige tu nombre</p>
+                <p class="font-mono text-3xl tracking-[0.5em] text-gold-300 h-10 mt-1" id="pinDots"></p>
+              </div>
+              <div class="grid grid-cols-3 gap-2 max-w-[260px] mx-auto" id="pinPad"></div>
+              <p class="text-[11px] text-stone-400 text-center">En la demo vale cualquier PIN de 4 cifras.</p>
             </div>
-            <div class="glass-panel rounded-2xl p-4 shadow-sm">
-              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Facturación del mes por tipo de servicio</p>
-              <div class="space-y-2.5" id="cajaBySvc"></div>
+          </div>
+          <div class="lg:col-span-7 space-y-4">
+            <div class="glass-panel rounded-2xl shadow-sm overflow-hidden">
+              <div class="p-4 border-b border-stone-200 flex flex-wrap items-center justify-between gap-2">
+                <p class="text-sm font-bold text-stone-900">Registro de jornada de hoy</p>
+                <button data-export="PDF del registro de jornada" class="crm-export text-xs font-bold px-3 py-1.5 rounded-lg bg-white border border-stone-300 hover:bg-stone-50">⬇ Exportar para la Inspección</button>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm min-w-[520px]">
+                  <thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-3">Hora</th><th class="p-3">Persona</th><th class="p-3">Movimiento</th><th class="p-3">Desde</th><th class="p-3"></th></tr></thead>
+                  <tbody class="divide-y divide-stone-100" id="fichajeRows"></tbody>
+                </table>
+              </div>
+              <p class="text-[11px] text-stone-500 p-3 border-t border-stone-100">Ningún fichaje se borra ni se sobrescribe: una corrección añade una línea nueva con el motivo y quién la hizo, y la original se conserva. Se guarda 4 años.</p>
+            </div>
+            <div class="glass-panel rounded-2xl shadow-sm overflow-hidden">
+              <div class="p-4 border-b border-stone-200 flex items-center justify-between gap-2">
+                <p class="text-sm font-bold text-stone-900">Turnos de esta semana</p>
+                <span class="text-[11px] text-stone-500">12 – 17 oct</span>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-xs min-w-[620px]" id="turnosTable"></table>
+              </div>
+              <p class="text-[11px] text-stone-500 p-3 border-t border-stone-100">Laura y el WhatsApp solo ofrecen horas dentro del turno de cada estilista. Las vacaciones y bajas cierran la agenda solas.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <p class="text-[11px] text-stone-500">Clientas, fórmulas e importes de ejemplo para la demostración. Precios orientativos.</p>
+      <!-- PANEL: RESEÑAS -->
+      <div class="crm-panel hidden space-y-5" data-panel="resenas">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="resKpis"></div>
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-7 min-w-0 space-y-3" id="resList"></div>
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3">
+              <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Así se pide la reseña</p>
+              <div class="bg-[#e5ddd5] rounded-xl p-3 text-stone-900 text-sm space-y-2">
+                <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm">Gracias por venir hoy, Elena 💛 ¿Qué tal con Alberto? Puntúa tu visita del 1 al 5.</div>
+                <div class="flex gap-1 text-lg">⭐⭐⭐⭐⭐</div>
+                <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm text-xs">¡Gracias! Si quieres, publícala en Google: ya te hemos copiado el comentario, solo tienes que pegarlo.<span class="block mt-2 text-center font-bold text-sky-700 bg-sky-50 rounded-lg py-1.5">Escribir reseña en Google</span></div>
+              </div>
+              <p class="text-[11px] text-stone-400">El botón de Google se ofrece a todas las clientas, pongan la nota que pongan, como exige Google. Si la nota es baja, además os llega un aviso para llamarla.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: INFORMES -->
+      <div class="crm-panel hidden space-y-5" data-panel="informes">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="text-sm text-stone-600">Los números de octubre, sin complementos de pago. Todos se descargan en Excel.</p>
+          <button data-export="Excel con todos los informes" class="crm-export text-xs font-bold px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ Descargar todo</button>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="infKpis"></div>
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="glass-panel rounded-2xl p-4 shadow-sm"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Facturación por estilista</p><div class="space-y-2.5" id="infStaff"></div></div>
+          <div class="glass-panel rounded-2xl p-4 shadow-sm"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Facturación por tipo de servicio</p><div class="space-y-2.5" id="infSvc"></div></div>
+          <div class="glass-panel rounded-2xl p-4 shadow-sm"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">De dónde vienen las citas</p><div class="space-y-2.5" id="infSrc"></div></div>
+          <div class="glass-panel rounded-2xl p-4 shadow-sm"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Cancelaciones y no presentadas, por motivo</p><div class="space-y-2.5" id="infCancel"></div></div>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-stone-500">Clientas, fórmulas, tarjetas e importes de ejemplo para la demostración. Precios orientativos.</p>
       <div id="crmToast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-noir-900 text-white text-sm font-semibold px-4 py-3 rounded-2xl shadow-2xl border border-gold-400/40 max-w-[90vw]"></div>
     </section>
 
@@ -1400,6 +1537,43 @@
           `;
         } else if (text.includes("Tratamientos") || text.includes("Authentic")) {
           reply = "En Salón 224 somos abanderados de <strong>Authentic Beauty Concept</strong> 🌱:<br><br>• <strong>Glow Treatment</strong> (para cabellos coloreados o mechas, sella pigmento).<br>• <strong>Hydrate Treatment</strong> (máxima elasticidad y suavidad en cabello seco).<br>• <strong>Replenish Ritual</strong> (fortalecimiento de fibra con proteína vegana).<br><br>Todos incluyen masaje shiatsu en lavacabezas.";
+        } else if (text.includes("cambiar la hora")) {
+          reply = "¡Sin problema! 😊 Te busco otro hueco con Alberto en Torres Quevedo:<br>• <strong>Viernes 10:00h</strong><br>• <strong>Sábado 9:30h</strong><br><br>Tu tarjeta de garantía se mantiene para la nueva hora y no se cobra nada por cambiar.";
+          extraCards = `
+            <div class="space-y-1.5 pt-2">
+              <button onclick="confirmWABooking('Viernes 10:00h con Alberto', true)" class="w-full text-left px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl font-bold flex justify-between">
+                <span>Viernes 10:00h · Alberto</span><span>Cambiar &rarr;</span>
+              </button>
+              <button onclick="confirmWABooking('Sábado 9:30h con Alberto', true)" class="w-full text-left px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl font-bold flex justify-between">
+                <span>Sábado 9:30h · Alberto</span><span>Cambiar &rarr;</span>
+              </button>
+            </div>
+          `;
+        } else if (text.includes("cancelar mi cita")) {
+          reply = "Hecho, María: tu cita queda cancelada. Sin ningún coste: la tarjeta de garantía se libera. 💛<br><br>¿Quieres que te avise si se queda libre algún hueco la semana que viene?";
+          extraCards = `
+            <div class="flex gap-2 pt-2">
+              <button onclick="sendUserWAMessage('Sí, apúntame en la lista de espera')" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg text-[10px] font-bold">Sí, avísame</button>
+              <button onclick="sendUserWAMessage('No, gracias')" class="px-2.5 py-1 bg-stone-200 text-stone-800 rounded-lg text-[10px] font-bold">No, gracias</button>
+            </div>
+          `;
+        } else if (text.includes("lista de espera")) {
+          reply = "¡Apuntada! ✨ En cuanto alguien cancele un hueco de balayage con Alberto, te escribo por aquí y lo reservas con un toque.";
+        } else if (text.includes("Ver huecos")) {
+          reply = "¡Genial! Alberto tiene estos huecos para tu balayage:<br>• <strong>Martes 11:00h</strong><br>• <strong>Jueves 16:00h</strong>";
+          extraCards = `
+            <div class="space-y-1.5 pt-2">
+              <button onclick="confirmWABooking('Martes 11:00h con Alberto')" class="w-full text-left px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl font-bold flex justify-between">
+                <span>Martes 11:00h · Alberto</span><span>Reservar &rarr;</span>
+              </button>
+            </div>
+          `;
+        } else if (/^[1-5] ⭐/.test(text)) {
+          const n = parseInt(text, 10);
+          reply = n >= 4
+            ? "¡Mil gracias, María! 💛 Si te apetece, publícala en Google: ya te hemos copiado el comentario, solo tienes que pegarlo."
+            : "Gracias por decírnoslo, María. Sentimos que no haya sido perfecto: la encargada te llamará hoy. Y si quieres, también puedes contarlo en Google.";
+          extraCards = `<div class="pt-2"><a href="#" onclick="return false" class="block text-center px-3 py-2 bg-sky-50 hover:bg-sky-100 text-sky-800 rounded-xl font-bold border border-sky-200">Escribir reseña en Google</a></div>`;
         } else if (text.includes("humana") || text.includes("estilista")) {
           reply = "¡Por supuesto! Transfiriendo conversación a nuestra recepción humana. Enseguida una compañera te contestará por este mismo chat. Puedes llamarnos también al <strong>967 105 930</strong>.";
         } else {
@@ -1430,53 +1604,75 @@
       sendUserWAMessage(val);
     }
 
-    function confirmWABooking(details) {
+    function addWABot(html, cls) {
       const box = document.getElementById('waMessagesBox');
-      const confDiv = document.createElement('div');
-      confDiv.className = "flex items-start gap-2 max-w-md";
-      confDiv.innerHTML = `
-        <div class="bg-emerald-50 border-2 border-emerald-300 p-4 rounded-2xl rounded-tl-none shadow-md space-y-2 text-stone-800">
-          <div class="flex items-center gap-1.5 text-emerald-800 font-bold">
-            <span>🎉</span> <span>¡CITA CONFIRMADA EN FRESHA!</span>
-          </div>
-          <p class="text-xs text-stone-700">
-            <strong>Servicio:</strong> Balayage Iluminación 224<br>
-            <strong>Horario:</strong> ${details}<br>
-            <strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete
-          </p>
-          <div class="pt-2 border-t border-emerald-200 flex flex-wrap gap-2 text-[10px]">
-            <a href="https://maps.app.goo.gl/BNPwanZRJgcEeCvx9" target="_blank" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg font-bold">📍 Abrir en Google Maps</a>
-            <span class="px-2.5 py-1 bg-white border border-emerald-300 text-emerald-800 rounded-lg font-semibold">T-24h Recordatorio Activo</span>
-          </div>
-        </div>
-      `;
-      box.appendChild(confDiv);
+      const d = document.createElement('div');
+      d.className = "flex items-start gap-2 max-w-md";
+      d.innerHTML = `<div class="${cls || 'bg-white'} p-3 rounded-2xl rounded-tl-none shadow-sm space-y-1.5 text-stone-800">${html}</div>`;
+      box.appendChild(d);
       box.scrollTop = box.scrollHeight;
     }
 
-    function trigger24hReminder() {
-      const box = document.getElementById('waMessagesBox');
-      const remDiv = document.createElement('div');
-      remDiv.className = "flex items-start gap-2 max-w-md";
-      remDiv.innerHTML = `
-        <div class="bg-amber-50 border border-amber-300 p-3 rounded-2xl rounded-tl-none shadow-sm space-y-1.5 text-stone-800">
-          <div class="flex items-center gap-1 text-amber-900 font-bold text-[11px]">
-            <span>🔔</span> <span>RECORDATORIO AUTOMÁTICO 24H (ZERNIO)</span>
-          </div>
-          <p class="text-xs">
-            ¡Hola María! Te recordamos tu cita de <strong>Balayage en Salón 224</strong> mañana a las <strong>11:30h</strong> en Torres Quevedo con Alberto.
-          </p>
-          <p class="text-[11px] text-stone-600">
-            ¿Nos confirmas tu asistencia?
-          </p>
-          <div class="flex gap-2 pt-1">
-            <button onclick="sendUserWAMessage('¡Confirmadísimo, allí estaré puntual!')" class="px-3 py-1 bg-emerald-600 text-white rounded-lg font-bold text-[11px]">✅ Sí, confirmo</button>
-            <button onclick="sendUserWAMessage('Necesito cambiar la hora de mi cita por favor')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Cambiar hora</button>
-          </div>
+    // Balayage = 120 € (más de 85 €): se pide tarjeta como garantía antes de confirmar.
+    function confirmWABooking(details, changed) {
+      if (changed) {
+        addWABot(`<div class="flex items-center gap-1.5 text-emerald-800 font-bold"><span>✅</span> <span>Cita cambiada</span></div>
+          <p class="text-xs text-stone-700"><strong>Nueva hora:</strong> ${details}<br><strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete</p>
+          <p class="text-[11px] text-stone-500">Te recordaremos la cita 24 horas antes.</p>`, 'bg-emerald-50 border-2 border-emerald-300');
+        return;
+      }
+      window._waPending = details;
+      addWABot(`<p class="font-semibold text-gold-700 text-[11px]">SALÓN 224</p>
+        <p>¡Te guardo <strong>${details}</strong>! 🙌</p>
+        <p class="text-xs text-stone-700">Como el balayage es un servicio de más de 85 €, pedimos una <strong>tarjeta como garantía</strong>. <strong>No se cobra nada ahora.</strong> Solo si no vinieras sin avisar se cobraría el 50 %. Puedes cambiar o cancelar gratis desde aquí hasta 24 horas antes.</p>
+        <button onclick="openWACardForm()" class="w-full mt-1 px-3 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl font-bold text-[11px]">💳 Añadir tarjeta de garantía</button>`);
+    }
+
+    function openWACardForm() {
+      addWABot(`<p class="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Página segura de pago · Stripe</p>
+        <div class="space-y-1.5 text-[11px]">
+          <div class="px-2.5 py-2 rounded-lg border border-stone-300 bg-white font-mono text-stone-500">4242 4242 4242 4242</div>
+          <div class="flex gap-1.5"><div class="flex-1 px-2.5 py-2 rounded-lg border border-stone-300 bg-white font-mono text-stone-500">12 / 29</div><div class="flex-1 px-2.5 py-2 rounded-lg border border-stone-300 bg-white font-mono text-stone-500">123</div></div>
+          <label class="flex items-start gap-1.5 text-stone-700"><input type="checkbox" checked class="mt-0.5 accent-emerald-600"> Acepto la norma de reserva: si no voy sin avisar, se cobra el 50 % del servicio.</label>
         </div>
-      `;
-      box.appendChild(remDiv);
-      box.scrollTop = box.scrollHeight;
+        <button onclick="saveWACard()" class="w-full mt-1 px-3 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-xl font-bold text-[11px]">Guardar tarjeta (0,00 €)</button>
+        <p class="text-[10px] text-stone-400">Tarjeta de prueba. El salón nunca ve los números: solo los guarda Stripe.</p>`, 'bg-stone-50 border border-stone-300');
+    }
+
+    function saveWACard() {
+      const details = window._waPending || 'Viernes 11:30h con Alberto';
+      addWABot(`<div class="flex items-center gap-1.5 text-emerald-800 font-bold"><span>🎉</span> <span>¡Cita confirmada!</span></div>
+        <p class="text-xs text-stone-700"><strong>Servicio:</strong> Balayage / iluminación (120 €)<br><strong>Horario:</strong> ${details}<br><strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete<br><strong>Garantía:</strong> Visa ••4242 · 0 € cobrados</p>
+        <div class="pt-2 border-t border-emerald-200 flex flex-wrap gap-2 text-[10px]">
+          <a href="https://maps.app.goo.gl/BNPwanZRJgcEeCvx9" target="_blank" rel="noopener" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg font-bold">📍 Abrir en Google Maps</a>
+          <span class="px-2.5 py-1 bg-white border border-emerald-300 text-emerald-800 rounded-lg font-semibold">🔔 Te avisamos 24 h antes</span>
+        </div>`, 'bg-emerald-50 border-2 border-emerald-300');
+    }
+
+    function trigger24hReminder() {
+      addWABot(`<div class="flex items-center gap-1 text-amber-900 font-bold text-[11px]"><span>🔔</span> <span>RECORDATORIO · 24 H ANTES</span></div>
+        <p class="text-xs">¡Hola María! Te recordamos tu cita de <strong>balayage</strong> mañana a las <strong>11:30h</strong> en Torres Quevedo con Alberto.</p>
+        <p class="text-[11px] text-stone-600">¿Nos confirmas que vienes? Si no puedes, cámbiala o cancélala aquí mismo.</p>
+        <div class="flex flex-wrap gap-2 pt-1">
+          <button onclick="sendUserWAMessage('¡Confirmadísimo, allí estaré puntual!')" class="px-3 py-1 bg-emerald-600 text-white rounded-lg font-bold text-[11px]">✅ Sí, voy</button>
+          <button onclick="sendUserWAMessage('Necesito cambiar la hora de mi cita por favor')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Cambiar hora</button>
+          <button onclick="sendUserWAMessage('Quiero cancelar mi cita')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Cancelar</button>
+        </div>`, 'bg-amber-50 border border-amber-300');
+    }
+
+    function triggerVuelveAReservar() {
+      addWABot(`<div class="flex items-center gap-1 text-purple-900 font-bold text-[11px]"><span>🔁</span> <span>VUELVE A RESERVAR</span></div>
+        <p class="text-xs">Hola María 💛 Hace 10 semanas de tu balayage con Alberto. ¿Te apetece renovar el brillo antes de que se note la raíz? Alberto tiene huecos la semana que viene.</p>
+        <div class="flex flex-wrap gap-2 pt-1">
+          <button onclick="sendUserWAMessage('Ver huecos')" class="px-3 py-1 bg-emerald-600 text-white rounded-lg font-bold text-[11px]">📅 Ver huecos</button>
+          <button onclick="sendUserWAMessage('Más adelante')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Más adelante</button>
+        </div>`, 'bg-purple-50 border border-purple-300');
+    }
+
+    function triggerReviewRequest() {
+      addWABot(`<div class="flex items-center gap-1 text-sky-900 font-bold text-[11px]"><span>⭐</span> <span>DESPUÉS DE LA VISITA</span></div>
+        <p class="text-xs">Gracias por venir hoy, María 💛 ¿Qué tal con Alberto? Puntúa tu visita:</p>
+        <div class="flex flex-wrap gap-1.5 pt-1">${[5, 4, 3, 2, 1].map(n => `<button onclick="sendUserWAMessage('${n} ⭐')" class="px-2.5 py-1 bg-white border border-sky-300 text-sky-800 rounded-lg font-bold text-[11px]">${n} ⭐</button>`).join('')}</div>`, 'bg-sky-50 border border-sky-300');
     }
 
     function resetWhatsAppChat() {
@@ -1498,7 +1694,7 @@
     }
 
     // --- 4. CRM PROPIO SALÓN 224 ---
-    // Datos de ejemplo: clientas genéricas, precios orientativos.
+    // Datos de ejemplo: clientas genéricas, tarjetas ficticias, precios orientativos.
     (function () {
       const $ = s => document.querySelector(s);
       const $$ = s => Array.from(document.querySelectorAll(s));
@@ -1506,11 +1702,14 @@
       const eur = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €';
       const DAY = 86400000;
       const TODAY = new Date(2026, 9, 15);
+      const TODAY_S = '2026-10-15';
       const NOW = '12:15';
       const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
       const toHM = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
       const fmtD = d => new Date(d).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
       const daysSince = d => Math.round((TODAY - new Date(d)) / DAY);
+      const first = n => n.split(' ')[0];
+      const short = n => n.replace('El Corte Inglés', 'ECI');
 
       const SEDES = {
         tq: { n: 'Torres Quevedo', staff: ['Alberto', 'Alexandra', 'Carlos'] },
@@ -1520,17 +1719,18 @@
       const STAFF_SEDE = {};
       Object.entries(SEDES).forEach(([k, s]) => s.staff.forEach(p => STAFF_SEDE[p] = k));
 
-      // [nombre, precio orientativo, minutos, tipo, días hasta el aviso de retoque]
+      // [nombre, precio orientativo con IVA, minutos, tipo, días hasta el aviso de «vuelve a reservar»]
       const SVC = {
         balayage: ['Balayage / iluminación', 120, 180, 'color', 75],
         babylights: ['Babylights + matiz', 110, 180, 'color', 60],
         raiz: ['Raíz con tinte + matiz', 55, 90, 'color', 35],
         glaze: ['Matiz glaze ABC', 35, 45, 'color', 45],
         corte: ['Corte y secado', 32, 45, 'corte', 50],
-        abc: ['Tratamiento Authentic Beauty Concept', 42, 60, 'trat', null],
+        abc: ['Tratamiento Authentic Beauty Concept', 42, 60, 'trat', 40],
         novia: ['Prueba de novia', 90, 120, 'evento', null],
         invitada: ['Peinado de invitada', 38, 60, 'evento', null]
       };
+      const PROD = { champu: ['Champú Authentic Beauty Concept', 24], masc: ['Mascarilla Authentic Beauty Concept', 29] };
       const CAT = {
         color: ['Color', 'bg-amber-100 border-amber-400 text-amber-950', 'bg-amber-400'],
         corte: ['Corte', 'bg-sky-100 border-sky-400 text-sky-950', 'bg-sky-400'],
@@ -1538,9 +1738,22 @@
         evento: ['Novias e invitadas', 'bg-rose-100 border-rose-400 text-rose-950', 'bg-rose-400']
       };
       const SRC = { laura: '📞 Laura', whatsapp: '💬 WhatsApp', instagram: '📸 Instagram', mostrador: '🧾 Mostrador' };
+      const ST = {
+        reservada: ['Sin confirmar', 'bg-orange-100 text-orange-800'],
+        confirmada: ['Confirmada', 'bg-emerald-100 text-emerald-800'],
+        llegada: ['En el sillón', 'bg-amber-100 text-amber-900'],
+        completada: ['Cobrada', 'bg-stone-200 text-stone-700'],
+        cancelada: ['Cancelada', 'bg-stone-100 text-stone-500'],
+        noshow: ['No vino', 'bg-red-100 text-red-800']
+      };
+      const MOTIVOS = ['Cliente no disponible', 'Enfermedad', 'Cambio a otro día', 'Cita reservada por error', 'Cita duplicada'];
+      const LIMIT = 85; // € IVA incluido: a partir de aquí se pide tarjeta como garantía al reservar online
 
       const CLIENTS = {
-        elena: { name: 'Elena Navarro', phone: '654 ·· ·· 87', since: 2021, sede: 'tq', staff: 'Alberto', photos: true,
+        veronica: { name: 'Verónica Sanz', phone: '640 ·· ·· 25', since: 2025, sede: 'tq', staff: 'Alberto', card: 'Visa ••4242',
+          notes: 'Reservó por WhatsApp. Quiere aclarar dos tonos sin perder brillo.', test: '2026-10-08',
+          hist: [{ d: '2026-07-02', svc: 'corte', staff: 'Alberto', p: 32, f: '' }] },
+        elena: { name: 'Elena Navarro', phone: '654 ·· ·· 87', since: 2021, sede: 'tq', staff: 'Alberto', photos: true, card: 'Visa ••1881',
           notes: 'Cabello fino con tendencia a porosidad en puntas. No subir de 30 volúmenes. Café con leche desnatada.', test: '2026-06-02',
           hist: [
             { d: '2026-08-06', svc: 'balayage', staff: 'Alberto', p: 125, f: 'Raíz: Igora Royal 7.1 + 7.0 a 20 vol (35 min). Medios y puntas: balayage a mano alzada con Blond Studio 9 + 30 vol. Matiz: toner vainilla 9.13 (15 min). Final: mascarilla selladora ABC.' },
@@ -1560,7 +1773,7 @@
             { d: '2026-08-04', svc: 'raiz', staff: 'Carlos', p: 55, f: '6.0 + 6.1 a partes iguales con 20 vol (35 min).' },
             { d: '2026-06-30', svc: 'raiz', staff: 'Carlos', p: 55, f: '6.0 + 6.1 con 20 vol.' }
           ] },
-        sofia: { name: 'Sofía Valero', phone: '611 ·· ·· 39', since: 2023, sede: 'tq', staff: 'Alexandra', photos: true,
+        sofia: { name: 'Sofía Valero', phone: '611 ·· ·· 39', since: 2023, sede: 'tq', staff: 'Alexandra', photos: true, card: 'Mastercard ••5100',
           notes: 'Rubio nórdico muy frío: matiz con violeta para quitar el amarillo. Le gusta que le hagan fotos para Instagram.', test: '2026-07-22',
           hist: [
             { d: '2026-08-21', svc: 'babylights', staff: 'Alexandra', p: 110, f: 'Babylights finas con decoloración 9 tonos + protector de enlaces. Matiz 10.21 + gota de 9.11 (12 min).' }
@@ -1571,7 +1784,7 @@
             { d: '2026-09-17', svc: 'abc', staff: 'Marta', p: 42, f: 'Ritual hidratante con toalla caliente (15 min).' },
             { d: '2026-08-22', svc: 'corte', staff: 'Marta', p: 32, f: 'Bob texturizado a la altura de la clavícula.' }
           ] },
-        carmen: { name: 'Carmen Ródenas', phone: '634 ·· ·· 71', since: 2025, sede: 'ab', staff: 'Irene',
+        carmen: { name: 'Carmen Ródenas', phone: '634 ·· ·· 71', since: 2025, sede: 'ab', staff: 'Irene', card: 'Visa ••7730',
           notes: 'Novia: boda en junio de 2027. Velo clásico y tiara. Fijación resistente al calor con aspecto natural.', test: '2026-09-01',
           hist: [
             { d: '2026-09-01', svc: 'glaze', staff: 'Irene', p: 35, f: 'Glaze brillo espejo 8.3 (15 min).' }
@@ -1587,7 +1800,7 @@
           hist: [
             { d: '2026-09-04', svc: 'raiz', staff: 'Irene', p: 55, f: 'Coloración sin amoniaco 5.0 + 5.3 con 9 vol (30 min).' }
           ] },
-        irene: { name: 'Irene Castillo', phone: '645 ·· ·· 93', since: 2023, sede: 'al', staff: 'Noelia', photos: true,
+        irene: { name: 'Irene Castillo', phone: '645 ·· ·· 93', since: 2023, sede: 'al', staff: 'Noelia', photos: true, card: 'Visa ••0094',
           notes: 'Pelo muy largo y grueso: calcular doble de decoloración.', test: '2026-04-09',
           hist: [
             { d: '2026-07-24', svc: 'balayage', staff: 'Noelia', p: 130, f: 'Balayage con Blond Studio 9 + 30 vol, doble cantidad. Matiz 9.1 + 9.13.' }
@@ -1611,86 +1824,184 @@
           ] }
       };
 
-      // Citas de hoy. st: cobrada · salon · confirmada · pendiente
+      // Citas de hoy
       const APPTS = [
-        { id: 1, staff: 'Alberto', t: '09:30', svc: 'raiz', c: 'Pilar Moreno', src: 'mostrador', st: 'cobrada', pay: 'Tarjeta' },
-        { id: 2, staff: 'Alberto', t: '11:30', svc: 'balayage', c: 'elena', src: 'whatsapp', st: 'salon' },
-        { id: 3, staff: 'Alberto', t: '16:00', svc: 'corte', c: 'Teresa Ruiz', src: 'laura', st: 'pendiente' },
-        { id: 4, staff: 'Alexandra', t: '09:00', svc: 'babylights', c: 'sofia', src: 'instagram', st: 'cobrada', pay: 'Bizum' },
+        { id: 1, staff: 'Alberto', t: '09:00', svc: 'babylights', c: 'veronica', src: 'whatsapp', st: 'confirmada' },
+        { id: 2, staff: 'Alberto', t: '13:00', svc: 'balayage', c: 'elena', src: 'whatsapp', st: 'confirmada' },
+        { id: 3, staff: 'Alberto', t: '16:30', svc: 'corte', c: 'Teresa Ruiz', src: 'laura', st: 'reservada' },
+        { id: 4, staff: 'Alexandra', t: '09:00', svc: 'babylights', c: 'sofia', src: 'instagram', st: 'completada', pay: 'Bizum', prods: [] },
         { id: 5, staff: 'Alexandra', t: '12:30', svc: 'glaze', c: 'ana', src: 'whatsapp', st: 'confirmada' },
-        { id: 6, staff: 'Alexandra', t: '17:00', svc: 'balayage', c: 'Cristina Vidal', src: 'laura', st: 'confirmada' },
-        { id: 7, staff: 'Carlos', t: '09:30', svc: 'corte', c: 'Laia Ferrer', src: 'mostrador', st: 'cobrada', pay: 'Efectivo' },
-        { id: 8, staff: 'Carlos', t: '10:30', svc: 'raiz', c: 'maria', src: 'whatsapp', st: 'cobrada', pay: 'Tarjeta' },
+        { id: 6, staff: 'Alexandra', t: '17:00', svc: 'balayage', c: 'Cristina Vidal', src: 'laura', st: 'reservada', card: 'Mastercard ••2218' },
+        { id: 7, staff: 'Carlos', t: '09:30', svc: 'corte', c: 'Laia Ferrer', src: 'mostrador', st: 'completada', pay: 'Efectivo', prods: [] },
+        { id: 8, staff: 'Carlos', t: '10:30', svc: 'raiz', c: 'maria', src: 'whatsapp', st: 'completada', pay: 'Tarjeta', prods: ['champu'] },
         { id: 9, staff: 'Carlos', t: '13:00', svc: 'abc', c: 'Silvia Rey', src: 'laura', st: 'confirmada' },
-        { id: 10, staff: 'Marta', t: '10:00', svc: 'babylights', c: 'paula', src: 'mostrador', st: 'salon' },
-        { id: 11, staff: 'Marta', t: '17:00', svc: 'abc', c: 'lucia', src: 'laura', st: 'pendiente' },
-        { id: 12, staff: 'Irene', t: '09:30', svc: 'raiz', c: 'beatriz', src: 'whatsapp', st: 'cobrada', pay: 'Tarjeta' },
-        { id: 13, staff: 'Irene', t: '11:30', svc: 'novia', c: 'carmen', src: 'instagram', st: 'salon' },
+        { id: 10, staff: 'Marta', t: '10:00', svc: 'babylights', c: 'paula', src: 'mostrador', st: 'llegada' },
+        { id: 11, staff: 'Marta', t: '17:00', svc: 'abc', c: 'lucia', src: 'laura', st: 'reservada' },
+        { id: 12, staff: 'Irene', t: '09:30', svc: 'raiz', c: 'beatriz', src: 'whatsapp', st: 'completada', pay: 'Tarjeta', prods: [] },
+        { id: 13, staff: 'Irene', t: '11:30', svc: 'novia', c: 'carmen', src: 'instagram', st: 'llegada' },
         { id: 14, staff: 'Irene', t: '18:00', svc: 'invitada', c: 'Andrea Gil', src: 'laura', st: 'confirmada' },
-        { id: 15, staff: 'Noelia', t: '09:30', svc: 'balayage', c: 'irene', src: 'whatsapp', st: 'salon' },
+        { id: 15, staff: 'Noelia', t: '09:30', svc: 'balayage', c: 'irene', src: 'whatsapp', st: 'llegada' },
         { id: 16, staff: 'Noelia', t: '16:30', svc: 'glaze', c: 'rocio', src: 'whatsapp', st: 'confirmada' },
-        { id: 17, staff: 'Sara', t: '10:30', svc: 'corte', c: 'nuria', src: 'mostrador', st: 'cobrada', pay: 'Bizum' },
-        { id: 18, staff: 'Sara', t: '12:00', svc: 'abc', c: 'marina', src: 'whatsapp', st: 'confirmada' },
-        { id: 19, staff: 'Sara', t: '17:30', svc: 'corte', c: 'Olga Martí', src: 'laura', st: 'pendiente' }
+        { id: 17, staff: 'Sara', t: '10:30', svc: 'corte', c: 'nuria', src: 'mostrador', st: 'completada', pay: 'Bizum', prods: ['masc'] },
+        { id: 18, staff: 'Sara', t: '12:00', svc: 'abc', c: 'marina', src: 'whatsapp', st: 'llegada' },
+        { id: 19, staff: 'Sara', t: '17:30', svc: 'corte', c: 'Olga Martí', src: 'laura', st: 'cancelada', motivo: 'Cliente no disponible', canceladaPor: 'la clienta, por WhatsApp, ayer a las 21:40' }
       ];
-      APPTS.forEach(a => { a.sede = STAFF_SEDE[a.staff]; a.p = SVC[a.svc][1]; if (a.st === 'cobrada') a.paidAt = toHM(toMin(a.t) + SVC[a.svc][2]); });
-      const EXTRA_TICKETS = []; // servicios registrados desde la ficha
+      APPTS.forEach(a => {
+        a.sede = STAFF_SEDE[a.staff]; a.p = SVC[a.svc][1];
+        if (!a.card && CLIENTS[a.c] && CLIENTS[a.c].card && a.src !== 'mostrador' && a.p >= LIMIT) a.card = CLIENTS[a.c].card;
+        if (a.st === 'completada') a.paidAt = toHM(toMin(a.t) + SVC[a.svc][2]);
+      });
+      let nextId = 100;
+      const EXTRA = [];   // ventas registradas desde la ficha
+      const CHARGES = []; // cargos de la política por no presentarse
 
-      // Facturación del mes antes de hoy (ejemplo)
+      const WAIT = [
+        { id: 'w1', c: 'Nerea Blasco', want: 'corte', sede: 'al', when: 'Hoy por la tarde', st: 'esperando' },
+        { id: 'w2', c: 'Lorena Gil', want: 'raiz', sede: 'tq', when: 'Viernes por la mañana', st: 'esperando' }
+      ];
+
+      // Facturación de octubre antes de hoy (ejemplo)
       const MONTH_STAFF = { Alberto: 6240, Alexandra: 5480, Carlos: 3920, Marta: 4310, Irene: 3650, Noelia: 4870, Sara: 3290 };
-      const MONTH_CAT_SHARE = { color: 0.61, corte: 0.17, trat: 0.12, evento: 0.10 };
+      const MONTH_CAT_SHARE = { color: 0.58, corte: 0.17, trat: 0.11, evento: 0.09, prod: 0.05 };
 
-      // Avisos de retoque: estado inicial
+      // Vuelve a reservar: estado de los avisos
       const RETOQUE = { nuria: 'respondido', maria: 'enviado' };
       const RESPUESTA = { nuria: '«¡Sí! ¿Tenéis algo el sábado por la mañana?»' };
 
-      let sede = 'all', tab = 'agenda', selAppt = 2, selClient = 'elena', selRet = null;
+      // Reseñas internas (después de cada visita)
+      const REVIEWS = [
+        { id: 'r1', c: 'Inés Romero', stars: 2, staff: 'Marta', sede: 'ab', d: 'Ayer', txt: 'El corte bien, pero esperé 25 minutos sin que nadie me dijera nada.', google: 'no', alert: true, st: 'pendiente' },
+        { id: 'r2', c: 'Sofía Valero', stars: 5, staff: 'Alexandra', sede: 'tq', d: 'Hoy', txt: 'Alexandra es una artista con los rubios fríos. Cero amarillo. ¡Volveré!', google: 'publicada' },
+        { id: 'r3', c: 'Beatriz Ortega', stars: 5, staff: 'Irene', sede: 'ab', d: 'Hoy', txt: 'Me cuidan muchísimo con la alergia al amoniaco. Trato de diez.', google: 'clic' },
+        { id: 'r4', c: 'Laia Ferrer', stars: 4, staff: 'Carlos', sede: 'tq', d: 'Hoy', txt: 'Muy buen corte. El secado un poco rápido.', google: 'no' },
+        { id: 'r5', c: 'Rocío Llorens', stars: 5, staff: 'Noelia', sede: 'al', d: 'Hace 2 días', txt: 'Rubio miel perfecto, justo lo que pedí.', google: 'publicada' },
+        { id: 'r6', c: 'Pilar Moreno', stars: 3, staff: 'Alberto', sede: 'tq', d: 'Hace 3 días', txt: 'Bien, aunque el matiz me ha quedado algo más oscuro de lo que quería.', google: 'no', alert: true, st: 'llamada' }
+      ];
+
+      // Fichajes (registro inalterable: solo se añaden líneas)
+      const FICHAJES = [
+        { d: 'ayer', t: '20:05', who: 'Carlos', mov: 'Salida', from: 'Tablet Torres Quevedo', missing: true },
+        { d: 'hoy', t: '08:52', who: 'Alexandra', mov: 'Entrada', from: 'Tablet Torres Quevedo' },
+        { d: 'hoy', t: '08:56', who: 'Alberto', mov: 'Entrada', from: 'Tablet Torres Quevedo' },
+        { d: 'hoy', t: '09:21', who: 'Carlos', mov: 'Entrada', from: 'Tablet Torres Quevedo' },
+        { d: 'hoy', t: '09:24', who: 'Irene', mov: 'Entrada', from: 'Tablet ECI Albacete' },
+        { d: 'hoy', t: '09:51', who: 'Marta', mov: 'Entrada', from: 'Tablet ECI Albacete' },
+        { d: 'hoy', t: '09:18', who: 'Noelia', mov: 'Entrada', from: 'Tablet ECI Alicante' },
+        { d: 'hoy', t: '10:12', who: 'Sara', mov: 'Entrada', from: 'Tablet ECI Alicante' },
+        { d: 'hoy', t: '11:40', who: 'Alexandra', mov: 'Pausa', from: 'Tablet Torres Quevedo' }
+      ];
+      const TURNOS = {
+        Alberto: ['9–14 · 16–20', '9–14 · 16–20', '9–14 · 16–20', '9–14 · 16–20', '9–14 · 16–20', '9–14', 44],
+        Alexandra: ['9–17', '9–17', 'Libre', '9–17', '12–20', '9–14', 41],
+        Carlos: ['Libre', '9:30–20', '9:30–20', '9:30–20', '9:30–20', '9–14', 41],
+        Marta: ['10–21', '10–21', '10–21', '10–21', 'Libre', '10–15', 40],
+        Irene: ['10–18', '10–18', '10–18', '9:30–18', '10–18', 'Vacaciones', 40],
+        Noelia: ['9:30–17:30', 'Formación', '9:30–17:30', '9:30–17:30', '13–21', '10–21', 42],
+        Sara: ['13–21', '13–21', '13–21', '10–21', '10–15', 'Libre', 38]
+      };
+      const CLOSED = {}; // caja cerrada por salón
+
+      let sede = 'all', tab = 'hoy', selAppt = 1, selClient = 'elena', selRet = null;
+      let apptMode = null; // 'cancel' | 'noshow'
+      let pinStaff = null, pinCode = '';
       const inSede = s => sede === 'all' || s === sede;
       const clientName = c => CLIENTS[c] ? CLIENTS[c].name : c;
       const staffList = () => (sede === 'all' ? Object.keys(SEDES) : [sede]).flatMap(k => SEDES[k].staff);
+      const live = a => !['cancelada', 'noshow'].includes(a.st);
 
       function toast(msg) {
         const t = $('#crmToast');
         t.textContent = msg;
         t.classList.remove('hidden');
         clearTimeout(toast._t);
-        toast._t = setTimeout(() => t.classList.add('hidden'), 3200);
+        toast._t = setTimeout(() => t.classList.add('hidden'), 3600);
       }
 
-      function lastOfType(id, types) {
-        return CLIENTS[id].hist.find(h => types.includes(SVC[h.svc][3]));
-      }
+      function lastOfType(id, types) { return CLIENTS[id].hist.find(h => types.includes(SVC[h.svc][3])); }
       function retoqueInfo(id) {
         const h = CLIENTS[id].hist.find(x => SVC[x.svc][4]);
         if (!h) return null;
         const every = SVC[h.svc][4], days = daysSince(h.d);
         return { h, every, days, ratio: days / every };
       }
-      function hasFutureAppt(id) {
-        return APPTS.some(a => a.c === id && a.st !== 'cobrada');
-      }
-      function tickets() {
-        return APPTS.filter(a => a.st === 'cobrada').map(a => ({ time: a.paidAt, c: clientName(a.c), svc: a.svc, staff: a.staff, sede: a.sede, pay: a.pay, p: a.p }))
-          .concat(EXTRA_TICKETS).filter(t => inSede(t.sede)).sort((a, b) => a.time.localeCompare(b.time));
+      function hasFutureAppt(id) { return APPTS.some(a => a.c === id && ['reservada', 'confirmada', 'llegada'].includes(a.st)); }
+
+      // Líneas de venta de hoy: servicios, productos y cargos de la política
+      function lines() {
+        const out = [];
+        APPTS.filter(a => a.st === 'completada').forEach(a => {
+          out.push({ time: a.paidAt, c: clientName(a.c), concept: SVC[a.svc][0], type: 'svc', cat: SVC[a.svc][3], staff: a.staff, sede: a.sede, pay: a.pay, p: a.p });
+          (a.prods || []).forEach(k => out.push({ time: a.paidAt, c: clientName(a.c), concept: PROD[k][0], type: 'prod', cat: 'prod', staff: a.staff, sede: a.sede, pay: a.pay, p: PROD[k][1] }));
+        });
+        return out.concat(EXTRA, CHARGES).filter(t => inSede(t.sede)).sort((a, b) => a.time.localeCompare(b.time));
       }
 
-      // ---------- KPIs ----------
-      function renderKpis() {
+      function bars(sel, rows, money = true) {
+        const max = Math.max(1, ...rows.map(r => r[1]));
+        $(sel).innerHTML = rows.map(([l, v, cls]) => `<div><div class="flex justify-between text-xs mb-1"><span class="font-semibold text-stone-700">${l}</span><span class="font-mono font-bold">${money ? eur(v) : v}</span></div><div class="h-2 rounded-full bg-stone-200 overflow-hidden"><div class="h-full rounded-full ${cls || 'bg-gold-400'}" style="width:${Math.round(v / max * 100)}%"></div></div></div>`).join('');
+      }
+      const kpiCards = (sel, k) => { $(sel).innerHTML = k.map(([l, v, s, c]) => `<div class="glass-panel p-4 rounded-2xl shadow-sm"><span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">${l}</span><span class="block text-2xl font-bold font-display mt-1.5 ${c}">${v}</span><span class="text-[11px] text-stone-500 mt-0.5 block">${s}</span></div>`).join(''); };
+
+      // ---------- HOY ----------
+      function renderHoy() {
         const ap = APPTS.filter(a => inSede(a.sede));
-        const cob = tickets().reduce((s, t) => s + t.p, 0);
-        const prev = cob + ap.filter(a => a.st !== 'cobrada').reduce((s, a) => s + a.p, 0);
+        const cob = lines().reduce((s, t) => s + t.p, 0);
+        const booked = ap.filter(a => live(a)).reduce((s, a) => s + a.p, 0);
         const ia = ap.filter(a => a.src !== 'mostrador').length;
-        const pend = ap.filter(a => a.st === 'pendiente').length;
-        const due = Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede)).map(id => [id, retoqueInfo(id)])
-          .filter(([id, r]) => r && r.ratio >= 0.9 && !hasFutureAppt(id));
-        const sent = due.filter(([id]) => RETOQUE[id]).length;
-        const k = [
-          ['Citas hoy', ap.length, ap.filter(a => a.st === 'cobrada').length + ' cobradas · ' + pend + ' por confirmar', 'text-stone-900'],
-          ['Caja de hoy', eur(cob), 'previsto al cierre: ' + eur(prev), 'text-gold-700'],
-          ['Traídas por Laura y el chat', ia + ' de ' + ap.length, 'citas de hoy sin coger el teléfono', 'text-emerald-700'],
-          ['Retoques que tocan', due.length, sent + ' avisos ya enviados', 'text-purple-700']
-        ];
-        $('#crmKpis').innerHTML = k.map(([l, v, s, c]) => `<div class="glass-panel p-4 rounded-2xl shadow-sm"><span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">${l}</span><span class="block text-2xl font-bold font-display mt-1.5 ${c}">${v}</span><span class="text-[11px] text-stone-500 mt-0.5 block">${s}</span></div>`).join('');
+        const conf = ap.filter(a => ['confirmada', 'llegada', 'completada'].includes(a.st)).length;
+        const sinConf = ap.filter(a => a.st === 'reservada').length;
+        const staff = staffList();
+        const busyMin = ap.filter(live).reduce((s, a) => s + SVC[a.svc][2], 0);
+        const occ = Math.round(busyMin / (staff.length * 8.5 * 60) * 100);
+        kpiCards('#hoyKpis', [
+          ['Cobrado hoy', eur(cob), 'reservado para hoy: ' + eur(booked), 'text-gold-700'],
+          ['Citas hoy', ap.filter(live).length, conf + ' confirmadas · ' + sinConf + ' sin confirmar', 'text-stone-900'],
+          ['Agenda llena', occ + ' %', 'de las horas de turno de hoy', 'text-sky-700'],
+          ['Cogidas por Laura y el chat', ia + ' de ' + ap.length, 'citas de hoy sin coger el teléfono', 'text-emerald-700']
+        ]);
+
+        const todo = [];
+        ap.filter(a => ['reservada', 'confirmada'].includes(a.st) && toMin(a.t) + 15 <= toMin(NOW)).forEach(a => todo.push({
+          ico: '⏰', cls: 'border-red-300 bg-red-50/70',
+          txt: `<strong>${esc(clientName(a.c))}</strong> no ha llegado a su cita de las ${a.t} con ${a.staff} (${esc(SVC[a.svc][0].toLowerCase())}, ${eur(a.p)}).${a.card ? ' Dejó tarjeta como garantía al reservar.' : ''}`,
+          btn: 'Ver la cita', go: () => { selAppt = a.id; apptMode = null; setTab('agenda'); } }));
+        const sc = ap.filter(a => a.st === 'reservada');
+        if (sc.length) todo.push({ ico: '📞', cls: 'border-orange-300 bg-orange-50/70',
+          txt: `<strong>${sc.length} ${sc.length === 1 ? 'cita' : 'citas'} sin confirmar</strong>, cogidas por Laura y el WhatsApp fuera de horario. A las 10:00 se les pidió confirmación por WhatsApp; si no contestan, conviene llamar.`,
+          btn: 'Ver en la agenda', go: () => { selAppt = sc[0].id; apptMode = null; setTab('agenda'); } });
+        ap.filter(a => a.st === 'cancelada').forEach(a => {
+          const w = WAIT.find(x => x.sede === a.sede && x.st === 'esperando' && x.when.startsWith('Hoy'));
+          if (w) todo.push({ ico: '🔄', cls: 'border-sky-300 bg-sky-50/70',
+            txt: `<strong>${esc(clientName(a.c))}</strong> canceló la de las ${a.t} en ${short(SEDES[a.sede].n)}. <strong>${esc(w.c)}</strong> está en lista de espera para esta tarde.`,
+            btn: 'Ofrecerle el hueco', go: () => offerSlot(w.id) });
+        });
+        REVIEWS.filter(r => r.alert && r.st === 'pendiente' && inSede(r.sede)).forEach(r => todo.push({ ico: '⭐', cls: 'border-amber-300 bg-amber-50/70',
+          txt: `<strong>Valoración de ${r.stars} ★</strong> de ${esc(r.c)} (${r.d.toLowerCase()}, con ${r.staff}): «${esc(r.txt)}»`,
+          btn: 'Ver y responder', go: () => setTab('resenas') }));
+        Object.keys(RETOQUE).filter(id => RETOQUE[id] === 'respondido' && inSede(CLIENTS[id].sede)).forEach(id => todo.push({ ico: '🔁', cls: 'border-purple-300 bg-purple-50/70',
+          txt: `<strong>${esc(CLIENTS[id].name)}</strong> ha contestado al aviso de «vuelve a reservar»: ${RESPUESTA[id]}`,
+          btn: 'Darle cita', go: () => { selRet = id; setTab('vuelve'); } }));
+        if (FICHAJES.some(f => f.missing && inSede(STAFF_SEDE[f.who]))) todo.push({ ico: '🕘', cls: 'border-stone-300 bg-white',
+          txt: '<strong>Carlos no fichó la salida de ayer.</strong> El registro de jornada tiene que estar completo: la corrección queda anotada con el motivo.',
+          btn: 'Corregir', go: () => setTab('equipo') });
+        $('#hoyTodo').innerHTML = todo.length ? todo.map((t, i) => `<div class="rounded-2xl border p-4 flex flex-col sm:flex-row sm:items-center gap-3 ${t.cls}"><span class="text-2xl shrink-0">${t.ico}</span><p class="text-sm text-stone-800 flex-1">${t.txt}</p><button data-todo="${i}" class="shrink-0 px-3 py-2 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 text-xs font-bold">${t.btn} →</button></div>`).join('')
+          : '<div class="rounded-2xl border border-emerald-300 bg-emerald-50 p-5 text-sm text-emerald-900 font-semibold">✓ Todo al día. No hay nada que necesite a una persona ahora mismo.</div>';
+        $$('[data-todo]').forEach(b => b.addEventListener('click', () => todo[+b.dataset.todo].go()));
+
+        $('#hoyNoche').innerHTML = `
+          <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Anoche, con el salón cerrado</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-3 rounded-xl bg-white/5 border border-white/10"><span class="block text-[11px] text-stone-400">📞 Laura (teléfono)</span><span class="block font-display text-2xl font-bold">6 llamadas</span><span class="text-[11px] text-stone-300">3 citas · 2 precios · 1 recado</span></div>
+            <div class="p-3 rounded-xl bg-white/5 border border-white/10"><span class="block text-[11px] text-stone-400">💬 WhatsApp</span><span class="block font-display text-2xl font-bold">14 chats</span><span class="text-[11px] text-stone-300">5 citas · 2 cambios · 1 cancelación</span></div>
+          </div>
+          <p class="text-[11px] text-stone-400">El recado: una clienta quiere hablar con Irene sobre su prueba de novia. Está en la bandeja con la grabación.</p>`;
+        const nx = ap.filter(a => ['reservada', 'confirmada'].includes(a.st) && toMin(a.t) > toMin(NOW)).sort((a, b) => a.t.localeCompare(b.t)).slice(0, 5);
+        $('#hoyNext').innerHTML = nx.map(a => `<li class="py-2 flex items-center justify-between gap-2"><span class="min-w-0"><strong class="font-mono">${a.t}</strong> · ${esc(clientName(a.c))} <span class="text-stone-500">con ${a.staff}</span></span><span class="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${ST[a.st][1]}">${ST[a.st][0]}</span></li>`).join('') || '<li class="py-2 text-stone-500">No quedan citas hoy.</li>';
+        $('#hoyInsights').innerHTML = [
+          '📉 El martes por la tarde en ECI Albacete va al 38 %. Buen momento para escribir a las clientas que llevan tiempo sin venir.',
+          '😴 11 clientas habituales llevan más de 90 días sin venir. Están en «Vuelve a reservar».',
+          '🔁 Los avisos de «vuelve a reservar» trajeron 17 citas en octubre: 2.140 € que no habrían entrado solos.'
+        ].map(x => `<li>${x}</li>`).join('');
       }
 
       // ---------- AGENDA ----------
@@ -1700,49 +2011,58 @@
         const colW = 130;
         const rows = (END - START) / 30;
         let html = `<div class="relative" style="min-width:${56 + staff.length * colW}px;height:${rows * ROW + 34}px">`;
-        // cabecera
-        html += `<div class="absolute top-0 left-14 right-0 flex h-8">` + staff.map(p => `<div class="flex-1 px-1 text-center"><span class="block text-xs font-bold text-stone-800 truncate">${p}</span>${sede === 'all' ? `<span class="block text-[9px] text-stone-400 truncate -mt-0.5">${SEDES[STAFF_SEDE[p]].n.replace('El Corte Inglés', 'ECI')}</span>` : ''}</div>`).join('') + `</div>`;
-        // líneas de hora
+        html += `<div class="absolute top-0 left-14 right-0 flex h-8">` + staff.map(p => `<div class="flex-1 px-1 text-center"><span class="block text-xs font-bold text-stone-800 truncate">${p}</span>${sede === 'all' ? `<span class="block text-[9px] text-stone-400 truncate -mt-0.5">${short(SEDES[STAFF_SEDE[p]].n)}</span>` : ''}</div>`).join('') + `</div>`;
         for (let i = 0; i <= rows; i++) {
           const m = START + i * 30, y = 34 + i * ROW;
           html += `<div class="absolute left-14 right-0 border-t ${m % 60 ? 'border-stone-100' : 'border-stone-200'}" style="top:${y}px"></div>`;
           if (m % 60 === 0 && i < rows) html += `<span class="absolute left-0 w-12 text-right text-[10px] font-mono text-stone-400" style="top:${y - 6}px">${toHM(m)}</span>`;
         }
-        // separadores de columna
         staff.forEach((p, i) => { if (i) html += `<div class="absolute border-l border-stone-200" style="top:34px;bottom:0;left:calc(56px + (100% - 56px) * ${i / staff.length})"></div>`; });
-        // línea de ahora
         html += `<div class="absolute left-12 right-0 border-t-2 border-red-400 z-20" style="top:${34 + (toMin(NOW) - START) / 30 * ROW}px"><span class="absolute -left-1 -top-1.5 w-3 h-3 rounded-full bg-red-400"></span></div>`;
-        // citas
         APPTS.filter(a => staff.includes(a.staff)).forEach(a => {
           const i = staff.indexOf(a.staff), s = SVC[a.svc], cat = CAT[s[3]];
           const top = 34 + (toMin(a.t) - START) / 30 * ROW + 1, h = s[2] / 30 * ROW - 3;
-          const border = a.st === 'pendiente' ? 'border-2 border-dashed' : 'border-l-4';
-          const fade = a.st === 'cobrada' ? 'opacity-55' : '';
+          const off = !live(a);
+          const look = off ? 'bg-stone-50 border border-dashed border-stone-300 text-stone-400' : cat[1] + ' ' + (a.st === 'reservada' ? 'border-2 border-dashed' : 'border-l-4');
+          const fade = a.st === 'completada' ? 'opacity-55' : '';
           const ring = a.id === selAppt ? 'ring-2 ring-noir-900 z-10' : '';
-          html += `<button data-appt="${a.id}" class="appt absolute text-left rounded-lg px-1.5 py-1 overflow-hidden shadow-sm hover:shadow-md transition ${cat[1]} ${border} ${fade} ${ring}" style="top:${top}px;height:${h}px;left:calc(56px + (100% - 56px) * ${i / staff.length} + 3px);width:calc((100% - 56px) / ${staff.length} - 6px)">
-            <span class="block text-[10px] font-mono font-bold truncate">${a.t}${a.st === 'cobrada' ? ' ✓ cobrada' : a.st === 'salon' ? ' · en sillón' : a.st === 'pendiente' ? ' · confirmar' : ''}</span>
-            <span class="block text-[11px] font-bold leading-tight truncate">${esc(clientName(a.c))}</span>
+          const tag = a.st === 'completada' ? ' ✓ cobrada' : a.st === 'llegada' ? ' · en sillón' : a.st === 'reservada' ? ' · sin confirmar' : a.st === 'cancelada' ? ' · cancelada' : a.st === 'noshow' ? ' · no vino' : '';
+          html += `<button data-appt="${a.id}" class="appt absolute text-left rounded-lg px-1.5 py-1 overflow-hidden shadow-sm hover:shadow-md transition ${look} ${fade} ${ring}" style="top:${top}px;height:${h}px;left:calc(56px + (100% - 56px) * ${i / staff.length} + 3px);width:calc((100% - 56px) / ${staff.length} - 6px)">
+            <span class="block text-[10px] font-mono font-bold truncate">${a.t}${tag}</span>
+            <span class="block text-[11px] font-bold leading-tight truncate ${off ? 'line-through' : ''}">${a.card && live(a) ? '💳 ' : ''}${esc(clientName(a.c))}</span>
             ${h > 40 ? `<span class="block text-[10px] leading-tight truncate opacity-80">${esc(s[0])}</span>` : ''}
-            ${h > 64 && a.src !== 'mostrador' ? `<span class="inline-block mt-0.5 text-[9px] font-bold bg-white/80 rounded px-1">${SRC[a.src]}</span>` : ''}
+            ${h > 64 && a.src !== 'mostrador' && !off ? `<span class="inline-block mt-0.5 text-[9px] font-bold bg-white/80 rounded px-1">${SRC[a.src]}</span>` : ''}
           </button>`;
         });
         html += '</div>';
         $('#agendaGrid').innerHTML = html;
-        $$('#agendaGrid .appt').forEach(b => b.addEventListener('click', () => { selAppt = +b.dataset.appt; renderAgenda(); renderAppt(); }));
+        $$('#agendaGrid .appt').forEach(b => b.addEventListener('click', () => { selAppt = +b.dataset.appt; apptMode = null; renderAgenda(); renderAppt(); }));
         $('#agendaTitle').textContent = 'Hoy · ' + (sede === 'all' ? 'los 3 salones' : SEDES[sede].n) + ' · ' + staff.length + ' estilistas';
-        renderGaps(staff);
+        renderWait();
       }
 
-      function renderGaps(staff) {
-        const gaps = [];
-        staff.forEach(p => {
-          const busy = APPTS.filter(a => a.staff === p).map(a => [toMin(a.t), toMin(a.t) + SVC[a.svc][2]]).sort((x, y) => x[0] - y[0]);
-          let cur = Math.max(15 * 60, toMin(NOW));
-          busy.forEach(([s, e]) => { if (s - cur >= 60) gaps.push([p, cur, s]); cur = Math.max(cur, e); });
-          if (END - cur >= 60) gaps.push([p, cur, END]);
-        });
-        gaps.sort((a, b) => a[1] - b[1]);
-        $('#agendaGaps').innerHTML = gaps.slice(0, 6).map(([p, s, e]) => `<li class="flex items-center justify-between gap-2"><span><strong>${toHM(s)}–${toHM(e)}</strong> · ${p}</span><span class="text-[10px] text-stone-400 truncate">${SEDES[STAFF_SEDE[p]].n.replace('El Corte Inglés', 'ECI')}</span></li>`).join('') || '<li class="text-stone-500">Tarde completa.</li>';
+      function renderWait() {
+        const w = WAIT.filter(x => inSede(x.sede));
+        $('#waitCount').textContent = w.filter(x => x.st === 'esperando').length + ' esperando';
+        $('#waitList').innerHTML = w.map(x => `<li class="flex items-center justify-between gap-2"><span class="min-w-0"><strong>${esc(x.c)}</strong><span class="block text-[11px] text-stone-500 truncate">${esc(SVC[x.want][0])} · ${short(SEDES[x.sede].n)} · ${x.when}</span></span>${x.st === 'esperando' ? `<button data-wait="${x.id}" class="shrink-0 text-[11px] px-2 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold">Ofrecer hueco</button>` : '<span class="shrink-0 text-[11px] text-emerald-700 font-semibold">✓ Hueco ofrecido</span>'}</li>`).join('') || '<li class="text-stone-500">Nadie en espera en este salón.</li>';
+        $$('[data-wait]').forEach(b => b.addEventListener('click', () => offerSlot(b.dataset.wait)));
+      }
+
+      function offerSlot(wid) {
+        const w = WAIT.find(x => x.id === wid);
+        if (!w || w.st !== 'esperando') return;
+        const freed = APPTS.find(a => a.st === 'cancelada' && a.sede === w.sede && !a.reused);
+        w.st = 'ofrecido';
+        if (freed && w.when.startsWith('Hoy')) {
+          freed.reused = true;
+          const n = { id: nextId++, staff: freed.staff, t: freed.t, svc: w.want, c: w.c, src: 'whatsapp', st: 'reservada', sede: w.sede, p: SVC[w.want][1] };
+          APPTS.push(n);
+          selAppt = n.id;
+          toast('WhatsApp enviado a ' + first(w.c) + ': hueco a las ' + freed.t + ' con ' + freed.staff + '. Si dice que sí, la cita se confirma sola.');
+        } else {
+          toast('WhatsApp enviado a ' + first(w.c) + ' con los huecos de ' + w.when.toLowerCase() + '.');
+        }
+        if (tab !== 'agenda') { apptMode = null; setTab('agenda'); } else refresh();
       }
 
       function renderAppt() {
@@ -1750,28 +2070,74 @@
         if (!a) { $('#apptDetail').innerHTML = ''; return; }
         selAppt = a.id;
         const s = SVC[a.svc], known = CLIENTS[a.c], last = known && lastOfType(a.c, ['color']);
-        const stLabel = { cobrada: ['Cobrada', 'bg-stone-200 text-stone-700'], salon: ['En el sillón', 'bg-amber-100 text-amber-900'], confirmada: ['Confirmada', 'bg-emerald-100 text-emerald-800'], pendiente: ['Por confirmar', 'bg-orange-100 text-orange-800'] }[a.st];
+        const started = toMin(a.t) <= toMin(NOW);
+        const half = Math.round(a.p * 0.5);
         let action = '';
-        if (a.st === 'pendiente') action = `<button data-act="confirm" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm">✓ Confirmar y avisar por WhatsApp</button>`;
-        else if (a.st === 'confirmada') action = `<button data-act="arrive" class="w-full py-2.5 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 font-bold text-sm">Ha llegado · pasar al sillón</button>`;
-        else if (a.st === 'salon') action = `<div class="flex gap-2"><select id="payMethod" class="flex-1 text-sm border border-stone-300 rounded-xl px-2 bg-white" aria-label="Forma de pago"><option>Tarjeta</option><option>Bizum</option><option>Efectivo</option></select><button data-act="pay" class="flex-1 py-2.5 rounded-xl bg-gold-400 hover:bg-gold-300 text-noir-950 font-bold text-sm">Cobrar ${eur(a.p)}</button></div>`;
-        else action = `<p class="text-sm text-stone-600">Cobrada a las ${a.paidAt} · ${a.pay}</p>`;
+        if (apptMode === 'cancel') {
+          action = `<p class="text-sm font-bold text-stone-900 mb-2">¿Por qué se cancela?</p>
+            <select id="cancelReason" class="w-full text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white mb-2" aria-label="Motivo de cancelación">${MOTIVOS.map(m => `<option>${m}</option>`).join('')}</select>
+            <div class="flex gap-2"><button data-act="back" class="flex-1 py-2 rounded-xl bg-stone-200 text-xs font-bold">Volver</button><button data-act="doCancel" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold">Cancelar la cita</button></div>
+            <p class="text-[11px] text-stone-500 mt-2">Se avisa a la clienta por WhatsApp y el hueco se ofrece a la lista de espera.</p>`;
+        } else if (apptMode === 'noshow') {
+          action = a.card && a.p >= LIMIT
+            ? `<div class="p-3 rounded-xl bg-red-50 border border-red-200 space-y-2">
+                <p class="text-sm font-bold text-red-900">Norma de reserva: cobrar el 50 %</p>
+                <p class="text-xs text-red-900">Reservó online una cita de ${eur(a.p)} y aceptó la norma. Se pueden cobrar <strong>${eur(half)}</strong> a la ${a.card} que dejó como garantía.</p>
+                <div class="flex gap-2"><button data-act="noCharge" class="flex-1 py-2 rounded-xl bg-white border border-stone-300 text-xs font-bold">No cobrar</button><button data-act="charge" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold">Cobrar ${eur(half)}</button></div>
+                <p class="text-[11px] text-red-800">Nunca se cobra solo: lo decide una persona. Si la tarjeta falla, se le manda un enlace de pago por WhatsApp.</p></div>`
+            : `<div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-2"><p class="text-xs text-stone-700">Esta cita no tiene tarjeta de garantía (menos de ${LIMIT} € o reservada en el mostrador). Se marca como «no vino» para el historial.</p><div class="flex gap-2"><button data-act="back" class="flex-1 py-2 rounded-xl bg-stone-200 text-xs font-bold">Volver</button><button data-act="noCharge" class="flex-1 py-2 rounded-xl bg-noir-900 text-gold-300 text-xs font-bold">Marcar «no vino»</button></div></div>`;
+        } else if (a.st === 'reservada' || a.st === 'confirmada') {
+          action = `<div class="space-y-2">
+            ${a.st === 'reservada' ? `<button data-act="confirm" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm">✓ Confirmar (ha contestado o la hemos llamado)</button>` : ''}
+            <div class="flex gap-2"><button data-act="arrive" class="flex-1 py-2.5 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 font-bold text-sm">Ha llegado</button>
+            <button data-act="noshow" ${started ? '' : 'disabled title="Solo después de la hora de la cita"'} class="flex-1 py-2.5 rounded-xl border font-bold text-sm ${started ? 'border-red-300 text-red-700 hover:bg-red-50' : 'border-stone-200 text-stone-300 cursor-not-allowed'}">No ha venido</button></div>
+            <button data-act="cancel" class="w-full text-xs font-bold text-stone-500 hover:text-red-700 underline">Cancelar la cita</button></div>`;
+        } else if (a.st === 'llegada') {
+          action = `<p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">¿Se lleva algún producto?</p>
+            <div class="space-y-1 mb-3">${Object.entries(PROD).map(([k, p]) => `<label class="flex items-center justify-between gap-2 text-sm"><span class="flex items-center gap-2"><input type="checkbox" class="prodChk accent-gold-500" value="${k}">${p[0]}</span><span class="font-mono">${eur(p[1])}</span></label>`).join('')}</div>
+            <div class="flex gap-2"><select id="payMethod" class="flex-1 text-sm border border-stone-300 rounded-xl px-2 bg-white" aria-label="Forma de pago"><option>Tarjeta</option><option>Bizum</option><option>Efectivo</option></select><button data-act="pay" class="flex-1 py-2.5 rounded-xl bg-gold-400 hover:bg-gold-300 text-noir-950 font-bold text-sm" id="payBtn">Cobrar ${eur(a.p)}</button></div>`;
+        } else if (a.st === 'completada') {
+          action = `<p class="text-sm text-stone-600">Cobrada a las ${a.paidAt} · ${a.pay}${a.prods && a.prods.length ? ' · con ' + a.prods.map(k => PROD[k][0].split(' ')[0].toLowerCase()).join(' y ') : ''}</p><p class="text-[11px] text-stone-500 mt-1">Mañana le llega por WhatsApp la petición de valoración.</p>`;
+        } else if (a.st === 'cancelada') {
+          action = `<p class="text-sm text-stone-700">Cancelada por ${esc(a.canceladaPor || 'el salón')}.</p><p class="text-sm text-stone-700">Motivo: <strong>${esc(a.motivo)}</strong></p>`;
+        } else if (a.st === 'noshow') {
+          action = a.charge ? `<p class="text-sm text-stone-700">No vino. Cobrados <strong>${eur(a.charge)}</strong> a la ${a.card} a las ${a.chargeAt}. Recibo enviado por email.</p>` : '<p class="text-sm text-stone-700">No vino. Sin cargo.</p>';
+        }
         $('#apptDetail').innerHTML = `
           <div class="flex items-start justify-between gap-2">
             <div class="min-w-0"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider">${a.t} · ${a.staff}</p>
               <h3 class="text-lg font-bold text-stone-900 truncate">${esc(clientName(a.c))}</h3>
               <p class="text-sm text-stone-600">${esc(s[0])} · ${eur(a.p)}</p></div>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${stLabel[1]}">${stLabel[0]}</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${ST[a.st][1]}">${ST[a.st][0]}</span>
           </div>
           <p class="text-xs text-stone-500 mt-2">${SEDES[a.sede].n} · ${s[2]} min · Entró por ${SRC[a.src].replace(/^\S+ /, '')}</p>
-          ${last ? `<div class="mt-3 p-3 rounded-xl bg-gold-50 border border-gold-200"><p class="text-[10px] font-bold text-gold-800 uppercase tracking-wider">🎨 ${a.st === 'cobrada' ? 'Fórmula aplicada' : 'Fórmula a preparar'} (${fmtD(last.d)})</p><p class="text-xs font-mono text-stone-800 mt-1 leading-relaxed">${esc(last.f)}</p></div>` : known ? '' : `<p class="mt-3 text-xs text-stone-500 italic">Clienta nueva: la ficha se crea al cobrar.</p>`}
+          ${a.card ? `<p class="mt-2 text-xs font-semibold text-sky-800 bg-sky-50 border border-sky-200 rounded-lg px-2 py-1.5">💳 Garantía: ${a.card} guardada en Stripe al reservar. ${a.charge ? 'Se usó para el cargo por no presentarse.' : 'No se ha cobrado nada.'}</p>` : ''}
+          ${last && live(a) ? `<div class="mt-3 p-3 rounded-xl bg-gold-50 border border-gold-200"><p class="text-[10px] font-bold text-gold-800 uppercase tracking-wider">🎨 ${a.st === 'completada' ? 'Fórmula aplicada' : 'Fórmula a preparar'} (${fmtD(last.d)})</p><p class="text-xs font-mono text-stone-800 mt-1 leading-relaxed">${esc(last.f)}</p></div>` : known || !live(a) ? '' : `<p class="mt-3 text-xs text-stone-500 italic">Clienta nueva: la ficha se crea al cobrar.</p>`}
           ${known ? `<button data-act="ficha" class="mt-3 text-xs font-bold text-gold-700 hover:text-gold-900 underline">Abrir ficha completa →</button>` : ''}
           <div class="mt-4 pt-3 border-t border-stone-200">${action}</div>`;
         const btn = act => $('#apptDetail [data-act="' + act + '"]');
-        if (btn('confirm')) btn('confirm').onclick = () => { a.st = 'confirmada'; toast('Cita confirmada. WhatsApp enviado a ' + clientName(a.c) + ' con la ubicación del salón.'); refresh(); };
-        if (btn('arrive')) btn('arrive').onclick = () => { a.st = 'salon'; refresh(); };
-        if (btn('pay')) btn('pay').onclick = () => { a.st = 'cobrada'; a.pay = $('#payMethod').value; a.paidAt = NOW; if (known) known.hist.unshift({ d: '2026-10-15', svc: a.svc, staff: a.staff, p: a.p, f: last && s[3] === 'color' ? last.f : '' }); toast('Cobrado ' + eur(a.p) + ' con ' + a.pay.toLowerCase() + '. Ya está en la caja del día.'); refresh(); };
-        if (btn('ficha')) btn('ficha').onclick = () => { selClient = a.c; setTab('clientas'); };
+        const on = (act, fn) => { if (btn(act)) btn(act).onclick = fn; };
+        on('confirm', () => { a.st = 'confirmada'; toast('Cita confirmada. ' + first(clientName(a.c)) + ' recibe la ubicación del salón por WhatsApp.'); refresh(); });
+        on('arrive', () => { a.st = 'llegada'; refresh(); });
+        on('cancel', () => { apptMode = 'cancel'; renderAppt(); });
+        on('noshow', () => { apptMode = 'noshow'; renderAppt(); });
+        on('back', () => { apptMode = null; renderAppt(); });
+        on('doCancel', () => { a.st = 'cancelada'; a.motivo = $('#cancelReason').value; a.canceladaPor = 'el salón, hoy a las ' + NOW; apptMode = null; toast('Cancelada. Aviso enviado por WhatsApp a ' + first(clientName(a.c)) + '. El hueco queda libre para la lista de espera.'); refresh(); });
+        on('charge', () => { a.st = 'noshow'; a.charge = half; a.chargeAt = NOW; apptMode = null; CHARGES.push({ time: NOW, c: clientName(a.c), concept: 'Cargo por no presentarse (50 %)', type: 'noshow', cat: 'noshow', staff: a.staff, sede: a.sede, pay: 'Tarjeta guardada', p: half }); toast('Cobrados ' + eur(half) + ' a la ' + a.card + '. Le llega el recibo por email y un WhatsApp explicando el cargo.'); refresh(); });
+        on('noCharge', () => { a.st = 'noshow'; apptMode = null; toast('Marcada como «no vino», sin cargo. Queda en su ficha.'); refresh(); });
+        on('ficha', () => { selClient = a.c; setTab('clientas'); });
+        if (btn('pay')) {
+          const upd = () => { const extra = $$('.prodChk').filter(x => x.checked).reduce((s, x) => s + PROD[x.value][1], 0); $('#payBtn').textContent = 'Cobrar ' + eur(a.p + extra); };
+          $$('.prodChk').forEach(x => x.addEventListener('change', upd));
+          btn('pay').onclick = () => {
+            a.prods = $$('.prodChk').filter(x => x.checked).map(x => x.value);
+            a.st = 'completada'; a.pay = $('#payMethod').value; a.paidAt = NOW;
+            if (known) known.hist.unshift({ d: TODAY_S, svc: a.svc, staff: a.staff, p: a.p, f: last && s[3] === 'color' ? last.f : '' });
+            const tot = a.p + a.prods.reduce((x, k) => x + PROD[k][1], 0);
+            toast('Cobrado ' + eur(tot) + ' con ' + a.pay.toLowerCase() + '. Ya está en la caja del día.');
+            refresh();
+          };
+        }
       }
 
       // ---------- CLIENTAS ----------
@@ -1793,7 +2159,7 @@
           return `<li><button data-c="${id}" class="crm-row w-full text-left p-3 flex items-center gap-3 transition border-l-4 ${id === selClient ? 'bg-gold-50 border-gold-500' : 'border-transparent hover:bg-stone-50'}">
             <span class="w-9 h-9 shrink-0 rounded-full bg-gold-100 border border-gold-300 flex items-center justify-center text-xs font-bold text-gold-800">${c.name.split(' ').map(x => x[0]).join('')}</span>
             <span class="flex-1 min-w-0"><span class="block text-sm font-bold text-stone-900 truncate">${esc(c.name)}</span><span class="block text-[11px] text-stone-500 truncate">${esc(SVC[c.hist[0].svc][0])} · ${c.staff}</span></span>
-            <span class="text-right shrink-0"><span class="block text-sm font-mono font-bold">${eur(st.year)}</span><span class="block text-[10px] ${due ? 'text-purple-700 font-bold' : 'text-stone-400'}">${due ? 'Toca retoque' : st.visits + (st.visits === 1 ? ' visita' : ' visitas')}</span></span>
+            <span class="text-right shrink-0"><span class="block text-sm font-mono font-bold">${eur(st.year)}</span><span class="block text-[10px] ${due ? 'text-purple-700 font-bold' : 'text-stone-400'}">${due ? 'Le toca volver' : st.visits + (st.visits === 1 ? ' visita' : ' visitas')}</span></span>
           </button></li>`;
         }).join('') || '<li class="p-6 text-sm text-stone-500 text-center">Ninguna clienta coincide con la búsqueda.</li>';
         $$('.crm-row').forEach(b => b.addEventListener('click', () => { selClient = b.dataset.c; renderClients(); }));
@@ -1803,7 +2169,8 @@
       function renderFicha(id) {
         if (!id) { $('#crmFicha').innerHTML = '<p class="text-sm text-stone-500">Elige una clienta de la lista.</p>'; return; }
         const c = CLIENTS[id], st = clientStats(id), r = retoqueInfo(id), color = lastOfType(id, ['color']);
-        const next = APPTS.find(a => a.c === id && a.st !== 'cobrada');
+        const next = APPTS.find(a => a.c === id && ['reservada', 'confirmada', 'llegada'].includes(a.st));
+        const noShows = APPTS.filter(a => a.c === id && a.st === 'noshow').length;
         const retTxt = next ? 'Hoy a las ' + next.t : r ? (r.every - r.days > 0 ? 'en ' + (r.every - r.days) + ' días' : 'ya le toca') : '—';
         const testOk = c.test && daysSince(c.test) <= 180;
         $('#crmFicha').innerHTML = `
@@ -1822,7 +2189,12 @@
             <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Visitas</span><span class="block text-lg font-bold">${st.visits}</span></div>
             <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Gasto 2026</span><span class="block text-lg font-bold text-gold-700">${eur(st.year)}</span></div>
             <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Última visita</span><span class="block text-sm font-bold mt-1">${fmtD(st.last)}</span></div>
-            <div class="p-3 rounded-xl bg-purple-50 border border-purple-200"><span class="block text-[10px] font-bold text-purple-700 uppercase">Próximo retoque</span><span class="block text-sm font-bold mt-1 text-purple-900">${retTxt}</span></div>
+            <div class="p-3 rounded-xl bg-purple-50 border border-purple-200"><span class="block text-[10px] font-bold text-purple-700 uppercase">Próxima visita</span><span class="block text-sm font-bold mt-1 text-purple-900">${retTxt}</span></div>
+          </div>
+          <div class="flex flex-wrap gap-2 text-[11px] font-semibold">
+            <span class="px-2 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">✓ Acepta WhatsApp y email</span>
+            ${c.card ? `<span class="px-2 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200">💳 ${c.card} guardada en Stripe (para reservas de ${LIMIT} € o más)</span>` : ''}
+            <span class="px-2 py-1 rounded-lg ${noShows ? 'bg-red-50 text-red-800 border-red-200' : 'bg-stone-50 text-stone-600 border-stone-200'} border">${noShows ? noShows + ' vez que no vino' : 'Nunca ha faltado sin avisar'}</span>
           </div>
           <div id="newSvcForm" class="hidden p-4 rounded-2xl border-2 border-gold-300 bg-gold-50/60 space-y-3">
             <p class="text-sm font-bold text-stone-900">Registrar el servicio de hoy</p>
@@ -1860,33 +2232,34 @@
         f.querySelector('#nsSvc').addEventListener('change', setPrice); setPrice();
         f.querySelector('[data-act="new"]').onclick = () => { form.classList.remove('hidden'); f.querySelector('#nsFormula').value = color ? color.f : ''; f.querySelector('#nsSvc').focus(); };
         f.querySelector('[data-act="cancel"]').onclick = () => form.classList.add('hidden');
-        f.querySelector('[data-act="wa"]').onclick = () => toast('Abriendo la conversación de WhatsApp con ' + c.name.split(' ')[0] + ' en la bandeja única.');
+        f.querySelector('[data-act="wa"]').onclick = () => toast('Abriendo la conversación de WhatsApp con ' + first(c.name) + ' en la bandeja única.');
         f.querySelector('[data-act="save"]').onclick = () => {
           const svc = f.querySelector('#nsSvc').value, staff = f.querySelector('#nsStaff').value;
           const p = Math.max(0, Math.round(+f.querySelector('#nsPrice').value || 0));
-          c.hist.unshift({ d: '2026-10-15', svc, staff, p, f: f.querySelector('#nsFormula').value.trim() });
-          EXTRA_TICKETS.push({ time: NOW, c: c.name, svc, staff, sede: STAFF_SEDE[staff], pay: 'Tarjeta', p });
+          c.hist.unshift({ d: TODAY_S, svc, staff, p, f: f.querySelector('#nsFormula').value.trim() });
+          EXTRA.push({ time: NOW, c: c.name, concept: SVC[svc][0], type: 'svc', cat: SVC[svc][3], staff, sede: STAFF_SEDE[staff], pay: 'Tarjeta', p });
           delete RETOQUE[id];
-          toast('Guardado en la ficha de ' + c.name.split(' ')[0] + ' y cobrado ' + eur(p) + '.');
+          toast('Guardado en la ficha de ' + first(c.name) + ' y cobrado ' + eur(p) + '.');
           refresh();
         };
       }
 
-      // ---------- RETOQUES ----------
+      // ---------- VUELVE A RESERVAR ----------
       function retoqueMsg(id) {
         const c = CLIENTS[id], r = retoqueInfo(id), weeks = Math.round(r.days / 7);
-        return `Hola ${esc(c.name.split(' ')[0])} 💛 Hace ${weeks} semanas de tu ${esc(SVC[r.h.svc][0].toLowerCase())} con ${r.h.staff} en ${SEDES[c.sede].n}. ¿Te apetece renovar el brillo antes de que se note la raíz? ${r.h.staff} tiene huecos esta semana.`;
+        const isColor = SVC[r.h.svc][3] === 'color';
+        return `Hola ${esc(first(c.name))} 💛 Hace ${weeks} semanas de tu ${esc(SVC[r.h.svc][0].toLowerCase())} con ${r.h.staff} en ${SEDES[c.sede].n}. ${isColor ? '¿Te apetece renovar el brillo antes de que se note la raíz?' : '¿Te apetece repetir?'} ${r.h.staff} tiene huecos esta semana.`;
       }
       function renderRetoques() {
         const list = Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede)).map(id => [id, retoqueInfo(id)])
           .filter(([id, r]) => r && r.ratio >= 0.85 && !hasFutureAppt(id)).sort((a, b) => b[1].ratio - a[1].ratio);
         if (!list.some(([id]) => id === selRet)) selRet = list.length ? list[0][0] : null;
-        $('#retoqueList').innerHTML = (list.length ? `<p class="text-sm text-stone-600">Clientas a las que les toca volver según su última técnica. El aviso sale solo; aquí veis cómo va cada una.</p>` : '<p class="text-sm text-stone-500">Ninguna clienta tiene retoque pendiente en este salón.</p>') + list.map(([id, r]) => {
+        $('#retoqueList').innerHTML = (list.length ? `<p class="text-sm text-stone-600">Clientas a las que les toca volver según su último servicio. El aviso sale solo por WhatsApp; aquí veis cómo va cada una.</p>` : '<p class="text-sm text-stone-500">A ninguna clienta de este salón le toca volver todavía.</p>') + list.map(([id, r]) => {
           const c = CLIENTS[id], st = RETOQUE[id], pct = Math.min(100, Math.round(r.ratio * 100));
           const late = r.days > r.every;
           return `<div data-r="${id}" class="ret-card glass-panel rounded-2xl p-4 shadow-sm cursor-pointer transition ${id === selRet ? 'ring-2 ring-gold-400' : 'hover:shadow-md'}">
             <div class="flex items-start justify-between gap-3">
-              <div class="min-w-0"><p class="text-sm font-bold text-stone-900">${esc(c.name)}</p><p class="text-xs text-stone-500">${esc(SVC[r.h.svc][0])} el ${fmtD(r.h.d)} · ${r.h.staff} · ${SEDES[c.sede].n.replace('El Corte Inglés', 'ECI')}</p></div>
+              <div class="min-w-0"><p class="text-sm font-bold text-stone-900">${esc(c.name)}</p><p class="text-xs text-stone-500">${esc(SVC[r.h.svc][0])} el ${fmtD(r.h.d)} · ${r.h.staff} · ${short(SEDES[c.sede].n)}</p></div>
               <span class="text-[11px] font-bold px-2 py-0.5 rounded-full shrink-0 ${late ? 'bg-orange-100 text-orange-800' : 'bg-purple-100 text-purple-800'}">Día ${r.days} de ${r.every}</span>
             </div>
             <div class="h-1.5 rounded-full bg-stone-200 mt-3 overflow-hidden"><div class="h-full ${late ? 'bg-orange-400' : 'bg-purple-400'}" style="width:${pct}%"></div></div>
@@ -1899,62 +2272,178 @@
           </div>`;
         }).join('');
         $$('.ret-card').forEach(el => el.addEventListener('click', e => { if (e.target.closest('button')) return; selRet = el.dataset.r; renderRetoques(); }));
-        $$('[data-send]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.send] = 'enviado'; selRet = b.dataset.send; toast('Aviso de retoque enviado por WhatsApp a ' + CLIENTS[b.dataset.send].name.split(' ')[0] + '.'); refresh(); }));
-        $$('[data-book]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.book] = 'cita'; toast('Cita propuesta a ' + CLIENTS[b.dataset.book].name.split(' ')[0] + ' para el sábado a las 10:00. Se confirma sola si dice que sí.'); refresh(); }));
-        $('#retoquePreview').innerHTML = selRet ? retoqueMsg(selRet) : 'Hola 💛 Ya te toca renovar el color. ¿Te buscamos hueco esta semana?';
+        $$('[data-send]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.send] = 'enviado'; selRet = b.dataset.send; toast('Aviso enviado por WhatsApp a ' + first(CLIENTS[b.dataset.send].name) + '.'); refresh(); }));
+        $$('[data-book]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.book] = 'cita'; toast('Cita propuesta a ' + first(CLIENTS[b.dataset.book].name) + ' para el sábado a las 10:00. Se confirma sola si dice que sí.'); refresh(); }));
+        $('#retoquePreview').innerHTML = selRet ? retoqueMsg(selRet) : 'Hola 💛 Ya te toca volver. ¿Te buscamos hueco esta semana?';
+        $('#retoqueRules').innerHTML = Object.values(SVC).filter(s => s[4]).map(s => `<li class="flex justify-between"><span>${s[0]}</span><span class="font-mono font-semibold">${s[4]} días</span></li>`).join('');
       }
 
       // ---------- CAJA ----------
-      function bars(sel, rows) {
-        const max = Math.max(1, ...rows.map(r => r[1]));
-        $(sel).innerHTML = rows.map(([l, v, cls]) => `<div><div class="flex justify-between text-xs mb-1"><span class="font-semibold text-stone-700">${l}</span><span class="font-mono font-bold">${eur(v)}</span></div><div class="h-2 rounded-full bg-stone-200 overflow-hidden"><div class="h-full rounded-full ${cls || 'bg-gold-400'}" style="width:${Math.round(v / max * 100)}%"></div></div></div>`).join('');
-      }
       function renderCaja() {
-        const t = tickets();
+        const t = lines();
         const total = t.reduce((s, x) => s + x.p, 0);
-        $('#cajaCount').textContent = t.length + (t.length === 1 ? ' ticket' : ' tickets');
-        $('#cajaRows').innerHTML = t.map(x => `<tr><td class="p-3 font-mono text-xs">${x.time}</td><td class="p-3 font-semibold">${esc(x.c)}</td><td class="p-3 text-stone-600">${esc(SVC[x.svc][0])}</td><td class="p-3 text-stone-600">${x.staff}</td><td class="p-3 text-stone-600">${x.pay}</td><td class="p-3 text-right font-mono font-bold">${eur(x.p)}</td></tr>`).join('') || '<tr><td colspan="6" class="p-6 text-center text-stone-500">Todavía no hay cobros hoy en este salón.</td></tr>';
-        const by = m => t.filter(x => x.pay === m).reduce((s, x) => s + x.p, 0);
-        const pend = APPTS.filter(a => inSede(a.sede) && a.st !== 'cobrada').reduce((s, a) => s + a.p, 0);
+        $('#cajaCount').textContent = t.length + (t.length === 1 ? ' línea' : ' líneas');
+        $('#cajaRows').innerHTML = t.map(x => `<tr class="${x.type === 'noshow' ? 'bg-red-50/60' : ''}"><td class="p-3 font-mono text-xs">${x.time}</td><td class="p-3 font-semibold">${esc(x.c)}</td><td class="p-3 text-stone-600">${esc(x.concept)}</td><td class="p-3 text-stone-600">${x.staff}</td><td class="p-3 text-stone-600">${x.pay}</td><td class="p-3 text-right font-mono font-bold">${eur(x.p)}</td></tr>`).join('') || '<tr><td colspan="6" class="p-6 text-center text-stone-500">Todavía no hay cobros hoy en este salón.</td></tr>';
+        const sum = f => t.filter(f).reduce((s, x) => s + x.p, 0);
+        const cnt = f => t.filter(f).length;
+        const typeRows = [['Servicios', x => x.type === 'svc'], ['Productos', x => x.type === 'prod'], ['Cargos por no presentarse', x => x.type === 'noshow'], ['Bonos y tarjetas regalo', () => false]];
+        $('#cajaByType').innerHTML = typeRows.map(([l, f]) => `<tr><td class="py-1.5">${l}</td><td class="py-1.5 text-right text-stone-500 text-xs">${cnt(f)}</td><td class="py-1.5 text-right font-mono font-bold">${eur(sum(f))}</td></tr>`).join('') + `<tr class="font-bold"><td class="pt-2">Total</td><td class="pt-2 text-right text-xs">${t.length}</td><td class="pt-2 text-right font-mono">${eur(total)}</td></tr>`;
+        const pays = ['Tarjeta', 'Bizum', 'Efectivo', 'Tarjeta guardada'];
+        $('#cajaByPay').innerHTML = pays.map(m => `<tr><td class="py-1.5">${m === 'Tarjeta guardada' ? 'Tarjeta de garantía' : m}</td><td class="py-1.5 text-right font-mono font-bold">${eur(sum(x => x.pay === m))}</td></tr>`).join('') + `<tr class="font-bold"><td class="pt-2">Cobrado</td><td class="pt-2 text-right font-mono">${eur(total)}</td></tr>`;
+        const pend = APPTS.filter(a => inSede(a.sede) && ['reservada', 'confirmada', 'llegada'].includes(a.st)).reduce((s, a) => s + a.p, 0);
+        const tickets = new Set(t.map(x => x.c + x.time)).size;
         $('#cajaResumen').innerHTML = `
-          <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Cobrado hoy</p>
+          <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Cobrado hoy · ${sede === 'all' ? 'los 3 salones' : SEDES[sede].n}</p>
           <p class="font-display text-4xl font-bold">${eur(total)}</p>
-          <div class="grid grid-cols-3 gap-2 text-center text-xs">
-            <div class="p-2 rounded-xl bg-white/5 border border-white/10"><span class="block text-stone-400">Tarjeta</span><span class="font-mono font-bold">${eur(by('Tarjeta'))}</span></div>
-            <div class="p-2 rounded-xl bg-white/5 border border-white/10"><span class="block text-stone-400">Bizum</span><span class="font-mono font-bold">${eur(by('Bizum'))}</span></div>
-            <div class="p-2 rounded-xl bg-white/5 border border-white/10"><span class="block text-stone-400">Efectivo</span><span class="font-mono font-bold">${eur(by('Efectivo'))}</span></div>
-          </div>
-          <div class="flex justify-between text-sm pt-2 border-t border-white/10"><span class="text-stone-300">Ticket medio</span><span class="font-mono font-bold">${t.length ? eur(total / t.length) : '—'}</span></div>
+          <div class="flex justify-between text-sm pt-2 border-t border-white/10"><span class="text-stone-300">Ticket medio</span><span class="font-mono font-bold">${tickets ? eur(total / tickets) : '—'}</span></div>
           <div class="flex justify-between text-sm"><span class="text-stone-300">Pendiente de cobrar hoy</span><span class="font-mono font-bold text-gold-300">${eur(pend)}</span></div>
           <p class="text-[11px] text-stone-400">Sin comisiones por reserva: cada euro de la caja es del salón.</p>`;
+        if (sede === 'all') {
+          $('#cajaCierre').innerHTML = `<p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cierre de caja</p><p class="text-sm text-stone-600">Cada salón cierra su propia caja. Elige uno arriba para cerrarla.</p>
+            <ul class="text-sm space-y-1">${Object.entries(SEDES).map(([k, s]) => `<li class="flex justify-between"><span>${s.n}</span><span class="font-semibold ${CLOSED[k] ? 'text-emerald-700' : 'text-stone-500'}">${CLOSED[k] ? '✓ Cerrada' : 'Abierta'}</span></li>`).join('')}</ul>`;
+          return;
+        }
+        const FONDO = 150, cash = sum(x => x.pay === 'Efectivo'), expected = FONDO + cash;
+        if (CLOSED[sede]) {
+          const c = CLOSED[sede];
+          $('#cajaCierre').innerHTML = `<p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cierre de caja</p><p class="text-sm font-bold text-emerald-700">✓ Caja cerrada a las ${NOW}</p><p class="text-sm text-stone-600">Esperado ${eur(c.expected)} · contado ${eur(c.counted)} · <strong class="${c.diff ? 'text-red-700' : 'text-emerald-700'}">${c.diff ? 'descuadre de ' + eur(Math.abs(c.diff)) + (c.diff < 0 ? ' de menos' : ' de más') : 'cuadra al céntimo'}</strong></p><p class="text-[11px] text-stone-500">Resumen enviado al dueño por WhatsApp.</p>`;
+          return;
+        }
+        $('#cajaCierre').innerHTML = `
+          <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cierre de caja · ${short(SEDES[sede].n)}</p>
+          <div class="text-sm space-y-1">
+            <p class="flex justify-between"><span>Fondo al abrir</span><span class="font-mono">${eur(FONDO)}</span></p>
+            <p class="flex justify-between"><span>+ Cobros en efectivo</span><span class="font-mono">${eur(cash)}</span></p>
+            <p class="flex justify-between font-bold border-t border-stone-200 pt-1"><span>Debería haber</span><span class="font-mono">${eur(expected)}</span></p>
+          </div>
+          <label class="block text-sm font-semibold">Efectivo contado
+            <input id="cashCounted" type="number" min="0" step="1" value="${expected}" class="mt-1 w-full text-sm border border-stone-300 rounded-xl px-3 py-2 bg-white font-mono"></label>
+          <p class="text-sm" id="cashDiff"></p>
+          <button id="closeCash" class="w-full py-2.5 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 font-bold text-sm">Cerrar caja y enviar resumen al dueño</button>`;
+        const diffTxt = () => { const d = Math.round(+$('#cashCounted').value || 0) - expected; $('#cashDiff').innerHTML = d ? `<span class="font-bold text-red-700">Descuadre: ${eur(Math.abs(d))} ${d < 0 ? 'de menos' : 'de más'}</span>` : '<span class="font-bold text-emerald-700">✓ Cuadra</span>'; return d; };
+        diffTxt();
+        $('#cashCounted').addEventListener('input', diffTxt);
+        $('#closeCash').onclick = () => { const counted = Math.round(+$('#cashCounted').value || 0); CLOSED[sede] = { expected, counted, diff: counted - expected }; toast('Caja de ' + short(SEDES[sede].n) + ' cerrada. El dueño recibe el resumen del día por WhatsApp.'); renderCaja(); };
+      }
+
+      // ---------- EQUIPO Y FICHAJE ----------
+      function staffState(p) {
+        const f = FICHAJES.filter(x => x.d === 'hoy' && x.who === p && !x.corr).map(x => x.mov);
+        const last = f[f.length - 1];
+        return !last || last === 'Salida' ? 'fuera' : last === 'Pausa' ? 'pausa' : 'dentro';
+      }
+      function renderEquipo() {
+        const pinS = sede === 'all' ? 'tq' : sede;
+        $('#pinSede').textContent = SEDES[pinS].n;
+        const stCls = { dentro: 'bg-emerald-500', pausa: 'bg-amber-400', fuera: 'bg-stone-500' };
+        $('#pinStaff').innerHTML = SEDES[pinS].staff.map(p => `<button data-pin="${p}" class="py-2.5 rounded-xl text-sm font-bold transition ${pinStaff === p ? 'bg-gold-400 text-noir-950' : 'bg-white/10 hover:bg-white/20 text-white'}"><span class="inline-block w-2 h-2 rounded-full mr-1 ${stCls[staffState(p)]}"></span>${p}</button>`).join('');
+        $$('[data-pin]').forEach(b => b.addEventListener('click', () => { pinStaff = b.dataset.pin; pinCode = ''; renderEquipo(); }));
+        const st = pinStaff ? staffState(pinStaff) : null;
+        if (pinStaff && pinCode.length === 4) {
+          const opts = st === 'fuera' ? [['Entrada', 'Entrar']] : st === 'pausa' ? [['Vuelta de pausa', 'Volver de la pausa']] : [['Pausa', 'Empezar pausa'], ['Salida', 'Salir']];
+          $('#pinWho').innerHTML = `Hola, <strong>${pinStaff}</strong>. ¿Qué quieres fichar?<span class="flex justify-center gap-2 mt-2">${opts.map(([m, l]) => `<button data-mov="${m}" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold">${l}</button>`).join('')}</span>`;
+          $$('[data-mov]').forEach(b => b.addEventListener('click', () => {
+            FICHAJES.push({ d: 'hoy', t: NOW, who: pinStaff, mov: b.dataset.mov, from: 'Tablet ' + short(SEDES[pinS].n) });
+            toast(pinStaff + ': ' + b.dataset.mov.toLowerCase() + ' fichada a las ' + NOW + '.');
+            pinStaff = null; pinCode = ''; renderEquipo();
+          }));
+        } else {
+          $('#pinWho').innerHTML = pinStaff ? `Hola, <strong>${pinStaff}</strong>. Escribe tu PIN` : 'Elige tu nombre';
+        }
+        $('#pinDots').textContent = pinStaff ? '●'.repeat(pinCode.length) + '○'.repeat(4 - pinCode.length) : '';
+        $('#pinPad').innerHTML = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', '⌫'].map(k => k ? `<button data-k="${k}" class="h-12 rounded-xl bg-white/10 hover:bg-white/20 text-white text-lg font-bold disabled:opacity-30" ${pinStaff && pinCode.length < 4 ? '' : 'disabled'}>${k}</button>` : '<span></span>').join('');
+        $$('[data-k]').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; pinCode = k === '⌫' ? pinCode.slice(0, -1) : (pinCode + k).slice(0, 4); renderEquipo(); }));
+
+        const rows = FICHAJES.filter(f => inSede(STAFF_SEDE[f.who])).slice().sort((a, b) => (a.d === b.d ? a.t.localeCompare(b.t) : a.d === 'ayer' ? -1 : 1));
+        $('#fichajeRows').innerHTML = rows.map(f => {
+          const i = FICHAJES.indexOf(f);
+          return `<tr class="${f.missing ? 'bg-orange-50' : f.corr ? 'bg-sky-50/60' : ''}"><td class="p-3 font-mono text-xs">${f.d === 'ayer' ? 'Ayer ' : ''}${f.missing ? '—' : f.t}</td><td class="p-3 font-semibold">${f.who}</td><td class="p-3">${f.missing ? '<span class="text-orange-800 font-semibold">Salida sin fichar</span>' : f.mov}${f.corr ? `<span class="block text-[11px] text-sky-800">Corrección: ${esc(f.corr)}</span>` : ''}</td><td class="p-3 text-stone-500 text-xs">${f.from}</td><td class="p-3 text-right">${f.missing ? `<button data-fix="${i}" class="text-[11px] px-2 py-1 rounded-lg bg-noir-900 text-gold-300 font-bold">Corregir</button>` : ''}</td></tr>`;
+        }).join('');
+        $$('[data-fix]').forEach(b => b.addEventListener('click', () => {
+          const f = FICHAJES[+b.dataset.fix];
+          f.missing = false; f.mov = 'Salida (no fichada)'; f.t = '—';
+          FICHAJES.push({ d: 'ayer', t: '20:05', who: f.who, mov: 'Salida', from: 'Encargada, hoy a las ' + NOW, corr: 'olvidó fichar al salir; hora confirmada por la encargada' });
+          toast('Corrección añadida con motivo y autora. La línea original se conserva.');
+          refresh();
+        }));
+
+        const days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+        const cell = v => v === 'Libre' ? 'text-stone-400' : v === 'Vacaciones' || v === 'Formación' ? 'text-purple-700 font-semibold' : 'text-stone-800';
+        $('#turnosTable').innerHTML = `<thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-2.5">Estilista</th>${days.map((d, i) => `<th class="p-2.5 ${i === 3 ? 'text-gold-700' : ''}">${d}${i === 3 ? ' · hoy' : ''}</th>`).join('')}<th class="p-2.5 text-right">Horas</th></tr></thead><tbody class="divide-y divide-stone-100">${staffList().map(p => `<tr><td class="p-2.5 font-semibold">${p}${sede === 'all' ? `<span class="block text-[10px] text-stone-400 font-normal">${short(SEDES[STAFF_SEDE[p]].n)}</span>` : ''}</td>${TURNOS[p].slice(0, 6).map((v, i) => `<td class="p-2.5 ${cell(v)} ${i === 3 ? 'bg-gold-50/60' : ''}">${v}</td>`).join('')}<td class="p-2.5 text-right font-mono font-bold">${TURNOS[p][6]} h</td></tr>`).join('')}</tbody>`;
+      }
+
+      // ---------- RESEÑAS ----------
+      function renderResenas() {
+        const r = REVIEWS.filter(x => inSede(x.sede));
+        kpiCards('#resKpis', [
+          ['Nota media', '4,7 ★', 'valoraciones internas de octubre', 'text-gold-700'],
+          ['Valoraciones', '46', 'de 61 peticiones enviadas', 'text-stone-900'],
+          ['Pasaron a Google', '21', 'pulsaron «Escribir reseña»', 'text-sky-700'],
+          ['Notas bajas', r.filter(x => x.alert).length, 'os llega un aviso al momento', 'text-orange-700']
+        ]);
+        const g = { publicada: ['Publicó en Google', 'text-emerald-700'], clic: ['Abrió Google', 'text-sky-700'], no: ['Sin pasar a Google', 'text-stone-400'] };
+        $('#resList').innerHTML = `<p class="text-sm text-stone-600">Valoraciones que dejan las clientas al día siguiente de su visita. Las respuestas las escribe siempre una persona del salón.</p>` + r.map(x => `
+          <div class="glass-panel rounded-2xl p-4 shadow-sm ${x.alert && x.st === 'pendiente' ? 'ring-2 ring-orange-300' : ''}">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0"><p class="text-sm font-bold text-stone-900">${esc(x.c)} <span class="text-amber-500">${'★'.repeat(x.stars)}<span class="text-stone-300">${'★'.repeat(5 - x.stars)}</span></span></p><p class="text-xs text-stone-500">${x.d} · con ${x.staff} · ${short(SEDES[x.sede].n)}</p></div>
+              <span class="text-[11px] font-semibold shrink-0 ${g[x.google][1]}">${g[x.google][0]}</span>
+            </div>
+            <p class="text-sm text-stone-700 mt-2">«${esc(x.txt)}»</p>
+            ${x.alert ? (x.st === 'pendiente'
+              ? `<div class="mt-3 space-y-2"><p class="text-[11px] font-bold text-orange-800">⚠ Aviso enviado al dueño. Conviene llamarla hoy.</p><textarea id="rep-${x.id}" rows="2" class="w-full text-sm border border-stone-300 rounded-xl px-3 py-2 bg-white" placeholder="Escribe tu respuesta…"></textarea><div class="flex gap-2 justify-end"><button data-call="${x.id}" class="px-3 py-1.5 rounded-lg bg-white border border-stone-300 text-xs font-bold">📞 La he llamado</button><button data-rep="${x.id}" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">Enviar por WhatsApp</button></div></div>`
+              : `<p class="mt-2 text-[11px] font-semibold text-emerald-700">✓ ${x.st === 'llamada' ? 'La llamó la encargada' : 'Respondida por WhatsApp'}</p>`) : ''}
+          </div>`).join('');
+        $$('[data-rep]').forEach(b => b.addEventListener('click', () => { const x = REVIEWS.find(y => y.id === b.dataset.rep); if (!$('#rep-' + x.id).value.trim()) { toast('Escribe la respuesta antes de enviarla.'); return; } x.st = 'respondida'; toast('Respuesta enviada a ' + first(x.c) + ' por WhatsApp.'); refresh(); }));
+        $$('[data-call]').forEach(b => b.addEventListener('click', () => { const x = REVIEWS.find(y => y.id === b.dataset.call); x.st = 'llamada'; toast('Anotado: ' + first(x.c) + ' ya ha recibido la llamada.'); refresh(); }));
+      }
+
+      // ---------- INFORMES ----------
+      function renderInformes() {
         const staff = staffList();
-        const today = p => t.filter(x => x.staff === p).reduce((s, x) => s + x.p, 0);
-        bars('#cajaByStaff', staff.map(p => [p + (sede === 'all' ? ' · ' + SEDES[STAFF_SEDE[p]].n.replace('El Corte Inglés', 'ECI') : ''), MONTH_STAFF[p] + today(p)]).sort((a, b) => b[1] - a[1]));
-        const monthTotal = staff.reduce((s, p) => s + MONTH_STAFF[p], 0);
-        const todayCat = k => t.filter(x => SVC[x.svc][3] === k).reduce((s, x) => s + x.p, 0);
-        bars('#cajaBySvc', Object.entries(MONTH_CAT_SHARE).map(([k, sh]) => [CAT[k][0], Math.round(monthTotal * sh) + todayCat(k), CAT[k][2]]));
+        const today = p => lines().filter(x => x.staff === p).reduce((s, x) => s + x.p, 0);
+        const monthTotal = staff.reduce((s, p) => s + MONTH_STAFF[p] + today(p), 0);
+        const share = sede === 'all' ? 1 : staff.length / 7;
+        kpiCards('#infKpis', [
+          ['Facturación de octubre', eur(monthTotal), 'hasta hoy, con IVA', 'text-gold-700'],
+          ['Ticket medio', '64 €', '+6 € que en septiembre', 'text-stone-900'],
+          ['Clientas nuevas', Math.round(38 * share), 'de ' + Math.round(450 * share) + ' clientas atendidas', 'text-emerald-700'],
+          ['No vinieron', Math.round(6 * share), eur(248 * share) + ' cobrados por la norma', 'text-red-700']
+        ]);
+        bars('#infStaff', staff.map(p => [p + (sede === 'all' ? ' · ' + short(SEDES[STAFF_SEDE[p]].n) : ''), MONTH_STAFF[p] + today(p)]).sort((a, b) => b[1] - a[1]));
+        bars('#infSvc', Object.entries(MONTH_CAT_SHARE).map(([k, sh]) => [k === 'prod' ? 'Productos' : CAT[k][0], Math.round(monthTotal * sh), k === 'prod' ? 'bg-stone-400' : CAT[k][2]]));
+        bars('#infSrc', [['💬 WhatsApp', 182], ['🧾 Mostrador', 214], ['📞 Laura', 96], ['📸 Instagram', 41]].map(([l, v]) => [l, Math.round(v * share), 'bg-emerald-400']), false);
+        bars('#infCancel', [['Cliente no disponible', 14], ['Enfermedad', 6], ['No vino sin avisar', 6], ['Cambio a otro día', 5], ['Reservada por error', 3]].map(([l, v]) => [l, Math.max(1, Math.round(v * share)), 'bg-red-300']), false);
       }
 
       // ---------- NAVEGACIÓN ----------
       function setTab(t) {
         tab = t;
-        $$('.crm-tab').forEach(b => { const on = b.dataset.tab === t; b.className = 'crm-tab px-4 py-2.5 border-b-2 whitespace-nowrap ' + (on ? 'border-gold-500 text-noir-900' : 'border-transparent text-stone-500 hover:text-stone-800'); b.setAttribute('aria-selected', on); });
+        $$('.crm-tab').forEach(b => { const on = b.dataset.tab === t; b.className = 'crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap ' + (on ? 'border-gold-500 text-noir-900' : 'border-transparent text-stone-500 hover:text-stone-800'); b.setAttribute('aria-selected', on); });
         $$('.crm-panel').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== t));
         refresh();
+        const act = $('.crm-tab[data-tab="' + t + '"]');
+        if (act) act.parentElement.scrollTo({ left: act.offsetLeft - 16, behavior: 'smooth' });
       }
       function refresh() {
         $$('.crm-sede').forEach(b => { b.className = 'crm-sede px-3 py-1.5 rounded-lg transition ' + (b.dataset.sede === sede ? 'bg-white text-stone-900 shadow-sm' : 'text-stone-600 hover:text-stone-900'); });
-        renderKpis();
+        const pending = APPTS.filter(a => inSede(a.sede) && ['reservada', 'confirmada'].includes(a.st) && toMin(a.t) + 15 <= toMin(NOW)).length + REVIEWS.filter(r => r.alert && r.st === 'pendiente' && inSede(r.sede)).length;
+        const hoyBtn = $('.crm-tab[data-tab="hoy"]');
+        hoyBtn.innerHTML = '🏠 Hoy' + (pending ? ` <span class="ml-1 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px]">${pending}</span>` : '');
+        if (tab === 'hoy') renderHoy();
         if (tab === 'agenda') { renderAgenda(); renderAppt(); }
         if (tab === 'clientas') renderClients();
-        if (tab === 'retoques') renderRetoques();
+        if (tab === 'vuelve') renderRetoques();
         if (tab === 'caja') renderCaja();
+        if (tab === 'equipo') renderEquipo();
+        if (tab === 'resenas') renderResenas();
+        if (tab === 'informes') renderInformes();
       }
-      $$('.crm-sede').forEach(b => b.addEventListener('click', () => { sede = b.dataset.sede; refresh(); }));
+      $$('.crm-sede').forEach(b => b.addEventListener('click', () => { sede = b.dataset.sede; apptMode = null; pinStaff = null; pinCode = ''; refresh(); }));
       $$('.crm-tab').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+      $$('.crm-export').forEach(b => b.addEventListener('click', () => toast('En la app real se descarga el ' + b.dataset.export + '. En la demo no se genera el archivo.')));
       $('#crmSearch').addEventListener('input', renderClients);
       $('#crmSort').addEventListener('change', renderClients);
-      setTab('agenda');
+      setTab('hoy');
     })();
 
     // --- 5. INBOX SELECTION ---
