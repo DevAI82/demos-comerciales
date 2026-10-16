@@ -1024,170 +1024,28 @@
         <p class="text-[11px] text-stone-500 px-4 py-3 border-t border-stone-100">Comparación con el plan de Fresha que tiene el salón, revisada en su panel en octubre de 2026.</p>
       </div>
 
-      <!-- CALCULADORA INTERACTIVA GRID -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <!-- PARÁMETROS CONFIGURABLES (5 COLS) -->
-        <div class="lg:col-span-5 bg-white p-6 rounded-3xl border border-stone-200 shadow-lg space-y-6">
-          <h3 class="text-base font-bold text-stone-900 border-b border-stone-100 pb-3">
-            Ajusta las cifras de tu Salón:
-          </h3>
-
-          <!-- SLIDER 1: ESTILISTAS -->
-          <div class="space-y-2">
-            <div class="flex justify-between items-center text-xs">
-              <label class="font-bold text-stone-800">Número de Estilistas / Sillones (3 sedes):</label>
-              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded" id="labelStylists">7 estilistas</span>
-            </div>
-            <input type="range" id="inputStylists" min="3" max="15" value="7" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
-            <div class="flex justify-between text-[10px] text-stone-400">
-              <span>3 estilistas</span>
-              <span>15 estilistas</span>
-            </div>
-          </div>
-
-          <!-- SLIDER 2: CITAS MENSUALES -->
-          <div class="space-y-2">
-            <div class="flex justify-between items-center text-xs">
-              <label class="font-bold text-stone-800">Citas mensuales totales:</label>
-              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded" id="labelAppointments">500 citas/mes</span>
-            </div>
-            <input type="range" id="inputAppointments" min="150" max="1200" step="50" value="500" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
-            <div class="flex justify-between text-[10px] text-stone-400">
-              <span>150 citas</span>
-              <span>1.200 citas</span>
-            </div>
-          </div>
-
-          <!-- SLIDER 3: TICKET MEDIO -->
-          <div class="space-y-2">
-            <div class="flex justify-between items-center text-xs">
-              <label class="font-bold text-stone-800">Ticket medio por servicio:</label>
-              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded" id="labelTicket">65 €</span>
-            </div>
-            <input type="range" id="inputTicket" min="30" max="120" step="5" value="65" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
-            <div class="flex justify-between text-[10px] text-stone-400">
-              <span>30 € (Corte)</span>
-              <span>120 € (Balayage)</span>
-            </div>
-          </div>
-
-          <!-- SLIDER 4: % CLIENTES NUEVOS -->
-          <div class="space-y-2">
-            <div class="flex justify-between items-center text-xs">
-              <label class="font-bold text-stone-800">% Nuevos clientes captados por Fresha:</label>
-              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded" id="labelNewClients">15 % (Comisión 20%)</span>
-            </div>
-            <input type="range" id="inputNewClients" min="5" max="35" step="5" value="15" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
-            <div class="flex justify-between text-[10px] text-stone-400">
-              <span>5%</span>
-              <span>35%</span>
-            </div>
-          </div>
-
-          <!-- SLIDER 5: COMISIÓN POR OPERACIÓN (PENDIENTE DE CONFIRMAR) -->
-          <div class="space-y-2">
-            <div class="flex justify-between items-center text-xs gap-2">
-              <label class="font-bold text-stone-800" for="inputFeePct">Comisión de Fresha por cada cobro registrado:</label>
-              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded shrink-0" id="labelFeePct">0,35 %</span>
-            </div>
-            <input type="range" id="inputFeePct" min="0" max="3" step="0.05" value="0.35" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
-            <div class="flex justify-between text-[10px] text-stone-400">
-              <span>0 %</span>
-              <span class="font-bold text-amber-700">Pendiente de confirmar con el salón</span>
-              <span>3 %</span>
-            </div>
-          </div>
-
-          <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-[11px] text-emerald-900 leading-relaxed">
-            💳 <strong>Con la app 224 no hay comisión por venta:</strong> cada servicio se sigue cobrando con el datáfono del salón, como hoy. Stripe solo se usa para el cargo a una clienta que no se presenta, y su comisión se aplica solo a ese cargo.
-          </div>
-
-          <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-900 leading-relaxed">
-            ⚠️ <strong>Comisión invisible de Fresha:</strong> Cuando un cliente nuevo descubre el salón en la app de Fresha, cobran el <strong>20% del importe íntegro del primer servicio</strong>. Si una clienta nueva reserva un Babylage + peinado de 109,70 €, Fresha se queda casi 22 € de esa cita.
-          </div>
-
+      <!-- COSTES REALES: FRESHA FRENTE A ALTERA -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        <div class="bg-red-50/70 p-5 rounded-3xl border-2 border-red-200 space-y-3">
+          <p class="text-xs font-bold text-red-900 uppercase">Lo que paga hoy el salón en Fresha</p>
+          <label class="flex items-center justify-between gap-3 text-sm"><span class="text-stone-700">Empleados con agenda</span><input id="fEmp" type="number" min="0" step="1" value="17" oninput="recalcSavings()" class="w-24 text-right font-mono border border-stone-300 rounded-lg px-2 py-1"></label>
+          <label class="flex items-center justify-between gap-3 text-sm"><span class="text-stone-700">Cuota por empleado (€/mes)</span><input id="fEmpP" type="number" min="0" step="0.01" value="8.95" oninput="recalcSavings()" class="w-24 text-right font-mono border border-stone-300 rounded-lg px-2 py-1"></label>
+          <label class="flex items-center justify-between gap-3 text-sm"><span class="text-stone-700">Salones</span><input id="fSal" type="number" min="0" step="1" value="3" oninput="recalcSavings()" class="w-24 text-right font-mono border border-stone-300 rounded-lg px-2 py-1"></label>
+          <label class="flex items-center justify-between gap-3 text-sm"><span class="text-stone-700">Cuota por salón (€/mes)</span><input id="fSalP" type="number" min="0" step="0.01" value="19.95" oninput="recalcSavings()" class="w-24 text-right font-mono border border-stone-300 rounded-lg px-2 py-1"></label>
+          <label class="flex items-center justify-between gap-3 text-sm"><span class="text-stone-700">Integración con Google (€/mes)</span><input id="fGoo" type="number" min="0" step="0.01" value="19.95" oninput="recalcSavings()" class="w-24 text-right font-mono border border-stone-300 rounded-lg px-2 py-1"></label>
+          <label class="flex items-center justify-between gap-3 text-sm"><span class="text-stone-700">Métricas (€/mes)</span><input id="fMet" type="number" min="0" step="0.01" value="9.95" oninput="recalcSavings()" class="w-24 text-right font-mono border border-stone-300 rounded-lg px-2 py-1"></label>
+          <div class="pt-3 border-t border-red-200 space-y-1 text-sm" id="fBreak"></div>
+          <p class="text-[11px] text-red-700">Cifras que nos ha dado el salón. Con el datáfono del banco, Fresha no cobra comisión por venta.</p>
         </div>
-
-        <!-- RESULTADOS Y COMPARATIVA VISUAL (7 COLS) -->
-        <div class="lg:col-span-7 space-y-6">
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
-            <!-- TARJETA CON FRESHA -->
-            <div class="bg-red-50/70 p-5 rounded-3xl border-2 border-red-200 shadow-sm space-y-4">
-              <div class="flex items-center justify-between border-b border-red-200 pb-3">
-                <div>
-                  <span class="text-xs font-bold text-red-900 uppercase">Coste Actual con Fresha</span>
-                  <p class="text-[11px] text-red-700">Cuotas + comisiones marketplace</p>
-                </div>
-                <span class="text-xl">📉</span>
-              </div>
-
-              <div class="space-y-2 text-xs text-red-950 font-medium">
-                <div class="flex justify-between">
-                  <span>Cuota Fresha Plus (20€/estilista):</span>
-                  <span class="font-mono font-bold" id="costFreshaPlus">140 €/mes</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Comisión Marketplace (20% primer servicio):</span>
-                  <span class="font-mono font-bold" id="costFreshaMarketplace">975 €/mes</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>SMS y WhatsApp de recordatorio:</span>
-                  <span class="font-mono font-bold" id="costFreshaSms">125 €/mes</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Comisión por cobro (<span id="feePctInline">0,35 %</span>, por confirmar):</span>
-                  <span class="font-mono font-bold" id="costFreshaFee">0 €/mes</span>
-                </div>
-              </div>
-
-              <div class="pt-3 border-t border-red-200 flex items-baseline justify-between">
-                <span class="text-xs font-bold text-red-900">Total Desembolso Fresha:</span>
-                <span class="text-2xl font-bold font-display text-red-700" id="totalCostFreshaMonth">1.240 €/mes</span>
-              </div>
-              <p class="text-[11px] text-red-600 text-right font-mono" id="totalCostFreshaYear">(14.880 € al año)</p>
-            </div>
-
-            <!-- TARJETA CON CRM PROPIO -->
-            <div class="bg-emerald-50/80 p-5 rounded-3xl border-2 border-emerald-300 shadow-md space-y-4">
-              <div class="flex items-center justify-between border-b border-emerald-200 pb-3">
-                <div>
-                  <span class="text-xs font-bold text-emerald-900 uppercase">Con CRM Propio Salón 224</span>
-                  <p class="text-[11px] text-emerald-700">Sin cuotas por estilista ni comisiones</p>
-                </div>
-                <span class="text-xl">🏆</span>
-              </div>
-
-              <div class="space-y-2 text-xs text-emerald-950 font-medium">
-                <div class="flex justify-between">
-                  <span>Cuota por estilista:</span>
-                  <span class="font-mono font-bold text-emerald-700">0 € (Ilimitado)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Comisión por cada venta:</span>
-                  <span class="font-mono font-bold text-emerald-700">0 % (datáfono del salón)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Comisión por nuevo cliente:</span>
-                  <span class="font-mono font-bold text-emerald-700">0% (Clientes tuyos)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Infraestructura VPS / Base de datos:</span>
-                  <span class="font-mono font-bold text-stone-600">~60 €/mes</span>
-                </div>
-              </div>
-
-              <div class="pt-3 border-t border-emerald-200 flex items-baseline justify-between">
-                <span class="text-xs font-bold text-emerald-900">Servidor y base de datos:</span>
-                <span class="text-2xl font-bold font-display text-emerald-700">60 €/mes</span>
-              </div>
-              <p class="text-[11px] text-emerald-800 text-right font-mono">(720 € al año)</p>
-              <p class="text-[11px] text-emerald-800">El mantenimiento de Altera se cierra en la propuesta.</p>
-            </div>
-
-          </div>
+        <div class="bg-emerald-50/80 p-5 rounded-3xl border-2 border-emerald-300 space-y-3">
+          <p class="text-xs font-bold text-emerald-900 uppercase">Con Altera</p>
+          <label class="flex items-center justify-between gap-3 text-sm"><span class="text-stone-700">Mantenimiento de Altera, orientativo (€/mes)</span><input id="aMant" type="number" min="0" step="1" value="150" oninput="recalcSavings()" class="w-24 text-right font-mono border border-stone-300 rounded-lg px-2 py-1"></label>
+          <label class="flex items-center justify-between gap-3 text-sm"><span class="text-stone-700">Servicios a nombre del salón, aprox. (€/mes)</span><input id="aStack" type="number" min="0" step="1" value="50" oninput="recalcSavings()" class="w-24 text-right font-mono border border-stone-300 rounded-lg px-2 py-1"></label>
+          <div class="pt-3 border-t border-emerald-200 space-y-1 text-sm" id="aBreak"></div>
+          <p class="text-[11px] text-emerald-800">Incluye la app, Laura, el WhatsApp con IA, recordatorios, «vuelve a reservar» y reseñas, sin cuotas por empleado ni por salón. Importes orientativos.</p>
+        </div>
+      </div>
+      <div class="bg-white p-5 rounded-3xl border border-stone-200 shadow-sm text-center" id="calcVerdict"></div>
 
           <!-- COMPARATIVA DE RETORNO Y BENEFICIOS ADICIONALES -->
           <div class="bg-white p-5 rounded-3xl border border-stone-200 shadow-sm space-y-3">
@@ -1209,8 +1067,6 @@
           </div>
 
         </div>
-
-      </div>
 
     </section>
 
@@ -2689,46 +2545,18 @@
 
     // --- 6. CALCULATOR RECALCULATION ---
     function recalcSavings() {
-      const stylists = parseInt(document.getElementById('inputStylists').value);
-      const appts = parseInt(document.getElementById('inputAppointments').value);
-      const ticket = parseInt(document.getElementById('inputTicket').value);
-      const newClientsPct = parseInt(document.getElementById('inputNewClients').value) / 100;
-      const feePct = parseFloat(document.getElementById('inputFeePct').value);
-      const pctTxt = feePct.toFixed(2).replace('.', ',') + ' %';
-      document.getElementById('labelFeePct').textContent = pctTxt;
-      document.getElementById('feePctInline').textContent = pctTxt;
-
-      document.getElementById('labelStylists').textContent = `${stylists} estilistas`;
-      document.getElementById('labelAppointments').textContent = `${appts} citas/mes`;
-      document.getElementById('labelTicket').textContent = `${ticket} €`;
-      document.getElementById('labelNewClients').textContent = `${Math.round(newClientsPct * 100)} % (Comisión 20%)`;
-
-      // Fresha calculations
-      const costPlus = stylists * 20; // 20€/estilista/mes
-      const newClientsCount = Math.round(appts * newClientsPct);
-      const costMarketplace = Math.round(newClientsCount * ticket * 0.20); // 20% first service
-      const costSmsPayment = Math.round(appts * 0.25); // ~0,25 € por cita en mensajes de recordatorio
-      const costFee = Math.round(appts * ticket * feePct / 100); // comisión por cobro registrado (dato pendiente de confirmar con el salón)
-
-      const totalFreshaMonth = costPlus + costMarketplace + costSmsPayment + costFee;
-      const totalFreshaYear = totalFreshaMonth * 12;
-
-      // CRM Propio calculations
-      const costCrmMonth = 60; // VPS + DB hosting
-      const totalCrmYear = costCrmMonth * 12;
-
-      const netSavingsYear = totalFreshaYear - totalCrmYear;
-
-      document.getElementById('costFreshaPlus').textContent = `${costPlus.toLocaleString()} €/mes`;
-      document.getElementById('costFreshaMarketplace').textContent = `${costMarketplace.toLocaleString()} €/mes`;
-      document.getElementById('costFreshaSms').textContent = `${costSmsPayment.toLocaleString()} €/mes`;
-      document.getElementById('costFreshaFee').textContent = `${costFee.toLocaleString()} €/mes`;
-
-      document.getElementById('totalCostFreshaMonth').textContent = `${totalFreshaMonth.toLocaleString()} €/mes`;
-      document.getElementById('totalCostFreshaYear').textContent = `(${totalFreshaYear.toLocaleString()} € al año)`;
-
-      document.getElementById('calcTotalSavingsYear').textContent = `${netSavingsYear.toLocaleString()} € / año`;
+      const v = id => parseFloat(document.getElementById(id).value) || 0;
+      const e = n => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+      const f = [['Empleados', v('fEmp') + ' × ' + e(v('fEmpP')), v('fEmp') * v('fEmpP')], ['Salones', v('fSal') + ' × ' + e(v('fSalP')), v('fSal') * v('fSalP')], ['Integración con Google', '', v('fGoo')], ['Métricas', '', v('fMet')]];
+      const fT = f.reduce((s, x) => s + x[2], 0), aT = v('aMant') + v('aStack');
+      const row = (l, d, n, cls = '') => `<p class="flex justify-between gap-2 ${cls}"><span>${l}${d ? ' <span class="text-stone-500">(' + d + ')</span>' : ''}</span><span class="font-mono">${e(n)}</span></p>`;
+      document.getElementById('fBreak').innerHTML = f.map(x => row(x[0], x[1], x[2])).join('') + row('Total al mes', '', fT, 'font-bold') + row('Al año', '', fT * 12, 'font-bold text-red-700');
+      document.getElementById('aBreak').innerHTML = row('Mantenimiento', '', v('aMant')) + row('Servicios', '', v('aStack')) + row('Total al mes', '', aT, 'font-bold') + row('Al año', '', aT * 12, 'font-bold text-emerald-700');
+      const d = (fT - aT) * 12;
+      document.getElementById('calcTotalSavingsYear').textContent = (d >= 0 ? '' : '−') + Math.abs(Math.round(d)).toLocaleString('es-ES') + ' € / año';
+      document.getElementById('calcVerdict').innerHTML = `<p class="text-sm text-stone-600">Fresha: <strong>${e(fT * 12)}</strong> al año · Altera: <strong>${e(aT * 12)}</strong> al año</p><p class="font-display text-2xl font-bold mt-1 ${d >= 0 ? 'text-emerald-700' : 'text-stone-900'}">${d >= 0 ? 'Ahorráis ' + e(d) + ' al año' : 'Cuesta ' + e(-d) + ' más al año'}</p><p class="text-xs text-stone-500 mt-1">Y además tenéis la IA (Laura, WhatsApp, recordatorios y «vuelve a reservar») que Fresha no incluye.</p>`;
     }
+
 
     // Init calculator on load
     window.addEventListener('DOMContentLoaded', () => {
