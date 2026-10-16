@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SALÓN 224 — Prototipo Interactivo | Asistente Telefónico, WhatsApp Bot & CRM Propio</title>
-  <meta name="description" content="Prototipo interactivo de alta fidelidad para Salón 224: Asistente de llamadas con IA (ElevenLabs), Chatbot de WhatsApp (Zernio), integración con Fresha y CRM propio.">
+  <meta name="description" content="Prototipo interactivo de alta fidelidad para Salón 224: Asistente de llamadas con IA (ElevenLabs), Chatbot de WhatsApp (Zernio) y la app propia del salón: agenda, fichas de color, caja, fichaje y reseñas.">
 
   <!-- Open Graph / WhatsApp / Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="SALÓN 224 · Plataforma Digital">
   <meta property="og:title" content="SALÓN 224 — Prototipo Interactivo de Automatización & CRM">
-  <meta property="og:description" content="Demostración interactiva: Asistente telefónico con ElevenLabs, bot de WhatsApp con Zernio, conexión a Fresha y CRM propio.">
+  <meta property="og:description" content="Demostración interactiva: Asistente telefónico con ElevenLabs, bot de WhatsApp con Zernio y la app propia del salón.">
   <meta property="og:image" content="og-salon-224.jpg">
   <meta property="og:image:secure_url" content="og-salon-224.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -97,6 +97,7 @@
     /* Chat scroll styling */
     .custom-scroll::-webkit-scrollbar {
       width: 5px;
+      height: 5px;
     }
     .custom-scroll::-webkit-scrollbar-thumb {
       background: #c5a880;
@@ -151,7 +152,7 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="bg-gold-500/20 text-gold-300 px-2 py-0.5 rounded text-[11px] font-bold">Fase 1 + Fase 2</span>
-        <span>Demostración de cómo la IA atiende el teléfono fijo y WhatsApp conectándose a Fresha, y cómo el CRM propio ahorra las suscripciones.</span>
+        <span>Laura atiende el teléfono fijo con el salón cerrado, el WhatsApp responde a todas horas y todo cae en la app propia del salón, más sencilla que Fresha.</span>
       </div>
       <div class="text-[11px] text-stone-400">
         💡 <em>Haz clic en los botones interactivos para probar cada flujo</em>
@@ -175,7 +176,7 @@
             Asistente Telefónico 24/7 para Salón 224
           </h1>
           <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Atiende las llamadas al teléfono del salón (967 105 930) sin esperas. Desarrollado con <strong>ElevenLabs Conversational AI</strong>, entiende peticiones en lenguaje natural, consulta huecos libres en <strong>Fresha</strong> y agenda citas automáticamente sin que el equipo interrumpa un peinado o color.
+            Laura, la recepcionista de voz, contesta en el 967 105 930 cuando el salón está cerrado: por la noche, los domingos y los festivos. Explica servicios y precios orientativos, orienta entre balayage, babylights o mechas y deja la cita en la agenda. A la mañana siguiente la clienta recibe la confirmación por WhatsApp.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -183,13 +184,36 @@
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Línea 967 105 930 Conectada
           </span>
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
-            API Fresha Sincronizada
+            Agenda del salón conectada
           </span>
         </div>
       </div>
 
-      <!-- SIMULADOR TELEFÓNICO GRID -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- AGENTE EN DIRECTO (ElevenLabs) -->
+      <div data-convai-only class="bg-white rounded-3xl p-5 sm:p-7 space-y-5 border-2 border-gold-400/60 shadow-sm">
+        <div class="flex items-start gap-4">
+          <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-gold-400 bg-white p-1.5 shadow shrink-0">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 uppercase tracking-wider"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Laura está disponible ahora</span>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-noir-900 mt-0.5">Llama a Laura y pruébala como si fueras una clienta</h2>
+            <p class="text-sm text-stone-600 mt-1">Es una conversación real, no una grabación: te escucha, te responde con su voz y puedes interrumpirla como en una llamada normal.</p>
+          </div>
+        </div>
+        <ol class="grid sm:grid-cols-3 gap-3 text-sm">
+          <li class="p-3.5 rounded-2xl bg-gold-50 border border-gold-200 flex gap-3"><span class="w-7 h-7 rounded-full bg-noir-900 text-gold-300 font-bold flex items-center justify-center shrink-0">1</span><span>Pulsa <strong>«Llamar a Laura»</strong>, abajo a la izquierda.</span></li>
+          <li class="p-3.5 rounded-2xl bg-gold-50 border border-gold-200 flex gap-3"><span class="w-7 h-7 rounded-full bg-noir-900 text-gold-300 font-bold flex items-center justify-center shrink-0">2</span><span>Acepta el aviso y <strong>permite el micrófono</strong>.</span></li>
+          <li class="p-3.5 rounded-2xl bg-gold-50 border border-gold-200 flex gap-3"><span class="w-7 h-7 rounded-full bg-noir-900 text-gold-300 font-bold flex items-center justify-center shrink-0">3</span><span>Pide cita, pregunta un precio o duda entre balayage y babylights.</span></li>
+        </ol>
+        <div class="grid sm:grid-cols-2 gap-2 text-sm">
+          <div class="p-3 rounded-xl border border-gold-200 bg-gold-50/70"><strong class="block text-xs text-gold-700">✨ Rubios</strong>«Quiero un balayage el jueves por la mañana en Torres Quevedo.»</div>
+          <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/70"><strong class="block text-xs text-emerald-700">💧 Tratamiento</strong>«¿Cuánto cuesta el tratamiento de Authentic Beauty Concept?»</div>
+          <div class="p-3 rounded-xl border border-sky-200 bg-sky-50/70"><strong class="block text-xs text-sky-700">🎨 Consejo</strong>«Tengo el pelo castaño con tinte, ¿qué me queda mejor para aclararlo?»</div>
+          <div class="p-3 rounded-xl border border-purple-200 bg-purple-50/70"><strong class="block text-xs text-purple-700">💍 Novias</strong>«Me caso en junio y quiero reservar la prueba de peinado.»</div>
+        </div>
+      </div>
+
+      <!-- SIMULADOR TELEFÓNICO GRID (solo si no hay agente en directo) -->
+      <div data-convai-fallback class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         <!-- COLUMNA IZQUIERDA: TELÉFONO INTERACTIVO (5 COLS) -->
         <div class="lg:col-span-5 bg-noir-900 rounded-3xl p-6 text-white shadow-2xl border border-gold-400/30 flex flex-col justify-between min-h-[580px]">
@@ -211,7 +235,7 @@
           <div class="text-center py-6 space-y-4">
             <div class="relative w-28 h-28 mx-auto">
               <div id="callAvatarRing" class="absolute inset-0 rounded-full bg-gold-400/20 scale-100 transition-transform duration-500"></div>
-              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="relative z-10 w-28 h-28 rounded-full object-cover border-2 border-gold-400 shadow-xl bg-noir-950 p-2">
+              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="relative z-10 w-28 h-28 rounded-full object-cover border-2 border-gold-400 shadow-xl bg-white p-2">
             </div>
 
             <div>
@@ -312,16 +336,17 @@
               <span class="text-2xl">⚡</span>
               <div class="space-y-1 flex-1">
                 <div class="flex items-center justify-between">
-                  <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wider">Evento Ejecutado: Fresha API v2 (POST /appointments)</h4>
-                  <span class="text-[11px] font-mono bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded font-bold">Status: 201 Created</span>
+                  <h4 class="text-xs font-bold text-emerald-900 uppercase tracking-wider">Cita anotada en la agenda de Salón 224</h4>
+                  <span class="text-[11px] font-mono bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded font-bold">Pendiente de confirmar</span>
                 </div>
                 <p class="text-xs text-emerald-800">
-                  <strong>Cita creada en el calendario de Salón 224:</strong> <span id="freshaCardDetails">Balayage Rubio Iluminación con Alberto en Torres Quevedo para el jueves a las 11:30h.</span>
+                  <strong>Cita creada en el calendario de Salón 224:</strong> <span id="freshaCardDetails">Balayage Rubio Iluminación con María en Torres Quevedo para el jueves a las 11:30h.</span>
                 </p>
                 <div class="flex flex-wrap items-center gap-3 pt-2 text-[11px] text-emerald-700">
-                  <span>📱 SMS/WhatsApp de confirmación enviado</span>
+                  <span>💬 Confirmación por WhatsApp</span>
                   <span>📍 Enlace de Maps a C/ Torres Quevedo 8</span>
-                  <span>🔔 Recordatorio programado T-24h</span>
+                  <span>🔔 Recordatorio 24 h antes</span>
+                  <span>💳 Enlace para dejar tarjeta de garantía (servicio de más de 85 €)</span>
                 </div>
               </div>
             </div>
@@ -344,7 +369,7 @@
             Chatbot de WhatsApp 24/7 para Salón 224
           </h1>
           <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Conectado mediante <strong>Zernio</strong> a la API de WhatsApp oficial. Responde preguntas sobre servicios, horarios de los 3 centros, muestra fotografías de trabajos en rubios y balayage, y agenda la cita directamente en Fresha en menos de 60 segundos.
+            Funciona en el número de WhatsApp de siempre del salón, conectado con <strong>Zernio</strong> a la API oficial. Responde preguntas sobre servicios, horarios de los 3 centros, muestra fotografías de trabajos en rubios y balayage, y deja la cita en la agenda del salón en menos de un minuto.
           </p>
         </div>
         <div class="flex items-center gap-2">
@@ -380,7 +405,7 @@
               </div>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between">
-                  <span class="font-bold text-stone-900 truncate">Clara Sánchez (Tú)</span>
+                  <span class="font-bold text-stone-900 truncate">Marta Sánchez (Tú)</span>
                   <span class="text-[10px] text-stone-400">Ahora</span>
                 </div>
                 <p class="text-[11px] text-stone-500 truncate" id="lastChatMessagePreview">¡Hola! Quiero información de cita...</p>
@@ -391,7 +416,7 @@
               <span class="w-9 h-9 rounded-full bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-xs">LM</span>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between">
-                  <span class="font-bold text-stone-800 truncate">Laura Martínez</span>
+                  <span class="font-bold text-stone-800 truncate">Lucía Martínez</span>
                   <span class="text-[10px] text-stone-400">10:14</span>
                 </div>
                 <p class="text-[11px] text-stone-500 truncate">Cita confirmada para viernes 16h ✅</p>
@@ -414,7 +439,15 @@
           <div class="p-3 bg-stone-100 border-t border-stone-200 space-y-1.5">
             <span class="text-[10px] font-bold text-stone-500 uppercase tracking-wider block">Disparadores Especiales:</span>
             <button onclick="trigger24hReminder()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold transition flex items-center justify-between">
-              <span>🔔 Enviar Recordatorio 24h</span>
+              <span>🔔 Recordatorio 24 h antes</span>
+              <span>&rarr;</span>
+            </button>
+            <button onclick="triggerVuelveAReservar()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-purple-50 text-purple-800 border border-purple-200 font-semibold transition flex items-center justify-between">
+              <span>🔁 Aviso de «vuelve a reservar»</span>
+              <span>&rarr;</span>
+            </button>
+            <button onclick="triggerReviewRequest()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-sky-50 text-sky-800 border border-sky-200 font-semibold transition flex items-center justify-between">
+              <span>⭐ Valoración después de la visita</span>
               <span>&rarr;</span>
             </button>
             <button onclick="resetWhatsAppChat()" class="w-full text-left text-[11px] py-1.5 px-2 rounded bg-white hover:bg-stone-50 text-stone-600 border border-stone-200 transition flex items-center justify-between">
@@ -430,14 +463,14 @@
           <!-- CHAT HEADER -->
           <div class="p-3 bg-stone-100 border-b border-stone-200 flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-10 h-10 rounded-full border border-stone-300 object-cover bg-black p-1">
+              <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-10 h-10 rounded-full border border-stone-300 object-cover bg-white p-1">
               <div>
                 <div class="flex items-center gap-1.5">
                   <span class="text-xs font-bold text-stone-900">SALÓN 224</span>
                   <span class="text-emerald-600 text-xs">✓</span>
                 </div>
                 <p class="text-[11px] text-emerald-700 font-medium flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Conectado vía Zernio IA · Citas Fresha
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Conectado vía Zernio · Agenda del salón
                 </p>
               </div>
             </div>
@@ -503,267 +536,277 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- VISTA 3: CRM PROPIO SALÓN 224 (EL SUSTITUTO DE FRESHA)                    -->
+    <!-- VISTA 3: CRM PROPIO SALÓN 224                                              -->
     <!-- ========================================================================= -->
-    <section id="view-crm" class="view-content hidden space-y-6">
-      
-      <!-- HEADER VISTA 3 -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
+    <section id="view-crm" class="view-content hidden space-y-5">
+
+      <!-- CABECERA -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-4 border-b border-stone-200">
         <div>
-          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Fase 2 · El Sustituto de Fresha (Ahorro 100% Suscripciones)</span>
-          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">
-            CRM Salón 224 — Gestión Multi-Sede & Ficha Técnica
-          </h1>
-          <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Plataforma propia diseñada exclusivamente para la operativa de Salón 224. Gestiona las 3 sedes sin pagar comisiones por clientes a Fresha, con ficha técnica capilar de colorimetría para cada clienta y agenda optimizada por estilista.
-          </p>
+          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Fase 2 · La app de Salón 224</span>
+          <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">Todo el salón en una pantalla, sin funciones que no usáis</h1>
+          <p class="text-sm text-stone-600 max-w-3xl mt-1">Agenda, fichas de color, caja, equipo y reseñas de los tres salones. Laura y el WhatsApp trabajan dentro: las citas que cogen aparecen aquí solas, y lo que necesita a una persona sale arriba, en «Hoy».</p>
         </div>
-
-        <!-- SALON SELECTOR TABS -->
-        <div class="inline-flex rounded-xl bg-stone-200 p-1 text-xs font-semibold">
-          <button onclick="setSalonTab('tq')" id="tab-tq" class="salon-tab px-3 py-1.5 rounded-lg bg-white text-stone-900 shadow-sm transition">
-            📍 Torres Quevedo (Centro)
-          </button>
-          <button onclick="setSalonTab('eci-ab')" id="tab-eci-ab" class="salon-tab px-3 py-1.5 rounded-lg text-stone-600 hover:text-stone-900 transition">
-            📍 El Corte Inglés Albacete
-          </button>
-          <button onclick="setSalonTab('eci-alc')" id="tab-eci-alc" class="salon-tab px-3 py-1.5 rounded-lg text-stone-600 hover:text-stone-900 transition">
-            📍 El Corte Inglés Alicante
-          </button>
+        <div class="inline-flex flex-wrap rounded-xl bg-stone-200 p-1 text-xs font-semibold shrink-0" id="crmSedeTabs" role="tablist" aria-label="Salón">
+          <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="all">Los 3 salones</button>
+          <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="tq">📍 Torres Quevedo</button>
+          <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="ab">📍 ECI Albacete</button>
+          <button class="crm-sede px-3 py-1.5 rounded-lg" data-sede="al">📍 ECI Alicante</button>
         </div>
       </div>
 
-      <!-- KPI SUMMARY CARDS (ESTILO SAAS FACTORY BENTO GRID) -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
-          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Citas Confirmadas Hoy</span>
-          <div class="flex items-baseline justify-between mt-2">
-            <span class="text-2xl font-bold font-display text-stone-900" id="crmKpiAppointments">18 Citas</span>
-            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">+4 vía IA</span>
-          </div>
-          <span class="text-[11px] text-stone-400 mt-1 block">Ocupación estimada: 92%</span>
-        </div>
+      <!-- MENÚ DE LA APP -->
+      <div class="flex gap-1 overflow-x-auto custom-scroll border-b border-stone-200 text-sm font-semibold" id="crmTabs" role="tablist">
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="hoy">🏠 Hoy</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="agenda">📅 Agenda</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="clientas">🎨 Clientas</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="vuelve">🔁 Vuelve a reservar</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="caja">💶 Caja</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="equipo">👥 Equipo y fichaje</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="resenas">⭐ Reseñas</button>
+        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="informes">📊 Informes</button>
+      </div>
 
-        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
-          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Facturación Estimada Hoy</span>
-          <div class="flex items-baseline justify-between mt-2">
-            <span class="text-2xl font-bold font-display text-gold-700">1.485 €</span>
-            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Ticket medio 82,5€</span>
-          </div>
-          <span class="text-[11px] text-stone-400 mt-1 block">Balayage & Color dominan</span>
+      <!-- PANEL: HOY -->
+      <div class="crm-panel space-y-5" data-panel="hoy">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <p class="font-display text-2xl font-bold text-noir-900" id="hoyHello">Buenos días</p>
+          <p class="text-xs text-stone-500">Jueves, 15 de octubre · 12:15</p>
         </div>
-
-        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
-          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Ahorro Mensual vs Fresha</span>
-          <div class="flex items-baseline justify-between mt-2">
-            <span class="text-2xl font-bold font-display text-emerald-700">+1.140 €/mes</span>
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">0% Comisiones</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="hoyKpis"></div>
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-7 space-y-3">
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Necesita a una persona</p>
+            <div class="space-y-2.5" id="hoyTodo"></div>
           </div>
-          <span class="text-[11px] text-stone-400 mt-1 block">Sin comisión de marketplace</span>
-        </div>
-
-        <div class="glass-panel p-4 rounded-2xl border border-stone-200 shadow-sm">
-          <span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Tasa Retención / Retoque</span>
-          <div class="flex items-baseline justify-between mt-2">
-            <span class="text-2xl font-bold font-display text-stone-900">89,4%</span>
-            <span class="text-xs font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded">Aviso auto 75 días</span>
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3" id="hoyNoche"></div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Próximas citas</p>
+              <ul class="divide-y divide-stone-100 text-sm" id="hoyNext"></ul>
+            </div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-2">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">En qué fijarse esta semana</p>
+              <ul class="space-y-2 text-sm text-stone-700" id="hoyInsights"></ul>
+            </div>
           </div>
-          <span class="text-[11px] text-stone-400 mt-1 block">Fórmula de color guardada</span>
         </div>
       </div>
 
-      <!-- KANBAN PIPELINE VIEW (ESTILO CRM FISIO ADELA ADAPTADO A SALÓN) -->
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h3 class="text-sm font-bold text-stone-800 uppercase tracking-wider">Flujo de Clientas en Directo (Pipeline)</h3>
-          <span class="text-xs text-stone-500">Haz clic en una clienta para abrir su <strong>Ficha Técnica de Color</strong></span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-          
-          <!-- COL 1: PETICIONES ENTRANTE (IA) -->
-          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-amber-500"></span> 1. Petición IA (Chat/Voz)
-              </span>
-              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">2</span>
-            </div>
-
-            <!-- CARD 1 -->
-            <div onclick="openClientModal('elena')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Elena Navarro</span>
-                <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold">WhatsApp IA</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Pide: Balayage Rubio Vainilla</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span>Torres Quevedo</span>
-                <span>Jueves 11:30</span>
+      <!-- PANEL: AGENDA -->
+      <div class="crm-panel hidden" data-panel="agenda">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-8 min-w-0 glass-panel rounded-2xl p-4 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <p class="text-sm font-bold text-stone-900" id="agendaTitle">Hoy · agenda por estilista</p>
+              <div class="flex flex-wrap gap-2 text-[11px] text-stone-600">
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-amber-300"></span>Color</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-sky-300"></span>Corte</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-emerald-300"></span>Tratamiento</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-rose-300"></span>Novias e invitadas</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-fuchsia-300"></span>Estética</span>
               </div>
             </div>
-
-            <!-- CARD 2 -->
-            <div onclick="openClientModal('laura')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Laura Gómez</span>
-                <span class="text-[10px] bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-bold">Teléfono IA</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Tratamiento Reparador ABC + Corte</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span>ECI Albacete</span>
-                <span>Viernes 17:00</span>
-              </div>
+            <div class="overflow-x-auto custom-scroll" id="agendaScroll">
+              <div id="agendaGrid" class="relative"></div>
+            </div>
+            <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-[11px] text-stone-500">
+              <span><span class="inline-block w-3 h-2 border-2 border-dashed border-stone-500 rounded-sm align-middle"></span> Sin confirmar (la cogió Laura o el WhatsApp)</span>
+              <span>💳 Tarjeta guardada como garantía</span>
+              <span>Pulsa una cita para verla</span>
             </div>
           </div>
-
-          <!-- COL 2: CITAS CONFIRMADAS -->
-          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-blue-500"></span> 2. Confirmadas Fresha/CRM
-              </span>
-              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">3</span>
+          <div class="lg:col-span-4 space-y-4">
+            <div class="glass-panel rounded-2xl p-4 shadow-sm" id="apptDetail"></div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm">
+              <div class="flex items-center justify-between mb-2">
+                <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Lista de espera</p>
+                <span class="text-[10px] font-bold bg-stone-100 text-stone-600 px-2 py-0.5 rounded-full" id="waitCount"></span>
+              </div>
+              <ul class="space-y-2 text-sm" id="waitList"></ul>
+              <p class="text-[11px] text-stone-500 mt-2">Si alguien cancela, el WhatsApp ofrece el hueco a la primera de la lista.</p>
             </div>
-
-            <!-- CARD 3 -->
-            <div onclick="openClientModal('carmen')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Carmen Rodenas</span>
-                <span class="text-[10px] text-stone-400">Estilista: Alberto</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Novia 224: Prueba Recogido + Maquillaje</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span class="text-emerald-700 font-semibold">T-24h Notificada</span>
-                <span>Hoy 10:30</span>
-              </div>
-            </div>
-
-            <!-- CARD 4 -->
-            <div onclick="openClientModal('maria')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">María Santos</span>
-                <span class="text-[10px] text-stone-400">Estilista: Alexandra</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Retoque Raíz + Matiz Glaze ABC</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span>Fórmula archivada</span>
-                <span>Hoy 12:00</span>
-              </div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-1.5 text-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-1">Normas de reserva del salón</p>
+              <p class="flex justify-between gap-2"><span>Reservas online de 85 € o más</span><span class="font-semibold text-right">Tarjeta como garantía</span></p>
+              <p class="flex justify-between gap-2"><span>Si no viene sin avisar</span><span class="font-semibold">Se cobra el 50 %</span></p>
+              <p class="flex justify-between gap-2"><span>Cancelar o cambiar</span><span class="font-semibold text-right">Desde el WhatsApp, hasta 24 h antes</span></p>
+              <p class="text-[11px] text-stone-500 pt-1">Importes con IVA incluido. El cobro nunca es automático: lo confirma una persona.</p>
             </div>
           </div>
-
-          <!-- COL 3: EN SALÓN (EN ATENCIÓN) -->
-          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 3. En Salón (Sillón)
-              </span>
-              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">2</span>
-            </div>
-
-            <!-- CARD 5 -->
-            <div onclick="openClientModal('sofia')" class="p-3 bg-white rounded-xl shadow-sm border-2 border-amber-300 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Sofía Valero</span>
-                <span class="text-[10px] bg-amber-100 text-amber-900 px-1.5 py-0.5 rounded font-bold">Tiempo tinte: 18 min</span>
-              </div>
-              <p class="text-[11px] text-stone-600">Babylights Nordic Blonde + Olaplex</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span>Puesto 3 (Color)</span>
-                <span class="text-gold-700 font-bold">Ticket: 110€</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- COL 4: FIDELIZACIÓN & RETOQUE -->
-          <div class="bg-stone-100/80 rounded-2xl p-3 border border-stone-200 flex flex-col space-y-2">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-200">
-              <span class="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-purple-500"></span> 4. Retoque Auto (60-90d)
-              </span>
-              <span class="text-[11px] font-bold bg-white px-2 py-0.5 rounded text-stone-600">4</span>
-            </div>
-
-            <!-- CARD 6 -->
-            <div onclick="openClientModal('ana')" class="p-3 bg-white rounded-xl shadow-sm border border-stone-200 hover:border-gold-400 cursor-pointer spring-hover space-y-1.5">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-xs text-stone-900">Ana Martínez</span>
-                <span class="text-[10px] bg-purple-100 text-purple-900 px-1.5 py-0.5 rounded font-bold">Día 72 de Balayage</span>
-              </div>
-              <p class="text-[11px] text-stone-600">WhatsApp automático enviado ayer: "¿Te apetece iluminar tu tono?"</p>
-              <div class="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-100">
-                <span class="text-emerald-600 font-bold">Respondió: ¡Sí, este sábado!</span>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
 
-      <!-- MODAL FICHA TÉCNICA DE COLORIMETRÍA (OVERLAY INTERACTIVO) -->
-      <div id="clientModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-gold-300 space-y-5 animate-in fade-in duration-200">
-          
-          <div class="flex items-start justify-between border-b border-stone-100 pb-4">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-full bg-gold-100 border border-gold-400 flex items-center justify-center text-lg font-bold text-gold-800" id="modalInitials">
-                EN
-              </div>
-              <div>
-                <h3 class="text-lg font-bold text-stone-900" id="modalName">Elena Navarro Alarcón</h3>
-                <p class="text-xs text-stone-500">Clienta VIP desde 2024 · Tel: 654 321 987 · Sede habitual: Torres Quevedo</p>
+      <!-- PANEL: CLIENTAS -->
+      <div class="crm-panel hidden" data-panel="clientas">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-4 min-w-0 glass-panel rounded-2xl shadow-sm overflow-hidden">
+            <div class="p-3 border-b border-stone-200 space-y-2">
+              <input id="crmSearch" type="search" placeholder="Buscar por nombre, servicio o fórmula…" class="w-full text-sm border border-stone-300 rounded-xl px-3 py-2 focus:outline-none focus:border-gold-500" aria-label="Buscar clienta">
+              <div class="flex items-center justify-between text-[11px] text-stone-500">
+                <span id="crmCount"></span>
+                <label class="flex items-center gap-1">Ordenar
+                  <select id="crmSort" class="border border-stone-300 rounded-lg px-1.5 py-0.5 bg-white text-[11px]">
+                    <option value="last">Última visita</option>
+                    <option value="spend">Gasto del año</option>
+                    <option value="name">Nombre</option>
+                  </select>
+                </label>
               </div>
             </div>
-            <button onclick="closeClientModal()" class="text-stone-400 hover:text-stone-800 text-xl font-bold">&times;</button>
+            <ul id="crmList" class="divide-y divide-stone-100 max-h-[620px] overflow-y-auto custom-scroll"></ul>
           </div>
-
-          <!-- FICHA COLOR TABS -->
-          <div class="space-y-4">
-            <div class="bg-gold-50/70 p-4 rounded-2xl border border-gold-200 space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-gold-900 uppercase tracking-wider">🎨 Fórmula de Colorimetría Actual (Guardada)</span>
-                <span class="text-[11px] font-mono text-gold-800 bg-gold-200 px-2 py-0.5 rounded">Última aplicación: 14 Enero</span>
-              </div>
-              <p class="text-xs text-stone-800 font-mono leading-relaxed" id="modalFormula">
-                <strong>Raíz:</strong> Igora Royal 7.1 + 7.0 a 20 volúmenes (35 min).<br>
-                <strong>Medios y Puntas:</strong> Técnica Balayage mano alzada con Deco Blond Studio 9 + 30 vol.<br>
-                <strong>Matiz / Glaze:</strong> Authentic Beauty Concept Toner Vainilla Suave 9.13 (15 min en lavacabezas).<br>
-                <strong>Tratamiento:</strong> ABC Glow Cleanser & Mask selladora de cutícula.
-              </p>
-            </div>
-
-            <!-- COMPARATIVA FOTOGRÁFICA -->
-            <div class="grid grid-cols-2 gap-3 text-center">
-              <div class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100 p-2">
-                <span class="text-[10px] font-bold text-stone-500 uppercase block mb-1">Antes de la sesión</span>
-                <img src="assets/trabajos-224.webp" alt="Antes" class="w-full h-32 object-cover rounded-lg">
-              </div>
-              <div class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100 p-2">
-                <span class="text-[10px] font-bold text-gold-700 uppercase block mb-1">Resultado Salón 224</span>
-                <img src="assets/rubios-224.webp" alt="Después" class="w-full h-32 object-cover rounded-lg">
-              </div>
-            </div>
-
-            <!-- NOTAS PRIVADAS DEL ESTILISTA -->
-            <div class="bg-stone-50 p-3 rounded-xl border border-stone-200 text-xs text-stone-600">
-              <span class="font-bold text-stone-800 block mb-1">🔒 Notas Clínicas / Privadas del Estilista (Con candado):</span>
-              <p id="modalNotes">Cabello fino con tendencia a porosidad en puntas. No subir a 40 volúmenes bajo ningún concepto. Le encanta el café cortado con leche desnatada y sacarina.</p>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-end gap-3 pt-3 border-t border-stone-100 text-xs">
-            <button onclick="closeClientModal()" class="px-4 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold transition">
-              Cerrar Ficha
-            </button>
-            <button onclick="alert('Abriendo chat de WhatsApp con Elena para confirmar retoque'); closeClientModal();" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1.5">
-              <span>💬</span> <span>Escribir WhatsApp a Elena</span>
-            </button>
-          </div>
-
+          <div class="lg:col-span-8 min-w-0 glass-panel rounded-2xl p-5 shadow-sm space-y-5" id="crmFicha"></div>
         </div>
       </div>
 
+      <!-- PANEL: VUELVE A RESERVAR -->
+      <div class="crm-panel hidden" data-panel="vuelve">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-7 min-w-0 space-y-3" id="retoqueList"></div>
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3">
+              <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Así le llega por WhatsApp</p>
+              <div class="bg-[#e5ddd5] rounded-xl p-3 text-stone-900 text-sm">
+                <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm max-w-[95%]" id="retoquePreview"></div>
+                <div class="flex flex-wrap gap-1.5 mt-2">
+                  <span class="text-xs bg-white text-emerald-700 font-semibold px-2.5 py-1 rounded-full shadow-sm">📅 Ver huecos</span>
+                  <span class="text-xs bg-white text-stone-600 font-semibold px-2.5 py-1 rounded-full shadow-sm">Más adelante</span>
+                </div>
+              </div>
+              <p class="text-[11px] text-stone-400">Sale solo, a los días que marquéis para cada servicio. Si pulsa «Ver huecos», el WhatsApp le ofrece hora con su estilista de siempre.</p>
+            </div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-2 text-sm">
+              <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cuándo se avisa (lo decidís vosotras)</p>
+              <ul class="space-y-1 text-stone-700" id="retoqueRules"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: CAJA -->
+      <div class="crm-panel hidden space-y-5" data-panel="caja">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="text-sm text-stone-600">Ventas de hoy y cierre de caja. Mismas cuentas que hoy hacéis a mano, pero solas.</p>
+          <div class="flex gap-2 text-xs font-bold">
+            <button data-export="PDF" class="crm-export px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ PDF</button>
+            <button data-export="Excel" class="crm-export px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ Excel para la gestoría</button>
+          </div>
+        </div>
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-7 min-w-0 space-y-5">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="glass-panel rounded-2xl p-4 shadow-sm">
+                <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Ventas por tipo</p>
+                <table class="w-full text-sm"><tbody class="divide-y divide-stone-100" id="cajaByType"></tbody></table>
+              </div>
+              <div class="glass-panel rounded-2xl p-4 shadow-sm">
+                <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Cobros por forma de pago</p>
+                <table class="w-full text-sm"><tbody class="divide-y divide-stone-100" id="cajaByPay"></tbody></table>
+              </div>
+            </div>
+            <div class="glass-panel rounded-2xl shadow-sm overflow-hidden">
+              <div class="p-4 border-b border-stone-200 flex items-center justify-between gap-2">
+                <p class="text-sm font-bold text-stone-900">Tickets de hoy</p>
+                <span class="text-[11px] text-stone-500" id="cajaCount"></span>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm min-w-[560px]">
+                  <thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-3">Hora</th><th class="p-3">Clienta</th><th class="p-3">Concepto</th><th class="p-3">Estilista</th><th class="p-3">Pago</th><th class="p-3 text-right">Importe</th></tr></thead>
+                  <tbody class="divide-y divide-stone-100" id="cajaRows"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3" id="cajaResumen"></div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-3" id="cajaCierre"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: EQUIPO Y FICHAJE -->
+      <div class="crm-panel hidden space-y-5" data-panel="equipo">
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-3xl p-5 shadow-xl border border-gold-400/30 space-y-4">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Tablet de recepción · fichar</p>
+                <span class="text-[11px] text-stone-400" id="pinSede"></span>
+              </div>
+              <div class="grid grid-cols-3 gap-2" id="pinStaff"></div>
+              <div class="text-center">
+                <p class="text-sm text-stone-300" id="pinWho">Elige tu nombre</p>
+                <p class="font-mono text-3xl tracking-[0.5em] text-gold-300 h-10 mt-1" id="pinDots"></p>
+              </div>
+              <div class="grid grid-cols-3 gap-2 max-w-[260px] mx-auto" id="pinPad"></div>
+              <p class="text-[11px] text-stone-400 text-center">En la demo vale cualquier PIN de 4 cifras.</p>
+            </div>
+          </div>
+          <div class="lg:col-span-7 space-y-4">
+            <div class="glass-panel rounded-2xl shadow-sm overflow-hidden">
+              <div class="p-4 border-b border-stone-200 flex flex-wrap items-center justify-between gap-2">
+                <p class="text-sm font-bold text-stone-900">Registro de jornada de hoy</p>
+                <button data-export="PDF del registro de jornada" class="crm-export text-xs font-bold px-3 py-1.5 rounded-lg bg-white border border-stone-300 hover:bg-stone-50">⬇ Exportar para la Inspección</button>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm min-w-[520px]">
+                  <thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-3">Hora</th><th class="p-3">Persona</th><th class="p-3">Movimiento</th><th class="p-3">Desde</th><th class="p-3"></th></tr></thead>
+                  <tbody class="divide-y divide-stone-100" id="fichajeRows"></tbody>
+                </table>
+              </div>
+              <p class="text-[11px] text-stone-500 p-3 border-t border-stone-100">Ningún fichaje se borra ni se sobrescribe: una corrección añade una línea nueva con el motivo y quién la hizo, y la original se conserva. Se guarda 4 años.</p>
+            </div>
+            <div class="glass-panel rounded-2xl shadow-sm overflow-hidden">
+              <div class="p-4 border-b border-stone-200 flex items-center justify-between gap-2">
+                <p class="text-sm font-bold text-stone-900">Turnos de esta semana</p>
+                <span class="text-[11px] text-stone-500">12 – 17 oct · Torres Quevedo: M-V 10–19, S 9–14 · El Corte Inglés: L-V 10–21, S 10–19:45</span>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-xs min-w-[620px]" id="turnosTable"></table>
+              </div>
+              <p class="text-[11px] text-stone-500 p-3 border-t border-stone-100">Laura y el WhatsApp solo ofrecen horas dentro del turno de cada estilista. Las vacaciones y bajas cierran la agenda solas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: RESEÑAS -->
+      <div class="crm-panel hidden space-y-5" data-panel="resenas">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="resKpis"></div>
+        <div class="grid lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-7 min-w-0 space-y-3" id="resList"></div>
+          <div class="lg:col-span-5 space-y-4">
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3">
+              <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Así se pide la reseña</p>
+              <div class="bg-[#e5ddd5] rounded-xl p-3 text-stone-900 text-sm space-y-2">
+                <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm">Gracias por venir hoy, Elena 💛 ¿Qué tal con María? Puntúa tu visita del 1 al 5.</div>
+                <div class="flex gap-1 text-lg">⭐⭐⭐⭐⭐</div>
+                <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm text-xs">¡Gracias! Si quieres, publícala en Google: ya te hemos copiado el comentario, solo tienes que pegarlo.<span class="block mt-2 text-center font-bold text-sky-700 bg-sky-50 rounded-lg py-1.5">Escribir reseña en Google</span></div>
+              </div>
+              <p class="text-[11px] text-stone-400">El botón de Google se ofrece a todas las clientas, pongan la nota que pongan, como exige Google. Si la nota es baja, además os llega un aviso para llamarla.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL: INFORMES -->
+      <div class="crm-panel hidden space-y-5" data-panel="informes">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <p class="text-sm text-stone-600">Los números de octubre, sin complementos de pago. Todos se descargan en Excel.</p>
+          <button data-export="Excel con todos los informes" class="crm-export text-xs font-bold px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ Descargar todo</button>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="infKpis"></div>
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="glass-panel rounded-2xl p-4 shadow-sm"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Facturación por estilista</p><div class="space-y-2.5" id="infStaff"></div></div>
+          <div class="glass-panel rounded-2xl p-4 shadow-sm"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Facturación por tipo de servicio</p><div class="space-y-2.5" id="infSvc"></div></div>
+          <div class="glass-panel rounded-2xl p-4 shadow-sm"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">De dónde vienen las citas</p><div class="space-y-2.5" id="infSrc"></div></div>
+          <div class="glass-panel rounded-2xl p-4 shadow-sm"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-3">Cancelaciones y no presentadas, por motivo</p><div class="space-y-2.5" id="infCancel"></div></div>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-stone-500">Clientas, fórmulas, tarjetas e importes de ejemplo para la demostración. Precios orientativos.</p>
+      <div id="crmToast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-noir-900 text-white text-sm font-semibold px-4 py-3 rounded-2xl shadow-2xl border border-gold-400/40 max-w-[90vw]"></div>
     </section>
 
     <!-- ========================================================================= -->
@@ -809,7 +852,7 @@
             <div onclick="selectInboxItem(0)" id="inbox-0" class="inbox-item p-3.5 bg-white border-l-4 border-gold-500 cursor-pointer transition">
               <div class="flex items-center justify-between mb-1">
                 <span class="font-bold text-stone-900 flex items-center gap-1.5">
-                  <span>📞</span> <span>Llamada de Laura Gómez</span>
+                  <span>📞</span> <span>Llamada de Raquel Gómez</span>
                 </span>
                 <span class="text-[10px] text-stone-400">Hace 4 min</span>
               </div>
@@ -817,7 +860,7 @@
                 <strong>Resumen IA:</strong> Llamó al fijo preguntando por hueco para tratamiento hidratante y corte. Se le agendó para viernes a las 17:00h en ECI Albacete.
               </p>
               <div class="mt-2 flex items-center gap-2 text-[10px]">
-                <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold">Cita Creada en Fresha</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold">Cita anotada en la agenda</span>
                 <span class="text-stone-400">Duración: 1m 24s</span>
               </div>
             </div>
@@ -831,7 +874,7 @@
                 <span class="text-[10px] text-stone-400">Hace 18 min</span>
               </div>
               <p class="text-[11px] text-stone-600 line-clamp-2">
-                Pidió presupuesto aproximado para Balayage Iluminación en cabello largo. El bot le envió dossier de fotos y cotización 110-130€.
+                Pidió precio del balayage para melena larga. El bot le envió fotos de trabajos y la carta: Babylage + peinado, 109,70 € en Albacete.
               </p>
               <div class="mt-2 flex items-center gap-2 text-[10px]">
                 <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 font-bold">Esperando confirmación</span>
@@ -867,7 +910,7 @@
                   <span class="text-xl" id="inboxDetailIcon">📞</span>
                   <h3 class="text-base font-bold text-stone-900" id="inboxDetailTitle">Llamada Telefónica Atendida por ElevenLabs</h3>
                 </div>
-                <p class="text-xs text-stone-500 mt-0.5" id="inboxDetailMeta">Clienta: Laura Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h</p>
+                <p class="text-xs text-stone-500 mt-0.5" id="inboxDetailMeta">Clienta: Raquel Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h</p>
               </div>
 
               <div class="flex items-center gap-2">
@@ -895,7 +938,7 @@
                 </div>
                 <div>
                   <span class="text-stone-400 block">Acción Tomada:</span>
-                  <span class="font-semibold text-emerald-700">✅ Cita inyectada en Fresha API</span>
+                  <span class="font-semibold text-emerald-700">✅ Cita anotada en la agenda</span>
                 </div>
               </div>
 
@@ -1156,29 +1199,29 @@
         title: "Caso 1: Cita Balayage",
         steps: [
           {
-            ai: "¡Buenos días! Gracias por llamar a Salón 224. Mi nombre es Clara, tu asistente virtual. ¿En qué puedo ayudarte hoy?",
+            ai: "¡Buenos días! Gracias por llamar a Salón 224. Soy Laura, la asistente virtual. ¿En qué puedo ayudarte hoy?",
             userPrompt: "¿Qué responde la clienta?",
             options: [
               { text: "Quiero pedir cita para Balayage este jueves en Torres Quevedo", next: 1 }
             ]
           },
           {
-            ai: "¡Por supuesto! Nuestras estilistas en Torres Quevedo son auténticas especialistas en rubios y degradados. Para este jueves tengo disponibilidad a las 11:30 de la mañana con Alberto, o por la tarde a las 16:30. ¿Cuál de los dos horarios te encaja mejor?",
+            ai: "¡Por supuesto! Nuestras estilistas en Torres Quevedo son auténticas especialistas en rubios y degradados. Para este jueves tengo disponibilidad a las 11:30 de la mañana con María, o por la tarde a las 16:30. ¿Cuál de los dos horarios te encaja mejor?",
             userPrompt: "Elige la respuesta de la clienta:",
             options: [
-              { text: "Me viene perfecto a las 11:30 con Alberto", next: 2 },
+              { text: "Me viene perfecto a las 11:30 con María", next: 2 },
               { text: "Prefiero por la tarde a las 16:30", next: 2 }
             ]
           },
           {
-            ai: "Genial. Tomo nota: cita para Balayage Iluminación con Alberto, este jueves a las 11:30h en nuestro salón de Calle Torres Quevedo 8. ¿Me confirmas tu nombre y teléfono móvil para enviarte la confirmación por WhatsApp?",
+            ai: "Genial. Tomo nota: cita para Babylage más peinado con María, este jueves a las 11:30h en nuestro salón de Calle Torres Quevedo 8. ¿Me confirmas tu nombre y teléfono móvil para enviarte la confirmación por WhatsApp?",
             userPrompt: "Facilitar datos de clienta:",
             options: [
-              { text: "Soy María García, teléfono 654 321 000", next: 3 }
+              { text: "Soy Marta García, teléfono 654 321 000", next: 3 }
             ]
           },
           {
-            ai: "¡Listo, María! Tu cita ya ha quedado agendada en nuestro sistema. En un instante recibirás la confirmación en tu WhatsApp con la ubicación de Google Maps. ¡Te esperamos el jueves para dejarte espectacular!",
+            ai: "¡Listo, Marta! Tu cita ya ha quedado agendada en nuestro sistema. En un instante recibirás la confirmación en tu WhatsApp con la ubicación de Google Maps. ¡Te esperamos el jueves para dejarte espectacular!",
             freshaAction: true
           }
         ]
@@ -1187,14 +1230,14 @@
         title: "Caso 2: Dudas sobre Tratamientos",
         steps: [
           {
-            ai: "¡Hola! Bienvenida a Salón 224. Soy Clara, asistente de recepción. ¿Te gustaría reservar una cita o tienes alguna consulta sobre nuestros tratamientos?",
+            ai: "¡Hola! Bienvenida a Salón 224. Soy Laura, asistente de recepción. ¿Te gustaría reservar una cita o tienes alguna consulta sobre nuestros tratamientos?",
             userPrompt: "¿Qué consulta hace la clienta?",
             options: [
               { text: "¿Qué incluye el tratamiento de Authentic Beauty Concept y qué precio tiene?", next: 1 }
             ]
           },
           {
-            ai: "Somos el único salón en Albacete con la gama completa de Authentic Beauty Concept. Nuestro tratamiento intensivo incluye diagnóstico de fibra capilar, lavado con esencia vegana sensorial, mascarilla selladora de brillo y secado styling. Su precio oscila entre 35€ y 48€ según longitud. ¿Te gustaría probarlo este viernes?",
+            ai: "Somos el único salón en Albacete con la gama completa de Authentic Beauty Concept. Nuestro tratamiento intensivo incluye diagnóstico de fibra capilar, lavado con esencia vegana sensorial, mascarilla selladora de brillo y secado styling. El Tratamiento Botox cuesta 25 euros y el Cronograma restaurador, 45 euros. ¿Te gustaría probarlo este viernes?",
             userPrompt: "Decisión de la clienta:",
             options: [
               { text: "Sí, me gustaría reservar para el viernes por la mañana", next: 2 }
@@ -1217,14 +1260,14 @@
         title: "Caso 3: Sede Alicante y Parking",
         steps: [
           {
-            ai: "¡Hola, buenas! Salón 224, te atiende Clara. ¿En qué salón te gustaría tu servicio o qué información necesitas?",
+            ai: "¡Hola, buenas! Salón 224, te atiende Laura. ¿En qué salón te gustaría tu servicio o qué información necesitas?",
             userPrompt: "Pregunta sobre la nueva sede de Alicante:",
             options: [
               { text: "¿Tenéis salón en Alicante y se puede aparcar fácilmente?", next: 1 }
             ]
           },
           {
-            ai: "¡Sí! Estamos en El Corte Inglés de Avenida Maisonnave 53 en pleno corazón de Alicante. Dispones del parking cubierto de El Corte Inglés con acceso directo en ascensor. Abrimos de lunes a sábado ininterrumpidamente de 10 a 21 horas. ¿Deseas agendar un corte o peinado?",
+            ai: "¡Sí! Estamos en El Corte Inglés de Avenida Maisonnave 53 en pleno corazón de Alicante. Dispones del parking cubierto de El Corte Inglés con acceso directo en ascensor. Abrimos de lunes a viernes de 10 a 21 horas y los sábados de 10 a 19:45. ¿Deseas agendar un corte o peinado?",
             userPrompt: "Confirmación de cita:",
             options: [
               { text: "Sí, quiero corte y peinado para este sábado a las 12:00", next: 2 }
@@ -1316,7 +1359,7 @@
       aiBubble.innerHTML = `
         <span class="w-6 h-6 rounded-full bg-gold-400 text-noir-950 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">IA</span>
         <div class="bg-noir-900 text-stone-200 p-3 rounded-2xl rounded-tl-none shadow-sm leading-relaxed border border-gold-400/20">
-          <span class="text-[10px] font-bold text-gold-300 block mb-0.5">Clara · Salón 224</span>
+          <span class="text-[10px] font-bold text-gold-300 block mb-0.5">Laura · Salón 224</span>
           ${stepData.ai}
         </div>
       `;
@@ -1480,21 +1523,58 @@
             </div>
           `;
         } else if (text.includes("viernes") || text.includes("Torres Quevedo") || text.includes("ECI")) {
-          reply = "Consultando agenda de Fresha en tiempo real... 🔍<br><br>¡Huecos disponibles para ti este viernes!<br>• <strong>11:30h</strong> con Alberto<br>• <strong>16:00h</strong> con Alexandra<br>• <strong>17:30h</strong> con Carlos<br><br>Pulsa el botón para confirmar y reservar directamente:";
+          reply = "Mirando la agenda del salón... 🔍<br><br>¡Huecos disponibles para ti este viernes!<br>• <strong>11:30h</strong> con María<br>• <strong>16:00h</strong> con Noelia<br><br>Pulsa el botón para confirmar y reservar directamente:";
           extraCards = `
             <div class="space-y-1.5 pt-2">
-              <button onclick="confirmWABooking('Viernes 11:30h con Alberto')" class="w-full text-left px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl font-bold flex justify-between">
-                <span>Viernes 11:30h · Alberto</span>
+              <button onclick="confirmWABooking('Viernes 11:30h con María')" class="w-full text-left px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl font-bold flex justify-between">
+                <span>Viernes 11:30h · María</span>
                 <span>Reservar &rarr;</span>
               </button>
-              <button onclick="confirmWABooking('Viernes 16:00h con Alexandra')" class="w-full text-left px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl font-bold flex justify-between">
-                <span>Viernes 16:00h · Alexandra</span>
+              <button onclick="confirmWABooking('Viernes 16:00h con Noelia')" class="w-full text-left px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl font-bold flex justify-between">
+                <span>Viernes 16:00h · Noelia</span>
                 <span>Reservar &rarr;</span>
               </button>
             </div>
           `;
         } else if (text.includes("Tratamientos") || text.includes("Authentic")) {
-          reply = "En Salón 224 somos abanderados de <strong>Authentic Beauty Concept</strong> 🌱:<br><br>• <strong>Glow Treatment</strong> (para cabellos coloreados o mechas, sella pigmento).<br>• <strong>Hydrate Treatment</strong> (máxima elasticidad y suavidad en cabello seco).<br>• <strong>Replenish Ritual</strong> (fortalecimiento de fibra con proteína vegana).<br><br>Todos incluyen masaje shiatsu en lavacabezas.";
+          reply = "En Salón 224 trabajamos con <strong>Authentic Beauty Concept</strong> 🌱. Estos son nuestros tratamientos en Albacete:<br><br>• <strong>Tratamiento Botox</strong> · 25 € · 45 min<br>• <strong>Tratamiento Cronograma- Restaurador</strong> · 45 € · 1 h<br>• <strong>Tratamiento Curly Power</strong> · 45 € · 1 h<br>• <strong>Keratina</strong> · desde 200 €<br><br>En Alicante empezamos siempre con un <strong>diagnóstico de salud capilar gratuito</strong>.";
+        } else if (text.includes("cambiar la hora")) {
+          reply = "¡Sin problema! 😊 Te busco otro hueco con María en Torres Quevedo:<br>• <strong>Viernes 10:00h</strong><br>• <strong>Sábado 9:30h</strong><br><br>Tu tarjeta de garantía se mantiene para la nueva hora y no se cobra nada por cambiar.";
+          extraCards = `
+            <div class="space-y-1.5 pt-2">
+              <button onclick="confirmWABooking('Viernes 10:00h con María', true)" class="w-full text-left px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl font-bold flex justify-between">
+                <span>Viernes 10:00h · María</span><span>Cambiar &rarr;</span>
+              </button>
+              <button onclick="confirmWABooking('Sábado 9:30h con María', true)" class="w-full text-left px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl font-bold flex justify-between">
+                <span>Sábado 9:30h · María</span><span>Cambiar &rarr;</span>
+              </button>
+            </div>
+          `;
+        } else if (text.includes("cancelar mi cita")) {
+          reply = "Hecho, Marta: tu cita queda cancelada. Sin ningún coste: la tarjeta de garantía se libera. 💛<br><br>¿Quieres que te avise si se queda libre algún hueco la semana que viene?";
+          extraCards = `
+            <div class="flex gap-2 pt-2">
+              <button onclick="sendUserWAMessage('Sí, apúntame en la lista de espera')" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg text-[10px] font-bold">Sí, avísame</button>
+              <button onclick="sendUserWAMessage('No, gracias')" class="px-2.5 py-1 bg-stone-200 text-stone-800 rounded-lg text-[10px] font-bold">No, gracias</button>
+            </div>
+          `;
+        } else if (text.includes("lista de espera")) {
+          reply = "¡Apuntada! ✨ En cuanto alguien cancele un hueco de balayage con María, te escribo por aquí y lo reservas con un toque.";
+        } else if (text.includes("Ver huecos")) {
+          reply = "¡Genial! María tiene estos huecos para tu balayage:<br>• <strong>Martes 11:00h</strong><br>• <strong>Jueves 16:00h</strong>";
+          extraCards = `
+            <div class="space-y-1.5 pt-2">
+              <button onclick="confirmWABooking('Martes 11:00h con María')" class="w-full text-left px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl font-bold flex justify-between">
+                <span>Martes 11:00h · María</span><span>Reservar &rarr;</span>
+              </button>
+            </div>
+          `;
+        } else if (/^[1-5] ⭐/.test(text)) {
+          const n = parseInt(text, 10);
+          reply = n >= 4
+            ? "¡Mil gracias, Marta! 💛 Si te apetece, publícala en Google: ya te hemos copiado el comentario, solo tienes que pegarlo."
+            : "Gracias por decírnoslo, Marta. Sentimos que no haya sido perfecto: la encargada te llamará hoy. Y si quieres, también puedes contarlo en Google.";
+          extraCards = `<div class="pt-2"><a href="#" onclick="return false" class="block text-center px-3 py-2 bg-sky-50 hover:bg-sky-100 text-sky-800 rounded-xl font-bold border border-sky-200">Escribir reseña en Google</a></div>`;
         } else if (text.includes("humana") || text.includes("estilista")) {
           reply = "¡Por supuesto! Transfiriendo conversación a nuestra recepción humana. Enseguida una compañera te contestará por este mismo chat. Puedes llamarnos también al <strong>967 105 930</strong>.";
         } else {
@@ -1525,53 +1605,75 @@
       sendUserWAMessage(val);
     }
 
-    function confirmWABooking(details) {
+    function addWABot(html, cls) {
       const box = document.getElementById('waMessagesBox');
-      const confDiv = document.createElement('div');
-      confDiv.className = "flex items-start gap-2 max-w-md";
-      confDiv.innerHTML = `
-        <div class="bg-emerald-50 border-2 border-emerald-300 p-4 rounded-2xl rounded-tl-none shadow-md space-y-2 text-stone-800">
-          <div class="flex items-center gap-1.5 text-emerald-800 font-bold">
-            <span>🎉</span> <span>¡CITA CONFIRMADA EN FRESHA!</span>
-          </div>
-          <p class="text-xs text-stone-700">
-            <strong>Servicio:</strong> Balayage Iluminación 224<br>
-            <strong>Horario:</strong> ${details}<br>
-            <strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete
-          </p>
-          <div class="pt-2 border-t border-emerald-200 flex flex-wrap gap-2 text-[10px]">
-            <a href="https://maps.app.goo.gl/BNPwanZRJgcEeCvx9" target="_blank" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg font-bold">📍 Abrir en Google Maps</a>
-            <span class="px-2.5 py-1 bg-white border border-emerald-300 text-emerald-800 rounded-lg font-semibold">T-24h Recordatorio Activo</span>
-          </div>
-        </div>
-      `;
-      box.appendChild(confDiv);
+      const d = document.createElement('div');
+      d.className = "flex items-start gap-2 max-w-md";
+      d.innerHTML = `<div class="${cls || 'bg-white'} p-3 rounded-2xl rounded-tl-none shadow-sm space-y-1.5 text-stone-800">${html}</div>`;
+      box.appendChild(d);
       box.scrollTop = box.scrollHeight;
     }
 
-    function trigger24hReminder() {
-      const box = document.getElementById('waMessagesBox');
-      const remDiv = document.createElement('div');
-      remDiv.className = "flex items-start gap-2 max-w-md";
-      remDiv.innerHTML = `
-        <div class="bg-amber-50 border border-amber-300 p-3 rounded-2xl rounded-tl-none shadow-sm space-y-1.5 text-stone-800">
-          <div class="flex items-center gap-1 text-amber-900 font-bold text-[11px]">
-            <span>🔔</span> <span>RECORDATORIO AUTOMÁTICO 24H (ZERNIO)</span>
-          </div>
-          <p class="text-xs">
-            ¡Hola Clara! Te recordamos tu cita de <strong>Balayage en Salón 224</strong> mañana a las <strong>11:30h</strong> en Torres Quevedo con Alberto.
-          </p>
-          <p class="text-[11px] text-stone-600">
-            ¿Nos confirmas tu asistencia?
-          </p>
-          <div class="flex gap-2 pt-1">
-            <button onclick="sendUserWAMessage('¡Confirmadísimo, allí estaré puntual!')" class="px-3 py-1 bg-emerald-600 text-white rounded-lg font-bold text-[11px]">✅ Sí, confirmo</button>
-            <button onclick="sendUserWAMessage('Necesito cambiar la hora de mi cita por favor')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Cambiar hora</button>
-          </div>
+    // Babylage + peinado = 109,70 € (más de 85 €): se pide tarjeta como garantía antes de confirmar.
+    function confirmWABooking(details, changed) {
+      if (changed) {
+        addWABot(`<div class="flex items-center gap-1.5 text-emerald-800 font-bold"><span>✅</span> <span>Cita cambiada</span></div>
+          <p class="text-xs text-stone-700"><strong>Nueva hora:</strong> ${details}<br><strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete</p>
+          <p class="text-[11px] text-stone-500">Te recordaremos la cita 24 horas antes.</p>`, 'bg-emerald-50 border-2 border-emerald-300');
+        return;
+      }
+      window._waPending = details;
+      addWABot(`<p class="font-semibold text-gold-700 text-[11px]">SALÓN 224</p>
+        <p>¡Te guardo <strong>${details}</strong>! 🙌</p>
+        <p class="text-xs text-stone-700">Como el Babylage + peinado cuesta 109,70 € (más de 85 €), pedimos una <strong>tarjeta como garantía</strong>. <strong>No se cobra nada ahora.</strong> Solo si no vinieras sin avisar se cobraría el 50 %. Puedes cambiar o cancelar gratis desde aquí hasta 24 horas antes.</p>
+        <button onclick="openWACardForm()" class="w-full mt-1 px-3 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl font-bold text-[11px]">💳 Añadir tarjeta de garantía</button>`);
+    }
+
+    function openWACardForm() {
+      addWABot(`<p class="text-[10px] font-bold text-stone-500 uppercase tracking-wider">Página segura de pago · Stripe</p>
+        <div class="space-y-1.5 text-[11px]">
+          <div class="px-2.5 py-2 rounded-lg border border-stone-300 bg-white font-mono text-stone-500">4242 4242 4242 4242</div>
+          <div class="flex gap-1.5"><div class="flex-1 px-2.5 py-2 rounded-lg border border-stone-300 bg-white font-mono text-stone-500">12 / 29</div><div class="flex-1 px-2.5 py-2 rounded-lg border border-stone-300 bg-white font-mono text-stone-500">123</div></div>
+          <label class="flex items-start gap-1.5 text-stone-700"><input type="checkbox" checked class="mt-0.5 accent-emerald-600"> Acepto la norma de reserva: si no voy sin avisar, se cobra el 50 % del servicio.</label>
         </div>
-      `;
-      box.appendChild(remDiv);
-      box.scrollTop = box.scrollHeight;
+        <button onclick="saveWACard()" class="w-full mt-1 px-3 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-xl font-bold text-[11px]">Guardar tarjeta (0,00 €)</button>
+        <p class="text-[10px] text-stone-400">Tarjeta de prueba. El salón nunca ve los números: solo los guarda Stripe.</p>`, 'bg-stone-50 border border-stone-300');
+    }
+
+    function saveWACard() {
+      const details = window._waPending || 'Viernes 11:30h con María';
+      addWABot(`<div class="flex items-center gap-1.5 text-emerald-800 font-bold"><span>🎉</span> <span>¡Cita confirmada!</span></div>
+        <p class="text-xs text-stone-700"><strong>Servicio:</strong> Babylage + peinado (109,70 €)<br><strong>Horario:</strong> ${details}<br><strong>Lugar:</strong> C/ Torres Quevedo 8, Albacete<br><strong>Garantía:</strong> Visa ••4242 · 0 € cobrados</p>
+        <div class="pt-2 border-t border-emerald-200 flex flex-wrap gap-2 text-[10px]">
+          <a href="https://maps.app.goo.gl/BNPwanZRJgcEeCvx9" target="_blank" rel="noopener" class="px-2.5 py-1 bg-emerald-700 text-white rounded-lg font-bold">📍 Abrir en Google Maps</a>
+          <span class="px-2.5 py-1 bg-white border border-emerald-300 text-emerald-800 rounded-lg font-semibold">🔔 Te avisamos 24 h antes</span>
+        </div>`, 'bg-emerald-50 border-2 border-emerald-300');
+    }
+
+    function trigger24hReminder() {
+      addWABot(`<div class="flex items-center gap-1 text-amber-900 font-bold text-[11px]"><span>🔔</span> <span>RECORDATORIO · 24 H ANTES</span></div>
+        <p class="text-xs">¡Hola Marta! Te recordamos tu cita de <strong>balayage</strong> mañana a las <strong>11:30h</strong> en Torres Quevedo con María.</p>
+        <p class="text-[11px] text-stone-600">¿Nos confirmas que vienes? Si no puedes, cámbiala o cancélala aquí mismo.</p>
+        <div class="flex flex-wrap gap-2 pt-1">
+          <button onclick="sendUserWAMessage('¡Confirmadísimo, allí estaré puntual!')" class="px-3 py-1 bg-emerald-600 text-white rounded-lg font-bold text-[11px]">✅ Sí, voy</button>
+          <button onclick="sendUserWAMessage('Necesito cambiar la hora de mi cita por favor')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Cambiar hora</button>
+          <button onclick="sendUserWAMessage('Quiero cancelar mi cita')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Cancelar</button>
+        </div>`, 'bg-amber-50 border border-amber-300');
+    }
+
+    function triggerVuelveAReservar() {
+      addWABot(`<div class="flex items-center gap-1 text-purple-900 font-bold text-[11px]"><span>🔁</span> <span>VUELVE A RESERVAR</span></div>
+        <p class="text-xs">Hola Marta 💛 Hace 10 semanas de tu balayage con María. ¿Te apetece renovar el brillo antes de que se note la raíz? María tiene huecos la semana que viene.</p>
+        <div class="flex flex-wrap gap-2 pt-1">
+          <button onclick="sendUserWAMessage('Ver huecos')" class="px-3 py-1 bg-emerald-600 text-white rounded-lg font-bold text-[11px]">📅 Ver huecos</button>
+          <button onclick="sendUserWAMessage('Más adelante')" class="px-3 py-1 bg-stone-200 text-stone-800 rounded-lg font-semibold text-[11px]">Más adelante</button>
+        </div>`, 'bg-purple-50 border border-purple-300');
+    }
+
+    function triggerReviewRequest() {
+      addWABot(`<div class="flex items-center gap-1 text-sky-900 font-bold text-[11px]"><span>⭐</span> <span>DESPUÉS DE LA VISITA</span></div>
+        <p class="text-xs">Gracias por venir hoy, Marta 💛 ¿Qué tal con María? Puntúa tu visita:</p>
+        <div class="flex flex-wrap gap-1.5 pt-1">${[5, 4, 3, 2, 1].map(n => `<button onclick="sendUserWAMessage('${n} ⭐')" class="px-2.5 py-1 bg-white border border-sky-300 text-sky-800 rounded-lg font-bold text-[11px]">${n} ⭐</button>`).join('')}</div>`, 'bg-sky-50 border border-sky-300');
     }
 
     function resetWhatsAppChat() {
@@ -1592,85 +1694,821 @@
       `;
     }
 
-    // --- 4. CRM TABS & MODALS ---
-    const clientsData = {
-      elena: {
-        name: "Elena Navarro Alarcón",
-        initials: "EN",
-        notes: "Cabello fino con tendencia a porosidad en puntas. No subir a 40 volúmenes bajo ningún concepto. Le encanta el café cortado con leche desnatada y sacarina.",
-        formula: "<strong>Raíz:</strong> Igora Royal 7.1 + 7.0 a 20 volúmenes (35 min).<br><strong>Medios y Puntas:</strong> Balayage mano alzada con Deco Blond Studio 9 + 30 vol.<br><strong>Matiz:</strong> ABC Toner Vainilla 9.13 (15 min).<br><strong>Tratamiento:</strong> ABC Glow Cleanser & Mask selladora."
-      },
-      laura: {
-        name: "Laura Gómez Ibáñez",
-        initials: "LG",
-        notes: "Sensibilidad leve en cuero cabelludo. Usar siempre champú protector ABC Bare Cleanser hipoalergénico. Prefiere corte a tijera sin vaciado.",
-        formula: "<strong>Tratamiento:</strong> Ritual Hidratante Profundo ABC con toalla caliente 15 min.<br><strong>Corte:</strong> Bob texturizado desfilado en clavícula.<br><strong>Styling:</strong> Spray de sal Authentic Beauty Concept sin siliconas."
-      },
-      carmen: {
-        name: "Carmen Rodenas Montes",
-        initials: "CR",
-        notes: "Novia 2026 (Boda el 12 de Septiembre). Lleva velo clásico y tiara artesanal. Requiere fijación extra resistente al calor pero con aspecto natural sin apelmazar.",
-        formula: "<strong>Prueba Nupcial:</strong> Semirecogido trenzado con ondas románticas rotas.<br><strong>Matiz:</strong> Glaze Brillo Espejo con aceite de jojoba.<br><strong>Maquillaje:</strong> Piel glow con fijador HD."
-      },
-      maria: {
-        name: "María Santos Cuesta",
-        initials: "MS",
-        notes: "Viene religiosamente cada 5 semanas para cobertura de canas 100% en sienes. Muy puntual.",
-        formula: "<strong>Cobertura Canas:</strong> 6.0 + 6.1 a partes iguales con oxidante 20 vol.<br><strong>Emulsión final:</strong> Agua termal en lavacabezas con masaje relajante 5 min."
-      },
-      sofia: {
-        name: "Sofía Valero Peña",
-        initials: "SV",
-        notes: "Rubio nórdico muy frío. Utilizar matiz con violeta anti-amarillo. Fanática de las fotos para Instagram del salón.",
-        formula: "<strong>Mechas:</strong> Babylights micro-tricotadas plata.<br><strong>Deco:</strong> 9 tonos con Olaplex Nº1.<br><strong>Matiz:</strong> 10.21 + gota de 9.11 para neutralizar reflejo dorado."
-      },
-      ana: {
-        name: "Ana Martínez Gil",
-        initials: "AM",
-        notes: "Clienta de Balayage semestral. Se le envía aviso automático a los 75 días para retocar contorno de luz (money piece).",
-        formula: "<strong>Técnica:</strong> Contouring facial Money Piece + difuminado de raíz Shadow Root para crecimiento invisible."
-      }
-    };
+    // --- 4. CRM PROPIO SALÓN 224 ---
+    // Datos de ejemplo: clientas genéricas, tarjetas ficticias, precios orientativos.
+    (function () {
+      const $ = s => document.querySelector(s);
+      const $$ = s => Array.from(document.querySelectorAll(s));
+      const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const eur = n => { const [i, d] = (Math.round(n * 100) / 100).toFixed(2).split('.'); return i.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (d === '00' ? '' : ',' + d) + ' €'; };
+      const DAY = 86400000;
+      const TODAY = new Date(2026, 9, 15);
+      const TODAY_S = '2026-10-15';
+      const NOW = '12:15';
+      const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+      const toHM = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+      const fmtD = d => new Date(d).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
+      const daysSince = d => Math.round((TODAY - new Date(d)) / DAY);
+      const first = n => n.split(' ')[0];
+      const short = n => n.replace('El Corte Inglés', 'ECI');
 
-    function openClientModal(id) {
-      const data = clientsData[id] || clientsData.elena;
-      document.getElementById('modalName').textContent = data.name;
-      document.getElementById('modalInitials').textContent = data.initials;
-      document.getElementById('modalNotes').textContent = data.notes;
-      document.getElementById('modalFormula').innerHTML = data.formula;
-      document.getElementById('clientModal').classList.remove('hidden');
-    }
+      // Centros, horarios y equipo reales (web del salón y sus fichas públicas de reserva). El resto de datos es inventado.
+      const SEDES = {
+        tq: { n: 'Torres Quevedo', open: [10 * 60, 19 * 60], hours: 'M-V 10–19 · S 9–14 · lunes cerrado', staff: ['María', 'Noelia', 'Irene', 'Rosi', 'Toñi'] },
+        ab: { n: 'El Corte Inglés Albacete', open: [10 * 60, 21 * 60], hours: 'L-V 10–21 · S 10–19:45', staff: ['Juan Carlos', 'Mónica', 'Encar', 'Encarni', 'Lucía'] },
+        al: { n: 'El Corte Inglés Alicante', open: [10 * 60, 21 * 60], hours: 'L-V 10–21 · S 10–19:45', staff: ['Jose', 'Maje', 'Ester', 'Claudio'] }
+      };
+      const PHOTO = { 'María': 'maria', Noelia: 'noelia', Irene: 'irene', Rosi: 'rosi', 'Juan Carlos': 'juan-carlos', 'Mónica': 'monica', Encar: 'encar', Encarni: 'encarni', 'Lucía': 'lucia', Jose: 'jose', Maje: 'maje', Ester: 'ester', Claudio: 'claudio' };
+      const avatar = (p, size = 'w-7 h-7') => PHOTO[p] ? `<img src="assets/equipo/${PHOTO[p]}.jpg" alt="${p}" class="${size} rounded-full object-cover border border-gold-300 bg-white shrink-0" loading="lazy">` : `<span class="${size} rounded-full bg-gold-100 border border-gold-300 text-gold-800 text-[10px] font-bold flex items-center justify-center shrink-0">${p.slice(0, 2).toUpperCase()}</span>`;
+      const ROLE = { 'María': 'Peluquera', Noelia: 'Peluquera', Irene: 'Esteticista y maquilladora', Rosi: '', 'Toñi': '', 'Juan Carlos': 'Peluquero', 'Mónica': '', Encar: 'Peluquera', Encarni: 'Peluquera', 'Lucía': 'Peluquera', Jose: 'Peluquera', Maje: 'Peluquera', Ester: 'Peluquera', Claudio: 'Peluquero' };
+      const STAFF_SEDE = {};
+      Object.entries(SEDES).forEach(([k, s]) => s.staff.forEach(p => STAFF_SEDE[p] = k));
 
-    function closeClientModal() {
-      document.getElementById('clientModal').classList.add('hidden');
-    }
+      // Carta real del salón (nombre, precio con IVA y duración de su reserva online). [nombre, precio, minutos, tipo, días para «vuelve a reservar», centros]
+      // Albacete (Torres Quevedo y El Corte Inglés) comparte carta; Alicante tiene la suya. La estética solo se hace en Torres Quevedo.
+      const SVC = {
+        babylage: ['Babylage + peinado', 109.7, 220, 'color', 75, 'alb'],
+        mechas: ['Mechas classic + peinado', 91, 190, 'color', 60, 'alb'],
+        raiz: ['Color raíz + peinado', 47.5, 105, 'color', 35, 'alb'],
+        color: ['Color completo + peinado', 60.1, 120, 'color', 45, 'alb'],
+        corte: ['Corte + secado natural', 29.5, 45, 'corte', 50, 'alb'],
+        cortepeinado: ['Corte + peinado', 41, 70, 'corte', 50, 'alb'],
+        botox: ['Tratamiento Botox', 25, 45, 'trat', 40, 'alb'],
+        crono: ['Tratamiento Cronograma- Restaurador', 45, 60, 'trat', 40, 'alb'],
+        keratina: ['Keratina cabello medio', 240, 150, 'trat', 120, 'alb'],
+        ondas: ['Ondas Hollywood', 32, 60, 'evento', null, 'alb'],
+        invitada: ['Ondas invitada con lavado en el salón', 25, 60, 'evento', null, 'alb'],
+        cejas: ['Laminado y diseño de cejas', 30, 45, 'estetica', 30, 'tq'],
+        facial: ['Higiene Facial Profunda - Skin Reset', 37, 60, 'estetica', 30, 'tq'],
+        pestanas: ['Lifting de pestañas', 37, 60, 'estetica', 45, 'tq'],
+        balayage_al: ['Balayage + lavado con Authentic Beauty Concept + peinado', 129.8, 195, 'color', 75, 'al'],
+        mechas_al: ['Mechas 224 + lavado con Authentic Beauty Concept + peinado', 125, 195, 'color', 60, 'al'],
+        raiz_al: ['Color raíz + peinado', 56, 110, 'color', 35, 'al'],
+        color_al: ['Color completo + peinado', 70.5, 125, 'color', 45, 'al'],
+        corte_al: ['Corte + secado natural', 43, 45, 'corte', 50, 'al'],
+        cortepeinado_al: ['Corte + peinado medio (encima de los hombros)', 59, 60, 'corte', 50, 'al'],
+        caballero_al: ['Corte + peinado caballero', 22.5, 30, 'corte', 35, 'al'],
+        botox_al: ['Tratamiento Botox', 30, 45, 'trat', 40, 'al'],
+        crono_al: ['Tratamiento Cronograma- Restaurador', 69, 60, 'trat', 40, 'al'],
+        diagnostico_al: ['Diagnóstico Salud Capilar', 0, 30, 'trat', null, 'al'],
+        ondas_al: ['Ondas Hollywood', 46, 60, 'evento', null, 'al']
+      };
+      const svcIn = (k, sede) => SVC[k][5] === sede || (SVC[k][5] === 'alb' && sede !== 'al');
+      const PROD = { champu: ['Champú Authentic Beauty Concept', 24], masc: ['Mascarilla Authentic Beauty Concept', 29] }; // productos: precio orientativo
+      const CAT = {
+        color: ['Color', 'bg-amber-100 border-amber-400 text-amber-950', 'bg-amber-400'],
+        corte: ['Corte', 'bg-sky-100 border-sky-400 text-sky-950', 'bg-sky-400'],
+        trat: ['Tratamiento', 'bg-emerald-100 border-emerald-400 text-emerald-950', 'bg-emerald-400'],
+        evento: ['Novias e invitadas', 'bg-rose-100 border-rose-400 text-rose-950', 'bg-rose-400'],
+        estetica: ['Estética', 'bg-fuchsia-100 border-fuchsia-400 text-fuchsia-950', 'bg-fuchsia-400']
+      };
+      const SRC = { laura: '📞 Laura', whatsapp: '💬 WhatsApp', instagram: '📸 Instagram', mostrador: '🧾 Mostrador' };
+      const ST = {
+        reservada: ['Sin confirmar', 'bg-orange-100 text-orange-800'],
+        confirmada: ['Confirmada', 'bg-emerald-100 text-emerald-800'],
+        llegada: ['En el sillón', 'bg-amber-100 text-amber-900'],
+        completada: ['Cobrada', 'bg-stone-200 text-stone-700'],
+        cancelada: ['Cancelada', 'bg-stone-100 text-stone-500'],
+        noshow: ['No vino', 'bg-red-100 text-red-800']
+      };
+      const MOTIVOS = ['Cliente no disponible', 'Enfermedad', 'Cambio a otro día', 'Cita reservada por error', 'Cita duplicada'];
+      const LIMIT = 85; // € IVA incluido: a partir de aquí se pide tarjeta como garantía al reservar online
 
-    function setSalonTab(tabId) {
-      document.querySelectorAll('.salon-tab').forEach(btn => {
-        btn.classList.remove('bg-white', 'text-stone-900', 'shadow-sm');
-        btn.classList.add('text-stone-600');
+      const CLIENTS = {
+        veronica: { name: 'Verónica Sanz', phone: '640 ·· ·· 25', since: 2025, sede: 'tq', staff: 'María', card: 'Visa ••4242',
+          notes: 'Reservó por WhatsApp. Quiere aclarar dos tonos sin perder brillo.', test: '2026-10-08',
+          hist: [{ d: '2026-07-02', svc: 'corte', staff: 'María', p: 32, f: '' }] },
+        elena: { name: 'Elena Navarro', phone: '654 ·· ·· 87', since: 2021, sede: 'tq', staff: 'María', photos: true, card: 'Visa ••1881',
+          notes: 'Cabello fino con tendencia a porosidad en puntas. No subir de 30 volúmenes. Café con leche desnatada.', test: '2026-06-02',
+          hist: [
+            { d: '2026-08-06', svc: 'balayage', staff: 'María', p: 125, f: 'Raíz: Igora Royal 7.1 + 7.0 a 20 vol (35 min). Medios y puntas: balayage a mano alzada con Blond Studio 9 + 30 vol. Matiz: toner vainilla 9.13 (15 min). Final: mascarilla selladora ABC.' },
+            { d: '2026-05-20', svc: 'corte', staff: 'María', p: 32, f: '' },
+            { d: '2026-03-12', svc: 'balayage', staff: 'María', p: 120, f: 'Balayage con Blond Studio 9 + 30 vol. Matiz 9.1 ceniza (12 min).' }
+          ] },
+        ana: { name: 'Ana Martínez', phone: '622 ·· ·· 14', since: 2022, sede: 'tq', staff: 'Noelia', photos: true,
+          notes: 'Balayage con money piece. Prefiere raíz difuminada (shadow root) para que el crecimiento no se note.', test: '2026-03-30',
+          hist: [
+            { d: '2026-08-03', svc: 'balayage', staff: 'Noelia', p: 130, f: 'Money piece con Blond Studio 9 + 20 vol. Shadow root 7.0 + 7.1 (20 min). Matiz 9.13 + 9.11.' },
+            { d: '2026-04-18', svc: 'glaze', staff: 'Noelia', p: 35, f: 'Glaze 9.13 con agua oxigenada 6 vol (15 min).' }
+          ] },
+        maria: { name: 'Pilar Santos', phone: '687 ·· ·· 02', since: 2019, sede: 'tq', staff: 'Rosi',
+          notes: 'Cobertura total de canas en sienes. Viene cada cinco semanas, muy puntual.', test: '2026-01-15',
+          hist: [
+            { d: '2026-09-08', svc: 'raiz', staff: 'Rosi', p: 55, f: '6.0 + 6.1 a partes iguales con oxidante 20 vol (35 min). Masaje de 5 min en lavacabezas.' },
+            { d: '2026-08-04', svc: 'raiz', staff: 'Rosi', p: 55, f: '6.0 + 6.1 a partes iguales con 20 vol (35 min).' },
+            { d: '2026-06-30', svc: 'raiz', staff: 'Rosi', p: 55, f: '6.0 + 6.1 con 20 vol.' }
+          ] },
+        sofia: { name: 'Sofía Valero', phone: '611 ·· ·· 39', since: 2023, sede: 'tq', staff: 'Noelia', photos: true, card: 'Mastercard ••5100',
+          notes: 'Rubio nórdico muy frío: matiz con violeta para quitar el amarillo. Le gusta que le hagan fotos para Instagram.', test: '2026-07-22',
+          hist: [
+            { d: '2026-08-21', svc: 'babylights', staff: 'Noelia', p: 110, f: 'Babylights finas con decoloración 9 tonos + protector de enlaces. Matiz 10.21 + gota de 9.11 (12 min).' }
+          ] },
+        lucia: { name: 'Raquel Gómez', phone: '611 ·· ·· 44', since: 2024, sede: 'ab', staff: 'Encarni',
+          notes: 'Cuero cabelludo sensible: champú suave sin sulfatos. Corte a tijera, sin vaciar.', test: '',
+          hist: [
+            { d: '2026-09-17', svc: 'abc', staff: 'Encarni', p: 42, f: 'Ritual hidratante con toalla caliente (15 min).' },
+            { d: '2026-08-22', svc: 'corte', staff: 'Encarni', p: 32, f: 'Bob texturizado a la altura de la clavícula.' }
+          ] },
+        carmen: { name: 'Carmen Ródenas', phone: '634 ·· ·· 71', since: 2025, sede: 'ab', staff: 'Lucía', card: 'Visa ••7730',
+          notes: 'Novia: boda en junio de 2027. Velo clásico y tiara. Fijación resistente al calor con aspecto natural.', test: '2026-09-01',
+          hist: [
+            { d: '2026-09-01', svc: 'glaze', staff: 'Lucía', p: 35, f: 'Glaze brillo espejo 8.3 (15 min).' }
+          ] },
+        paula: { name: 'Paula Jiménez', phone: '699 ·· ·· 58', since: 2022, sede: 'ab', staff: 'Encarni',
+          notes: 'Castaño natural. Quiere aclarar poco a poco sin perder brillo.', test: '2026-02-11',
+          hist: [
+            { d: '2026-08-12', svc: 'babylights', staff: 'Encarni', p: 110, f: 'Babylights con Blond Studio 7 + 20 vol. Matiz 8.13 (15 min).' },
+            { d: '2026-05-28', svc: 'corte', staff: 'Encarni', p: 32, f: '' }
+          ] },
+        beatriz: { name: 'Beatriz Ortega', phone: '678 ·· ·· 26', since: 2020, sede: 'ab', staff: 'Lucía',
+          notes: 'Canas en raya. Alergia leve al amoniaco: usar coloración sin amoniaco.', test: '2026-08-28',
+          hist: [
+            { d: '2026-09-04', svc: 'raiz', staff: 'Lucía', p: 55, f: 'Coloración sin amoniaco 5.0 + 5.3 con 9 vol (30 min).' }
+          ] },
+        irene: { name: 'Inma Castillo', phone: '645 ·· ·· 93', since: 2023, sede: 'al', staff: 'Maje', photos: true, card: 'Visa ••0094',
+          notes: 'Pelo muy largo y grueso: calcular doble de decoloración.', test: '2026-04-09',
+          hist: [
+            { d: '2026-07-24', svc: 'balayage', staff: 'Maje', p: 130, f: 'Balayage con Blond Studio 9 + 30 vol, doble cantidad. Matiz 9.1 + 9.13.' }
+          ] },
+        nuria: { name: 'Nuria Pastor', phone: '603 ·· ·· 67', since: 2024, sede: 'al', staff: 'Ester',
+          notes: 'Le gusta el corte muy marcado, flequillo cortina.', test: '',
+          hist: [
+            { d: '2026-08-20', svc: 'corte', staff: 'Ester', p: 32, f: '' },
+            { d: '2026-06-25', svc: 'corte', staff: 'Ester', p: 32, f: '' }
+          ] },
+        rocio: { name: 'Rocío Llorens', phone: '628 ·· ·· 11', since: 2021, sede: 'al', staff: 'Maje',
+          notes: 'Rubio miel. No quiere tonos fríos.', test: '2026-05-05',
+          hist: [
+            { d: '2026-08-27', svc: 'glaze', staff: 'Maje', p: 35, f: 'Glaze 9.3 + 9.31 (15 min).' },
+            { d: '2026-06-10', svc: 'babylights', staff: 'Maje', p: 115, f: 'Babylights con Blond Studio 8 + 20 vol. Matiz 9.3.' }
+          ] },
+        marina: { name: 'Marina Soler', phone: '617 ·· ·· 80', since: 2026, sede: 'al', staff: 'Ester',
+          notes: 'Clienta nueva: llegó por el WhatsApp en septiembre.', test: '',
+          hist: [
+            { d: '2026-09-24', svc: 'abc', staff: 'Ester', p: 42, f: 'Tratamiento nutritivo intenso (20 min).' }
+          ] }
+      };
+
+      // Citas de hoy
+      const APPTS = [
+        { id: 1, staff: 'María', t: '10:00', svc: 'babylights', c: 'veronica', src: 'whatsapp', st: 'confirmada' },
+        { id: 2, staff: 'María', t: '13:15', svc: 'balayage', c: 'elena', src: 'whatsapp', st: 'confirmada' },
+        { id: 3, staff: 'María', t: '17:00', svc: 'corte', c: 'Teresa Ruiz', src: 'laura', st: 'reservada' },
+        { id: 4, staff: 'Noelia', t: '10:00', svc: 'glaze', c: 'sofia', src: 'instagram', st: 'completada', pay: 'Bizum', prods: [] },
+        { id: 5, staff: 'Noelia', t: '12:30', svc: 'glaze', c: 'ana', src: 'whatsapp', st: 'confirmada' },
+        { id: 6, staff: 'Noelia', t: '14:45', svc: 'balayage', c: 'Cristina Vidal', src: 'laura', st: 'reservada', card: 'Mastercard ••2218' },
+        { id: 7, staff: 'Toñi', t: '10:30', svc: 'corte', c: 'Laia Ferrer', src: 'mostrador', st: 'completada', pay: 'Efectivo', prods: [] },
+        { id: 8, staff: 'Rosi', t: '10:00', svc: 'raiz', c: 'maria', src: 'whatsapp', st: 'completada', pay: 'Tarjeta', prods: ['champu'] },
+        { id: 9, staff: 'Rosi', t: '13:00', svc: 'abc', c: 'Silvia Rey', src: 'laura', st: 'confirmada' },
+        { id: 20, staff: 'Irene', t: '10:30', svc: 'cejas', c: 'Amparo López', src: 'mostrador', st: 'completada', pay: 'Tarjeta', prods: [] },
+        { id: 21, staff: 'Irene', t: '17:00', svc: 'maquillaje', c: 'Andrea Gil', src: 'laura', st: 'confirmada' },
+        { id: 22, staff: 'Toñi', t: '11:30', svc: 'corte', c: 'Julia Navarro', src: 'mostrador', st: 'llegada' },
+        { id: 23, staff: 'Toñi', t: '16:00', svc: 'abc', c: 'Sonia Martín', src: 'whatsapp', st: 'reservada' },
+        { id: 24, staff: 'Juan Carlos', t: '10:00', svc: 'corte', c: 'Álvaro Pérez', src: 'mostrador', st: 'completada', pay: 'Efectivo', prods: [] },
+        { id: 25, staff: 'Juan Carlos', t: '16:00', svc: 'raiz', c: 'Mercedes Gallego', src: 'whatsapp', st: 'confirmada' },
+        { id: 26, staff: 'Mónica', t: '10:00', svc: 'glaze', c: 'Clara Ibáñez', src: 'instagram', st: 'completada', pay: 'Bizum', prods: [] },
+        { id: 27, staff: 'Mónica', t: '19:00', svc: 'corte', c: 'Lidia Martínez', src: 'laura', st: 'confirmada' },
+        { id: 28, staff: 'Encar', t: '15:00', svc: 'balayage', c: 'Isabel Moreno', src: 'whatsapp', st: 'confirmada', card: 'Visa ••3306' },
+        { id: 10, staff: 'Encarni', t: '10:30', svc: 'babylights', c: 'paula', src: 'mostrador', st: 'llegada' },
+        { id: 11, staff: 'Encarni', t: '17:00', svc: 'abc', c: 'lucia', src: 'laura', st: 'reservada' },
+        { id: 12, staff: 'Lucía', t: '10:00', svc: 'raiz', c: 'beatriz', src: 'whatsapp', st: 'completada', pay: 'Tarjeta', prods: [] },
+        { id: 13, staff: 'Lucía', t: '12:00', svc: 'novia', c: 'carmen', src: 'instagram', st: 'llegada' },
+        { id: 14, staff: 'Lucía', t: '18:30', svc: 'invitada', c: 'Patricia León', src: 'laura', st: 'confirmada' },
+        { id: 29, staff: 'Jose', t: '11:00', svc: 'corte', c: 'Gema Ortiz', src: 'mostrador', st: 'completada', pay: 'Tarjeta', prods: [] },
+        { id: 30, staff: 'Jose', t: '17:45', svc: 'babylights', c: 'Natalia Ribas', src: 'whatsapp', st: 'confirmada', card: 'Mastercard ••8812' },
+        { id: 15, staff: 'Maje', t: '10:00', svc: 'balayage', c: 'irene', src: 'whatsapp', st: 'llegada' },
+        { id: 16, staff: 'Maje', t: '16:30', svc: 'glaze', c: 'rocio', src: 'whatsapp', st: 'confirmada' },
+        { id: 17, staff: 'Ester', t: '10:30', svc: 'corte', c: 'nuria', src: 'mostrador', st: 'completada', pay: 'Bizum', prods: ['masc'] },
+        { id: 18, staff: 'Ester', t: '12:00', svc: 'abc', c: 'marina', src: 'whatsapp', st: 'llegada' },
+        { id: 19, staff: 'Ester', t: '17:30', svc: 'corte', c: 'Olga Martí', src: 'laura', st: 'cancelada', motivo: 'Cliente no disponible', canceladaPor: 'la clienta, por WhatsApp, ayer a las 21:40' },
+        { id: 31, staff: 'Claudio', t: '13:00', svc: 'corte', c: 'Sergio Campos', src: 'mostrador', st: 'confirmada' }
+      ];
+      const MAP_ALB = { balayage: 'babylage', babylights: 'mechas', glaze: 'color', abc: 'crono', novia: 'ondas', maquillaje: 'pestanas' };
+      const MAP_AL = { balayage: 'balayage_al', babylights: 'mechas_al', raiz: 'raiz_al', glaze: 'color_al', corte: 'corte_al', abc: 'crono_al' };
+      const fixSvc = (k, sede) => (sede === 'al' ? MAP_AL[k] : MAP_ALB[k]) || k;
+      Object.values(CLIENTS).forEach(c => c.hist.forEach(h => { h.svc = fixSvc(h.svc, c.sede); h.p = SVC[h.svc][1]; }));
+      APPTS.forEach(a => {
+        a.sede = STAFF_SEDE[a.staff]; a.svc = fixSvc(a.svc, a.sede); a.p = SVC[a.svc][1];
+        if (!a.card && CLIENTS[a.c] && CLIENTS[a.c].card && a.src !== 'mostrador' && a.p >= LIMIT) a.card = CLIENTS[a.c].card;
+        if (a.st === 'completada') a.paidAt = toHM(toMin(a.t) + SVC[a.svc][2]);
       });
-      const active = document.getElementById('tab-' + tabId);
-      if (active) {
-        active.classList.add('bg-white', 'text-stone-900', 'shadow-sm');
-        active.classList.remove('text-stone-600');
+      let nextId = 100;
+      const EXTRA = [];   // ventas registradas desde la ficha
+      const CHARGES = []; // cargos de la política por no presentarse
+
+      const WAIT = [
+        { id: 'w1', c: 'Nerea Blasco', want: 'corte', sede: 'al', when: 'Hoy por la tarde', st: 'esperando' },
+        { id: 'w2', c: 'Lorena Gil', want: 'raiz', sede: 'tq', when: 'Viernes por la mañana', st: 'esperando' }
+      ];
+
+      // Facturación de octubre antes de hoy (ejemplo)
+      const MONTH_STAFF = { 'María': 5980, Noelia: 5420, Irene: 2310, Rosi: 3150, 'Toñi': 2480, 'Juan Carlos': 3890, 'Mónica': 3120, Encar: 4260, Encarni: 4010, 'Lucía': 3540, Jose: 2950, Maje: 3870, Ester: 3110, Claudio: 2640 };
+      const MONTH_CAT_SHARE = { color: 0.55, corte: 0.17, trat: 0.10, evento: 0.08, estetica: 0.05, prod: 0.05 };
+
+      // Vuelve a reservar: estado de los avisos
+      WAIT.forEach(w => { w.want = fixSvc(w.want, w.sede); });
+      const RETOQUE = { nuria: 'respondido', maria: 'enviado' };
+      const RESPUESTA = { nuria: '«¡Sí! ¿Tenéis algo el sábado por la mañana?»' };
+
+      // Reseñas internas (después de cada visita)
+      const REVIEWS = [
+        { id: 'r1', c: 'Inés Romero', stars: 2, staff: 'Encarni', sede: 'ab', d: 'Ayer', txt: 'El color bien, pero esperé 25 minutos sin que nadie me dijera nada.', google: 'no', alert: true, st: 'pendiente' },
+        { id: 'r2', c: 'Sofía Valero', stars: 5, staff: 'Noelia', sede: 'tq', d: 'Hoy', txt: 'Noelia es una artista con los rubios fríos. Cero amarillo. ¡Volveré!', google: 'publicada' },
+        { id: 'r3', c: 'Beatriz Ortega', stars: 5, staff: 'Lucía', sede: 'ab', d: 'Hoy', txt: 'Me cuidan muchísimo con la alergia al amoniaco. Trato de diez.', google: 'clic' },
+        { id: 'r4', c: 'Laia Ferrer', stars: 4, staff: 'Toñi', sede: 'tq', d: 'Hoy', txt: 'Muy buen corte. El secado un poco rápido.', google: 'no' },
+        { id: 'r5', c: 'Rocío Llorens', stars: 5, staff: 'Maje', sede: 'al', d: 'Hace 2 días', txt: 'Rubio miel perfecto, justo lo que pedí.', google: 'publicada' },
+        { id: 'r6', c: 'Rosa Moreno', stars: 3, staff: 'María', sede: 'tq', d: 'Hace 3 días', txt: 'Bien, aunque el matiz me ha quedado algo más oscuro de lo que quería.', google: 'no', alert: true, st: 'llamada' }
+      ];
+
+      // Fichajes (registro inalterable: solo se añaden líneas)
+      const FICHAJES = [
+        { d: 'ayer', t: '19:05', who: 'Rosi', mov: 'Salida', from: 'Tablet Torres Quevedo', missing: true },
+        { d: 'hoy', t: '09:52', who: 'María', mov: 'Entrada', from: 'Tablet Torres Quevedo' },
+        { d: 'hoy', t: '09:55', who: 'Noelia', mov: 'Entrada', from: 'Tablet Torres Quevedo' },
+        { d: 'hoy', t: '09:57', who: 'Rosi', mov: 'Entrada', from: 'Tablet Torres Quevedo' },
+        { d: 'hoy', t: '10:21', who: 'Irene', mov: 'Entrada', from: 'Tablet Torres Quevedo' },
+        { d: 'hoy', t: '11:08', who: 'Toñi', mov: 'Entrada', from: 'Tablet Torres Quevedo' },
+        { d: 'hoy', t: '09:50', who: 'Lucía', mov: 'Entrada', from: 'Tablet ECI Albacete' },
+        { d: 'hoy', t: '09:54', who: 'Juan Carlos', mov: 'Entrada', from: 'Tablet ECI Albacete' },
+        { d: 'hoy', t: '10:16', who: 'Encarni', mov: 'Entrada', from: 'Tablet ECI Albacete' },
+        { d: 'hoy', t: '10:49', who: 'Mónica', mov: 'Entrada', from: 'Tablet ECI Albacete' },
+        { d: 'hoy', t: '11:40', who: 'Juan Carlos', mov: 'Pausa', from: 'Tablet ECI Albacete' },
+        { d: 'hoy', t: '09:51', who: 'Maje', mov: 'Entrada', from: 'Tablet ECI Alicante' },
+        { d: 'hoy', t: '10:12', who: 'Ester', mov: 'Entrada', from: 'Tablet ECI Alicante' },
+        { d: 'hoy', t: '10:44', who: 'Jose', mov: 'Entrada', from: 'Tablet ECI Alicante' },
+        { d: 'hoy', t: '12:09', who: 'Claudio', mov: 'Entrada', from: 'Tablet ECI Alicante' }
+      ];
+      const TURNOS = {
+        'María': ['Cerrado', '10–19', '10–19', '10–19', '10–19', '9–14', 41],
+        Noelia: ['Cerrado', '10–19', '10–19', '10–19', '10–19', 'Libre', 36],
+        Irene: ['Cerrado', '10–19', '10–19', '10–19', 'Formación', '9–14', 32],
+        Rosi: ['Cerrado', '10–19', 'Libre', '10–19', '10–19', '9–14', 32],
+        'Toñi': ['Cerrado', '10–15', '10–15', '10–19', '10–19', '9–14', 33],
+        'Juan Carlos': ['10–16', '10–16', '15–21', '10–18', '15–21', 'Libre', 32],
+        'Mónica': ['15–21', '15–21', 'Libre', '11–20', '10–16', '10–19:45', 37],
+        Encar: ['10–16', 'Libre', '10–16', '15–21', '15–21', 'Torres Q. 9–14', 29],
+        Encarni: ['Libre', '10–16', '10–16', '10–19', '10–16', '10–16', 33],
+        'Lucía': ['10–16', '15–21', 'Libre', '10–20', '10–16', '10–16', 34],
+        Jose: ['15–21', '15–21', '10–16', '11–21', 'Libre', '10–16', 34],
+        Maje: ['10–16', '10–16', 'Libre', '10–18', '15–21', '10–16', 32],
+        Ester: ['Libre', '10–16', '15–21', '10–19', '10–16', '10–19:45', 37],
+        Claudio: ['10–16', 'Vacaciones', '15–21', '12–21', '15–21', '10–16', 33]
+      };
+      const CLOSED = {}; // caja cerrada por salón
+
+      let sede = 'all', tab = 'hoy', selAppt = 1, selClient = 'elena', selRet = null;
+      let apptMode = null; // 'cancel' | 'noshow'
+      let pinStaff = null, pinCode = '';
+      const inSede = s => sede === 'all' || s === sede;
+      const clientName = c => CLIENTS[c] ? CLIENTS[c].name : c;
+      const staffList = () => (sede === 'all' ? Object.keys(SEDES) : [sede]).flatMap(k => SEDES[k].staff);
+      const live = a => !['cancelada', 'noshow'].includes(a.st);
+
+      function toast(msg) {
+        const t = $('#crmToast');
+        t.textContent = msg;
+        t.classList.remove('hidden');
+        clearTimeout(toast._t);
+        toast._t = setTimeout(() => t.classList.add('hidden'), 3600);
       }
 
-      if (tabId === 'tq') {
-        document.getElementById('crmKpiAppointments').textContent = "18 Citas";
-      } else if (tabId === 'eci-ab') {
-        document.getElementById('crmKpiAppointments').textContent = "14 Citas";
-      } else {
-        document.getElementById('crmKpiAppointments').textContent = "11 Citas";
+      function lastOfType(id, types) { return CLIENTS[id].hist.find(h => types.includes(SVC[h.svc][3])); }
+      function retoqueInfo(id) {
+        const h = CLIENTS[id].hist.find(x => SVC[x.svc][4]);
+        if (!h) return null;
+        const every = SVC[h.svc][4], days = daysSince(h.d);
+        return { h, every, days, ratio: days / every };
       }
-    }
+      function hasFutureAppt(id) { return APPTS.some(a => a.c === id && ['reservada', 'confirmada', 'llegada'].includes(a.st)); }
+
+      // Líneas de venta de hoy: servicios, productos y cargos de la política
+      function lines() {
+        const out = [];
+        APPTS.filter(a => a.st === 'completada').forEach(a => {
+          out.push({ time: a.paidAt, c: clientName(a.c), concept: SVC[a.svc][0], type: 'svc', cat: SVC[a.svc][3], staff: a.staff, sede: a.sede, pay: a.pay, p: a.p });
+          (a.prods || []).forEach(k => out.push({ time: a.paidAt, c: clientName(a.c), concept: PROD[k][0], type: 'prod', cat: 'prod', staff: a.staff, sede: a.sede, pay: a.pay, p: PROD[k][1] }));
+        });
+        return out.concat(EXTRA, CHARGES).filter(t => inSede(t.sede)).sort((a, b) => a.time.localeCompare(b.time));
+      }
+
+      function bars(sel, rows, money = true) {
+        const max = Math.max(1, ...rows.map(r => r[1]));
+        $(sel).innerHTML = rows.map(([l, v, cls]) => `<div><div class="flex justify-between text-xs mb-1"><span class="font-semibold text-stone-700">${l}</span><span class="font-mono font-bold">${money ? eur(v) : v}</span></div><div class="h-2 rounded-full bg-stone-200 overflow-hidden"><div class="h-full rounded-full ${cls || 'bg-gold-400'}" style="width:${Math.round(v / max * 100)}%"></div></div></div>`).join('');
+      }
+      const kpiCards = (sel, k) => { $(sel).innerHTML = k.map(([l, v, s, c]) => `<div class="glass-panel p-4 rounded-2xl shadow-sm"><span class="text-[11px] font-bold text-stone-500 uppercase tracking-wider">${l}</span><span class="block text-2xl font-bold font-display mt-1.5 ${c}">${v}</span><span class="text-[11px] text-stone-500 mt-0.5 block">${s}</span></div>`).join(''); };
+
+      // ---------- HOY ----------
+      function renderHoy() {
+        const ap = APPTS.filter(a => inSede(a.sede));
+        const cob = lines().reduce((s, t) => s + t.p, 0);
+        const booked = ap.filter(a => live(a)).reduce((s, a) => s + a.p, 0);
+        const ia = ap.filter(a => a.src !== 'mostrador').length;
+        const conf = ap.filter(a => ['confirmada', 'llegada', 'completada'].includes(a.st)).length;
+        const sinConf = ap.filter(a => a.st === 'reservada').length;
+        const staff = staffList();
+        const busyMin = ap.filter(live).reduce((s, a) => s + SVC[a.svc][2], 0);
+        const occ = Math.round(busyMin / (staff.length * 8.5 * 60) * 100);
+        kpiCards('#hoyKpis', [
+          ['Cobrado hoy', eur(cob), 'reservado para hoy: ' + eur(booked), 'text-gold-700'],
+          ['Citas hoy', ap.filter(live).length, conf + ' confirmadas · ' + sinConf + ' sin confirmar', 'text-stone-900'],
+          ['Agenda llena', occ + ' %', 'de las horas de turno de hoy', 'text-sky-700'],
+          ['Cogidas por Laura y el chat', ia + ' de ' + ap.length, 'citas de hoy sin coger el teléfono', 'text-emerald-700']
+        ]);
+
+        const todo = [];
+        ap.filter(a => ['reservada', 'confirmada'].includes(a.st) && toMin(a.t) + 15 <= toMin(NOW)).forEach(a => todo.push({
+          ico: '⏰', cls: 'border-red-300 bg-red-50/70',
+          txt: `<strong>${esc(clientName(a.c))}</strong> no ha llegado a su cita de las ${a.t} con ${a.staff} (${esc(SVC[a.svc][0].toLowerCase())}, ${eur(a.p)}).${a.card ? ' Dejó tarjeta como garantía al reservar.' : ''}`,
+          btn: 'Ver la cita', go: () => { selAppt = a.id; apptMode = null; setTab('agenda'); } }));
+        const sc = ap.filter(a => a.st === 'reservada');
+        if (sc.length) todo.push({ ico: '📞', cls: 'border-orange-300 bg-orange-50/70',
+          txt: `<strong>${sc.length} ${sc.length === 1 ? 'cita' : 'citas'} sin confirmar</strong>, cogidas por Laura y el WhatsApp fuera de horario. A las 10:00 se les pidió confirmación por WhatsApp; si no contestan, conviene llamar.`,
+          btn: 'Ver en la agenda', go: () => { selAppt = sc[0].id; apptMode = null; setTab('agenda'); } });
+        ap.filter(a => a.st === 'cancelada').forEach(a => {
+          const w = WAIT.find(x => x.sede === a.sede && x.st === 'esperando' && x.when.startsWith('Hoy'));
+          if (w) todo.push({ ico: '🔄', cls: 'border-sky-300 bg-sky-50/70',
+            txt: `<strong>${esc(clientName(a.c))}</strong> canceló la de las ${a.t} en ${short(SEDES[a.sede].n)}. <strong>${esc(w.c)}</strong> está en lista de espera para esta tarde.`,
+            btn: 'Ofrecerle el hueco', go: () => offerSlot(w.id) });
+        });
+        REVIEWS.filter(r => r.alert && r.st === 'pendiente' && inSede(r.sede)).forEach(r => todo.push({ ico: '⭐', cls: 'border-amber-300 bg-amber-50/70',
+          txt: `<strong>Valoración de ${r.stars} ★</strong> de ${esc(r.c)} (${r.d.toLowerCase()}, con ${r.staff}): «${esc(r.txt)}»`,
+          btn: 'Ver y responder', go: () => setTab('resenas') }));
+        Object.keys(RETOQUE).filter(id => RETOQUE[id] === 'respondido' && inSede(CLIENTS[id].sede)).forEach(id => todo.push({ ico: '🔁', cls: 'border-purple-300 bg-purple-50/70',
+          txt: `<strong>${esc(CLIENTS[id].name)}</strong> ha contestado al aviso de «vuelve a reservar»: ${RESPUESTA[id]}`,
+          btn: 'Darle cita', go: () => { selRet = id; setTab('vuelve'); } }));
+        if (FICHAJES.some(f => f.missing && inSede(STAFF_SEDE[f.who]))) todo.push({ ico: '🕘', cls: 'border-stone-300 bg-white',
+          txt: `<strong>${FICHAJES.find(f => f.missing).who} no fichó la salida de ayer.</strong> El registro de jornada tiene que estar completo: la corrección queda anotada con el motivo.`,
+          btn: 'Corregir', go: () => setTab('equipo') });
+        $('#hoyTodo').innerHTML = todo.length ? todo.map((t, i) => `<div class="rounded-2xl border p-4 flex flex-col sm:flex-row sm:items-center gap-3 ${t.cls}"><span class="text-2xl shrink-0">${t.ico}</span><p class="text-sm text-stone-800 flex-1">${t.txt}</p><button data-todo="${i}" class="shrink-0 px-3 py-2 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 text-xs font-bold">${t.btn} →</button></div>`).join('')
+          : '<div class="rounded-2xl border border-emerald-300 bg-emerald-50 p-5 text-sm text-emerald-900 font-semibold">✓ Todo al día. No hay nada que necesite a una persona ahora mismo.</div>';
+        $$('[data-todo]').forEach(b => b.addEventListener('click', () => todo[+b.dataset.todo].go()));
+
+        $('#hoyNoche').innerHTML = `
+          <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Anoche, con el salón cerrado</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-3 rounded-xl bg-white/5 border border-white/10"><span class="block text-[11px] text-stone-400">📞 Laura (teléfono)</span><span class="block font-display text-2xl font-bold">6 llamadas</span><span class="text-[11px] text-stone-300">3 citas · 2 precios · 1 recado</span></div>
+            <div class="p-3 rounded-xl bg-white/5 border border-white/10"><span class="block text-[11px] text-stone-400">💬 WhatsApp</span><span class="block font-display text-2xl font-bold">14 chats</span><span class="text-[11px] text-stone-300">5 citas · 2 cambios · 1 cancelación</span></div>
+          </div>
+          <p class="text-[11px] text-stone-400">El recado: una clienta quiere hablar con Irene del maquillaje de su boda. Está en la bandeja con la grabación.</p>`;
+        const nx = ap.filter(a => ['reservada', 'confirmada'].includes(a.st) && toMin(a.t) > toMin(NOW)).sort((a, b) => a.t.localeCompare(b.t)).slice(0, 5);
+        $('#hoyNext').innerHTML = nx.map(a => `<li class="py-2 flex items-center justify-between gap-2"><span class="min-w-0"><strong class="font-mono">${a.t}</strong> · ${esc(clientName(a.c))} <span class="text-stone-500">con ${a.staff}</span></span><span class="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${ST[a.st][1]}">${ST[a.st][0]}</span></li>`).join('') || '<li class="py-2 text-stone-500">No quedan citas hoy.</li>';
+        $('#hoyInsights').innerHTML = [
+          '📉 El martes por la tarde en ECI Albacete va al 38 %. Buen momento para escribir a las clientas que llevan tiempo sin venir.',
+          '😴 11 clientas habituales llevan más de 90 días sin venir. Están en «Vuelve a reservar».',
+          '🔁 Los avisos de «vuelve a reservar» trajeron 17 citas en octubre: 2.140 € que no habrían entrado solos.'
+        ].map(x => `<li>${x}</li>`).join('');
+      }
+
+      // ---------- AGENDA ----------
+      const START = 10 * 60, END = 21 * 60, ROW = 26, HEAD = 40;
+      function renderAgenda() {
+        const staff = staffList();
+        const colW = 130;
+        const rows = (END - START) / 30;
+        let html = `<div class="relative" style="min-width:${56 + staff.length * colW}px;height:${rows * ROW + HEAD}px">`;
+        html += `<div class="absolute top-0 left-14 right-0 flex h-9">` + staff.map(p => `<div class="flex-1 px-1 flex items-center justify-center gap-1.5 min-w-0">${avatar(p)}<span class="min-w-0 text-left"><span class="block text-xs font-bold text-stone-800 truncate">${p}</span>${sede === 'all' ? `<span class="block text-[9px] text-stone-400 truncate -mt-0.5">${short(SEDES[STAFF_SEDE[p]].n)}</span>` : ''}</span></div>`).join('') + `</div>`;
+        for (let i = 0; i <= rows; i++) {
+          const m = START + i * 30, y = HEAD + i * ROW;
+          html += `<div class="absolute left-14 right-0 border-t ${m % 60 ? 'border-stone-100' : 'border-stone-200'}" style="top:${y}px"></div>`;
+          if (m % 60 === 0 && i < rows) html += `<span class="absolute left-0 w-12 text-right text-[10px] font-mono text-stone-400" style="top:${y - 6}px">${toHM(m)}</span>`;
+        }
+        staff.forEach((p, i) => { if (i) html += `<div class="absolute border-l border-stone-200" style="top:${HEAD}px;bottom:0;left:calc(56px + (100% - 56px) * ${i / staff.length})"></div>`; });
+        staff.forEach((p, i) => { const close = SEDES[STAFF_SEDE[p]].open[1]; if (close < END) html += `<div class="absolute bg-stone-100/90 border-t border-stone-300 flex items-start justify-center pt-1 text-[10px] font-semibold text-stone-400" style="top:${HEAD + (close - START) / 30 * ROW}px;bottom:0;left:calc(56px + (100% - 56px) * ${i / staff.length} + 1px);width:calc((100% - 56px) / ${staff.length} - 2px)">Cerrado</div>`; });
+        html += `<div class="absolute left-12 right-0 border-t-2 border-red-400 z-20" style="top:${HEAD + (toMin(NOW) - START) / 30 * ROW}px"><span class="absolute -left-1 -top-1.5 w-3 h-3 rounded-full bg-red-400"></span></div>`;
+        APPTS.filter(a => staff.includes(a.staff)).forEach(a => {
+          const i = staff.indexOf(a.staff), s = SVC[a.svc], cat = CAT[s[3]];
+          const top = HEAD + (toMin(a.t) - START) / 30 * ROW + 1, h = s[2] / 30 * ROW - 3;
+          const off = !live(a);
+          const look = off ? 'bg-stone-50 border border-dashed border-stone-300 text-stone-400' : cat[1] + ' ' + (a.st === 'reservada' ? 'border-2 border-dashed' : 'border-l-4');
+          const fade = a.st === 'completada' ? 'opacity-55' : '';
+          const ring = a.id === selAppt ? 'ring-2 ring-noir-900 z-10' : '';
+          const tag = a.st === 'completada' ? ' ✓ cobrada' : a.st === 'llegada' ? ' · en sillón' : a.st === 'reservada' ? ' · sin confirmar' : a.st === 'cancelada' ? ' · cancelada' : a.st === 'noshow' ? ' · no vino' : '';
+          html += `<button data-appt="${a.id}" class="appt absolute text-left rounded-lg px-1.5 py-1 overflow-hidden shadow-sm hover:shadow-md transition ${look} ${fade} ${ring}" style="top:${top}px;height:${h}px;left:calc(56px + (100% - 56px) * ${i / staff.length} + 3px);width:calc((100% - 56px) / ${staff.length} - 6px)">
+            <span class="block text-[10px] font-mono font-bold truncate">${a.t}${tag}</span>
+            <span class="block text-[11px] font-bold leading-tight truncate ${off ? 'line-through' : ''}">${a.card && live(a) ? '💳 ' : ''}${esc(clientName(a.c))}</span>
+            ${h > 40 ? `<span class="block text-[10px] leading-tight truncate opacity-80">${esc(s[0])}</span>` : ''}
+            ${h > 64 && a.src !== 'mostrador' && !off ? `<span class="inline-block mt-0.5 text-[9px] font-bold bg-white/80 rounded px-1">${SRC[a.src]}</span>` : ''}
+          </button>`;
+        });
+        html += '</div>';
+        $('#agendaGrid').innerHTML = html;
+        $$('#agendaGrid .appt').forEach(b => b.addEventListener('click', () => { selAppt = +b.dataset.appt; apptMode = null; renderAgenda(); renderAppt(); }));
+        $('#agendaTitle').textContent = 'Hoy · ' + (sede === 'all' ? 'los 3 salones · ' + staff.length + ' personas' : SEDES[sede].n + ' · ' + SEDES[sede].hours);
+        renderWait();
+      }
+
+      function renderWait() {
+        const w = WAIT.filter(x => inSede(x.sede));
+        $('#waitCount').textContent = w.filter(x => x.st === 'esperando').length + ' esperando';
+        $('#waitList').innerHTML = w.map(x => `<li class="flex items-center justify-between gap-2"><span class="min-w-0"><strong>${esc(x.c)}</strong><span class="block text-[11px] text-stone-500 truncate">${esc(SVC[x.want][0])} · ${short(SEDES[x.sede].n)} · ${x.when}</span></span>${x.st === 'esperando' ? `<button data-wait="${x.id}" class="shrink-0 text-[11px] px-2 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold">Ofrecer hueco</button>` : '<span class="shrink-0 text-[11px] text-emerald-700 font-semibold">✓ Hueco ofrecido</span>'}</li>`).join('') || '<li class="text-stone-500">Nadie en espera en este salón.</li>';
+        $$('[data-wait]').forEach(b => b.addEventListener('click', () => offerSlot(b.dataset.wait)));
+      }
+
+      function offerSlot(wid) {
+        const w = WAIT.find(x => x.id === wid);
+        if (!w || w.st !== 'esperando') return;
+        const freed = APPTS.find(a => a.st === 'cancelada' && a.sede === w.sede && !a.reused);
+        w.st = 'ofrecido';
+        if (freed && w.when.startsWith('Hoy')) {
+          freed.reused = true;
+          const n = { id: nextId++, staff: freed.staff, t: freed.t, svc: w.want, c: w.c, src: 'whatsapp', st: 'reservada', sede: w.sede, p: SVC[w.want][1] };
+          APPTS.push(n);
+          selAppt = n.id;
+          toast('WhatsApp enviado a ' + first(w.c) + ': hueco a las ' + freed.t + ' con ' + freed.staff + '. Si dice que sí, la cita se confirma sola.');
+        } else {
+          toast('WhatsApp enviado a ' + first(w.c) + ' con los huecos de ' + w.when.toLowerCase() + '.');
+        }
+        if (tab !== 'agenda') { apptMode = null; setTab('agenda'); } else refresh();
+      }
+
+      function renderAppt() {
+        const a = APPTS.find(x => x.id === selAppt && inSede(x.sede)) || APPTS.find(x => inSede(x.sede));
+        if (!a) { $('#apptDetail').innerHTML = ''; return; }
+        selAppt = a.id;
+        const s = SVC[a.svc], known = CLIENTS[a.c], last = known && lastOfType(a.c, ['color']);
+        const started = toMin(a.t) <= toMin(NOW);
+        const half = Math.round(a.p * 50) / 100;
+        let action = '';
+        if (apptMode === 'cancel') {
+          action = `<p class="text-sm font-bold text-stone-900 mb-2">¿Por qué se cancela?</p>
+            <select id="cancelReason" class="w-full text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white mb-2" aria-label="Motivo de cancelación">${MOTIVOS.map(m => `<option>${m}</option>`).join('')}</select>
+            <div class="flex gap-2"><button data-act="back" class="flex-1 py-2 rounded-xl bg-stone-200 text-xs font-bold">Volver</button><button data-act="doCancel" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold">Cancelar la cita</button></div>
+            <p class="text-[11px] text-stone-500 mt-2">Se avisa a la clienta por WhatsApp y el hueco se ofrece a la lista de espera.</p>`;
+        } else if (apptMode === 'noshow') {
+          action = a.card && a.p >= LIMIT
+            ? `<div class="p-3 rounded-xl bg-red-50 border border-red-200 space-y-2">
+                <p class="text-sm font-bold text-red-900">Norma de reserva: cobrar el 50 %</p>
+                <p class="text-xs text-red-900">Reservó online una cita de ${eur(a.p)} y aceptó la norma. Se pueden cobrar <strong>${eur(half)}</strong> a la ${a.card} que dejó como garantía.</p>
+                <div class="flex gap-2"><button data-act="noCharge" class="flex-1 py-2 rounded-xl bg-white border border-stone-300 text-xs font-bold">No cobrar</button><button data-act="charge" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold">Cobrar ${eur(half)}</button></div>
+                <p class="text-[11px] text-red-800">Nunca se cobra solo: lo decide una persona. Si la tarjeta falla, se le manda un enlace de pago por WhatsApp.</p></div>`
+            : `<div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-2"><p class="text-xs text-stone-700">Esta cita no tiene tarjeta de garantía (menos de ${LIMIT} € o reservada en el mostrador). Se marca como «no vino» para el historial.</p><div class="flex gap-2"><button data-act="back" class="flex-1 py-2 rounded-xl bg-stone-200 text-xs font-bold">Volver</button><button data-act="noCharge" class="flex-1 py-2 rounded-xl bg-noir-900 text-gold-300 text-xs font-bold">Marcar «no vino»</button></div></div>`;
+        } else if (a.st === 'reservada' || a.st === 'confirmada') {
+          action = `<div class="space-y-2">
+            ${a.st === 'reservada' ? `<button data-act="confirm" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm">✓ Confirmar (ha contestado o la hemos llamado)</button>` : ''}
+            <div class="flex gap-2"><button data-act="arrive" class="flex-1 py-2.5 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 font-bold text-sm">Ha llegado</button>
+            <button data-act="noshow" ${started ? '' : 'disabled title="Solo después de la hora de la cita"'} class="flex-1 py-2.5 rounded-xl border font-bold text-sm ${started ? 'border-red-300 text-red-700 hover:bg-red-50' : 'border-stone-200 text-stone-300 cursor-not-allowed'}">No ha venido</button></div>
+            <button data-act="cancel" class="w-full text-xs font-bold text-stone-500 hover:text-red-700 underline">Cancelar la cita</button></div>`;
+        } else if (a.st === 'llegada') {
+          action = `<p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">¿Se lleva algún producto?</p>
+            <div class="space-y-1 mb-3">${Object.entries(PROD).map(([k, p]) => `<label class="flex items-center justify-between gap-2 text-sm"><span class="flex items-center gap-2"><input type="checkbox" class="prodChk accent-gold-500" value="${k}">${p[0]}</span><span class="font-mono">${eur(p[1])}</span></label>`).join('')}</div>
+            <div class="flex gap-2"><select id="payMethod" class="flex-1 text-sm border border-stone-300 rounded-xl px-2 bg-white" aria-label="Forma de pago"><option>Tarjeta</option><option>Bizum</option><option>Efectivo</option></select><button data-act="pay" class="flex-1 py-2.5 rounded-xl bg-gold-400 hover:bg-gold-300 text-noir-950 font-bold text-sm" id="payBtn">Cobrar ${eur(a.p)}</button></div>`;
+        } else if (a.st === 'completada') {
+          action = `<p class="text-sm text-stone-600">Cobrada a las ${a.paidAt} · ${a.pay}${a.prods && a.prods.length ? ' · con ' + a.prods.map(k => PROD[k][0].split(' ')[0].toLowerCase()).join(' y ') : ''}</p><p class="text-[11px] text-stone-500 mt-1">Mañana le llega por WhatsApp la petición de valoración.</p>`;
+        } else if (a.st === 'cancelada') {
+          action = `<p class="text-sm text-stone-700">Cancelada por ${esc(a.canceladaPor || 'el salón')}.</p><p class="text-sm text-stone-700">Motivo: <strong>${esc(a.motivo)}</strong></p>`;
+        } else if (a.st === 'noshow') {
+          action = a.charge ? `<p class="text-sm text-stone-700">No vino. Cobrados <strong>${eur(a.charge)}</strong> a la ${a.card} a las ${a.chargeAt}. Recibo enviado por email.</p>` : '<p class="text-sm text-stone-700">No vino. Sin cargo.</p>';
+        }
+        $('#apptDetail').innerHTML = `
+          <div class="flex items-start justify-between gap-2">
+            <div class="min-w-0"><p class="text-xs font-bold text-stone-500 uppercase tracking-wider flex items-center gap-1.5">${avatar(a.staff, 'w-6 h-6')}${a.t} · ${a.staff}</p>
+              <h3 class="text-lg font-bold text-stone-900 truncate">${esc(clientName(a.c))}</h3>
+              <p class="text-sm text-stone-600">${esc(s[0])} · ${eur(a.p)}</p></div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${ST[a.st][1]}">${ST[a.st][0]}</span>
+          </div>
+          <p class="text-xs text-stone-500 mt-2">${SEDES[a.sede].n} · ${s[2]} min · Entró por ${SRC[a.src].replace(/^\S+ /, '')}</p>
+          ${a.card ? `<p class="mt-2 text-xs font-semibold text-sky-800 bg-sky-50 border border-sky-200 rounded-lg px-2 py-1.5">💳 Garantía: ${a.card} guardada en Stripe al reservar. ${a.charge ? 'Se usó para el cargo por no presentarse.' : 'No se ha cobrado nada.'}</p>` : ''}
+          ${last && live(a) ? `<div class="mt-3 p-3 rounded-xl bg-gold-50 border border-gold-200"><p class="text-[10px] font-bold text-gold-800 uppercase tracking-wider">🎨 ${a.st === 'completada' ? 'Fórmula aplicada' : 'Fórmula a preparar'} (${fmtD(last.d)})</p><p class="text-xs font-mono text-stone-800 mt-1 leading-relaxed">${esc(last.f)}</p></div>` : known || !live(a) ? '' : `<p class="mt-3 text-xs text-stone-500 italic">Clienta nueva: la ficha se crea al cobrar.</p>`}
+          ${known ? `<button data-act="ficha" class="mt-3 text-xs font-bold text-gold-700 hover:text-gold-900 underline">Abrir ficha completa →</button>` : ''}
+          <div class="mt-4 pt-3 border-t border-stone-200">${action}</div>`;
+        const btn = act => $('#apptDetail [data-act="' + act + '"]');
+        const on = (act, fn) => { if (btn(act)) btn(act).onclick = fn; };
+        on('confirm', () => { a.st = 'confirmada'; toast('Cita confirmada. ' + first(clientName(a.c)) + ' recibe la ubicación del salón por WhatsApp.'); refresh(); });
+        on('arrive', () => { a.st = 'llegada'; refresh(); });
+        on('cancel', () => { apptMode = 'cancel'; renderAppt(); });
+        on('noshow', () => { apptMode = 'noshow'; renderAppt(); });
+        on('back', () => { apptMode = null; renderAppt(); });
+        on('doCancel', () => { a.st = 'cancelada'; a.motivo = $('#cancelReason').value; a.canceladaPor = 'el salón, hoy a las ' + NOW; apptMode = null; toast('Cancelada. Aviso enviado por WhatsApp a ' + first(clientName(a.c)) + '. El hueco queda libre para la lista de espera.'); refresh(); });
+        on('charge', () => { a.st = 'noshow'; a.charge = half; a.chargeAt = NOW; apptMode = null; CHARGES.push({ time: NOW, c: clientName(a.c), concept: 'Cargo por no presentarse (50 %)', type: 'noshow', cat: 'noshow', staff: a.staff, sede: a.sede, pay: 'Tarjeta guardada', p: half }); toast('Cobrados ' + eur(half) + ' a la ' + a.card + '. Le llega el recibo por email y un WhatsApp explicando el cargo.'); refresh(); });
+        on('noCharge', () => { a.st = 'noshow'; apptMode = null; toast('Marcada como «no vino», sin cargo. Queda en su ficha.'); refresh(); });
+        on('ficha', () => { selClient = a.c; setTab('clientas'); });
+        if (btn('pay')) {
+          const upd = () => { const extra = $$('.prodChk').filter(x => x.checked).reduce((s, x) => s + PROD[x.value][1], 0); $('#payBtn').textContent = 'Cobrar ' + eur(a.p + extra); };
+          $$('.prodChk').forEach(x => x.addEventListener('change', upd));
+          btn('pay').onclick = () => {
+            a.prods = $$('.prodChk').filter(x => x.checked).map(x => x.value);
+            a.st = 'completada'; a.pay = $('#payMethod').value; a.paidAt = NOW;
+            if (known) known.hist.unshift({ d: TODAY_S, svc: a.svc, staff: a.staff, p: a.p, f: last && s[3] === 'color' ? last.f : '' });
+            const tot = a.p + a.prods.reduce((x, k) => x + PROD[k][1], 0);
+            toast('Cobrado ' + eur(tot) + ' con ' + a.pay.toLowerCase() + '. Ya está en la caja del día.');
+            refresh();
+          };
+        }
+      }
+
+      // ---------- CLIENTAS ----------
+      function clientStats(id) {
+        const h = CLIENTS[id].hist;
+        return { visits: h.length, year: h.filter(x => x.d.startsWith('2026')).reduce((s, x) => s + x.p, 0), last: h[0].d };
+      }
+      function renderClients() {
+        const q = $('#crmSearch').value.trim().toLowerCase();
+        const sort = $('#crmSort').value;
+        let ids = Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede));
+        if (q) ids = ids.filter(id => { const c = CLIENTS[id]; return (c.name + ' ' + c.notes + ' ' + c.hist.map(h => SVC[h.svc][0] + ' ' + h.f).join(' ')).toLowerCase().includes(q); });
+        ids.sort((a, b) => sort === 'name' ? CLIENTS[a].name.localeCompare(CLIENTS[b].name) : sort === 'spend' ? clientStats(b).year - clientStats(a).year : clientStats(b).last.localeCompare(clientStats(a).last));
+        if (ids.length && !ids.includes(selClient)) selClient = ids[0];
+        $('#crmCount').textContent = ids.length + (ids.length === 1 ? ' clienta' : ' clientas');
+        $('#crmList').innerHTML = ids.map(id => {
+          const c = CLIENTS[id], st = clientStats(id), r = retoqueInfo(id);
+          const due = r && r.ratio >= 0.9 && !hasFutureAppt(id);
+          return `<li><button data-c="${id}" class="crm-row w-full text-left p-3 flex items-center gap-3 transition border-l-4 ${id === selClient ? 'bg-gold-50 border-gold-500' : 'border-transparent hover:bg-stone-50'}">
+            <span class="w-9 h-9 shrink-0 rounded-full bg-gold-100 border border-gold-300 flex items-center justify-center text-xs font-bold text-gold-800">${c.name.split(' ').map(x => x[0]).join('')}</span>
+            <span class="flex-1 min-w-0"><span class="block text-sm font-bold text-stone-900 truncate">${esc(c.name)}</span><span class="block text-[11px] text-stone-500 truncate">${esc(SVC[c.hist[0].svc][0])} · ${c.staff}</span></span>
+            <span class="text-right shrink-0"><span class="block text-sm font-mono font-bold">${eur(st.year)}</span><span class="block text-[10px] ${due ? 'text-purple-700 font-bold' : 'text-stone-400'}">${due ? 'Le toca volver' : st.visits + (st.visits === 1 ? ' visita' : ' visitas')}</span></span>
+          </button></li>`;
+        }).join('') || '<li class="p-6 text-sm text-stone-500 text-center">Ninguna clienta coincide con la búsqueda.</li>';
+        $$('.crm-row').forEach(b => b.addEventListener('click', () => { selClient = b.dataset.c; renderClients(); }));
+        renderFicha(ids.length ? selClient : null);
+      }
+
+      function renderFicha(id) {
+        if (!id) { $('#crmFicha').innerHTML = '<p class="text-sm text-stone-500">Elige una clienta de la lista.</p>'; return; }
+        const c = CLIENTS[id], st = clientStats(id), r = retoqueInfo(id), color = lastOfType(id, ['color']);
+        const next = APPTS.find(a => a.c === id && ['reservada', 'confirmada', 'llegada'].includes(a.st));
+        const noShows = APPTS.filter(a => a.c === id && a.st === 'noshow').length;
+        const retTxt = next ? 'Hoy a las ' + next.t : r ? (r.every - r.days > 0 ? 'en ' + (r.every - r.days) + ' días' : 'ya le toca') : '—';
+        const testOk = c.test && daysSince(c.test) <= 180;
+        $('#crmFicha').innerHTML = `
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-stone-200 pb-4">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="w-12 h-12 shrink-0 rounded-full bg-gold-100 border border-gold-400 flex items-center justify-center text-lg font-bold text-gold-800">${c.name.split(' ').map(x => x[0]).join('')}</span>
+              <div class="min-w-0"><h3 class="text-xl font-bold text-stone-900 font-display">${esc(c.name)}</h3>
+                <p class="text-xs text-stone-500">Clienta desde ${c.since} · ${c.phone} · ${SEDES[c.sede].n} · con ${c.staff}</p></div>
+            </div>
+            <div class="flex gap-2 shrink-0">
+              <button data-act="wa" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">💬 WhatsApp</button>
+              <button data-act="new" class="px-3 py-2 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 text-xs font-bold">+ Servicio de hoy</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Visitas</span><span class="block text-lg font-bold">${st.visits}</span></div>
+            <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Gasto 2026</span><span class="block text-lg font-bold text-gold-700">${eur(st.year)}</span></div>
+            <div class="p-3 rounded-xl bg-stone-50 border border-stone-200"><span class="block text-[10px] font-bold text-stone-500 uppercase">Última visita</span><span class="block text-sm font-bold mt-1">${fmtD(st.last)}</span></div>
+            <div class="p-3 rounded-xl bg-purple-50 border border-purple-200"><span class="block text-[10px] font-bold text-purple-700 uppercase">Próxima visita</span><span class="block text-sm font-bold mt-1 text-purple-900">${retTxt}</span></div>
+          </div>
+          <div class="flex flex-wrap gap-2 text-[11px] font-semibold">
+            <span class="px-2 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">✓ Acepta WhatsApp y email</span>
+            ${c.card ? `<span class="px-2 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200">💳 ${c.card} guardada en Stripe (para reservas de ${LIMIT} € o más)</span>` : ''}
+            <span class="px-2 py-1 rounded-lg ${noShows ? 'bg-red-50 text-red-800 border-red-200' : 'bg-stone-50 text-stone-600 border-stone-200'} border">${noShows ? noShows + ' vez que no vino' : 'Nunca ha faltado sin avisar'}</span>
+          </div>
+          <div id="newSvcForm" class="hidden p-4 rounded-2xl border-2 border-gold-300 bg-gold-50/60 space-y-3">
+            <p class="text-sm font-bold text-stone-900">Registrar el servicio de hoy</p>
+            <div class="grid sm:grid-cols-3 gap-2">
+              <select id="nsSvc" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Servicio">${Object.entries(SVC).filter(([k]) => svcIn(k, c.sede)).map(([k, s]) => `<option value="${k}">${s[0]} · ${eur(s[1])}</option>`).join('')}</select>
+              <select id="nsStaff" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Estilista">${SEDES[c.sede].staff.map(p => `<option ${p === c.staff ? 'selected' : ''}>${p}</option>`).join('')}</select>
+              <input id="nsPrice" type="number" min="0" step="0.1" class="text-sm border border-stone-300 rounded-xl px-2 py-2 bg-white" aria-label="Importe en euros">
+            </div>
+            <textarea id="nsFormula" rows="2" class="w-full text-sm font-mono border border-stone-300 rounded-xl px-3 py-2 bg-white" placeholder="Fórmula: tintes, volúmenes, tiempos de exposición…" aria-label="Fórmula"></textarea>
+            <div class="flex justify-end gap-2"><button data-act="cancel" class="px-3 py-2 rounded-xl bg-stone-200 text-xs font-bold">Cancelar</button><button data-act="save" class="px-3 py-2 rounded-xl bg-gold-400 hover:bg-gold-300 text-noir-950 text-xs font-bold">Guardar y cobrar</button></div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-gold-50/80 border border-gold-200 space-y-2">
+              <p class="text-xs font-bold text-gold-900 uppercase tracking-wider">🎨 Fórmula de color actual</p>
+              ${color ? `<p class="text-xs font-mono text-stone-800 leading-relaxed">${esc(color.f)}</p><p class="text-[11px] text-gold-800">${esc(SVC[color.svc][0])} · ${fmtD(color.d)} · ${color.staff}</p>` : '<p class="text-xs text-stone-500">Sin servicios de color todavía.</p>'}
+            </div>
+            <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-2 text-xs text-stone-700">
+              <p class="font-bold text-stone-800">🔒 Notas privadas del equipo</p>
+              <p>${esc(c.notes)}</p>
+              <p class="pt-1 ${testOk ? 'text-emerald-700' : 'text-orange-700'} font-semibold">${testOk ? '✓ Prueba de alergia al tinte: ' + fmtD(c.test) : '⚠ Prueba de alergia al tinte pendiente: hacerla 48 h antes del color'}</p>
+            </div>
+          </div>
+          ${c.photos ? `<div class="grid grid-cols-2 gap-3"><figure class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100"><img src="assets/rubios-224.webp" alt="Rubio trabajado en Salón 224" class="w-full h-36 object-cover"><figcaption class="text-[10px] text-stone-500 p-1.5">Foto del resultado · ${fmtD(color ? color.d : st.last)}</figcaption></figure><figure class="rounded-xl overflow-hidden border border-stone-200 bg-stone-100"><img src="assets/trabajos-224.webp" alt="Trabajo de color de Salón 224" class="w-full h-36 object-cover"><figcaption class="text-[10px] text-stone-500 p-1.5">Referencia que trajo la clienta</figcaption></figure></div>` : ''}
+          <div>
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">Historial de servicios</p>
+            <ol class="relative border-l-2 border-gold-200 ml-2 space-y-3">
+              ${c.hist.map(h => `<li class="pl-4 relative"><span class="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full ${CAT[SVC[h.svc][3]][2]}"></span>
+                <div class="flex flex-wrap items-baseline justify-between gap-x-3"><span class="text-sm font-bold text-stone-900">${esc(SVC[h.svc][0])}</span><span class="text-xs font-mono text-stone-600">${fmtD(h.d)} · ${h.staff} · <strong>${eur(h.p)}</strong></span></div>
+                ${h.f ? `<p class="text-[11px] font-mono text-stone-600 leading-relaxed mt-0.5">${esc(h.f)}</p>` : ''}</li>`).join('')}
+            </ol>
+          </div>`;
+        const f = $('#crmFicha');
+        const form = f.querySelector('#newSvcForm');
+        const setPrice = () => { f.querySelector('#nsPrice').value = SVC[f.querySelector('#nsSvc').value][1]; };
+        f.querySelector('#nsSvc').addEventListener('change', setPrice); setPrice();
+        f.querySelector('[data-act="new"]').onclick = () => { form.classList.remove('hidden'); f.querySelector('#nsFormula').value = color ? color.f : ''; f.querySelector('#nsSvc').focus(); };
+        f.querySelector('[data-act="cancel"]').onclick = () => form.classList.add('hidden');
+        f.querySelector('[data-act="wa"]').onclick = () => toast('Abriendo la conversación de WhatsApp con ' + first(c.name) + ' en la bandeja única.');
+        f.querySelector('[data-act="save"]').onclick = () => {
+          const svc = f.querySelector('#nsSvc').value, staff = f.querySelector('#nsStaff').value;
+          const p = Math.max(0, Math.round((+f.querySelector('#nsPrice').value || 0) * 100) / 100);
+          c.hist.unshift({ d: TODAY_S, svc, staff, p, f: f.querySelector('#nsFormula').value.trim() });
+          EXTRA.push({ time: NOW, c: c.name, concept: SVC[svc][0], type: 'svc', cat: SVC[svc][3], staff, sede: STAFF_SEDE[staff], pay: 'Tarjeta', p });
+          delete RETOQUE[id];
+          toast('Guardado en la ficha de ' + first(c.name) + ' y cobrado ' + eur(p) + '.');
+          refresh();
+        };
+      }
+
+      // ---------- VUELVE A RESERVAR ----------
+      function retoqueMsg(id) {
+        const c = CLIENTS[id], r = retoqueInfo(id), weeks = Math.round(r.days / 7);
+        const isColor = SVC[r.h.svc][3] === 'color';
+        return `Hola ${esc(first(c.name))} 💛 Hace ${weeks} semanas de tu ${esc(SVC[r.h.svc][0].toLowerCase())} con ${r.h.staff} en ${SEDES[c.sede].n}. ${isColor ? '¿Te apetece renovar el brillo antes de que se note la raíz?' : '¿Te apetece repetir?'} ${r.h.staff} tiene huecos esta semana.`;
+      }
+      function renderRetoques() {
+        const list = Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede)).map(id => [id, retoqueInfo(id)])
+          .filter(([id, r]) => r && r.ratio >= 0.85 && !hasFutureAppt(id)).sort((a, b) => b[1].ratio - a[1].ratio);
+        if (!list.some(([id]) => id === selRet)) selRet = list.length ? list[0][0] : null;
+        $('#retoqueList').innerHTML = (list.length ? `<p class="text-sm text-stone-600">Clientas a las que les toca volver según su último servicio. El aviso sale solo por WhatsApp; aquí veis cómo va cada una.</p>` : '<p class="text-sm text-stone-500">A ninguna clienta de este salón le toca volver todavía.</p>') + list.map(([id, r]) => {
+          const c = CLIENTS[id], st = RETOQUE[id], pct = Math.min(100, Math.round(r.ratio * 100));
+          const late = r.days > r.every;
+          return `<div data-r="${id}" class="ret-card glass-panel rounded-2xl p-4 shadow-sm cursor-pointer transition ${id === selRet ? 'ring-2 ring-gold-400' : 'hover:shadow-md'}">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0"><p class="text-sm font-bold text-stone-900">${esc(c.name)}</p><p class="text-xs text-stone-500">${esc(SVC[r.h.svc][0])} el ${fmtD(r.h.d)} · ${r.h.staff} · ${short(SEDES[c.sede].n)}</p></div>
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full shrink-0 ${late ? 'bg-orange-100 text-orange-800' : 'bg-purple-100 text-purple-800'}">Día ${r.days} de ${r.every}</span>
+            </div>
+            <div class="h-1.5 rounded-full bg-stone-200 mt-3 overflow-hidden"><div class="h-full ${late ? 'bg-orange-400' : 'bg-purple-400'}" style="width:${pct}%"></div></div>
+            <div class="mt-3 flex items-center justify-between gap-2 text-xs">
+              ${st === 'respondido' ? `<span class="text-emerald-700 font-semibold">💬 Respondió: ${RESPUESTA[id]}</span><button data-book="${id}" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold shrink-0">Darle cita</button>`
+              : st === 'enviado' ? `<span class="text-stone-500">✓ Aviso enviado ayer · esperando respuesta</span>`
+              : st === 'cita' ? `<span class="text-emerald-700 font-semibold">📅 Cita propuesta para el sábado a las 10:00</span>`
+              : `<span class="text-stone-500">${late ? 'Lleva ' + (r.days - r.every) + ' días de retraso' : 'Le toca en ' + (r.every - r.days) + ' días'}</span><button data-send="${id}" class="px-3 py-1.5 rounded-lg bg-noir-900 hover:bg-noir-800 text-gold-300 font-bold shrink-0">Enviar aviso ahora</button>`}
+            </div>
+          </div>`;
+        }).join('');
+        $$('.ret-card').forEach(el => el.addEventListener('click', e => { if (e.target.closest('button')) return; selRet = el.dataset.r; renderRetoques(); }));
+        $$('[data-send]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.send] = 'enviado'; selRet = b.dataset.send; toast('Aviso enviado por WhatsApp a ' + first(CLIENTS[b.dataset.send].name) + '.'); refresh(); }));
+        $$('[data-book]').forEach(b => b.addEventListener('click', () => { RETOQUE[b.dataset.book] = 'cita'; toast('Cita propuesta a ' + first(CLIENTS[b.dataset.book].name) + ' para el sábado a las 10:00. Se confirma sola si dice que sí.'); refresh(); }));
+        $('#retoquePreview').innerHTML = selRet ? retoqueMsg(selRet) : 'Hola 💛 Ya te toca volver. ¿Te buscamos hueco esta semana?';
+        const rs = sede === 'all' ? 'tq' : sede;
+        $('#retoqueRules').innerHTML = Object.entries(SVC).filter(([k, s]) => s[4] && svcIn(k, rs)).map(([k, s]) => s).map(s => `<li class="flex justify-between"><span>${s[0]}</span><span class="font-mono font-semibold">${s[4]} días</span></li>`).join('');
+      }
+
+      // ---------- CAJA ----------
+      function renderCaja() {
+        const t = lines();
+        const total = t.reduce((s, x) => s + x.p, 0);
+        $('#cajaCount').textContent = t.length + (t.length === 1 ? ' línea' : ' líneas');
+        $('#cajaRows').innerHTML = t.map(x => `<tr class="${x.type === 'noshow' ? 'bg-red-50/60' : ''}"><td class="p-3 font-mono text-xs">${x.time}</td><td class="p-3 font-semibold">${esc(x.c)}</td><td class="p-3 text-stone-600">${esc(x.concept)}</td><td class="p-3 text-stone-600">${x.staff}</td><td class="p-3 text-stone-600">${x.pay}</td><td class="p-3 text-right font-mono font-bold">${eur(x.p)}</td></tr>`).join('') || '<tr><td colspan="6" class="p-6 text-center text-stone-500">Todavía no hay cobros hoy en este salón.</td></tr>';
+        const sum = f => t.filter(f).reduce((s, x) => s + x.p, 0);
+        const cnt = f => t.filter(f).length;
+        const typeRows = [['Servicios', x => x.type === 'svc'], ['Productos', x => x.type === 'prod'], ['Cargos por no presentarse', x => x.type === 'noshow'], ['Bonos y tarjetas regalo', () => false]];
+        $('#cajaByType').innerHTML = typeRows.map(([l, f]) => `<tr><td class="py-1.5">${l}</td><td class="py-1.5 text-right text-stone-500 text-xs">${cnt(f)}</td><td class="py-1.5 text-right font-mono font-bold">${eur(sum(f))}</td></tr>`).join('') + `<tr class="font-bold"><td class="pt-2">Total</td><td class="pt-2 text-right text-xs">${t.length}</td><td class="pt-2 text-right font-mono">${eur(total)}</td></tr>`;
+        const pays = ['Tarjeta', 'Bizum', 'Efectivo', 'Tarjeta guardada'];
+        $('#cajaByPay').innerHTML = pays.map(m => `<tr><td class="py-1.5">${m === 'Tarjeta guardada' ? 'Tarjeta de garantía' : m}</td><td class="py-1.5 text-right font-mono font-bold">${eur(sum(x => x.pay === m))}</td></tr>`).join('') + `<tr class="font-bold"><td class="pt-2">Cobrado</td><td class="pt-2 text-right font-mono">${eur(total)}</td></tr>`;
+        const pend = APPTS.filter(a => inSede(a.sede) && ['reservada', 'confirmada', 'llegada'].includes(a.st)).reduce((s, a) => s + a.p, 0);
+        const tickets = new Set(t.map(x => x.c + x.time)).size;
+        $('#cajaResumen').innerHTML = `
+          <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Cobrado hoy · ${sede === 'all' ? 'los 3 salones' : SEDES[sede].n}</p>
+          <p class="font-display text-4xl font-bold">${eur(total)}</p>
+          <div class="flex justify-between text-sm pt-2 border-t border-white/10"><span class="text-stone-300">Ticket medio</span><span class="font-mono font-bold">${tickets ? eur(total / tickets) : '—'}</span></div>
+          <div class="flex justify-between text-sm"><span class="text-stone-300">Pendiente de cobrar hoy</span><span class="font-mono font-bold text-gold-300">${eur(pend)}</span></div>
+          <p class="text-[11px] text-stone-400">Sin comisiones por reserva: cada euro de la caja es del salón.</p>`;
+        if (sede === 'all') {
+          $('#cajaCierre').innerHTML = `<p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cierre de caja</p><p class="text-sm text-stone-600">Cada salón cierra su propia caja. Elige uno arriba para cerrarla.</p>
+            <ul class="text-sm space-y-1">${Object.entries(SEDES).map(([k, s]) => `<li class="flex justify-between"><span>${s.n}</span><span class="font-semibold ${CLOSED[k] ? 'text-emerald-700' : 'text-stone-500'}">${CLOSED[k] ? '✓ Cerrada' : 'Abierta'}</span></li>`).join('')}</ul>`;
+          return;
+        }
+        const FONDO = 150, cash = sum(x => x.pay === 'Efectivo'), expected = FONDO + cash;
+        if (CLOSED[sede]) {
+          const c = CLOSED[sede];
+          $('#cajaCierre').innerHTML = `<p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cierre de caja</p><p class="text-sm font-bold text-emerald-700">✓ Caja cerrada a las ${NOW}</p><p class="text-sm text-stone-600">Esperado ${eur(c.expected)} · contado ${eur(c.counted)} · <strong class="${c.diff ? 'text-red-700' : 'text-emerald-700'}">${c.diff ? 'descuadre de ' + eur(Math.abs(c.diff)) + (c.diff < 0 ? ' de menos' : ' de más') : 'cuadra al céntimo'}</strong></p><p class="text-[11px] text-stone-500">Resumen enviado al dueño por WhatsApp.</p>`;
+          return;
+        }
+        $('#cajaCierre').innerHTML = `
+          <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Cierre de caja · ${short(SEDES[sede].n)}</p>
+          <div class="text-sm space-y-1">
+            <p class="flex justify-between"><span>Fondo al abrir</span><span class="font-mono">${eur(FONDO)}</span></p>
+            <p class="flex justify-between"><span>+ Cobros en efectivo</span><span class="font-mono">${eur(cash)}</span></p>
+            <p class="flex justify-between font-bold border-t border-stone-200 pt-1"><span>Debería haber</span><span class="font-mono">${eur(expected)}</span></p>
+          </div>
+          <label class="block text-sm font-semibold">Efectivo contado
+            <input id="cashCounted" type="number" min="0" step="1" value="${expected}" class="mt-1 w-full text-sm border border-stone-300 rounded-xl px-3 py-2 bg-white font-mono"></label>
+          <p class="text-sm" id="cashDiff"></p>
+          <button id="closeCash" class="w-full py-2.5 rounded-xl bg-noir-900 hover:bg-noir-800 text-gold-300 font-bold text-sm">Cerrar caja y enviar resumen al dueño</button>`;
+        const diffTxt = () => { const d = Math.round(+$('#cashCounted').value || 0) - expected; $('#cashDiff').innerHTML = d ? `<span class="font-bold text-red-700">Descuadre: ${eur(Math.abs(d))} ${d < 0 ? 'de menos' : 'de más'}</span>` : '<span class="font-bold text-emerald-700">✓ Cuadra</span>'; return d; };
+        diffTxt();
+        $('#cashCounted').addEventListener('input', diffTxt);
+        $('#closeCash').onclick = () => { const counted = Math.round(+$('#cashCounted').value || 0); CLOSED[sede] = { expected, counted, diff: counted - expected }; toast('Caja de ' + short(SEDES[sede].n) + ' cerrada. El dueño recibe el resumen del día por WhatsApp.'); renderCaja(); };
+      }
+
+      // ---------- EQUIPO Y FICHAJE ----------
+      function staffState(p) {
+        const f = FICHAJES.filter(x => x.d === 'hoy' && x.who === p && !x.corr).map(x => x.mov);
+        const last = f[f.length - 1];
+        return !last || last === 'Salida' ? 'fuera' : last === 'Pausa' ? 'pausa' : 'dentro';
+      }
+      function renderEquipo() {
+        const pinS = sede === 'all' ? 'tq' : sede;
+        $('#pinSede').textContent = SEDES[pinS].n;
+        const stCls = { dentro: 'bg-emerald-500', pausa: 'bg-amber-400', fuera: 'bg-stone-500' };
+        $('#pinStaff').innerHTML = SEDES[pinS].staff.map(p => `<button data-pin="${p}" class="py-2.5 rounded-xl text-sm font-bold transition ${pinStaff === p ? 'bg-gold-400 text-noir-950' : 'bg-white/10 hover:bg-white/20 text-white'}"><span class="flex flex-col items-center gap-1">${avatar(p, 'w-10 h-10')}<span class="flex items-center gap-1 text-xs"><span class="inline-block w-2 h-2 rounded-full ${stCls[staffState(p)]}"></span>${p}</span></span></button>`).join('');
+        $$('[data-pin]').forEach(b => b.addEventListener('click', () => { pinStaff = b.dataset.pin; pinCode = ''; renderEquipo(); }));
+        const st = pinStaff ? staffState(pinStaff) : null;
+        if (pinStaff && pinCode.length === 4) {
+          const opts = st === 'fuera' ? [['Entrada', 'Entrar']] : st === 'pausa' ? [['Vuelta de pausa', 'Volver de la pausa']] : [['Pausa', 'Empezar pausa'], ['Salida', 'Salir']];
+          $('#pinWho').innerHTML = `Hola, <strong>${pinStaff}</strong>. ¿Qué quieres fichar?<span class="flex justify-center gap-2 mt-2">${opts.map(([m, l]) => `<button data-mov="${m}" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold">${l}</button>`).join('')}</span>`;
+          $$('[data-mov]').forEach(b => b.addEventListener('click', () => {
+            FICHAJES.push({ d: 'hoy', t: NOW, who: pinStaff, mov: b.dataset.mov, from: 'Tablet ' + short(SEDES[pinS].n) });
+            toast(pinStaff + ': ' + b.dataset.mov.toLowerCase() + ' fichada a las ' + NOW + '.');
+            pinStaff = null; pinCode = ''; renderEquipo();
+          }));
+        } else {
+          $('#pinWho').innerHTML = pinStaff ? `Hola, <strong>${pinStaff}</strong>. Escribe tu PIN` : 'Elige tu nombre';
+        }
+        $('#pinDots').textContent = pinStaff ? '●'.repeat(pinCode.length) + '○'.repeat(4 - pinCode.length) : '';
+        $('#pinPad').innerHTML = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', '⌫'].map(k => k ? `<button data-k="${k}" class="h-12 rounded-xl bg-white/10 hover:bg-white/20 text-white text-lg font-bold disabled:opacity-30" ${pinStaff && pinCode.length < 4 ? '' : 'disabled'}>${k}</button>` : '<span></span>').join('');
+        $$('[data-k]').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; pinCode = k === '⌫' ? pinCode.slice(0, -1) : (pinCode + k).slice(0, 4); renderEquipo(); }));
+
+        const rows = FICHAJES.filter(f => inSede(STAFF_SEDE[f.who])).slice().sort((a, b) => (a.d === b.d ? a.t.localeCompare(b.t) : a.d === 'ayer' ? -1 : 1));
+        $('#fichajeRows').innerHTML = rows.map(f => {
+          const i = FICHAJES.indexOf(f);
+          return `<tr class="${f.missing ? 'bg-orange-50' : f.corr ? 'bg-sky-50/60' : ''}"><td class="p-3 font-mono text-xs">${f.d === 'ayer' ? 'Ayer ' : ''}${f.missing ? '—' : f.t}</td><td class="p-3 font-semibold">${f.who}</td><td class="p-3">${f.missing ? '<span class="text-orange-800 font-semibold">Salida sin fichar</span>' : f.mov}${f.corr ? `<span class="block text-[11px] text-sky-800">Corrección: ${esc(f.corr)}</span>` : ''}</td><td class="p-3 text-stone-500 text-xs">${f.from}</td><td class="p-3 text-right">${f.missing ? `<button data-fix="${i}" class="text-[11px] px-2 py-1 rounded-lg bg-noir-900 text-gold-300 font-bold">Corregir</button>` : ''}</td></tr>`;
+        }).join('');
+        $$('[data-fix]').forEach(b => b.addEventListener('click', () => {
+          const f = FICHAJES[+b.dataset.fix];
+          f.missing = false; f.mov = 'Salida (no fichada)'; f.t = '—';
+          FICHAJES.push({ d: 'ayer', t: '19:05', who: f.who, mov: 'Salida', from: 'Encargada, hoy a las ' + NOW, corr: 'olvidó fichar al salir; hora confirmada por la encargada' });
+          toast('Corrección añadida con motivo y autora. La línea original se conserva.');
+          refresh();
+        }));
+
+        const days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+        const cell = v => v === 'Libre' || v === 'Cerrado' ? 'text-stone-400' : v === 'Vacaciones' || v === 'Formación' ? 'text-purple-700 font-semibold' : 'text-stone-800';
+        $('#turnosTable').innerHTML = `<thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-2.5">Estilista</th>${days.map((d, i) => `<th class="p-2.5 ${i === 3 ? 'text-gold-700' : ''}">${d}${i === 3 ? ' · hoy' : ''}</th>`).join('')}<th class="p-2.5 text-right">Horas</th></tr></thead><tbody class="divide-y divide-stone-100">${staffList().map(p => `<tr><td class="p-2.5 font-semibold"><span class="flex items-center gap-2">${avatar(p, 'w-8 h-8')}<span>${p}<span class="block text-[10px] text-stone-400 font-normal">${[ROLE[p], sede === 'all' ? short(SEDES[STAFF_SEDE[p]].n) : ''].filter(Boolean).join(' · ')}</span></span></span></td>${TURNOS[p].slice(0, 6).map((v, i) => `<td class="p-2.5 ${cell(v)} ${i === 3 ? 'bg-gold-50/60' : ''}">${v}</td>`).join('')}<td class="p-2.5 text-right font-mono font-bold">${TURNOS[p][6]} h</td></tr>`).join('')}</tbody>`;
+      }
+
+      // ---------- RESEÑAS ----------
+      function renderResenas() {
+        const r = REVIEWS.filter(x => inSede(x.sede));
+        kpiCards('#resKpis', [
+          ['Nota media', '4,7 ★', 'valoraciones internas de octubre', 'text-gold-700'],
+          ['Valoraciones', '46', 'de 61 peticiones enviadas', 'text-stone-900'],
+          ['Pasaron a Google', '21', 'pulsaron «Escribir reseña»', 'text-sky-700'],
+          ['Notas bajas', r.filter(x => x.alert).length, 'os llega un aviso al momento', 'text-orange-700']
+        ]);
+        const g = { publicada: ['Publicó en Google', 'text-emerald-700'], clic: ['Abrió Google', 'text-sky-700'], no: ['Sin pasar a Google', 'text-stone-400'] };
+        $('#resList').innerHTML = `<p class="text-sm text-stone-600">Valoraciones que dejan las clientas al día siguiente de su visita. Las respuestas las escribe siempre una persona del salón.</p>` + r.map(x => `
+          <div class="glass-panel rounded-2xl p-4 shadow-sm ${x.alert && x.st === 'pendiente' ? 'ring-2 ring-orange-300' : ''}">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0"><p class="text-sm font-bold text-stone-900">${esc(x.c)} <span class="text-amber-500">${'★'.repeat(x.stars)}<span class="text-stone-300">${'★'.repeat(5 - x.stars)}</span></span></p><p class="text-xs text-stone-500">${x.d} · con ${x.staff} · ${short(SEDES[x.sede].n)}</p></div>
+              <span class="text-[11px] font-semibold shrink-0 ${g[x.google][1]}">${g[x.google][0]}</span>
+            </div>
+            <p class="text-sm text-stone-700 mt-2">«${esc(x.txt)}»</p>
+            ${x.alert ? (x.st === 'pendiente'
+              ? `<div class="mt-3 space-y-2"><p class="text-[11px] font-bold text-orange-800">⚠ Aviso enviado al dueño. Conviene llamarla hoy.</p><textarea id="rep-${x.id}" rows="2" class="w-full text-sm border border-stone-300 rounded-xl px-3 py-2 bg-white" placeholder="Escribe tu respuesta…"></textarea><div class="flex gap-2 justify-end"><button data-call="${x.id}" class="px-3 py-1.5 rounded-lg bg-white border border-stone-300 text-xs font-bold">📞 La he llamado</button><button data-rep="${x.id}" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold">Enviar por WhatsApp</button></div></div>`
+              : `<p class="mt-2 text-[11px] font-semibold text-emerald-700">✓ ${x.st === 'llamada' ? 'La llamó la encargada' : 'Respondida por WhatsApp'}</p>`) : ''}
+          </div>`).join('');
+        $$('[data-rep]').forEach(b => b.addEventListener('click', () => { const x = REVIEWS.find(y => y.id === b.dataset.rep); if (!$('#rep-' + x.id).value.trim()) { toast('Escribe la respuesta antes de enviarla.'); return; } x.st = 'respondida'; toast('Respuesta enviada a ' + first(x.c) + ' por WhatsApp.'); refresh(); }));
+        $$('[data-call]').forEach(b => b.addEventListener('click', () => { const x = REVIEWS.find(y => y.id === b.dataset.call); x.st = 'llamada'; toast('Anotado: ' + first(x.c) + ' ya ha recibido la llamada.'); refresh(); }));
+      }
+
+      // ---------- INFORMES ----------
+      function renderInformes() {
+        const staff = staffList();
+        const today = p => lines().filter(x => x.staff === p).reduce((s, x) => s + x.p, 0);
+        const monthTotal = staff.reduce((s, p) => s + MONTH_STAFF[p] + today(p), 0);
+        const share = sede === 'all' ? 1 : staff.length / 14;
+        kpiCards('#infKpis', [
+          ['Facturación de octubre', eur(monthTotal), 'hasta hoy, con IVA', 'text-gold-700'],
+          ['Ticket medio', '64 €', '+6 € que en septiembre', 'text-stone-900'],
+          ['Clientas nuevas', Math.round(38 * share), 'de ' + Math.round(450 * share) + ' clientas atendidas', 'text-emerald-700'],
+          ['No vinieron', Math.round(6 * share), eur(248 * share) + ' cobrados por la norma', 'text-red-700']
+        ]);
+        bars('#infStaff', staff.map(p => [`<span class="inline-flex items-center gap-1.5">${avatar(p, 'w-5 h-5')}${p}${sede === 'all' ? ' · ' + short(SEDES[STAFF_SEDE[p]].n) : ''}</span>`, MONTH_STAFF[p] + today(p)]).sort((a, b) => b[1] - a[1]));
+        bars('#infSvc', Object.entries(MONTH_CAT_SHARE).map(([k, sh]) => [k === 'prod' ? 'Productos' : CAT[k][0], Math.round(monthTotal * sh), k === 'prod' ? 'bg-stone-400' : CAT[k][2]]));
+        bars('#infSrc', [['💬 WhatsApp', 182], ['🧾 Mostrador', 214], ['📞 Laura', 96], ['📸 Instagram', 41]].map(([l, v]) => [l, Math.round(v * share), 'bg-emerald-400']), false);
+        bars('#infCancel', [['Cliente no disponible', 14], ['Enfermedad', 6], ['No vino sin avisar', 6], ['Cambio a otro día', 5], ['Reservada por error', 3]].map(([l, v]) => [l, Math.max(1, Math.round(v * share)), 'bg-red-300']), false);
+      }
+
+      // ---------- NAVEGACIÓN ----------
+      function setTab(t) {
+        tab = t;
+        $$('.crm-tab').forEach(b => { const on = b.dataset.tab === t; b.className = 'crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap ' + (on ? 'border-gold-500 text-noir-900' : 'border-transparent text-stone-500 hover:text-stone-800'); b.setAttribute('aria-selected', on); });
+        $$('.crm-panel').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== t));
+        refresh();
+        const act = $('.crm-tab[data-tab="' + t + '"]');
+        if (act) act.parentElement.scrollTo({ left: act.offsetLeft - 16, behavior: 'smooth' });
+      }
+      function refresh() {
+        $$('.crm-sede').forEach(b => { b.className = 'crm-sede px-3 py-1.5 rounded-lg transition ' + (b.dataset.sede === sede ? 'bg-white text-stone-900 shadow-sm' : 'text-stone-600 hover:text-stone-900'); });
+        const pending = APPTS.filter(a => inSede(a.sede) && ['reservada', 'confirmada'].includes(a.st) && toMin(a.t) + 15 <= toMin(NOW)).length + REVIEWS.filter(r => r.alert && r.st === 'pendiente' && inSede(r.sede)).length;
+        const hoyBtn = $('.crm-tab[data-tab="hoy"]');
+        hoyBtn.innerHTML = '🏠 Hoy' + (pending ? ` <span class="ml-1 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px]">${pending}</span>` : '');
+        if (tab === 'hoy') renderHoy();
+        if (tab === 'agenda') { renderAgenda(); renderAppt(); }
+        if (tab === 'clientas') renderClients();
+        if (tab === 'vuelve') renderRetoques();
+        if (tab === 'caja') renderCaja();
+        if (tab === 'equipo') renderEquipo();
+        if (tab === 'resenas') renderResenas();
+        if (tab === 'informes') renderInformes();
+      }
+      $$('.crm-sede').forEach(b => b.addEventListener('click', () => { sede = b.dataset.sede; apptMode = null; pinStaff = null; pinCode = ''; refresh(); }));
+      $$('.crm-tab').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+      $$('.crm-export').forEach(b => b.addEventListener('click', () => toast('En la app real se descarga el ' + b.dataset.export + '. En la demo no se genera el archivo.')));
+      $('#crmSearch').addEventListener('input', renderClients);
+      $('#crmSort').addEventListener('change', renderClients);
+      setTab('hoy');
+    })();
 
     // --- 5. INBOX SELECTION ---
     const inboxDetails = [
       {
         icon: "📞",
         title: "Llamada Telefónica Atendida por ElevenLabs",
-        meta: "Clienta: Laura Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h",
+        meta: "Clienta: Raquel Gómez · Tel: 611 223 344 · Fecha: Hoy 09:35h",
         transcript: "Hola, buenos días, llamaba para saber si tenéis hueco para un tratamiento hidratante en El Corte Inglés... Sí, para el viernes por la tarde sobre las cinco... Perfecto, ponme con quien esté disponible, me viene genial esa hora. Muchas gracias."
       },
       {
