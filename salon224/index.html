@@ -125,10 +125,10 @@
 
       <!-- VIEW SELECTOR BUTTONS -->
       <nav class="flex items-center flex-wrap gap-1.5 text-xs font-medium" id="viewNav">
-        <button onclick="switchView('resumen')" id="btn-resumen" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
+        <button onclick="switchView('resumen')" id="btn-resumen" class="view-btn px-3 py-1.5 rounded-lg bg-gold-400 text-noir-950 font-bold transition flex items-center gap-1.5">
           <span>🧭</span> <span>0. Resumen frente a Fresha</span>
         </button>
-        <button onclick="switchView('crm')" id="btn-crm" class="view-btn px-3 py-1.5 rounded-lg bg-gold-400 text-noir-950 font-bold transition flex items-center gap-1.5">
+        <button onclick="switchView('crm')" id="btn-crm" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
           <span>💈</span> <span>1. App Salón 224</span>
         </button>
         <button onclick="switchView('phone')" id="btn-phone" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
@@ -171,7 +171,7 @@
     <!-- ========================================================================= -->
     <!-- VISTA 0: RESUMEN FRENTE A FRESHA                                           -->
     <!-- ========================================================================= -->
-    <section id="view-resumen" class="view-content hidden space-y-6">
+    <section id="view-resumen" class="view-content space-y-6">
       <div class="pb-4 border-b border-stone-200">
         <span class="text-xs font-bold text-gold-700 uppercase tracking-widest">0 · Resumen</span>
         <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">Conservamos lo práctico de Fresha y añadimos lo que le falta</h1>
@@ -588,7 +588,7 @@
     <!-- ========================================================================= -->
     <!-- VISTA 3: CRM PROPIO SALÓN 224                                              -->
     <!-- ========================================================================= -->
-    <section id="view-crm" class="view-content space-y-5">
+    <section id="view-crm" class="view-content hidden space-y-5">
 
       <!-- CABECERA -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-4 border-b border-stone-200">
