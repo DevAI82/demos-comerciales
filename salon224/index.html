@@ -123,20 +123,20 @@
 
       <!-- VIEW SELECTOR BUTTONS -->
       <nav class="flex items-center flex-wrap gap-1.5 text-xs font-medium" id="viewNav">
-        <button onclick="switchView('phone')" id="btn-phone" class="view-btn px-3 py-1.5 rounded-lg bg-gold-400 text-noir-950 font-bold transition flex items-center gap-1.5">
-          <span>🎙️</span> <span>1. Asistente Voz (ElevenLabs)</span>
+        <button onclick="switchView('crm')" id="btn-crm" class="view-btn px-3 py-1.5 rounded-lg bg-gold-400 text-noir-950 font-bold transition flex items-center gap-1.5">
+          <span>💈</span> <span>1. App Salón 224</span>
+        </button>
+        <button onclick="switchView('phone')" id="btn-phone" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
+          <span>🎙️</span> <span>2. Laura · teléfono (ElevenLabs)</span>
         </button>
         <button onclick="switchView('whatsapp')" id="btn-whatsapp" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
-          <span>💬</span> <span>2. WhatsApp Bot (Zernio)</span>
-        </button>
-        <button onclick="switchView('crm')" id="btn-crm" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
-          <span>💈</span> <span>3. CRM Salón 224</span>
+          <span>💬</span> <span>3. WhatsApp (Zernio)</span>
         </button>
         <button onclick="switchView('inbox')" id="btn-inbox" class="view-btn px-3 py-1.5 rounded-lg bg-noir-850 hover:bg-noir-800 text-stone-200 transition flex items-center gap-1.5">
-          <span>📥</span> <span>4. Bandeja Omnicanal</span>
+          <span>📥</span> <span>4. Bandeja única</span>
         </button>
         <button onclick="switchView('calculator')" id="btn-calculator" class="view-btn px-3 py-1.5 rounded-lg bg-emerald-950 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-900 transition flex items-center gap-1.5 font-semibold">
-          <span>💰</span> <span>5. Calculadora Ahorro Fresha</span>
+          <span>💰</span> <span>5. Fresha frente a la app 224</span>
         </button>
       </nav>
 
@@ -166,7 +166,7 @@
     <!-- ========================================================================= -->
     <!-- VISTA 1: ASISTENTE DE VOZ TELEFÓNICO (ELEVENLABS)                          -->
     <!-- ========================================================================= -->
-    <section id="view-phone" class="view-content space-y-6">
+    <section id="view-phone" class="view-content hidden space-y-6">
       
       <!-- HEADER VISTA 1 -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
@@ -538,12 +538,12 @@
     <!-- ========================================================================= -->
     <!-- VISTA 3: CRM PROPIO SALÓN 224                                              -->
     <!-- ========================================================================= -->
-    <section id="view-crm" class="view-content hidden space-y-5">
+    <section id="view-crm" class="view-content space-y-5">
 
       <!-- CABECERA -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-4 border-b border-stone-200">
         <div>
-          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Fase 2 · La app de Salón 224</span>
+          <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">La app de Salón 224 · sustituye a Fresha</span>
           <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">Todo el salón en una pantalla, sin funciones que no usáis</h1>
           <p class="text-sm text-stone-600 max-w-3xl mt-1">Agenda, fichas de color, caja, equipo y reseñas de los tres salones. Laura y el WhatsApp trabajan dentro: las citas que cogen aparecen aquí solas, y lo que necesita a una persona sale arriba, en «Hoy».</p>
         </div>
@@ -555,17 +555,23 @@
         </div>
       </div>
 
-      <!-- MENÚ DE LA APP -->
-      <div class="flex gap-1 overflow-x-auto custom-scroll border-b border-stone-200 text-sm font-semibold" id="crmTabs" role="tablist">
-        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="hoy">🏠 Hoy</button>
-        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="agenda">📅 Agenda</button>
-        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="clientas">🎨 Clientas</button>
-        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="vuelve">🔁 Vuelve a reservar</button>
-        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="caja">💶 Caja</button>
-        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="equipo">👥 Equipo y fichaje</button>
-        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="resenas">⭐ Reseñas</button>
-        <button class="crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap" data-tab="informes">📊 Informes</button>
-      </div>
+      <!-- APP: MENÚ VERTICAL A LA IZQUIERDA + CONTENIDO -->
+      <div class="flex flex-col lg:flex-row gap-5 items-start">
+        <nav id="crmTabs" role="tablist" aria-label="Menú de la app" class="w-full lg:w-56 shrink-0 lg:sticky lg:top-28 bg-noir-900 rounded-2xl p-2 flex lg:flex-col gap-1 overflow-x-auto custom-scroll text-sm font-semibold shadow-xl border border-gold-400/20">
+          <div class="hidden lg:flex items-center gap-2.5 px-2.5 py-3 mb-1 border-b border-white/10">
+            <img src="assets/logo-salon-224.webp" alt="Salón 224" class="w-9 h-9 rounded-full bg-white p-1 object-contain">
+            <span class="leading-tight"><span class="block text-white font-bold">Salón 224</span><span class="block text-[10px] text-gold-300 font-medium">Recepción · 12:15</span></span>
+          </div>
+          <button class="crm-tab" data-tab="hoy"><span class="text-base w-6 text-center shrink-0">🏠</span><span class="crm-tab-label">Hoy</span></button>
+          <button class="crm-tab" data-tab="agenda"><span class="text-base w-6 text-center shrink-0">📅</span><span class="crm-tab-label">Agenda</span></button>
+          <button class="crm-tab" data-tab="clientas"><span class="text-base w-6 text-center shrink-0">🎨</span><span class="crm-tab-label">Clientas</span></button>
+          <button class="crm-tab" data-tab="vuelve"><span class="text-base w-6 text-center shrink-0">🔁</span><span class="crm-tab-label">Vuelve a reservar</span></button>
+          <button class="crm-tab" data-tab="caja"><span class="text-base w-6 text-center shrink-0">💶</span><span class="crm-tab-label">Caja</span></button>
+          <button class="crm-tab" data-tab="equipo"><span class="text-base w-6 text-center shrink-0">👥</span><span class="crm-tab-label">Equipo y fichaje</span></button>
+          <button class="crm-tab" data-tab="resenas"><span class="text-base w-6 text-center shrink-0">⭐</span><span class="crm-tab-label">Reseñas</span></button>
+          <button class="crm-tab" data-tab="informes"><span class="text-base w-6 text-center shrink-0">📊</span><span class="crm-tab-label">Informes</span></button>
+        </nav>
+        <div class="flex-1 min-w-0 w-full space-y-5">
 
       <!-- PANEL: HOY -->
       <div class="crm-panel space-y-5" data-panel="hoy">
@@ -777,15 +783,8 @@
         <div class="grid lg:grid-cols-12 gap-5 items-start">
           <div class="lg:col-span-7 min-w-0 space-y-3" id="resList"></div>
           <div class="lg:col-span-5 space-y-4">
-            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3">
-              <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Así se pide la reseña</p>
-              <div class="bg-[#e5ddd5] rounded-xl p-3 text-stone-900 text-sm space-y-2">
-                <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm">Gracias por venir hoy, Elena 💛 ¿Qué tal con María? Puntúa tu visita del 1 al 5.</div>
-                <div class="flex gap-1 text-lg">⭐⭐⭐⭐⭐</div>
-                <div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm text-xs">¡Gracias! Si quieres, publícala en Google: ya te hemos copiado el comentario, solo tienes que pegarlo.<span class="block mt-2 text-center font-bold text-sky-700 bg-sky-50 rounded-lg py-1.5">Escribir reseña en Google</span></div>
-              </div>
-              <p class="text-[11px] text-stone-400">El botón de Google se ofrece a todas las clientas, pongan la nota que pongan, como exige Google. Si la nota es baja, además os llega un aviso para llamarla.</p>
-            </div>
+            <div class="glass-panel rounded-2xl p-4 shadow-sm space-y-3" id="resConfig"></div>
+            <div class="bg-noir-900 text-white rounded-2xl p-5 shadow-xl border border-gold-400/30 space-y-3" id="resPreview"></div>
           </div>
         </div>
       </div>
@@ -805,7 +804,10 @@
         </div>
       </div>
 
-      <p class="text-[11px] text-stone-500">Clientas, fórmulas, tarjetas e importes de ejemplo para la demostración. Precios orientativos.</p>
+        </div>
+      </div>
+
+      <p class="text-[11px] text-stone-500">Equipo, centros, horarios y precios de servicios reales del salón. Clientas, facturación, turnos, fichajes y tarjetas inventados para la demostración. Productos con precio orientativo.</p>
       <div id="crmToast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-noir-900 text-white text-sm font-semibold px-4 py-3 rounded-2xl shadow-2xl border border-gold-400/40 max-w-[90vw]"></div>
     </section>
 
@@ -978,18 +980,42 @@
       <!-- HEADER VISTA 5 -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-stone-200">
         <div>
-          <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Business Case & Retorno de Inversión</span>
+          <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Fresha frente a la app de Salón 224</span>
           <h1 class="text-2xl sm:text-4xl font-display font-bold text-noir-900 mt-1">
-            Calculadora de Ahorro: Fresha vs. CRM Propio 224
+            Lo que usáis de Fresha, más fácil, con IA y por menos
           </h1>
           <p class="text-sm text-stone-600 max-w-3xl mt-1">
-            Fresha cobra suscripciones mensuales por estilista, <strong>hasta un 20% de comisión por nuevos clientes</strong> captados en su marketplace y recargos por procesamiento de tarjeta y SMS. Con un CRM propio, el salón es 100% dueño de sus datos y ahorra miles de euros anuales.
+            La app tiene las funciones de Fresha que de verdad usa el equipo, sin las que nadie toca. Y suma lo que Fresha no hace: una IA que recuerda las citas por WhatsApp y contesta, atiende y agenda a cualquier hora, una recepcionista de voz con el salón cerrado y avisos que traen a las clientas de vuelta. Sin cuotas por estilista ni comisiones por clienta nueva.
           </p>
         </div>
         <div class="bg-emerald-100 border border-emerald-300 text-emerald-900 px-4 py-2 rounded-2xl text-right">
           <span class="text-[11px] uppercase tracking-wider block font-bold">Ahorro Anual Estimado</span>
           <span class="text-2xl font-bold font-display" id="calcTotalSavingsYear">14.160 € / año</span>
         </div>
+      </div>
+
+      <!-- COMPARATIVA DE FUNCIONES -->
+      <div class="bg-white rounded-3xl border border-stone-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm min-w-[640px]">
+            <thead><tr class="bg-stone-50 text-[11px] uppercase tracking-wider text-stone-500 text-left"><th class="p-3 w-2/5">Lo que necesita el salón</th><th class="p-3">Fresha</th><th class="p-3 text-emerald-700">App Salón 224</th></tr></thead>
+            <tbody class="divide-y divide-stone-100">
+              <tr class=""><td class="p-3 font-semibold text-stone-800">Agenda por estilista y por salón</td><td class="p-3 text-stone-500"><span class="text-emerald-600 font-bold">✓</span> Sí</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Sí, más sencilla: solo lo que usáis</td></tr>
+              <tr class=""><td class="p-3 font-semibold text-stone-800">Fichas de clienta con fórmula de color</td><td class="p-3 text-stone-500">Notas sueltas</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Fórmula, alergias, fotos e historial</td></tr>
+              <tr class=""><td class="p-3 font-semibold text-stone-800">Caja, cierre del día y ventas por estilista</td><td class="p-3 text-stone-500"><span class="text-emerald-600 font-bold">✓</span> Sí</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Sí, con el resumen al dueño por WhatsApp</td></tr>
+              <tr class=""><td class="p-3 font-semibold text-stone-800">Tarjeta de garantía y cobro por no presentarse</td><td class="p-3 text-stone-500"><span class="text-emerald-600 font-bold">✓</span> Con pagos de Fresha</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Con Stripe, en reservas de 85 € o más</td></tr>
+              <tr class=""><td class="p-3 font-semibold text-stone-800">Fichaje con PIN y turnos</td><td class="p-3 text-stone-500"><span class="text-emerald-600 font-bold">✓</span> Sí</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Sí, con registro que no se puede alterar</td></tr>
+              <tr class=""><td class="p-3 font-semibold text-stone-800">Reseñas y paso a Google con 5 ★</td><td class="p-3 text-stone-500">Complemento aparte</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Incluido</td></tr>
+              <tr class=""><td class="p-3 font-semibold text-stone-800">Informes de clientas nuevas y fieles</td><td class="p-3 text-stone-500">Informes de pago</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Incluidos</td></tr>
+              <tr><td colspan="3" class="px-3 pt-4 pb-2 text-[11px] font-bold uppercase tracking-wider text-emerald-700">Y además, la IA trabajando para el salón</td></tr>
+              <tr class="bg-emerald-50/60"><td class="p-3 font-semibold text-stone-800">Recordatorio por WhatsApp al que la clienta contesta y cambia su cita</td><td class="p-3 text-stone-500">Solo avisos</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> La IA le responde y le busca otro hueco</td></tr>
+              <tr class="bg-emerald-50/60"><td class="p-3 font-semibold text-stone-800">Reservar hablando por WhatsApp, a cualquier hora</td><td class="p-3 text-stone-500">Enlace de reserva</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> La IA atiende, aconseja y agenda</td></tr>
+              <tr class="bg-emerald-50/60"><td class="p-3 font-semibold text-stone-800">Recepcionista de voz con el salón cerrado</td><td class="p-3 text-stone-500">Complemento en pruebas</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Laura, con voz natural</td></tr>
+              <tr class="bg-emerald-50/60"><td class="p-3 font-semibold text-stone-800">Vender más: «vuelve a reservar» con su estilista de siempre</td><td class="p-3 text-stone-500">Aviso genérico</td><td class="p-3 text-stone-800"><span class="text-emerald-600 font-bold">✓</span> Según su técnica, y la IA le da la cita</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-[11px] text-stone-500 px-4 py-3 border-t border-stone-100">Comparación con el plan de Fresha que tiene el salón, revisada en su panel en octubre de 2026.</p>
       </div>
 
       <!-- CALCULADORA INTERACTIVA GRID -->
@@ -1101,7 +1127,7 @@
               <div class="flex items-center justify-between border-b border-emerald-200 pb-3">
                 <div>
                   <span class="text-xs font-bold text-emerald-900 uppercase">Con CRM Propio Salón 224</span>
-                  <p class="text-[11px] text-emerald-700">Sin comisiones por reserva</p>
+                  <p class="text-[11px] text-emerald-700">Sin cuotas por estilista ni comisiones</p>
                 </div>
                 <span class="text-xl">🏆</span>
               </div>
@@ -1122,29 +1148,30 @@
               </div>
 
               <div class="pt-3 border-t border-emerald-200 flex items-baseline justify-between">
-                <span class="text-xs font-bold text-emerald-900">Total Mensual CRM:</span>
+                <span class="text-xs font-bold text-emerald-900">Servidor y base de datos:</span>
                 <span class="text-2xl font-bold font-display text-emerald-700">60 €/mes</span>
               </div>
               <p class="text-[11px] text-emerald-800 text-right font-mono">(720 € al año)</p>
+              <p class="text-[11px] text-emerald-800">El mantenimiento de Altera se cierra en la propuesta.</p>
             </div>
 
           </div>
 
           <!-- COMPARATIVA DE RETORNO Y BENEFICIOS ADICIONALES -->
           <div class="bg-white p-5 rounded-3xl border border-stone-200 shadow-sm space-y-3">
-            <h4 class="text-xs font-bold text-stone-800 uppercase tracking-wider">¿Qué ganas además del ahorro en dinero?</h4>
+            <h4 class="text-xs font-bold text-stone-800 uppercase tracking-wider">¿Qué ganáis además del ahorro?</h4>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-stone-600">
               <div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
-                <span class="font-bold text-stone-900 block">1. Propiedad de Datos</span>
-                <span>Los teléfonos, emails y fórmulas de tinte son 100% de Salón 224. Fresha ya no puede promocionar salones rivales a tus clientas.</span>
+                <span class="font-bold text-stone-900 block">1. Más fácil para el equipo</span>
+                <span>Una pantalla «Hoy» con lo que necesita a una persona y un menú con lo justo. Mismo funcionamiento que Fresha, sin lo que no usáis.</span>
               </div>
               <div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
-                <span class="font-bold text-stone-900 block">2. Ficha Técnica Capilar</span>
-                <span>Ningún software genérico guarda las fórmulas exactas de decoloración y matiz integradas con fotos antes/después.</span>
+                <span class="font-bold text-stone-900 block">2. La IA atiende cuando no podéis</span>
+                <span>Recuerda las citas por WhatsApp, contesta, cambia horas y agenda. Y Laura coge el teléfono con el salón cerrado.</span>
               </div>
               <div class="p-3 rounded-xl bg-stone-50 border border-stone-200 space-y-1">
-                <span class="font-bold text-stone-900 block">3. Sin No-Shows</span>
-                <span>El Asistente de Voz y WhatsApp reducen las cancelaciones de última hora a prácticamente cero gracias a la confirmación 24h.</span>
+                <span class="font-bold text-stone-900 block">3. Vendéis más</span>
+                <span>Menos huecos vacíos por no presentadas, clientas que vuelven a su hora con su estilista y cada reserva sin comisión.</span>
               </div>
             </div>
           </div>
@@ -1571,10 +1598,17 @@
           `;
         } else if (/^[1-5] ⭐/.test(text)) {
           const n = parseInt(text, 10);
-          reply = n >= 4
-            ? "¡Mil gracias, Marta! 💛 Si te apetece, publícala en Google: ya te hemos copiado el comentario, solo tienes que pegarlo."
-            : "Gracias por decírnoslo, Marta. Sentimos que no haya sido perfecto: la encargada te llamará hoy. Y si quieres, también puedes contarlo en Google.";
-          extraCards = `<div class="pt-2"><a href="#" onclick="return false" class="block text-center px-3 py-2 bg-sky-50 hover:bg-sky-100 text-sky-800 rounded-xl font-bold border border-sky-200">Escribir reseña en Google</a></div>`;
+          const gmin = window.SALON_GOOGLE_MIN || 5;
+          const googleBtn = `<div class="pt-2"><a href="#" onclick="return false" class="block text-center px-3 py-2 bg-sky-50 hover:bg-sky-100 text-sky-800 rounded-xl font-bold border border-sky-200">Escribir reseña en Google</a></div>`;
+          if (n >= gmin) {
+            reply = "¡Mil gracias, Marta! 💛 ¿Nos ayudas contándolo en Google? Ya te hemos copiado el comentario, solo tienes que pegarlo.";
+            extraCards = googleBtn;
+          } else if (n >= 4) {
+            reply = "¡Gracias, Marta! 💛 Nos lo apuntamos para que la próxima vez sea de cinco estrellas.";
+          } else {
+            reply = "Gracias por decírnoslo, Marta. Sentimos que no haya sido perfecto: la encargada te llamará hoy.";
+            if (gmin === 1) { reply += " Y si quieres, también puedes contarlo en Google."; extraCards = googleBtn; }
+          }
         } else if (text.includes("humana") || text.includes("estilista")) {
           reply = "¡Por supuesto! Transfiriendo conversación a nuestra recepción humana. Enseguida una compañera te contestará por este mismo chat. Puedes llamarnos también al <strong>967 105 930</strong>.";
         } else {
@@ -1693,6 +1727,9 @@
         </div>
       `;
     }
+
+    // Reseñas: nota mínima para ofrecer el botón de Google (5 = solo cinco estrellas, como pide el salón)
+    window.SALON_GOOGLE_MIN = 5;
 
     // --- 4. CRM PROPIO SALÓN 224 ---
     // Datos de ejemplo: clientas genéricas, tarjetas ficticias, precios orientativos.
@@ -2431,6 +2468,22 @@
 
       // ---------- RESEÑAS ----------
       function renderResenas() {
+        const min = window.SALON_GOOGLE_MIN;
+        const opts = [[5, 'Solo 5 ★'], [4, '4 y 5 ★'], [1, 'A todas']];
+        $('#resConfig').innerHTML = `<p class="text-xs font-bold text-stone-500 uppercase tracking-wider">Automatismo · invitar a Google</p>
+          <p class="text-sm text-stone-700">Después de cada visita se pide una valoración por WhatsApp. ¿A quién se le ofrece después publicarla en Google?</p>
+          <div class="grid grid-cols-3 gap-1.5 rounded-xl bg-stone-100 p-1 text-xs font-bold">${opts.map(([v, l]) => `<button data-gmin="${v}" class="py-2 rounded-lg transition ${v === min ? 'bg-noir-900 text-gold-300 shadow' : 'text-stone-600 hover:bg-white'}">${l}</button>`).join('')}</div>
+          <p class="text-[11px] text-stone-500">${min === 1 ? 'Todas las clientas ven el botón de Google.' : 'Solo ven el botón de Google las clientas que ponen ' + (min === 5 ? '5 estrellas' : '4 o 5 estrellas') + '. A las demás se les da las gracias'} y, si la nota es de 3 o menos, os llega un aviso para llamarla.</p>`;
+        $$('[data-gmin]').forEach(b => b.addEventListener('click', () => { window.SALON_GOOGLE_MIN = +b.dataset.gmin; toast('Guardado: se invita a Google ' + (b.dataset.gmin === '1' ? 'a todas las clientas.' : 'solo con ' + (b.dataset.gmin === '5' ? '5 estrellas.' : '4 o 5 estrellas.'))); renderResenas(); }));
+        const bubble = (t, cls = '') => `<div class="bg-white rounded-xl rounded-tl-none p-3 shadow-sm ${cls}">${t}</div>`;
+        $('#resPreview').innerHTML = `<p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Así le llega a la clienta</p>
+          <div class="bg-[#e5ddd5] rounded-xl p-3 text-stone-900 text-sm space-y-2">
+            ${bubble('Gracias por venir hoy, Elena 💛 ¿Qué tal con María? Puntúa tu visita del 1 al 5.')}
+            <p class="text-[11px] font-bold text-stone-600">Si pone ⭐⭐⭐⭐⭐</p>
+            ${bubble('¡Mil gracias, Elena! 💛 ¿Nos ayudas contándolo en Google? Ya te hemos copiado el comentario, solo tienes que pegarlo.<span class="block mt-2 text-center font-bold text-sky-700 bg-sky-50 rounded-lg py-1.5">Escribir reseña en Google</span>', 'text-xs')}
+            <p class="text-[11px] font-bold text-stone-600">Si pone ${min === 5 ? '4 ★ o menos' : min === 4 ? '3 ★ o menos' : '3 ★ o menos'}</p>
+            ${bubble(min === 1 ? 'Gracias por decírnoslo, Elena. La encargada te llamará hoy. Y si quieres, también puedes contarlo en Google.<span class="block mt-2 text-center font-bold text-sky-700 bg-sky-50 rounded-lg py-1.5">Escribir reseña en Google</span>' : 'Gracias por decírnoslo, Elena. Lo tenemos en cuenta para mejorar 💛 Si algo no fue como esperabas, la encargada te llamará hoy.', 'text-xs')}
+          </div>`;
         const r = REVIEWS.filter(x => inSede(x.sede));
         kpiCards('#resKpis', [
           ['Nota media', '4,7 ★', 'valoraciones internas de octubre', 'text-gold-700'],
@@ -2438,12 +2491,13 @@
           ['Pasaron a Google', '21', 'pulsaron «Escribir reseña»', 'text-sky-700'],
           ['Notas bajas', r.filter(x => x.alert).length, 'os llega un aviso al momento', 'text-orange-700']
         ]);
-        const g = { publicada: ['Publicó en Google', 'text-emerald-700'], clic: ['Abrió Google', 'text-sky-700'], no: ['Sin pasar a Google', 'text-stone-400'] };
+        const g = { publicada: ['Publicó en Google', 'text-emerald-700'], clic: ['Abrió Google', 'text-sky-700'], no: ['Sin pasar a Google', 'text-stone-400'], fuera: ['No se le ofrece Google', 'text-stone-400'] };
+        const gs = x => x.stars < min ? 'fuera' : x.google;
         $('#resList').innerHTML = `<p class="text-sm text-stone-600">Valoraciones que dejan las clientas al día siguiente de su visita. Las respuestas las escribe siempre una persona del salón.</p>` + r.map(x => `
           <div class="glass-panel rounded-2xl p-4 shadow-sm ${x.alert && x.st === 'pendiente' ? 'ring-2 ring-orange-300' : ''}">
             <div class="flex items-start justify-between gap-3">
               <div class="min-w-0"><p class="text-sm font-bold text-stone-900">${esc(x.c)} <span class="text-amber-500">${'★'.repeat(x.stars)}<span class="text-stone-300">${'★'.repeat(5 - x.stars)}</span></span></p><p class="text-xs text-stone-500">${x.d} · con ${x.staff} · ${short(SEDES[x.sede].n)}</p></div>
-              <span class="text-[11px] font-semibold shrink-0 ${g[x.google][1]}">${g[x.google][0]}</span>
+              <span class="text-[11px] font-semibold shrink-0 ${g[gs(x)][1]}">${g[gs(x)][0]}</span>
             </div>
             <p class="text-sm text-stone-700 mt-2">«${esc(x.txt)}»</p>
             ${x.alert ? (x.st === 'pendiente'
@@ -2475,7 +2529,7 @@
       // ---------- NAVEGACIÓN ----------
       function setTab(t) {
         tab = t;
-        $$('.crm-tab').forEach(b => { const on = b.dataset.tab === t; b.className = 'crm-tab px-3.5 py-2.5 border-b-2 whitespace-nowrap ' + (on ? 'border-gold-500 text-noir-900' : 'border-transparent text-stone-500 hover:text-stone-800'); b.setAttribute('aria-selected', on); });
+        $$('.crm-tab').forEach(b => { const on = b.dataset.tab === t; b.className = 'crm-tab flex items-center gap-2.5 px-3 py-2.5 rounded-xl whitespace-nowrap text-left transition ' + (on ? 'bg-gold-400 text-noir-950 shadow' : 'text-stone-300 hover:bg-white/10 hover:text-white'); b.setAttribute('aria-selected', on); });
         $$('.crm-panel').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== t));
         refresh();
         const act = $('.crm-tab[data-tab="' + t + '"]');
@@ -2485,7 +2539,7 @@
         $$('.crm-sede').forEach(b => { b.className = 'crm-sede px-3 py-1.5 rounded-lg transition ' + (b.dataset.sede === sede ? 'bg-white text-stone-900 shadow-sm' : 'text-stone-600 hover:text-stone-900'); });
         const pending = APPTS.filter(a => inSede(a.sede) && ['reservada', 'confirmada'].includes(a.st) && toMin(a.t) + 15 <= toMin(NOW)).length + REVIEWS.filter(r => r.alert && r.st === 'pendiente' && inSede(r.sede)).length;
         const hoyBtn = $('.crm-tab[data-tab="hoy"]');
-        hoyBtn.innerHTML = '🏠 Hoy' + (pending ? ` <span class="ml-1 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px]">${pending}</span>` : '');
+        hoyBtn.innerHTML = '<span class="text-base w-6 text-center shrink-0">🏠</span><span class="crm-tab-label">Hoy</span>' + (pending ? `<span class="ml-auto inline-flex items-center justify-center min-w-[20px] h-[20px] px-1 rounded-full bg-red-500 text-white text-[10px]">${pending}</span>` : '');
         if (tab === 'hoy') renderHoy();
         if (tab === 'agenda') { renderAgenda(); renderAppt(); }
         if (tab === 'clientas') renderClients();
