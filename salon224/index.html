@@ -105,6 +105,8 @@
     }
   </style>
   <!-- Motor de voz Altera: audios pregenerados + desbloqueo móvil + modo dev (.env) -->
+  <!-- SheetJS: exportar a Excel (.xlsx) desde el navegador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
   <script src="../shared/altera-voice.js"></script>
   <script src="../shared/altera-config.js"></script>
   <script src="../shared/altera-convai.js" defer></script>
@@ -572,6 +574,10 @@
           <button class="crm-tab" data-tab="informes"><span class="text-base w-6 text-center shrink-0">📊</span><span class="crm-tab-label">Informes</span></button>
         </nav>
         <div class="flex-1 min-w-0 w-full space-y-5">
+          <div class="flex items-center justify-between gap-3 -mb-1">
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider" id="crmSectionName">Hoy</p>
+            <button id="crmXlsx" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold shadow-sm">⬇ Exportar a Excel</button>
+          </div>
 
       <!-- PANEL: HOY -->
       <div class="crm-panel space-y-5" data-panel="hoy">
@@ -696,7 +702,7 @@
           <p class="text-sm text-stone-600">Ventas de hoy y cierre de caja. Mismas cuentas que hoy hacéis a mano, pero solas.</p>
           <div class="flex gap-2 text-xs font-bold">
             <button data-export="PDF" class="crm-export px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ PDF</button>
-            <button data-export="Excel" class="crm-export px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ Excel para la gestoría</button>
+            <button data-xlsx="caja" class="px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ Excel para la gestoría</button>
           </div>
         </div>
         <div class="grid lg:grid-cols-12 gap-5 items-start">
@@ -793,7 +799,7 @@
       <div class="crm-panel hidden space-y-5" data-panel="informes">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <p class="text-sm text-stone-600">Los números de octubre, sin complementos de pago. Todos se descargan en Excel.</p>
-          <button data-export="Excel con todos los informes" class="crm-export text-xs font-bold px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ Descargar todo</button>
+          <button data-xlsx="todo" class=" text-xs font-bold px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-50">⬇ Descargar todo</button>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4" id="infKpis"></div>
         <div class="grid md:grid-cols-2 gap-5">
@@ -2531,6 +2537,7 @@
         tab = t;
         $$('.crm-tab').forEach(b => { const on = b.dataset.tab === t; b.className = 'crm-tab flex items-center gap-2.5 px-3 py-2.5 rounded-xl whitespace-nowrap text-left transition ' + (on ? 'bg-gold-400 text-noir-950 shadow' : 'text-stone-300 hover:bg-white/10 hover:text-white'); b.setAttribute('aria-selected', on); });
         $$('.crm-panel').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== t));
+        $('#crmSectionName').textContent = NAMES[t];
         refresh();
         const act = $('.crm-tab[data-tab="' + t + '"]');
         if (act) act.parentElement.scrollTo({ left: act.offsetLeft - 16, behavior: 'smooth' });
@@ -2552,6 +2559,63 @@
       $$('.crm-sede').forEach(b => b.addEventListener('click', () => { sede = b.dataset.sede; apptMode = null; pinStaff = null; pinCode = ''; refresh(); }));
       $$('.crm-tab').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
       $$('.crm-export').forEach(b => b.addEventListener('click', () => toast('En la app real se descarga el ' + b.dataset.export + '. En la demo no se genera el archivo.')));
+
+      // ---------- EXPORTAR A EXCEL ----------
+      const NAMES = { hoy: 'Hoy', agenda: 'Agenda', clientas: 'Clientas', vuelve: 'Vuelve a reservar', caja: 'Caja', equipo: 'Equipo y fichaje', resenas: 'Reseñas', informes: 'Informes' };
+      const sedeName = () => sede === 'all' ? 'Los 3 salones' : SEDES[sede].n;
+      const n2 = v => Math.round(v * 100) / 100;
+      function sheets(t) {
+        const ap = APPTS.filter(a => inSede(a.sede)).sort((a, b) => a.sede.localeCompare(b.sede) || a.staff.localeCompare(b.staff) || a.t.localeCompare(b.t));
+        const citas = () => ap.map(a => ({ Fecha: '15/10/2026', Hora: a.t, Centro: SEDES[a.sede].n, Profesional: a.staff, Clienta: clientName(a.c), Servicio: SVC[a.svc][0], Minutos: SVC[a.svc][2], 'Precio (€)': n2(a.p), Estado: ST[a.st][0], Origen: SRC[a.src].replace(/^\S+ /, ''), 'Tarjeta de garantía': a.card || '', 'Motivo de cancelación': a.motivo || '', 'Cargo no presentada (€)': a.charge ? n2(a.charge) : '' }));
+        const ventas = () => lines().map(x => ({ Hora: x.time, Centro: SEDES[x.sede].n, Clienta: x.c, Concepto: x.concept, Tipo: { svc: 'Servicio', prod: 'Producto', noshow: 'Cargo por no presentarse' }[x.type], Profesional: x.staff, 'Forma de pago': x.pay, 'Importe (€)': n2(x.p) }));
+        const clientas = () => Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede)).map(id => { const c = CLIENTS[id], st = clientStats(id), col = lastOfType(id, ['color']); return { Clienta: c.name, Teléfono: c.phone, Centro: SEDES[c.sede].n, 'Su profesional': c.staff, 'Clienta desde': c.since, Visitas: st.visits, 'Gasto 2026 (€)': n2(st.year), 'Última visita': fmtD(st.last), 'Último servicio': SVC[c.hist[0].svc][0], 'Fórmula de color': col ? col.f : '', 'Prueba de alergia': c.test ? fmtD(c.test) : 'Pendiente', 'Tarjeta guardada': c.card || '', Notas: c.notes }; });
+        const historial = () => Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede)).flatMap(id => CLIENTS[id].hist.map(h => ({ Clienta: CLIENTS[id].name, Fecha: fmtD(h.d), Servicio: SVC[h.svc][0], Profesional: h.staff, 'Importe (€)': n2(h.p), Fórmula: h.f })));
+        const vuelve = () => Object.keys(CLIENTS).filter(id => inSede(CLIENTS[id].sede)).map(id => [id, retoqueInfo(id)]).filter(([, r]) => r).map(([id, r]) => ({ Clienta: CLIENTS[id].name, Centro: SEDES[CLIENTS[id].sede].n, 'Último servicio': SVC[r.h.svc][0], Fecha: fmtD(r.h.d), Profesional: r.h.staff, 'Días desde la visita': r.days, 'Avisar a los (días)': r.every, 'Tiene cita': hasFutureAppt(id) ? 'Sí' : 'No', 'Estado del aviso': { enviado: 'Enviado', respondido: 'Ha respondido', cita: 'Cita propuesta' }[RETOQUE[id]] || (r.days >= r.every * 0.85 ? 'Pendiente' : 'Aún no toca') }));
+        const fichajes = () => FICHAJES.filter(f => inSede(STAFF_SEDE[f.who])).map(f => ({ Día: f.d === 'ayer' ? '14/10/2026' : '15/10/2026', Hora: f.missing ? '' : f.t, Persona: f.who, Centro: SEDES[STAFF_SEDE[f.who]].n, Movimiento: f.missing ? 'Salida sin fichar' : f.mov, Desde: f.from, Corrección: f.corr || '' }));
+        const turnos = () => staffList().map(p => { const o = { Profesional: p, Puesto: ROLE[p] || '', Centro: SEDES[STAFF_SEDE[p]].n }; ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'].forEach((x, i) => o[x] = TURNOS[p][i]); o['Horas semana'] = TURNOS[p][6]; return o; });
+        const resenas = () => REVIEWS.filter(x => inSede(x.sede)).map(x => ({ Clienta: x.c, Estrellas: x.stars, Cuándo: x.d, Profesional: x.staff, Centro: SEDES[x.sede].n, Comentario: x.txt, Google: x.stars < window.SALON_GOOGLE_MIN ? 'No se le ofrece' : { publicada: 'Publicada', clic: 'Abrió Google', no: 'No pasó a Google' }[x.google], Seguimiento: x.alert ? { pendiente: 'Pendiente de llamar', llamada: 'Llamada', respondida: 'Respondida' }[x.st] : '' }));
+        const porTipo = () => { const l = lines(); return [['Servicios', 'svc'], ['Productos', 'prod'], ['Cargos por no presentarse', 'noshow']].map(([n, k]) => ({ Tipo: n, Cantidad: l.filter(x => x.type === k).length, 'Total (€)': n2(l.filter(x => x.type === k).reduce((s, x) => s + x.p, 0)) })); };
+        const porPago = () => { const l = lines(); return ['Tarjeta', 'Bizum', 'Efectivo', 'Tarjeta guardada'].map(m => ({ 'Forma de pago': m === 'Tarjeta guardada' ? 'Tarjeta de garantía' : m, 'Total (€)': n2(l.filter(x => x.pay === m).reduce((s, x) => s + x.p, 0)) })); };
+        const informes = () => {
+          const staff = staffList(), today = p => lines().filter(x => x.staff === p).reduce((s, x) => s + x.p, 0), tot = staff.reduce((s, p) => s + MONTH_STAFF[p] + today(p), 0);
+          return [['Por profesional', staff.map(p => ({ Profesional: p, Centro: SEDES[STAFF_SEDE[p]].n, 'Facturación octubre (€)': n2(MONTH_STAFF[p] + today(p)) }))],
+            ['Por tipo de servicio', Object.entries(MONTH_CAT_SHARE).map(([k, sh]) => ({ Tipo: k === 'prod' ? 'Productos' : CAT[k][0], 'Facturación octubre (€)': n2(tot * sh) }))]];
+        };
+        const hoy = () => [
+          { Indicador: 'Cobrado hoy (€)', Valor: n2(lines().reduce((s, x) => s + x.p, 0)) },
+          { Indicador: 'Citas hoy', Valor: ap.filter(live).length },
+          { Indicador: 'Citas sin confirmar', Valor: ap.filter(a => a.st === 'reservada').length },
+          { Indicador: 'Citas cogidas por Laura y el WhatsApp', Valor: ap.filter(a => a.src !== 'mostrador').length },
+          { Indicador: 'No presentadas', Valor: ap.filter(a => a.st === 'noshow').length }
+        ];
+        const map = {
+          hoy: [['Resumen de hoy', hoy()], ['Citas de hoy', citas()]],
+          agenda: [['Citas de hoy', citas()], ['Lista de espera', WAIT.filter(w => inSede(w.sede)).map(w => ({ Clienta: w.c, Servicio: SVC[w.want][0], Centro: SEDES[w.sede].n, Cuándo: w.when, Estado: w.st === 'esperando' ? 'Esperando' : 'Hueco ofrecido' }))]],
+          clientas: [['Clientas', clientas()], ['Historial de servicios', historial()]],
+          vuelve: [['Vuelve a reservar', vuelve()]],
+          caja: [['Ventas de hoy', ventas()], ['Por tipo', porTipo()], ['Por forma de pago', porPago()]],
+          equipo: [['Fichajes', fichajes()], ['Turnos de la semana', turnos()]],
+          resenas: [['Reseñas', resenas()]],
+          informes: informes()
+        };
+        if (t === 'todo') return Object.values(map).flat().filter((x, i, arr) => arr.findIndex(y => y[0] === x[0]) === i);
+        return map[t];
+      }
+      function exportXlsx(t) {
+        if (!window.XLSX) { toast('No se ha podido cargar el generador de Excel. Revisa la conexión y vuelve a probar.'); return; }
+        const wb = XLSX.utils.book_new();
+        sheets(t).forEach(([name, rows]) => {
+          const data = rows.length ? rows : [{ Aviso: 'Sin datos para este salón' }];
+          const ws = XLSX.utils.json_to_sheet(data);
+          ws['!cols'] = Object.keys(data[0]).map(k => ({ wch: Math.min(48, Math.max(10, k.length + 2, ...data.map(r => String(r[k] ?? '').length + 1))) }));
+          XLSX.utils.book_append_sheet(wb, ws, name.slice(0, 31));
+        });
+        const file = 'Salon224 - ' + (t === 'todo' ? 'Todo' : NAMES[t]) + ' - ' + sedeName() + ' - 15-10-2026.xlsx';
+        XLSX.writeFile(wb, file);
+        toast('Descargado «' + file + '».');
+      }
+      $('#crmXlsx').addEventListener('click', () => exportXlsx(tab));
+      $$('[data-xlsx]').forEach(b => b.addEventListener('click', () => exportXlsx(b.dataset.xlsx)));
       $('#crmSearch').addEventListener('input', renderClients);
       $('#crmSort').addEventListener('change', renderClients);
       setTab('hoy');
