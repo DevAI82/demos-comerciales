@@ -1085,8 +1085,26 @@
             </div>
           </div>
 
+          <!-- SLIDER 5: COMISIÓN POR OPERACIÓN (PENDIENTE DE CONFIRMAR) -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs gap-2">
+              <label class="font-bold text-stone-800" for="inputFeePct">Comisión de Fresha por cada cobro registrado:</label>
+              <span class="font-bold font-mono text-gold-700 bg-gold-50 px-2 py-0.5 rounded shrink-0" id="labelFeePct">0,35 %</span>
+            </div>
+            <input type="range" id="inputFeePct" min="0" max="3" step="0.05" value="0.35" oninput="recalcSavings()" class="w-full accent-gold-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-stone-400">
+              <span>0 %</span>
+              <span class="font-bold text-amber-700">Pendiente de confirmar con el salón</span>
+              <span>3 %</span>
+            </div>
+          </div>
+
+          <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-[11px] text-emerald-900 leading-relaxed">
+            💳 <strong>Con la app 224 no hay comisión por venta:</strong> cada servicio se sigue cobrando con el datáfono del salón, como hoy. Stripe solo se usa para el cargo a una clienta que no se presenta, y su comisión se aplica solo a ese cargo.
+          </div>
+
           <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-900 leading-relaxed">
-            ⚠️ <strong>Comisión invisible de Fresha:</strong> Cuando un cliente nuevo descubre el salón en la app de Fresha, cobran el <strong>20% del importe íntegro del primer servicio</strong>. Si una clienta se hace un Balayage de 120€, ¡Fresha se queda 24€ directos de esa cita!
+            ⚠️ <strong>Comisión invisible de Fresha:</strong> Cuando un cliente nuevo descubre el salón en la app de Fresha, cobran el <strong>20% del importe íntegro del primer servicio</strong>. Si una clienta nueva reserva un Babylage + peinado de 109,70 €, Fresha se queda casi 22 € de esa cita.
           </div>
 
         </div>
@@ -1116,8 +1134,12 @@
                   <span class="font-mono font-bold" id="costFreshaMarketplace">975 €/mes</span>
                 </div>
                 <div class="flex justify-between">
-                  <span>SMS recordatorios & pasarela pagos:</span>
+                  <span>SMS y WhatsApp de recordatorio:</span>
                   <span class="font-mono font-bold" id="costFreshaSms">125 €/mes</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Comisión por cobro (<span id="feePctInline">0,35 %</span>, por confirmar):</span>
+                  <span class="font-mono font-bold" id="costFreshaFee">0 €/mes</span>
                 </div>
               </div>
 
@@ -1142,6 +1164,10 @@
                 <div class="flex justify-between">
                   <span>Cuota por estilista:</span>
                   <span class="font-mono font-bold text-emerald-700">0 € (Ilimitado)</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Comisión por cada venta:</span>
+                  <span class="font-mono font-bold text-emerald-700">0 % (datáfono del salón)</span>
                 </div>
                 <div class="flex justify-between">
                   <span>Comisión por nuevo cliente:</span>
@@ -2667,6 +2693,10 @@
       const appts = parseInt(document.getElementById('inputAppointments').value);
       const ticket = parseInt(document.getElementById('inputTicket').value);
       const newClientsPct = parseInt(document.getElementById('inputNewClients').value) / 100;
+      const feePct = parseFloat(document.getElementById('inputFeePct').value);
+      const pctTxt = feePct.toFixed(2).replace('.', ',') + ' %';
+      document.getElementById('labelFeePct').textContent = pctTxt;
+      document.getElementById('feePctInline').textContent = pctTxt;
 
       document.getElementById('labelStylists').textContent = `${stylists} estilistas`;
       document.getElementById('labelAppointments').textContent = `${appts} citas/mes`;
@@ -2677,9 +2707,10 @@
       const costPlus = stylists * 20; // 20€/estilista/mes
       const newClientsCount = Math.round(appts * newClientsPct);
       const costMarketplace = Math.round(newClientsCount * ticket * 0.20); // 20% first service
-      const costSmsPayment = Math.round(appts * 0.25); // ~0.25€ avg per appointment between SMS and card fees
+      const costSmsPayment = Math.round(appts * 0.25); // ~0,25 € por cita en mensajes de recordatorio
+      const costFee = Math.round(appts * ticket * feePct / 100); // comisión por cobro registrado (dato pendiente de confirmar con el salón)
 
-      const totalFreshaMonth = costPlus + costMarketplace + costSmsPayment;
+      const totalFreshaMonth = costPlus + costMarketplace + costSmsPayment + costFee;
       const totalFreshaYear = totalFreshaMonth * 12;
 
       // CRM Propio calculations
@@ -2691,6 +2722,7 @@
       document.getElementById('costFreshaPlus').textContent = `${costPlus.toLocaleString()} €/mes`;
       document.getElementById('costFreshaMarketplace').textContent = `${costMarketplace.toLocaleString()} €/mes`;
       document.getElementById('costFreshaSms').textContent = `${costSmsPayment.toLocaleString()} €/mes`;
+      document.getElementById('costFreshaFee').textContent = `${costFee.toLocaleString()} €/mes`;
 
       document.getElementById('totalCostFreshaMonth').textContent = `${totalFreshaMonth.toLocaleString()} €/mes`;
       document.getElementById('totalCostFreshaYear').textContent = `(${totalFreshaYear.toLocaleString()} € al año)`;
