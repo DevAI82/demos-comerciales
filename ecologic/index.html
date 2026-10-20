@@ -394,7 +394,31 @@
         <p class="text-sm text-stone-400 max-w-md">Un número único (o los 35 actuales desviados). Voz natural de ElevenLabs, reserva en la agenda real y envía el enlace de Stripe por WhatsApp.</p>
       </div>
 
-      <div class="grid lg:grid-cols-[380px_1fr] gap-8 items-start">
+      <!-- AGENTE EN DIRECTO (ElevenLabs) · solo si hay agent_id en shared/altera-config.js -->
+      <div data-convai-only class="panel rounded-3xl p-5 sm:p-7 space-y-5 border-2 !border-eco-400/60">
+        <div class="flex items-start gap-4">
+          <div class="ring w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#1f4277] grid place-items-center text-3xl text-eco-400 font-black shrink-0">e</div>
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-eco-400 uppercase tracking-wider"><span class="w-2 h-2 rounded-full bg-eco-400 animate-pulse"></span> Eco está disponible ahora</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mt-0.5">Llama a Eco y pruébala como si fueras un cliente</h3>
+            <p class="text-sm text-stone-300 mt-1">Es una conversación real, no una grabación: te escucha, te responde con su voz y puedes interrumpirla como en una llamada normal. Se sabe los 35 centros y las tarifas.</p>
+          </div>
+        </div>
+        <ol class="grid sm:grid-cols-3 gap-3 text-sm text-stone-200">
+          <li class="p-3.5 rounded-2xl bg-night-900 border border-night-700 flex gap-3"><span class="w-7 h-7 rounded-full bg-eco-400 text-night-900 font-bold grid place-items-center shrink-0">1</span><span>Pulsa <strong class="text-white">«Llamar a Eco»</strong>, abajo a la izquierda.</span></li>
+          <li class="p-3.5 rounded-2xl bg-night-900 border border-night-700 flex gap-3"><span class="w-7 h-7 rounded-full bg-eco-400 text-night-900 font-bold grid place-items-center shrink-0">2</span><span>Acepta el aviso y <strong class="text-white">permite el micrófono</strong>.</span></li>
+          <li class="p-3.5 rounded-2xl bg-night-900 border border-night-700 flex gap-3"><span class="w-7 h-7 rounded-full bg-eco-400 text-night-900 font-bold grid place-items-center shrink-0">3</span><span>Reserva, pregunta un precio o pide el centro más cercano.</span></li>
+        </ol>
+        <div class="grid sm:grid-cols-2 gap-2 text-sm text-stone-200">
+          <div class="p-3 rounded-xl border border-night-600 bg-night-900/70"><strong class="block text-xs text-eco-400">🚗 Reserva</strong>«Quiero un completo para mi SUV el sábado por la mañana en Goya.»</div>
+          <div class="p-3 rounded-xl border border-night-600 bg-night-900/70"><strong class="block text-xs text-eco-400">💶 Precio</strong>«¿Cuánto cuesta el total premium para un coche de siete plazas?»</div>
+          <div class="p-3 rounded-xl border border-night-600 bg-night-900/70"><strong class="block text-xs text-eco-400">📍 Centro</strong>«Vivo en Barcelona, ¿en qué El Corte Inglés estáis?»</div>
+          <div class="p-3 rounded-xl border border-night-600 bg-night-900/70"><strong class="block text-xs text-eco-400">💧 Duda</strong>«¿Cómo lo laváis sin agua? ¿No raya la pintura?»</div>
+        </div>
+      </div>
+
+      <!-- LLAMADA SIMULADA (solo si no hay agente en directo) -->
+      <div data-convai-fallback class="grid lg:grid-cols-[380px_1fr] gap-8 items-start">
         <div class="phone mx-auto w-full max-w-[380px] h-[640px] bg-gradient-to-b from-night-800 to-night-950 flex flex-col items-center justify-between p-6 text-center">
           <div class="w-full flex justify-between text-[11px] text-stone-400 font-mono"><span id="callClock">23:47</span><span>📶 🔋</span></div>
           <div>
