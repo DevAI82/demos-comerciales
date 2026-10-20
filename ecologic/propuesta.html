@@ -4,9 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Propuesta Ecologic Car Wash · Altera</title>
+  <link rel="icon" type="image/png" href="icono-ecologic.png">
   <meta name="description" content="Propuesta de Altera para Ecologic Car Wash Premium: web de reservas por centro, agente de WhatsApp con IA, recepcionista telefónica 24/7, garantía anti no-show con Stripe y CRM central para 35 centros.">
   <meta property="og:title" content="Propuesta · Ecologic Car Wash × Altera">
-  <meta property="og:image" content="og-ecologic.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Ecologic Car Wash">
+  <meta property="og:url" content="https://devai82.github.io/demos-comerciales/ecologic/propuesta.html">
+  <meta property="og:description" content="Piloto en 3 centros con reservas, WhatsApp con IA y recepcionista 24/7, subvencionado al 80 % por la Junta.">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/ecologic/og-ecologic-v2.jpg">
+  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/ecologic/og-ecologic-v2.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +42,14 @@
     <div class="absolute inset-0 opacity-60" style="background: radial-gradient(800px 360px at 10% -10%, rgba(73,114,177,.55), transparent 60%), radial-gradient(600px 300px at 100% 0%, rgba(196,242,74,.14), transparent 60%);"></div>
     <div class="relative max-w-5xl mx-auto px-5 pt-8 pb-12">
       <div class="flex flex-wrap justify-between items-center gap-3 text-xs no-print">
-        <span class="font-mono font-bold text-eco-400">ALTERA · Soluciones Tecnológicas</span>
+        <img src="../logo-altera-clean.png" alt="Altera Soluciones Tecnológicas" class="h-10 w-auto">
         <div class="flex gap-2">
           <a href="./" class="px-3 py-1.5 rounded-lg bg-eco-400 text-night-900 font-bold">▶ Abrir demo interactiva</a>
           <button onclick="print()" class="px-3 py-1.5 rounded-lg border border-white/20">🖨️ Imprimir / PDF</button>
         </div>
       </div>
-      <div class="mt-10 text-[11px] font-bold uppercase tracking-[.2em] text-eco-400">Propuesta comercial · octubre 2026</div>
+      <div class="mt-10 inline-block bg-white rounded-2xl px-4 py-2.5"><img src="logo-ecologic.png" alt="Ecologic Car Wash Premium" class="h-12 sm:h-14 w-auto"></div>
+      <div class="mt-6 text-[11px] font-bold uppercase tracking-[.2em] text-eco-400">Propuesta comercial · octubre 2026</div>
       <h1 class="font-display font-extrabold text-4xl sm:text-6xl leading-[.95] mt-3">Ecologic Car Wash:<br>que ningún coche se quede<br>sin reservar.</h1>
       <p class="mt-5 max-w-2xl text-stone-300 leading-relaxed">Para <strong class="text-white">CAR WASH RESORT SL</strong> · 35 centros en parkings de El Corte Inglés. Web de reservas por centro, agente de WhatsApp con IA, recepcionista telefónica 24/7 con voz natural, garantía anti no-show con Stripe y un CRM central con métricas de toda la red.</p>
     </div>
@@ -104,11 +116,10 @@
             <div class="flex justify-between"><span class="text-stone-300">Reservas recuperadas / mes</span><b id="oR" class="font-mono"></b></div>
             <div class="flex justify-between"><span class="text-stone-300">Ingresos recuperados / mes</span><b id="oI" class="font-mono"></b></div>
             <div class="flex justify-between"><span class="text-stone-300">No-shows evitados o cobrados / mes</span><b id="oN" class="font-mono"></b></div>
-            <div class="flex justify-between"><span class="text-stone-300">Cuota Altera / mes</span><b id="oF" class="font-mono"></b></div>
           </div>
           <div class="mt-6 border-t border-white/15 pt-4">
-            <div class="text-[11px] uppercase tracking-wider text-stone-300 font-bold">Retorno estimado</div>
-            <div class="font-display font-extrabold text-5xl text-eco-400 mt-1"><span id="oX"></span><span class="text-2xl">×</span></div>
+            <div class="text-[11px] uppercase tracking-wider text-stone-300 font-bold">Ingresos extra estimados</div>
+            <div class="font-display font-extrabold text-5xl text-eco-400 mt-1"><span id="oX"></span></div>
             <div id="oS" class="text-sm text-stone-300 mt-1"></div>
           </div>
         </div>
@@ -120,31 +131,23 @@
     <section>
       <div class="text-[11px] font-bold uppercase tracking-[.18em] text-brand-500">05 · Inversión</div>
       <h2 class="font-display font-bold text-3xl sm:text-4xl mt-1">Subvencionado al 80 % por la Junta</h2>
-      <p class="text-sm text-slate-600 mt-2">Con el Bono Crecimiento Pyme de la JCCM, la Junta cubre el 80 % de la implantación. Nosotros preparamos y tramitamos la solicitud.</p>
-      <div class="grid md:grid-cols-3 gap-4 mt-6">
-        <div class="card p-6">
-          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-500">Opción A · Piloto 3 centros</div>
-          <div class="text-sm text-slate-400 line-through mt-2">3.600 €</div>
-          <div class="font-display font-extrabold text-4xl">720 €</div>
-          <div class="text-sm text-emerald-700 font-semibold">coste final con la ayuda de la Junta (80 %)</div>
+      <p class="text-sm text-slate-600 mt-2">Con el Bono Crecimiento Pyme de la JCCM, la Junta cubre el 80 % de la implantación. Nosotros preparamos y tramitamos la solicitud. Empezamos con un piloto en 3 centros y, si funciona, lo ampliamos al resto.</p>
+      <div class="grid md:grid-cols-2 gap-4 mt-6">
+        <div class="card p-6 border-2 border-brand-700 relative">
+          <span class="absolute -top-3 left-5 text-[10px] font-bold uppercase tracking-wider bg-eco-400 text-night-900 px-2 py-1 rounded-full">Recomendado para empezar</span>
+          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-500">Paso 1 · Piloto en 3 centros</div>
+          <div class="font-display font-extrabold text-4xl mt-2 text-emerald-700">−80 %</div>
+          <div class="text-sm text-emerald-700 font-semibold">de la implantación, cubierto por la Junta</div>
           <ul class="text-sm text-slate-700 mt-4 space-y-1.5"><li>✓ 3 centros: Albacete, Guadalajara y Madrid (Goya)</li><li>✓ Web de reservas + 35 fichas de centro</li><li>✓ Agente WhatsApp y recepcionista de voz</li><li>✓ Stripe anti no-show</li><li>✓ CRM y dashboard</li><li>✓ Puesta en marcha en 8 semanas</li></ul>
         </div>
-        <div class="card p-6 border-2 border-brand-700 relative">
-          <span class="absolute -top-3 left-5 text-[10px] font-bold uppercase tracking-wider bg-eco-400 text-night-900 px-2 py-1 rounded-full">Aprovecha la ayuda completa</span>
-          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-500">Opción B · Los 35 centros</div>
-          <div class="text-sm text-slate-400 line-through mt-2">5.000 €</div>
-          <div class="font-display font-extrabold text-4xl">1.000 €</div>
-          <div class="text-sm text-emerald-700 font-semibold">coste final con la ayuda de la Junta (80 %)</div>
-          <ul class="text-sm text-slate-700 mt-4 space-y-1.5"><li>✓ Todo lo de la opción A en toda la red</li><li>✓ Boxes, horarios y números de cada centro</li><li>✓ Desvío de llamadas no atendidas</li><li>✓ Formación de encargados (online)</li><li>✓ Arranque por fases: 3 centros primero, el resto después</li></ul>
-        </div>
         <div class="card p-6">
-          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-500">Servicio mensual</div>
-          <div class="font-display font-extrabold text-4xl mt-2">59 €<span class="text-lg text-slate-500"> /centro</span></div>
-          <div class="text-sm text-slate-500">por centro activo · sin permanencia</div>
-          <ul class="text-sm text-slate-700 mt-4 space-y-1.5"><li>✓ Alojamiento, mantenimiento y mejoras</li><li>✓ IA del agente de WhatsApp</li><li>✓ Soporte y ajustes de tarifas</li><li>• Minutos de voz y mensajes de Meta, a coste (≈15-30 €/centro/mes)</li><li>• Comisión de Stripe solo cuando se cobra una penalización</li></ul>
+          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-500">Paso 2 · Si funciona, los 35 centros</div>
+          <div class="font-display font-extrabold text-4xl mt-2 text-emerald-700">−80 %</div>
+          <div class="text-sm text-emerald-700 font-semibold">de la implantación, cubierto por la Junta</div>
+          <ul class="text-sm text-slate-700 mt-4 space-y-1.5"><li>✓ Todo lo del piloto en toda la red</li><li>✓ Boxes, horarios y números de cada centro</li><li>✓ Desvío de llamadas no atendidas</li><li>✓ Formación de encargados (online)</li><li>✓ Solo cuando el piloto haya dado resultados</li></ul>
         </div>
       </div>
-      <p class="text-[12px] text-slate-500 mt-3"><strong>Cómo funciona la ayuda:</strong> la empresa paga la factura completa (3.600 € o 5.000 € + IVA) y, una vez justificado el proyecto, la Junta ingresa el 80 % (2.880 € o 4.000 €). El coste final es de 720 € o 1.000 €. Importes sujetos a la concesión del Bono Crecimiento Pyme JCCM; la cuota mensual no está subvencionada. Precios sin IVA.</p>
+      <p class="text-[12px] text-slate-500 mt-3"><strong>Cómo funciona la ayuda:</strong> la empresa paga la factura de la implantación y, una vez justificado el proyecto, la Junta ingresa el 80 %. Sujeto a la concesión del Bono Crecimiento Pyme JCCM. El importe exacto lo cerramos en la reunión según el número de centros.</p>
     </section>
 
     <!-- 6. Plan -->
@@ -196,14 +199,11 @@
       const res = v.C * v.L * 26 * v.P / 100;
       const ing = res * v.T;
       const ns = v.C * v.N * (0.5 * 95 + 0.5 * 95 * 0.30);
-      const fee = v.C * 59 + v.C * 22;
       document.getElementById('oR').textContent = Math.round(res).toLocaleString('es-ES');
       document.getElementById('oI').textContent = eur(ing);
       document.getElementById('oN').textContent = eur(ns);
-      document.getElementById('oF').textContent = eur(fee) + '*';
-      const x = (ing + ns) / fee;
-      document.getElementById('oX').textContent = x.toLocaleString('es-ES', { maximumFractionDigits: 1 });
-      document.getElementById('oS').textContent = `${eur(ing + ns - fee)} netos al mes · *incluye ≈22 €/centro de voz y mensajes`;
+      document.getElementById('oX').textContent = eur(ing + ns);
+      document.getElementById('oS').textContent = `al mes en ${v.C} ${v.C === 1 ? 'centro' : 'centros'} · ${eur((ing + ns) * 12)} al año`;
     }
     ids.forEach(k => document.getElementById('i' + k).addEventListener('input', calc));
     calc();

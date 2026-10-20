@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECOLOGIC CAR WASH — Prototipo Interactivo | Reservas 35 centros, WhatsApp IA, Recepcionista 24/7 & CRM</title>
+  <link rel="icon" type="image/png" href="icono-ecologic.png">
   <meta name="description" content="Prototipo interactivo de Altera para Ecologic Car Wash Premium: web de reservas por centro, agente de WhatsApp con IA, recepcionista telefónica 24/7 con voz ElevenLabs, garantía anti no-show con Stripe y CRM con métricas de los 35 centros.">
 
   <meta property="og:type" content="website">
@@ -11,17 +12,21 @@
   <meta property="og:site_name" content="Ecologic Car Wash">
   <meta property="og:title" content="Ecologic Car Wash — Reservas, WhatsApp IA y Recepcionista 24/7 para 35 centros">
   <meta property="og:description" content="Demo en vivo: elige centro, reserva en 60 segundos, agente de WhatsApp, voz ElevenLabs, Stripe anti no-show y dashboard central.">
-  <meta property="og:image" content="og-ecologic.jpg">
+  <meta property="og:url" content="https://devai82.github.io/demos-comerciales/ecologic/">
+  <meta property="og:image" content="https://devai82.github.io/demos-comerciales/ecologic/og-ecologic-v2.jpg">
+  <meta property="og:image:secure_url" content="https://devai82.github.io/demos-comerciales/ecologic/og-ecologic-v2.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Ecologic Car Wash Premium y logotipo de Altera">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="og-ecologic.jpg">
+  <meta name="twitter:image" content="https://devai82.github.io/demos-comerciales/ecologic/og-ecologic-v2.jpg">
 
   <script src="../shared/altera-voice.js"></script>
   <script src="../shared/altera-config.js"></script>
   <script>/* Oferta propia de esta demo para el botón "Lo quiero" */
     window.ALTERA_CONFIG = window.ALTERA_CONFIG || {};
-    ALTERA_CONFIG.oferta = Object.assign({}, ALTERA_CONFIG.oferta, { costeCliente: '720 €', inversionTotal: '3.600 €', cuotaMensual: '59 €/centro/mes' });</script>
+    ALTERA_CONFIG.oferta = Object.assign({}, ALTERA_CONFIG.oferta, { lema: '80 % subvencionado por la JCCM' });</script>
   <script src="../shared/altera-convai.js" defer></script>
   <script src="../shared/altera-cta.js" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -121,7 +126,7 @@
   <div class="bg-night-950/90 border-b border-night-700 text-[11px] sm:text-xs">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2 text-stone-300">
-        <span class="font-mono font-bold text-eco-400">ALTERA</span>
+        <img src="../logo-altera-clean.png" alt="Altera" class="h-6 w-auto">
         <span class="text-night-600">/</span>
         <span>Prototipo comercial para <strong class="text-white">Ecologic Car Wash Premium</strong> · datos de reservas simulados</span>
       </div>
@@ -129,7 +134,6 @@
         <span data-altera-cta-slot></span>
         <button data-altera-dev onclick="UI.openEleven()" class="whitespace-nowrap px-2.5 py-1 rounded-lg border border-night-600 hover:border-eco-400 text-stone-200">🎙️ Voz ElevenLabs: <span id="elevenState" class="font-bold">sin conectar</span></button>
         <a href="propuesta.html" class="whitespace-nowrap px-2.5 py-1 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-bold">📄 Ver propuesta</a>
-        <a href="../" class="whitespace-nowrap px-2.5 py-1 rounded-lg border border-night-600 hover:border-stone-400 text-stone-300">← Catálogo</a>
       </div>
     </div>
   </div>
@@ -196,8 +200,7 @@
           <!-- cabecera web -->
           <div class="bg-white border-b border-[#e3e9f2] px-5 py-3 flex items-center justify-between gap-4">
             <div class="flex items-center gap-2.5">
-              <div class="w-9 h-9 rounded-xl bg-[#1f4277] grid place-items-center text-[#c4f24a] font-black text-lg">e</div>
-              <div class="leading-none"><div class="font-display font-extrabold text-[#1f4277] text-lg tracking-tight">ecologic</div><div class="text-[9px] font-bold tracking-[.22em] text-[#4972b1]">CAR WASH PREMIUM</div></div>
+              <img src="logo-ecologic.png" alt="Ecologic Car Wash Premium" class="h-10 w-auto">
             </div>
             <div class="hidden md:flex gap-5 text-[13px] font-semibold text-[#3a4a63]"><span>Servicios</span><span>Centros</span><span>Bonos regalo</span><span>Empresas y flotas</span></div>
             <a href="#" onclick="return false" class="text-[12px] font-bold px-3 py-2 rounded-lg bg-[#c4f24a] text-[#0b1626]">💬 WhatsApp</a>
@@ -348,7 +351,7 @@
       <div class="grid lg:grid-cols-[380px_1fr] gap-8 items-start">
         <div class="phone mx-auto w-full max-w-[380px] h-[700px] flex flex-col overflow-hidden bg-[#0b141a]">
           <div class="bg-[#202c33] px-4 py-3 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-[#1f4277] grid place-items-center text-[#c4f24a] font-black">e</div>
+            <img src="icono-ecologic.png" alt="Ecologic Car Wash" class="w-9 h-9 rounded-full bg-white object-contain">
             <div class="flex-1 leading-tight"><div class="text-[15px] font-semibold text-[#e9edef]">Ecologic Car Wash <span class="text-[#00a884]">✔</span></div><div id="waStatus" class="text-[11px] text-[#8696a0]">cuenta de empresa · responde al instante</div></div>
             <button onclick="WA.reset()" title="Reiniciar conversación" class="text-[#8696a0] text-lg">↻</button>
           </div>
@@ -397,7 +400,7 @@
       <!-- AGENTE EN DIRECTO (ElevenLabs) · solo si hay agent_id en shared/altera-config.js -->
       <div data-convai-only class="panel rounded-3xl p-5 sm:p-7 space-y-5 border-2 !border-eco-400/60">
         <div class="flex items-start gap-4">
-          <div class="ring w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#1f4277] grid place-items-center text-3xl text-eco-400 font-black shrink-0">e</div>
+          <img src="icono-ecologic.png" alt="Ecologic Car Wash" class="ring w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white object-contain shrink-0">
           <div>
             <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-eco-400 uppercase tracking-wider"><span class="w-2 h-2 rounded-full bg-eco-400 animate-pulse"></span> Eco está disponible ahora</span>
             <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mt-0.5">Llama a Eco y pruébala como si fueras un cliente</h3>
@@ -422,7 +425,7 @@
         <div class="phone mx-auto w-full max-w-[380px] h-[640px] bg-gradient-to-b from-night-800 to-night-950 flex flex-col items-center justify-between p-6 text-center">
           <div class="w-full flex justify-between text-[11px] text-stone-400 font-mono"><span id="callClock">23:47</span><span>📶 🔋</span></div>
           <div>
-            <div id="callAvatar" class="w-28 h-28 mx-auto rounded-full bg-[#1f4277] grid place-items-center text-5xl text-eco-400 font-black mb-4">e</div>
+            <img id="callAvatar" src="icono-ecologic.png" alt="Ecologic Car Wash" class="w-28 h-28 mx-auto rounded-full bg-white object-contain mb-4">
             <div class="font-display font-bold text-2xl text-white">Ecologic · Eco</div>
             <div id="callState" class="text-sm text-stone-400 mt-1">Recepcionista IA · fuera de horario</div>
             <div id="callTimer" class="font-mono text-eco-400 mt-1 h-5"></div>
@@ -597,7 +600,7 @@
   <div id="elevenModal" class="fixed inset-0 z-[90] hidden bg-black/70 backdrop-blur-sm grid place-items-center p-4">
     <div class="panel rounded-2xl w-full max-w-md p-6">
       <div class="flex justify-between items-center mb-3"><h3 class="font-display font-bold text-xl text-white">🎙️ Conectar ElevenLabs</h3><button onclick="UI.closeEleven()" class="text-stone-400 text-xl">✕</button></div>
-      <p class="text-[13px] text-stone-400 mb-3">Es la misma clave que usan las demos de Vibra, Ángela, Salón 224… Si ya la pusiste en otra demo del catálogo, aquí aparece sola. Se guarda solo en este navegador.</p>
+      <p class="text-[13px] text-stone-400 mb-3">Se guarda solo en este navegador.</p>
       <div class="flex gap-2"><input id="eleven-api-key" type="password" placeholder="sk_..." class="flex-1 bg-night-900 border border-night-600 rounded-xl px-3 py-2.5 text-sm text-white font-mono outline-none focus:border-eco-400"><button onclick="UI.toggleKey()" class="px-3 rounded-xl border border-night-600 text-stone-300">👁️</button></div>
       <select id="eleven-voice-select" class="mt-3 w-full bg-night-900 border border-night-600 rounded-xl px-3 py-2.5 text-sm text-white">
         <option value="uQw4jpKzMLrZuo0RLPS9">Laura · Customer Service (español peninsular) ⭐</option>
