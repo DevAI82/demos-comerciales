@@ -7,7 +7,7 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 
 ---
 
-## 📂 Las 12 Demos Activas y sus Enlaces
+## 📂 Las 13 Demos Activas y sus Enlaces
 
 | Cliente | Nicho | URL Directa | Puntos Fuertes |
 | :--- | :--- | :--- | :--- |
@@ -15,6 +15,7 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 | **Pizzería Ángela** | Hostelería ⭐ referencia | [devai82.github.io/demos-comerciales/pizzeria-angela/](https://devai82.github.io/demos-comerciales/pizzeria-angela/) | Bot WhatsApp + Stripe, KDS Cocina, Voz IA Ángela, Ahorro 30% Uber |
 | **Ruautos** | Motor ⭐ referencia | [devai82.github.io/demos-comerciales/ruautos/](https://devai82.github.io/demos-comerciales/ruautos/) | Recepcionista 24/7 ElevenLabs, WhatsApp Zernio, CRM Certificado 82 Puntos |
 | **Motor Gas Bike** | Motor | [devai82.github.io/demos-comerciales/motos/](https://devai82.github.io/demos-comerciales/motos/) | Citas de taller automáticas, Showroom de motos, WhatsApp multicanal |
+| **Ecologic Car Wash** | Lavado de coches · cadena de 35 centros | [devai82.github.io/demos-comerciales/ecologic/](https://devai82.github.io/demos-comerciales/ecologic/) | Reserva por centro con huecos reales por box, WhatsApp IA, recepcionista de voz 24/7, Stripe anti no-show, CRM central |
 | **Izon Consulting** | Inmobiliaria ⭐ referencia | [devai82.github.io/demos-comerciales/realestate/](https://devai82.github.io/demos-comerciales/realestate/) | Radar de Mercado Idealista €/m², Chatbot 24/7, Cualificación de compradores |
 | **Salón 224** | Belleza ⭐ referencia | [devai82.github.io/demos-comerciales/salon224/](https://devai82.github.io/demos-comerciales/salon224/) | Laura con el salón cerrado (ElevenLabs), WhatsApp con tarjeta de garantía y avisos, app propia: agenda, caja, fichaje y reseñas |
 | **Clínica Sonrisastar** | Salud ⭐ referencia | [devai82.github.io/demos-comerciales/sonrisastar/](https://devai82.github.io/demos-comerciales/sonrisastar/) | Recepción IA 24/7 (ElevenLabs), Agendamiento citas, Nueva Web, CRM |

@@ -1,0 +1,74 @@
+[
+  {
+    "text": "Hola, soy Eco, la recepcionista de Ecologic Car Wash. ¿En qué centro quiere reservar?",
+    "role": "agent"
+  },
+  {
+    "text": "Ecologic Car Wash, buenas noches. Le atiende Eco, la asistente virtual. Los centros ya han cerrado, pero le puedo reservar ahora mismo. ¿En qué centro le viene mejor?",
+    "role": "agent"
+  },
+  {
+    "text": "Perfecto, centro de Goya, en Madrid, en el parking de El Corte Inglés. ¿Qué coche tiene: pequeño, mediano, un SUV o de siete plazas?",
+    "role": "agent"
+  },
+  {
+    "text": "Perfecto, centro de Albacete, en el parking de El Corte Inglés. ¿Qué coche tiene: pequeño, mediano, un SUV o de siete plazas?",
+    "role": "agent"
+  },
+  {
+    "text": "Perfecto, centro de Diagonal, en Barcelona, en el parking de El Corte Inglés. ¿Qué coche tiene: pequeño, mediano, un SUV o de siete plazas?",
+    "role": "agent"
+  },
+  {
+    "text": "Para un coche grande, el Completo total, por dentro y por fuera, son 69,99 euros. El Total premium, nuestro servicio más completo, son 99,99 euros. ¿Cuál prefiere?",
+    "role": "agent"
+  },
+  {
+    "text": "Para un coche mediano, el Completo total, por dentro y por fuera, son 64,99 euros. El Total premium, nuestro servicio más completo, son 94,99 euros. ¿Cuál prefiere?",
+    "role": "agent"
+  },
+  {
+    "text": "El Completo total es la limpieza a fondo, por dentro y por fuera. El Total premium es nuestro servicio más completo, con más tiempo para cada detalle. ¿Con cuál se queda?",
+    "role": "agent"
+  },
+  {
+    "text": "El lunes tengo libre a las once y media o a las cinco de la tarde. ¿Le va bien alguna?",
+    "role": "agent"
+  },
+  {
+    "text": "El martes tengo libre a las once y media o a las cinco de la tarde. ¿Le va bien alguna?",
+    "role": "agent"
+  },
+  {
+    "text": "El miércoles tengo libre a las once y media o a las cinco de la tarde. ¿Le va bien alguna?",
+    "role": "agent"
+  },
+  {
+    "text": "El jueves tengo libre a las once y media o a las cinco de la tarde. ¿Le va bien alguna?",
+    "role": "agent"
+  },
+  {
+    "text": "El viernes tengo libre a las once y media o a las cinco de la tarde. ¿Le va bien alguna?",
+    "role": "agent"
+  },
+  {
+    "text": "El sábado tengo libre a las once y media o a las cinco de la tarde. ¿Le va bien alguna?",
+    "role": "agent"
+  },
+  {
+    "text": "Muy bien. ¿A nombre de quién pongo la reserva?",
+    "role": "agent"
+  },
+  {
+    "text": "Gracias, Javier. Como el servicio supera los 80 euros, le acabo de mandar un WhatsApp con un enlace seguro para dejar la tarjeta en garantía. No se le cobra nada, y puede cancelar gratis hasta veinticuatro horas antes.",
+    "role": "agent"
+  },
+  {
+    "text": "Listo, su reserva está confirmada. Le llega ahora por WhatsApp con todos los detalles, y le recordaremos la cita el día antes. ¿Le puedo ayudar en algo más?",
+    "role": "agent"
+  },
+  {
+    "text": "Gracias a usted. Que pase muy buena noche.",
+    "role": "agent"
+  }
+]

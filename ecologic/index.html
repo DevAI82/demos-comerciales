@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECOLOGIC CAR WASH — Prototipo Interactivo | Reservas 35 centros, WhatsApp IA, Recepcionista 24/7 & CRM</title>
+  <meta name="description" content="Prototipo interactivo de Altera para Ecologic Car Wash Premium: web de reservas por centro, agente de WhatsApp con IA, recepcionista telefónica 24/7 con voz ElevenLabs, garantía anti no-show con Stripe y CRM con métricas de los 35 centros.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Ecologic Car Wash">
+  <meta property="og:title" content="Ecologic Car Wash — Reservas, WhatsApp IA y Recepcionista 24/7 para 35 centros">
+  <meta property="og:description" content="Demo en vivo: elige centro, reserva en 60 segundos, agente de WhatsApp, voz ElevenLabs, Stripe anti no-show y dashboard central.">
+  <meta property="og:image" content="og-ecologic.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="og-ecologic.jpg">
+
+  <script src="../shared/altera-voice.js"></script>
+  <script src="../shared/altera-config.js"></script>
+  <script>/* Oferta propia de esta demo para el botón "Lo quiero" */
+    window.ALTERA_CONFIG = window.ALTERA_CONFIG || {};
+    ALTERA_CONFIG.oferta = Object.assign({}, ALTERA_CONFIG.oferta, { costeCliente: '720 €', inversionTotal: '3.600 €', cuotaMensual: '59 €/centro/mes' });</script>
+  <script src="../shared/altera-convai.js" defer></script>
+  <script src="../shared/altera-cta.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display: ['"Bricolage Grotesque"', 'sans-serif'], sans: ['Figtree', 'sans-serif'], mono: ['"JetBrains Mono"', 'monospace'] },
+      colors: { night: { 950: '#060d18', 900: '#0b1626', 850: '#101c30', 800: '#16243b', 700: '#22334f', 600: '#34486a' },
+                eco: { 300: '#d6ff7a', 400: '#c4f24a', 500: '#a6d92b', 600: '#7fae12' },
+                brand: { 300: '#8fb3e6', 400: '#5d8fd6', 500: '#4972b1', 600: '#2c5a99', 700: '#1f4277' },
+                aqua: { 400: '#4fe0d2', 500: '#22c4b4' } }
+    } } };
+  </script>
+  <style>
+    :root {
+      --night: #0b1626; --night-2: #101c30; --line: #22334f;
+      --eco: #c4f24a; --brand: #4972b1; --aqua: #4fe0d2;
+      --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    }
+    html, body { background: var(--night); color: #e6edf7; }
+    body { font-family: Figtree, sans-serif; -webkit-font-smoothing: antialiased; }
+    .font-display { letter-spacing: -0.02em; }
+    /* Atmósfera: rejilla de parking + halo de focos */
+    .garage-bg {
+      background:
+        radial-gradient(900px 420px at 15% -10%, rgba(73,114,177,.35), transparent 60%),
+        radial-gradient(700px 380px at 95% 0%, rgba(196,242,74,.10), transparent 60%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 120px),
+        var(--night);
+    }
+    .lane-stripe { background: repeating-linear-gradient(90deg, var(--eco) 0 38px, transparent 38px 64px); height: 4px; opacity: .85; }
+    .grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .panel { background: linear-gradient(180deg, rgba(22,36,59,.92), rgba(16,28,48,.92)); border: 1px solid var(--line); }
+    .tab-btn[aria-selected="true"] { background: var(--eco); color: #0b1626; border-color: var(--eco); }
+    .tab-btn[aria-selected="true"] .tab-num { background: #0b1626; color: var(--eco); }
+    .view { display: none; } .view.active { display: block; animation: rise .45s cubic-bezier(.2,.7,.2,1); }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .reveal > * { opacity: 0; animation: rise .6s cubic-bezier(.2,.7,.2,1) forwards; }
+    .reveal > *:nth-child(1){animation-delay:.05s}.reveal > *:nth-child(2){animation-delay:.15s}.reveal > *:nth-child(3){animation-delay:.25s}.reveal > *:nth-child(4){animation-delay:.35s}
+
+    /* Web nueva (claro) */
+    .site { background: #f6f8fb; color: #0e1b2e; }
+    .site .chip { border: 1.5px solid #d7dfeb; background: #fff; }
+    .site .chip.on { border-color: #1f4277; background: #1f4277; color: #fff; }
+    .site .opt { border: 1.5px solid #dbe3ee; background: #fff; transition: .18s; }
+    .site .opt:hover { border-color: #4972b1; transform: translateY(-1px); }
+    .site .opt.on { border-color: #1f4277; box-shadow: 0 0 0 3px rgba(73,114,177,.18); }
+    .site .slot { border: 1.5px solid #dbe3ee; background: #fff; }
+    .site .slot.on { background: #1f4277; color: #fff; border-color: #1f4277; }
+    .site .slot[disabled] { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+    .site input[type=text], .site input[type=tel], .site input[type=email] { border: 1.5px solid #d7dfeb; background: #fff; border-radius: 12px; padding: 11px 13px; width: 100%; outline: none; font-size: 14px; }
+    .site input:focus { border-color: #4972b1; box-shadow: 0 0 0 3px rgba(73,114,177,.15); }
+    .step-dot { width: 28px; height: 28px; border-radius: 99px; display: grid; place-items: center; font-weight: 800; font-size: 12px; background: #e3e9f2; color: #6b7a90; }
+    .step-dot.on { background: #1f4277; color: #fff; } .step-dot.done { background: #a6d92b; color: #0b1626; }
+    .stripe-box { background: #fff; border: 1px solid #e3e8ee; border-radius: 10px; box-shadow: 0 1px 1px rgba(0,0,0,.03), 0 3px 8px rgba(50,50,93,.06); }
+    .stripe-in { border: 0; outline: 0; font-family: "JetBrains Mono", monospace; font-size: 14px; color: #30313d; background: transparent; width: 100%; }
+
+    /* WhatsApp */
+    .wa-wall { background-color: #0b141a; background-image: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px); background-size: 18px 18px; }
+    .bubble-in { background: #202c33; border-radius: 0 12px 12px 12px; }
+    .bubble-out { background: #005c4b; border-radius: 12px 0 12px 12px; }
+    .typing span { width: 6px; height: 6px; background: #8696a0; border-radius: 99px; display: inline-block; animation: blink 1.2s infinite; }
+    .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+    @keyframes blink { 0%,80%,100% { opacity: .25 } 40% { opacity: 1 } }
+    .phone { border-radius: 42px; border: 10px solid #04080f; box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), inset 0 0 0 1px #22334f; }
+    .tool-log li { border-left: 2px solid var(--line); }
+    .tool-log li.hot { border-left-color: var(--eco); }
+
+    /* Voz */
+    .wave i { display: inline-block; width: 4px; margin: 0 2px; border-radius: 4px; background: var(--eco); height: 8px; transition: height .12s; }
+    .wave.live i { animation: wv 0.9s ease-in-out infinite; }
+    .wave.live i:nth-child(2n){animation-delay:.15s}.wave.live i:nth-child(3n){animation-delay:.3s}.wave.live i:nth-child(5n){animation-delay:.45s}
+    @keyframes wv { 0%,100% { height: 6px } 50% { height: 34px } }
+    .ring { animation: ring 1.6s ease-out infinite; }
+    @keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(196,242,74,.55) } 100% { box-shadow: 0 0 0 26px rgba(196,242,74,0) } }
+
+    /* Dashboard */
+    .kpi { background: var(--night-2); border: 1px solid var(--line); }
+    .chart-tip { position: fixed; pointer-events: none; z-index: 80; background: #04080f; border: 1px solid #34486a; color: #e6edf7; font-size: 12px; padding: 8px 10px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.4); display: none; max-width: 240px; }
+    .badge { font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 99px; white-space: nowrap; }
+    .row-new { animation: flash 2.4s ease-out 1; }
+    @keyframes flash { 0% { background: rgba(196,242,74,.25) } 100% { background: transparent } }
+    .scroll-thin::-webkit-scrollbar { width: 6px; height: 6px } .scroll-thin::-webkit-scrollbar-thumb { background: #34486a; border-radius: 6px }
+    .toast { transform: translateY(140%); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+    .toast.show { transform: none; }
+    .drawer { transform: translateX(100%); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+    .drawer.open { transform: none; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal > * { opacity: 1; } }
+  </style>
+</head>
+<body class="garage-bg min-h-screen">
+
+  <!-- Barra Altera -->
+  <div class="bg-night-950/90 border-b border-night-700 text-[11px] sm:text-xs">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 text-stone-300">
+        <span class="font-mono font-bold text-eco-400">ALTERA</span>
+        <span class="text-night-600">/</span>
+        <span>Prototipo comercial para <strong class="text-white">Ecologic Car Wash Premium</strong> · datos de reservas simulados</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <span data-altera-cta-slot></span>
+        <button data-altera-dev onclick="UI.openEleven()" class="whitespace-nowrap px-2.5 py-1 rounded-lg border border-night-600 hover:border-eco-400 text-stone-200">🎙️ Voz ElevenLabs: <span id="elevenState" class="font-bold">sin conectar</span></button>
+        <a href="propuesta.html" class="whitespace-nowrap px-2.5 py-1 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-bold">📄 Ver propuesta</a>
+        <a href="../" class="whitespace-nowrap px-2.5 py-1 rounded-lg border border-night-600 hover:border-stone-400 text-stone-300">← Catálogo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="relative grain overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 pt-10 pb-8 sm:pt-14">
+      <div class="reveal grid lg:grid-cols-[1.25fr_1fr] gap-8 items-end">
+        <div>
+          <div class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.18em] text-eco-400 mb-4">
+            <span class="w-2 h-2 rounded-full bg-eco-400"></span> Lavado a mano, sin agua · Parkings de El Corte Inglés
+          </div>
+          <h1 class="font-display font-extrabold text-[2.6rem] sm:text-6xl lg:text-7xl leading-[.92] text-white">
+            35 centros.<br>Un solo <span class="text-eco-400">cerebro</span><br>de reservas.
+          </h1>
+        </div>
+        <div class="space-y-4">
+          <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
+            El cliente elige su centro, ve el precio exacto de su coche y reserva en menos de un minuto: desde la web, por <strong class="text-white">WhatsApp</strong> o llamando a una <strong class="text-white">recepcionista con voz IA</strong> que no duerme. Si el servicio pasa de 80 €, la tarjeta queda en garantía con <strong class="text-white">Stripe</strong>. Todo cae en un CRM central con métricas por centro.
+          </p>
+          <div class="grid grid-cols-4 gap-2 text-center">
+            <div class="panel rounded-2xl py-3"><div id="heroCentros" class="font-display font-extrabold text-2xl text-white">35</div><div class="text-[10px] text-stone-400 uppercase tracking-wider">centros</div></div>
+            <div class="panel rounded-2xl py-3"><div class="font-display font-extrabold text-2xl text-white">24/7</div><div class="text-[10px] text-stone-400 uppercase tracking-wider">atención</div></div>
+            <div class="panel rounded-2xl py-3"><div class="font-display font-extrabold text-2xl text-white">&lt;60s</div><div class="text-[10px] text-stone-400 uppercase tracking-wider">por reserva</div></div>
+            <div class="panel rounded-2xl py-3"><div class="font-display font-extrabold text-2xl text-eco-400">&gt;80€</div><div class="text-[10px] text-stone-400 uppercase tracking-wider">con garantía</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lane-stripe"></div>
+  </header>
+
+  <!-- NAV -->
+  <nav id="viewNav" class="sticky top-0 z-40 bg-night-900/90 backdrop-blur border-b border-night-700">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto scroll-thin" role="tablist">
+      <button class="tab-btn shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl border border-night-600 text-sm font-bold text-stone-200 hover:border-eco-400" data-view="web" aria-selected="true"><span class="tab-num w-5 h-5 rounded-md bg-night-700 grid place-items-center text-[10px] font-mono">01</span>Web y reservas</button>
+      <button class="tab-btn shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl border border-night-600 text-sm font-bold text-stone-200 hover:border-eco-400" data-view="wa" aria-selected="false"><span class="tab-num w-5 h-5 rounded-md bg-night-700 grid place-items-center text-[10px] font-mono">02</span>Agente WhatsApp IA</button>
+      <button class="tab-btn shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl border border-night-600 text-sm font-bold text-stone-200 hover:border-eco-400" data-view="voz" aria-selected="false"><span class="tab-num w-5 h-5 rounded-md bg-night-700 grid place-items-center text-[10px] font-mono">03</span>Recepcionista 24/7</button>
+      <button class="tab-btn shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl border border-night-600 text-sm font-bold text-stone-200 hover:border-eco-400" data-view="crm" aria-selected="false"><span class="tab-num w-5 h-5 rounded-md bg-night-700 grid place-items-center text-[10px] font-mono">04</span>CRM y métricas <span id="navNew" class="hidden badge bg-eco-400 text-night-900">+0</span></button>
+      <button class="tab-btn shrink-0 flex items-center gap-2 px-3.5 py-2 rounded-xl border border-night-600 text-sm font-bold text-stone-200 hover:border-eco-400" data-view="arq" aria-selected="false"><span class="tab-num w-5 h-5 rounded-md bg-night-700 grid place-items-center text-[10px] font-mono">05</span>Cómo funciona</button>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 sm:py-10">
+
+    <!-- ============ 01 WEB ============ -->
+    <section id="view-web" class="view active">
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-5">
+        <div>
+          <div class="text-[11px] font-bold uppercase tracking-[.18em] text-stone-400">001 / Web nueva</div>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">Reserva en 4 pasos, con precio real y huecos reales</h2>
+        </div>
+        <p class="text-sm text-stone-400 max-w-md">Prueba a reservar. Lo que confirmes aquí aparece al momento en el CRM (pestaña 04).</p>
+      </div>
+
+      <!-- Marco navegador -->
+      <div class="rounded-2xl overflow-hidden border border-night-600 shadow-2xl">
+        <div class="bg-night-800 px-4 py-2.5 flex items-center gap-3">
+          <div class="flex gap-1.5"><i class="w-3 h-3 rounded-full bg-[#ff5f57]"></i><i class="w-3 h-3 rounded-full bg-[#febc2e]"></i><i class="w-3 h-3 rounded-full bg-[#28c840]"></i></div>
+          <div class="flex-1 bg-night-900 rounded-lg px-3 py-1 text-xs font-mono text-stone-400 truncate">🔒 ecologiccarwash.es/reservar</div>
+        </div>
+
+        <div class="site">
+          <!-- cabecera web -->
+          <div class="bg-white border-b border-[#e3e9f2] px-5 py-3 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-[#1f4277] grid place-items-center text-[#c4f24a] font-black text-lg">e</div>
+              <div class="leading-none"><div class="font-display font-extrabold text-[#1f4277] text-lg tracking-tight">ecologic</div><div class="text-[9px] font-bold tracking-[.22em] text-[#4972b1]">CAR WASH PREMIUM</div></div>
+            </div>
+            <div class="hidden md:flex gap-5 text-[13px] font-semibold text-[#3a4a63]"><span>Servicios</span><span>Centros</span><span>Bonos regalo</span><span>Empresas y flotas</span></div>
+            <a href="#" onclick="return false" class="text-[12px] font-bold px-3 py-2 rounded-lg bg-[#c4f24a] text-[#0b1626]">💬 WhatsApp</a>
+          </div>
+
+          <div class="grid lg:grid-cols-[1fr_340px]">
+            <!-- WIZARD -->
+            <div class="p-5 sm:p-7">
+              <div class="flex items-center gap-2 mb-6 text-[12px] font-bold text-[#6b7a90]" id="stepper">
+                <span class="step-dot on" data-s="1">1</span><span>Centro</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
+                <span class="step-dot" data-s="2">2</span><span>Coche y servicio</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
+                <span class="step-dot" data-s="3">3</span><span>Día y hora</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
+                <span class="step-dot" data-s="4">4</span><span>Confirmar</span>
+              </div>
+
+              <!-- Paso 1 -->
+              <div data-step="1">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                  <h3 class="font-display font-bold text-2xl">¿En qué centro?</h3>
+                  <button onclick="Web.nearest()" class="text-[13px] font-bold px-3 py-2 rounded-lg bg-[#1f4277] text-white">📍 El más cercano a mí</button>
+                </div>
+                <input id="centroSearch" type="text" placeholder="Busca por ciudad o centro: Albacete, Goya, Diagonal…" class="mb-3">
+                <div id="comChips" class="flex flex-wrap gap-1.5 mb-4"></div>
+                <div id="centroList" class="grid sm:grid-cols-2 gap-2 max-h-[340px] overflow-y-auto scroll-thin pr-1"></div>
+              </div>
+
+              <!-- Paso 2 -->
+              <div data-step="2" class="hidden">
+                <h3 class="font-display font-bold text-2xl mb-3">¿Qué coche traes?</h3>
+                <div id="sizeOpts" class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6"></div>
+                <h3 class="font-display font-bold text-2xl mb-3">¿Qué le hacemos?</h3>
+                <div id="servOpts" class="space-y-4"></div>
+                <h4 class="font-bold text-sm mt-6 mb-2 text-[#3a4a63]">Extras</h4>
+                <div id="extraOpts" class="grid sm:grid-cols-2 gap-2"></div>
+              </div>
+
+              <!-- Paso 3 -->
+              <div data-step="3" class="hidden">
+                <h3 class="font-display font-bold text-2xl mb-1">¿Cuándo te viene bien?</h3>
+                <p class="text-[13px] text-[#6b7a90] mb-4">Huecos reales de los <strong>boxes</strong> del centro, teniendo en cuenta la duración del servicio.</p>
+                <div id="dayOpts" class="flex gap-2 overflow-x-auto scroll-thin pb-2 mb-4"></div>
+                <div id="slotOpts" class="grid grid-cols-4 sm:grid-cols-6 gap-2"></div>
+              </div>
+
+              <!-- Paso 4 -->
+              <div data-step="4" class="hidden">
+                <h3 class="font-display font-bold text-2xl mb-4">Tus datos</h3>
+                <div class="grid sm:grid-cols-2 gap-3">
+                  <input id="fNombre" type="text" placeholder="Nombre y apellidos" value="Lucía Navarro">
+                  <input id="fTel" type="tel" placeholder="Móvil (te confirmamos por WhatsApp)" value="611 204 587">
+                  <input id="fEmail" type="email" placeholder="Email" value="lucia.navarro@email.com">
+                  <input id="fCoche" type="text" placeholder="Marca, modelo y matrícula" value="SEAT Ateca · 4821 LMK">
+                </div>
+                <div id="loyaltyNote" class="mt-3 text-[13px] rounded-xl bg-[#eef6d9] border border-[#c9e58a] px-3 py-2 hidden"></div>
+
+                <div id="guaranteeBox" class="hidden mt-5">
+                  <div class="flex items-center justify-between mb-2">
+                    <h4 class="font-bold text-sm">🔒 Tarjeta en garantía <span class="font-normal text-[#6b7a90]">· no se cobra nada ahora</span></h4>
+                    <span class="text-[11px] font-bold text-[#635bff]">stripe</span>
+                  </div>
+                  <div class="stripe-box p-3">
+                    <div class="flex items-center gap-2 border-b border-[#eef0f3] pb-2 mb-2">
+                      <span>💳</span><input class="stripe-in" id="cardNum" value="4242 4242 4242 4242" aria-label="Número de tarjeta">
+                    </div>
+                    <div class="flex gap-3"><input class="stripe-in" value="12 / 28" aria-label="Caducidad"><input class="stripe-in" value="123" aria-label="CVC"><input class="stripe-in" value="02002" aria-label="Código postal"></div>
+                  </div>
+                  <p id="policyText" class="text-[12px] text-[#6b7a90] mt-2 leading-relaxed"></p>
+                </div>
+                <label class="flex items-start gap-2 text-[12px] text-[#6b7a90] mt-4"><input type="checkbox" checked class="mt-0.5"> Acepto la política de privacidad y recibir la confirmación y el recordatorio por WhatsApp.</label>
+              </div>
+
+              <!-- Éxito -->
+              <div data-step="5" class="hidden">
+                <div class="text-center py-6">
+                  <div class="w-16 h-16 mx-auto rounded-full bg-[#c4f24a] grid place-items-center text-3xl mb-3">✓</div>
+                  <h3 class="font-display font-extrabold text-3xl">¡Reserva confirmada!</h3>
+                  <p class="text-[#6b7a90] text-sm mt-1" id="okSub"></p>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div id="okTicket" class="rounded-2xl bg-white border border-[#dbe3ee] p-4 text-sm"></div>
+                  <div class="rounded-2xl bg-[#0b141a] p-4 text-[13px] text-[#e9edef]">
+                    <div class="text-[11px] text-[#8696a0] mb-2">WhatsApp enviado automáticamente · plantilla «confirmación»</div>
+                    <div class="bubble-in p-3 leading-relaxed" id="okWa"></div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap gap-2 justify-center mt-5">
+                  <button onclick="Web.reset()" class="text-[13px] font-bold px-4 py-2.5 rounded-xl border border-[#cdd7e5] bg-white">Hacer otra reserva</button>
+                  <button onclick="UI.go('crm')" class="text-[13px] font-bold px-4 py-2.5 rounded-xl bg-[#1f4277] text-white">Verla en el CRM →</button>
+                </div>
+              </div>
+
+              <div id="wizNav" class="flex items-center justify-between mt-6 pt-4 border-t border-[#e3e9f2]">
+                <button id="btnBack" onclick="Web.back()" class="text-[13px] font-bold px-4 py-2.5 rounded-xl border border-[#cdd7e5] bg-white invisible">← Atrás</button>
+                <button id="btnNext" onclick="Web.next()" class="text-[14px] font-extrabold px-5 py-3 rounded-xl bg-[#1f4277] text-white disabled:opacity-40" disabled>Continuar →</button>
+              </div>
+            </div>
+
+            <!-- RESUMEN -->
+            <aside class="bg-white border-t lg:border-t-0 lg:border-l border-[#e3e9f2] p-5 sm:p-6">
+              <div class="lg:sticky lg:top-24 space-y-4">
+                <div class="text-[11px] font-bold uppercase tracking-[.16em] text-[#6b7a90]">Tu reserva</div>
+                <div id="sumBox" class="space-y-3 text-[13px]"></div>
+                <div class="border-t border-dashed border-[#cdd7e5] pt-3 flex items-end justify-between">
+                  <span class="text-[13px] font-bold text-[#3a4a63]">Total en el centro</span>
+                  <span id="sumTotal" class="font-display font-extrabold text-3xl text-[#1f4277]">—</span>
+                </div>
+                <div id="sumGuarantee" class="hidden text-[12px] rounded-xl bg-[#f0eeff] border border-[#d6d1ff] text-[#3d33a8] px-3 py-2">🔒 Más de 80 €: te pediremos la tarjeta en garantía. Cancelación gratis hasta 24 h antes.</div>
+                <div class="rounded-xl bg-[#f6f8fb] p-3 text-[12px] text-[#3a4a63] leading-relaxed">💧 Lavado a mano y <strong>sin agua</strong>: tu reserva ahorra ≈150 L frente a un lavado tradicional.<br>🎁 Cada 4 lavados, <strong>30 € de regalo</strong> en el 5º. Lo contamos solos.</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auditoría -->
+      <div class="mt-10 grid lg:grid-cols-[1fr_1.4fr] gap-6 items-start">
+        <div>
+          <div class="text-[11px] font-bold uppercase tracking-[.18em] text-stone-400">Por qué una web nueva</div>
+          <h3 class="font-display font-bold text-3xl text-white mt-1 leading-tight">La web actual pide 13 datos y no enseña ni precio ni huecos.</h3>
+          <p class="text-sm text-stone-400 mt-3 leading-relaxed">Durante nuestra revisión (20/10/2026) las páginas de <strong class="text-stone-200">servicios, tarifas y tienda</strong> respondían «sitio en mantenimiento» (error 503). Cada hora caída es una reserva que se va a otro lavadero.</p>
+        </div>
+        <div class="panel rounded-2xl overflow-hidden">
+          <table class="w-full text-[13px]">
+            <thead><tr class="text-left text-[11px] uppercase tracking-wider text-stone-400"><th class="p-3"></th><th class="p-3">Hoy</th><th class="p-3 text-eco-400">Con Altera</th></tr></thead>
+            <tbody class="divide-y divide-night-700">
+              <tr><td class="p-3 font-bold text-stone-200">Formulario</td><td class="p-3 text-stone-400">13 campos en una pantalla</td><td class="p-3 text-white">4 pasos guiados, &lt;60 s</td></tr>
+              <tr><td class="p-3 font-bold text-stone-200">Precio</td><td class="p-3 text-stone-400">En otra página, tabla de 4 tamaños</td><td class="p-3 text-white">Calculado al elegir coche</td></tr>
+              <tr><td class="p-3 font-bold text-stone-200">Disponibilidad</td><td class="p-3 text-stone-400">Hora libre, sin saber si hay box</td><td class="p-3 text-white">Huecos reales por box y duración</td></tr>
+              <tr><td class="p-3 font-bold text-stone-200">No-shows</td><td class="p-3 text-stone-400">Sin garantía</td><td class="p-3 text-white">Stripe guarda tarjeta &gt;80 €</td></tr>
+              <tr><td class="p-3 font-bold text-stone-200">Canales</td><td class="p-3 text-stone-400">35 móviles distintos</td><td class="p-3 text-white">Web + WhatsApp + voz IA, un CRM</td></tr>
+              <tr><td class="p-3 font-bold text-stone-200">SEO local</td><td class="p-3 text-stone-400">Fichas de centro básicas</td><td class="p-3 text-white">35 landings «lavado de coches en El Corte Inglés de …»</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 WHATSAPP ============ -->
+    <section id="view-wa" class="view">
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-6">
+        <div>
+          <div class="text-[11px] font-bold uppercase tracking-[.18em] text-stone-400">002 / Agente WhatsApp IA</div>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">Escribe como un cliente. Eco reserva.</h2>
+        </div>
+        <p class="text-sm text-stone-400 max-w-md">Entiende ciudad, tipo de coche, servicio y día en una sola frase. Solo pregunta lo que falta y consulta la agenda real del centro.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-[380px_1fr] gap-8 items-start">
+        <div class="phone mx-auto w-full max-w-[380px] h-[700px] flex flex-col overflow-hidden bg-[#0b141a]">
+          <div class="bg-[#202c33] px-4 py-3 flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-[#1f4277] grid place-items-center text-[#c4f24a] font-black">e</div>
+            <div class="flex-1 leading-tight"><div class="text-[15px] font-semibold text-[#e9edef]">Ecologic Car Wash <span class="text-[#00a884]">✔</span></div><div id="waStatus" class="text-[11px] text-[#8696a0]">cuenta de empresa · responde al instante</div></div>
+            <button onclick="WA.reset()" title="Reiniciar conversación" class="text-[#8696a0] text-lg">↻</button>
+          </div>
+          <div id="waChat" class="wa-wall flex-1 overflow-y-auto scroll-thin p-3 space-y-2 text-[13.5px] text-[#e9edef]"></div>
+          <div id="waQuick" class="bg-[#0b141a] px-2 pt-2 flex flex-wrap gap-1.5"></div>
+          <form id="waForm" class="bg-[#202c33] p-2 flex gap-2">
+            <input id="waInput" autocomplete="off" class="flex-1 rounded-full bg-[#2a3942] text-[#e9edef] px-4 py-2.5 text-sm outline-none placeholder-[#8696a0]" placeholder="Escribe un mensaje">
+            <button class="w-10 h-10 rounded-full bg-[#00a884] text-white grid place-items-center">➤</button>
+          </form>
+        </div>
+
+        <div class="space-y-5">
+          <div class="panel rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-display font-bold text-xl text-white">Lo que Eco ha entendido</h3>
+              <span class="badge bg-night-700 text-stone-300 font-mono">estado de la conversación</span>
+            </div>
+            <div id="waSlots" class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[13px]"></div>
+          </div>
+          <div class="panel rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-display font-bold text-xl text-white">Acciones en el sistema</h3>
+              <span class="badge bg-night-700 text-stone-300 font-mono">tool calls</span>
+            </div>
+            <ul id="waLog" class="tool-log space-y-2 font-mono text-[12px] text-stone-300 max-h-[300px] overflow-y-auto scroll-thin"></ul>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-3 text-[13px]">
+            <div class="panel rounded-2xl p-4"><div class="text-eco-400 font-bold mb-1">Recordatorios</div><div class="text-stone-400">24 h y 2 h antes, con botón «cancelar» que libera el hueco.</div></div>
+            <div class="panel rounded-2xl p-4"><div class="text-eco-400 font-bold mb-1">Paso a humano</div><div class="text-stone-400">Quejas o casos raros: aviso al encargado del centro con el chat completo.</div></div>
+            <div class="panel rounded-2xl p-4"><div class="text-eco-400 font-bold mb-1">Reactivación</div><div class="text-stone-400">Clientes con +90 días sin venir reciben su oferta. Ellos mismos recomiendan cada 2-3 meses.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 VOZ ============ -->
+    <section id="view-voz" class="view">
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-6">
+        <div>
+          <div class="text-[11px] font-bold uppercase tracking-[.18em] text-stone-400">003 / Recepcionista telefónica 24/7</div>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">En un parking subterráneo, el teléfono no siempre se puede coger.<br class="hidden sm:block"> Eco lo coge por vosotros.</h2>
+        </div>
+        <p class="text-sm text-stone-400 max-w-md">Un número único (o los 35 actuales desviados). Voz natural de ElevenLabs, reserva en la agenda real y envía el enlace de Stripe por WhatsApp.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-[380px_1fr] gap-8 items-start">
+        <div class="phone mx-auto w-full max-w-[380px] h-[640px] bg-gradient-to-b from-night-800 to-night-950 flex flex-col items-center justify-between p-6 text-center">
+          <div class="w-full flex justify-between text-[11px] text-stone-400 font-mono"><span id="callClock">23:47</span><span>📶 🔋</span></div>
+          <div>
+            <div id="callAvatar" class="w-28 h-28 mx-auto rounded-full bg-[#1f4277] grid place-items-center text-5xl text-eco-400 font-black mb-4">e</div>
+            <div class="font-display font-bold text-2xl text-white">Ecologic · Eco</div>
+            <div id="callState" class="text-sm text-stone-400 mt-1">Recepcionista IA · fuera de horario</div>
+            <div id="callTimer" class="font-mono text-eco-400 mt-1 h-5"></div>
+          </div>
+          <div class="wave h-10 flex items-center justify-center" id="wave">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div id="callChoices" class="w-full space-y-2"></div>
+          <div class="flex items-center justify-center gap-8">
+            <button id="btnCall" onclick="VOZ.start()" class="ring w-16 h-16 rounded-full bg-eco-400 text-night-900 text-2xl grid place-items-center" aria-label="Llamar">📞</button>
+            <button id="btnHang" onclick="VOZ.hang()" class="hidden w-16 h-16 rounded-full bg-[#e5484d] text-white text-2xl grid place-items-center" aria-label="Colgar">✕</button>
+          </div>
+        </div>
+
+        <div class="space-y-5">
+          <div class="panel rounded-2xl p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <h3 class="font-display font-bold text-xl text-white">Transcripción en directo</h3>
+              <label class="flex items-center gap-2 text-[12px] text-stone-300"><input type="checkbox" id="toggleSpeech" checked> Escuchar la voz</label>
+            </div>
+            <div id="transcript" class="space-y-2.5 text-[13.5px] max-h-[360px] overflow-y-auto scroll-thin">
+              <p class="text-stone-500 text-sm">Pulsa el botón verde para llamar a las 23:47, con todos los centros cerrados.</p>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3 text-[13px]">
+            <div class="panel rounded-2xl p-4">
+              <div class="text-eco-400 font-bold mb-1">🎙️ Voz: <span id="voiceName">Laura · español peninsular</span></div>
+              <div class="text-stone-400">Voz natural de ElevenLabs en español, la misma que contestaría vuestro teléfono.</div>
+              <button data-altera-dev onclick="UI.openEleven()" class="mt-2 text-[12px] font-bold text-eco-400 underline">Configurar ElevenLabs</button>
+            </div>
+            <div class="panel rounded-2xl p-4">
+              <div class="text-eco-400 font-bold mb-1">📋 Ficha de la llamada</div>
+              <div class="text-stone-400">Resumen, intención, duración y grabación en el CRM. Si piden a una persona, se transfiere al móvil del centro en horario.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 CRM ============ -->
+    <section id="view-crm" class="view">
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-6">
+        <div>
+          <div class="text-[11px] font-bold uppercase tracking-[.18em] text-stone-400">004 / CRM y métricas</div>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">Dirección ve los 35. Cada encargado, el suyo.</h2>
+        </div>
+        <div class="flex flex-wrap gap-2 items-center">
+          <select id="crmCentro" class="bg-night-850 border border-night-600 rounded-xl px-3 py-2 text-sm text-white"></select>
+          <div class="flex rounded-xl border border-night-600 overflow-hidden text-sm" id="crmRange">
+            <button data-d="7" class="px-3 py-2 text-stone-300">7 d</button><button data-d="30" class="px-3 py-2 bg-night-700 text-white font-bold">30 d</button><button data-d="90" class="px-3 py-2 text-stone-300">90 d</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="kpis" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 mb-6"></div>
+
+      <div class="grid xl:grid-cols-[1.35fr_1fr] gap-5 mb-6">
+        <div class="panel rounded-2xl p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+            <h3 class="font-display font-bold text-lg text-white">Reservas por canal y semana</h3>
+            <button class="text-[12px] text-stone-400 underline" onclick="CRM.toggleTable('chanTable')">Ver tabla</button>
+          </div>
+          <div id="chanLegend" class="flex flex-wrap gap-3 text-[12px] text-stone-300 mb-2"></div>
+          <div id="chanChart" class="w-full"></div>
+          <div id="chanTable" class="hidden mt-3 overflow-x-auto text-[12px]"></div>
+        </div>
+        <div class="panel rounded-2xl p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+            <h3 id="rankTitle" class="font-display font-bold text-lg text-white">Ingresos reservados · top centros</h3>
+            <button class="text-[12px] text-stone-400 underline" onclick="CRM.toggleTable('rankTable')">Ver tabla</button>
+          </div>
+          <div id="rankChart"></div>
+          <div id="rankTable" class="hidden mt-3 overflow-x-auto text-[12px]"></div>
+        </div>
+      </div>
+
+      <div class="grid xl:grid-cols-[1fr_1.35fr] gap-5 mb-6">
+        <div class="panel rounded-2xl p-5">
+          <h3 class="font-display font-bold text-lg text-white mb-1">Ocupación de boxes · día y hora</h3>
+          <p class="text-[12px] text-stone-400 mb-3">Dónde sobran huecos: ahí van las campañas de WhatsApp.</p>
+          <div id="heatmap"></div>
+        </div>
+        <div class="panel rounded-2xl p-5">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <h3 class="font-display font-bold text-lg text-white">Próximas reservas</h3>
+            <div class="flex gap-1.5 text-[12px]" id="tblFilter">
+              <button data-f="all" class="whitespace-nowrap px-2.5 py-1 rounded-lg bg-night-700 text-white font-bold">Todas</button>
+              <button data-f="gar" class="whitespace-nowrap px-2.5 py-1 rounded-lg text-stone-300">🔒 Con garantía</button>
+              <button data-f="new" class="whitespace-nowrap px-2.5 py-1 rounded-lg text-stone-300">✨ Demo</button>
+            </div>
+          </div>
+          <div class="overflow-x-auto scroll-thin max-h-[420px]">
+            <table class="w-full text-[12.5px]">
+              <thead class="sticky top-0 bg-night-850"><tr class="text-left text-[10.5px] uppercase tracking-wider text-stone-400"><th class="py-2 pr-2">Cuándo</th><th class="py-2 pr-2">Cliente</th><th class="py-2 pr-2">Centro · servicio</th><th class="py-2 pr-2">Canal</th><th class="py-2 pr-2 text-right">Importe</th><th class="py-2">Estado</th></tr></thead>
+              <tbody id="bookTbl" class="divide-y divide-night-700"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-3" id="automations"></div>
+    </section>
+
+    <!-- ============ 05 ARQUITECTURA ============ -->
+    <section id="view-arq" class="view">
+      <div class="mb-6">
+        <div class="text-[11px] font-bold uppercase tracking-[.18em] text-stone-400">005 / Cómo funciona</div>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">Tres canales, una agenda, un CRM.</h2>
+      </div>
+      <div class="panel rounded-2xl p-4 sm:p-6 overflow-x-auto">
+        <svg viewBox="0 0 1100 470" class="w-full min-w-[760px]" role="img" aria-label="Arquitectura: web, WhatsApp y teléfono entran al motor de reservas en Supabase, que conecta con Stripe y con el CRM">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8fb3e6"/></marker>
+          </defs>
+          <g font-family="Figtree" font-size="13" fill="#e6edf7">
+            <!-- Canales -->
+            <text x="20" y="28" fill="#9aa8bd" font-size="11" font-weight="700" letter-spacing="2">CANALES</text>
+            <rect x="20" y="45" width="220" height="80" rx="16" fill="#16243b" stroke="#34486a"/><text x="40" y="78" font-weight="800" font-size="15">🌐 Web de reservas</text><text x="40" y="102" fill="#9aa8bd">Next.js · 35 landings SEO</text>
+            <rect x="20" y="160" width="220" height="80" rx="16" fill="#16243b" stroke="#34486a"/><text x="40" y="193" font-weight="800" font-size="15">💬 WhatsApp Business</text><text x="40" y="217" fill="#9aa8bd">API oficial de Meta</text>
+            <rect x="20" y="275" width="220" height="80" rx="16" fill="#16243b" stroke="#34486a"/><text x="40" y="308" font-weight="800" font-size="15">📞 Teléfono 24/7</text><text x="40" y="332" fill="#9aa8bd">ElevenLabs Agents + nº virtual</text>
+            <!-- IA -->
+            <rect x="330" y="140" width="230" height="120" rx="18" fill="#1f4277" stroke="#5d8fd6"/>
+            <text x="350" y="178" font-weight="800" font-size="16">🧠 Agente IA «Eco»</text>
+            <text x="350" y="202" fill="#cfe0f7">Claude · reglas del negocio</text>
+            <text x="350" y="224" fill="#cfe0f7">tarifas, 35 centros, políticas</text>
+            <text x="350" y="246" fill="#cfe0f7">herramientas (tool calls)</text>
+            <!-- Motor -->
+            <rect x="640" y="95" width="240" height="210" rx="18" fill="#0b1626" stroke="#c4f24a" stroke-width="2"/>
+            <text x="660" y="132" font-weight="800" font-size="16" fill="#c4f24a">⚙️ Motor de reservas</text>
+            <text x="660" y="156" fill="#9aa8bd">Supabase · PostgreSQL</text>
+            <text x="660" y="188">· centros, boxes, horarios</text>
+            <text x="660" y="210">· huecos según duración</text>
+            <text x="660" y="232">· anti doble reserva (BD)</text>
+            <text x="660" y="254">· clientes y fidelidad 4+1</text>
+            <text x="660" y="276">· permisos por centro (RLS)</text>
+            <!-- Stripe / CRM / notifs -->
+            <rect x="950" y="45" width="135" height="80" rx="16" fill="#16243b" stroke="#635bff"/><text x="966" y="78" font-weight="800">💳 Stripe</text><text x="966" y="100" fill="#9aa8bd" font-size="12">tarjeta en garantía</text>
+            <rect x="950" y="160" width="135" height="80" rx="16" fill="#16243b" stroke="#34486a"/><text x="966" y="193" font-weight="800">📊 CRM</text><text x="966" y="215" fill="#9aa8bd" font-size="12">dashboard y métricas</text>
+            <rect x="950" y="275" width="135" height="80" rx="16" fill="#16243b" stroke="#34486a"/><text x="966" y="308" font-weight="800">🔔 Avisos</text><text x="966" y="330" fill="#9aa8bd" font-size="12">recordatorios, reseñas</text>
+            <!-- Flechas -->
+            <g stroke="#8fb3e6" stroke-width="2" fill="none" marker-end="url(#ar)">
+              <path d="M240 85 C 450 85, 520 110, 636 140"/>
+              <path d="M240 200 L 326 200"/>
+              <path d="M240 315 C 290 315, 300 260, 326 245"/>
+              <path d="M560 200 L 636 200"/>
+              <path d="M880 150 C 910 120, 920 90, 946 85"/>
+              <path d="M880 200 L 946 200"/>
+              <path d="M880 250 C 910 280, 920 310, 946 315"/>
+            </g>
+            <!-- Pie -->
+            <rect x="20" y="395" width="1065" height="56" rx="14" fill="#101c30" stroke="#22334f"/>
+            <text x="40" y="428" fill="#9aa8bd">Una reserva entra por cualquier canal → el agente consulta huecos reales → bloquea el box → si pasa de 80 € pide garantía en Stripe → confirma por WhatsApp → aparece en el CRM del centro y en el de dirección.</text>
+          </g>
+        </svg>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 mt-6 text-[13px]">
+        <div class="panel rounded-2xl p-5"><div class="font-display font-bold text-lg text-white mb-2">Por qué Supabase y no Airtable</div><p class="text-stone-400 leading-relaxed">Con 35 centros reservando a la vez hace falta que la propia base de datos impida dos coches en el mismo box. Airtable limita a 5 peticiones por segundo y no bloquea solapes. Si los encargados quieren una «hoja», se sincroniza una vista de solo lectura.</p></div>
+        <div class="panel rounded-2xl p-5"><div class="font-display font-bold text-lg text-white mb-2">Stripe sin fricción</div><p class="text-stone-400 leading-relaxed">Por encima de 80 € se guarda la tarjeta sin cobrar nada (SetupIntent). Cancelar hasta 24 h antes es gratis; si no se presenta, el encargado cobra la penalización con un clic desde el CRM.</p></div>
+        <div class="panel rounded-2xl p-5"><div class="font-display font-bold text-lg text-white mb-2">RGPD y control</div><p class="text-stone-400 leading-relaxed">Datos alojados en la UE, permisos por centro, registro de consentimientos y conversaciones. El agente nunca inventa precios: solo usa la tarifa oficial cargada en el sistema.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-night-700 mt-6">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex flex-wrap justify-between gap-3 text-[12px] text-stone-500">
+      <span>Prototipo de <strong class="text-stone-300">Altera Soluciones Tecnológicas</strong> para Ecologic Car Wash Premium (CAR WASH RESORT SL). Centros y tarifas de su web pública; reservas, clientes y métricas son simulados.</span>
+      <a href="propuesta.html" class="text-eco-400 font-bold">Ver propuesta económica →</a>
+    </div>
+  </footer>
+
+  <!-- Modal ElevenLabs -->
+  <div id="elevenModal" class="fixed inset-0 z-[90] hidden bg-black/70 backdrop-blur-sm grid place-items-center p-4">
+    <div class="panel rounded-2xl w-full max-w-md p-6">
+      <div class="flex justify-between items-center mb-3"><h3 class="font-display font-bold text-xl text-white">🎙️ Conectar ElevenLabs</h3><button onclick="UI.closeEleven()" class="text-stone-400 text-xl">✕</button></div>
+      <p class="text-[13px] text-stone-400 mb-3">Es la misma clave que usan las demos de Vibra, Ángela, Salón 224… Si ya la pusiste en otra demo del catálogo, aquí aparece sola. Se guarda solo en este navegador.</p>
+      <div class="flex gap-2"><input id="eleven-api-key" type="password" placeholder="sk_..." class="flex-1 bg-night-900 border border-night-600 rounded-xl px-3 py-2.5 text-sm text-white font-mono outline-none focus:border-eco-400"><button onclick="UI.toggleKey()" class="px-3 rounded-xl border border-night-600 text-stone-300">👁️</button></div>
+      <select id="eleven-voice-select" class="mt-3 w-full bg-night-900 border border-night-600 rounded-xl px-3 py-2.5 text-sm text-white">
+        <option value="uQw4jpKzMLrZuo0RLPS9">Laura · Customer Service (español peninsular) ⭐</option>
+        <option value="mGlMpcOq63YZLdidTVyo">Dino · urbano y enérgico (español peninsular)</option>
+        <option value="21m00Tcm4TlvDq8ikWAM">Rachel · voz cálida</option>
+      </select>
+      <div id="eleven-status-msg" class="text-[12px] mt-3 hidden"></div>
+      <div class="flex gap-2 mt-4">
+        <button onclick="UI.saveEleven()" class="flex-1 py-2.5 rounded-xl bg-eco-400 text-night-900 font-extrabold">Guardar y comprobar</button>
+        <button onclick="UI.testVoice()" class="px-4 py-2.5 rounded-xl border border-night-600 text-white font-bold">🔊 Probar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Stripe Checkout (enlace desde WhatsApp / voz) -->
+  <div id="stripeModal" class="fixed inset-0 z-[90] hidden bg-black/70 backdrop-blur-sm grid place-items-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden text-[#30313d]">
+      <div class="px-5 py-4 border-b border-[#eef0f3] flex justify-between items-center"><span class="font-bold">Ecologic Car Wash</span><span class="text-[12px] font-bold text-[#635bff]">stripe · modo test</span></div>
+      <div class="p-5 space-y-3">
+        <div class="text-[13px] text-[#6b7280]">Guardar tarjeta para la reserva</div>
+        <div id="stripeSum" class="text-[14px] font-semibold"></div>
+        <div class="stripe-box p-3"><div class="flex items-center gap-2 border-b border-[#eef0f3] pb-2 mb-2"><span>💳</span><input class="stripe-in" value="4242 4242 4242 4242" aria-label="Número de tarjeta"></div><div class="flex gap-3"><input class="stripe-in" value="12 / 28" aria-label="Caducidad"><input class="stripe-in" value="123" aria-label="CVC"></div></div>
+        <p id="stripePolicy" class="text-[11.5px] text-[#6b7280] leading-relaxed"></p>
+        <button id="stripeBtn" class="w-full py-3 rounded-lg bg-[#635bff] text-white font-bold">Guardar tarjeta · 0,00 € ahora</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer cliente -->
+  <div id="drawer" class="drawer fixed top-0 right-0 h-full w-full max-w-md z-[85] bg-night-900 border-l border-night-600 shadow-2xl overflow-y-auto scroll-thin"></div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast fixed bottom-4 inset-x-0 z-[95] flex justify-center px-3 pointer-events-none">
+    <div class="pointer-events-auto max-w-[92vw] bg-eco-400 text-night-900 font-bold text-sm px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3"><span id="toastMsg"></span><button onclick="UI.go('crm')" class="underline whitespace-nowrap">Ver en CRM</button></div>
+  </div>
+  <div id="chartTip" class="chart-tip"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
