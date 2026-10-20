@@ -9,6 +9,9 @@
   const cfg = window.ALTERA_CONFIG || {};
   if (!cfg.whatsapp) return;
   const oferta = cfg.oferta || {};
+  // Texto bajo «Lo quiero»: por defecto el precio con ayuda; una demo puede fijar oferta.lema (sin precio)
+  const lema = oferta.lema || `Desde ${oferta.costeCliente || ''} con la ayuda JCCM`;
+  const lemaCorto = oferta.lema || `Desde ${oferta.costeCliente || ''} con ayuda JCCM`;
   const negocio = (document.querySelector('meta[property="og:site_name"]') || {}).content || document.title.split(/[—|·-]/)[0].trim();
 
   function render() {
@@ -21,14 +24,14 @@
     a.innerHTML = `<span style="font-size:20px;line-height:1">💬</span>
       <span style="display:flex;flex-direction:column;line-height:1.15;text-align:left">
         <strong style="font-size:14px">Lo quiero en mi negocio</strong>
-        <span style="font-size:11px;opacity:.9">Desde ${oferta.costeCliente || ''} con la ayuda JCCM</span>
+        <span style="font-size:11px;opacity:.9">${lema}</span>
       </span>`;
     const slot = document.querySelector('[data-altera-cta-slot]');
     if (slot) {
       a.innerHTML = `<span style="font-size:16px;line-height:1">💬</span>
         <span style="display:flex;flex-direction:column;line-height:1.1;text-align:left">
           <strong style="font-size:13px">Lo quiero</strong>
-          <span style="font-size:10px;opacity:.9">Desde ${oferta.costeCliente || ''} con ayuda JCCM</span>
+          <span style="font-size:10px;opacity:.9">${lemaCorto}</span>
         </span>`;
       a.style.cssText = [
         'display:inline-flex', 'align-items:center', 'gap:7px', 'min-height:40px', 'padding:5px 14px 5px 11px',
