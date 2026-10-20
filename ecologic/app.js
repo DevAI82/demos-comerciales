@@ -301,6 +301,9 @@ const Web = {
     const st = this.st;
     $$('[data-step]').forEach(el => el.classList.toggle('hidden', +el.dataset.step !== st.step));
     $$('#stepper .step-dot').forEach(d => { const n = +d.dataset.s; d.classList.toggle('on', n === st.step); d.classList.toggle('done', n < st.step); d.textContent = n < st.step ? '✓' : n; });
+    const stepLabels = ['Centro', 'Coche y servicio', 'Día y hora', 'Confirmar'];
+    const mobileLabel = $('#stepperMobileLabel');
+    if (mobileLabel) mobileLabel.textContent = `Paso ${st.step} de 4 · ${stepLabels[st.step - 1]}`;
     if (st.step === 1) this.renderCentros();
     if (st.step === 2) this.renderServ();
     if (st.step === 3) this.renderTime();

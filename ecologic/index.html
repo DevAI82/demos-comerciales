@@ -98,6 +98,27 @@
     .tool-log li { border-left: 2px solid var(--line); }
     .tool-log li.hot { border-left-color: var(--eco); }
 
+    /* Fix overflow horizontal en móvil: los flex items con texto largo
+       (nombre de centro+teléfono, servicio+precio, etc.) desbordaban por
+       min-width:auto por defecto en flexbox. Forzamos min-width:0 y permitimos
+       salto de línea solo donde hace falta, sin tocar el layout de escritorio. */
+    html, body { overflow-x: hidden; }
+    #sumBox .flex.justify-between > span,
+    .opt .flex.items-center.justify-between > span,
+    label.opt > span { min-width: 0; }
+    #sumBox .flex.justify-between > span:last-child,
+    .opt .flex.items-center.justify-between > span.text-right { text-align: right; overflow-wrap: anywhere; }
+    @media (max-width: 480px) {
+      #sumBox .flex.justify-between { flex-wrap: wrap; row-gap: 2px; }
+      #sumBox .flex.justify-between > span:first-child { flex: 1 1 auto; }
+      #sumBox .flex.justify-between > span:last-child { flex: 1 1 auto; text-align: right; }
+      /* Stepper compacto: solo círculos + línea, oculta las etiquetas de texto
+         que no caben en 4 pasos sobre una pantalla de ~390px de ancho. */
+      #stepper { gap: 4px; }
+      #stepper .step-label { display: none; }
+      #stepper .step-dot { flex-shrink: 0; width: 24px; height: 24px; font-size: 11px; }
+    }
+
     /* Voz */
     .wave i { display: inline-block; width: 4px; margin: 0 2px; border-radius: 4px; background: var(--eco); height: 8px; transition: height .12s; }
     .wave.live i { animation: wv 0.9s ease-in-out infinite; }
@@ -210,11 +231,12 @@
             <!-- WIZARD -->
             <div class="p-5 sm:p-7">
               <div class="flex items-center gap-2 mb-6 text-[12px] font-bold text-[#6b7a90]" id="stepper">
-                <span class="step-dot on" data-s="1">1</span><span>Centro</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
-                <span class="step-dot" data-s="2">2</span><span>Coche y servicio</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
-                <span class="step-dot" data-s="3">3</span><span>Día y hora</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
-                <span class="step-dot" data-s="4">4</span><span>Confirmar</span>
+                <span class="step-dot on" data-s="1">1</span><span class="step-label">Centro</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
+                <span class="step-dot" data-s="2">2</span><span class="step-label">Coche y servicio</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
+                <span class="step-dot" data-s="3">3</span><span class="step-label">Día y hora</span><span class="flex-1 h-px bg-[#dbe3ee]"></span>
+                <span class="step-dot" data-s="4">4</span><span class="step-label">Confirmar</span>
               </div>
+              <div id="stepperMobileLabel" class="sm:hidden -mt-4 mb-5 text-[12px] font-bold text-[#6b7a90]"></div>
 
               <!-- Paso 1 -->
               <div data-step="1">
