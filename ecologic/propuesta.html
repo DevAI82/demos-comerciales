@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Ecologic Car Wash · Altera</title>
+  <meta name="description" content="Propuesta de Altera para Ecologic Car Wash Premium: web de reservas por centro, agente de WhatsApp con IA, recepcionista telefónica 24/7, garantía anti no-show con Stripe y CRM central para 35 centros.">
+  <meta property="og:title" content="Propuesta · Ecologic Car Wash × Altera">
+  <meta property="og:image" content="og-ecologic.jpg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display: ['"Bricolage Grotesque"', 'sans-serif'], sans: ['Figtree', 'sans-serif'], mono: ['"JetBrains Mono"', 'monospace'] },
+      colors: { night: { 900: '#0b1626', 800: '#16243b', 700: '#22334f' }, eco: { 400: '#c4f24a', 600: '#7fae12' }, brand: { 500: '#4972b1', 700: '#1f4277', 900: '#0e2547' } } } } };
+  </script>
+  <style>
+    body { font-family: Figtree, sans-serif; background: #f4f6f9; color: #0e1b2e; -webkit-font-smoothing: antialiased; }
+    .font-display { letter-spacing: -0.02em; }
+    .lane { background: repeating-linear-gradient(90deg, #c4f24a 0 38px, transparent 38px 64px); height: 4px; }
+    .card { background: #fff; border: 1px solid #dfe5ee; border-radius: 20px; }
+    input[type=range] { accent-color: #1f4277; width: 100%; }
+    @media print { .no-print { display: none !important; } body { background: #fff; } .card { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+
+  <header class="bg-night-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-60" style="background: radial-gradient(800px 360px at 10% -10%, rgba(73,114,177,.55), transparent 60%), radial-gradient(600px 300px at 100% 0%, rgba(196,242,74,.14), transparent 60%);"></div>
+    <div class="relative max-w-5xl mx-auto px-5 pt-8 pb-12">
+      <div class="flex flex-wrap justify-between items-center gap-3 text-xs no-print">
+        <span class="font-mono font-bold text-eco-400">ALTERA · Soluciones Tecnológicas</span>
+        <div class="flex gap-2">
+          <a href="./" class="px-3 py-1.5 rounded-lg bg-eco-400 text-night-900 font-bold">▶ Abrir demo interactiva</a>
+          <button onclick="print()" class="px-3 py-1.5 rounded-lg border border-white/20">🖨️ Imprimir / PDF</button>
+        </div>
+      </div>
+      <div class="mt-10 text-[11px] font-bold uppercase tracking-[.2em] text-eco-400">Propuesta comercial · octubre 2026</div>
+      <h1 class="font-display font-extrabold text-4xl sm:text-6xl leading-[.95] mt-3">Ecologic Car Wash:<br>que ningún coche se quede<br>sin reservar.</h1>
+      <p class="mt-5 max-w-2xl text-stone-300 leading-relaxed">Para <strong class="text-white">CAR WASH RESORT SL</strong> · 35 centros en parkings de El Corte Inglés. Web de reservas por centro, agente de WhatsApp con IA, recepcionista telefónica 24/7 con voz natural, garantía anti no-show con Stripe y un CRM central con métricas de toda la red.</p>
+    </div>
+    <div class="lane"></div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-5 py-12 space-y-14">
+
+    <!-- 1. Diagnóstico -->
+    <section>
+      <div class="text-[11px] font-bold uppercase tracking-[.18em] text-brand-500">01 · Diagnóstico</div>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-1">Lo que hemos visto en vuestra web y canales</h2>
+      <div class="grid md:grid-cols-2 gap-4 mt-6">
+        <div class="card p-5"><div class="text-2xl">🛑</div><h3 class="font-bold text-lg mt-2">Web caída en las páginas que venden</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">El 20/10/2026, servicios, tarifas, tienda de bonos y las fichas de servicio devolvían «sitio en mantenimiento» (error 503). Solo cargaba la portada. Quien busca precio en Google se va a otro lavadero.</p></div>
+        <div class="card p-5"><div class="text-2xl">📝</div><h3 class="font-bold text-lg mt-2">Reserva larga y a ciegas</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">13 campos en una pantalla, sin precio ni duración, y una hora libre que no sabe si hay box disponible. En móvil, que es donde se reserva, es donde más se abandona.</p></div>
+        <div class="card p-5"><div class="text-2xl">📵</div><h3 class="font-bold text-lg mt-2">35 móviles en un sótano</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">Cada centro tiene su número y está en un parking subterráneo, con poca cobertura y el personal con las manos ocupadas. Las llamadas en mitad de un lavado, por la noche o en domingo, se pierden.</p></div>
+        <div class="card p-5"><div class="text-2xl">🕳️</div><h3 class="font-bold text-lg mt-2">No-shows en los servicios caros</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">Un Total premium o un detailing bloquea un box entre 2,5 h y medio día. Si el cliente no aparece, ese hueco no se recupera. Hoy no se pide ninguna garantía.</p></div>
+      </div>
+    </section>
+
+    <!-- 2. Solución -->
+    <section>
+      <div class="text-[11px] font-bold uppercase tracking-[.18em] text-brand-500">02 · Solución</div>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-1">Cinco piezas, una sola agenda</h2>
+      <div class="mt-6 space-y-3">
+        <div class="card p-5 grid sm:grid-cols-[56px_1fr] gap-4"><div class="w-12 h-12 rounded-2xl bg-brand-700 text-eco-400 grid place-items-center text-xl font-black">1</div><div><h3 class="font-display font-bold text-xl">Web nueva con reserva en 4 pasos</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">Centro (con «el más cercano a mí») → coche y servicio con precio exacto según tamaño → huecos reales por box → datos. Menos de un minuto. 35 páginas locales «lavado de coches en El Corte Inglés de …» para posicionar cada centro en Google y Maps. Tienda de bonos regalo integrada.</p></div></div>
+        <div class="card p-5 grid sm:grid-cols-[56px_1fr] gap-4"><div class="w-12 h-12 rounded-2xl bg-brand-700 text-eco-400 grid place-items-center text-xl font-black">2</div><div><h3 class="font-display font-bold text-xl">Agente de WhatsApp con IA</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">Sobre la API oficial de WhatsApp Business. Entiende «completo para un SUV el sábado por la mañana en Goya», pregunta solo lo que falta, consulta la agenda, reserva, confirma y recuerda. Responde dudas (sin agua, duración, horario), cancela liberando el hueco y pasa a una persona cuando hace falta.</p></div></div>
+        <div class="card p-5 grid sm:grid-cols-[56px_1fr] gap-4"><div class="w-12 h-12 rounded-2xl bg-brand-700 text-eco-400 grid place-items-center text-xl font-black">3</div><div><h3 class="font-display font-bold text-xl">Recepcionista telefónica 24/7 con voz ElevenLabs</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">Un número único (o desvío de los 35 actuales cuando no se coge). Voz natural en español, misma lógica que WhatsApp: reserva en la agenda real y envía por WhatsApp la confirmación y, si hace falta, el enlace de Stripe. Cada llamada queda en el CRM con resumen y grabación.</p></div></div>
+        <div class="card p-5 grid sm:grid-cols-[56px_1fr] gap-4"><div class="w-12 h-12 rounded-2xl bg-brand-700 text-eco-400 grid place-items-center text-xl font-black">4</div><div><h3 class="font-display font-bold text-xl">Garantía anti no-show con Stripe</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">En servicios de más de 80 € se guarda la tarjeta sin cobrar nada. Cancelación gratis hasta 24 h antes; si el cliente no se presenta, el encargado cobra la penalización (propuesta: 30 % del servicio, mínimo 20 €) con un clic desde el CRM. El resto de servicios se paga en el centro como hasta ahora.</p></div></div>
+        <div class="card p-5 grid sm:grid-cols-[56px_1fr] gap-4"><div class="w-12 h-12 rounded-2xl bg-brand-700 text-eco-400 grid place-items-center text-xl font-black">5</div><div><h3 class="font-display font-bold text-xl">CRM central con métricas</h3><p class="text-sm text-slate-600 mt-1 leading-relaxed">Dirección ve los 35 centros; cada encargado, solo el suyo. Reservas por canal, ingresos por centro y servicio, ocupación de boxes por hora, no-shows cubiertos, fichas de cliente con la promo «cada 4 lavados, 30 € en el 5º» automática, campañas para huecos libres, reactivación de clientes y petición de reseñas en Google. Incluye el dato de litros de agua ahorrados para vuestra comunicación de sostenibilidad.</p></div></div>
+      </div>
+    </section>
+
+    <!-- 3. Tecnología -->
+    <section class="card p-6 sm:p-8 bg-night-900 text-white border-0">
+      <div class="text-[11px] font-bold uppercase tracking-[.18em] text-eco-400">03 · Tecnología</div>
+      <h2 class="font-display font-bold text-3xl mt-1">Hecho para 35 centros reservando a la vez</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 text-sm">
+        <div><b class="text-eco-400">Next.js + Vercel</b><p class="text-stone-300 mt-1">Web y panel rápidos, con SEO local por centro.</p></div>
+        <div><b class="text-eco-400">Supabase (PostgreSQL, UE)</b><p class="text-stone-300 mt-1">La base de datos impide dos coches en el mismo box. Permisos por centro.</p></div>
+        <div><b class="text-eco-400">WhatsApp Business API</b><p class="text-sm text-stone-300 mt-1">Canal oficial de Meta, plantillas aprobadas, sin riesgo de bloqueo.</p></div>
+        <div><b class="text-eco-400">ElevenLabs Agents</b><p class="text-stone-300 mt-1">Voz natural en español, con las mismas herramientas que el agente de WhatsApp.</p></div>
+        <div><b class="text-eco-400">Stripe</b><p class="text-stone-300 mt-1">Tarjeta en garantía (SetupIntent) y cobro de penalización fuera de sesión.</p></div>
+        <div><b class="text-eco-400">Claude (Anthropic)</b><p class="text-stone-300 mt-1">El cerebro del agente. Solo usa vuestra tarifa oficial: no inventa precios.</p></div>
+      </div>
+      <p class="text-[13px] text-stone-400 mt-6">¿Airtable? Lo valoramos: es cómodo para pocos registros, pero limita a 5 peticiones por segundo y no bloquea reservas solapadas. Si los encargados quieren una «hoja», sincronizamos una vista de solo lectura.</p>
+    </section>
+
+    <!-- 4. ROI -->
+    <section>
+      <div class="text-[11px] font-bold uppercase tracking-[.18em] text-brand-500">04 · Retorno</div>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-1">Calcúlalo con tus números</h2>
+      <p class="text-sm text-slate-600 mt-2">Valores por defecto conservadores. Muévelos en la reunión con los datos reales de un centro.</p>
+      <div class="grid lg:grid-cols-[1.2fr_1fr] gap-5 mt-6">
+        <div class="card p-6 space-y-5 text-sm">
+          <label class="block"><div class="flex justify-between font-bold"><span>Centros activos</span><span id="vC" class="font-mono"></span></div><input id="iC" type="range" min="3" max="35" value="35"></label>
+          <label class="block"><div class="flex justify-between font-bold"><span>Llamadas / WhatsApps sin atender por centro y día</span><span id="vL" class="font-mono"></span></div><input id="iL" type="range" min="0" max="12" value="3"></label>
+          <label class="block"><div class="flex justify-between font-bold"><span>De esas, % que acabaría reservando</span><span id="vP" class="font-mono"></span></div><input id="iP" type="range" min="10" max="70" value="35" step="5"></label>
+          <label class="block"><div class="flex justify-between font-bold"><span>Ticket medio</span><span id="vT" class="font-mono"></span></div><input id="iT" type="range" min="30" max="120" value="55"></label>
+          <label class="block"><div class="flex justify-between font-bold"><span>No-shows al mes por centro en servicios &gt;80 €</span><span id="vN" class="font-mono"></span></div><input id="iN" type="range" min="0" max="12" value="3"></label>
+        </div>
+        <div class="card p-6 bg-brand-900 text-white border-0 flex flex-col justify-between">
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between"><span class="text-stone-300">Reservas recuperadas / mes</span><b id="oR" class="font-mono"></b></div>
+            <div class="flex justify-between"><span class="text-stone-300">Ingresos recuperados / mes</span><b id="oI" class="font-mono"></b></div>
+            <div class="flex justify-between"><span class="text-stone-300">No-shows evitados o cobrados / mes</span><b id="oN" class="font-mono"></b></div>
+            <div class="flex justify-between"><span class="text-stone-300">Cuota Altera / mes</span><b id="oF" class="font-mono"></b></div>
+          </div>
+          <div class="mt-6 border-t border-white/15 pt-4">
+            <div class="text-[11px] uppercase tracking-wider text-stone-300 font-bold">Retorno estimado</div>
+            <div class="font-display font-extrabold text-5xl text-eco-400 mt-1"><span id="oX"></span><span class="text-2xl">×</span></div>
+            <div id="oS" class="text-sm text-stone-300 mt-1"></div>
+          </div>
+        </div>
+      </div>
+      <p class="text-[12px] text-slate-500 mt-3">Supuestos: 26 días de apertura al mes; no-shows en servicios de ~95 €, de los que la garantía evita la mitad y en la otra mitad se cobra la penalización del 30 %. Son estimaciones para la conversación, no un compromiso de resultados.</p>
+    </section>
+
+    <!-- 5. Inversión -->
+    <section>
+      <div class="text-[11px] font-bold uppercase tracking-[.18em] text-brand-500">05 · Inversión</div>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-1">Subvencionado al 80 % por la Junta</h2>
+      <p class="text-sm text-slate-600 mt-2">Con el Bono Crecimiento Pyme de la JCCM, la Junta cubre el 80 % de la implantación. Nosotros preparamos y tramitamos la solicitud.</p>
+      <div class="grid md:grid-cols-3 gap-4 mt-6">
+        <div class="card p-6">
+          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-500">Opción A · Piloto 3 centros</div>
+          <div class="text-sm text-slate-400 line-through mt-2">3.600 €</div>
+          <div class="font-display font-extrabold text-4xl">720 €</div>
+          <div class="text-sm text-emerald-700 font-semibold">coste final con la ayuda de la Junta (80 %)</div>
+          <ul class="text-sm text-slate-700 mt-4 space-y-1.5"><li>✓ 3 centros: Albacete, Guadalajara y Madrid (Goya)</li><li>✓ Web de reservas + 35 fichas de centro</li><li>✓ Agente WhatsApp y recepcionista de voz</li><li>✓ Stripe anti no-show</li><li>✓ CRM y dashboard</li><li>✓ Puesta en marcha en 8 semanas</li></ul>
+        </div>
+        <div class="card p-6 border-2 border-brand-700 relative">
+          <span class="absolute -top-3 left-5 text-[10px] font-bold uppercase tracking-wider bg-eco-400 text-night-900 px-2 py-1 rounded-full">Aprovecha la ayuda completa</span>
+          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-500">Opción B · Los 35 centros</div>
+          <div class="text-sm text-slate-400 line-through mt-2">5.000 €</div>
+          <div class="font-display font-extrabold text-4xl">1.000 €</div>
+          <div class="text-sm text-emerald-700 font-semibold">coste final con la ayuda de la Junta (80 %)</div>
+          <ul class="text-sm text-slate-700 mt-4 space-y-1.5"><li>✓ Todo lo de la opción A en toda la red</li><li>✓ Boxes, horarios y números de cada centro</li><li>✓ Desvío de llamadas no atendidas</li><li>✓ Formación de encargados (online)</li><li>✓ Arranque por fases: 3 centros primero, el resto después</li></ul>
+        </div>
+        <div class="card p-6">
+          <div class="text-[11px] font-bold uppercase tracking-wider text-brand-500">Servicio mensual</div>
+          <div class="font-display font-extrabold text-4xl mt-2">59 €<span class="text-lg text-slate-500"> /centro</span></div>
+          <div class="text-sm text-slate-500">por centro activo · sin permanencia</div>
+          <ul class="text-sm text-slate-700 mt-4 space-y-1.5"><li>✓ Alojamiento, mantenimiento y mejoras</li><li>✓ IA del agente de WhatsApp</li><li>✓ Soporte y ajustes de tarifas</li><li>• Minutos de voz y mensajes de Meta, a coste (≈15-30 €/centro/mes)</li><li>• Comisión de Stripe solo cuando se cobra una penalización</li></ul>
+        </div>
+      </div>
+      <p class="text-[12px] text-slate-500 mt-3"><strong>Cómo funciona la ayuda:</strong> la empresa paga la factura completa (3.600 € o 5.000 € + IVA) y, una vez justificado el proyecto, la Junta ingresa el 80 % (2.880 € o 4.000 €). El coste final es de 720 € o 1.000 €. Importes sujetos a la concesión del Bono Crecimiento Pyme JCCM; la cuota mensual no está subvencionada. Precios sin IVA.</p>
+    </section>
+
+    <!-- 6. Plan -->
+    <section>
+      <div class="text-[11px] font-bold uppercase tracking-[.18em] text-brand-500">06 · Plan</div>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl mt-1">De la firma a la primera reserva</h2>
+      <ol class="mt-6 grid sm:grid-cols-4 gap-3 text-sm">
+        <li class="card p-4"><div class="font-mono text-brand-500 font-bold">Sem. 1-2</div><b class="block mt-1">Datos y diseño</b><span class="text-slate-600">Boxes, horarios, tarifas, políticas. Diseño de la web.</span></li>
+        <li class="card p-4"><div class="font-mono text-brand-500 font-bold">Sem. 3-5</div><b class="block mt-1">Construcción</b><span class="text-slate-600">Motor de reservas, web, Stripe, CRM.</span></li>
+        <li class="card p-4"><div class="font-mono text-brand-500 font-bold">Sem. 5-6</div><b class="block mt-1">Agentes IA</b><span class="text-slate-600">WhatsApp y voz, pruebas con el equipo.</span></li>
+        <li class="card p-4"><div class="font-mono text-brand-500 font-bold">Sem. 7-8</div><b class="block mt-1">Piloto en vivo</b><span class="text-slate-600">3 centros reales, métricas y decisión de escalar.</span></li>
+      </ol>
+    </section>
+
+    <!-- 7. Validar -->
+    <section class="card p-6 sm:p-8">
+      <div class="text-[11px] font-bold uppercase tracking-[.18em] text-brand-500">07 · Para la primera reunión</div>
+      <h2 class="font-display font-bold text-2xl sm:text-3xl mt-1">Lo que necesitamos confirmar con vosotros</h2>
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-slate-700 mt-4">
+        <li>• Número de boxes y horario real de cada centro (¿domingos?).</li>
+        <li>• Precio del tratamiento cerámico y de los extras no publicados (ozono).</li>
+        <li>• Política de no-show: % de penalización y plazo de cancelación.</li>
+        <li>• Duración real de cada servicio (en la demo es una estimación).</li>
+        <li>• Sistema de reservas actual y de dónde sale la agenda hoy.</li>
+        <li>• Números de teléfono: uno único o mantener los 35.</li>
+        <li>• Quién recibe los avisos de cada centro (encargado, central).</li>
+      </ul>
+    </section>
+
+    <section class="text-center no-print">
+      <h2 class="font-display font-bold text-3xl">¿Lo vemos funcionando?</h2>
+      <p class="text-slate-600 mt-2">Haz una reserva, escribe al agente o llama a la recepcionista. Todo cae en el CRM al momento.</p>
+      <a href="./" class="inline-block mt-5 px-6 py-3.5 rounded-2xl bg-brand-700 text-white font-extrabold">▶ Abrir la demo interactiva</a>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 py-6 text-center text-[12px] text-slate-500">Altera Soluciones Tecnológicas · Propuesta orientativa para Ecologic Car Wash Premium · Precios y supuestos a revisar en reunión.</footer>
+
+  <script>
+    const eur = n => Math.round(n).toLocaleString('es-ES') + ' €';
+    const ids = ['C', 'L', 'P', 'T', 'N'];
+    function calc() {
+      const v = Object.fromEntries(ids.map(k => [k, +document.getElementById('i' + k).value]));
+      document.getElementById('vC').textContent = v.C;
+      document.getElementById('vL').textContent = v.L;
+      document.getElementById('vP').textContent = v.P + ' %';
+      document.getElementById('vT').textContent = v.T + ' €';
+      document.getElementById('vN').textContent = v.N;
+      const res = v.C * v.L * 26 * v.P / 100;
+      const ing = res * v.T;
+      const ns = v.C * v.N * (0.5 * 95 + 0.5 * 95 * 0.30);
+      const fee = v.C * 59 + v.C * 22;
+      document.getElementById('oR').textContent = Math.round(res).toLocaleString('es-ES');
+      document.getElementById('oI').textContent = eur(ing);
+      document.getElementById('oN').textContent = eur(ns);
+      document.getElementById('oF').textContent = eur(fee) + '*';
+      const x = (ing + ns) / fee;
+      document.getElementById('oX').textContent = x.toLocaleString('es-ES', { maximumFractionDigits: 1 });
+      document.getElementById('oS').textContent = `${eur(ing + ns - fee)} netos al mes · *incluye ≈22 €/centro de voz y mensajes`;
+    }
+    ids.forEach(k => document.getElementById('i' + k).addEventListener('input', calc));
+    calc();
+  </script>
+</body>
+</html>
