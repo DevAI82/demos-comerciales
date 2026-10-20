@@ -1465,9 +1465,12 @@
                 </div>
 
                 <div class="flex items-start justify-between border-b border-stone-800 pb-3 gap-2">
-                  <div>
+                  <div class="cursor-pointer" onclick="abrirModalAperturaMesaVibra()" title="Toca para sentar comensales o editar reserva">
                     <span class="text-[10px] uppercase font-bold tracking-wider text-pink-400 block" id="vdetalle-mesa-zona">⚡ Salón Neón · Capacidad 4 personas</span>
-                    <h3 class="text-xl font-black text-white font-display mt-0.5" id="vdetalle-mesa-titulo">Mesa 1 · Grupo Paula M.</h3>
+                    <div class="flex items-center gap-2 mt-0.5">
+                      <h3 class="text-xl font-black text-white font-display" id="vdetalle-mesa-titulo">Mesa 1 · Grupo Paula M.</h3>
+                      <button class="text-[10px] font-bold text-pink-300 bg-pink-950/80 hover:bg-pink-900 border border-pink-700/60 px-2 py-0.5 rounded-lg transition">✏️ Comensales / Reserva</button>
+                    </div>
                     <span class="text-xs text-stone-400 block mt-0.5" id="vdetalle-mesa-nota">Sentados 20:50h · Camarero: Álex</span>
                   </div>
                   <span id="vdetalle-mesa-badge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-950 text-amber-300 border border-amber-600 whitespace-nowrap">🟠 Comiendo</span>
@@ -1569,19 +1572,22 @@
                   <!-- Ficha de la mesa actual -->
                   <div class="bg-stone-900 border border-stone-800 rounded-2xl p-3 space-y-2">
                     <div class="flex items-center justify-between">
-                      <div>
-                        <h4 class="font-black text-white text-sm" id="vcamarero-mesa-titulo">Mesa 1 · Grupo Paula M.</h4>
+                      <div class="cursor-pointer" onclick="abrirModalAperturaMesaVibra()" title="Toca para sentar comensales o editar reserva">
+                        <div class="flex items-center gap-1.5">
+                          <h4 class="font-black text-white text-sm" id="vcamarero-mesa-titulo">Mesa 1 · Grupo Paula M.</h4>
+                          <span class="text-[9px] text-pink-400 font-bold bg-pink-950/60 px-1.5 py-0.5 rounded border border-pink-700/50">✏️ Pax</span>
+                        </div>
                         <span class="text-[10px] text-stone-400" id="vcamarero-mesa-sub">Salón Neón · 4 comensales</span>
                       </div>
                       <span id="vcamarero-mesa-badge" class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-amber-950 text-amber-300 border border-amber-600">🟠 Comiendo</span>
                     </div>
 
-                    <!-- Selector categorías carta smash -->
+                    <!-- Selector categorías carta smash (Primero SIEMPRE la bebida) -->
                     <div class="flex items-center gap-1 overflow-x-auto pt-1 border-t border-stone-800">
-                      <button onclick="filtrarCartaCamareroVibra('burgers')" id="vcat-cam-btn-burgers" class="px-2.5 py-1 rounded-lg bg-pink-600 text-white text-[10px] font-bold whitespace-nowrap transition shadow">🍔 Smash Burgers</button>
-                      <button onclick="filtrarCartaCamareroVibra('entrantes')" id="vcat-cam-btn-entrantes" class="px-2.5 py-1 rounded-lg bg-stone-900 text-stone-300 text-[10px] font-semibold whitespace-nowrap border border-stone-800 transition">🍟 Entrantes</button>
-                      <button onclick="filtrarCartaCamareroVibra('postres')" id="vcat-cam-btn-postres" class="px-2.5 py-1 rounded-lg bg-stone-900 text-stone-300 text-[10px] font-semibold whitespace-nowrap border border-stone-800 transition">🍰 Postres</button>
-                      <button onclick="filtrarCartaCamareroVibra('bebidas')" id="vcat-cam-btn-bebidas" class="px-2.5 py-1 rounded-lg bg-stone-900 text-stone-300 text-[10px] font-semibold whitespace-nowrap border border-stone-800 transition">🍺 Bebidas</button>
+                      <button onclick="filtrarCartaCamareroVibra('bebidas')" id="vcat-cam-btn-bebidas" class="px-2.5 py-1 rounded-lg bg-pink-600 text-white text-[10px] font-bold whitespace-nowrap transition shadow">🍺 Bebidas (1ª Ronda)</button>
+                      <button onclick="filtrarCartaCamareroVibra('burgers')" id="vcat-cam-btn-burgers" class="px-2.5 py-1 rounded-lg bg-stone-900 text-stone-300 text-[10px] font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍔 Smash Burgers</button>
+                      <button onclick="filtrarCartaCamareroVibra('entrantes')" id="vcat-cam-btn-entrantes" class="px-2.5 py-1 rounded-lg bg-stone-900 text-stone-300 text-[10px] font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍟 Entrantes</button>
+                      <button onclick="filtrarCartaCamareroVibra('postres')" id="vcat-cam-btn-postres" class="px-2.5 py-1 rounded-lg bg-stone-900 text-stone-300 text-[10px] font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍰 Postres</button>
                     </div>
 
                     <!-- Notas de plancha en 1 clic -->
@@ -2456,6 +2462,57 @@
       }
     ];
 
+    // =========================================================================
+    // HOJA DE RUTA NATURAL: LIBRO DE RESERVAS DEL TURNO (VIBRA BURGER)
+    // =========================================================================
+    const libroReservasTurnoVibra = [
+      {
+        id: 'res-v1',
+        mesaId: 'M2',
+        cliente: 'Dani & Amigos',
+        pax: 4,
+        hora: '21:30',
+        telefono: '+34 612 34 56 78',
+        fianza: 'Fianza Tarjeta Stripe OK · Anti No-Show',
+        notas: 'Mesa interior neón · Celebración de ascenso'
+      },
+      {
+        id: 'res-v2',
+        mesaId: 'T2',
+        cliente: 'Cumpleaños Mario',
+        pax: 6,
+        hora: '21:45',
+        telefono: '+34 633 89 01 23',
+        fianza: 'Fianza 60,00 € Stripe OK',
+        notas: '1 persona Celíaca (Pan Sin Gluten indispensable)'
+      },
+      {
+        id: 'res-v3',
+        mesaId: null,
+        cliente: 'Laura Gómez (WhatsApp)',
+        pax: 2,
+        hora: '22:00',
+        telefono: '+34 677 12 34 56',
+        fianza: 'Confirmada con Fianza 20,00 €',
+        notas: 'Prefiere terraza si la temperatura es agradable'
+      },
+      {
+        id: 'res-v4',
+        mesaId: null,
+        cliente: 'Javier & Andrea',
+        pax: 2,
+        hora: '22:15',
+        telefono: '+34 644 55 66 77',
+        fianza: 'Confirmada por WhatsApp IA',
+        notas: 'Cena rápida antes del cine'
+      }
+    ];
+
+    let mesaAperturaObjetivoVibra = null;
+    let paxAperturaSeleccionadoVibra = 2;
+    let modoAperturaReservaVibra = 'reserva_auto';
+    let reservaElegidaVibraId = null;
+
     function calcularTotalVibra(m) {
       return m.items.reduce((acc, it) => acc + it.precio, 0);
     }
@@ -2622,14 +2679,234 @@
       }
     }
 
-    function seleccionarMesaVibraPlano(id) {
+    function seleccionarMesaVibraPlano(id, forzarApertura = false) {
       mesaSeleccionadaVibraId = id;
+      const mesa = mesasDataVibra.find(m => m.id === id);
       renderizarPlanoSalaVibra();
       if (typeof renderizarVistaMovilCamareroVibra === 'function') {
         renderizarVistaMovilCamareroVibra();
       }
       if (document.getElementById('voverlay-camarero-fullscreen') && !document.getElementById('voverlay-camarero-fullscreen').classList.contains('hidden')) {
         renderizarCamareroFullscreenVibra();
+      }
+      // Si la mesa está libre o con reserva pendiente, o se solicita explícitamente apertura: abrir modal de apertura
+      if (mesa && (mesa.estado === 'libre' || mesa.estado === 'reservada' || forzarApertura)) {
+        abrirModalAperturaMesaVibra(id);
+      }
+    }
+
+    // =========================================================================
+    // MODAL DE APERTURA DE MESA · HOJA DE RUTA NATURAL HOSTELERÍA (VIBRA)
+    // 1. Selector de comensales (Pax)
+    // 2. Comprobación de reserva previa o cliente de paso
+    // 3. Pasar directamente a la 1ª Ronda de Bebidas
+    // =========================================================================
+    function abrirModalAperturaMesaVibra(id) {
+      if (id) mesaSeleccionadaVibraId = id;
+      const mesa = mesasDataVibra.find(m => m.id === mesaSeleccionadaVibraId);
+      if (!mesa) return;
+
+      mesaAperturaObjetivoVibra = mesa;
+      const modal = document.getElementById('modal-apertura-mesa-vibra');
+      if (!modal) return;
+
+      // Buscar si hay reserva asignada a esta mesa o nombre
+      const resDirecta = libroReservasTurnoVibra.find(r => r.mesaId === mesa.id || (mesa.cliente && r.cliente && mesa.cliente.toLowerCase().includes(r.cliente.toLowerCase())));
+
+      if (resDirecta) {
+        reservaElegidaVibraId = resDirecta.id;
+        paxAperturaSeleccionadoVibra = resDirecta.pax;
+        modoAperturaReservaVibra = 'reserva_auto';
+      } else if (mesa.ocupantes > 0) {
+        paxAperturaSeleccionadoVibra = mesa.ocupantes;
+        modoAperturaReservaVibra = 'paso';
+      } else {
+        paxAperturaSeleccionadoVibra = mesa.capacidad || 2;
+        modoAperturaReservaVibra = 'paso';
+      }
+
+      // Títulos modal
+      const elTit = document.getElementById('vapertura-modal-titulo');
+      const elSub = document.getElementById('vapertura-modal-sub');
+      if (elTit) elTit.innerText = `Apertura de ${mesa.nombre}`;
+      if (elSub) elSub.innerText = `${mesa.zonaNombre} · Capacidad estándar: ${mesa.capacidad} pax · ${mesa.estado.toUpperCase()}`;
+
+      // Render Pax Selector
+      renderizarBotonesPaxVibra();
+
+      // Render Paso 2 Reserva
+      const cardRes = document.getElementById('vapertura-reserva-detectada-card');
+      const radioRes = document.getElementById('vapertura-radio-reserva');
+      const radioPaso = document.getElementById('vapertura-radio-paso');
+      const txtRes = document.getElementById('vapertura-radio-reserva-texto');
+
+      if (resDirecta) {
+        if (cardRes) {
+          cardRes.classList.remove('hidden');
+          cardRes.innerHTML = `
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <div class="flex items-center gap-1.5 font-black text-purple-300 text-xs">
+                  <span>📅</span> <span>RESERVA ENCONTRADA: ${resDirecta.cliente}</span>
+                </div>
+                <div class="text-[11px] text-stone-300 mt-0.5">🕒 Hora: <strong>${resDirecta.hora}h</strong> · 👥 Comensales: <strong>${resDirecta.pax} pax</strong></div>
+                <div class="text-[10px] text-emerald-400 font-mono">💳 ${resDirecta.fianza}</div>
+                ${resDirecta.notas ? `<div class="text-[10px] text-stone-400 italic mt-0.5">📝 Nota: "${resDirecta.notas}"</div>` : ''}
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[9px] font-black bg-purple-900 text-purple-200 border border-purple-600">CONFIRMADA</span>
+            </div>
+          `;
+        }
+        if (txtRes) txtRes.innerText = `Sentar con la Reserva: ${resDirecta.cliente} (${resDirecta.hora}h)`;
+        if (radioRes) radioRes.checked = true;
+        modoAperturaReservaVibra = 'reserva_auto';
+      } else {
+        if (cardRes) cardRes.classList.add('hidden');
+        if (txtRes) txtRes.innerText = 'Sentar con Reserva asignada';
+        if (radioPaso) radioPaso.checked = true;
+        modoAperturaReservaVibra = 'paso';
+      }
+
+      // Populate selector otras reservas
+      const selOtra = document.getElementById('vapertura-select-otra-reserva');
+      if (selOtra) {
+        selOtra.innerHTML = libroReservasTurnoVibra.map(r => `
+          <option value="${r.id}" ${r.id === reservaElegidaVibraId ? 'selected' : ''}>
+            ${r.cliente} (${r.pax}p · ${r.hora}h) · ${r.fianza}
+          </option>
+        `).join('');
+      }
+
+      // Si es paso y la mesa ya tenía nombre personalizado, precargarlo
+      const inpNom = document.getElementById('vapertura-input-nombre-paso');
+      if (inpNom) {
+        inpNom.value = (mesa.cliente && !mesa.cliente.includes('Sin asignar') && !mesa.cliente.includes('Clientes en Mesa')) ? mesa.cliente : '';
+      }
+
+      cambiarTipoAperturaVibra(modoAperturaReservaVibra);
+
+      modal.style.display = 'flex';
+      modal.classList.remove('hidden');
+    }
+
+    function cerrarModalAperturaMesaVibra() {
+      const modal = document.getElementById('modal-apertura-mesa-vibra');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+      }
+    }
+
+    function renderizarBotonesPaxVibra() {
+      const grid = document.getElementById('vapertura-pax-grid');
+      const badge = document.getElementById('vapertura-pax-badge');
+      if (badge) badge.innerText = `${paxAperturaSeleccionadoVibra} personas`;
+
+      if (grid) {
+        const opciones = [1, 2, 3, 4, 5, 6, 7, 8];
+        grid.innerHTML = opciones.map(num => {
+          const isSel = paxAperturaSeleccionadoVibra === num;
+          const label = num === 8 ? '8+' : `${num}`;
+          return `
+            <button type="button" onclick="seleccionarPaxAperturaVibra(${num})" class="py-2.5 rounded-xl text-xs font-black transition text-center border ${
+              isSel
+                ? 'bg-pink-600 text-white border-pink-400 shadow-lg scale-105 ring-2 ring-pink-400/50'
+                : 'bg-stone-900 text-stone-300 border-stone-800 hover:bg-stone-800 hover:text-white'
+            }">
+              <span>👤 ${label}</span>
+            </button>
+          `;
+        }).join('');
+      }
+    }
+
+    function seleccionarPaxAperturaVibra(pax) {
+      paxAperturaSeleccionadoVibra = pax;
+      renderizarBotonesPaxVibra();
+    }
+
+    function cambiarTipoAperturaVibra(tipo) {
+      modoAperturaReservaVibra = tipo;
+      const cPaso = document.getElementById('vapertura-nombre-paso-container');
+      const cOtra = document.getElementById('vapertura-selector-otra-reserva-container');
+      const rRes = document.getElementById('vapertura-radio-reserva');
+      const rPaso = document.getElementById('vapertura-radio-paso');
+      const rOtra = document.getElementById('vapertura-radio-otra');
+
+      if (rRes) rRes.checked = (tipo === 'reserva_auto');
+      if (rPaso) rPaso.checked = (tipo === 'paso');
+      if (rOtra) rOtra.checked = (tipo === 'otra_reserva');
+
+      if (cPaso) cPaso.classList.toggle('hidden', tipo !== 'paso');
+      if (cOtra) cOtra.classList.toggle('hidden', tipo !== 'otra_reserva');
+    }
+
+    function alSeleccionarOtraReservaVibra(resId) {
+      reservaElegidaVibraId = resId;
+      const r = libroReservasTurnoVibra.find(x => x.id === resId);
+      if (r) {
+        paxAperturaSeleccionadoVibra = r.pax;
+        renderizarBotonesPaxVibra();
+      }
+    }
+
+    function confirmarAperturaMesaVibra() {
+      const mesa = mesaAperturaObjetivoVibra || mesasDataVibra.find(m => m.id === mesaSeleccionadaVibraId);
+      if (!mesa) return;
+
+      mesa.ocupantes = paxAperturaSeleccionadoVibra;
+
+      const resDirecta = libroReservasTurnoVibra.find(r => r.mesaId === mesa.id || (mesa.cliente && r.cliente && mesa.cliente.toLowerCase().includes(r.cliente.toLowerCase())));
+
+      if (modoAperturaReservaVibra === 'reserva_auto' && resDirecta) {
+        mesa.cliente = resDirecta.cliente;
+        mesa.nota = `Reserva ${resDirecta.hora}h · ${resDirecta.fianza} · ${resDirecta.notas || 'Sin notas'}`;
+      } else if (modoAperturaReservaVibra === 'otra_reserva') {
+        const resId = document.getElementById('vapertura-select-otra-reserva')?.value;
+        const r = libroReservasTurnoVibra.find(x => x.id === resId);
+        if (r) {
+          mesa.cliente = r.cliente;
+          mesa.nota = `Reserva ${r.hora}h reubicada a ${mesa.nombre} · ${r.fianza}`;
+          mesa.ocupantes = r.pax;
+        }
+      } else {
+        // Cliente de paso
+        const inp = document.getElementById('vapertura-input-nombre-paso')?.value?.trim();
+        mesa.cliente = inp ? `${inp} (Paso)` : `Clientes en Mesa (${paxAperturaSeleccionadoVibra} pax)`;
+        mesa.nota = `Clientes de paso sentados · Sin reserva previa`;
+      }
+
+      if (mesa.estado === 'libre' || mesa.estado === 'reservada') {
+        mesa.estado = 'comiendo';
+      }
+
+      // HOJA DE RUTA NATURAL: Primero SIEMPRE la bebida
+      categoriaCartaCamareroVibra = 'bebidas';
+
+      cerrarModalAperturaMesaVibra();
+      filtrarCartaCamareroVibra('bebidas');
+      renderizarPlanoSalaVibra();
+      if (typeof renderizarVistaMovilCamareroVibra === 'function') {
+        renderizarVistaMovilCamareroVibra();
+      }
+      if (document.getElementById('voverlay-camarero-fullscreen') && !document.getElementById('voverlay-camarero-fullscreen').classList.contains('hidden')) {
+        renderizarCamareroFullscreenVibra();
+      }
+
+      // Notificación toast en el móvil del camarero
+      const toastFull = document.getElementById('vcamarero-full-toast');
+      if (toastFull) {
+        toastFull.classList.remove('hidden');
+        toastFull.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="text-2xl animate-bounce">🍺</span>
+            <div>
+              <div class="font-black text-white text-xs">¡${mesa.nombre} Abierta (${mesa.ocupantes} comensales)!</div>
+              <div class="text-[10px] text-pink-200">1ª Ronda: Anota y marcha primero las bebidas a barra mientras eligen comida.</div>
+            </div>
+          </div>
+        `;
+        setTimeout(() => toastFull.classList.add('hidden'), 4500);
       }
     }
 
@@ -2795,11 +3072,18 @@
     
     // =========================================================================
     // VISTA MÓVIL CAMARERO · CARTA REAL SMASH BURGERS & GESTIÓN DE SALA VIBRA
+    // HOJA DE RUTA NATURAL: Primero SIEMPRE la bebida
     // =========================================================================
-    let categoriaCartaCamareroVibra = 'burgers';
+    let categoriaCartaCamareroVibra = 'bebidas';
     let notaCocinaActivaCamareroVibra = '';
 
     const cartaRealVibraBurger = {
+      bebidas: [
+        { nombre: '1x Doble Cerveza Artesana', desc: 'Grifo IPA o Rubia artesanal bien fría', precio: 2.80, icono: '🍺' },
+        { nombre: '1x Refresco / Coca-Cola Zero', desc: 'Lata 330ml con vaso ancho y hielo con limón', precio: 2.50, icono: '🥤' },
+        { nombre: '1x Milkshake Vainilla & Oreo', desc: 'Batido cremoso elaborado con helado artesano y trozos de Oreo', precio: 4.50, icono: '🥛' },
+        { nombre: '1x Agua Mineral 500ml', desc: 'Botella de vidrio fría', precio: 1.80, icono: '💧' }
+      ],
       burgers: [
         { nombre: '1x Bacon Cheese Smash Doble', desc: 'Doble disco de buey madurado, cheddar americano fundido y bacon crujiente', precio: 11.90, icono: '🍔' },
         { nombre: '1x Trufada Smash Doble', desc: 'Doble disco smash, mayonesa de trufa negra, cebolla caramelizada y queso gouda', precio: 13.50, icono: '🍄' },
@@ -2818,34 +3102,34 @@
         { nombre: '1x Cheesecake Lotus Casera', desc: 'Tarta de queso fluida horneada con crema y galleta Lotus Biscoff', precio: 5.50, icono: '🍰' },
         { nombre: '1x Cookie Skillet con Helado', desc: 'Galleta de chocolate recién horneada en sartén caliente con bola de vainilla', precio: 5.90, icono: '🍪' },
         { nombre: '1x Brownie con Nueces y Fudge', desc: 'Chocolate belga 70% templado con nueces de California', precio: 5.00, icono: '🍫' }
-      ],
-      bebidas: [
-        { nombre: '1x Doble Cerveza Artesana', desc: 'Grifo IPA o Rubia artesanal bien fría', precio: 2.80, icono: '🍺' },
-        { nombre: '1x Refresco / Coca-Cola Zero', desc: 'Lata 330ml con vaso ancho y hielo con limón', precio: 2.50, icono: '🥤' },
-        { nombre: '1x Milkshake Vainilla & Oreo', desc: 'Batido cremoso elaborado con helado artesano y trozos de Oreo', precio: 4.50, icono: '🥛' },
-        { nombre: '1x Agua Mineral 500ml', desc: 'Botella de vidrio fría', precio: 1.80, icono: '💧' }
       ]
     };
 
     function filtrarCartaCamareroVibra(cat) {
       categoriaCartaCamareroVibra = cat;
-      ['burgers', 'entrantes', 'postres', 'bebidas'].forEach(c => {
+      ['bebidas', 'burgers', 'entrantes', 'postres'].forEach(c => {
         const b = document.getElementById('vcat-cam-btn-' + c);
         if (b) {
           b.className = (c === cat)
             ? 'px-2.5 py-1 rounded-lg bg-pink-600 text-white text-[10px] font-bold whitespace-nowrap transition shadow'
             : 'px-2.5 py-1 rounded-lg bg-stone-900 text-stone-300 text-[10px] font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white';
         }
+        const bFull = document.getElementById('vcat-cam-full-btn-' + c);
+        if (bFull) {
+          bFull.className = (c === cat)
+            ? 'px-3 py-1.5 rounded-xl bg-pink-600 text-white text-xs font-black whitespace-nowrap transition shadow'
+            : 'px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white';
+        }
       });
       renderizarItemsCartaCamareroVibra();
       if (typeof renderizarFullscreenCartaVibra === 'function') {
         renderizarFullscreenCartaVibra();
+      }
       if (document.getElementById('modal-comanda-popup-vibra') && document.getElementById('modal-comanda-popup-vibra').style.display !== 'none') {
         renderizarPopupComandaVibra();
       }
       if (typeof renderizarSeccionPedidoCamareroVibra === 'function') {
         renderizarSeccionPedidoCamareroVibra();
-      }
       }
     }
 
@@ -2880,7 +3164,25 @@
       if (!gridCarta) return;
 
       const platos = cartaRealVibraBurger[categoriaCartaCamareroVibra] || [];
-      gridCarta.innerHTML = platos.map(p => `
+      let bannerHtml = '';
+      if (categoriaCartaCamareroVibra === 'bebidas') {
+        bannerHtml = `
+          <div class="bg-gradient-to-r from-amber-950/80 via-stone-900 to-amber-950/80 border border-amber-500/60 rounded-xl p-2 mb-2 flex items-center justify-between gap-2 shadow-sm">
+            <div class="flex items-center gap-1.5 min-w-0">
+              <span class="text-base shrink-0 animate-bounce">🍺</span>
+              <div class="min-w-0">
+                <div class="text-[11px] font-black text-amber-300">1ª Ronda: Bebida de la mesa</div>
+                <div class="text-[9px] text-stone-300 truncate">Se marcha a barra mientras eligen la comida</div>
+              </div>
+            </div>
+            <button onclick="filtrarCartaCamareroVibra('burgers')" class="shrink-0 bg-pink-600 hover:bg-pink-500 active:scale-95 text-white font-black text-[10px] px-2.5 py-1 rounded-lg transition shadow flex items-center gap-1">
+              <span>🍔 Comida &rarr;</span>
+            </button>
+          </div>
+        `;
+      }
+
+      gridCarta.innerHTML = bannerHtml + platos.map(p => `
         <button onclick="anotarPlatoMesaActualVibra('${p.nombre}', ${p.precio})" class="w-full text-left bg-stone-950 hover:bg-stone-800 active:scale-[0.99] border border-stone-800 hover:border-pink-500/50 rounded-xl p-2 transition flex items-center justify-between gap-2 group">
           <div class="flex items-center gap-2 min-w-0">
             <span class="text-base group-hover:scale-110 transition shrink-0">${p.icono}</span>
@@ -3983,7 +4285,24 @@
       const grid = document.getElementById('vcamarero-full-carta-items');
       if (!grid) return;
       const platos = cartaRealVibraBurger[categoriaCartaCamareroVibra] || [];
-      grid.innerHTML = platos.map(p => `
+      let bannerHtml = '';
+      if (categoriaCartaCamareroVibra === 'bebidas') {
+        bannerHtml = `
+          <div class="bg-gradient-to-r from-amber-950/80 via-stone-900 to-amber-950/80 border border-amber-500/60 rounded-2xl p-2.5 mb-2.5 flex items-center justify-between gap-2 shadow-sm">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="text-xl shrink-0 animate-bounce">🍺</span>
+              <div class="min-w-0">
+                <div class="text-xs font-black text-amber-300">1ª Ronda: Bebidas de la mesa</div>
+                <div class="text-[10px] text-stone-300 truncate">Primero se marcha la bebida a barra mientras miran la carta.</div>
+              </div>
+            </div>
+            <button onclick="filtrarCartaCamareroVibra('burgers')" class="shrink-0 bg-pink-600 hover:bg-pink-500 active:scale-95 text-white font-black text-xs px-3 py-1.5 rounded-xl transition shadow flex items-center gap-1">
+              <span>🍔 Continuar a Comida</span> <span>&rarr;</span>
+            </button>
+          </div>
+        `;
+      }
+      grid.innerHTML = bannerHtml + platos.map(p => `
         <button onclick="anotarPlatoMesaActualVibra('${p.nombre}', ${p.precio})" class="w-full text-left bg-stone-900/90 hover:bg-stone-800 active:scale-[0.98] border border-stone-800 hover:border-pink-500 rounded-2xl p-3 transition flex items-center justify-between gap-3 shadow-sm group">
           <div class="flex items-center gap-3 min-w-0">
             <span class="text-2xl group-hover:scale-125 transition shrink-0">${p.icono}</span>
@@ -5117,8 +5436,11 @@
 
         <!-- Ficha de la mesa activa con botón directo para ver su pedido -->
         <div class="bg-stone-900/60 border-b border-stone-800/80 px-3.5 py-2 flex items-center justify-between gap-2 shrink-0">
-          <div class="min-w-0">
-            <h3 class="font-black text-white text-sm tracking-tight truncate" id="vcamarero-full-mesa-title">Mesa 1 · Grupo Paula M.</h3>
+          <div class="min-w-0 cursor-pointer" onclick="abrirModalAperturaMesaVibra()" title="Toca para sentar comensales o editar reserva">
+            <div class="flex items-center gap-1.5">
+              <h3 class="font-black text-white text-sm tracking-tight truncate" id="vcamarero-full-mesa-title">Mesa 1 · Grupo Paula M.</h3>
+              <span class="text-[10px] text-pink-400 font-bold bg-pink-950/60 px-1.5 py-0.5 rounded border border-pink-700/50">✏️ Editar</span>
+            </div>
             <span class="text-[11px] text-stone-400 truncate block" id="vcamarero-full-mesa-sub">Salón Neón · 4 comensales · Turno Noche</span>
           </div>
           <!-- Botón directo Ventana Emergente del Pedido -->
@@ -5128,12 +5450,12 @@
           </button>
         </div>
 
-        <!-- Categorías de la Carta Smash -->
+        <!-- Categorías de la Carta Smash (Primero SIEMPRE la bebida) -->
         <div class="bg-stone-900/80 border-b border-stone-800 px-2.5 py-1.5 flex items-center gap-1 overflow-x-auto shrink-0">
-          <button onclick="filtrarCartaCamareroVibra('burgers')" id="vcat-cam-full-btn-burgers" class="px-3 py-1.5 rounded-xl bg-pink-600 text-white text-xs font-black whitespace-nowrap transition shadow">🍔 Smash Burgers</button>
+          <button onclick="filtrarCartaCamareroVibra('bebidas')" id="vcat-cam-full-btn-bebidas" class="px-3 py-1.5 rounded-xl bg-pink-600 text-white text-xs font-black whitespace-nowrap transition shadow">🍺 Bebidas (1ª Ronda)</button>
+          <button onclick="filtrarCartaCamareroVibra('burgers')" id="vcat-cam-full-btn-burgers" class="px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍔 Smash Burgers</button>
           <button onclick="filtrarCartaCamareroVibra('entrantes')" id="vcat-cam-full-btn-entrantes" class="px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍟 Entrantes</button>
           <button onclick="filtrarCartaCamareroVibra('postres')" id="vcat-cam-full-btn-postres" class="px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍰 Postres</button>
-          <button onclick="filtrarCartaCamareroVibra('bebidas')" id="vcat-cam-full-btn-bebidas" class="px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍺 Bebidas</button>
         </div>
 
         <!-- Modificadores de Cocina / Notas en 1 Clic -->
@@ -5297,6 +5619,111 @@
         <button onclick="cerrarModalDetalleComandaVibra()" class="w-full py-2 bg-stone-950 hover:bg-stone-800 text-pink-300 font-bold text-xs rounded-xl border border-stone-800 transition">
           &larr; Volver a la Carta (Seguir tomando nota)
         </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL APERTURA DE MESA Y COMENSALES (HOJA DE RUTA NATURAL HOSTELERÍA VIBRA) -->
+  <!-- 1. Elegir número de comensales (Pax)                                        -->
+  <!-- 2. Comprobar reserva previa con nombre del cliente o cliente de paso         -->
+  <!-- 3. Pasar PRIMERO a la ronda de bebidas                                      -->
+  <!-- ========================================================================= -->
+  <div id="modal-apertura-mesa-vibra" style="display: none;" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[1000007] flex items-end sm:items-center justify-center p-0 sm:p-4 select-none">
+    <div class="bg-stone-900 border-t-2 sm:border-2 border-pink-500/80 rounded-t-[2.5rem] sm:rounded-3xl p-5 sm:p-6 max-w-lg w-full max-h-[92vh] flex flex-col space-y-4 shadow-2xl animate-fade-in text-stone-100 overflow-y-auto">
+      
+      <!-- Encabezado Modal -->
+      <div class="flex items-center justify-between border-b border-stone-800 pb-3 shrink-0">
+        <div class="flex items-center gap-2.5">
+          <span class="text-2xl">🪑</span>
+          <div>
+            <h3 class="font-black text-white text-base tracking-tight" id="vapertura-modal-titulo">Apertura de Mesa 1</h3>
+            <span class="text-xs text-pink-400 font-mono" id="vapertura-modal-sub">Salón Neón · Capacidad 4 pax</span>
+          </div>
+        </div>
+        <button onclick="cerrarModalAperturaMesaVibra()" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white flex items-center justify-center text-lg transition">✕</button>
+      </div>
+
+      <!-- PASO 1: NÚMERO DE COMENSALES (PAX) -->
+      <div class="bg-stone-950 p-4 rounded-2xl border border-stone-800 space-y-2.5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1.5 text-xs font-black text-stone-200 uppercase tracking-wide">
+            <span class="w-5 h-5 rounded-full bg-pink-600 text-white flex items-center justify-center text-[11px] font-black">1</span>
+            <span>¿Cuántos comensales se sientan?</span>
+          </div>
+          <span id="vapertura-pax-badge" class="text-xs font-mono font-black text-pink-400 bg-pink-950/80 px-2 py-0.5 rounded border border-pink-700/50">4 personas</span>
+        </div>
+        
+        <!-- Selector Rápido de Pax: 1 a 8+ -->
+        <div class="grid grid-cols-4 sm:grid-cols-8 gap-2 pt-1" id="vapertura-pax-grid">
+          <!-- Renderizado dinámico de botones de pax -->
+        </div>
+      </div>
+
+      <!-- PASO 2: COMPROBACIÓN DE RESERVA PREVIA O CLIENTE DE PASO -->
+      <div class="bg-stone-950 p-4 rounded-2xl border border-stone-800 space-y-3">
+        <div class="flex items-center gap-1.5 text-xs font-black text-stone-200 uppercase tracking-wide">
+          <span class="w-5 h-5 rounded-full bg-pink-600 text-white flex items-center justify-center text-[11px] font-black">2</span>
+          <span>Comprobar Reserva Previa o Cliente de Paso</span>
+        </div>
+
+        <!-- Tarjeta de Reserva Detectada para esta Mesa (si existe) -->
+        <div id="vapertura-reserva-detectada-card" class="hidden p-3 rounded-xl border bg-purple-950/30 border-purple-500/60 space-y-2">
+          <!-- Contenido dinámico con datos de la reserva -->
+        </div>
+
+        <!-- Selector de Tipo: Reserva vs Cliente de Paso -->
+        <div class="space-y-2">
+          <label class="flex items-center gap-2 cursor-pointer p-2.5 rounded-xl border border-stone-800 hover:border-stone-700 bg-stone-900/60 transition" onclick="cambiarTipoAperturaVibra('reserva_auto')">
+            <input type="radio" name="vapertura_tipo" id="vapertura-radio-reserva" value="reserva" checked class="text-pink-600 focus:ring-pink-500">
+            <div class="text-xs font-bold text-stone-200 flex-1">
+              <span id="vapertura-radio-reserva-texto">Sentar con la Reserva Programada</span>
+              <span class="block text-[10px] text-stone-400 font-normal">Asigna el nombre del cliente y notas de la reserva de WhatsApp / Web</span>
+            </div>
+          </label>
+
+          <label class="flex items-center gap-2 cursor-pointer p-2.5 rounded-xl border border-stone-800 hover:border-stone-700 bg-stone-900/60 transition" onclick="cambiarTipoAperturaVibra('paso')">
+            <input type="radio" name="vapertura_tipo" id="vapertura-radio-paso" value="paso" class="text-pink-600 focus:ring-pink-500">
+            <div class="text-xs font-bold text-stone-200 flex-1">
+              <span>Cliente de Paso (Sin Reserva Previa)</span>
+              <span class="block text-[10px] text-stone-400 font-normal">Entran al local sin cita · Asignación rápida al vuelo</span>
+            </div>
+          </label>
+
+          <!-- Campo para nombre de cliente si es de paso -->
+          <div id="vapertura-nombre-paso-container" class="hidden pl-6 pt-1">
+            <input type="text" id="vapertura-input-nombre-paso" placeholder="Nombre del cliente o nota (ej. Carlos, Pareja...)" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-3 py-2 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-pink-500">
+          </div>
+
+          <label class="flex items-center gap-2 cursor-pointer p-2.5 rounded-xl border border-stone-800 hover:border-stone-700 bg-stone-900/60 transition" onclick="cambiarTipoAperturaVibra('otra_reserva')">
+            <input type="radio" name="vapertura_tipo" id="vapertura-radio-otra" value="otra_reserva" class="text-pink-600 focus:ring-pink-500">
+            <div class="text-xs font-bold text-stone-200 flex-1">
+              <span>Asignar otra reserva del turno</span>
+              <span class="block text-[10px] text-stone-400 font-normal">Si han llegado antes de tiempo o se les cambia de mesa</span>
+            </div>
+          </label>
+
+          <!-- Dropdown de otras reservas del turno -->
+          <div id="vapertura-selector-otra-reserva-container" class="hidden pl-6 pt-1">
+            <select id="vapertura-select-otra-reserva" onchange="alSeleccionarOtraReservaVibra(this.value)" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-pink-500">
+              <!-- Opciones dinámicas -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 3: BOTÓN DE ACCIÓN PRINCIPAL (PRIMERO LA BEBIDA) -->
+      <div class="pt-2 space-y-2 shrink-0">
+        <button onclick="confirmarAperturaMesaVibra()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 active:scale-[0.99] text-white font-black text-sm shadow-xl shadow-pink-950/80 transition flex items-center justify-center gap-2 border border-pink-300">
+          <span class="text-lg">🍺</span>
+          <span>Confirmar Comensales y Pedir PRIMERO la Bebida &rarr;</span>
+        </button>
+
+        <div class="flex items-center justify-between text-[11px] text-stone-400 px-1">
+          <span>⚡ Pasa directamente a la 1ª ronda de bebidas</span>
+          <button onclick="cerrarModalAperturaMesaVibra()" class="text-stone-400 hover:text-white underline">Cancelar</button>
+        </div>
       </div>
 
     </div>

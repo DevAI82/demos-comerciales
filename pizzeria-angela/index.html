@@ -1945,9 +1945,12 @@
 
             <!-- Cabecera de la Mesa Seleccionada -->
             <div class="flex items-start justify-between border-b border-stone-800 pb-3 gap-2">
-              <div>
+              <div class="cursor-pointer" onclick="abrirModalAperturaMesaAngela()" title="Toca para sentar comensales o editar reserva">
                 <span class="text-[10px] uppercase font-bold tracking-wider text-amber-400 block" id="detalle-mesa-zona">🏛️ Salón Interior · Capacidad 4 personas</span>
-                <h3 class="text-xl font-black text-white font-display mt-0.5" id="detalle-mesa-titulo">Mesa 1 · Familia Ortega (4 pers.)</h3>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <h3 class="text-xl font-black text-white font-display" id="detalle-mesa-titulo">Mesa 1 · Familia Ortega (4 pers.)</h3>
+                  <button class="text-[10px] font-bold text-amber-300 bg-amber-950/80 hover:bg-amber-900 border border-amber-700/60 px-2 py-0.5 rounded-lg transition">✏️ Comensales / Reserva</button>
+                </div>
                 <span class="text-xs text-stone-400 block mt-0.5" id="detalle-mesa-nota">Sentados a las 20:45h · Atendida por Camarero: Dani</span>
               </div>
               <span id="detalle-mesa-badge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-950 text-amber-300 border border-amber-600 whitespace-nowrap">
@@ -2102,7 +2105,7 @@
                       <div class="p-3 bg-[#171c1b] border-b border-stone-800 space-y-2">
                         <div class="flex items-center justify-between">
                           <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-400">1. Toca la mesa que estás atendiendo:</span>
-                          <span id="camarero-movil-mesa-activa-label" class="text-[11px] font-bold text-white bg-stone-800 px-2 py-0.5 rounded">Mesa 1 · Familia Ortega</span>
+                          <span id="camarero-movil-mesa-activa-label" onclick="abrirModalAperturaMesaAngela()" class="cursor-pointer text-[11px] font-bold text-white bg-stone-800 hover:bg-stone-700 px-2 py-0.5 rounded border border-stone-700 transition" title="Toca para sentar comensales o editar reserva">Mesa 1 · Familia Ortega ✏️</span>
                         </div>
                         <!-- Píldoras táctiles de las mesas del camarero -->
                         <div id="camarero-movil-mesas-pills" class="grid grid-cols-4 gap-1.5 text-[10px]">
@@ -2132,7 +2135,7 @@
                         </div>
                       </div>
 
-                      <!-- PASO 3 EN EL MÓVIL: CARTA REAL DE PIZZERÍA ÁNGELA POR CATEGORÍAS -->
+                      <!-- PASO 3 EN EL MÓVIL: CARTA REAL DE PIZZERÍA ÁNGELA POR CATEGORÍAS (Primero SIEMPRE la bebida) -->
                       <div class="p-3 space-y-2.5 flex-1">
                         <div class="flex items-center justify-between">
                           <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400">3. Carta Real · Toca un plato para comandar:</span>
@@ -2140,7 +2143,10 @@
 
                         <!-- Pestañas de Categorías de la Carta -->
                         <div class="grid grid-cols-4 gap-1 bg-stone-950 p-1 rounded-xl border border-stone-800 text-[10px] font-bold">
-                          <button onclick="filtrarCartaCamarero('pizzas')" id="cat-btn-pizzas" class="py-1.5 px-1 rounded-lg bg-red-600 text-white transition">
+                          <button onclick="filtrarCartaCamarero('bebidas')" id="cat-btn-bebidas" class="py-1.5 px-1 rounded-lg bg-amber-500 text-stone-950 font-black transition">
+                            🍺 Bebidas
+                          </button>
+                          <button onclick="filtrarCartaCamarero('pizzas')" id="cat-btn-pizzas" class="py-1.5 px-1 rounded-lg text-stone-400 hover:text-white transition">
                             🍕 Pizzas
                           </button>
                           <button onclick="filtrarCartaCamarero('entrantes')" id="cat-btn-entrantes" class="py-1.5 px-1 rounded-lg text-stone-400 hover:text-white transition">
@@ -2148,9 +2154,6 @@
                           </button>
                           <button onclick="filtrarCartaCamarero('postres')" id="cat-btn-postres" class="py-1.5 px-1 rounded-lg text-stone-400 hover:text-white transition">
                             🍰 Postres
-                          </button>
-                          <button onclick="filtrarCartaCamarero('bebidas')" id="cat-btn-bebidas" class="py-1.5 px-1 rounded-lg text-stone-400 hover:text-white transition">
-                            🍺 Bebidas
                           </button>
                         </div>
 
@@ -3664,6 +3667,57 @@
       }
     ];
 
+    // =========================================================================
+    // HOJA DE RUTA NATURAL: LIBRO DE RESERVAS DEL TURNO (PIZZERÍA ÁNGELA)
+    // =========================================================================
+    const libroReservasTurnoAngela = [
+      {
+        id: 'res-a1',
+        mesaId: 'M2',
+        cliente: 'Carlos Gómez',
+        pax: 4,
+        hora: '21:30',
+        telefono: '+34 612 98 76 54',
+        fianza: 'Confirmada por WhatsApp (≤5 pax sin tarjeta previa)',
+        notas: 'Mesa tranquila junto a ventanal'
+      },
+      {
+        id: 'res-a2',
+        mesaId: 'T2',
+        cliente: 'Cumpleaños Raúl',
+        pax: 8,
+        hora: '21:45',
+        telefono: '+34 655 43 21 09',
+        fianza: 'Garantía Tarjeta 45,00 € Stripe OK (>5 pax)',
+        notas: '1 persona Celíaca (Pizza Sin Gluten urgente)'
+      },
+      {
+        id: 'res-a3',
+        mesaId: null,
+        cliente: 'Beatriz Navarro',
+        pax: 3,
+        hora: '22:00',
+        telefono: '+34 688 11 22 33',
+        fianza: 'Confirmada por WhatsApp IA',
+        notas: 'Celebración de aniversario'
+      },
+      {
+        id: 'res-a4',
+        mesaId: null,
+        cliente: 'Grupo Pádel Rubén',
+        pax: 5,
+        hora: '22:15',
+        telefono: '+34 622 99 88 77',
+        fianza: 'Garantía Tarjeta 50,00 € Stripe OK',
+        notas: 'Mesa espaciosa en salón interior'
+      }
+    ];
+
+    let mesaAperturaObjetivoAngela = null;
+    let paxAperturaSeleccionadoAngela = 2;
+    let modoAperturaReservaAngela = 'reserva_auto';
+    let reservaElegidaAngelaId = null;
+
     function calcularTotalMesa(mesa) {
       return mesa.items.reduce((acc, it) => acc + it.precio, 0);
     }
@@ -3945,13 +3999,236 @@
       }
     }
 
-    function seleccionarMesaPlano(idMesa) {
+    function seleccionarMesaPlano(idMesa, forzarApertura = false) {
       mesaSeleccionadaId = idMesa;
+      const mesa = mesasDataAngela.find(m => m.id === idMesa);
       const feedback = document.getElementById('cuenta-post-pago-feedback');
       if (feedback) feedback.classList.add('hidden');
       renderizarPlanoSalaAngela();
+      if (typeof renderizarVistaMovilCamarero === 'function') {
+        renderizarVistaMovilCamarero();
+      }
       if (document.getElementById('overlay-camarero-fullscreen') && !document.getElementById('overlay-camarero-fullscreen').classList.contains('hidden')) {
         renderizarCamareroFullscreenAngela();
+      }
+      // Si la mesa está libre o con reserva pendiente, o se solicita apertura explícitamente: abrir modal de apertura
+      if (mesa && (mesa.estado === 'libre' || mesa.estado === 'reservada' || forzarApertura)) {
+        abrirModalAperturaMesaAngela(idMesa);
+      }
+    }
+
+    // =========================================================================
+    // MODAL DE APERTURA DE MESA · HOJA DE RUTA NATURAL HOSTELERÍA (PIZZERÍA ÁNGELA)
+    // 1. Selector de comensales (Pax)
+    // 2. Comprobación de reserva previa o cliente de paso
+    // 3. Pasar directamente a la 1ª Ronda de Bebidas
+    // =========================================================================
+    function abrirModalAperturaMesaAngela(id) {
+      if (id) mesaSeleccionadaId = id;
+      const mesa = mesasDataAngela.find(m => m.id === mesaSeleccionadaId);
+      if (!mesa) return;
+
+      mesaAperturaObjetivoAngela = mesa;
+      const modal = document.getElementById('modal-apertura-mesa-angela');
+      if (!modal) return;
+
+      // Buscar si hay reserva asignada a esta mesa o nombre
+      const resDirecta = libroReservasTurnoAngela.find(r => r.mesaId === mesa.id || (mesa.cliente && r.cliente && mesa.cliente.toLowerCase().includes(r.cliente.toLowerCase())));
+
+      if (resDirecta) {
+        reservaElegidaAngelaId = resDirecta.id;
+        paxAperturaSeleccionadoAngela = resDirecta.pax;
+        modoAperturaReservaAngela = 'reserva_auto';
+      } else if (mesa.ocupantes > 0) {
+        paxAperturaSeleccionadoAngela = mesa.ocupantes;
+        modoAperturaReservaAngela = 'paso';
+      } else {
+        paxAperturaSeleccionadoAngela = mesa.capacidad || 2;
+        modoAperturaReservaAngela = 'paso';
+      }
+
+      // Títulos modal
+      const elTit = document.getElementById('apertura-modal-titulo');
+      const elSub = document.getElementById('apertura-modal-sub');
+      if (elTit) elTit.innerText = `Apertura de ${mesa.nombre}`;
+      if (elSub) elSub.innerText = `${mesa.zonaNombre} · Capacidad estándar: ${mesa.capacidad} pax · ${mesa.estado.toUpperCase()}`;
+
+      // Render Pax Selector
+      renderizarBotonesPaxAngela();
+
+      // Render Paso 2 Reserva
+      const cardRes = document.getElementById('apertura-reserva-detectada-card');
+      const radioRes = document.getElementById('apertura-radio-reserva');
+      const radioPaso = document.getElementById('apertura-radio-paso');
+      const txtRes = document.getElementById('apertura-radio-reserva-texto');
+
+      if (resDirecta) {
+        if (cardRes) {
+          cardRes.classList.remove('hidden');
+          cardRes.innerHTML = `
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <div class="flex items-center gap-1.5 font-black text-purple-300 text-xs">
+                  <span>📅</span> <span>RESERVA ENCONTRADA: ${resDirecta.cliente}</span>
+                </div>
+                <div class="text-[11px] text-stone-300 mt-0.5">🕒 Hora: <strong>${resDirecta.hora}h</strong> · 👥 Comensales: <strong>${resDirecta.pax} pax</strong></div>
+                <div class="text-[10px] text-emerald-400 font-mono">💳 ${resDirecta.fianza}</div>
+                ${resDirecta.notas ? `<div class="text-[10px] text-stone-400 italic mt-0.5">📝 Nota: "${resDirecta.notas}"</div>` : ''}
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[9px] font-black bg-purple-900 text-purple-200 border border-purple-600">CONFIRMADA</span>
+            </div>
+          `;
+        }
+        if (txtRes) txtRes.innerText = `Sentar con la Reserva: ${resDirecta.cliente} (${resDirecta.hora}h)`;
+        if (radioRes) radioRes.checked = true;
+        modoAperturaReservaAngela = 'reserva_auto';
+      } else {
+        if (cardRes) cardRes.classList.add('hidden');
+        if (txtRes) txtRes.innerText = 'Sentar con Reserva asignada';
+        if (radioPaso) radioPaso.checked = true;
+        modoAperturaReservaAngela = 'paso';
+      }
+
+      // Populate selector otras reservas
+      const selOtra = document.getElementById('apertura-select-otra-reserva');
+      if (selOtra) {
+        selOtra.innerHTML = libroReservasTurnoAngela.map(r => `
+          <option value="${r.id}" ${r.id === reservaElegidaAngelaId ? 'selected' : ''}>
+            ${r.cliente} (${r.pax}p · ${r.hora}h) · ${r.fianza}
+          </option>
+        `).join('');
+      }
+
+      // Si es paso y la mesa ya tenía nombre personalizado, precargarlo
+      const inpNom = document.getElementById('apertura-input-nombre-paso');
+      if (inpNom) {
+        inpNom.value = (mesa.cliente && !mesa.cliente.includes('Sin asignar') && !mesa.cliente.includes('Familia Ortega') && !mesa.cliente.includes('Clientes en Mesa')) ? mesa.cliente : '';
+      }
+
+      cambiarTipoAperturaAngela(modoAperturaReservaAngela);
+
+      modal.style.display = 'flex';
+      modal.classList.remove('hidden');
+    }
+
+    function cerrarModalAperturaMesaAngela() {
+      const modal = document.getElementById('modal-apertura-mesa-angela');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+      }
+    }
+
+    function renderizarBotonesPaxAngela() {
+      const grid = document.getElementById('apertura-pax-grid');
+      const badge = document.getElementById('apertura-pax-badge');
+      if (badge) badge.innerText = `${paxAperturaSeleccionadoAngela} personas`;
+
+      if (grid) {
+        const opciones = [1, 2, 3, 4, 5, 6, 7, 8];
+        grid.innerHTML = opciones.map(num => {
+          const isSel = paxAperturaSeleccionadoAngela === num;
+          const label = num === 8 ? '8+' : `${num}`;
+          return `
+            <button type="button" onclick="seleccionarPaxAperturaAngela(${num})" class="py-2.5 rounded-xl text-xs font-black transition text-center border ${
+              isSel
+                ? 'bg-amber-500 text-stone-950 border-amber-300 shadow-lg scale-105 ring-2 ring-amber-400/50'
+                : 'bg-stone-900 text-stone-300 border-stone-800 hover:bg-stone-800 hover:text-white'
+            }">
+              <span>👤 ${label}</span>
+            </button>
+          `;
+        }).join('');
+      }
+    }
+
+    function seleccionarPaxAperturaAngela(pax) {
+      paxAperturaSeleccionadoAngela = pax;
+      renderizarBotonesPaxAngela();
+    }
+
+    function cambiarTipoAperturaAngela(tipo) {
+      modoAperturaReservaAngela = tipo;
+      const cPaso = document.getElementById('apertura-nombre-paso-container');
+      const cOtra = document.getElementById('apertura-selector-otra-reserva-container');
+      const rRes = document.getElementById('apertura-radio-reserva');
+      const rPaso = document.getElementById('apertura-radio-paso');
+      const rOtra = document.getElementById('apertura-radio-otra');
+
+      if (rRes) rRes.checked = (tipo === 'reserva_auto');
+      if (rPaso) rPaso.checked = (tipo === 'paso');
+      if (rOtra) rOtra.checked = (tipo === 'otra_reserva');
+
+      if (cPaso) cPaso.classList.toggle('hidden', tipo !== 'paso');
+      if (cOtra) cOtra.classList.toggle('hidden', tipo !== 'otra_reserva');
+    }
+
+    function alSeleccionarOtraReservaAngela(resId) {
+      reservaElegidaAngelaId = resId;
+      const r = libroReservasTurnoAngela.find(x => x.id === resId);
+      if (r) {
+        paxAperturaSeleccionadoAngela = r.pax;
+        renderizarBotonesPaxAngela();
+      }
+    }
+
+    function confirmarAperturaMesaAngela() {
+      const mesa = mesaAperturaObjetivoAngela || mesasDataAngela.find(m => m.id === mesaSeleccionadaId);
+      if (!mesa) return;
+
+      mesa.ocupantes = paxAperturaSeleccionadoAngela;
+
+      const resDirecta = libroReservasTurnoAngela.find(r => r.mesaId === mesa.id || (mesa.cliente && r.cliente && mesa.cliente.toLowerCase().includes(r.cliente.toLowerCase())));
+
+      if (modoAperturaReservaAngela === 'reserva_auto' && resDirecta) {
+        mesa.cliente = resDirecta.cliente;
+        mesa.nota = `Reserva ${resDirecta.hora}h · ${resDirecta.fianza} · ${resDirecta.notas || 'Sin notas'}`;
+      } else if (modoAperturaReservaAngela === 'otra_reserva') {
+        const resId = document.getElementById('apertura-select-otra-reserva')?.value;
+        const r = libroReservasTurnoAngela.find(x => x.id === resId);
+        if (r) {
+          mesa.cliente = r.cliente;
+          mesa.nota = `Reserva ${r.hora}h reubicada a ${mesa.nombre} · ${r.fianza}`;
+          mesa.ocupantes = r.pax;
+        }
+      } else {
+        // Cliente de paso
+        const inp = document.getElementById('apertura-input-nombre-paso')?.value?.trim();
+        mesa.cliente = inp ? `${inp} (Paso)` : `Clientes en Mesa (${paxAperturaSeleccionadoAngela} pax)`;
+        mesa.nota = `Clientes de paso sentados · Sin reserva previa`;
+      }
+
+      if (mesa.estado === 'libre' || mesa.estado === 'reservada') {
+        mesa.estado = 'comiendo';
+      }
+
+      // HOJA DE RUTA NATURAL: Primero SIEMPRE la bebida
+      categoriaCartaCamarero = 'bebidas';
+
+      cerrarModalAperturaMesaAngela();
+      filtrarCartaCamarero('bebidas');
+      renderizarPlanoSalaAngela();
+      if (typeof renderizarVistaMovilCamarero === 'function') {
+        renderizarVistaMovilCamarero();
+      }
+      if (document.getElementById('overlay-camarero-fullscreen') && !document.getElementById('overlay-camarero-fullscreen').classList.contains('hidden')) {
+        renderizarCamareroFullscreenAngela();
+      }
+
+      // Notificación toast en el móvil del camarero
+      const toastFull = document.getElementById('camarero-full-toast');
+      if (toastFull) {
+        toastFull.classList.remove('hidden');
+        toastFull.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="text-2xl animate-bounce">🍺</span>
+            <div>
+              <div class="font-black text-white text-xs">¡${mesa.nombre} Abierta (${mesa.ocupantes} comensales)!</div>
+              <div class="text-[10px] text-amber-200">1ª Ronda: Anota y marcha primero las bebidas a barra mientras eligen pizzas.</div>
+            </div>
+          </div>
+        `;
+        setTimeout(() => toastFull.classList.add('hidden'), 4500);
       }
     }
 
@@ -4218,11 +4495,18 @@
 
     // =========================================================================
     // NUEVO: COMANDERO MÓVIL DEL CAMARERO (CARTA REAL DE PIZZERÍA ÁNGELA + MIS MESAS)
+    // HOJA DE RUTA NATURAL: Primero SIEMPRE la bebida
     // =========================================================================
-    let categoriaCartaCamarero = 'pizzas';
+    let categoriaCartaCamarero = 'bebidas';
     let notaCocinaActivaCamarero = '';
 
     const cartaRealPizzeriaAngela = {
+      bebidas: [
+        { nombre: '1x Caña / Refresco', desc: 'Cerveza fría de barril, Coca-Cola o Agua', precio: 2.50, icono: '🍺' },
+        { nombre: '1x Cerveza Italiana Moretti', desc: 'Botella tercio importación italiana', precio: 3.20, icono: '🍻' },
+        { nombre: '1x Botella Lambrusco Rosé', desc: 'Vino espumoso italiano DOP bien frío', precio: 10.50, icono: '🍷' },
+        { nombre: '1x Café Expreso Italiano', desc: 'Tueste natural 100% arábica', precio: 1.60, icono: '☕' }
+      ],
       pizzas: [
         { nombre: '1x Pizza Innamorata', desc: 'Mozzarella, bacon, champiñón y salsa especial', precio: 12.50, icono: '🍕' },
         { nombre: '1x Pizza Ángela Especial', desc: 'Horno de piedra, jamón ibérico y rúcula', precio: 13.50, icono: '🍕' },
@@ -4241,26 +4525,34 @@
         { nombre: '1x Tiramisú Casero', desc: 'Receta tradicional italiana con mascarpone', precio: 5.00, icono: '🍰' },
         { nombre: '1x Panna Cotta Frutos Rojos', desc: 'Suave nata cocida con coulis casero', precio: 4.50, icono: '🍮' },
         { nombre: '1x Pizza Nutella & Pistacho', desc: 'Masa fina crujiente para compartir', precio: 8.50, icono: '🍫' }
-      ],
-      bebidas: [
-        { nombre: '1x Caña / Refresco', desc: 'Cerveza fría de barril, Coca-Cola o Agua', precio: 2.50, icono: '🍺' },
-        { nombre: '1x Cerveza Italiana Moretti', desc: 'Botella tercio importación italiana', precio: 3.20, icono: '🍻' },
-        { nombre: '1x Botella Lambrusco Rosé', desc: 'Vino espumoso italiano DOP bien frío', precio: 10.50, icono: '🍷' },
-        { nombre: '1x Café Expreso Italiano', desc: 'Tueste natural 100% arábica', precio: 1.60, icono: '☕' }
       ]
     };
 
     function filtrarCartaCamarero(cat) {
       categoriaCartaCamarero = cat;
-      ['pizzas', 'entrantes', 'postres', 'bebidas'].forEach(c => {
-        const b = document.getElementById('cat-cam-btn-' + c);
+      ['bebidas', 'pizzas', 'entrantes', 'postres'].forEach(c => {
+        // Botones móviles embebidos
+        const b = document.getElementById('cat-btn-' + c) || document.getElementById('cat-cam-btn-' + c);
         if (b) {
           b.className = (c === cat)
-            ? 'px-2.5 py-1 rounded-lg bg-red-600 text-white text-[10px] font-bold whitespace-nowrap transition shadow'
-            : 'px-2.5 py-1 rounded-lg bg-stone-900 text-stone-300 hover:text-white text-[10px] font-semibold whitespace-nowrap border border-stone-800 transition';
+            ? 'py-1.5 px-1 rounded-lg bg-amber-500 text-stone-950 font-black transition'
+            : 'py-1.5 px-1 rounded-lg text-stone-400 hover:text-white transition';
+        }
+        // Botones pantalla completa
+        const bFull = document.getElementById('cat-cam-full-btn-' + c);
+        if (bFull) {
+          bFull.className = (c === cat)
+            ? 'px-3 py-1.5 rounded-xl bg-amber-500 text-stone-950 text-xs font-black whitespace-nowrap transition shadow'
+            : 'px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white';
         }
       });
       renderizarVistaMovilCamarero();
+      if (typeof renderizarFullscreenCartaAngela === 'function') {
+        renderizarFullscreenCartaAngela();
+      }
+      if (document.getElementById('modal-comanda-popup-angela') && document.getElementById('modal-comanda-popup-angela').style.display !== 'none') {
+        renderizarPopupComandaAngela();
+      }
     }
 
     function toggleNotaCocinaCamarero(nota) {
@@ -4316,7 +4608,24 @@
       const gridCarta = document.getElementById('camarero-carta-items');
       if (gridCarta) {
         const platos = cartaRealPizzeriaAngela[categoriaCartaCamarero] || [];
-        gridCarta.innerHTML = platos.map(p => `
+        let bannerHtml = '';
+        if (categoriaCartaCamarero === 'bebidas') {
+          bannerHtml = `
+            <div class="bg-gradient-to-r from-amber-950/80 via-stone-900 to-amber-950/80 border border-amber-500/60 rounded-xl p-2 mb-2 flex items-center justify-between gap-2 shadow-sm">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <span class="text-base shrink-0 animate-bounce">🍺</span>
+                <div class="min-w-0">
+                  <div class="text-[11px] font-black text-amber-300">1ª Ronda: Bebida de la mesa</div>
+                  <div class="text-[9px] text-stone-300 truncate">Se marcha a barra mientras eligen la comida</div>
+                </div>
+              </div>
+              <button onclick="filtrarCartaCamarero('pizzas')" class="shrink-0 bg-amber-500 hover:bg-amber-400 active:scale-95 text-stone-950 font-black text-[10px] px-2.5 py-1 rounded-lg transition shadow flex items-center gap-1">
+                <span>🍕 Pizzas &rarr;</span>
+              </button>
+            </div>
+          `;
+        }
+        gridCarta.innerHTML = bannerHtml + platos.map(p => `
           <button onclick="anotarPlatoMesaActual('${p.nombre}', ${p.precio})" class="w-full text-left bg-stone-950 hover:bg-stone-800 active:scale-[0.99] border border-stone-800 hover:border-amber-500/50 rounded-xl p-2 transition flex items-center justify-between gap-2 group">
             <div class="flex items-center gap-2 min-w-0">
               <span class="text-base shrink-0">${p.icono}</span>
@@ -5372,7 +5681,24 @@
       const grid = document.getElementById('camarero-full-carta-items');
       if (!grid) return;
       const platos = cartaRealPizzeriaAngela[categoriaCartaCamarero] || [];
-      grid.innerHTML = platos.map(p => `
+      let bannerHtml = '';
+      if (categoriaCartaCamarero === 'bebidas') {
+        bannerHtml = `
+          <div class="bg-gradient-to-r from-amber-950/80 via-stone-900 to-amber-950/80 border border-amber-500/60 rounded-2xl p-2.5 mb-2.5 flex items-center justify-between gap-2 shadow-sm">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="text-xl shrink-0 animate-bounce">🍺</span>
+              <div class="min-w-0">
+                <div class="text-xs font-black text-amber-300">1ª Ronda: Bebidas de la mesa</div>
+                <div class="text-[10px] text-stone-300 truncate">Primero se marcha la bebida a barra mientras miran la carta.</div>
+              </div>
+            </div>
+            <button onclick="filtrarCartaCamarero('pizzas')" class="shrink-0 bg-amber-500 hover:bg-amber-400 active:scale-95 text-stone-950 font-black text-xs px-3 py-1.5 rounded-xl transition shadow flex items-center gap-1">
+              <span>🍕 Continuar a Pizzas</span> <span>&rarr;</span>
+            </button>
+          </div>
+        `;
+      }
+      grid.innerHTML = bannerHtml + platos.map(p => `
         <button onclick="anotarPlatoMesaActual('${p.nombre}', ${p.precio})" class="w-full text-left bg-stone-900/90 hover:bg-stone-800 active:scale-[0.98] border border-stone-800 hover:border-amber-500 rounded-2xl p-3 transition flex items-center justify-between gap-3 shadow-sm group">
           <div class="flex items-center gap-3 min-w-0">
             <span class="text-2xl group-hover:scale-125 transition shrink-0">${p.icono}</span>
@@ -6606,8 +6932,11 @@
 
         <!-- Ficha de la mesa activa con botón directo para ver su pedido -->
         <div class="bg-stone-900/60 border-b border-stone-800/80 px-3.5 py-2 flex items-center justify-between gap-2 shrink-0">
-          <div class="min-w-0">
-            <h3 class="font-black text-white text-sm tracking-tight truncate" id="camarero-full-mesa-title">Mesa 1 · Familia Ortega</h3>
+          <div class="min-w-0 cursor-pointer" onclick="abrirModalAperturaMesaAngela()" title="Toca para sentar comensales o editar reserva">
+            <div class="flex items-center gap-1.5">
+              <h3 class="font-black text-white text-sm tracking-tight truncate" id="camarero-full-mesa-title">Mesa 1 · Familia Ortega</h3>
+              <span class="text-[10px] text-amber-400 font-bold bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-700/50">✏️ Editar</span>
+            </div>
             <span class="text-[11px] text-stone-400 truncate block" id="camarero-full-mesa-sub">Salón Interior · 4 comensales · Turno Noche</span>
           </div>
           <!-- Botón directo Ventana Emergente del Pedido -->
@@ -6617,12 +6946,12 @@
           </button>
         </div>
 
-        <!-- Categorías de la Carta Real -->
+        <!-- Categorías de la Carta Real (Primero SIEMPRE la bebida) -->
         <div class="bg-stone-900/80 border-b border-stone-800 px-2.5 py-1.5 flex items-center gap-1 overflow-x-auto shrink-0">
-          <button onclick="filtrarCartaCamarero('pizzas')" id="cat-cam-full-btn-pizzas" class="px-3 py-1.5 rounded-xl bg-amber-500 text-stone-950 text-xs font-black whitespace-nowrap transition shadow">🍕 Pizzas</button>
+          <button onclick="filtrarCartaCamarero('bebidas')" id="cat-cam-full-btn-bebidas" class="px-3 py-1.5 rounded-xl bg-amber-500 text-stone-950 text-xs font-black whitespace-nowrap transition shadow">🍺 Bebidas (1ª Ronda)</button>
+          <button onclick="filtrarCartaCamarero('pizzas')" id="cat-cam-full-btn-pizzas" class="px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍕 Pizzas</button>
           <button onclick="filtrarCartaCamarero('entrantes')" id="cat-cam-full-btn-entrantes" class="px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🧀 Entrantes</button>
           <button onclick="filtrarCartaCamarero('postres')" id="cat-cam-full-btn-postres" class="px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍰 Postres</button>
-          <button onclick="filtrarCartaCamarero('bebidas')" id="cat-cam-full-btn-bebidas" class="px-3 py-1.5 rounded-xl bg-stone-900 text-stone-300 text-xs font-semibold whitespace-nowrap border border-stone-800 transition hover:text-white">🍺 Bebidas</button>
         </div>
 
         <!-- Modificadores de Cocina / Notas en 1 Clic -->
@@ -6782,6 +7111,111 @@
         <button onclick="cerrarModalDetalleComandaAngela()" class="w-full py-2 bg-stone-950 hover:bg-stone-800 text-amber-300 font-bold text-xs rounded-xl border border-stone-800 transition">
           &larr; Volver a la Carta (Seguir tomando nota)
         </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL APERTURA DE MESA Y COMENSALES (HOJA DE RUTA NATURAL HOSTELERÍA ÁNGELA) -->
+  <!-- 1. Elegir número de comensales (Pax)                                        -->
+  <!-- 2. Comprobar reserva previa con nombre del cliente o cliente de paso         -->
+  <!-- 3. Pasar PRIMERO a la ronda de bebidas                                      -->
+  <!-- ========================================================================= -->
+  <div id="modal-apertura-mesa-angela" style="display: none;" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[1000007] flex items-end sm:items-center justify-center p-0 sm:p-4 select-none">
+    <div class="bg-stone-900 border-t-2 sm:border-2 border-amber-500/80 rounded-t-[2.5rem] sm:rounded-3xl p-5 sm:p-6 max-w-lg w-full max-h-[92vh] flex flex-col space-y-4 shadow-2xl animate-fade-in text-stone-100 overflow-y-auto">
+      
+      <!-- Encabezado Modal -->
+      <div class="flex items-center justify-between border-b border-stone-800 pb-3 shrink-0">
+        <div class="flex items-center gap-2.5">
+          <span class="text-2xl">🏛️</span>
+          <div>
+            <h3 class="font-black text-white text-base tracking-tight" id="apertura-modal-titulo">Apertura de Mesa 1</h3>
+            <span class="text-xs text-amber-400 font-mono" id="apertura-modal-sub">Salón Interior · Capacidad 4 pax</span>
+          </div>
+        </div>
+        <button onclick="cerrarModalAperturaMesaAngela()" class="w-8 h-8 rounded-full bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white flex items-center justify-center text-lg transition">✕</button>
+      </div>
+
+      <!-- PASO 1: NÚMERO DE COMENSALES (PAX) -->
+      <div class="bg-stone-950 p-4 rounded-2xl border border-stone-800 space-y-2.5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1.5 text-xs font-black text-stone-200 uppercase tracking-wide">
+            <span class="w-5 h-5 rounded-full bg-amber-500 text-stone-950 flex items-center justify-center text-[11px] font-black">1</span>
+            <span>¿Cuántos comensales se sientan?</span>
+          </div>
+          <span id="apertura-pax-badge" class="text-xs font-mono font-black text-amber-400 bg-amber-950/80 px-2 py-0.5 rounded border border-amber-700/50">4 personas</span>
+        </div>
+        
+        <!-- Selector Rápido de Pax: 1 a 8+ -->
+        <div class="grid grid-cols-4 sm:grid-cols-8 gap-2 pt-1" id="apertura-pax-grid">
+          <!-- Renderizado dinámico de botones de pax -->
+        </div>
+      </div>
+
+      <!-- PASO 2: COMPROBACIÓN DE RESERVA PREVIA O CLIENTE DE PASO -->
+      <div class="bg-stone-950 p-4 rounded-2xl border border-stone-800 space-y-3">
+        <div class="flex items-center gap-1.5 text-xs font-black text-stone-200 uppercase tracking-wide">
+          <span class="w-5 h-5 rounded-full bg-amber-500 text-stone-950 flex items-center justify-center text-[11px] font-black">2</span>
+          <span>Comprobar Reserva Previa o Cliente de Paso</span>
+        </div>
+
+        <!-- Tarjeta de Reserva Detectada para esta Mesa (si existe) -->
+        <div id="apertura-reserva-detectada-card" class="hidden p-3 rounded-xl border bg-purple-950/30 border-purple-500/60 space-y-2">
+          <!-- Contenido dinámico con datos de la reserva -->
+        </div>
+
+        <!-- Selector de Tipo: Reserva vs Cliente de Paso -->
+        <div class="space-y-2">
+          <label class="flex items-center gap-2 cursor-pointer p-2.5 rounded-xl border border-stone-800 hover:border-stone-700 bg-stone-900/60 transition" onclick="cambiarTipoAperturaAngela('reserva_auto')">
+            <input type="radio" name="apertura_tipo" id="apertura-radio-reserva" value="reserva" checked class="text-amber-500 focus:ring-amber-500">
+            <div class="text-xs font-bold text-stone-200 flex-1">
+              <span id="apertura-radio-reserva-texto">Sentar con la Reserva Programada</span>
+              <span class="block text-[10px] text-stone-400 font-normal">Asigna el nombre del cliente y notas de la reserva de WhatsApp / Web</span>
+            </div>
+          </label>
+
+          <label class="flex items-center gap-2 cursor-pointer p-2.5 rounded-xl border border-stone-800 hover:border-stone-700 bg-stone-900/60 transition" onclick="cambiarTipoAperturaAngela('paso')">
+            <input type="radio" name="apertura_tipo" id="apertura-radio-paso" value="paso" class="text-amber-500 focus:ring-amber-500">
+            <div class="text-xs font-bold text-stone-200 flex-1">
+              <span>Cliente de Paso (Sin Reserva Previa)</span>
+              <span class="block text-[10px] text-stone-400 font-normal">Entran al local sin cita previa · Asignación rápida en sala</span>
+            </div>
+          </label>
+
+          <!-- Campo para nombre de cliente si es de paso -->
+          <div id="apertura-nombre-paso-container" class="hidden pl-6 pt-1">
+            <input type="text" id="apertura-input-nombre-paso" placeholder="Nombre del cliente o nota (ej. Carlos, Pareja...)" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-3 py-2 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-amber-500">
+          </div>
+
+          <label class="flex items-center gap-2 cursor-pointer p-2.5 rounded-xl border border-stone-800 hover:border-stone-700 bg-stone-900/60 transition" onclick="cambiarTipoAperturaAngela('otra_reserva')">
+            <input type="radio" name="apertura_tipo" id="apertura-radio-otra" value="otra_reserva" class="text-amber-500 focus:ring-amber-500">
+            <div class="text-xs font-bold text-stone-200 flex-1">
+              <span>Asignar otra reserva del turno</span>
+              <span class="block text-[10px] text-stone-400 font-normal">Si han llegado antes de tiempo o se les cambia de mesa</span>
+            </div>
+          </label>
+
+          <!-- Dropdown de otras reservas del turno -->
+          <div id="apertura-selector-otra-reserva-container" class="hidden pl-6 pt-1">
+            <select id="apertura-select-otra-reserva" onchange="alSeleccionarOtraReservaAngela(this.value)" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+              <!-- Opciones dinámicas -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 3: BOTÓN DE ACCIÓN PRINCIPAL (PRIMERO LA BEBIDA) -->
+      <div class="pt-2 space-y-2 shrink-0">
+        <button onclick="confirmarAperturaMesaAngela()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 active:scale-[0.99] text-stone-950 font-black text-sm shadow-xl shadow-amber-950/80 transition flex items-center justify-center gap-2 border border-amber-300">
+          <span class="text-lg">🍺</span>
+          <span>Confirmar Comensales y Pedir PRIMERO la Bebida &rarr;</span>
+        </button>
+
+        <div class="flex items-center justify-between text-[11px] text-stone-400 px-1">
+          <span>⚡ Pasa directamente a la 1ª ronda de bebidas</span>
+          <button onclick="cerrarModalAperturaMesaAngela()" class="text-stone-400 hover:text-white underline">Cancelar</button>
+        </div>
       </div>
 
     </div>
