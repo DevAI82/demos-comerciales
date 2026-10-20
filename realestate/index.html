@@ -158,6 +158,10 @@
         <span class="w-2 h-2 rounded-full bg-brand-emerald"></span>
         Radar Idealista Conectado
       </a>
+      <a href="#demo-paso-a-paso-360" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-brand-blue hover:from-cyan-500 hover:to-sky-500 text-white text-xs font-black shadow-glow-blue transition-all transform hover:-translate-y-0.5 flex items-center gap-1.5">
+        <span>🎬</span>
+        <span>Demo Móvil + PC (7 Pasos)</span>
+      </a>
       <a href="#contacto-demo" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-blue to-sky-500 hover:from-sky-600 hover:to-brand-blue text-white text-xs font-bold shadow-glow-blue transition-all transform hover:-translate-y-0.5">
         Agendar Demostración
       </a>
@@ -188,6 +192,10 @@
         </p>
 
         <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
+          <a href="#demo-paso-a-paso-360" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-500 to-brand-blue hover:from-cyan-400 hover:to-brand-blue text-slate-950 font-black text-sm shadow-glow-blue transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+            <span>🎬</span>
+            <span>Ver Demo Paso a Paso (Móvil + PC)</span>
+          </a>
           <a href="#radar-cartera-idealista" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-gradient-to-r from-brand-blue to-sky-500 hover:from-sky-500 hover:to-brand-blue text-white font-bold text-sm shadow-glow-blue transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
             <span>Ver Cartera Izon vs Idealista</span>
@@ -245,6 +253,148 @@
 
     </div>
   </section>
+
+    <!-- ========================================================================= -->
+  <!-- SECCIÓN MASTER: DEMO INTERACTIVA PASO A PASO (MÓVIL + MONITOR PC EN VIVO) -->
+  <!-- ========================================================================= -->
+  <section id="demo-paso-a-paso-360" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800">
+    
+    <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 p-5 sm:p-7 rounded-3xl border-2 border-brand-blueAccent/60 shadow-2xl space-y-6">
+      
+      <!-- Cabecera del Simulador -->
+      <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+        <div class="space-y-1.5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/90 text-cyan-300 text-xs font-black border border-cyan-500/40 uppercase tracking-widest">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span>🎬 SIMULADOR INTERACTIVO 360° · FLUJO COMPLETO DE VENTA</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl lg:text-3xl font-black text-white font-display">
+            Mira cómo funciona el ciclo completo: Móvil del Comprador + Monitor PC de la Agencia
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-4xl leading-relaxed">
+            Sigue el recorrido completo en tiempo real desde que <strong>Carlos Gómez</strong> pide información por WhatsApp hasta la entrega de fotos, agendamiento en Google Calendar, recordatorio GPS y <strong>firma de arras con comisión de 4.200 €</strong>. Pulsa en los botones superiores o dentro de las pantallas para avanzar:
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="text-xs text-slate-400 hidden sm:inline">Caso Real:</span>
+          <span class="px-3 py-1.5 rounded-xl bg-brand-blue/20 text-brand-blueAccent text-xs font-bold border border-brand-blueAccent/40">
+            🏢 Piso Villacerrada (218.000 €)
+          </span>
+        </div>
+      </div>
+
+      <!-- Barra de Pasos Numerados Clicables + Controles Anterior / Siguiente / Auto-Play -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 bg-slate-950/95 p-3 sm:p-3.5 rounded-2xl border border-slate-800">
+        <!-- Tira de 7 pasos -->
+        <div id="demo-realestate-steps-container" class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0">
+          <!-- JS rellena los 7 botones dinámicamente -->
+        </div>
+
+        <!-- Controles de Navegación -->
+        <div class="flex items-center gap-2 shrink-0 justify-end">
+          <button onclick="pasoAnteriorRealEstateDemo()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition flex items-center gap-1">
+            <span>◀</span> <span>Anterior</span>
+          </button>
+          <button onclick="toggleAutoPlayRealEstateDemo()" id="btn-autoplay-realestate" class="px-3.5 py-2 rounded-xl bg-emerald-950 hover:bg-emerald-900 text-emerald-300 font-bold text-xs border border-emerald-600/50 transition flex items-center gap-1.5">
+            <span>▶️</span> <span>Auto-Play</span>
+          </button>
+          <button onclick="siguientePasoRealEstateDemo()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-blue to-sky-500 hover:from-sky-400 hover:to-brand-blue text-white font-extrabold text-xs shadow-glow-blue transition flex items-center gap-1.5">
+            <span>Siguiente Paso</span> <span>▶</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Banner Explicativo del Paso Actual (Guía de Alto Valor) -->
+      <div id="demo-realestate-explanation-banner" class="bg-slate-900/90 border border-brand-blueAccent/40 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <!-- Rellenado por JS: Actor, Título y Explicación -->
+      </div>
+
+      <!-- DOBLE PANTALLA EN VIVO: IZQUIERDA MÓVIL (WHATSAPP CLIENTE / ASESORA) | DERECHA MONITOR PC (CRM AGENCIA) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- PANTALLA 1 (5 COLS): MÓVIL (WHATSAPP / NOTIFICACIONES CLIENTE) -->
+        <div class="lg:col-span-5 flex flex-col">
+          <div class="bg-[#0B141A] border-4 border-slate-700/80 rounded-[35px] p-3 shadow-2xl flex-1 flex flex-col justify-between relative overflow-hidden">
+            <div>
+              <!-- Altavoz / Notch superior del móvil -->
+              <div class="w-24 h-3 bg-slate-800 rounded-full mx-auto mb-2 flex items-center justify-center">
+                <div class="w-8 h-1 bg-slate-600 rounded-full"></div>
+              </div>
+
+              <!-- Barra Superior Móvil -->
+              <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-[#202C33] border border-slate-700/50 mb-3 text-white">
+                <div class="flex items-center gap-2">
+                  <span class="text-base" id="demo-re-mobile-icon">📱</span>
+                  <div>
+                    <span class="text-[9px] uppercase tracking-wider font-extrabold text-brand-blueAccent block" id="demo-re-mobile-role">VISTA MÓVIL · COMPRADOR</span>
+                    <h4 class="text-xs font-bold text-white flex items-center gap-1" id="demo-re-mobile-title">WhatsApp Oficial Izon</h4>
+                  </div>
+                </div>
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-700/50" id="demo-re-mobile-badge">En Línea</span>
+              </div>
+
+              <!-- Contenido Dinámico de la Pantalla del Móvil -->
+              <div id="demo-re-mobile-body" class="space-y-3 p-1 min-h-[360px]">
+                <!-- Rellenado dinámicamente por JS según el paso activo -->
+              </div>
+            </div>
+
+            <!-- Pie del Móvil -->
+            <div class="pt-2.5 mt-3 border-t border-slate-800 text-[10px] text-slate-400 flex items-center justify-between px-2">
+              <span class="text-slate-400">👆 Puedes pulsar los botones dentro del móvil</span>
+              <span class="font-mono text-cyan-400 font-bold" id="demo-re-step-indicator">Paso 1/7</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANTALLA 2 (7 COLS): MONITOR PC DE LA AGENCIA (CRM IZON CONSULTING) -->
+        <div class="lg:col-span-7 flex flex-col">
+          <div class="bg-[#0A0F1D] border-2 border-slate-700/90 rounded-3xl p-4 shadow-2xl flex-1 flex flex-col justify-between">
+            <div>
+              <!-- Barra de Navegador del PC -->
+              <div class="flex flex-wrap items-center justify-between gap-2 px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 mb-3.5">
+                <div class="flex items-center gap-2.5">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                  </div>
+                  <span class="text-[11px] font-mono text-slate-400 border-l border-slate-700 pl-2.5" id="demo-re-pc-role">
+                    https://crm.izonconsulting.es/panel-comercial
+                  </span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-brand-blue/20 text-brand-blueAccent border border-brand-blue/30" id="demo-re-pc-badge">
+                    ⚡ Sync 0,2s
+                  </span>
+                </div>
+              </div>
+
+              <!-- Contenido Dinámico del Monitor PC -->
+              <div id="demo-re-pc-body" class="space-y-3.5 p-1 min-h-[360px]">
+                <!-- Rellenado dinámicamente por JS según el paso activo -->
+              </div>
+            </div>
+
+            <!-- Tira Inferior de Evolución del Deal en el CRM -->
+            <div class="pt-3 mt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-400 px-1">
+              <div id="demo-re-status-trail" class="flex flex-wrap items-center gap-1.5">
+                <!-- Muestra la evolución: 1. Lead Nuevo ➔ 2. Fotos ➔ 3. Solvente ➔ 4. Visita ➔ 5. GPS ➔ 6. Oferta ➔ 7. Arras -->
+              </div>
+              <button onclick="siguientePasoRealEstateDemo()" class="text-cyan-400 hover:text-cyan-300 font-extrabold flex items-center gap-1 transition-colors">
+                <span>Avanzar al siguiente paso</span>
+                <span>➔</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- ================= SECCIÓN 1: CHATBOT DE WHATSAPP ================= -->
   <section id="simulador-whatsapp" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
@@ -2615,6 +2765,598 @@
         btn.textContent = "¡Enlace Copiado al Portapapeles!";
         setTimeout(() => { btn.textContent = "Copiar Enlace Interactivo"; }, 2500);
       });
+    }
+
+    
+    // =========================================================================
+    // SIMULADOR INTERACTIVO 360° · PASO A PASO (MÓVIL + MONITOR PC EN VIVO)
+    // =========================================================================
+    let pasoRealEstateActivo = 0;
+    let intervaloAutoPlayRealEstate = null;
+
+    const datosFlujoInmobiliario = [
+      {
+        corto: '1. WhatsApp (<60s)',
+        titulo: 'Paso 1 de 7 · Carlos Gómez pregunta por el piso de Villacerrada por WhatsApp',
+        quienActua: '🤖 Motor Altera OS en <45 segundos (Atención fuera de horario comercial)',
+        explicacion: 'Martes 21:15h (oficina cerrada). Carlos Gómez ve el piso de Villacerrada (218.000 €) en la web de Izon y envía un mensaje. El sistema responde en 24 segundos y dispara una llamada whisper al móvil del asesor de guardia.',
+        mobileRole: '📱 MÓVIL DEL COMPRADOR · WHATSAPP',
+        mobileTitle: 'Carlos Gómez · Piso Villacerrada',
+        mobileBadge: '💬 WhatsApp 24/7',
+        mobileHtml: `
+          <div class="bg-[#0B141A] rounded-2xl p-3 space-y-2.5 text-xs">
+            <div class="chat-bubble-user p-2.5 max-w-[88%] ml-auto shadow text-slate-100">
+              <p>¡Hola! He visto el piso de 4 habitaciones en Villacerrada (218.000 €) en vuestra web. ¿Sigue disponible y me podéis dar más información? 🏢</p>
+              <span class="text-[9px] text-emerald-200 block text-right mt-1">21:15 ✓✓</span>
+            </div>
+            <div class="chat-bubble-agent p-2.5 max-w-[88%] shadow text-slate-200">
+              <p class="font-semibold text-brand-blueAccent mb-1">Izon Consulting Albacete:</p>
+              <p>¡Hola Carlos! Bienvenido a Izon Consulting. Sí, el <strong>Piso Céntrico en Villacerrada</strong> (165 m², 4 dormitorios, 2 baños) sigue en cartera en exclusiva. 🏠</p>
+              <p class="mt-1 text-slate-300">¿Te gustaría que te envíe las fotografías de alta resolución del interior y la ficha técnica oficial?</p>
+              <span class="text-[9px] text-slate-400 block text-right mt-1">21:15 (24 seg después)</span>
+            </div>
+          </div>
+          <button onclick="siguientePasoRealEstateDemo()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-brand-blue to-sky-500 hover:from-sky-400 hover:to-brand-blue text-white font-black text-xs shadow-glow-blue transition-all flex items-center justify-center gap-2 transform active:scale-95 animate-pulse">
+            <span>📸</span>
+            <span>ENVIAR FOTOS Y FICHA TÉCNICA HD (PASO 2) ➔</span>
+          </button>
+        `,
+        pcRole: '🖥️ MONITOR PC AGENCIA · CRM IZON CONSULTING',
+        pcTitle: 'Alerta instantánea de Speed to Lead (<45s)',
+        pcBadge: '⚡ Lead Capturado (24s)',
+        pcHtml: `
+          <div class="space-y-3">
+            <div class="p-3.5 rounded-2xl bg-slate-900 border border-brand-blueAccent/50 flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-xl bg-blue-500/20 text-cyan-400 flex items-center justify-center text-lg font-bold">⚡</span>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-brand-blueAccent bg-brand-blue/20 px-2 py-0.5 rounded">Speed to Lead Triggered</span>
+                  <h4 class="text-sm font-bold text-white mt-0.5">Carlos Gómez · Interés en Villacerrada</h4>
+                  <p class="text-[11px] text-slate-300">Entrada: WhatsApp (21:15h) • Tiempo de respuesta bot: <strong>24 segundos</strong></p>
+                </div>
+              </div>
+              <span class="text-[10px] text-emerald-400 font-mono font-bold">● En directo</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                <span class="text-slate-400 text-[10px] block">Llamada Whisper Asesor</span>
+                <strong class="text-white">Lucía (Teléfono móvil sonando)</strong>
+                <p class="text-[10px] text-cyan-300 mt-1">"Nuevo lead Villacerrada. Pulsa 1 para conectar"</p>
+              </div>
+              <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                <span class="text-slate-400 text-[10px] block">Inmueble Solicitado</span>
+                <strong class="text-white">Piso Villacerrada (218.000 €)</strong>
+                <p class="text-[10px] text-emerald-400 mt-1">Exclusiva activa Izon (165 m²)</p>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400">Estado en Kanban:</span>
+              <span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-300 font-bold text-[11px]">1. Nuevo Lead (&lt;60s)</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        corto: '2. Fotos & Radar',
+        titulo: 'Paso 2 de 7 · Entrega automática de galería fotográfica HD y comparativa Idealista',
+        quienActua: '🤖 Disparo Rich Media & Knowledge Engine de Izon',
+        explicacion: 'El cliente no tiene que esperar al día siguiente para ver el interior. El bot entrega una tarjeta fotográfica en alta resolución, plano de distribución y el dato de mercado: ¡Está un 14% por debajo de la media de Idealista!',
+        mobileRole: '📱 MÓVIL DEL COMPRADOR · ENTREGA DE FOTOS',
+        mobileTitle: 'Galería visual y plano entregados en segundos',
+        mobileBadge: '📸 Rich Media Delivery',
+        mobileHtml: `
+          <div class="bg-[#0B141A] rounded-2xl p-2.5 space-y-2 text-xs">
+            <div class="chat-bubble-agent p-2.5 shadow text-slate-200">
+              <p class="font-semibold text-brand-blueAccent mb-1">Izon Consulting:</p>
+              <p>Aquí tienes la galería oficial del inmueble en Villacerrada: 📸</p>
+              
+              <div class="mt-2 rounded-xl overflow-hidden border border-slate-700 bg-slate-900">
+                <img src="https://www.izonconsulting.es/wp-content/uploads/2025/10/15-1-818x540.jpg" alt="Piso Villacerrada" class="w-full h-32 object-cover">
+                <div class="p-2.5 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-white font-bold text-xs">Piso Céntrico Villacerrada</span>
+                    <span class="text-brand-emerald font-extrabold text-xs">218.000 €</span>
+                  </div>
+                  <p class="text-[10px] text-slate-300">165 m² • 4 dormitorios • 2 baños • Calefacción central • Ascensor cota cero</p>
+                  <div class="pt-1 text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                    <span>🔥 Radar Idealista:</span>
+                    <span>1.321 €/m² (-14% vs media de barrio 1.540 €)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-bubble-user p-2.5 max-w-[88%] ml-auto shadow text-slate-100">
+              <p>¡Tiene una pinta increíble! Justo lo que buscamos. ¿Se puede visitar esta semana? ✨</p>
+              <span class="text-[9px] text-emerald-200 block text-right mt-1">21:16 ✓✓</span>
+            </div>
+          </div>
+          <button onclick="siguientePasoRealEstateDemo()" class="w-full py-3.5 px-4 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white font-black text-xs shadow-lg transition-all flex items-center justify-center gap-2 transform active:scale-95">
+            <span>🏦</span>
+            <span>VALIDAR SOLVENCIA HIPOTECARIA EN 1 CLIC (PASO 3) ➔</span>
+          </button>
+        `,
+        pcRole: '🖥️ MONITOR PC AGENCIA · EXPEDIENTE DEL INMUEBLE',
+        pcTitle: 'Ficha digital abierta y trazabilidad de consulta',
+        pcBadge: '📊 Ficha & Radar Enviados',
+        pcHtml: `
+          <div class="space-y-3">
+            <div class="bg-slate-900/90 p-3.5 rounded-2xl border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-[11px] font-bold text-brand-blueAccent uppercase">Expediente Entregado al Lead</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">14% Bajo Media</span>
+              </div>
+              <h4 class="text-sm font-bold text-white">Villacerrada · 165 m² construidos</h4>
+              <p class="text-xs text-slate-300">Documentos enviados por WhatsApp: Plano técnico + Ficha descriptiva + Certificado Energético C</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5 text-xs">
+              <div class="flex items-center justify-between text-slate-400 text-[11px]">
+                <span>Trazabilidad del Comprador:</span>
+                <span class="text-emerald-400 font-bold">Activo hace 1 min</span>
+              </div>
+              <p class="text-slate-200 text-[11px]">Carlos Gómez ha visualizado la galería de fotos y solicita visita presencial.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400">Estado en Kanban:</span>
+              <span class="px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 font-bold text-[11px]">2. Fotos & Ficha Entregadas</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        corto: '3. Solvencia Hipoteca',
+        titulo: 'Paso 3 de 7 · Cualificación financiera previa para filtrar mirones y curiosos',
+        quienActua: '🤖 Filtro de Viabilidad Financiera Altera OS',
+        explicacion: 'Los asesores de Izon no pierden tiempo mostrando casas a clientes que no pueden conseguir hipoteca. El sistema realiza el desglose de entrada (20%) y gastos (10%), verificando la capacidad real de compra con respeto y profesionalidad.',
+        mobileRole: '📱 MÓVIL DEL COMPRADOR · FILTRO FINANCIERO',
+        mobileTitle: 'Simulación financiera transparente',
+        mobileBadge: '🏦 Solvencia Validada',
+        mobileHtml: `
+          <div class="bg-[#0B141A] rounded-2xl p-2.5 space-y-2 text-xs">
+            <div class="chat-bubble-agent p-2.5 shadow text-slate-200">
+              <p class="font-semibold text-brand-blueAccent mb-1">Izon Consulting:</p>
+              <p>¡Genial Carlos! Para garantizar una visita productiva, te mostramos el desglose financiero estimado para este piso de 218.000 €:</p>
+              
+              <div class="mt-2 p-2.5 rounded-xl bg-slate-900 border border-purple-500/40 space-y-1 text-[11px]">
+                <div class="flex justify-between border-b border-slate-800 pb-0.5">
+                  <span class="text-slate-400">Entrada 20%:</span>
+                  <strong class="text-white">43.600 €</strong>
+                </div>
+                <div class="flex justify-between border-b border-slate-800 pb-0.5">
+                  <span class="text-slate-400">Impuestos ITP (9%) + Gastos:</span>
+                  <strong class="text-white">21.800 €</strong>
+                </div>
+                <div class="flex justify-between border-b border-slate-800 pb-0.5 font-bold text-brand-gold">
+                  <span>Ahorro previo necesario:</span>
+                  <strong>65.400 €</strong>
+                </div>
+                <div class="flex justify-between text-emerald-400 font-bold pt-0.5">
+                  <span>Cuota estimada (~2.6% a 30a):</span>
+                  <strong>~698 €/mes</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="chat-bubble-user p-2.5 max-w-[88%] ml-auto shadow text-slate-100">
+              <p>Sí, contamos con 70.000 € ahorrados y nómina fija en el hospital. Estamos listos para comprar. 👍</p>
+              <span class="text-[9px] text-emerald-200 block text-right mt-1">21:17 ✓✓</span>
+            </div>
+          </div>
+          <button onclick="siguientePasoRealEstateDemo()" class="w-full py-3.5 px-4 rounded-2xl bg-brand-emerald hover:bg-emerald-600 text-slate-950 font-black text-xs shadow-lg transition-all flex items-center justify-center gap-2 transform active:scale-95">
+            <span>📅</span>
+            <span>CONSULTAR CALENDARIO Y AGENDAR CITA (PASO 4) ➔</span>
+          </button>
+        `,
+        pcRole: '🖥️ MONITOR PC AGENCIA · SCORING FINANCIERO',
+        pcTitle: 'Comprador verificado con solvencia para compra',
+        pcBadge: '🟢 Scoring Triple A',
+        pcHtml: `
+          <div class="space-y-3">
+            <div class="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-500/50 space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-bold uppercase text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-500/40">Solvencia Confirmada</span>
+                <span class="text-xs font-mono font-bold text-white">70.000 € Fondos</span>
+              </div>
+              <h4 class="text-sm font-bold text-white">Carlos Gómez · Perfil: Comprador Inmediato</h4>
+              <p class="text-xs text-slate-300">Ingresos demostrables (Sanidad Albacete) • Viabilidad de hipoteca: <strong>100%</strong></p>
+            </div>
+
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1">
+              <span class="text-slate-400 text-[10px] block">Impacto para el Comercial:</span>
+              <p>✓ Se descartan curiosos. La visita se realiza sabiendo que el cliente puede firmar arras de inmediato si la vivienda le encaja.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400">Estado en Kanban:</span>
+              <span class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 font-bold text-[11px]">3. Solvencia Verificada</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        corto: '4. Cita Calendar',
+        titulo: 'Paso 4 de 7 · Coordinación de visita sin llamadas internas con Google Calendar de Lucía',
+        quienActua: '👥 Sincronización Multi-Asesor Round-Robin (Google Calendar)',
+        explicacion: 'El bot lee la disponibilidad en vivo de la asesora Lucía. Muestra únicamente huecos libres reales, añade margen de desplazamiento para no llegar tarde y bloquea la cita en el calendario de ambos.',
+        mobileRole: '📱 MÓVIL DEL COMPRADOR · SELECCIÓN DE HUECO',
+        mobileTitle: 'Carlos elige el horario que mejor le encaja',
+        mobileBadge: '📅 Google Calendar Sync',
+        mobileHtml: `
+          <div class="bg-[#0B141A] rounded-2xl p-2.5 space-y-2 text-xs">
+            <div class="chat-bubble-agent p-2.5 shadow text-slate-200">
+              <p class="font-semibold text-brand-blueAccent mb-1">Izon Consulting:</p>
+              <p>Consultando la agenda en tiempo real de nuestra asesora <strong>Lucía</strong>:</p>
+              <p class="text-slate-300 mt-1">📅 Huecos disponibles para este Jueves:</p>
+              
+              <div class="mt-2 grid grid-cols-3 gap-1.5">
+                <div class="p-2 rounded-lg bg-slate-800 text-center text-slate-300 text-[11px]">11:30h</div>
+                <div class="p-2 rounded-lg bg-emerald-500 text-slate-950 font-bold text-center text-[11px] shadow border-2 border-emerald-300">17:30h ✓</div>
+                <div class="p-2 rounded-lg bg-slate-800 text-center text-slate-300 text-[11px]">19:00h</div>
+              </div>
+            </div>
+
+            <div class="chat-bubble-user p-2.5 max-w-[88%] ml-auto shadow text-slate-100">
+              <p>Perfecto, nos viene genial el Jueves a las 17:30h con Lucía. 👍</p>
+              <span class="text-[9px] text-emerald-200 block text-right mt-1">21:18 ✓✓</span>
+            </div>
+
+            <div class="chat-bubble-agent p-2.5 shadow text-slate-200">
+              <p class="text-emerald-400 font-bold">¡Cita confirmada Carlos! 🎉</p>
+              <p class="text-[11px] text-slate-300 mt-0.5">Te llegará la <strong>ubicación GPS exacta del portal 2 horas antes</strong> de la visita. ¡Nos vemos el jueves!</p>
+            </div>
+          </div>
+          <button onclick="siguientePasoRealEstateDemo()" class="w-full py-3.5 px-4 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs shadow-lg transition-all flex items-center justify-center gap-2 transform active:scale-95">
+            <span>📍</span>
+            <span>SIMULAR ALERTA GPS ANTI-NO-SHOW (PASO 5) ➔</span>
+          </button>
+        `,
+        pcRole: '🖥️ MONITOR PC AGENCIA · AGENDA DE LA ASESORA',
+        pcTitle: 'Google Calendar de Lucía bloqueado automáticamente',
+        pcBadge: '📆 Cita en Agenda',
+        pcHtml: `
+          <div class="space-y-3">
+            <div class="bg-slate-900/90 p-3.5 rounded-2xl border border-slate-800 space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-[10px] font-bold text-brand-emerald uppercase">Google Calendar Sincronizado</span>
+                <span class="text-slate-400 text-[10px]">Jueves 17:30h - 18:30h</span>
+              </div>
+              <h4 class="text-sm font-bold text-white">Visita Piso Villacerrada · Carlos Gómez</h4>
+              <p class="text-xs text-slate-300">Asesora asignada: <strong>Lucía Pérez</strong> • Duración: 45 min + 15 min desplazamiento</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+              <div class="flex items-center justify-between text-[11px] text-slate-400">
+                <span>Cruce de llamadas de asesores:</span>
+                <span class="text-brand-emerald font-bold">0 minutos perdidos</span>
+              </div>
+              <p class="text-slate-300 text-[11px]">La cita queda integrada en el móvil de Lucía y el cliente recibe evento en su calendario.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400">Estado en Kanban:</span>
+              <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold text-[11px]">4. Visita Agendada (Google Cal)</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        corto: '5. Alerta GPS 2h',
+        titulo: 'Paso 5 de 7 · Protocolo Anti-No-Show con Google Maps y confirmación 2h antes',
+        quienActua: '📍 Protocolo GPS Anti-Plantón (Reduce un 85% las visitas fallidas)',
+        explicacion: 'Jueves 15:30h (2 horas antes de la visita). Carlos recibe un WhatsApp con el enlace exacto del portal en Google Maps (C/ Rosario, 18), recomendación de parking a 150m y botón para confirmar asistencia.',
+        mobileRole: '📱 MÓVIL DEL COMPRADOR · ALERTA GPS',
+        mobileTitle: 'Recordatorio con mapa del portal exacto',
+        mobileBadge: '📍 Anti-No-Show GPS',
+        mobileHtml: `
+          <div class="bg-[#0B141A] rounded-2xl p-2.5 space-y-2 text-xs">
+            <div class="chat-bubble-agent p-2.5 shadow text-slate-200">
+              <div class="flex items-center justify-between border-b border-slate-700/60 pb-1 text-[10px] text-amber-400 font-bold">
+                <span>📍 RECORDATORIO EN 2 HORAS</span>
+                <span>15:30h</span>
+              </div>
+              <p class="mt-1 text-slate-200">Hola Carlos, te recordamos tu visita <strong>hoy a las 17:30h con Lucía</strong> al piso de <strong>C/ Rosario, 18</strong>.</p>
+              
+              <div class="mt-2 p-2 rounded-xl bg-slate-900 border border-slate-700 space-y-1">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-white text-[11px]">Portal: Calle Rosario, 18</span>
+                  <span class="text-brand-blueAccent font-bold text-[10px]">Google Maps ↗</span>
+                </div>
+                <p class="text-[10px] text-slate-400">02001 Albacete (Centro - Villacerrada)</p>
+                <p class="text-[10px] text-amber-300">🅿️ Parking público Villacerrada a solo 150 metros.</p>
+              </div>
+            </div>
+
+            <div class="chat-bubble-user p-2.5 max-w-[88%] ml-auto shadow text-slate-100">
+              <p>¡Confirmado! Ya estamos aparcando cerca del portal. Nos vemos en un momento. 🚗</p>
+              <span class="text-[9px] text-emerald-200 block text-right mt-1">17:15 ✓✓</span>
+            </div>
+          </div>
+          <button onclick="siguientePasoRealEstateDemo()" class="w-full py-3.5 px-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs shadow-lg transition-all flex items-center justify-center gap-2 transform active:scale-95">
+            <span>✍️</span>
+            <span>VISITA REALIZADA Y OFERTA PRESENTADA (PASO 6) ➔</span>
+          </button>
+        `,
+        pcRole: '🖥️ MONITOR PC AGENCIA · TRACKING DE VISITAS',
+        pcTitle: 'Asistencia 100% verificada antes de desplazarse',
+        pcBadge: '✅ Asistencia Confirmada',
+        pcHtml: `
+          <div class="space-y-3">
+            <div class="p-3.5 rounded-2xl bg-amber-950/30 border border-amber-500/50 space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-[10px] font-bold text-amber-400 uppercase">Respuesta al Recordatorio GPS</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">En Camino</span>
+              </div>
+              <h4 class="text-sm font-bold text-white">Carlos Gómez · Confirmación recibida a las 17:15h</h4>
+              <p class="text-xs text-slate-300">Lucía recibe notificación push en su teléfono. Riesgo de plantón: <strong>0%</strong></p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs space-y-1">
+              <span class="text-slate-400 text-[10px] block">Ahorro frente a agencias tradicionales:</span>
+              <p class="text-slate-300 text-[11px]">✓ Lucía se desplaza con la certeza absoluta de que el cliente está en el portal, sin perder 45 minutos esperando en vano.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400">Estado en Kanban:</span>
+              <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold text-[11px]">5. Visita Confirmada por GPS</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        corto: '6. Oferta Digital',
+        titulo: 'Paso 6 de 7 · Visita completada y presentación de oferta formal de 210.000 €',
+        quienActua: '✍️ App Móvil del Asesor + Módulo de Negociación CRM',
+        explicacion: 'A Carlos le encanta la vivienda y presenta una oferta formal de 210.000 € con señal de 3.000 €. Lucía registra la oferta en su móvil. El propietario la recibe con el estudio de mercado de Idealista demostrando que es un precio de cierre óptimo.',
+        mobileRole: '📱 MÓVIL DEL ASESOR / CLIENTE · OFERTA',
+        mobileTitle: 'Oferta digital firmada en pantalla',
+        mobileBadge: '✍️ Oferta en Firme',
+        mobileHtml: `
+          <div class="bg-slate-900/90 rounded-2xl p-3 space-y-2.5 text-xs border border-slate-700">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-1.5">
+              <span class="font-bold text-brand-blueAccent uppercase text-[10px]">Propuesta de Compra Formal</span>
+              <span class="text-emerald-400 font-bold font-mono">210.000 €</span>
+            </div>
+            
+            <div class="space-y-1 text-[11px] text-slate-300">
+              <div class="flex justify-between">
+                <span>Inmueble:</span>
+                <strong class="text-white">Piso Céntrico Villacerrada (165 m²)</strong>
+              </div>
+              <div class="flex justify-between">
+                <span>Comprador:</span>
+                <strong class="text-white">Carlos Gómez (DNI verificado)</strong>
+              </div>
+              <div class="flex justify-between">
+                <span>Señal vinculante:</span>
+                <strong class="text-emerald-400">3.000 € en depósito</strong>
+              </div>
+            </div>
+
+            <div class="p-2 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-[11px] text-emerald-300">
+              ✓ Propietario contactado: <em>"Acepto la oferta de 210.000 €. ¡Procedamos con el contrato de arras!"</em>
+            </div>
+          </div>
+          <button onclick="siguientePasoRealEstateDemo()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-brand-gold to-amber-500 hover:from-amber-400 hover:to-brand-gold text-slate-950 font-black text-xs shadow-glow-gold transition-all flex items-center justify-center gap-2 transform active:scale-95">
+            <span>🏆</span>
+            <span>FIRMA DE ARRAS Y CIERRE DE VENTA (PASO 7) ➔</span>
+          </button>
+        `,
+        pcRole: '🖥️ MONITOR PC AGENCIA · PANEL DE NEGOCIACIÓN',
+        pcTitle: 'Oferta aceptada y contrato de arras generado',
+        pcBadge: '🤝 Oferta Aceptada',
+        pcHtml: `
+          <div class="space-y-3">
+            <div class="bg-slate-900/90 p-3.5 rounded-2xl border border-brand-blueAccent/50 space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-[10px] font-bold text-brand-gold uppercase">Negociación Cerrada</span>
+                <span class="text-white font-bold font-mono">210.000 € (1.272 €/m²)</span>
+              </div>
+              <h4 class="text-sm font-bold text-white">Oferta Aceptada por la Parte Vendedora</h4>
+              <p class="text-xs text-slate-300">El propietario acepta tras consultar la gráfica de Idealista. Cierre conseguido en menos de 4 días.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+              <span class="text-slate-400 text-[10px] block">Acción del Sistema:</span>
+              <p class="text-slate-300 text-[11px]">✓ Generación automática de Contrato de Arras Penitenciales (10% = 21.000 €) con firma digital certificada.</p>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400">Estado en Kanban:</span>
+              <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold text-[11px]">6. Oferta Aceptada</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        corto: '7. Arras & Comisión',
+        titulo: 'Paso 7 de 7 · Firma digital de arras (10%), operación cerrada y 4.200 € cobrados',
+        quienActua: '🏆 Cierre del Ciclo Inmobiliario Completo',
+        explicacion: 'Comprador y vendedor firman el contrato de arras con certificado digital. Carlos transfiere el 10% (21.000 €). Izon Consulting factura sus honorarios de intermediación (+4.200 €) y fija la fecha de firma en Notaría.',
+        mobileRole: '📱 MÓVIL DEL COMPRADOR · DOCUMENTO FIRMADO',
+        mobileTitle: 'Contrato de arras firmado con validez jurídica',
+        mobileBadge: '🏆 Operación Cerrada',
+        mobileHtml: `
+          <div class="bg-gradient-to-b from-slate-900 to-emerald-950/50 rounded-2xl p-3.5 space-y-2.5 text-xs border-2 border-emerald-500">
+            <div class="flex items-center justify-between text-emerald-400 font-black">
+              <span>✅ CONTRATO DE ARRAS FIRMADO</span>
+              <span class="text-[10px] bg-emerald-900 text-white px-2 py-0.5 rounded">Firmado Digital</span>
+            </div>
+
+            <div class="space-y-1 text-[11px] text-slate-200">
+              <p>📄 <strong>Documento:</strong> Contrato_Arras_Villacerrada_165m.pdf</p>
+              <p>💰 <strong>Depósito 10%:</strong> 21.000 € asegurados en cuenta notarial</p>
+              <p>🏛️ <strong>Firma Escritura Pública:</strong> 15 de Noviembre (Notaría Albacete)</p>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-slate-950/80 border border-emerald-500/40 text-center text-xs text-white">
+              ¡Enhorabuena Carlos! El piso de Villacerrada ya está reservado a tu nombre. 🥂
+            </div>
+          </div>
+          <button onclick="reiniciarFlujoRealEstateDemo()" class="w-full py-3.5 px-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition-all flex items-center justify-center gap-2">
+            <span>🔄</span>
+            <span>REINICIAR DEMO PASO A PASO DESDE EL PASO 1</span>
+          </button>
+        `,
+        pcRole: '🖥️ MONITOR PC AGENCIA · CIERRE FINANCIERO',
+        pcTitle: 'Comisión captada y expediente completado',
+        pcBadge: '💰 +4.200 € Comisión',
+        pcHtml: `
+          <div class="space-y-3">
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-brand-gold/15 border-2 border-brand-gold shadow-glow-gold space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-black text-brand-gold uppercase tracking-wider">🎉 Venta Cerrada con Éxito</span>
+                <span class="text-sm font-black text-emerald-400 font-mono">+4.200 € Izon</span>
+              </div>
+              <h4 class="text-base font-extrabold text-white">Honorarios de Intermediación Facturados</h4>
+              <p class="text-xs text-slate-300">Piso Villacerrada (210.000 €) • Venta cerrada en <strong>3 días</strong> desde el primer WhatsApp.</p>
+            </div>
+
+            <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1.5">
+              <div class="font-bold text-cyan-300 text-xs">📊 Balance del Ciclo para Izon Consulting:</div>
+              <div class="grid grid-cols-2 gap-2 text-[11px] pt-1">
+                <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-400 block text-[10px]">Tiempo comercial:</span>
+                  <strong class="text-white">12 horas ahorradas</strong>
+                </div>
+                <div class="p-2 rounded bg-slate-950 border border-slate-800">
+                  <span class="text-slate-400 block text-[10px]">Plantones (No-Shows):</span>
+                  <strong class="text-brand-emerald">0 visitas fallidas</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-slate-950 border border-brand-gold/40 flex items-center justify-between text-xs">
+              <span class="text-slate-400">Estado Final Kanban:</span>
+              <span class="px-2.5 py-1 rounded bg-brand-gold/20 text-brand-gold font-bold text-[11px]">7. Arras Firmadas (Venta Ganada)</span>
+            </div>
+          </div>
+        `
+      }
+    ];
+
+    function renderizarDemoRealEstatePasoAPaso() {
+      const container = document.getElementById('demo-realestate-steps-container');
+      const banner = document.getElementById('demo-realestate-explanation-banner');
+      const mobileBody = document.getElementById('demo-re-mobile-body');
+      const pcBody = document.getElementById('demo-re-pc-body');
+      const trail = document.getElementById('demo-re-status-trail');
+      const stepIndicator = document.getElementById('demo-re-step-indicator');
+
+      if (!container || !datosFlujoInmobiliario[pasoRealEstateActivo]) return;
+
+      const p = datosFlujoInmobiliario[pasoRealEstateActivo];
+
+      // 1. Render botones de pasos
+      container.innerHTML = datosFlujoInmobiliario.map((item, idx) => {
+        const activo = idx === pasoRealEstateActivo;
+        const clase = activo
+          ? 'bg-gradient-to-r from-brand-blue to-sky-500 text-white font-black shadow-glow-blue scale-105'
+          : 'bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold border border-slate-800';
+        return `
+          <button onclick="irAPasoRealEstateDemo(${idx})" class="px-3 py-1.5 rounded-xl text-xs whitespace-nowrap transition-all flex items-center gap-1.5 ${clase}">
+            <span>${idx + 1}.</span> <span>${item.corto}</span>
+          </button>
+        `;
+      }).join('');
+
+      // 2. Banner Explicativo
+      if (banner) {
+        banner.innerHTML = `
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-brand-blue/20 text-brand-blueAccent border border-brand-blue/30">
+                ${p.quienActua}
+              </span>
+            </div>
+            <h4 class="text-sm sm:text-base font-extrabold text-white">${p.titulo}</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">${p.explicacion}</p>
+          </div>
+          <div class="shrink-0 text-right">
+            <span class="text-xs text-slate-400 block">Progreso:</span>
+            <strong class="text-sm font-black text-cyan-400">${pasoRealEstateActivo + 1} de 7 Pasos</strong>
+          </div>
+        `;
+      }
+
+      // 3. Móvil
+      if (mobileBody) {
+        document.getElementById('demo-re-mobile-role').textContent = p.mobileRole;
+        document.getElementById('demo-re-mobile-title').textContent = p.mobileTitle;
+        document.getElementById('demo-re-mobile-badge').textContent = p.mobileBadge;
+        mobileBody.innerHTML = p.mobileHtml;
+      }
+      if (stepIndicator) {
+        stepIndicator.textContent = `Paso ${pasoRealEstateActivo + 1}/7`;
+      }
+
+      // 4. PC Monitor
+      if (pcBody) {
+        document.getElementById('demo-re-pc-role').textContent = p.pcRole;
+        document.getElementById('demo-re-pc-badge').textContent = p.pcBadge;
+        pcBody.innerHTML = p.pcHtml;
+      }
+
+      // 5. Status trail
+      if (trail) {
+        trail.innerHTML = datosFlujoInmobiliario.map((item, idx) => {
+          const check = idx <= pasoRealEstateActivo ? 'text-emerald-400 font-bold' : 'text-slate-600';
+          const sep = idx < datosFlujoInmobiliario.length - 1 ? '<span class="text-slate-600">➔</span>' : '';
+          return `<span class="${check}">${item.corto}</span> ${sep}`;
+        }).join(' ');
+      }
+    }
+
+    function irAPasoRealEstateDemo(idx) {
+      pasoRealEstateActivo = idx;
+      renderizarDemoRealEstatePasoAPaso();
+    }
+
+    function siguientePasoRealEstateDemo() {
+      if (pasoRealEstateActivo < datosFlujoInmobiliario.length - 1) {
+        pasoRealEstateActivo++;
+      } else {
+        pasoRealEstateActivo = 0;
+      }
+      renderizarDemoRealEstatePasoAPaso();
+    }
+
+    function pasoAnteriorRealEstateDemo() {
+      if (pasoRealEstateActivo > 0) {
+        pasoRealEstateActivo--;
+      } else {
+        pasoRealEstateActivo = datosFlujoInmobiliario.length - 1;
+      }
+      renderizarDemoRealEstatePasoAPaso();
+    }
+
+    function reiniciarFlujoRealEstateDemo() {
+      pasoRealEstateActivo = 0;
+      renderizarDemoRealEstatePasoAPaso();
+    }
+
+    function toggleAutoPlayRealEstateDemo() {
+      const btn = document.getElementById('btn-autoplay-realestate');
+      if (intervaloAutoPlayRealEstate) {
+        clearInterval(intervaloAutoPlayRealEstate);
+        intervaloAutoPlayRealEstate = null;
+        if (btn) {
+          btn.innerHTML = '<span>▶️</span> <span>Auto-Play</span>';
+          btn.className = 'px-3.5 py-2 rounded-xl bg-emerald-950 hover:bg-emerald-900 text-emerald-300 font-bold text-xs border border-emerald-600/50 transition flex items-center gap-1.5';
+        }
+      } else {
+        if (btn) {
+          btn.innerHTML = '<span>⏸️</span> <span>Pausar</span>';
+          btn.className = 'px-3.5 py-2 rounded-xl bg-amber-950 hover:bg-amber-900 text-amber-300 font-bold text-xs border border-amber-600/50 transition flex items-center gap-1.5 animate-pulse';
+        }
+        siguientePasoRealEstateDemo();
+        intervaloAutoPlayRealEstate = setInterval(() => {
+          siguientePasoRealEstateDemo();
+        }, 4500);
+      }
     }
 
     // --- INICIALIZACIÓN ---
