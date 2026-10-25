@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motor Gas Bike · Concesionario y taller de motos en Albacete</title>
+<meta name="description" content="Concesionario de motos en Albacete: KTM, Husqvarna, GASGAS, CFMOTO y Royal Enfield. Venta, taller con cita, recambios y equipación en C/ Casas Ibáñez, 17.">
+<!-- Prototipo comercial: no indexar hasta que el cliente lo apruebe y se publique en su dominio -->
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Motor Gas Bike · Motos en Albacete">
+<meta property="og:description" content="KTM, Husqvarna, GASGAS, CFMOTO y Royal Enfield. Venta, taller, recambios y equipación.">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2214%22 fill=%22none%22 stroke=%22%23151515%22 stroke-width=%223%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22Arial Black,Arial%22 font-weight=%22900%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23cf1f2b%22%3EK%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f3f3f2">
+<link rel="preload" href="fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/tienda-rc390-1200.webp" as="image" type="image/webp" imagesrcset="img/tienda-rc390-640.webp 640w, img/tienda-rc390-1200.webp 1136w" imagesizes="(max-width: 860px) 100vw, 55vw">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["MotorcycleDealer", "MotorcycleRepair"],
+  "name": "Motor Gas Bike",
+  "legalName": "Motor Gas Bike S.L.",
+  "image": "img/og.jpg",
+  "telephone": "+34 967 67 16 76",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Casas Ibáñez, 17",
+    "postalCode": "02005",
+    "addressLocality": "Albacete",
+    "addressRegion": "Albacete",
+    "addressCountry": "ES"
+  },
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "13:30"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "16:30", "closes": "20:30"}
+  ],
+  "brand": ["KTM","Husqvarna","GASGAS","CFMOTO","Royal Enfield"],
+  "sameAs": ["https://www.instagram.com/motorgasbike_/"],
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.1", "reviewCount": "135"}
+}
+</script>
+<style>
+@font-face{font-family:"Big Shoulders";src:url(fonts/big-shoulders-display-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Archivo";src:url(fonts/archivo-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{
+  --paper:#f3f3f2;      /* off-white sin tinte: el asfalto claro del taller */
+  --paper-2:#e7e7e5;
+  --ink:#151515;
+  --ink-2:#4a4a48;
+  --line:#cfcfcc;
+  --red:#cf1f2b;        /* la K roja del logotipo */
+  --red-ink:#a3141e;
+  --graphite:#1d1d1c;
+  --on-graphite:#f0f0ee;
+  --on-graphite-2:#b4b4b0;
+  --display:"Big Shoulders","Arial Narrow",sans-serif;
+  --text:"Archivo",system-ui,sans-serif;
+  --wrap:min(1240px,100% - 2.5rem);
+  --ease-out:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--text);text-rendering:optimizeLegibility}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:2px}
+.wrap{width:var(--wrap);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.95;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.6rem,6vw,4.6rem);text-transform:uppercase}
+h3{font-size:1.9rem;text-transform:uppercase}
+p{margin:0 0 1rem;max-width:62ch}
+.lead{font-size:1.2rem;color:var(--ink-2)}
+.k{color:var(--red)}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6rem 1rem;z-index:99}
+.skip:focus{left:1rem}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;gap:.55rem;min-height:48px;padding:.8rem 1.35rem;border-radius:4px;font:600 1rem/1 var(--text);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background-color .14s var(--ease-out),color .14s var(--ease-out),border-color .14s var(--ease-out),transform .14s var(--ease-out)}
+.btn:active{transform:translateY(1px)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-ink)}
+.btn-line{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* Cabecera */
+.top{position:sticky;top:0;z-index:40;background:var(--paper);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:68px}
+.logo{display:inline-flex;flex-direction:column;align-items:center;text-decoration:none;font-family:var(--display);font-weight:900;line-height:.82;text-transform:uppercase;letter-spacing:.01em}
+.logo .l1{font-size:1.2rem;background:var(--ink);color:var(--paper);padding:.18rem .45rem .12rem}
+.logo .l2{font-size:1.45rem;padding-top:.15rem}
+.nav{display:flex;align-items:center;gap:1.6rem}
+.nav a{font-weight:500;font-size:.98rem;text-decoration:none;padding:.4rem 0;border-bottom:2px solid transparent}
+.nav a:hover{border-bottom-color:var(--red)}
+.nav .btn{border-bottom:none;padding-inline:1.1rem;min-height:44px}
+.menu-btn{display:none;background:none;border:2px solid var(--ink);border-radius:4px;min-height:44px;padding:0 .9rem;font:600 .95rem var(--text);cursor:pointer}
+@media (max-width:900px){
+  .menu-btn{display:inline-flex;align-items:center}
+  .nav{position:fixed;inset:68px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:.5rem 1.25rem 1.25rem;transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .2s var(--ease-out),transform .2s var(--ease-out),visibility 0s .2s}
+  .nav.open{opacity:1;visibility:visible;transform:none;transition:opacity .2s var(--ease-out),transform .2s var(--ease-out)}
+  .nav a{padding:.9rem 0;border-bottom:1px solid var(--line);font-size:1.1rem}
+  .nav .btn{margin-top:1rem;justify-content:center}
+}
+
+/* Hero: texto a la izquierda, foto que se sale por la derecha con corte diagonal */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:stretch;min-height:min(86vh,820px);border-bottom:1px solid var(--line);overflow:hidden}
+.hero-copy{padding:clamp(2.5rem,7vw,6rem) 2rem clamp(2.5rem,5vw,4rem) max(1.25rem,calc((100vw - 1240px)/2));display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(3.3rem,8.4vw,7.4rem);text-transform:uppercase;margin-bottom:1.4rem}
+.hero h1 span{display:block}
+.hero .lead{margin-bottom:2rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:.8rem}
+.proof{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--line);font-size:.95rem;color:var(--ink-2)}
+.proof b{color:var(--ink)}
+.proof a{text-decoration-color:var(--line);text-underline-offset:3px}
+.stars{color:var(--red);letter-spacing:.06em}
+.hero-media{position:relative;clip-path:polygon(14% 0,100% 0,100% 100%,0 100%);background:var(--paper-2)}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.hero-tag{position:absolute;right:1.25rem;bottom:1.25rem;background:var(--paper);padding:.7rem 1rem;font-size:.9rem;line-height:1.35;border-radius:3px;max-width:15rem}
+.hero-tag b{font-family:var(--display);font-size:1.25rem;text-transform:uppercase;display:block}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .hero-media img{animation:heroDrift linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
+    @keyframes heroDrift{to{transform:scale(1.08) translateY(4%)}}
+  }
+}
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-media{order:-1;aspect-ratio:4/3;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
+  .hero-copy{padding:2rem 1.25rem 2.5rem}
+  .hero-tag{display:none}
+}
+
+/* Marcas */
+.brands{border-bottom:1px solid var(--line);background:var(--paper)}
+.brands ul{list-style:none;margin:0 auto;padding:1.4rem 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem;align-items:baseline}
+.brands li{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3vw,2.3rem);text-transform:uppercase;letter-spacing:.02em;color:var(--ink)}
+.brands li.more{font-family:var(--text);font-weight:500;font-size:1rem;text-transform:none;color:var(--ink-2)}
+
+section{scroll-margin-top:76px}
+.sec{padding:clamp(4rem,9vw,7.5rem) 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.5rem 3rem;align-items:end;margin-bottom:2.6rem}
+.sec-head p{margin:0}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+
+/* Motos: ficha técnica */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem}
+.chip{min-height:44px;padding:.55rem 1.05rem;border:2px solid var(--ink);background:transparent;border-radius:999px;font:600 .95rem var(--text);cursor:pointer;color:var(--ink);transition:background-color .14s var(--ease-out),color .14s var(--ease-out)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.chip:hover:not([aria-pressed="true"]){background:var(--paper-2)}
+.models{display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.model{grid-column:span 4;background:var(--paper);padding:1.4rem 1.4rem 1.2rem;display:flex;flex-direction:column;min-height:230px;position:relative}
+.model.feature{grid-column:span 8;grid-row:span 2;padding:0;display:grid;grid-template-columns:1.1fr 1fr}
+.model.feature img{width:100%;height:100%;object-fit:cover;min-height:320px}
+.model.feature .m-body{padding:1.6rem;display:flex;flex-direction:column}
+.m-brand{font-size:.9rem;font-weight:600;color:var(--ink-2)}
+.m-name{font-family:var(--display);font-weight:800;font-size:2.2rem;line-height:.95;text-transform:uppercase;margin:.2rem 0 1rem}
+.model.feature .m-name{font-size:clamp(2.6rem,4.5vw,3.8rem)}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:.3rem 1rem;margin:0 0 1.2rem;font-size:.95rem}
+.spec dt{color:var(--ink-2)}
+.spec dd{margin:0;font-weight:600}
+.m-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:.9rem;border-top:1px dashed var(--line)}
+.m-foot a{font-weight:600;text-decoration:none;color:var(--red-ink)}
+.m-foot a:hover{text-decoration:underline;text-underline-offset:3px}
+.licence{display:inline-block;font-family:var(--display);font-weight:800;font-size:1.15rem;line-height:1;border:2px solid var(--ink);padding:.25rem .45rem .2rem;border-radius:3px}
+.licence.a{background:var(--ink);color:var(--paper)}
+.model.more{grid-column:span var(--sd,12);background:var(--ink);color:var(--paper);justify-content:center;gap:.8rem}
+.model.more .m-name{margin:0;color:var(--paper)}
+.model.more p{color:#cfcfcb;margin:0}
+.model.more a{color:#fff;font-weight:600;text-underline-offset:3px}
+.models-note{margin-top:1rem;font-size:.92rem;color:var(--ink-2)}
+@media (max-width:1000px){.model.more{grid-column:span var(--st,12)}.model{grid-column:span 6}.model.feature{grid-column:span 12;grid-row:auto}}
+@media (max-width:620px){.model,.model.more{grid-column:span 12;min-height:0}.model.feature{grid-template-columns:1fr}.model.feature img{min-height:0;aspect-ratio:4/3}}
+.js .model.reveal{opacity:0;transform:translateY(14px)}
+.js .model.reveal.in{opacity:1;transform:none;transition:opacity .45s var(--ease-out),transform .45s var(--ease-out)}
+@media (prefers-reduced-motion:reduce){.js .model.reveal{transform:none}.js .model.reveal.in{transition:opacity .3s linear}}
+
+/* Taller: banda grafito */
+.workshop{background:var(--graphite);color:var(--on-graphite)}
+.workshop .lead,.workshop p{color:var(--on-graphite-2)}
+.workshop-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+.services{list-style:none;padding:0;margin:2rem 0 0;border-top:1px solid #3a3a38}
+.services li{display:grid;grid-template-columns:1fr auto;gap:1rem;padding:1rem 0;border-bottom:1px solid #3a3a38}
+.services b{font-family:var(--display);font-size:1.55rem;text-transform:uppercase;font-weight:700;color:var(--on-graphite);line-height:1.05}
+.services span{color:var(--on-graphite-2);font-size:.95rem;text-align:right;align-self:center}
+.form{background:var(--paper);color:var(--ink);padding:clamp(1.4rem,3vw,2.2rem);border-radius:4px}
+.form h3{margin-bottom:.4rem}
+.form p{color:var(--ink-2);font-size:.97rem}
+.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.field label{font-weight:600;font-size:.95rem}
+.field input,.field select,.field textarea{font:400 1rem var(--text);padding:.75rem .85rem;min-height:48px;border:1.5px solid #9a9a96;border-radius:4px;background:#fff;color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px color-mix(in oklab,var(--red) 30%,transparent)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+.consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.9rem;color:var(--ink-2);margin:.4rem 0 1.2rem}
+.consent input{width:20px;height:20px;margin-top:.15rem;accent-color:var(--red)}
+.form .btn{width:100%;justify-content:center}
+.ok{display:none;border:2px solid var(--ink);border-radius:4px;padding:1.2rem;margin-top:1rem}
+.ok.show{display:block}
+.ok b{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;display:block;margin-bottom:.3rem}
+@media (max-width:860px){.workshop-grid{grid-template-columns:1fr}}
+
+/* Boutique: mosaico asimétrico */
+.mosaic{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(130px,16vw,210px);gap:.6rem}
+.mosaic figure{margin:0;position:relative;overflow:hidden;border-radius:3px;background:var(--paper-2)}
+.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease-out)}
+.mosaic figure:hover img{transform:scale(1.03)}
+.mosaic figcaption{position:absolute;left:.6rem;bottom:.6rem;background:var(--paper);padding:.35rem .6rem;font-size:.88rem;font-weight:600;border-radius:2px}
+.t1{grid-column:1/4;grid-row:span 3}
+.t2{grid-column:4/7;grid-row:span 2}
+.t3{grid-column:4/5;grid-row:span 1}
+.t4{grid-column:5/7;grid-row:span 1}
+@media (max-width:700px){.mosaic{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.t1{grid-column:1/3;grid-row:span 2}.t2{grid-column:1/3;grid-row:span 2}.t3,.t4{grid-column:span 1;grid-row:span 1}}
+.partners{margin-top:1.6rem;font-size:1rem;color:var(--ink-2)}
+.partners b{color:var(--ink)}
+
+/* Ocasión / renove */
+.trade{border-block:1px solid var(--line);background:var(--paper-2)}
+.trade .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2rem 4rem;align-items:center;padding-block:clamp(3rem,6vw,4.5rem)}
+.trade h2{font-size:clamp(2.3rem,5vw,3.8rem)}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding:.75rem 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:1.8rem;line-height:1;color:var(--red)}
+@media (max-width:860px){.trade .wrap{grid-template-columns:1fr}}
+
+/* Comunidad: foto a sangre con texto encima */
+.ride{position:relative;color:#fff;min-height:min(80vh,720px);display:flex;align-items:flex-end;overflow:hidden;background:#222}
+.ride img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.ride::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.72) 100%)}
+.ride .wrap{position:relative;z-index:1;padding-block:3rem;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:2rem;align-items:end}
+.ride h2{font-size:clamp(3rem,8vw,6rem)}
+.ride p{color:#ececea}
+.ride .btn-line{border-color:#fff;color:#fff}
+.ride .btn-line:hover{background:#fff;color:var(--ink)}
+@media (max-width:860px){.ride .wrap{grid-template-columns:1fr}}
+
+/* Entregas */
+.deliver{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,5rem);align-items:center}
+.deliver img{border-radius:3px;aspect-ratio:1;object-fit:cover}
+.quote{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.05;text-transform:uppercase;margin:0 0 1.4rem}
+.rating{display:flex;align-items:center;gap:1.2rem;margin:1.6rem 0;padding:1.2rem 0;border-block:1px solid var(--line)}
+.rating .big{font-family:var(--display);font-weight:800;font-size:3.6rem;line-height:.8}
+@media (max-width:860px){.deliver{grid-template-columns:1fr}}
+
+/* IA: banda de venta de Altera */
+.ai{background:var(--red);color:#fff}
+.ai .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) auto;gap:1.5rem 3rem;align-items:center;padding-block:clamp(2.5rem,5vw,3.6rem)}
+.ai h2{font-size:clamp(2rem,4.4vw,3.3rem)}
+.ai p{color:#fff;margin:.8rem 0 0}
+.ai .btn{background:#fff;color:var(--ink)}
+.ai .btn:hover{background:var(--ink);color:#fff}
+@media (max-width:760px){.ai .wrap{grid-template-columns:1fr}}
+
+/* Visita */
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(2rem,5vw,4.5rem)}
+.hours{width:100%;border-collapse:collapse;margin:1.2rem 0 1.6rem;font-size:1rem}
+.hours th{text-align:left;font-weight:500;color:var(--ink-2);padding:.55rem 0;border-bottom:1px solid var(--line);width:40%}
+.hours td{padding:.55rem 0;border-bottom:1px solid var(--line);font-weight:600}
+.hours tr.today th,.hours tr.today td{color:var(--red-ink)}
+.open-now{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem}
+.open-now::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ink-2)}
+.open-now.yes::before{background:#1f8a3b}
+.contact-list{list-style:none;padding:0;margin:0 0 1.6rem;display:grid;gap:.7rem}
+.contact-list a{font-weight:600;text-underline-offset:3px}
+.map{position:relative;min-height:420px;background:var(--paper-2);border-radius:3px;overflow:hidden;display:grid;place-items:center;text-align:center;padding:2rem}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map p{margin:0 auto 1rem;color:var(--ink-2);font-size:.95rem}
+@media (max-width:860px){.visit{grid-template-columns:1fr}.map{min-height:320px}}
+
+/* Pie */
+footer{background:var(--ink);color:#d8d8d5;padding:3rem 0 6rem;font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem}
+footer a{color:#fff}
+footer .legal a{margin-right:1.1rem}
+.byline{color:#a9a9a5}
+
+/* Barra fija en móvil */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;grid-template-columns:1fr 1fr;gap:.5rem;padding:.6rem .75rem calc(.6rem + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line)}
+.dock .btn{justify-content:center;min-height:50px}
+@media (max-width:860px){.dock{display:grid}}
+
+.proto{background:var(--ink);color:#e6e6e3;font-size:.88rem;text-align:center;padding:.5rem 1rem}
+.proto a{color:#fff}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="proto">Prototipo de web propuesto por Altera para Motor Gas Bike. Catálogo y textos de ejemplo. <a href="../index.html">Ver la demo de IA</a></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Motor Gas Bike, inicio"><span class="l1">Motor Gas</span><span class="l2">Bi<span class="k">k</span>e</span></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#motos">Motos</a>
+      <a href="#taller">Taller</a>
+      <a href="#boutique">Equipación</a>
+      <a href="#cambio">Vende tu moto</a>
+      <a href="#visitanos">Visítanos</a>
+      <a class="btn btn-red" href="#cita">Pide cita en el taller</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="inicio">
+  <div class="hero-copy">
+    <h1><span>Tu tienda</span><span>de motos</span><span>en <span class="k">Albacete</span></span></h1>
+    <p class="lead">KTM, Husqvarna, GASGAS, CFMOTO y Royal Enfield. Te ayudamos a elegir moto, la mantenemos en nuestro taller y te equipamos de casco a botas.</p>
+    <div class="cta-row">
+      <a class="btn btn-red" href="#motos">Ver motos por carnet</a>
+      <a class="btn btn-line" href="#cita">Pide cita en el taller</a>
+    </div>
+    <div class="proof">
+      <span><span class="stars" aria-hidden="true">★★★★</span> <b>4,1</b> en Google · <a href="https://www.google.com/maps/search/?api=1&query=Motor+Gas+Bike+Calle+Casas+Ib%C3%A1%C3%B1ez+17+Albacete" target="_blank" rel="noopener">135 reseñas</a></span>
+      <span><b>C/ Casas Ibáñez, 17</b> · Albacete</span>
+    </div>
+  </div>
+  <div class="hero-media">
+    <img src="img/tienda-rc390-1200.webp" srcset="img/tienda-rc390-640.webp 640w, img/tienda-rc390-1200.webp 1136w" sizes="(max-width: 860px) 100vw, 55vw" width="1136" height="1179" alt="KTM RC 390 naranja aparcada en la puerta de la tienda Motor Gas Bike" fetchpriority="high">
+    <div class="hero-tag"><b>Esquina con calle Roma</b>Entra a ver la exposición: motos, cascos, ropa y recambios.</div>
+  </div>
+</section>
+
+<div class="brands" aria-label="Marcas">
+  <ul class="wrap">
+    <li>KTM</li><li>Husqvarna</li><li>GASGAS</li><li>CFMOTO</li><li>Royal Enfield</li><li class="more">y más marcas</li>
+  </ul>
+</div>
+
+<section class="sec" id="motos" aria-labelledby="motos-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="motos-t">Elige moto <span class="k">por tu carnet</span></h2>
+      <p class="lead">¿Te acabas de sacar el A2? ¿Quieres una 125 con el carnet de coche? Filtra y mira solo lo que puedes conducir.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrar por carnet">
+      <button class="chip" data-f="all" aria-pressed="true">Todas</button>
+      <button class="chip" data-f="B" aria-pressed="false">125 cc · carnet B o A1</button>
+      <button class="chip" data-f="A2" aria-pressed="false">Carnet A2</button>
+      <button class="chip" data-f="A" aria-pressed="false">Carnet A</button>
+      <button class="chip" data-f="E" aria-pressed="false">E-bikes</button>
+    </div>
+    <div class="models" id="models" aria-live="polite"></div>
+    <p class="models-note">Gama de ejemplo para el prototipo. En la web definitiva, la tienda actualiza modelos, precios y unidades disponibles desde un panel sencillo.</p>
+  </div>
+</section>
+
+<section class="sec workshop" id="taller" aria-labelledby="taller-t">
+  <div class="wrap workshop-grid">
+    <div>
+      <h2 id="taller-t">Taller de motos <span class="k">con cita</span></h2>
+      <p class="lead" style="margin-top:1.2rem">Servicio oficial de nuestras marcas y taller multimarca. Pide cita, deja la moto y te avisamos cuando esté lista.</p>
+      <ul class="services">
+        <li><b>Revisiones oficiales</b><span>Mantiene la garantía</span></li>
+        <li><b>Neumáticos</b><span>Carretera, trail y campo</span></li>
+        <li><b>Kit de arrastre y frenos</b><span>Cadena, piñón, pastillas</span></li>
+        <li><b>Suspensiones</b><span>Reglaje y mantenimiento</span></li>
+        <li><b>Diagnosis</b><span>Ruidos, fallos, testigos</span></li>
+        <li><b>Preparación de enduro</b><span>Motos de campo y carreras</span></li>
+      </ul>
+    </div>
+    <form class="form" id="cita" novalidate>
+      <h3>Pide cita</h3>
+      <p>Te llamamos o te escribimos para confirmar día y hora.</p>
+      <div class="row2">
+        <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-tel">Teléfono</label><input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-moto">Tu moto</label><input id="f-moto" name="moto" placeholder="Ej.: KTM 390 Duke 2022"></div>
+        <div class="field"><label for="f-serv">¿Qué necesita?</label>
+          <select id="f-serv" name="serv"><option>Revisión</option><option>Neumáticos</option><option>Kit de arrastre o frenos</option><option>Suspensiones</option><option>Diagnosis de un fallo</option><option>Otra cosa</option></select></div>
+      </div>
+      <div class="field"><label for="f-msg">Cuéntanos algo más (opcional)</label><textarea id="f-msg" name="msg" rows="2"></textarea></div>
+      <label class="consent"><input type="checkbox" id="f-ok" required> <span>Acepto que Motor Gas Bike use mis datos para gestionar la cita, según la <a href="#privacidad">política de privacidad</a>.</span></label>
+      <button class="btn btn-red" type="submit">Enviar solicitud de cita</button>
+      <div class="ok" id="ok" role="status" tabindex="-1"><b>Solicitud recibida</b>Esto es un prototipo. En la web definitiva, la cita entra en el sistema del taller y te llega la confirmación por WhatsApp.</div>
+    </form>
+  </div>
+</section>
+
+<section class="sec" id="boutique" aria-labelledby="boutique-t">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="boutique-t">Equipación, <span class="k">recambios</span> y accesorios</h2>
+      <p class="lead">Una pared entera de cascos, ropa oficial de las marcas, gafas, protecciones y maletas. Ven a probártelo: la talla de un casco se acierta en tienda.</p>
+    </div>
+    <div class="mosaic">
+      <figure class="t1"><img loading="lazy" src="img/muro-cascos-1200.webp" srcset="img/muro-cascos-640.webp 640w, img/muro-cascos-1200.webp 1136w" sizes="(max-width:700px) 100vw, 50vw" width="1136" height="1203" alt="Pared de cascos de carretera y off-road en la tienda"><figcaption>Cascos</figcaption></figure>
+      <figure class="t2"><img loading="lazy" src="img/boutique-husqvarna-1200.webp" srcset="img/boutique-husqvarna-640.webp 640w, img/boutique-husqvarna-1200.webp 1134w" sizes="(max-width:700px) 100vw, 50vw" width="1134" height="1208" alt="Ropa y chaquetas oficiales junto a una Husqvarna de enduro"><figcaption>Ropa oficial</figcaption></figure>
+      <figure class="t3"><img loading="lazy" src="img/gafas-oakley-640.webp" width="640" height="503" alt="Expositor de gafas de motocross Oakley"><figcaption>Gafas</figcaption></figure>
+      <figure class="t4"><img loading="lazy" src="img/cascos-gasgas-640.webp" srcset="img/cascos-gasgas-640.webp 640w, img/cascos-gasgas-1200.webp 1125w" sizes="(max-width:700px) 50vw, 33vw" width="640" height="687" alt="Estanterías de cascos sobre motos GASGAS de motocross"><figcaption>Off-road</figcaption></figure>
+    </div>
+    <p class="partners">Trabajamos con <b>GIVI, Scorpion, Leatt, Oakley</b> y las colecciones oficiales de KTM, Husqvarna y GASGAS. ¿Buscas un recambio concreto? Pregúntanos y te lo pedimos.</p>
+  </div>
+</section>
+
+<section class="trade" id="cambio" aria-labelledby="cambio-t">
+  <div class="wrap">
+    <div>
+      <h2 id="cambio-t">¿Cambias de moto? <span class="k">Tráenos la tuya</span></h2>
+      <p class="lead" style="margin-top:1rem">Te la tasamos en tienda y la descontamos de la nueva. También tenemos motos de ocasión revisadas en nuestro taller.</p>
+      <a class="btn btn-red" href="tel:+34967671676">Llama y pregunta: 967 67 16 76</a>
+    </div>
+    <ol class="steps">
+      <li>Ven con tu moto y su documentación.</li>
+      <li>La revisamos y te damos una tasación.</li>
+      <li>Eliges moto nueva o de ocasión y descontamos tu moto del precio.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="ride" aria-labelledby="ride-t">
+  <img loading="lazy" src="img/enduro-carrera-1200.webp" srcset="img/enduro-carrera-640.webp 640w, img/enduro-carrera-1200.webp 1136w" sizes="100vw" width="1136" height="1206" alt="Piloto de enduro con los colores de Motor Gas Bike superando un tronco en una carrera">
+  <div class="wrap">
+    <h2 id="ride-t">Del taller <span class="k">al barro</span></h2>
+    <div>
+      <p>Muchas de las motos que preparamos acaban en las carreras de enduro. Lo que aprendemos ahí lo aplicamos a tu moto.</p>
+      <a class="btn btn-line" href="https://www.instagram.com/motorgasbike_/" target="_blank" rel="noopener">Síguenos en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="entregas-t">
+  <div class="wrap deliver">
+    <img loading="lazy" src="img/entrega-husqvarna-1200.webp" srcset="img/entrega-husqvarna-640.webp 640w, img/entrega-husqvarna-1200.webp 1136w" sizes="(max-width:860px) 100vw, 45vw" width="1136" height="1208" alt="Cliente recogiendo su Husqvarna de enduro en la puerta de Motor Gas Bike">
+    <div>
+      <h2 id="entregas-t" class="quote">Cada entrega <span class="k">se celebra</span> en la puerta</h2>
+      <p class="lead">Te explicamos la moto, te ayudamos con la matriculación y te dejamos la primera revisión apuntada.</p>
+      <div class="rating">
+        <span class="big">4,1</span>
+        <span><span class="stars" aria-hidden="true">★★★★</span><br>135 reseñas en Google</span>
+      </div>
+      <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&query=Motor+Gas+Bike+Calle+Casas+Ib%C3%A1%C3%B1ez+17+Albacete" target="_blank" rel="noopener">Leer las reseñas</a>
+    </div>
+  </div>
+</section>
+
+<section class="ai" aria-labelledby="ai-t">
+  <div class="wrap">
+    <div>
+      <h2 id="ai-t">Y si suena el teléfono con las manos en una moto…</h2>
+      <p>Laura, la asistente con IA, coge la llamada, da cita en el taller y contesta los mensajes de Instagram y WhatsApp. Pruébala en la demo.</p>
+    </div>
+    <a class="btn" href="../index.html">Hablar con Laura</a>
+  </div>
+</section>
+
+<section class="sec" id="visitanos" aria-labelledby="visit-t">
+  <div class="wrap visit">
+    <div>
+      <h2 id="visit-t">Visítanos</h2>
+      <p class="lead" style="margin-top:1rem">Calle Casas Ibáñez, 17, esquina con calle Roma. 02005 Albacete.</p>
+      <span class="open-now" id="open-now">Horario de tienda y taller</span>
+      <table class="hours" aria-label="Horario">
+        <tbody>
+          <tr data-d="1"><th scope="row">Lunes</th><td>9:00–13:30 · 16:30–20:30</td></tr>
+          <tr data-d="2"><th scope="row">Martes</th><td>9:00–13:30 · 16:30–20:30</td></tr>
+          <tr data-d="3"><th scope="row">Miércoles</th><td>9:00–13:30 · 16:30–20:30</td></tr>
+          <tr data-d="4"><th scope="row">Jueves</th><td>9:00–13:30 · 16:30–20:30</td></tr>
+          <tr data-d="5"><th scope="row">Viernes</th><td>9:00–13:30 · 16:30–20:30</td></tr>
+          <tr data-d="6"><th scope="row">Sábado</th><td>Cerrado</td></tr>
+          <tr data-d="0"><th scope="row">Domingo</th><td>Cerrado</td></tr>
+        </tbody>
+      </table>
+      <ul class="contact-list">
+        <li>Teléfono: <a href="tel:+34967671676">967 67 16 76</a></li>
+        <li>Instagram: <a href="https://www.instagram.com/motorgasbike_/" target="_blank" rel="noopener">@motorgasbike_</a></li>
+      </ul>
+      <a class="btn btn-red" href="https://www.google.com/maps/dir/?api=1&destination=Motor+Gas+Bike+Calle+Casas+Ib%C3%A1%C3%B1ez+17+Albacete" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div class="map" id="map">
+      <div>
+        <p>El mapa es de Google y usa sus cookies. Se carga solo si lo pides.</p>
+        <button class="btn btn-line" id="load-map" type="button">Mostrar mapa</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#inicio" aria-label="Motor Gas Bike, volver arriba" style="color:#fff"><span class="l1" style="background:#fff;color:var(--ink)">Motor Gas</span><span class="l2">Bi<span class="k">k</span>e</span></a>
+      <p style="margin-top:1rem">Motor Gas Bike S.L. · C/ Casas Ibáñez, 17 · 02005 Albacete</p>
+    </div>
+    <div>
+      <p class="legal" id="privacidad"><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Cookies</a></p>
+      <p class="byline">Prototipo diseñado por <a href="https://www.altera-es.com" target="_blank" rel="noopener">Altera</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="dock">
+  <a class="btn btn-line" href="tel:+34967671676">Llamar</a>
+  <a class="btn btn-red" href="#cita">Pedir cita</a>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+
+/* Menú móvil */
+const mb=document.querySelector('.menu-btn'),nav=document.getElementById('nav');
+mb.addEventListener('click',()=>{const o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'Cerrar':'Menú'});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='Menú'}));
+
+/* Catálogo de ejemplo */
+const M=[
+ {b:'KTM',n:'RC 390',cc:'373 cc',t:'Deportiva',l:'A2',img:'ktm-rc390',feat:1,d:'Pensada para circuito, cómoda para el día a día. La moto con la que muchos estrenan el A2.'},
+ {b:'KTM',n:'125 Duke',cc:'125 cc',t:'Naked',l:'B'},
+ {b:'Husqvarna',n:'Svartpilen 125',cc:'125 cc',t:'Scrambler',l:'B'},
+ {b:'KTM',n:'390 Duke',cc:'399 cc',t:'Naked',l:'A2'},
+ {b:'CFMOTO',n:'450MT',cc:'449 cc',t:'Trail',l:'A2'},
+ {b:'Royal Enfield',n:'Himalayan 450',cc:'452 cc',t:'Trail',l:'A2'},
+ {b:'Royal Enfield',n:'Classic 350',cc:'349 cc',t:'Clásica',l:'A2'},
+ {b:'KTM',n:'390 Adventure',cc:'399 cc',t:'Trail',l:'A2'},
+ {b:'KTM',n:'890 Adventure',cc:'889 cc',t:'Trail',l:'A'},
+ {b:'GASGAS',n:'EC 300',cc:'299 cc',t:'Enduro',l:'A'},
+ {b:'Husqvarna',n:'TE 300',cc:'293 cc',t:'Enduro',l:'A'},
+ {b:'KTM',n:'1390 Super Duke R',cc:'1.350 cc',t:'Naked',l:'A'},
+ {b:'Husqvarna y GASGAS',n:'E-bikes',cc:'Eléctrica',t:'Montaña',l:'E'}
+];
+const LBL={B:'B / A1',A2:'A2',A:'A',E:'Sin carnet'};
+const box=document.getElementById('models');
+const io='IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches ? new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('in',e.isIntersecting)),{rootMargin:'0px 0px -8% 0px'}) : null;
+function card(m,i){
+  const ask=`<a href="#cita" data-model="${m.b} ${m.n}">Pregunta precio</a>`;
+  const spec=`<dl class="spec"><dt>Motor</dt><dd>${m.cc}</dd><dt>Tipo</dt><dd>${m.t}</dd></dl>`;
+  const lic=`<span class="licence${m.l==='A'?' a':''}" title="Carnet necesario">${LBL[m.l]}</span>`;
+  if(m.feat) return `<article class="model feature reveal"><img src="img/${m.img}-1200.webp" srcset="img/${m.img}-640.webp 640w, img/${m.img}-1200.webp 1106w" sizes="(max-width:620px) 100vw, 40vw" width="1106" height="1208" loading="lazy" alt="${m.b} ${m.n} en la tienda"><div class="m-body"><span class="m-brand">${m.b} · en exposición</span><h3 class="m-name">${m.n}</h3><p>${m.d}</p>${spec}<div class="m-foot">${lic}${ask}</div></div></article>`;
+  return `<article class="model reveal" style="transition-delay:${(i%3)*50}ms"><span class="m-brand">${m.b}</span><h3 class="m-name">${m.n}</h3>${spec}<div class="m-foot">${lic}${ask}</div></article>`;
+}
+function render(f){
+  const list=M.filter(m=>f==='all'||m.l===f);
+  const hasF=list.some(m=>m.feat),sd=list.length+(hasF?3:0),st=list.length+(hasF?1:0),rd=(3-sd%3)%3,rt=(2-st%2)%2;
+  box.innerHTML=list.map(card).join('')+`<article class="model more" style="--sd:${rd?rd*4:12};--st:${rt?6:12}"><h3 class="m-name">¿Buscas otra?</h3><p>Te conseguimos cualquier modelo de nuestras marcas y te decimos plazo de entrega.</p><a href="tel:+34967671676">Llama al 967 67 16 76</a></article>`;
+  box.querySelectorAll('.reveal').forEach(el=>io?io.observe(el):el.classList.add('in'));
+}
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));
+  render(c.dataset.f);
+}));
+render('all');
+box.addEventListener('click',e=>{const a=e.target.closest('a[data-model]');if(!a)return;const s=document.getElementById('f-serv'),m=document.getElementById('f-msg');m.value='Me interesa la '+a.dataset.model+'. ¿Precio y disponibilidad?';s.value='Otra cosa'});
+
+/* Formulario de cita (prototipo) */
+const form=document.getElementById('cita');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const bad=[...form.querySelectorAll('[required]')].find(x=>x.type==='checkbox'?!x.checked:!x.value.trim());
+  if(bad){bad.focus();bad.reportValidity&&bad.setCustomValidity('');return}
+  const ok=document.getElementById('ok');ok.classList.add('show');ok.focus();
+});
+
+/* Abierto ahora (hora de Madrid) */
+(function(){
+  const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Madrid'}));
+  const d=now.getDay(),m=now.getHours()*60+now.getMinutes();
+  const row=document.querySelector(`.hours tr[data-d="${d}"]`);row&&row.classList.add('today');
+  const open=d>=1&&d<=5&&((m>=540&&m<810)||(m>=990&&m<1230));
+  const el=document.getElementById('open-now');
+  el.textContent=open?'Abierto ahora':'Cerrado ahora';el.classList.toggle('yes',open);
+})();
+
+/* Mapa bajo demanda */
+document.getElementById('load-map').addEventListener('click',()=>{
+  document.getElementById('map').innerHTML='<iframe title="Mapa de Motor Gas Bike" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Motor+Gas+Bike,+Calle+Casas+Ib%C3%A1%C3%B1ez+17,+02005+Albacete&output=embed"></iframe>';
+});
+</script>
+</body>
+</html>
